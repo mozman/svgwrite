@@ -6,9 +6,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-__all__ = ['rgb']
+__all__ = ['color']
 
-def rgb(r=0, g=0, b=0, mode="HEX"):
+def color(r=0, g=0, b=0, mode="HEX"):
     """Convert r, g, b values to a string.
 
     mode -- "HEX" returns a hex-string format: #rrggbb
