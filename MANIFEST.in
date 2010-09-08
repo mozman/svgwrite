@@ -1,0 +1,3 @@
+include NEWS.TXT README.TXT LICENSE.TXT
+include svgexamples.py
+recursive-include tests *.py
