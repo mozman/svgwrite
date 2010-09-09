@@ -13,7 +13,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(name='svgwrite',
-    version='0.0.0',
+    version='0.1.0',
     description='A Python library to create SVG drawings.',
     author='mozman',
     url='http://bitbucket.org/mozman/svgwrite',
@@ -25,13 +25,14 @@ setup(name='svgwrite',
     platforms="OS Independent",
     license="GPLv3",
     classifiers=[
-    "Development Status :: 1 - Planning",
+    "Development Status :: 2 - Pre-Alpha",
     "License :: OSI Approved :: GNU General Public License (GPL)",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 2.5",
     "Programming Language :: Python :: 2.6",
 	"Programming Language :: Python :: 2.7",
     "Intended Audience :: Developers",
+	"Topic :: Multimedia :: Graphics",
     "Topic :: Software Development :: Libraries :: Python Modules",
     ]
      )
