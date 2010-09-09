@@ -21,21 +21,21 @@ class BaseElement(object):
     def __setitem__(self, key, value):
         self.attribs[key] = value
 
-    def __str__(self):
+    def tostring(self, profile="tiny"):
         """ get XML as string representation. """
-        etree = self.get_etree()
+        etree = self.get_etree(profile)
         return etree.tostring()
 
     def add(self, element):
         """ add subelement """
         self.elements.append(element)
 
-    def get_etree(self):
+    def get_etree(self, profile="tiny"):
         """ get XML as ElementTree object. """
 
-    def add_to_etree(self, etree):
+    def add_to_etree(self, etree, profile="tiny"):
         """ add XML to etree object. """
-        etree.add(self.get_etree())
+        etree.add(self.get_etree(profile))
 
     def name(self):
         return self.__class__.__name__.lower()
