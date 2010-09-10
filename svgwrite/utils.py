@@ -6,14 +6,13 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-__all__ = ['color']
+__all__ = ['rgb']
 
-def color(r=0, g=0, b=0, mode="HEX"):
+def rgb(r=0, g=0, b=0, mode='RGB'):
     """Convert r, g, b values to a string.
 
-    mode -- "HEX" returns a hex-string format: #rrggbb
-    mode -- "RGB" returna a rgb-string format: rgb(rr, gg, bb)
-    mode -- "%" returns a rgb%-string format: rgb(rr%, gg%, bb%)
+    mode -- "RGB" returnd a rgb-string format: 'rgb(r, g, b)'
+    mode -- "%" returns percent-values as rgb-string format: 'rgb(r%, g%, b%)'
     """
     def percent(value):
         value = float(value)
@@ -22,9 +21,8 @@ def color(r=0, g=0, b=0, mode="HEX"):
         if value > 100.:
             value = 100.
         return value
-    if mode.upper() == "HEX":
-        return "#%02X%02X%02X" % (int(r) & 255, int(g) & 255, int(b) % 255)
-    else if mode.upper() == "RGB":
+    if mode.upper() == 'RGB':
         return "rgb(%d, %d, %d)" % (int(r) & 255, int(g) & 255, int(b) % 255)
     else if mode == "%":
         return "rgb(%.3f%%, %.3f%%, %.3f%%)" % (percent(r), percent(g), percent(b))
+    else raise ValueError("unknown mode: %s" % mode)
