@@ -9,7 +9,8 @@
 import xml.etree.ElementTree as etree
 
 import parameter
-from svgwrite.utils import attrib_to_string
+from svgwrite.utils import value_to_string
+from svgwrite.validator import check_attribs
 
 class BaseElement(object):
     def __init__(self, attribs=None, **kwargs):
@@ -41,17 +42,21 @@ class BaseElement(object):
         keys = self.attribs.keys()
         if parameter.debug_mode:
             keys.sort() # for testing resons
+            check_attribs(self._elementname(), self.attribs)
         for key in keys:
-            self._check_attrib(key)
-            attrib[key] = attrib_to_string(self.attribs[key])
-        xml = etree.Element(self._element_name(), attrib)
+            attrib[key] = value_to_string(self.attribs[key])
+        xml = etree.Element(self._elementname(), attrib)
         for element in self.elements:
             xml.append(element.get_xml())
         return xml
 
-    def _element_name(self):
-        return self.__class__.__name__.lower()
+    def _elementname(self):
+        name = self.__class__.__name__
+        return name[0].lower() + name[1:]
 
-    def _check_attrib(self, attrib):
-        if parameter.debug_mode and attrib not in self._valid_attribs():
-            raise ValueError("Invalid parameter '%s'" % attrib)
+class GenericElement(BaseElement):
+    def __init__(self, elementname, attribs=None, **kwargs):
+        super(GenericElement, self).__init__(attribs, **kwargs)
+        self.elementname = elementname
+    def _elementname(self):
+        return self.elementname

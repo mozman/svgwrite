@@ -6,10 +6,11 @@
 # License: GPLv3
 
 from base import BaseElement
+from utils import check_coordinate
 
 class Path(BaseElement):
     def __init__(self, attribs=None, **kwargs):
-        super(Path, self).__init__(attribs, kwargs)
+        super(Path, self).__init__(attribs, **kwargs)
         self.commands = []
 
     def hline(self, *values):
@@ -26,7 +27,7 @@ class Path(BaseElement):
 
     def lineto(self, points=[]):
         self.commands.append(u'l')
-        self.commands.extend(point)
+        self.commands.extend(points)
 
     def qbezier(self, b1=(0,0), dest=(0,0)):
         self.commands.append('q')
@@ -51,15 +52,17 @@ class Path(BaseElement):
     def close(self):
         self.commands.append(u'z')
 
-    def get_etree(self):
+    def get_xml(self):
         self.attribs['d'] = self.commands_to_unicode()
-        return super(Path, self).get_etree()
+        return super(Path, self).get_xml()
 
     def commands_to_unicode(self):
         strings = []
         for command in self.commands:
             s = unicode(command)
             if isinstance(command, tuple):
+                for coord in command: # check for valid coords
+                    check_coordinate(coord)
                 s = s[1:-1] # remove brackets
             strings.append(s)
         return u' '.join(strings)

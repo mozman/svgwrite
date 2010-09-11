@@ -10,20 +10,20 @@ from svgwrite import parameter
 from svgwrite.utils import check_coordinate
 from svgwrite.base import BaseElement
 
-_svg_attribs = ['width', 'height', 'version', 'xmlns', 'viewBox', 'x', 'y',
-                'preserveAspectRatio', 'baseProfile', 'zoomAndPan',
-                'snapshottime', 'playbackOrder', 'timelineBegin',
-                'contentScriptType', 'contentStyleType']
-
 class Drawing(BaseElement):
-    def __init__(self, filename="noname.svg", width='100%', height='100%'):
-        super(Drawing, self).__init__(version="1.2",
-                                      xmlns="http://www.w3.org/2000/svg",
-                                      width=width, height=height)
+    def __init__(self, filename="noname.svg", width='100%', height='100%', **kwargs):
+        super(Drawing, self).__init__(xmlns="http://www.w3.org/2000/svg",
+                                      width=width, height=height, **kwargs)
         self.filename = filename
 
     def get_xml(self):
-        self.attribs['baseProfile'] = parameter.profile
+        profile = parameter.profile
+        if profile == 'tiny':
+            version = '1.2' # only tiny
+        else:
+            version = '1.1' # basic or full
+        self.attribs['baseProfile'] = profile
+        self.attribs['version'] = version
         return super(Drawing, self).get_xml()
 
     def viewbox(self, x1=0, y1=0, x2=0, y2=0):
@@ -31,11 +31,8 @@ class Drawing(BaseElement):
             check_coordinate(value)
         self.attribs['viewBox'] = "%s,%s,%s,%s" % (x1, y1, x2, y2)
 
-    def _element_name(self):
+    def _elementname(self):
         return 'svg'
-
-    def _valid_attribs(self):
-        return _svg_attribs
 
     def write(self, fileobj):
         xmlstr = self.tostring().encode('utf-8')

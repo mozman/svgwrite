@@ -19,7 +19,7 @@ class TestDrawingFullProfile(unittest.TestCase):
     def test_empty_drawing(self):
         dwg = Drawing()
         result = dwg.tostring()
-        self.assertEqual(result, '<svg baseProfile="full" height="100%" version="1.2" width="100%" xmlns="http://www.w3.org/2000/svg" />')
+        self.assertEqual(result, '<svg baseProfile="full" height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" />')
 
 class TestDrawingTinyProfile(unittest.TestCase):
     def setUp(self):

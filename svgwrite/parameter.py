@@ -13,6 +13,9 @@ valid_units = ['em', 'ex', 'px', 'pt', 'pc', 'cm', 'mm', 'in', '%']
 def setup(baseProfile="full", debug=False):
     global debug_mode
     debug_mode = debug
-    global profile
-    profile = baseProfile.lower()
-
+    baseProfile = baseProfile.lower()
+    if baseProfile in ('tiny', 'basic', 'full'):
+        global profile
+        profile = baseProfile
+    else:
+        raise ValueError("'%s' is not a valid profile." % baseProfile)
