@@ -6,5 +6,5 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from parameter import verify
+from parameter import setup
 from drawing import Drawing

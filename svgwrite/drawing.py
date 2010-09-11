@@ -6,8 +6,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from svgwrite.parameter import check_coordinate, profile
-
+from svgwrite import parameter
+from svgwrite.utils import check_coordinate
 from svgwrite.base import BaseElement
 
 _svg_attribs = ['width', 'height', 'version', 'xmlns', 'viewBox', 'x', 'y',
@@ -20,10 +20,10 @@ class Drawing(BaseElement):
         super(Drawing, self).__init__(version="1.2",
                                       xmlns="http://www.w3.org/2000/svg",
                                       width=width, height=height)
-        self.filename = name
+        self.filename = filename
 
     def get_xml(self):
-        self.attribs['baseProfile'] = profile
+        self.attribs['baseProfile'] = parameter.profile
         return super(Drawing, self).get_xml()
 
     def viewbox(self, x1=0, y1=0, x2=0, y2=0):

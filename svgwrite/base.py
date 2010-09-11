@@ -17,7 +17,7 @@ class BaseElement(object):
             self.attribs = dict()
         else:
             self.attribs = dict(attribs)
-        self.update(kwargs)
+        self.attribs.update(kwargs)
         self.elements = list()
 
     def __getitem__(self, key):
@@ -38,10 +38,13 @@ class BaseElement(object):
     def get_xml(self):
         """ get XML as ElementTree object. """
         attrib = {}
-        for key, value in self.attribs:
-            self._check_attrib(key, )
-            attrib[key] = attrib_to_string(value)
-        xml = etree.Element(self._element_name, attrib)
+        keys = self.attribs.keys()
+        if parameter.debug_mode:
+            keys.sort() # for testing resons
+        for key in keys:
+            self._check_attrib(key)
+            attrib[key] = attrib_to_string(self.attribs[key])
+        xml = etree.Element(self._element_name(), attrib)
         for element in self.elements:
             xml.append(element.get_xml())
         return xml
