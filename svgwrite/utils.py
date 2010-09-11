@@ -29,7 +29,7 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
     else:
         raise ValueError("Invalide mode '%s'" % mode)
 
-def attrib_to_string(value):
+def value_to_string(value):
     if parameter.debug_mode and parameter.profile=='tiny' and isinstance(value, (int, float)):
         check_tiny(value)
     return unicode(value)
@@ -38,8 +38,8 @@ def points_to_string(points):
     strings = []
     for point in points:
         if isinstance(point, tuple):
-            parameter.check_coordinate(point[0])
-            parameter.check_coordinate(point[1])
+            check_coordinate(point[0])
+            check_coordinate(point[1])
             point = "%s,%s" % point
         strings.append(point)
     return ' '.join(strings)
