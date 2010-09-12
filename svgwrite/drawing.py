@@ -7,7 +7,7 @@
 # License: GPLv3
 
 from svgwrite import parameter
-from svgwrite.utils import check_coordinate
+from svgwrite.validator import check_coordinate
 from svgwrite.base import BaseElement
 
 class Drawing(BaseElement):
@@ -35,7 +35,7 @@ class Drawing(BaseElement):
         return 'svg'
 
     def write(self, fileobj):
-        xmlstr = self.tostring().encode('utf-8')
+        xmlstr = self.tostring()
         fileobj.write(xmlstr)
 
     def save(self):

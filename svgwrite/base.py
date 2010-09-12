@@ -10,7 +10,7 @@ import xml.etree.ElementTree as etree
 
 import parameter
 from svgwrite.utils import value_to_string
-from svgwrite.validator import check_attribs
+from svgwrite.validator import check_attribute_names, check_attribute_value
 
 class BaseElement(object):
     def __init__(self, attribs=None, **kwargs):
@@ -34,18 +34,19 @@ class BaseElement(object):
     def tostring(self):
         """ get XML as string representation. """
         xml = self.get_xml()
-        return etree.tostring(xml)
+        return etree.tostring(xml, encoding='utf-8')
 
     def get_xml(self):
         """ get XML as ElementTree object. """
-        attrib = {}
-        keys = self.attribs.keys()
-        if parameter.debug_mode:
-            keys.sort() # for testing resons
-            check_attribs(self._elementname(), self.attribs)
-        for key in keys:
-            attrib[key] = value_to_string(self.attribs[key])
-        xml = etree.Element(self._elementname(), attrib)
+        debug_mode = parameter.debug_mode
+        if debug_mode:
+            check_attribute_names(self._elementname(), self.attribs)
+        xml = etree.Element(self._elementname())
+        for attribute, value in self.attribs.iteritems():
+            value = value_to_string(value)
+            if debug_mode:
+                check_attribute_value(attribute, value)
+            xml.set(attribute, value)
         for element in self.elements:
             xml.append(element.get_xml())
         return xml

@@ -9,77 +9,8 @@
 import sys
 import unittest
 
-from svgwrite.utils import check_tiny, get_coordinate, _split_coordinate, rgb
-
-
-class TestSplitCoordinate(unittest.TestCase):
-    """Test _split_coordinate method"""
-    def test_int(self):
-        number, unit = _split_coordinate(100)
-        self.assertEqual(number, 100)
-        self.assertEqual(unit, None)
-
-    def test_float(self):
-        number, unit = _split_coordinate(100.)
-        self.assertEqual(number, 100.)
-        self.assertEqual(unit, None)
-
-    def test_none(self):
-        self.assertRaises(TypeError, _split_coordinate, None)
-
-    def test_valid_units(self):
-        for value, number, unit in [(' 100px ', 100, 'px'),
-                                    (' -100ex ', -100, 'ex'),
-                                    (' 100em ', 100, 'em'),
-                                    (' -100pt ', -100, 'pt'),
-                                    (' 100pc ', 100, 'pc'),
-                                    (' 100mm', 100, 'mm'),
-                                    (' 100cm', 100, 'cm'),
-                                    (' 100in', 100, 'in'),
-                                    (' 5%', 5, '%')]:
-            number2, unit2 = _split_coordinate(value)
-        self.assertEqual(number2, number)
-        self.assertEqual(unit2, unit)
-
-    def test_not_valid_numbers(self):
-        for value in (' 1s00in ', ' 1s00mm ', ' 1s00% '):
-            self.assertRaises(ValueError, _split_coordinate, value)
-
-    def test_not_valid_units(self):
-        for value in (' 100km ', ' 100mi ', ' 100$ '):
-            self.assertRaises(ValueError, _split_coordinate, value)
-
-class TestGetCoordinate(unittest.TestCase):
-    def test_valid_units(self):
-        for value, number, unit in [(' 100px ', 100, 'px'),
-                                    (' -100ex ', -100, 'ex'),
-                                    (' 100em ', 100, 'em'),
-                                    (' -100pt ', -100, 'pt'),
-                                    (' 100pc ', 100, 'pc'),
-                                    (' 100mm', 100, 'mm'),
-                                    (' 100cm', 100, 'cm'),
-                                    (' 100in', 100, 'in'),
-                                    (' 5%', 5, '%')]:
-            number2, unit2 = get_coordinate(value)
-        self.assertEqual(number2, number)
-        self.assertEqual(unit2, unit)
-
-    def test_not_valid_numbers(self):
-        for value in (' 1s00in ', ' 1s00mm ', ' 1s00% '):
-            self.assertRaises(ValueError, get_coordinate, value)
-
-    def test_not_valid_units(self):
-        for value in (' 100km ', ' 100mi ', ' 100$ '):
-            self.assertRaises(ValueError, get_coordinate, value)
-
-class TestCheckTiny(unittest.TestCase):
-    def test_valid_tiny(self):
-        for value in (10000, 0, -10000., -32767.9999, +32767.9999):
-            check_tiny(value) # no exception should raised
-
-    def test_invalid_tiny(self):
-        for value in (100000, -100000., -32768, 32768):
-            self.assertRaises(ValueError, check_tiny, value)
+from svgwrite.parameter import setup
+from svgwrite.utils import rgb, value_to_string, points_to_string
 
 class TestRgb(unittest.TestCase):
     def test_rgb_8bit(self):
@@ -97,6 +28,65 @@ class TestRgb(unittest.TestCase):
 
     def test_rgb_invalid_mode(self):
         self.assertRaises(ValueError, rgb, mode='$')
+
+class TestValueToString(unittest.TestCase):
+    def test_full_profile(self):
+        setup(baseProfile='full', debug=True)
+        self.assertEqual(u'test', value_to_string('test'))
+        self.assertEqual(u'10', value_to_string(10))
+
+    def test_tiny_profile(self):
+        setup(baseProfile='tiny', debug=True)
+        # value out of range
+        self.assertRaises(ValueError, value_to_string, 100000)
+
+    def test_is_unicode(self):
+        self.assertTrue(isinstance(value_to_string(10), unicode))
+        self.assertTrue(isinstance(value_to_string('test'), unicode))
+
+class TestPointsToStringFullProfile(unittest.TestCase):
+    def setUp(self):
+        setup(baseProfile='full', debug=True)
+
+    def test_valid_points(self):
+        # valid units: cm|em|ex|in|mm|pc|pt|px|%
+        # dont't know if '%' is valid for points?
+        result = points_to_string([(10,10), ('20cm', '20em'), ('30ex', '30in'), ('40mm', '40pc'), ('50pt', '50px'), ('60%', '60%')])
+        # it's an unicode string
+        self.assertTrue(isinstance(result, unicode))
+        self.assertEqual(result, u"10,10 20cm,20em 30ex,30in 40mm,40pc 50pt,50px 60%,60%")
+        # e-notation is valid
+        result = points_to_string([('1e10pt','1e-10in')])
+        self.assertEqual(result, u"1e10pt,1e-10in")
+
+    def test_invalid_points(self):
+        # invalid unit #'p'
+        self.assertRaises(ValueError, points_to_string, [(10,10), ('20p', '20px')])
+
+    def test_invalid_tuple_count(self):
+        # 3-tuple not allowed
+        self.assertRaises(ValueError, points_to_string, [(10,10), ('20px', '20px', '20px')])
+        # 1-tuple not allowed
+        self.assertRaises(ValueError, points_to_string, [(10,10), ('20px', )])
+
+class TestPointsToStringTinyProfile(unittest.TestCase):
+    def setUp(self):
+        setup(baseProfile='tiny', debug=True)
+
+    def test_valid_points(self):
+        # valid units: cm|em|ex|in|mm|pc|pt|px|%
+        # dont't know if '%' is valid for points?
+        result = points_to_string([(10,10), ('20cm', '20em'), ('30ex', '30in'), ('40mm', '40pc'), ('50pt', '50px'), ('60%', '60%')])
+        # it's an unicode string
+        self.assertTrue(isinstance(result, unicode))
+        self.assertEqual(result, u"10,10 20cm,20em 30ex,30in 40mm,40pc 50pt,50px 60%,60%")
+
+    def test_value_range(self):
+        # invalid unit #'p'
+        self.assertRaises(ValueError, points_to_string, [(100000,10)])
+        self.assertRaises(ValueError, points_to_string, [(-100000,10)])
+        self.assertRaises(ValueError, points_to_string, [(10,100000)])
+        self.assertRaises(ValueError, points_to_string, [(-10,-100000)])
 
 if __name__=='__main__':
     unittest.main()
