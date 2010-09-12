@@ -40,21 +40,25 @@ class Drawing(BaseElement):
     set attribute: drawing-object['attribute'] = value or on __init__()
     get attribute: value = drawing-object['attribute']
 
-    class -- <string> : assigns one or more css-class-names to an element
-    style -- <string> : allows per-element css-style rules to be specified directly
+    class -- <string> assigns one or more css-class-names to an element
+        see http://www.w3.org/TR/SVG11/interact.html#ClassAttribute
+    style -- <string> allows per-element css-style rules to be specified directly
         on a given element
-    x -- <coordinate> : x-coordinate, if <svg> is enbedded into another <svg>-element
-    y -- <coordinate> : y-coordinate, if <svg> is enbedded into another <svg>-element
-    width -- <coordinate> : canvas-width - default is '100%'
-    height -- <coordinate> : canvas-height - default is '100%'
-    viewBox -- <string> : a list of four numbers '<min-x>, <min-y>, <width> and <height>'
+        see http://www.w3.org/TR/SVG11/interact.html#StyleAttribute
+    x -- <coordinate> x-coordinate, if <svg> is enbedded into another <svg>-element
+    y -- <coordinate> y-coordinate, if <svg> is enbedded into another <svg>-element
+    width -- <length> canvas-width - default is '100%'
+    height -- <length> canvas-height - default is '100%'
+    viewBox -- <string> a list of four numbers '<min-x>, <min-y>, <width> and <height>'
         better: use the viewbox-method
+        see http://www.w3.org/TR/SVG11/coords.html#ViewBoxAttribute
     preserveAspectRatio -- <string> : "[defer] <align>  [meet|slice]" influence graphic scaling
         see http://www.w3.org/TR/SVG11/coords.html#PreserveAspectRatioAttribute
     zoomAndPan -- "disable|magnify" : default is 'magnify'
         see http://www.w3.org/TR/SVG11/interact.html#ZoomAndPanAttribute
     externalResourcesRequired -- "true|false" false: if document rendering can proceed
         even if external resources are unavailable else: true
+        see http://www.w3.org/TR/SVG11/interact.html#ExternalResourcesRequiredAttribute
 
     supported but do not set or change following svg-attributes:
     version, baseProfile, contentScriptType, contentStyleType
@@ -64,8 +68,8 @@ class Drawing(BaseElement):
         Arguments:
         ----------
         filename -- filesystem-filename, should be supported by the open-command
-        width -- float|int|string : canvas-width - default is '100%'
-        height -- float|int|string : canvas-height - default is '100%'
+        width -- <length> : canvas-width - default is '100%'
+        height -- <length> : canvas-height - default is '100%'
         extra -- keyword arguments - any valid (for the <svg> element) svg-attributes
         """
         super(Drawing, self).__init__(xmlns="http://www.w3.org/2000/svg",
@@ -85,7 +89,7 @@ class Drawing(BaseElement):
         return super(Drawing, self).get_xml()
 
     def viewbox(self, minx=0, miny=0, width=0, height=0):
-        """ Set the svg 'viewBox' attribute, argument are <coordinate> values.
+        """ Set the svg 'viewBox' attribute, arguments are <coordinate> values.
         """
         for value in (minx, miny, width, height):
             check_coordinate(value)
