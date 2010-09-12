@@ -19,6 +19,8 @@ class BaseElement(object):
         else:
             self.attribs = dict(attribs)
         self.attribs.update(kwargs)
+        if parameter.debug_mode:
+            check_attribute_names(self._elementname(), self.attribs)
         self.elements = list()
 
     def __getitem__(self, key):
@@ -26,6 +28,8 @@ class BaseElement(object):
 
     def __setitem__(self, key, value):
         self.attribs[key] = value
+        if parameter.debug_mode:
+            check_attribute_names(self._elementname, self.attribs)
 
     def append(self, element):
         """ append subelement """
