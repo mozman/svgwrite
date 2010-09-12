@@ -9,7 +9,8 @@
 import re
 
 def check_attribute_names(elementname, attribs):
-    """Checks if all attributenames (keys of attribs) for element 'elementname' are valid.
+    """Checks if all attribute-names (keys of attribs) for element 'elementname'
+    are valid.
 
     Raises ValueError if not valid.
     """
@@ -20,7 +21,7 @@ def check_attribute_names(elementname, attribs):
     return attribs # pass-through function
 
 def check_attribute_value(attributename, value):
-    """Checks if value is valid for attribute 'attributename'.
+    """Checks if value is valid for attribute 'attribute-name'.
 
     Raises ValueError if not valid.
     """
