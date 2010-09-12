@@ -12,12 +12,12 @@ import unittest
 import svgwrite.parameter as parameter
 
 
-class TestSetup(unittest.TestCase):
-    """Test setup method"""
-    def test_setup(self):
-        parameter.setup(baseProfile='TINY', debug=False)
+class TestInit(unittest.TestCase):
+    """Test init method"""
+    def test_init(self):
+        parameter.init(baseProfile='TINY', debug=True)
         self.assertEqual(parameter.profile, 'tiny')
-        self.assertFalse(parameter.debug_mode)
+        self.assertTrue(parameter.debug_mode)
 
 
 if __name__=='__main__':

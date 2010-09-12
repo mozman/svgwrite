@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite.parameter import setup
+from svgwrite.parameter import init
 from svgwrite.utils import rgb, value_to_string, points_to_string
 
 class TestRgb(unittest.TestCase):
@@ -31,12 +31,12 @@ class TestRgb(unittest.TestCase):
 
 class TestValueToString(unittest.TestCase):
     def test_full_profile(self):
-        setup(baseProfile='full', debug=True)
+        init(baseProfile='full', debug=True)
         self.assertEqual(u'test', value_to_string('test'))
         self.assertEqual(u'10', value_to_string(10))
 
     def test_tiny_profile(self):
-        setup(baseProfile='tiny', debug=True)
+        init(baseProfile='tiny', debug=True)
         # value out of range
         self.assertRaises(ValueError, value_to_string, 100000)
 
@@ -46,7 +46,7 @@ class TestValueToString(unittest.TestCase):
 
 class TestPointsToStringFullProfile(unittest.TestCase):
     def setUp(self):
-        setup(baseProfile='full', debug=True)
+        init(baseProfile='full', debug=True)
 
     def test_valid_points(self):
         # valid units: cm|em|ex|in|mm|pc|pt|px|%
@@ -71,7 +71,7 @@ class TestPointsToStringFullProfile(unittest.TestCase):
 
 class TestPointsToStringTinyProfile(unittest.TestCase):
     def setUp(self):
-        setup(baseProfile='tiny', debug=True)
+        init(baseProfile='tiny', debug=True)
 
     def test_valid_points(self):
         # valid units: cm|em|ex|in|mm|pc|pt|px|%

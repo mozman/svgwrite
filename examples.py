@@ -8,10 +8,10 @@
 
 import svgwrite as svg
 
-# svg.setup: define debug_mode and svg profile - optional
+# svg.init: define debug_mode and svg profile - optional
 # baseProfile -- full, basic or tiny baseProfile (default: full)
 # debug -- verify property names and property values (default: False)
-svg.setup(baseProfile='tiny', debug=True)
+svg.init(baseProfile='tiny', debug=True)
 
 def example_empty_drawing(name):
     drawing = svg.Drawing(filename=name)

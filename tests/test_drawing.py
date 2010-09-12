@@ -9,12 +9,12 @@
 import sys
 import unittest
 
-from svgwrite.parameter import setup
+from svgwrite.parameter import init
 from svgwrite.drawing import Drawing
 
 class TestDrawingFullProfile(unittest.TestCase):
     def setUp(self):
-        setup(baseProfile='full', debug=True)
+        init(baseProfile='full', debug=True)
 
     def test_empty_drawing(self):
         dwg = Drawing()
@@ -23,7 +23,7 @@ class TestDrawingFullProfile(unittest.TestCase):
 
 class TestDrawingTinyProfile(unittest.TestCase):
     def setUp(self):
-        setup(baseProfile='tiny', debug=True)
+        init(baseProfile='tiny', debug=True)
 
     def test_empty_drawing(self):
         dwg = Drawing()
