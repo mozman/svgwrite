@@ -8,9 +8,8 @@
 
 debug_mode = False
 profile = "full" # full, basic or tiny
-valid_units = ['em', 'ex', 'px', 'pt', 'pc', 'cm', 'mm', 'in', '%']
 
-def setup(baseProfile="full", debug=False):
+def init(baseProfile="full", debug=False):
     global debug_mode
     debug_mode = debug
     baseProfile = baseProfile.lower()
