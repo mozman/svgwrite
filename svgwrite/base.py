@@ -47,8 +47,6 @@ class BaseElement(object):
             if debug_mode:
                 check_attribute_value(attribute, value)
             xml.set(attribute, value)
-        for element in self.elements:
-            xml.append(element.get_xml())
         return xml
 
     def _elementname(self):
