@@ -8,9 +8,9 @@
 
 from svgwrite import parameter
 from svgwrite.validator import check_coordinate
-from svgwrite.base import BaseElement
+from svgwrite.base import ContainerElement
 
-class Drawing(BaseElement):
+class Drawing(ContainerElement):
     """This is the svg-drawing represented by the <svg /> element.
 
     A drawing consists of any number of SVG elements contained within the drawing
@@ -24,7 +24,7 @@ class Drawing(BaseElement):
     -----------
     filename -- should be supported by the open-command
 
-    inherited attributes see class: BaseElement
+    inherited attributes see class: ContainerElement
 
     Methods:
     --------
@@ -33,7 +33,7 @@ class Drawing(BaseElement):
     save() -- store xml-string to the filesystem (uses filename-attribute)
     saveas(filename) -- store xml-string to 'filename' resource
 
-    inherited methods see class: BaseElement
+    inherited methods see class: ContainerElement
 
     Supported SVG Attributes:
     -------------------------
