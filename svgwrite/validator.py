@@ -31,6 +31,17 @@ def check_attribute_value(attributename, value):
         raise ValueError("Value '%s' is not valid for atttribute '%s'." % (value, attributename))
     return value # pass-through function
 
+def check_valid_content(element, subelement):
+    """ Check if element can contain subelement.
+
+    Raises ValueError for invalid subelement.
+    """
+    valid_subelements = content_model[element]
+    if '*' not in valid_subelements:
+        if subelement not in valid_subelements:
+            raise ValueError("Invalid content '%s' for element '%s'." % (subelement, element))
+    return subelement
+
 def get_coordinate(value, profile='tiny'):
     """ Split value in (number, unit) if value has an unit or (number, None).
 
@@ -65,6 +76,10 @@ def check_tiny(number):
     if not (-32767.9999 <= number <= 32767.9999):
         raise ValueError("'%.4f' out of range for baseProfile 'tiny'" % number)
     return number # pass-through function
+
+################################################################################
+## ELEMENT - ATTRIBUTES
+################################################################################
 
 core_attributes = ("id", "xml:base", "xml:lang", "xml:space")
 conditional_processing_attributes = ("requiredFeatures", "requiredExtensions", "systemLanguage")
@@ -275,10 +290,14 @@ def flatten_attributes():
         collect = set(core_attributes)
         for attribs in attrib_lists:
             collect.update(attribs)
-        attributes[element] = collect
+        attributes[element] = frozenset(collect)
     return attributes
 # attibutes -- <dict> contains for every svg-element ALL valid attributs
 attributes = flatten_attributes()
+
+################################################################################
+## ATTRIBUTE VALIDATION FUNCTIONS
+################################################################################
 
 def _always_valid(value):
     return True
@@ -558,3 +577,134 @@ validate_attribute = {
     'z' : _always_valid,
     'zoomAndPan' : _always_valid,
 }
+
+################################################################################
+## CONTENT MODEL
+################################################################################
+
+animation_elements = ("animate", "animateColor", "animateMotion", "animateTransform", "set")
+descriptive_elements = ("desc", "metadata", "title")
+shape_elements = ("circle", "ellipse", "line", "path", "polygon", "polyline", "rect")
+structural_elements = ("defs", "g", "svg", "symbol", "use")
+gradient_elements = ("linearGradient", "radialGradient")
+filter_primitive_elements = ("feBlend", "feColorMatrix", "feComponentTransfer", "feComposite",
+                             "feConvolveMatrix", "feDiffuseLighting", "feDisplacementMap", "feFlood",
+                             "feGaussianBlur", "feImage", "feMerge", "feMorphology", "feOffset",
+                             "feSpecularLighting", "feTile", "feTurbulence")
+text_content_child_elements = ("altGlyph", "textPath", "tref", "tspan")
+any_elements = ("*", )
+
+_content_model = {
+'a' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'altGlyp' : (any_elements, ),
+'altGlyphDef' : (any_elements, ),
+'altGlyphItem' : (any_elements, ),
+'animate' : (descriptive_elements,),
+'animateColor' : (descriptive_elements,),
+'animateMotion' : (descriptive_elements, ('mpath',)),
+'animateTransform' : (descriptive_elements, ),
+'circle' : (descriptive_elements, animation_elements),
+'clipPath' : (descriptive_elements, animation_elements, shape_elements, ('text', 'use')),
+'color-profile' : (descriptive_elements, ),
+'cursor' : (descriptive_elements, ),
+'defs' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'desc' : (any_elements, ),
+'ellipse' : (animation_elements, descriptive_elements),
+'feBlend' : (('animate', 'set'), ),
+'feColorMatrix' : (('animate', 'set'), ),
+'feComponentTransfer' : (('feFuncA', 'feFuncR', 'feFuncG', 'feFuncB'), ),
+'feComposite' : (('animate', 'set'), ),
+'feConvolveMatrix' : (('animate', 'set'), ),
+'feDiffuseLighting' : (descriptive_elements, ('feDistantLight', 'fePointLight', 'feSpotLight')),
+'feDisplacementMap' : (('animate', 'set'), ),
+'feDistantLight' : (('animate', 'set'), ),
+'feFlood' : (('animate', 'animateColor', 'set'), ),
+'feFuncA' : (('animate', 'set'), ),
+'feFuncR' : (('animate', 'set'), ),
+'feFuncG' : (('animate', 'set'), ),
+'feFuncB' : (('animate', 'set'), ),
+'feGaussianBlur' : (('animate', 'set'), ),
+'feImage' : (('animate', 'animateColor', 'set'), ),
+'feMerge' : (('animate', 'set'), ),
+'feMergeNode' : (('animate', 'set'), ),
+'feMorphology' : (('animate', 'set'), ),
+'feOffset' : (('animate', 'set'), ),
+'fePointLight' : (('animate', 'set'), ),
+'feSpecularLighting' : (descriptive_elements, ('feDistantLight', 'fePointLight', 'feSpotLight')),
+'feSpotLight' : (('animate', 'set'), ),
+'feTile' : (('animate', 'set'), ),
+'feTurbolence' : (('animate', 'set'), ),
+'filter' : (descriptive_elements, filter_primitive_attributes, ('animate', 'set')),
+'font' : (descriptive_elements, ("font-face", "glyph", "hkern", "missing-glyph", "vkern")),
+'font-face' : (descriptive_elements, ('font-face-src', )),
+'font-face-format': [],
+'font-face-name': [],
+'font-face-src': (('font-face-name', 'font-face-uri'), ),
+'font-face-uri': (('font-face-format', ), ),
+'foreignObject': (any_elements, ),
+'g' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'glyph' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'glyphRef' : [],
+'hkern' : [],
+'image' : (animation_elements, descriptive_elements),
+'line' : (animation_elements, descriptive_elements),
+'linearGradient' : (descriptive_elements, ("animate", "animateTransform", "set", "stop")),
+'marker' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'mask' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'metadata' : (any_elements, ),
+'missing-glyph' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'mpath' : (descriptive_elements, ),
+'path' : (animation_elements, descriptive_elements),
+'pattern': (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'polygon' : (animation_elements, descriptive_elements),
+'polyline' : (animation_elements, descriptive_elements),
+'radialGradient': (descriptive_elements, ("animate", "animateTransform", "set", "stop")),
+'rect' : (descriptive_elements, animation_elements),
+'scripte' : (any_elements, ),
+'set' : (descriptive_elements, ),
+'stop' : (('animate', 'animateColor', 'set'), ),
+'style' : (any_elements, ),
+'svg' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'switch' : (animation_elements, descriptive_elements, shape_elements, ("a", "foreignObject",
+    "g", "image", "svg", "switch", "text", "use")),
+'symbol' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
+    ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
+     "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
+'text' : (animation_elements, descriptive_elements, text_content_child_elements, ('a', )),
+'textPath' : (descriptive_elements, ("a", "altGlyph", "animate", "animateColor", "set", "tref", "tspan")),
+'title' : (any_elements, ),
+'tref' : (descriptive_elements, ('animate', 'animateColor', 'set')),
+'tspan' : (descriptive_elements, ("a", "altGlyph", "animate", "animateColor", "set", "tref", "tspan")),
+'use' : (animation_elements, descriptive_elements),
+'view' : (descriptive_elements, ),
+'vkern' : [],
+}
+
+def flatten_content_model():
+    content_model = {}
+    for element, element_lists in _content_model.iteritems():
+        collect = set()
+        for elements in element_lists:
+            collect.update(elements)
+        content_model[element] = frozenset(collect)
+    return content_model
+# attibutes -- <dict> contains for every svg-element ALL valid attributs
+content_model = flatten_content_model()
