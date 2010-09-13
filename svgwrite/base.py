@@ -10,7 +10,7 @@ import xml.etree.ElementTree as etree
 
 import parameter
 from svgwrite.utils import value_to_string
-from svgwrite.validator import check_attribute_names, check_attribute_value
+from svgwrite.validator import check_attribute_names, check_attribute_value, check_valid_content
 
 class BaseElement(object):
     def __init__(self, attribs=None, **kwargs):
@@ -60,6 +60,8 @@ class ContainerElement(BaseElement):
 
     def append(self, element):
         """ append subelement """
+        if parameter.debug_mode:
+            check_valid_content(self._elementname, element._elementname)
         self.elements.append(element)
 
     def get_xml(self):
