@@ -8,9 +8,9 @@
 
 from svgwrite import parameter
 from svgwrite.validator import check_coordinate
-from svgwrite.base import ContainerElement
+from svgwrite.base import BaseElement
 
-class Drawing(ContainerElement):
+class Drawing(BaseElement):
     """This is the svg-drawing represented by the <svg /> element.
 
     A drawing consists of any number of SVG elements contained within the drawing
@@ -100,6 +100,7 @@ class Drawing(ContainerElement):
 
     def write(self, fileobj):
         """Write the xml-string to 'fileobj' encoded as 'utf-8'-string."""
+        fileobj.write('<?xml version="1.0"?>\n')
         xmlstr = self.tostring()
         fileobj.write(xmlstr)
 
@@ -107,7 +108,7 @@ class Drawing(ContainerElement):
         """Write the xml-string to the 'self.filename' resource."""
         fileobj = open(self.filename, mode='w')
         self.write(fileobj)
-        fileobj.close
+        fileobj.close()
 
     def saveas(self, filename):
         """Write the xml-string to the 'filename' resource."""

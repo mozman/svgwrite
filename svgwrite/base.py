@@ -29,12 +29,12 @@ class BaseElement(object):
     def __setitem__(self, key, value):
         self.attribs[key] = value
         if parameter.debug_mode:
-            check_attribute_names(self._elementname, self.attribs)
+            check_attribute_names(self._elementname(), self.attribs)
 
     def append(self, element):
         """ append subelement """
         if parameter.debug_mode:
-            check_valid_content(self._elementname, element._elementname)
+            check_valid_content(self._elementname(), element._elementname())
         self.elements.append(element)
 
     def tostring(self):
