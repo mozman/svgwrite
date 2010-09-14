@@ -31,6 +31,12 @@ class BaseElement(object):
         if parameter.debug_mode:
             check_attribute_names(self._elementname, self.attribs)
 
+    def append(self, element):
+        """ append subelement """
+        if parameter.debug_mode:
+            check_valid_content(self._elementname, element._elementname)
+        self.elements.append(element)
+
     def tostring(self):
         """ get XML as string representation. """
         xml = self.get_xml()
@@ -47,26 +53,11 @@ class BaseElement(object):
             if debug_mode:
                 check_attribute_value(attribute, value)
             xml.set(attribute, value)
+
+        for element in self.elements:
+            xml.append(element.get_xml())
         return xml
 
     def _elementname(self):
         name = self.__class__.__name__
         return name[0].lower() + name[1:]
-
-class ContainerElement(BaseElement):
-    def __init__(self, attribs=None, **kwargs):
-        super(ContainerElement, self).__init__(attribs=attribs, **kwargs)
-        self.elements = list()
-
-    def append(self, element):
-        """ append subelement """
-        if parameter.debug_mode:
-            check_valid_content(self._elementname, element._elementname)
-        self.elements.append(element)
-
-    def get_xml(self):
-        """ get XML as ElementTree object. """
-        xml = super(ContainerElement, self).get_xml()
-        for element in self.elements:
-            xml.append(element.get_xml())
-        return xml
