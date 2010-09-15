@@ -8,9 +8,9 @@
 
 from svgwrite import parameter
 from svgwrite.validator import check_coordinate
-from svgwrite.base import BaseElement
+from svgwrite.base import BaseElement, IViewBox
 
-class Drawing(BaseElement):
+class Drawing(BaseElement, IViewBox):
     """This is the svg-drawing represented by the <svg /> element.
 
     A drawing consists of any number of SVG elements contained within the drawing
@@ -23,6 +23,8 @@ class Drawing(BaseElement):
     Attributes:
     -----------
     filename -- should be supported by the open-command
+    defs -- <standard python-list> container for referenced elements
+        you got direct access: defs.append( svg-class )
 
     inherited attributes see class: ContainerElement
 
@@ -74,6 +76,7 @@ class Drawing(BaseElement):
         """
         super(Drawing, self).__init__(width=width, height=height, **extra)
         self.filename = filename
+        self.defs = [] # defs container
         self._stylesheets = [] # list of stylesheets appended
 
     def get_xml(self):
@@ -89,13 +92,6 @@ class Drawing(BaseElement):
         self.attribs['baseProfile'] = profile
         self.attribs['version'] = version
         return super(Drawing, self).get_xml()
-
-    def viewbox(self, minx=0, miny=0, width=0, height=0):
-        """ Set the svg 'viewBox' attribute, arguments are <coordinate> values.
-        """
-        for value in (minx, miny, width, height):
-            check_coordinate(value)
-        self.attribs['viewBox'] = "%s,%s,%s,%s" % (minx, miny, width, height)
 
     def add_stylesheet(self, href, title, alternate="no", media="screen"):
         """ add a stylesheet

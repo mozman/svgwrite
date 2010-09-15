@@ -9,23 +9,6 @@
 import parameter
 from validator import check_tiny, check_coordinate
 
-_horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
-_vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
-
-def fit(horiz="center", vert="middle", scale="meet"):
-    """ Returns the preserveAspectRatio string.
-
-    Parameter:
-    ----------
-    horiz -- 'left' | 'center' | 'right'
-    vert -- 'top' | 'middle' | 'bottom'
-    scale -- 'meet' | 'slice'
-        meet = preserve aspect ration and zoom to limits of viewBox
-        slice = preserve aspect ration and viewBox touch viewport on all bounds,
-                viewBox will extend beyond the bounds of the viewport
-    """
-    return _horiz[horiz]+_vert[vert]+' '+scale
-
 def rgb(r=0, g=0, b=0, mode='RGB'):
     """Convert r, g, b values to a string.
 
