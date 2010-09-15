@@ -7,12 +7,12 @@
 # License: GPLv3
 
 import svgwrite as svg
-from svgwrite import cm, mm
-from svgwrite.utils import rgb
+from svgwrite import cm, mm, rgb
 
 # svg.init: define debug_mode and svg profile - optional
 # baseProfile -- full, basic or tiny baseProfile (default: full)
-# debug -- verify property names and property values (default: False)
+# debug -- verify property-names and property-values and for each element verify
+#          valid subelements(default: False)
 svg.init(baseProfile='tiny', debug=True)
 
 def example_empty_drawing(name):
@@ -20,16 +20,15 @@ def example_empty_drawing(name):
     drawing.save()
 
 def example_base_shapes_drawing(name):
-    svg.init('full', True)
     drawing = svg.Drawing(filename=name)
     for y in range(20):
-        drawing.append(svg.Line(start=(cm(2), cm(2+y)), end=(cm(18), cm(2+y)), stroke='green'))
+        drawing.append(svg.Line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm), stroke='green'))
     for x in range(17):
-        drawing.append(svg.Line(start=(cm(2+x), cm(2)), end=(cm(2+x), cm(21)), stroke='blue'))
+        drawing.append(svg.Line(start=((2+x)*cm, 2*cm), end=((2+x)*cm, 21*cm), stroke='blue'))
 
-    drawing.append(svg.Rect(insert=(cm(5),cm(5)), size=(mm(45),mm(45))))
-    drawing.append(svg.Circle(center=(cm(15), cm(8)), r='2.5cm', fill=rgb(100, 0, 0, '%')))
-    drawing.append(svg.Ellipse(center=(cm(10), cm(15)), rx='5cm', ry='17mm'))
+    drawing.append(svg.Rect(insert=(5*cm,5*cm), size=(45*mm,45*mm)))
+    drawing.append(svg.Circle(center=(15*cm, 8*cm), r='2.5cm', fill=rgb(100, 0, 0, '%')))
+    drawing.append(svg.Ellipse(center=(10*cm, 15*cm), rx='5cm', ry='17mm'))
     drawing.save()
 
 def main():
