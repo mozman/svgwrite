@@ -258,7 +258,7 @@ _attributes = {
     'svg' : (conditional_processing_attributes, document_event_attributes, graphical_event_attributes,
         presentation_attributes, ("baseProfile", "class", "contentScriptType", "contentStyleType",
         "externalResourcesRequired", "height", "preserveAspectRatio", "style", "version",
-        "viewBox", "width", "x", "xmlns", "y", "zoomAndPan")),
+        "viewBox", "width", "x", "xmlns", "xmlns:xlink", "y", "zoomAndPan")),
     'switch': (conditional_processing_attributes, graphical_event_attributes, presentation_attributes,
         ("class", "externalResourcesRequired", "style", "transform")),
     'symbol': (graphical_event_attributes, presentation_attributes, ("class",

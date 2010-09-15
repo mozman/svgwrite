@@ -72,9 +72,9 @@ class Drawing(BaseElement):
         height -- <length> : canvas-height - default is '100%'
         extra -- keyword arguments - any valid (for the <svg> element) svg-attributes
         """
-        super(Drawing, self).__init__(xmlns="http://www.w3.org/2000/svg",
-                                      width=width, height=height, **extra)
+        super(Drawing, self).__init__(width=width, height=height, **extra)
         self.filename = filename
+        self._stylesheets = [] # list of stylesheets appended
 
     def get_xml(self):
         """ Get the ElementTree object.
@@ -84,6 +84,8 @@ class Drawing(BaseElement):
             version = '1.2' # only tiny
         else:
             version = '1.1' # basic or full
+        self.attribs['xmlns'] = "http://www.w3.org/2000/svg"
+        self.attribs['xmlns:xlink'] = "http://www.w3.org/1999/xlink"
         self.attribs['baseProfile'] = profile
         self.attribs['version'] = version
         return super(Drawing, self).get_xml()
@@ -95,12 +97,35 @@ class Drawing(BaseElement):
             check_coordinate(value)
         self.attribs['viewBox'] = "%s,%s,%s,%s" % (minx, miny, width, height)
 
+    def add_stylesheet(self, href, title, alternate="no", media="screen"):
+        """ add a stylesheet
+
+        Parameters:
+        -----------
+        href -- link to stylesheet <URI>
+        title -- name of stylesheet
+        alternate -- 'yes' | 'no'
+        media -- 'all' | 'aureal' | 'braille' | 'embossed' | 'handheld' |
+                 'print' | 'projection' | 'screen' | 'tty' | 'tv'
+        """
+        self._stylesheets.append( (href, title, alternate, media) )
+
     def _elementname(self):
         return 'svg'
 
     def write(self, fileobj):
         """Write the xml-string to 'fileobj' encoded as 'utf-8'-string."""
-        fileobj.write('<?xml version="1.0"?>\n')
+        # write xml header
+        fileobj.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+        if parameter.profile != 'tiny': # tiny profile has no DOCTYPE
+            fileobj.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" ' \
+                          '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n')
+        # write stylesheets
+        for stylesheet in self._stylesheets:
+            stylestr = u'<?xml-stylesheet href="%s" type="text/css" title="%s" ' \
+                        'alternate="%s" media="%s"?>\n' % stylesheet
+            fileobj.write(stylestr.encode('utf-8'))
+
         xmlstr = self.tostring()
         fileobj.write(xmlstr)
 

@@ -9,6 +9,20 @@ from base import BaseElement
 from utils import check_coordinate
 
 class Path(BaseElement):
+    """ The svg <path /> object.
+
+    Methods:
+    --------
+    hline(*values) -- add horizontal line
+    vline(*values) -- add vertical line
+    moveto(point) -- move cursor to point and begin a new subpath
+    lineto(points) -- draw line to points[0], points[1], ...
+    qbezier(b1, dest) -- draw quadratic bezier curve to dest with breakpoint b1
+    continue_qbezier(dest) -- continue q. bezier curve to point dest
+    cbezier(b1, b2, dest) -- draw cubic bezier curve to dest with breakpoints b1, b2
+    continue_cbezier(b2, dest) -- continue c. bezier curve to point dest with breakpoint b2
+    close() -- close path
+    """
     def __init__(self, attribs=None, **kwargs):
         super(Path, self).__init__(attribs, **kwargs)
         self.commands = []
