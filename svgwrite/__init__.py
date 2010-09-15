@@ -10,27 +10,31 @@ from parameter import init
 from drawing import Drawing
 from shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
 from path import Path
+from utils import rgb
 
-def cm(value):
-    return "%scm" % value
+class Unit(object):
+    def __init__(self, unit='cm'):
+        if unit not in ('cm', 'em', 'ex', 'in', 'mm', 'pc', 'pt', 'px', '%'):
+            raise ValueError("Invalid unit '%s'" % unit)
+        self._unit=unit
 
-def mm(value):
-    return "%smm" % value
+    def __rmul__(self, other):
+        """add unit-strint to 'other'. (e.g. 5*cm => '5cm')"""
+        return "%s%s" % (other, self._unit)
 
-def em(value):
-    return "%sem" % value
+    def __call__(self, *args):
+        """add unit-strings to all arguments.
 
-def ex(value):
-    return "%sex" % value
+        e.g.: cm(1,2,3) => '1cm,2cm,3cm'
+        """
+        return ','.join(["%s%s" % (arg, self._unit) for arg in args])
 
-def px(value):
-    return "%spx" % value
-
-def inch(value):
-    return "%sin" % value
-
-def pc(value):
-    return "%spc" % value
-
-def pt(value):
-    return "%spt" % value
+cm = Unit('cm')
+mm = Unit('mm')
+em = Unit('em')
+ex = Unit('ex')
+px = Unit('px')
+inch = Unit('in')
+pc = Unit('pc')
+pt = Unit('pt')
+percent = Unit('%')
