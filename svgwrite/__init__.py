@@ -15,8 +15,6 @@ from utils import rgb
 
 class Unit(object):
     def __init__(self, unit='cm'):
-        if unit not in ('cm', 'em', 'ex', 'in', 'mm', 'pc', 'pt', 'px', '%'):
-            raise ValueError("Invalid unit '%s'" % unit)
         self._unit=unit
 
     def __rmul__(self, other):
@@ -39,3 +37,6 @@ inch = Unit('in')
 pc = Unit('pc')
 pt = Unit('pt')
 percent = Unit('%')
+deg = Unit('deg')
+grad = Unit('grad')
+rad = Unit('rad')

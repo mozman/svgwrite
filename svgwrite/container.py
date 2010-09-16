@@ -9,9 +9,6 @@ from base import BaseElement
 from interface import IViewBox, ITransform
 from validator import check_coordinate
 
-class Defs(BaseElement, ITransform):
-    """ The <defs /> element> """
-    pass
 
 class Group(BaseElement, ITransform):
     """ The <g /> svg element. """
@@ -22,6 +19,11 @@ class Group(BaseElement, ITransform):
         g = Group(**kwargs)
         self.add(g)
         return g
+
+class Defs(Group):
+    """ The <defs /> element> """
+    def _elementname(self):
+        return 'defs'
 
 class Symbol(BaseElement, IViewBox):
     """ The <symbol /> svg element. """
@@ -41,11 +43,16 @@ class Use(BaseElement, ITransform):
 
         Attribute:
         ----------
-        href -- object link (link to id)
+        href -- object link <string> (link to id) or an object with an id-attribute
         insert -- <2-tuple> insert point (x,y)
         size -- <2-tuple> (width, height)
         """
         super(Use, self).__init__(attribs, **extra)
+        if isinstance(href, BaseElement):
+            try:
+                href = "#%s" % href['id']
+            except KeyError:
+                raise KeyError("<href> should have an id attribute or has to be a <string>.")
         self.attribs['xlink:href'] = href
         if insert:
             self.attribs['x'] = check_coordinate(insert[0])

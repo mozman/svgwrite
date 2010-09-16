@@ -8,7 +8,7 @@
 import re
 
 import parameter
-from validator import check_tiny, check_coordinate, _coordinate_pattern
+from validator import check_tiny, check_coordinate, _coordinate_pattern, _angle_pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
     """Convert r, g, b values to a string.
@@ -31,8 +31,16 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
     else:
         raise ValueError("Invalid mode '%s'" % mode)
 
+def iterflatlist(alist):
+    for element in alist:
+        if hasattr(element, "__iter__") and not isinstance(element, basestring):
+            for item in iterflatlist(element):
+                yield item
+        else:
+            yield element
+
 def strlist(*args):
-    return ",".join([str(value) for value in args if value is not None])
+    return ",".join([str(value) for value in iterflatlist(args) if value is not None])
 
 def value_to_string(value):
     if parameter.debug_mode and parameter.profile=='tiny' and isinstance(value, (int, float)):
@@ -73,6 +81,15 @@ def split_coordinate(coordinate):
         return (float(result.group(1)), result.group(3))
     else:
         raise ValueError("Invalid format: '%s'" % coordinate)
+
+def split_angle(angle):
+    if isinstance(angle, (int, float)):
+        return (float(angle), None)
+    result = _angle_pattern.match(angle)
+    if result:
+        return (float(result.group(1)), result.group(3))
+    else:
+        raise ValueError("Invalid format: '%s'" % angle)
 
 def rect_top_left_corner(insert, size, pos='top-left'):
     """ Calculate top-left corner of a rectangle.

@@ -9,6 +9,7 @@ _horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
 _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
 
 from utils import strlist
+from validator import check_coordinate, check_angle
 
 class IViewBox(object):
     """ viewBox Interface """
@@ -41,27 +42,34 @@ class IViewBox(object):
 
 class ITransform(object):
     def translate(self, tx, ty=None):
+        check_coordinate(tx)
+        if ty : check_coordinate(ty)
         self._add_transformation("translate(%s)" % strlist(tx, ty))
 
     def rotate(self, angle, center=None):
+        check_angle(angle)
         if center:
-            self._add_transformation("rotate(%s, %s, %s)" % (angle, center[0], center[1]))
-        else:
-            self._add_transformation("rotate(%s)" % angle)
+            check_coordinate(center[0])
+            check_coordinate(center[1])
+        self._add_transformation("rotate(%s)" % strlist(angle, center))
 
     def scale(self, sx, sy=None):
+        check_coordinate(sx)
+        if sy : check_coordinate(sy)
         self._add_transformation("scale(%s)" % strlist(sx, sy))
 
     def skewX(self, angle):
-        self._add_transformation("skewX(%s)" % angle)
+        self._add_transformation("skewX(%s)" % check_angle(angle))
 
     def skewY(self, angle):
-        self._add_transformation("skewY(%s)" % angle)
+        self._add_transformation("skewY(%s)" % check_angle(angle))
 
     def matrix(self, a, b, c, d, e, f):
         self._add_transformation("matrix(%s)" % strlist(a, b, c, d, e, f))
 
     def rev(self, tx=None, ty=None):
+        check_coordinate(tx)
+        if ty : check_coordinate(ty)
         self._add_transformation("rev(%s)" % strlist('svg', tx, ty))
 
     def del_transform(self):
