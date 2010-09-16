@@ -31,6 +31,9 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
     else:
         raise ValueError("Invalid mode '%s'" % mode)
 
+def strlist(*args):
+    return ",".join([str(value) for value in args if value is not None])
+
 def value_to_string(value):
     if parameter.debug_mode and parameter.profile=='tiny' and isinstance(value, (int, float)):
         check_tiny(value)

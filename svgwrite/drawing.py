@@ -8,11 +8,9 @@
 
 from svgwrite import parameter
 from validator import check_coordinate
-from base import BaseElement
-from container import Group, Defs
-from interface import IViewBox
+from container import Symbol, Defs
 
-class Drawing(BaseElement, IViewBox):
+class Drawing(Symbol):
     """This is the svg-drawing represented by the <svg /> element.
 
     A drawing consists of any number of SVG elements contained within the drawing
@@ -138,8 +136,3 @@ class Drawing(BaseElement, IViewBox):
         """Write the xml-string to the 'filename' resource."""
         self.filename = filename
         self.save()
-
-    def group(self, **kwargs):
-        g = Group(**kwargs)
-        self.add(g)
-        return g
