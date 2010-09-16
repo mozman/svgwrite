@@ -53,6 +53,15 @@ def points_to_string(points):
         strings.append(point)
     return u' '.join(strings)
 
+def get_unit(coordinate):
+    if isinstance(coordinate, (int, float)):
+        return None
+    result = _coordinate_pattern.match(coordinate)
+    if result:
+        return result.group(3)
+    else:
+        raise ValueError("Invalid format: '%s'" % coordinate)
+
 def split_coordinate(coordinate):
     if isinstance(coordinate, (int, float)):
         return (float(coordinate), None)
