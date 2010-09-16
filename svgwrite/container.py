@@ -4,17 +4,28 @@
 # Created: 15.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
-from base import BaseElement, IViewBox
+from base import BaseElement
+from interface import IViewBox
 from validator import check_coordinate
+
+class Defs(BaseElement):
+    """ The <defs /> element> """
+    pass
 
 class Group(BaseElement):
     """ The <g /> svg element. """
     def _elementname(self):
         return 'g'
 
-class Symbol(BaseElement, IViewBox):
+    def group(self, **kwargs):
+        g = Group(**kwargs)
+        self.add(g)
+        return g
+
+class Symbol(Group, IViewBox):
     """ The <symbol /> svg element. """
-    pass
+    def _elementname(self):
+        return 'symbol'
 
 class Use(BaseElement):
     """ The <use /> svg element. """

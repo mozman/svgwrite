@@ -19,7 +19,7 @@ class TestDrawingFullProfile(unittest.TestCase):
     def test_empty_drawing(self):
         dwg = Drawing()
         result = dwg.tostring()
-        self.assertEqual(result, '<svg baseProfile="full" height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" />')
+        self.assertEqual(result, '<svg baseProfile="full" height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
 
 class TestDrawingTinyProfile(unittest.TestCase):
     def setUp(self):
@@ -28,7 +28,7 @@ class TestDrawingTinyProfile(unittest.TestCase):
     def test_empty_drawing(self):
         dwg = Drawing()
         result = dwg.tostring()
-        self.assertEqual(result, '<svg baseProfile="tiny" height="100%" version="1.2" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" />')
+        self.assertEqual(result, '<svg baseProfile="tiny" height="100%" version="1.2" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
 
 if __name__=='__main__':
     unittest.main()

@@ -8,6 +8,7 @@
 
 from parameter import init
 from drawing import Drawing
+from container import Group, Symbol, Use
 from shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
 from path import Path
 from utils import rgb

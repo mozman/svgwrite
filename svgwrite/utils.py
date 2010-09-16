@@ -5,9 +5,10 @@
 # Created: 08.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
+import re
 
 import parameter
-from validator import check_tiny, check_coordinate
+from validator import check_tiny, check_coordinate, _coordinate_pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
     """Convert r, g, b values to a string.
@@ -51,3 +52,58 @@ def points_to_string(points):
             TypeError("'%s' <string> is given, but <2-tuple> is required." % point)
         strings.append(point)
     return u' '.join(strings)
+
+def split_coordinate(coordinate):
+    if isinstance(coordinate, (int, float)):
+        return (float(coordinate), None)
+    result = _coordinate_pattern.match(coordinate)
+    if result:
+        return (float(result.group(1)), result.group(3))
+    else:
+        raise ValueError("Invalid format: '%s'" % coordinate)
+
+def rect_top_left_corner(insert, size, pos='top-left'):
+    """ Calculate top-left corner of a rectangle.
+      - x-coordinate and width has to have the same unit
+      - y-coordinate and height has to have the same unit.
+
+    Returns a <2-tuple>
+
+    Parameter:
+    ----------
+    insert -- <2-tuple> insert point
+    size -- <2-tuple> (width, height)
+    pos -- <string> insert position 'vert-horiz'
+        vert -- 'top'|'middle'|'bottom'
+        horiz -- 'left'|'center'|'right'
+    """
+    vert, horiz = pos.lower().split('-')
+    x, xunit = split_coordinate(insert[0])
+    y, yunit = split_coordinate(insert[1])
+    width, wunit = split_coordinate(size[0])
+    height, hunit = split_coordinate(size[1])
+
+    if xunit != wunit:
+        raise ValueError("x-coordinate and width has to have the same unit")
+    if yunit != hunit:
+        raise ValueError("y-coordinate and height has to have the same unit")
+
+    if horiz == 'center':
+        x = x - width / 2.
+    elif horiz == 'right':
+        x = x - width
+    elif horiz != 'left':
+        ValueError("Invalid horizontal position: '%s'" % horiz)
+
+    if vert == 'middle':
+        y = y - height / 2.
+    elif vert == 'bottom':
+        y = y - height
+    elif vert != 'top':
+        ValueError("Invalid vertical position: '%s'" % vert)
+
+    if xunit:
+        x = "%s%s" %(x, xunit)
+    if yunit:
+        y = "%s%s" %(y, yunit)
+    return (x, y)
