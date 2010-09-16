@@ -60,12 +60,34 @@ def get_coordinate(value, profile='tiny'):
         number = check_tiny(round(number, 4)) # round to four places for tiny profile
     return number, unit
 
-def check_coordinate(value, profile='tiny'):
-    """ Check if value is a valid coordinate, raises ValueError if not valid.
+def get_angle(value, profile='tiny'):
+    """ Split value in (number, unit) if value has an unit or (number, None).
 
     Raises ValueError if not valid.
     """
+    if isinstance(value, (int, float)):
+        number, unit = float(value), None
+    else:
+        result = _angle_pattern.match(value.strip())
+        if result:
+            number, tmp, unit = result.groups()
+            number = float(number)
+        else:
+            raise ValueError("'%s' has not a valid svg angle." % value)
+    if profile == 'tiny': # check value range of tiny profile
+        number = check_tiny(round(number, 4)) # round to four places for tiny profile
+    return number, unit
+
+def check_coordinate(value, profile='tiny'):
+    """ Check if value is a valid coordinate, raises ValueError if not valid.
+    """
     number, unit = get_coordinate(value, profile)
+    return value
+
+def check_angle(value, profile='tiny'):
+    """ Check if value is a valid angle, raises ValueError if not valid.
+    """
+    number, unit = get_angle(value, profile)
     return value
 
 def check_tiny(number):

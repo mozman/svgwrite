@@ -7,7 +7,7 @@
 # License: GPLv3
 
 import svgwrite as svg
-from svgwrite import cm, mm, rgb
+from svgwrite import cm, mm, rgb, deg
 
 # svg.init: define debug_mode and svg profile - optional
 # baseProfile -- full, basic or tiny baseProfile (default: full)
@@ -33,9 +33,19 @@ def example_base_shapes_drawing(name):
     shapes.add(svg.Ellipse(center=(10*cm, 15*cm), r=('5cm', '10mm')))
     drawing.save()
 
+def example_use_drawing(name):
+    dwg = svg.Drawing(filename=name)
+    dwg.defs.add(svg.Rect((0,0), (1*cm, 1*cm), id='r001'))
+    for y in range(10):
+        for x in range(5):
+            u = svg.Use(href='#r001', insert=((2+2*x)*cm, (2+2*y)*cm))
+            u.translate((y*5+x)*mm)
+            dwg.add(u)
+    dwg.save()
+
 def main():
     example_empty_drawing('example_empty_drawing.svg')
     example_base_shapes_drawing('example_base_shapes_drawing.svg')
-
+    example_use_drawing('example_use_drawing.svg')
 if __name__ == '__main__':
     main()

@@ -11,6 +11,8 @@ import unittest
 
 from svgwrite.parameter import init
 from svgwrite.utils import rgb, value_to_string, points_to_string
+from svgwrite.utils import strlist, rect_top_left_corner
+from svgwrite.utils import split_angle, split_coordinate
 
 class TestRgb(unittest.TestCase):
     def test_rgb_8bit(self):
@@ -87,6 +89,93 @@ class TestPointsToStringTinyProfile(unittest.TestCase):
         self.assertRaises(ValueError, points_to_string, [(-100000,10)])
         self.assertRaises(ValueError, points_to_string, [(10,100000)])
         self.assertRaises(ValueError, points_to_string, [(-10,-100000)])
+
+class TestStrList(unittest.TestCase):
+    def test_basic_types(self):
+        self.assertEqual(strlist(1,2,3), "1,2,3")
+        self.assertEqual(strlist(1,None,3), "1,3")
+        self.assertEqual(strlist(1,2,None), "1,2")
+
+    def test_list(self):
+        self.assertEqual(strlist( (5, 'abc', None), (1, 2, None) ), "5,abc,1,2")
+        self.assertEqual(strlist( (1,None,3), 4) , "1,3,4")
+
+class TestRectTopLeftCorner(unittest.TestCase):
+    def test_top_left(self):
+        res = rect_top_left_corner(insert=(10,10), size=(10,10))
+        self.assertEqual(res, (10,10))
+
+    def test_top_center(self):
+        res = rect_top_left_corner(insert=(10,10), size=(10,10), pos='top-center')
+        self.assertEqual(res, (5,10))
+
+    def test_top_right(self):
+        res = rect_top_left_corner(insert=(10,10), size=(10,10), pos='top-right')
+        self.assertEqual(res, (0,10))
+
+    def test_middle_center(self):
+        res = rect_top_left_corner(insert=(10,10), size=(10,10), pos='middle-center')
+        self.assertEqual(res, (5,5))
+
+    def test_bottom_center(self):
+        res = rect_top_left_corner(insert=(10,10), size=(10,10), pos='bottom-center')
+        self.assertEqual(res, (5,0))
+
+    def test_valid_units(self):
+        res = rect_top_left_corner(insert=('10mm','10mm'), size=('10mm','10mm'), pos='middle-center')
+        # numbers converted to floats
+        self.assertEqual(res, ('5.0mm','5.0mm'))
+        res = rect_top_left_corner(insert=('10in','10in'), size=('10in','10in'), pos='bottom-center')
+        self.assertEqual(res, ('5.0in','0.0in'))
+
+    def test_ivalid_units(self):
+        # insert and size has to have the same units
+        self.assertRaises(ValueError, rect_top_left_corner, insert=('10cm','10cm'), size=(10,10), pos='middle-center')
+        self.assertRaises(ValueError, rect_top_left_corner, insert=('10mm','10mm'), size=('10cm','10cm'), pos='middle-center')
+
+class TestSplitCoordinate(unittest.TestCase):
+    def test_int_coordinates(self):
+        res = split_coordinate(10)
+        self.assertEqual(res, (10, None))
+
+    def test_float_coordinates(self):
+        res = split_coordinate(7.9)
+        self.assertEqual(res, (7.9, None))
+
+    def test_valid_str_coordinates(self):
+        res = split_coordinate('10cm')
+        self.assertEqual(res, (10, 'cm'))
+        res = split_coordinate('10.7in')
+        self.assertEqual(res, (10.7, 'in'))
+
+    def test_invalid_str_coordinates(self):
+        self.assertRaises(ValueError, split_coordinate, '100km')
+        self.assertRaises(ValueError, split_coordinate, '100ccm')
+        self.assertRaises(ValueError, split_coordinate, '10,0cm')
+        self.assertRaises(ValueError, split_coordinate, '1.0.0cm')
+
+class TestSplitAngle(unittest.TestCase):
+    def test_int_angle(self):
+        res = split_angle(10)
+        self.assertEqual(res, (10, None))
+
+    def test_float_angle(self):
+        res = split_angle(7.9)
+        self.assertEqual(res, (7.9, None))
+
+    def test_valid_str_angle(self):
+        res = split_angle('10deg')
+        self.assertEqual(res, (10, 'deg'))
+        res = split_angle('10.7rad')
+        self.assertEqual(res, (10.7, 'rad'))
+        res = split_angle('10.7grad')
+        self.assertEqual(res, (10.7, 'grad'))
+
+    def test_invalid_str_angle(self):
+        self.assertRaises(ValueError, split_coordinate, '100km')
+        self.assertRaises(ValueError, split_coordinate, '100ccm')
+        self.assertRaises(ValueError, split_coordinate, '10,0deg')
+        self.assertRaises(ValueError, split_coordinate, '1.0.0deg')
 
 if __name__=='__main__':
     unittest.main()

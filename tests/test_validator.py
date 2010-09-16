@@ -10,6 +10,7 @@ import sys
 import unittest
 
 from svgwrite.validator import check_tiny, get_coordinate, check_coordinate
+from svgwrite.validator import check_angle
 
 
 class TestGetCoordinate(unittest.TestCase):
@@ -79,6 +80,15 @@ class TestCheckTiny(unittest.TestCase):
     def test_invalid_tiny(self):
         for value in (100000, -100000., -32768, 32768):
             self.assertRaises(ValueError, check_tiny, value)
+
+class TestCheckAngle(unittest.TestCase):
+    def test_valid_angle(self):
+        for value in ('100deg', '0.5grad', '-1.5rad'):
+            check_angle(value) # no exception should raised
+
+    def test_invalid_angle(self):
+        for value in ('10cm', '-10px', '10in', '1gon', '3°'):
+            self.assertRaises(ValueError, check_angle, value)
 
 if __name__=='__main__':
     unittest.main()
