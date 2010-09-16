@@ -10,8 +10,9 @@ import parameter
 from base import BaseElement
 from validator import check_coordinate
 from utils import points_to_string
+from interface import ITransform
 
-class Line(BaseElement):
+class Line(BaseElement, ITransform):
     """ The svg <line /> object. """
     def __init__(self, start=(0, 0), end=(0, 0),
                  attribs=None, **kwargs):
@@ -27,7 +28,7 @@ class Line(BaseElement):
         self.attribs['x2'] = check_coordinate(end[0], profile)
         self.attribs['y2'] = check_coordinate(end[1], profile)
 
-class Rect(BaseElement):
+class Rect(BaseElement, ITransform):
     """ The svg <rect /> object. """
     def __init__(self, insert=(0, 0), size=(1, 1), rx=None, ry=None,
                  attribs=None, **kwargs):
@@ -48,7 +49,7 @@ class Rect(BaseElement):
         if rx: self.attribs['rx'] = check_coordinate(rx, profile)
         if ry: self.attribs['ry'] = check_coordinate(ry, profile)
 
-class Circle(BaseElement):
+class Circle(BaseElement, ITransform):
     """ The svg <circle /> object. """
     def __init__(self, center=(0, 0), r=1,
                  attribs=None, **kwargs):
@@ -63,7 +64,7 @@ class Circle(BaseElement):
         self.attribs['cy'] = check_coordinate(center[1], profile)
         self.attribs['r'] = check_coordinate(r, profile)
 
-class Ellipse(BaseElement):
+class Ellipse(BaseElement, ITransform):
     """ The svg <ellipse /> object. """
     def __init__(self, center=(0, 0), r=(1, 1),
                  attribs=None, **kwargs):
@@ -79,7 +80,7 @@ class Ellipse(BaseElement):
         self.attribs['rx'] = check_coordinate(r[0], profile)
         self.attribs['ry'] = check_coordinate(r[1], profile)
 
-class Polyline(BaseElement):
+class Polyline(BaseElement, ITransform):
     """ The svg <polyline /> object
 
     Attributes:

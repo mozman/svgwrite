@@ -4,15 +4,16 @@
 # Created: 15.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
+
 from base import BaseElement
-from interface import IViewBox
+from interface import IViewBox, ITransform
 from validator import check_coordinate
 
-class Defs(BaseElement):
+class Defs(BaseElement, ITransform):
     """ The <defs /> element> """
     pass
 
-class Group(BaseElement):
+class Group(BaseElement, ITransform):
     """ The <g /> svg element. """
     def _elementname(self):
         return 'g'
@@ -22,12 +23,18 @@ class Group(BaseElement):
         self.add(g)
         return g
 
-class Symbol(Group, IViewBox):
+class Symbol(BaseElement, IViewBox):
     """ The <symbol /> svg element. """
+    # ITransform interface is not valid for Symbol -> do not inherit from Group
     def _elementname(self):
         return 'symbol'
 
-class Use(BaseElement):
+    def group(self, **kwargs):
+        g = Group(**kwargs)
+        self.add(g)
+        return g
+
+class Use(BaseElement, ITransform):
     """ The <use /> svg element. """
     def __init__(self, href, insert=None, size=None, attribs=None, **extra):
         """ Constructor

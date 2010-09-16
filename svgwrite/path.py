@@ -7,8 +7,9 @@
 
 from base import BaseElement
 from utils import check_coordinate
+from interface import ITransform
 
-class Path(BaseElement):
+class Path(BaseElement, ITransform):
     """ The svg <path /> object.
 
     Methods:

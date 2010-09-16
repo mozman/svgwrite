@@ -303,6 +303,10 @@ def _always_valid(value):
     return True
 
 _coordinate_pattern = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(cm|em|ex|in|mm|pc|pt|px|%)?$") # coordinates with optional unit
+_angle_pattern = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(deg|rad|grad)?$") # coordinates with optional unit
+
+def _valid_angle(value):
+    return _angle_pattern.match(value) is not None
 def _valid_coordinate(value):
     return _coordinate_pattern.match(value) is not None
 
@@ -341,8 +345,8 @@ validate_attribute = {
     'contentScriptType' : _always_valid,
     'contentStyleType' : _always_valid,
     'cursor' : _always_valid,
-    'cx' : _always_valid,
-    'cy' : _always_valid,
+    'cx' : _valid_coordinate,
+    'cy' : _valid_coordinate,
     'd' : _always_valid,
     'descent' : _always_valid,
     'diffuseConstant' : _always_valid,
@@ -351,8 +355,8 @@ validate_attribute = {
     'divisor' : _always_valid,
     'dominant-baseline' : _always_valid,
     'dur' : _always_valid,
-    'dx' : _always_valid,
-    'dy' : _always_valid,
+    'dx' : _valid_coordinate,
+    'dy' : _valid_coordinate,
     'edgeMode' : _always_valid,
     'elevation' : _always_valid,
     'enable-background' : _always_valid,
@@ -475,8 +479,8 @@ validate_attribute = {
     'preserveAsectRatio' : _always_valid,
     'preserveAspectRatio' : _always_valid,
     'primitiveUnits' : _always_valid,
-    'r' : _always_valid,
-    'radius' : _always_valid,
+    'r' : _valid_coordinate,
+    'radius' : _valid_coordinate,
     'refX' : _always_valid,
     'refY' : _always_valid,
     'rendering-intent' : _always_valid,
@@ -486,9 +490,9 @@ validate_attribute = {
     'requiredFeatures' : _always_valid,
     'restart' : _always_valid,
     'result' : _always_valid,
-    'rotate' : _always_valid,
-    'rx' : _always_valid,
-    'ry' : _always_valid,
+    'rotate' : _valid_angle,
+    'rx' : _valid_coordinate,
+    'ry' : _valid_coordinate,
     'scale' : _always_valid,
     'seed' : _always_valid,
     'shape-rendering' : _always_valid,
@@ -553,10 +557,10 @@ validate_attribute = {
     'widths' : _always_valid,
     'word-spacing' : _always_valid,
     'writing-mode' : _always_valid,
-    'x' : _always_valid,
+    'x' : _valid_coordinate,
     'x-height' : _always_valid,
-    'x1' : _always_valid,
-    'x2' : _always_valid,
+    'x1' : _valid_coordinate,
+    'x2' : _valid_coordinate,
     'xChannelSelector' : _always_valid,
     'xlink:actuate' : _always_valid,
     'xlink:arcrole' : _always_valid,
@@ -570,9 +574,9 @@ validate_attribute = {
     'xml:space' : _always_valid,
     'xmlns' : _always_valid,
     'xmlns:xlink' : _always_valid,
-    'y' : _always_valid,
-    'y1' : _always_valid,
-    'y2' : _always_valid,
+    'y' : _valid_coordinate,
+    'y1' : _valid_coordinate,
+    'y2' : _valid_coordinate,
     'yChannelSelector' : _always_valid,
     'z' : _always_valid,
     'zoomAndPan' : _always_valid,
