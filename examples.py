@@ -13,7 +13,7 @@ from svgwrite import cm, mm, rgb, deg
 # baseProfile -- full, basic or tiny baseProfile (default: full)
 # debug -- verify property-names and property-values and for each element verify
 #          valid subelements(default: False)
-svg.init(baseProfile='tiny', debug=True)
+svg.init(baseProfile='full', debug=True)
 
 def example_empty_drawing(name):
     drawing = svg.Drawing(filename=name)
@@ -35,11 +35,16 @@ def example_base_shapes_drawing(name):
 
 def example_use_drawing(name):
     dwg = svg.Drawing(filename=name)
-    dwg.defs.add(svg.Rect((0,0), (1*cm, 1*cm), id='r001'))
+    g = dwg.defs.group(id='g001')
+    g.add(svg.Rect((0,0), (1*cm, 1*cm)))
     for y in range(10):
         for x in range(5):
-            u = svg.Use(href='#r001', insert=((2+2*x)*cm, (2+2*y)*cm))
-            u.translate((y*5+x)*mm)
+            x1 = 2+2*x
+            y1 = 2+2*y
+            cx = x1 + 0.5
+            cy = y1 + 0.5
+            u = svg.Use(g, insert=(x1*cm, y1*cm))
+            u.rotate(y*5+x, center=(cx*cm, cy*cm))
             dwg.add(u)
     dwg.save()
 
