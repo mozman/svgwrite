@@ -21,14 +21,16 @@ def example_empty_drawing(name):
 
 def example_base_shapes_drawing(name):
     drawing = svg.Drawing(filename=name)
+    hlines = drawing.group(id='hlines', stroke='green')
     for y in range(20):
-        drawing.append(svg.Line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm), stroke='green'))
+        hlines.add(svg.Line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm)))
+    vlines = drawing.group(id = 'vline', stroke='blue')
     for x in range(17):
-        drawing.append(svg.Line(start=((2+x)*cm, 2*cm), end=((2+x)*cm, 21*cm), stroke='blue'))
-
-    drawing.append(svg.Rect(insert=(5*cm,5*cm), size=(45*mm,45*mm)))
-    drawing.append(svg.Circle(center=(15*cm, 8*cm), r='2.5cm', fill=rgb(100, 0, 0, '%')))
-    drawing.append(svg.Ellipse(center=(10*cm, 15*cm), rx='5cm', ry='17mm'))
+        vlines.add(svg.Line(start=((2+x)*cm, 2*cm), end=((2+x)*cm, 21*cm)))
+    shapes = drawing.group(id='shapes', fill='red')
+    shapes.add(svg.Rect(insert=(5*cm, 5*cm), size=(45*mm, 45*mm)))
+    shapes.add(svg.Circle(center=(15*cm, 8*cm), r='2.5cm', fill='blue'))
+    shapes.add(svg.Ellipse(center=(10*cm, 15*cm), r=('5cm', '10mm')))
     drawing.save()
 
 def main():

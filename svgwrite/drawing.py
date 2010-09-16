@@ -7,8 +7,10 @@
 # License: GPLv3
 
 from svgwrite import parameter
-from svgwrite.validator import check_coordinate
-from svgwrite.base import BaseElement, IViewBox
+from validator import check_coordinate
+from base import BaseElement
+from container import Group, Defs
+from interface import IViewBox
 
 class Drawing(BaseElement, IViewBox):
     """This is the svg-drawing represented by the <svg /> element.
@@ -23,8 +25,8 @@ class Drawing(BaseElement, IViewBox):
     Attributes:
     -----------
     filename -- should be supported by the open-command
-    defs -- <standard python-list> container for referenced elements
-        you got direct access: defs.append( svg-class )
+    defs -- <Defs> container for referenced elements
+        you got direct access: defs.add( svg-class )
 
     inherited attributes see class: ContainerElement
 
@@ -76,7 +78,8 @@ class Drawing(BaseElement, IViewBox):
         """
         super(Drawing, self).__init__(width=width, height=height, **extra)
         self.filename = filename
-        self.defs = [] # defs container
+        self.defs = Defs() # defs container
+        self.add(self.defs) # add defs as first element
         self._stylesheets = [] # list of stylesheets appended
 
     def get_xml(self):
@@ -135,3 +138,8 @@ class Drawing(BaseElement, IViewBox):
         """Write the xml-string to the 'filename' resource."""
         self.filename = filename
         self.save()
+
+    def group(self, **kwargs):
+        g = Group(**kwargs)
+        self.add(g)
+        return g

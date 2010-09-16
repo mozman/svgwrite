@@ -39,6 +39,7 @@ class Rect(BaseElement):
         ry -- corner y-radius
         """
         super(Rect, self).__init__(attribs, **kwargs)
+
         profile = parameter.profile
         self.attribs['x'] = check_coordinate(insert[0], profile)
         self.attribs['y'] = check_coordinate(insert[1], profile)
@@ -64,20 +65,19 @@ class Circle(BaseElement):
 
 class Ellipse(BaseElement):
     """ The svg <ellipse /> object. """
-    def __init__(self, center=(0, 0), rx=1, ry=1,
+    def __init__(self, center=(0, 0), r=(1, 1),
                  attribs=None, **kwargs):
         """ Constructor
 
         center -- circle center point as 2-tuple
-        rx -- ellipse x-radius
-        ry -- ellipse y-radius
+        r -- <2-tuple> (x-radius, y-radius)
         """
         super(Ellipse, self).__init__(attribs, **kwargs)
         profile = parameter.profile
         self.attribs['cx'] = check_coordinate(center[0], profile)
         self.attribs['cy'] = check_coordinate(center[1], profile)
-        self.attribs['rx'] = check_coordinate(rx, profile)
-        self.attribs['ry'] = check_coordinate(ry, profile)
+        self.attribs['rx'] = check_coordinate(r[0], profile)
+        self.attribs['ry'] = check_coordinate(r[1], profile)
 
 class Polyline(BaseElement):
     """ The svg <polyline /> object
