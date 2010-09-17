@@ -8,10 +8,10 @@
 
 from svgwrite import parameter
 from validator import check_coordinate
-from container import Symbol, Defs
+from container import SVG, Defs
 
-class Drawing(Symbol):
-    """This is the svg-drawing represented by the <svg /> element.
+class Drawing(SVG):
+    """This is the svg-drawing represented by the top level <svg /> element.
 
     A drawing consists of any number of SVG elements contained within the drawing
     element, stored in the element-attribute.
@@ -23,61 +23,28 @@ class Drawing(Symbol):
     Attributes:
     -----------
     filename -- should be supported by the open-command
-    defs -- <Defs> container for referenced elements
-        you got direct access: defs.add( svg-class )
-
-    inherited attributes see class: ContainerElement
 
     Methods:
     --------
-    viewbox(minx, miny, width, height) -- set the viewBox attribute
     write(fileobj) -- write xml-string to fileobject, 'utf-8'-encoding
     save() -- store xml-string to the filesystem (uses filename-attribute)
     saveas(filename) -- store xml-string to 'filename' resource
 
-    inherited methods see class: ContainerElement
-
-    Supported SVG Attributes:
-    -------------------------
-    set attribute: drawing-object['attribute'] = value or on __init__()
-    get attribute: value = drawing-object['attribute']
-
-    class -- <string> assigns one or more css-class-names to an element
-        see http://www.w3.org/TR/SVG11/interact.html#ClassAttribute
-    style -- <string> allows per-element css-style rules to be specified directly
-        on a given element
-        see http://www.w3.org/TR/SVG11/interact.html#StyleAttribute
-    x -- <coordinate> x-coordinate, if <svg> is enbedded into another <svg>-element
-    y -- <coordinate> y-coordinate, if <svg> is enbedded into another <svg>-element
-    width -- <length> canvas-width - default is '100%'
-    height -- <length> canvas-height - default is '100%'
-    viewBox -- <string> a list of four numbers '<min-x>, <min-y>, <width> and <height>'
-        better: use the viewbox-method
-        see http://www.w3.org/TR/SVG11/coords.html#ViewBoxAttribute
-    preserveAspectRatio -- <string> : "[defer] <align>  [meet|slice]" influence graphic scaling
-        see http://www.w3.org/TR/SVG11/coords.html#PreserveAspectRatioAttribute
-    zoomAndPan -- "disable|magnify" : default is 'magnify'
-        see http://www.w3.org/TR/SVG11/interact.html#ZoomAndPanAttribute
-    externalResourcesRequired -- "true|false" false: if document rendering can proceed
-        even if external resources are unavailable else: true
-        see http://www.w3.org/TR/SVG11/interact.html#ExternalResourcesRequiredAttribute
-
-    supported but do not set or change following svg-attributes:
-    version, baseProfile, contentScriptType, contentStyleType
+    Supported Interfaces:
+    ---------------------
+    IViewBox: viewbox, stretch, fit
     """
-    def __init__(self, filename="noname.svg", width='100%', height='100%', **extra):
-        """Constructor for class Drawing
+    def __init__(self, filename="noname.svg", size=('100%', '100%'), **extra):
+        """ Constructor
+
         Arguments:
         ----------
         filename -- filesystem-filename, should be supported by the open-command
-        width -- <length> : canvas-width - default is '100%'
-        height -- <length> : canvas-height - default is '100%'
-        extra -- keyword arguments - any valid (for the <svg> element) svg-attributes
+        size -- <2-tuple> width, height
+        **extra -- additional attributs
         """
-        super(Drawing, self).__init__(width=width, height=height, **extra)
+        super(Drawing, self).__init__(size=size, **extra)
         self.filename = filename
-        self.defs = Defs() # defs container
-        self.add(self.defs) # add defs as first element
         self._stylesheets = [] # list of stylesheets appended
 
     def get_xml(self):
@@ -97,7 +64,7 @@ class Drawing(Symbol):
     def add_stylesheet(self, href, title, alternate="no", media="screen"):
         """ add a stylesheet
 
-        Parameters:
+        Arguments:
         -----------
         href -- link to stylesheet <URI>
         title -- name of stylesheet
@@ -106,9 +73,6 @@ class Drawing(Symbol):
                  'print' | 'projection' | 'screen' | 'tty' | 'tv'
         """
         self._stylesheets.append( (href, title, alternate, media) )
-
-    def _elementname(self):
-        return 'svg'
 
     def write(self, fileobj):
         """Write the xml-string to 'fileobj' encoded as 'utf-8'-string."""

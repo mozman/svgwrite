@@ -90,6 +90,12 @@ def check_angle(value, profile='tiny'):
     number, unit = get_angle(value, profile)
     return value
 
+def check_number(value, profile='tiny'):
+    number = float(value) # ok if we get a float number
+    if profile == 'tiny':
+        check_tiny(number)
+    return value
+
 def check_tiny(number):
     """ Check if number is a valid 'tiny' coordinate, raises ValueError if not valid.
 
@@ -326,11 +332,14 @@ def _always_valid(value):
 
 _coordinate_pattern = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(cm|em|ex|in|mm|pc|pt|px|%)?$") # coordinates with optional unit
 _angle_pattern = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(deg|rad|grad)?$") # coordinates with optional unit
+_number_pattern = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)$") # numbers without units
 
 def _valid_angle(value):
     return _angle_pattern.match(value) is not None
 def _valid_coordinate(value):
     return _coordinate_pattern.match(value) is not None
+def _valid_number(value):
+    return _number_pattern.match(value) is not None
 
 validate_attribute = {
     'accent-height' : _always_valid,
@@ -413,7 +422,7 @@ validate_attribute = {
     'gradientTransform' : _always_valid,
     'gradientUnits' : _always_valid,
     'hanging' : _always_valid,
-    'height' : _always_valid,
+    'height' : _valid_coordinate,
     'horiz-adv-x' : _always_valid,
     'horiz-origin-x' : _always_valid,
     'horiz-origin-y' : _always_valid,
@@ -575,7 +584,7 @@ validate_attribute = {
     'viewBox' : _always_valid,
     'viewTarget' : _always_valid,
     'visibility' : _always_valid,
-    'width' : _always_valid,
+    'width' : _valid_coordinate,
     'widths' : _always_valid,
     'word-spacing' : _always_valid,
     'writing-mode' : _always_valid,
