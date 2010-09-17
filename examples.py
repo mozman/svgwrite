@@ -34,17 +34,21 @@ def example_base_shapes_drawing(name):
     drawing.save()
 
 def example_use_drawing(name):
-    dwg = svg.Drawing(filename=name)
+    w, h = '100%', '100%'
+    dwg = svg.Drawing(filename=name, size=(w, h))
+    dwg.add(svg.Rect(insert=(0,0), size=(w, h), fill='lightgray', stroke='black'))
     g = dwg.defs.group(id='g001')
-    g.add(svg.Rect((0,0), (1*cm, 1*cm)))
+    unit=40
+    g.add(svg.Rect((0,0), (unit, unit)))
     for y in range(10):
         for x in range(5):
-            x1 = 2+2*x
-            y1 = 2+2*y
-            cx = x1 + 0.5
-            cy = y1 + 0.5
-            u = svg.Use(g, insert=(x1*cm, y1*cm))
-            u.rotate(y*5+x, center=(cx*cm, cy*cm))
+            x1 = 2*unit+2*unit*x
+            y1 = 2*unit+2*unit*y
+            cx = x1 + unit/2
+            cy = y1 + unit/2
+            cval = (y*5 + x)*2
+            u = svg.Use(g, insert=(x1, y1), fill=rgb(cval, cval, cval))
+            u.rotate(y*5+x, center=(cx, cy))
             dwg.add(u)
     dwg.save()
 
