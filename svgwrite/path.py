@@ -6,7 +6,7 @@
 # License: GPLv3
 
 from base import BaseElement
-from utils import check_coordinate
+from utils import strlist
 from interface import ITransform
 
 class Path(BaseElement, ITransform):
@@ -14,70 +14,104 @@ class Path(BaseElement, ITransform):
 
     Methods:
     --------
-    hline(*values) -- add horizontal line
-    vline(*values) -- add vertical line
-    moveto(point) -- move cursor to point and begin a new subpath
-    lineto(points) -- draw line to points[0], points[1], ...
-    qbezier(b1, dest) -- draw quadratic bezier curve to dest with breakpoint b1
-    continue_qbezier(dest) -- continue q. bezier curve to point dest
-    cbezier(b1, b2, dest) -- draw cubic bezier curve to dest with breakpoints b1, b2
-    continue_cbezier(b2, dest) -- continue c. bezier curve to point dest with breakpoint b2
-    close() -- close path
+    push(*commands) -- add commands or points or both
+
+    Attributes:
+    -----------
+    commands -- <list> command stack
+
+    Supported Interfaces:
+    ---------------------
+    ITransform: translate, rotate, scale, skewX, skewY, matrix, rev, del_transform
+
+    Path-Commands:
+    --------------
+    Uppercase commands indicates absolute coordinates
+    Lowercase commands indicates relative coordinates
+
+    'h', 'H' x+ -- horizontal lineto
+    'v', 'V' y+ -- vertical lineto
+    'l', 'L' (x y)+ -- lineto
+    'm', 'M' (x y)+ -- moveto
+    'c', 'C' (x1 y1 x2 y2 x y)+ -- cubic Bézier curve to
+    's', 'S' (x2 y2 x y)+ -- shorthand/smooth cubic Bézier curveto
+    'q', 'Q' (x1 y1 x y)+ -- quadratic Bézier curveto
+    't', 'T' (x y)+ -- Shorthand/smooth quadratic Bézier curveto
+    'a', 'A' (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+ -- elliptical arc
+    'z', 'Z' -- closepath
+
+    SVG-Attributes:
+    ---------------
+    pathLength -- the 'pathLength' attribute can be used to provide the author's
+        computation of the total length of the path so that the user agent can
+        scale distance-along-a-path computations by the ratio of 'pathLength' to
+        the user agent's own computed value for total path length.
+
+        A "moveto" operation within a 'path' element is defined to have zero length.
     """
-    def __init__(self, attribs=None, **kwargs):
+    def __init__(self, pathLength=None, attribs=None, **kwargs):
         super(Path, self).__init__(attribs, **kwargs)
+        if pathLength:
+            self.attribs['pathLength'] = pathLength
         self.commands = []
 
-    def hline(self, *values):
-        self.commands.append(u'h')
-        self.commands.extend(values)
+    def push(self, *coords):
+        """ Push commands and coordinats onto the command stack.
 
-    def vline(self, *values):
-        self.commands.append(u'v')
-        self.commands.extend(values)
+        Path-Commands:
+        --------------
+        Uppercase commands indicates absolute coordinates
+        Lowercase commands indicates relative coordinates
 
-    def moveto(self, point=(0, 0)):
-        self.commands.append(u'm')
-        self.commands.append(point)
+        'h', 'H' x+ -- Draws a horizontal line from the current point (cpx, cpy) to (x, cpy).
 
-    def lineto(self, points=[]):
-        self.commands.append(u'l')
-        self.commands.extend(points)
+        'v', 'V' y+ -- Draws a vertical line from the current point (cpx, cpy) to (cpx, y).
 
-    def qbezier(self, b1=(0,0), dest=(0,0)):
-        self.commands.append('q')
-        self.commands.append(b1)
-        self.commands.append(dest)
+        'l', 'L' (x y)+ -- Draw a line from the current point to the given (x,y) coordinate.
 
-    def continue_qbezier(self, dest=(0,0)):
-        self.commands.append(u't')
-        self.commands.append(dest)
+        'm', 'M' (x y)+ -- Start a new sub-path at the given (x,y) coordinate.
+            If a moveto is followed by multiple pairs of coordinates, the subsequent
+            pairs are treated as implicit lineto commands. Hence, implicit lineto
+            commands will be relative if the moveto is relative, and absolute if the
+            moveto is absolute. If a relative moveto (m) appears as the first element
+            of the path, then it is treated as a pair of absolute coordinates.
+            In this case, subsequent pairs of coordinates are treated as relative even
+            though the initial moveto is interpreted as an absolute moveto.
 
-    def cbezier(self, b1=(0,0), b2=(0,0), dest=(0,0)):
-        self.commands.append(u'c')
-        self.commands.append(b1)
-        self.commands.append(b2)
-        self.commands.append(dest)
+        'c', 'C' (x1 y1 x2 y2 x y)+ -- Draws a cubic Bézier curve from the current point
+            to (x,y) using (x1,y1) as the control point at the beginning of the curve
+            and (x2,y2) as the control point at the end of the curve.
 
-    def continue_cbezier(self, b2=(0,0), dest=(0,0)):
-        self.commands.append(u's')
-        self.commands.append(b2)
-        self.commands.append(dest)
+        's', 'S' (x2 y2 x y)+ -- Draws a cubic Bézier curve from the current point to
+            (x,y). The first control point is assumed to be the reflection of the second
+            control point on the previous command relative to the current point. (If
+            there is no previous command or if the previous command was not an C, c,
+            S or s, assume the first control point is coincident with the current point.)
+            (x2,y2) is the second control point (i.e., the control point at the end of
+            the curve).
 
-    def close(self):
-        self.commands.append(u'z')
+        'q', 'Q' (x1 y1 x y)+ -- Draws a quadratic Bézier curve from the current point
+            to (x,y) using (x1,y1) as the control point.
+
+        't', 'T' (x y)+ -- Draws a quadratic Bézier curve from the current point to (x,y).
+            The control point is assumed to be the reflection of the control point on
+            the previous command relative to the current point. (If there is no previous
+            command or if the previous command was not a Q, q, T or t, assume the control
+            point is coincident with the current point.)
+
+        'a', 'A' (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+ -- Draws an
+            elliptical arc from the current point to (x, y). The size and orientation
+            of the ellipse are defined by two radii (rx, ry) and an x-axis-rotation,
+            which indicates how the ellipse as a whole is rotated relative to the
+            current coordinate system. The center (cx, cy) of the ellipse is
+            calculated automatically to satisfy the constraints imposed by the other
+            parameters. large-arc-flag and sweep-flag contribute to the automatic
+            calculations and help determine how the arc is drawn.
+
+        'z', 'Z' -- close current subpath
+        """
+        self.commands.extend(commands)
 
     def get_xml(self):
-        self.attribs['d'] = self.commands_to_unicode()
+        self.attribs['d'] = unicode(strlist(self.commands))
         return super(Path, self).get_xml()
-
-    def commands_to_unicode(self):
-        strings = []
-        for command in self.commands:
-            s = unicode(command)
-            if isinstance(command, tuple):
-                for coord in command: # check for valid coords
-                    check_coordinate(coord)
-                s = s[1:-1] # remove brackets
-            strings.append(s)
-        return u' '.join(strings)
