@@ -5,12 +5,13 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from base import BaseElement
-from utils import strlist2
-from interface import ITransform
+from svgwrite.base import BaseElement
+from svgwrite.utils import strlist2
+from svgwrite.interface import ITransform
 
 class Path(BaseElement, ITransform):
-    """ The svg <path /> object.
+    """ *Paths* represent the outline of a shape which can be filled, stroked,
+    used as a clipping path, or any combination of the three.
 
     Methods:
     --------

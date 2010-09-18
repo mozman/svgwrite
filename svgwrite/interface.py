@@ -8,10 +8,10 @@
 _horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
 _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
 
-import parameter
+from svgwrite import parameter
 
-from utils import strlist
-from validator import check_coordinate, check_angle, check_number
+from svgwrite.utils import strlist
+from svgwrite.validator import check_coordinate, check_angle, check_number
 
 class IViewBox(object):
     """ The IViewBox interface provides the ability to specify that a given set

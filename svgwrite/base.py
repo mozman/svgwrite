@@ -84,7 +84,7 @@ xlink:title
 
 import xml.etree.ElementTree as etree
 
-import parameter
+from svgwrite import parameter
 from svgwrite.utils import value_to_string
 from svgwrite.validator import check_attribute_names, check_attribute_value, \
      check_valid_content, check_coordinate

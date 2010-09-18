@@ -6,12 +6,12 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from parameter import init
-from drawing import Drawing
-from container import Group, Symbol, Use, SVG
-from shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
-from path import Path
-from utils import rgb
+from svgwrite.parameter import init
+from svgwrite.drawing import Drawing
+from svgwrite.container import Group, Symbol, Use, SVG
+from svgwrite.shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
+from svgwrite.path import Path
+from svgwrite.utils import rgb
 
 class Unit(object):
     def __init__(self, unit='cm'):
