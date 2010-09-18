@@ -6,6 +6,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
+#__docformat__ = "restructuredtext en"
+
 from svgwrite.parameter import init
 from svgwrite.drawing import Drawing
 from svgwrite.container import Group, Symbol, Use, SVG
@@ -14,16 +16,24 @@ from svgwrite.path import Path
 from svgwrite.utils import rgb
 
 class Unit(object):
+    """ Add units to values.
+    """
     def __init__(self, unit='cm'):
+        """ Constructor
+
+        :Parameters:
+        - `unit`: specify the unit string
+        """
         self._unit=unit
 
     def __rmul__(self, other):
-        """add unit-strint to 'other'. (e.g. 5*cm => '5cm')"""
+        """ add unit-strint to 'other'. (e.g. 5*cm => '5cm') """
         return "%s%s" % (other, self._unit)
 
     def __call__(self, *args):
-        """add unit-strings to all arguments.
-
+        """ add unit-strings to all arguments.
+        :Parameters:
+        - `*args` : list of values
         e.g.: cm(1,2,3) => '1cm,2cm,3cm'
         """
         return ','.join(["%s%s" % (arg, self._unit) for arg in args])

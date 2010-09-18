@@ -5,6 +5,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
+__docformat__ = "restructuredtext en"
+
 _horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
 _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
 

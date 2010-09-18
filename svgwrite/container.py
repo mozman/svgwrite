@@ -5,6 +5,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
+__docformat__ = "restructuredtext en"
+
 from svgwrite import parameter
 from svgwrite.base import BaseElement
 from svgwrite.interface import IViewBox, ITransform

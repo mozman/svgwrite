@@ -5,7 +5,6 @@
 # Created: 08.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
-
 """
 Valid for all classes: Line, Rect, Circle, Ellipse, Polyline, Polygon
 
@@ -41,6 +40,8 @@ see description in  **base.py**
 * Graphical Event Attributes
 * Presentation Attributes
 """
+
+__docformat__ = "restructuredtext en"
 
 from svgwrite import parameter
 from svgwrite.base import BaseElement
