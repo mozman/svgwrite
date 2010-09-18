@@ -6,7 +6,7 @@
 # License: GPLv3
 
 from base import BaseElement
-from utils import strlist
+from utils import strlist2
 from interface import ITransform
 
 class Path(BaseElement, ITransform):
@@ -18,7 +18,18 @@ class Path(BaseElement, ITransform):
 
     Attributes:
     -----------
-    commands -- <list> command stack
+    commands -- <list> command and coordinate stack
+
+    Inherited Attributes:
+    ---------------------
+    attribs -- <dict> svg attributes dictionary
+    elements -- <list> list of containing svg-elements
+
+    Inherited Methods:
+    ------------------
+    add(svg-element) -- add an svg-element
+    tostring() -- get the xml-representation as <string> 'utf-8' encoded
+    get_xml() -- get the xml-representation as ElementTree object
 
     Supported Interfaces:
     ---------------------
@@ -40,22 +51,37 @@ class Path(BaseElement, ITransform):
     'a', 'A' (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+ -- elliptical arc
     'z', 'Z' -- closepath
 
-    SVG-Attributes:
-    ---------------
+    Supported svg-attributes:
+    -------------------------
+    class -- <string> assigns one or more css-class-names to an element
+    style -- <string> allows per-element css-style rules to be specified directly on a given element
+    externalResourcesRequired -- "true|false" false: if document rendering can proceed
+        even if external resources are unavailable else: true
+    transform -- use ITransform interface
     pathLength -- the 'pathLength' attribute can be used to provide the author's
         computation of the total length of the path so that the user agent can
         scale distance-along-a-path computations by the ratio of 'pathLength' to
         the user agent's own computed value for total path length.
-
         A "moveto" operation within a 'path' element is defined to have zero length.
-    """
-    def __init__(self, pathLength=None, attribs=None, **kwargs):
-        super(Path, self).__init__(attribs, **kwargs)
-        if pathLength:
-            self.attribs['pathLength'] = pathLength
-        self.commands = []
+    d -- The definition of the outline of a shape, use push-method to add commands
+        and coordinates
 
-    def push(self, *coords):
+    Standard SVG Attributes:
+    ------------------------
+    see description in  **base.py**
+
+    * Core Attributes
+    * Conditional Processing Attributes
+    * Graphical Event Attributes
+    * Presentation Attributes
+    """
+    def __init__(self, d=None, attribs=None, **kwargs):
+        super(Path, self).__init__(attribs, **kwargs)
+        self.commands = []
+        self.push(d)
+
+
+    def push(self, *elements):
         """ Push commands and coordinats onto the command stack.
 
         Path-Commands:
@@ -110,8 +136,8 @@ class Path(BaseElement, ITransform):
 
         'z', 'Z' -- close current subpath
         """
-        self.commands.extend(commands)
+        self.commands.extend(elements)
 
     def get_xml(self):
-        self.attribs['d'] = unicode(strlist(self.commands))
+        self.attribs['d'] = unicode(strlist2(self.commands))
         return super(Path, self).get_xml()

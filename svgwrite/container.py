@@ -13,15 +13,43 @@ from validator import check_coordinate
 
 
 class Group(BaseElement, ITransform):
-    """ The <g /> element.
+    """ The *g* element is a container element for grouping together related graphics elements.
 
-    methods:
+    Methods:
     --------
     group(**attributes) -- create a new group element with attributes
+
+    Inherited Attributes:
+    ---------------------
+    attribs -- <dict> svg attributes dictionary
+    elements -- <list> list of containing svg-elements
+
+    Inherited Methods:
+    ------------------
+    add(svg-element) -- add an svg-element
+    tostring() -- get the xml-representation as <string> 'utf-8' encoded
+    get_xml() -- get the xml-representation as ElementTree object
 
     Supported Interfaces:
     ---------------------
     ITransform: translate, rotate, scale, skewX, skewY, matrix, rev, del_transform
+
+    Supported svg-attributes:
+    -------------------------
+    class -- <string> assigns one or more css-class-names to an element
+    style -- <string> allows per-element css-style rules to be specified directly on a given element
+    externalResourcesRequired -- "true|false" false: if document rendering can proceed
+        even if external resources are unavailable else: true
+    transform -- use ITransform interface
+
+    Standard SVG Attributes:
+    ------------------------
+    see description in  **base.py**
+
+    * Core Attributes
+    * Conditional Processing Attributes
+    * Graphical Event Attributes
+    * Presentation Attributes
     """
     def _elementname(self):
         return 'g'
@@ -33,31 +61,74 @@ class Group(BaseElement, ITransform):
         return g
 
 class Defs(Group):
-    """ The <defs /> element> see Group class."""
+    """ The *defs* element is a container element for referenced elements. For
+    understandability and accessibility reasons, it is recommended that, whenever
+    possible, referenced elements be defined inside of a *defs*.
+    """
     def _elementname(self):
         return 'defs'
 
 class Symbol(BaseElement, IViewBox):
-    """ The <symbol /> element.
+    """ The *symbol* element is used to define graphical template objects which
+    can be instantiated by a *use* element. The use of *symbol* elements for
+    graphics that are used multiple times in the same document adds structure and
+    semantics. Documents that are rich in structure may be rendered graphically,
+    as speech, or as braille, and thus promote accessibility.
+
     methods:
     --------
     group(**attributes) -- create a new group element with attributes
 
+    Inherited Attributes:
+    ---------------------
+    attribs -- <dict> svg attributes dictionary
+    elements -- <list> list of containing svg-elements
+
+    Inherited Methods:
+    ------------------
+    add(svg-element) -- add an svg-element
+    tostring() -- get the xml-representation as <string> 'utf-8' encoded
+    get_xml() -- get the xml-representation as ElementTree object
+
     Supported Interfaces:
     ---------------------
     IViewBox: viewboy, strech, fit
+
+    Supported svg-attributes:
+    -------------------------
+    class -- <string> assigns one or more css-class-names to an element
+    style -- <string> allows per-element css-style rules to be specified directly on a given element
+    externalResourcesRequired -- "true|false" false: if document rendering can proceed
+        even if external resources are unavailable else: true
+    viewBox -- use IViewBox interface
+    preserveAspectRatio -- use IViewBox interface
+
+    Standard SVG Attributes:
+    ------------------------
+    see description in  **base.py**
+
+    * Core Attributes
+    * Graphical Event Attributes
+    * Presentation Attributes
     """
     # ITransform interface is not valid for Symbol -> do not inherit from Group
     def _elementname(self):
         return 'symbol'
 
     def group(self, **attributes):
+        """ Create a new group with attributs. """
         g = Group(**attributes)
         self.add(g)
         return g
 
 class SVG(Symbol):
-    """The <svg /> element.
+    """ An SVG document fragment consists of any number of SVG elements contained
+    within an *svg* element.
+
+    An SVG document fragment can range from an empty fragment (i.e., no content
+    inside of the *svg* element), to a very simple SVG document fragment containing
+    a single SVG graphics element such as a *rect*, to a complex, deeply nested
+    collection of container elements and graphics elements.
 
     Attributes:
     -----------
@@ -68,16 +139,10 @@ class SVG(Symbol):
     ---------------------
     IViewBox: viewbox, stretch, fit
 
-    Supported SVG Attributes:
+    Supported svg-attributes:
     -------------------------
-    set attribute: drawing-object['attribute'] = value or on __init__()
-    get attribute: value = drawing-object['attribute']
-
     class -- <string> assigns one or more css-class-names to an element
-        see http://www.w3.org/TR/SVG11/interact.html#ClassAttribute
-    style -- <string> allows per-element css-style rules to be specified directly
-        on a given element
-        see http://www.w3.org/TR/SVG11/interact.html#StyleAttribute
+    style -- <string> allows per-element css-style rules to be specified directly on a given element
     x -- <coordinate> x-coordinate, if <svg> is enbedded into another <svg>-element
     y -- <coordinate> y-coordinate, if <svg> is enbedded into another <svg>-element
     width -- <length> canvas-width - default is '100%'
@@ -85,13 +150,21 @@ class SVG(Symbol):
     viewBox -- use IViewBox interface
     preserveAspectRatio -- use IViewBox interface
     zoomAndPan -- "disable|magnify" : default is 'magnify'
-        see http://www.w3.org/TR/SVG11/interact.html#ZoomAndPanAttribute
     externalResourcesRequired -- "true|false" false: if document rendering can proceed
         even if external resources are unavailable else: true
-        see http://www.w3.org/TR/SVG11/interact.html#ExternalResourcesRequiredAttribute
 
     supported but do not set or change following svg-attributes:
     version, baseProfile, contentScriptType, contentStyleType
+
+    Standard SVG Attributes:
+    ------------------------
+    see description in  **base.py**
+
+    * Core Attributes
+    * Conditional Processing Attributes
+    * Document Event Attributes
+    * Graphical Event Attributes
+    * Presentation Attributes
     """
     def __init__(self, insert=None, size=None, attribs=None, **extra):
         """ Constructor
@@ -126,15 +199,49 @@ class SVG(Symbol):
         return 'svg'
 
 class Use(BaseElement, ITransform):
-    """ The <use /> element.
+    """ The *use* element references another element and indicates that the graphical
+    contents of that element is included/drawn at that given point in the document.
 
-    Re-use basic-shapes, groups, symbols or svg elements. Link to objects by
-    href='#object-id' or use the object itself as href-argument - has to have
-    an 'id'-attribute.
+    Link to objects by href='#object-id' or use the object itself as href-argument,
+    the object has to have an 'id'-attribute.
+
+    Inherited Attributes:
+    ---------------------
+    attribs -- <dict> svg attributes dictionary
+    elements -- <list> list of containing svg-elements
+
+    Inherited Methods:
+    ------------------
+    add(svg-element) -- add an svg-element
+    tostring() -- get the xml-representation as <string> 'utf-8' encoded
+    get_xml() -- get the xml-representation as ElementTree object
 
     Supported Interfaces:
     ---------------------
     ITransform: translate, rotate, scale, skewX, skewY, matrix, rev, del_transform
+
+    Supported svg-attributes:
+    -------------------------
+    class -- <string> assigns one or more css-class-names to an element
+    style -- <string> allows per-element css-style rules to be specified directly on a given element
+    x -- <coordinate> insert x-coordinate, set on __init__(insert)
+    y -- <coordinate> insert y-coordinate, set on __init__(insert)
+    width -- <length> width - default is '100%', set on __init__(size)
+    height -- <length> height - default is '100%', set on __init__(size)
+    transform -- use ITransform interface
+    xlink:href -- , set on __init__(href)
+    externalResourcesRequired -- "true|false" false: if document rendering can proceed
+        even if external resources are unavailable else: true
+
+    Standard SVG Attributes:
+    ------------------------
+    see description in **base.py**
+
+    * Core Attributes
+    * Conditional Processing Attributes
+    * Graphical Event Attributes
+    * Presentation Attributes
+    * XLink Attributes
     """
     def __init__(self, href, insert=None, size=None, attribs=None, **extra):
         """ Constructor

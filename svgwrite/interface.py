@@ -14,7 +14,15 @@ from utils import strlist
 from validator import check_coordinate, check_angle, check_number
 
 class IViewBox(object):
-    """ viewBox Interface operates on USER SPACE coordinates - no units allowed."""
+    """ The IViewBox interface provides the ability to specify that a given set
+    of graphics stretch to fit a particular container element.
+
+    The value of the *viewBox* attribute is a list of four numbers <min-x>, <min-y>,
+    <width> and <height>, separated by whitespace and/or a comma, which specify
+    a rectangle in **user space** which should be mapped to the bounds of the
+    viewport established by the given element, taking into account attribute
+    *preserveAspectRatio*.
+    """
     def viewbox(self, minx=0, miny=0, width=0, height=0):
         """ Specify a rectangle in USER SPACE (no units allowed) which should be
         mapped to the bounds of the viewport established by the given element.
@@ -25,7 +33,7 @@ class IViewBox(object):
         self.attribs['viewBox'] = strlist(minx, miny, width, height)
 
     def stretch(self):
-        """ strech viewBox in x and y direction to fill viewport, does not
+        """ Strech viewBox in x and y direction to fill viewport, does not
         preserve aspect ratio.
         """
         self.attribs['preserveAspectRatio'] = 'none'
@@ -33,21 +41,26 @@ class IViewBox(object):
     def fit(self, horiz="center", vert="middle", scale="meet"):
         """ Set the preserveAspectRatio attribute.
 
-        Parameter:
+        Arguments:
         ----------
         horiz -- 'left' | 'center' | 'right'
         vert -- 'top' | 'middle' | 'bottom'
         scale -- 'meet' | 'slice'
-            meet = preserve aspect ration and zoom to limits of viewBox
-            slice = preserve aspect ration and viewBox touch viewport on all bounds,
-                    viewBox will extend beyond the bounds of the viewport
+            meet:  preserve aspect ration and zoom to limits of viewBox
+            slice: preserve aspect ration and viewBox touch viewport on all bounds,
+                   viewBox will extend beyond the bounds of the viewport
         """
         self.attribs['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)
 
 class ITransform(object):
-    """ Transform operates on USER SPACE coordinates, no units allowed """
+    """ The ITransform interface operates on the *transform* attribute.
+    The value of the *transform* attribute is a <transform-list>, which is defined
+    as a list of transform definitions, which are applied in the order provided.
+    The individual transform definitions are separated by whitespace and/or a comma.
+    All coordinates are **user space coordinates**.
+    """
     def translate(self, tx, ty=None):
-        """ tx, ty in USER SPACE coordinates - no units allowed """
+        """ tx, ty in **user space coordinates** - no units allowed """
         if parameter.debug_mode:
             profile = parameter.profile
             check_number(tx, profile)
@@ -55,7 +68,7 @@ class ITransform(object):
         self._add_transformation("translate(%s)" % strlist(tx, ty))
 
     def rotate(self, angle, center=None):
-        """ angle in degree, center in USER SPACE coordinates - no units allowed """
+        """ angle in degree, center in **user space coordinates** - no units allowed """
         if parameter.debug_mode:
             profile = parameter.profile
             check_number(angle, profile)
@@ -88,7 +101,7 @@ class ITransform(object):
         self._add_transformation("matrix(%s)" % strlist(a, b, c, d, e, f))
 
     def rev(self, tx=None, ty=None):
-        """ tx, ty in USER SPACE coordinates (parent system) - no units allowed """
+        """ tx, ty in **user space coordinates** (parent system) - no units allowed """
         if parameter.debug_mode:
             profile = parameter.profile
             check_number(tx)
