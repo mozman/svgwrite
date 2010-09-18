@@ -5,11 +5,10 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-import parameter
-
-from base import BaseElement
-from interface import IViewBox, ITransform
-from validator import check_coordinate
+from svgwrite import parameter
+from svgwrite.base import BaseElement
+from svgwrite.interface import IViewBox, ITransform
+from svgwrite.validator import check_coordinate
 
 
 class Group(BaseElement, ITransform):

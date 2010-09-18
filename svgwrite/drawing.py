@@ -7,7 +7,7 @@
 # License: GPLv3
 
 from svgwrite import parameter
-from validator import check_coordinate
+from svgwrite.validator import check_coordinate
 from container import SVG, Defs
 
 class Drawing(SVG):

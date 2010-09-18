@@ -42,11 +42,11 @@ see description in  **base.py**
 * Presentation Attributes
 """
 
-import parameter
-from base import BaseElement
-from validator import check_coordinate
-from utils import points_to_string
-from interface import ITransform
+from svgwrite import parameter
+from svgwrite.base import BaseElement
+from svgwrite.validator import check_coordinate
+from svgwrite.utils import points_to_string
+from svgwrite.interface import ITransform
 
 class Line(BaseElement, ITransform):
     """ The *line* element defines a line segment that starts at one point and ends
