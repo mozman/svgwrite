@@ -22,17 +22,34 @@ class Drawing(SVG):
 
     Attributes:
     -----------
-    filename -- should be supported by the open-command
+    filename -- should be valid for open(filename, 'w')
+
+    Inherited Attributes:
+    ---------------------
+    attribs -- <dict> svg attributes dictionary
+    elements -- <list> list of containing svg-elements
+    defs -- <Defs> container for referenced elements
 
     Methods:
     --------
-    write(fileobj) -- write xml-string to fileobject, 'utf-8'-encoding
-    save() -- store xml-string to the filesystem (uses filename-attribute)
+    write(fileobj) -- write xml-string to fileobject, 'utf-8' encoded
+    save() -- store xml-string to the filesystem (uses self.filename)
     saveas(filename) -- store xml-string to 'filename' resource
+    add_stylesheet(href, title, alternate, media) -- add a stylsheet reference
+    get_xml() -- get the xml-representation as ElementTree object
+
+    Inherited Methods:
+    ------------------
+    add(svg-element) -- add an svg-element
+    tostring() -- get the xml-representation as <string> 'utf-8' encoded
 
     Supported Interfaces:
     ---------------------
     IViewBox: viewbox, stretch, fit
+
+    Supported svg-attributes:
+    -------------------------
+    see <SVG> class in container.py
     """
     def __init__(self, filename="noname.svg", size=('100%', '100%'), **extra):
         """ Constructor
@@ -41,15 +58,14 @@ class Drawing(SVG):
         ----------
         filename -- filesystem-filename, should be supported by the open-command
         size -- <2-tuple> width, height
-        **extra -- additional attributs
+        **extra -- additional svg-attributs for th <svg /> object
         """
         super(Drawing, self).__init__(size=size, **extra)
         self.filename = filename
         self._stylesheets = [] # list of stylesheets appended
 
     def get_xml(self):
-        """ Get the ElementTree object.
-        """
+        """ Get the xml-representation as ElementTree object. """
         profile = parameter.profile
         if profile == 'tiny':
             version = '1.2' # only tiny
@@ -62,7 +78,7 @@ class Drawing(SVG):
         return super(Drawing, self).get_xml()
 
     def add_stylesheet(self, href, title, alternate="no", media="screen"):
-        """ add a stylesheet
+        """ Add a stylesheet reference.
 
         Arguments:
         -----------
@@ -75,7 +91,7 @@ class Drawing(SVG):
         self._stylesheets.append( (href, title, alternate, media) )
 
     def write(self, fileobj):
-        """Write the xml-string to 'fileobj' encoded as 'utf-8'-string."""
+        """ Write the xml-string to 'fileobj', 'utf-8' encoded. """
         # write xml header
         fileobj.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         if parameter.profile != 'tiny': # tiny profile has no DOCTYPE
@@ -91,12 +107,16 @@ class Drawing(SVG):
         fileobj.write(xmlstr)
 
     def save(self):
-        """Write the xml-string to the 'self.filename' resource."""
+        """ Write the xml-representation as <string> to the 'self.filename'
+        resource, 'utf-8' encoded.
+        """
         fileobj = open(self.filename, mode='w')
         self.write(fileobj)
         fileobj.close()
 
     def saveas(self, filename):
-        """Write the xml-string to the 'filename' resource."""
+        """ Write the xml-representation as <string> to the 'filename'
+        resource, 'utf-8' encoded.
+        """
         self.filename = filename
         self.save()
