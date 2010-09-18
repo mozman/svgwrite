@@ -6,6 +6,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
+__docformat__ = "restructuredtext en"
+
 debug_mode = False
 profile = "full" # full, basic or tiny
 

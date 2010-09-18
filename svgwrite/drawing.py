@@ -6,6 +6,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
+__docformat__ = "restructuredtext en"
+
 from svgwrite import parameter
 from svgwrite.validator import check_coordinate
 from container import SVG, Defs

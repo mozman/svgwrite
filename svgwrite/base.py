@@ -81,6 +81,7 @@ xlink:title
 .. _W3C XLink Attributes: http://www.w3.org/TR/SVG11/intro.html#TermXLinkAttribute
 .. _XLINK: http://www.w3.org/TR/SVG11/refs.html#ref-XLINK
 """
+__docformat__ = "restructuredtext en"
 
 import xml.etree.ElementTree as etree
 
