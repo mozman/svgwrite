@@ -20,24 +20,24 @@ Welcome! This is the documentation for svgwrite |version|, last updated |today|.
 .. toctree::
    :titlesonly:
 
-   drawing
-   svg
-   group
+   classes/drawing
+   classes/svg
+   classes/group
 
 **Graphical objects:**
 
 .. toctree::
    :titlesonly:
 
-   path
+   classes/path
 
 **Utility functions and modules:**
 
 .. toctree::
    :titlesonly:
 
-   utils
-   validator
+   utils/utils
+   utils/validator
 
 
 Indices and tables
