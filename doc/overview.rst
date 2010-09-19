@@ -1,11 +1,25 @@
 Overview
 ========
 
+Global Parameters
+-----------------
+
+:mod:`svgwrite.parameter`
+
 Graphical Elements
 ------------------
 
 Structural Elements
 -------------------
+
+.. toctree::
+   :titlesonly:
+
+   classes/drawing
+   classes/svg
+   classes/group
+   classes/defs
+   classes/use
 
 Common Attributes
 -----------------
@@ -42,7 +56,7 @@ Numbers
 Numbers can be intergers or floats, also in scientific notation:
 
 .. note::
-   `tiny profile`: numbers must have *not* more than 4 decimal digits in the
+   *tiny profile*: numbers must **not** have more than 4 decimal digits in the
    fractional part of their decimal expansion and must be in the range -32,767.9999
    to +32,767.9999, inclusive
 
@@ -68,21 +82,22 @@ rad  angle in radians (full circle is 2*PI)
 Length
 ------
 
-A <length> is a distance measurement, given as a number along with a unit, the
+A *<length>* is a distance measurement, given as a number along with a unit, the
 unit identifiers must be in lower case. The meaning of a percentage length value
 depends on the attribute for which the percentage length value has been specified.
+
 Two common cases are:
 
-1. when a percentage length value represents a percentage of the viewport width or height, and
-2. when a percentage length value represents a percentage of the bounding box width or height on a given object.
+1. when a percentage length value represents a percentage of the viewport *width* or *height*, and
+2. when a percentage length value represents a percentage of the bounding box *width* or *height* on a given object.
 
 Coordinates
 -----------
 
-A <coordinate> is a length in the user coordinate system that is the given distance
+A *<coordinate>* is a length in the user coordinate system that is the given distance
 from the origin of the user coordinate system along the relevant axis (the x-axis
 for X coordinates, the y-axis for Y coordinates). Its syntax is the same as that
-for `length`.
+for *<length>*.
 
 Units
 -----
@@ -99,7 +114,7 @@ to specify values relative to the device pixel grid or to a particular real worl
 unit size.
 
 .. note::
-   `tiny profile`: no usage of units except for the width and height attributes
+   *tiny profile*: no usage of units except for the *width* and *height* attributes
    of the Drawing object.
 
 ==== ======================

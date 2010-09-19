@@ -5,87 +5,89 @@
 # Created: 10.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
+"""
+The :class:`~svgwrite.Drawing` object is the overall container for all SVG
+elements. It provides the methods to store the drawing into a file or a
+file-like object. If you want to use stylesheets, the reference links
+to this stylesheets were also stored (:meth:`~Drawing.add_stylesheet`)
+in the :class:`~svgwrite.Drawing` object.
+
+set/get SVG attributes::
+
+    element['attribute'] = value
+    value = element['attribute']
+
+.. seealso::
+   :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+
+The *Drawing* class inherits from: :class:`~svgwrite.SVG`
+"""
 
 from svgwrite import parameter
 from svgwrite.validator import check_coordinate
 from container import SVG, Defs
 
 class Drawing(SVG):
-    """ This is the svg-drawing represented by the top level <svg /> element.
+    """ This is the SVG drawing represented by the top level <svg /> element.
 
     A drawing consists of any number of SVG elements contained within the drawing
-    element, stored in the element-attribute.
+    element, stored in the :attr:`elements` attribute.
 
     A drawing can range from an empty drawing (i.e., no content inside of the drawing),
-    to a very simple drawing containing a single svg-element such as a <rect>,
+    to a very simple drawing containing a single SVG element such as a <rect>,
     to a complex, deeply nested collection of container elements and graphics elements.
 
-    :param string filename: filesystem-filename, should be supported by the open-command
-    :param 2-tuple size: width, height
-    :param keywords extra: additional svg-attributs for th `<svg />` object
+    .. automethod:: __init__([filename="noname.svg", size=('100%', '100%'), **extra])
 
-    **Attributes:**
+    **Attributes**
 
-    .. py:attribute:: filename
+    .. attribute:: filename
 
-       `string` should be valid for open(filename, 'w')
+       `string` should be valid for :func:`open`.
 
-    .. py:attribute:: attribs
+    **Inherited Attributes**
 
-       <inherited> `dict` svg attributes dictionary
+    .. attribute:: attribs
 
-    .. py:attribute:: elements
+       `dict` of SVG attributes
 
-       <inherited> `list` of containing svg-elements
+    .. attribute:: elements
 
-    .. py:attribute:: defs
+       `list` of SVG subelements
 
-       <inherited> `Defs` container for referenced elements
+    .. attribute:: defs
 
-    **Methods:**
+       `Defs` container for referenced SVG elements
 
-    .. py:method:: write(fileobj)
+    **Methods**
 
-       write xml-string to fileobject, 'utf-8' encoded
+    .. automethod:: write(fileobj)
 
-    .. py:method:: save()
+    .. automethod:: save()
 
-       store xml-string to the filesystem (uses self.filename)
+    .. automethod:: saveas(filename)
 
-    .. py:method:: saveas(filename)
+    .. automethod:: add_stylesheet(href, title, alternate, media)
 
-       store xml-string to 'filename' resource
+    .. automethod:: get_xml()
 
-    .. py:method:: add_stylesheet(href, title, alternate, media)
+    **Inherited Methods**
 
-       add a stylsheet reference
+    .. automethod:: add(element)
 
-    .. py:method:: get_xml()
 
-       get the xml-representation as ElementTree object
+    .. automethod:: tostring()
 
-    Inherited Methods:
+    **Supported Interfaces**
 
-    .. py:method:: add(svg-element)
+    :class:`~svgwrite.IViewBox`: viewbox, stretch, fit
 
-       add an svg-element
-
-    .. py:method:: tostring()
-
-       get the xml-representation as <string> 'utf-8' encoded
-
-    Supported Interfaces:
-    IViewBox: viewbox, stretch, fit
-
-    Supported svg-attributes:
-    see <SVG> class in container.py
     """
     def __init__(self, filename="noname.svg", size=('100%', '100%'), **extra):
-        """ Constructor
-
-        :param string filename: filesystem-filename, should be supported by the open-command
+        """
+        :param string filename: filesystem filename valid for :func:`open`
         :param 2-tuple size: width, height
-        :param keywords extra: additional svg-attributs for th `<svg />` object
+        :param keywords extra: additional svg-attributs for the *SVG* object
 
         """
         super(Drawing, self).__init__(size=size, **extra)
@@ -93,7 +95,11 @@ class Drawing(SVG):
         self._stylesheets = [] # list of stylesheets appended
 
     def get_xml(self):
-        """ Get the xml-representation as ElementTree object. """
+        """ Get the XML representation as `ElementTree` object.
+
+        :return: XML `ElementTree` of this object and all its subelements
+
+        """
         profile = parameter.profile
         if profile == 'tiny':
             version = '1.2' # only tiny
@@ -110,13 +116,20 @@ class Drawing(SVG):
 
         :param string href: link to stylesheet <URI>
         :param string title: name of stylesheet
-        :param string alternate: 'yes' | 'no'
-        :param string media: 'all' | 'aureal' | 'braille' | 'embossed' | 'handheld' | 'print' | 'projection' | 'screen' | 'tty' | 'tv'
+        :param string alternate: ``'yes'`` | ``'no'``
+        :param string media: ``'all'`` | ``'aureal'`` | ``'braille'`` |
+            ``'embossed'`` | ``'handheld'`` | ``'print'`` | ``'projection'`` |
+            ``'screen'`` | ``'tty'`` | ``'tv'``
+
         """
         self._stylesheets.append( (href, title, alternate, media) )
 
     def write(self, fileobj):
-        """ Write the xml-string to 'fileobj', 'utf-8' encoded. """
+        """ Write the ``utf-8`` encoded XML string to *fileobj*.
+
+        :param fileobj: a *file-like* object
+
+        """
         # write xml header
         fileobj.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         if parameter.profile != 'tiny': # tiny profile has no DOCTYPE
@@ -132,16 +145,15 @@ class Drawing(SVG):
         fileobj.write(xmlstr)
 
     def save(self):
-        """ Write the xml-representation as <string> to the 'self.filename'
-        resource, 'utf-8' encoded.
-        """
+        """ Write the ``utf-8`` encoded XML string to :attr:`filename`. """
         fileobj = open(self.filename, mode='w')
         self.write(fileobj)
         fileobj.close()
 
     def saveas(self, filename):
-        """ Write the xml-representation as <string> to the 'filename'
-        resource, 'utf-8' encoded.
+        """ Write the ``utf-8`` encoded XML string to *filename*.
+
+        :param string filename: filesystem filename valid for :func:`open`
         """
         self.filename = filename
         self.save()

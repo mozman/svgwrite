@@ -6,7 +6,6 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-#__docformat__ = "restructuredtext en"
 
 from svgwrite.parameter import init
 from svgwrite.drawing import Drawing

@@ -1,5 +1,4 @@
-Group class
-===========
+:class:`Group` objects --- <g>
+==============================
 
 .. autoclass:: svgwrite.Group
-   :members:
