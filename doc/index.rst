@@ -19,26 +19,31 @@ Welcome! This is the documentation for svgwrite |version|, last updated |today|.
 **Structural objects:**
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 1
 
    classes/drawing
    classes/svg
    classes/group
+   classes/defs
+   classes/use
 
 **Graphical objects:**
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 1
 
    classes/path
+   classes/shapes
 
 **Utility functions and modules:**
 
 .. toctree::
    :titlesonly:
 
+   utils/parameter
    utils/utils
    utils/validator
+
 
 
 Indices and tables

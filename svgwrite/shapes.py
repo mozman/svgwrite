@@ -41,8 +41,6 @@ see description in  **base.py**
 * Presentation Attributes
 """
 
-__docformat__ = "restructuredtext en"
-
 from svgwrite import parameter
 from svgwrite.base import BaseElement
 from svgwrite.validator import check_coordinate

@@ -1,7 +1,6 @@
-Drawing class
-==============
+:class:`Drawing` objects
+========================
 
-The `Drawing` class inherits from: :doc:`BaseElement <base>`
+.. automodule:: svgwrite.drawing
 
 .. autoclass:: svgwrite.Drawing
-   :members:

@@ -7,7 +7,7 @@
 # License: GPLv3
 
 """
-The :py:class:`BaseElement` is the root for all SVG elements.
+The :class:`BaseElement` is the root for all SVG elements.
 
 set/get SVG attributes::
 
@@ -28,33 +28,34 @@ from svgwrite.validator import check_attribute_names, check_attribute_value, \
 
 class BaseElement(object):
     """
-    The :py:class:`BaseElement` is the root for all SVG elements.
+    The :class:`BaseElement` is the root for all SVG elements. The SVG attributes
+    are stored in the *dictionary* :attr:`attribs`, and the SVG subelements
+    of this SVG element are stored in the *list* :attr:`elements`.
 
     .. automethod:: __init__([attribs=None, **extra])
 
-    *Attributes*
 
-    .. attribute:: attribs
+    **Attributes**
+
+    .. attribute:: BaseElement.attribs
 
        `dict` of SVG attributes
 
-    .. attribute:: elements
+    .. attribute:: BaseElement.elements
 
-       `list` of all SVG subelements
+       `list` of SVG subelements
 
-    *Methods*
+    **Methods**
 
-    .. method: add(element)
+    .. automethod:: BaseElement.add(element)
 
-       add an SVG element
+    .. automethod:: BaseElement.tostring()
 
-    .. method:: tostring()
+    .. automethod:: BaseElement.get_xml()
 
-       get the XML representation as `string`
+    .. automethod:: BaseElement.__getitem__(key)
 
-    .. method:: get_xml()
-
-       get the XML representation as `ElementTree` object
+    .. automethod:: BaseElement.__setitem__(key, value)
 
     """
     def __init__(self, attribs=None, **extra):
@@ -62,7 +63,7 @@ class BaseElement(object):
         :param dict attribs: a dictinary of SVG attributes
         :param keyword-args extra: extra SVG attributes, argument='value'
 
-        SVG attribute names will be checked, if :data:`parameter.debug_mode` is `True`.
+        SVG attribute names will be checked, if :data:`~svgwrite.parameter.debug_mode` is `True`.
         """
         if attribs == None:
             self.attribs = dict()
@@ -106,7 +107,7 @@ class BaseElement(object):
     def tostring(self):
         """ Get the XML representation as `string`.
 
-        :return: ``utf-8`` encoded XML `string` of this object and all its subelements
+        :return: ``utf-8`` encoded XML string of this object and all its subelements
 
         """
         xml = self.get_xml()

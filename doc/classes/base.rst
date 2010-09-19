@@ -1,5 +1,5 @@
-:mod:`base` modul
-=================
+:mod:`base` module
+==================
 
 .. automodule:: svgwrite.base
 
@@ -7,30 +7,6 @@
 ----------------------------
 
 .. autoclass:: svgwrite.base.BaseElement
-
-Attributes
-~~~~~~~~~~
-
-.. attribute:: BaseElement.attribs
-
-   `dict` of SVG attributes
-
-.. attribute:: BaseElement.elements
-
-   `list` of SVG subelements
-
-Methods
-~~~~~~~
-
-.. automethod:: BaseElement.add(element)
-
-.. automethod:: BaseElement.tostring()
-
-.. automethod:: BaseElement.get_xml()
-
-.. automethod:: BaseElement.__getitem__(key)
-
-.. automethod:: BaseElement.__setitem__(key, value)
 
 .. _Common-SVG-Attributs:
 
