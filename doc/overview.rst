@@ -9,6 +9,7 @@ Structural Elements
 
 Common Attributes
 -----------------
+
 .. toctree::
    :titlesonly:
 
@@ -17,6 +18,7 @@ Common Attributes
    attributes/document_event
    attributes/graphical_event
    attributes/presentation
+   attributes/xlink
 
 Basic Data Types
 ----------------
