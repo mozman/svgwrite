@@ -3,6 +3,58 @@
 
 .. autoclass:: svgwrite.Line
 
+
+Common for: Line, Rect, Circle, Ellipse, Polyline, Polygon
+----------------------------------------------------------
+
+Inherited Attributes
+~~~~~~~~~~~~~~~~~~~~
+
+.. attribute:: attribs
+
+   `dict` of SVG attributes
+
+.. attribute:: elements
+
+   `list` of SVG subelements
+
+Inherited Methods
+~~~~~~~~~~~~~~~~~
+
+.. automethod:: svgwrite.base.BaseElement.add(element)
+   :noindex:
+
+.. automethod:: svgwrite.base.BaseElement.tostring()
+   :noindex:
+
+.. automethod:: svgwrite.base.BaseElement.get_xml()
+   :noindex:
+
+Supported Interfaces
+~~~~~~~~~~~~~~~~~~~~
+
+:class:`svgwrite.interface.ITransform`
+    :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
+    :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
+
+Supported SVG attributes
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* **class** -- `string` assigns one or more css-class-names to an element
+* **style** -- `string` allows per-element css-style rules to be specified directly on a given element
+* **externalResourcesRequired** -- `bool` *False*: if document rendering can proceed even if external resources are unavailable else: *True*
+* **transform** -- use :class:`~svgwrite.interface.ITransform` interface
+
+Standard SVG Attributes
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Core Attributes
+* Conditional Processing Attributes
+* Graphical Event Attributes
+* Presentation Attributes
+
+for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+
 :class:`Rect` objects --- <rect>
 ================================
 

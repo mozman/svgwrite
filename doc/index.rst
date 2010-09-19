@@ -8,7 +8,8 @@ svgwrite |version| documentation
 
 Welcome! This is the documentation for svgwrite |version|, last updated |today|.
 
-**Contents:**
+Contents:
+---------
 
 .. toctree::
    :maxdepth: 1
@@ -16,7 +17,8 @@ Welcome! This is the documentation for svgwrite |version|, last updated |today|.
    overview
    classes/base
 
-**Structural objects:**
+Structural objects:
+-------------------
 
 .. toctree::
    :maxdepth: 1
@@ -27,7 +29,8 @@ Welcome! This is the documentation for svgwrite |version|, last updated |today|.
    classes/defs
    classes/use
 
-**Graphical objects:**
+Graphical objects:
+------------------
 
 .. toctree::
    :maxdepth: 1
@@ -35,7 +38,16 @@ Welcome! This is the documentation for svgwrite |version|, last updated |today|.
    classes/path
    classes/shapes
 
-**Utility functions and modules:**
+Interfaces:
+-----------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/interface
+
+Utility functions and modules:
+------------------------------
 
 .. toctree::
    :titlesonly:

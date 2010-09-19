@@ -28,7 +28,7 @@ profile = "full"
 def init(baseProfile="full", debug=False):
     """ Initialize or reassign values to the global variables.
 
-    :param string BaseProfile: SVG Profile: ``full``, ``basic`` or ``tiny``
+    :param string baseProfile: SVG Profile: ``full``, ``basic`` or ``tiny``
     :param bool debug: set :data:`debug_mode`
 
     """
