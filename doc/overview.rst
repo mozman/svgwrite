@@ -6,9 +6,6 @@ Global Parameters
 
 :mod:`svgwrite.parameter`
 
-Graphical Elements
-------------------
-
 Structural Elements
 -------------------
 
@@ -20,6 +17,22 @@ Structural Elements
    classes/group
    classes/defs
    classes/use
+
+Graphical Elements
+------------------
+.. toctree::
+   :maxdepth: 1
+
+   classes/path
+   classes/shapes
+
+Interfaces
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/interface
 
 Common Attributes
 -----------------

@@ -16,18 +16,33 @@ from svgwrite.utils import strlist
 from svgwrite.validator import check_coordinate, check_angle, check_number
 
 class IViewBox(object):
-    """ The IViewBox interface provides the ability to specify that a given set
+    """ The *IViewBox* interface provides the ability to specify that a given set
     of graphics stretch to fit a particular container element.
 
-    The value of the *viewBox* attribute is a list of four numbers <min-x>, <min-y>,
-    <width> and <height>, separated by whitespace and/or a comma, which specify
+    The value of the *viewBox* attribute is a list of four numbers `min-x`, `min-y`,
+    `width` and `height`, separated by whitespace and/or a comma, which specify
     a rectangle in **user space** which should be mapped to the bounds of the
     viewport established by the given element, taking into account attribute
     *preserveAspectRatio*.
+
+    **Methods**
+
+    .. automethod:: svgwrite.interface.IViewBox.viewbox([minx=0, miny=0, width=0, height=0])
+
+    .. automethod:: svgwrite.interface.IViewBox.stretch()
+
+    .. automethod:: svgwrite.interface.IViewBox.fit()
+
     """
     def viewbox(self, minx=0, miny=0, width=0, height=0):
-        """ Specify a rectangle in USER SPACE (no units allowed) which should be
+        """ Specify a rectangle in **user space** (no units allowed) which should be
         mapped to the bounds of the viewport established by the given element.
+
+        :param number minx: left border of the viewBox
+        :param number miny: top border of the viewBox
+        :param number witdh: width of the viewBox
+        :param number height: height of the viewBox
+
         """
         if parameter.debug_mode:
             for value in (minx, miny, width, height):
@@ -43,26 +58,48 @@ class IViewBox(object):
     def fit(self, horiz="center", vert="middle", scale="meet"):
         """ Set the preserveAspectRatio attribute.
 
-        Arguments:
-        ----------
-        horiz -- 'left' | 'center' | 'right'
-        vert -- 'top' | 'middle' | 'bottom'
-        scale -- 'meet' | 'slice'
-            meet:  preserve aspect ration and zoom to limits of viewBox
-            slice: preserve aspect ration and viewBox touch viewport on all bounds,
-                   viewBox will extend beyond the bounds of the viewport
+        :param string horiz: horizontal alignment ``'left' | 'center' | 'right'``
+        :param string vert: vertical alignment ``'top' | 'middle' | 'bottom'``
+        :param string scale: scale method ``'meet' | 'slice'``
+
+        ============= ===========
+        Scale methods Description
+        ============= ===========
+        ``meet``      preserve aspect ration and zoom to limits of viewBox
+        ``slice``     preserve aspect ration and viewBox touch viewport on all bounds, viewBox will extend beyond the bounds of the viewport
+        ============= ===========
+
         """
         self.attribs['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)
 
 class ITransform(object):
-    """ The ITransform interface operates on the *transform* attribute.
+    """ The *ITransform* interface operates on the *transform* attribute.
     The value of the *transform* attribute is a <transform-list>, which is defined
     as a list of transform definitions, which are applied in the order provided.
     The individual transform definitions are separated by whitespace and/or a comma.
     All coordinates are **user space coordinates**.
+
+    **Methods**
+
+    .. automethod:: svgwrite.interface.ITransform.translate(tx, [ty=None])
+
+    .. automethod:: svgwrite.interface.ITransform.rotate(angle, [center=None])
+
+    .. automethod:: svgwrite.interface.ITransform.skewX(angle)
+
+    .. automethod:: svgwrite.interface.ITransform.skewY(angle)
+
+    .. automethod:: svgwrite.interface.ITransform.scale(sx, [sy=None])
+
     """
     def translate(self, tx, ty=None):
-        """ tx, ty in **user space coordinates** - no units allowed """
+        """
+        Specifies a translation by *tx* and *ty*. If *ty* is not provided,
+        it is assumed to be zero.
+
+        :param number tx: user coordinate - no units allowed
+        :param number ty: user coordinate - no units allowed
+        """
         if parameter.debug_mode:
             profile = parameter.profile
             check_number(tx, profile)
@@ -70,7 +107,15 @@ class ITransform(object):
         self._add_transformation("translate(%s)" % strlist(tx, ty))
 
     def rotate(self, angle, center=None):
-        """ angle in degree, center in **user space coordinates** - no units allowed """
+        """
+        Specifies a rotation by *angle* degrees about a given point.
+        If optional parameter *ceneter* are not supplied, the rotate is about
+        the origin of the current user coordinate system.
+
+        :param number angle: rotate-angle in degrees
+        :param 2-tuple center: rotate-center as user coordinate - no units allowed
+
+        """
         if parameter.debug_mode:
             profile = parameter.profile
             check_number(angle, profile)
@@ -80,7 +125,14 @@ class ITransform(object):
         self._add_transformation("rotate(%s)" % strlist(angle, center))
 
     def scale(self, sx, sy=None):
-        """ sx, sy are scalar values, no units allowed. """
+        """
+        Specifies a scale operation by *sx* and *sy*. If *sy* is not provided,
+        it is assumed to be equal to *sx*.
+
+        :param number sx: scalar factor x-axis, no units allowed
+        :param number sy: scalar factor y-axis, no units allowed
+
+        """
         if parameter.debug_mode:
             profile = parameter.profile
             check_number(sx)
@@ -88,13 +140,21 @@ class ITransform(object):
         self._add_transformation("scale(%s)" % strlist(sx, sy))
 
     def skewX(self, angle):
-        """ angle in degree, no units allowed """
+        """ Specifies a skew transformation along the x-axis.
+
+        :param number angle: skew-angle in degrees, no units allowed
+
+        """
         if parameter.debug_mode:
             check_number(angle, parameter.profile)
         self._add_transformation("skewX(%s)" % angle)
 
     def skewY(self, angle):
-        """ angle in degree, no units allowed """
+        """ Specifies a skew transformation along the y-axis.
+
+        :param number angle: skew-angle in degrees, no units allowed
+
+        """
         if parameter.debug_mode:
             check_number(angle, parameter.profile)
         self._add_transformation("skewY(%s)" % angle)

@@ -29,18 +29,18 @@ from svgwrite.validator import check_coordinate
 
 
 class Group(BaseElement, ITransform):
-    """ The <g> SVG element is a container element for grouping together
+    """ The <g> element is a container element for grouping together
     related graphics elements.
 
-    **Attributes**
+    **Inherited Attributes**
 
     .. attribute:: attribs
 
-       <inherited> `dict` of SVG attributes
+       `dict` of SVG attributes
 
     .. attribute:: elements
 
-       <inherited> `list` of SVG subelements
+       `list` of SVG subelements
 
     **Methods**
 
@@ -56,16 +56,17 @@ class Group(BaseElement, ITransform):
 
     **Supported Interfaces**
 
-    :class:`svgwrite.interface.ITransform` : translate, rotate, scale, skewX,
-    skewY, matrix, rev, del_transform
+    :class:`svgwrite.interface.ITransform`
+        :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
+        :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
 
     **Supported SVG attributes**
 
-    * *class* -- `string` assigns one or more css-class-names to an element
-    * *style* -- `string` allows per-element css-style rules to be specified directly on a given element
-    * *externalResourcesRequired* -- `bool` *False*: if document rendering
+    * **class** -- `string` assigns one or more css-class-names to an element
+    * **style** -- `string` allows per-element css-style rules to be specified directly on a given element
+    * **externalResourcesRequired** -- `bool` *False*: if document rendering
         can proceed even if external resources are unavailable else: *True*
-    * *transform* -- use :class:`~svgwrite.interface.ITransform` interface
+    * **transform** -- use :class:`svgwrite.interface.ITransform` interface
 
     **Standard SVG Attributes**
 
@@ -91,7 +92,7 @@ class Group(BaseElement, ITransform):
         return g
 
 class Defs(Group):
-    """ The *defs* element is a container element for referenced elements. For
+    """ The <defs> element is a container element for referenced elements. For
     understandability and accessibility reasons, it is recommended that, whenever
     possible, referenced elements be defined inside of a *defs*.
     """
@@ -129,16 +130,17 @@ class Symbol(BaseElement, IViewBox):
 
     **Supported Interfaces**
 
-    IViewBox: viewboy, strech, fit
+    :class:`svgwrite.interface.IViewBox`
+        :meth:`viewbox`, :meth:`stretch`, :meth:`fit`
 
     **Supported svg-attributes**
 
-    * *class* -- `string` assigns one or more css-class-names to an element
-    * *style* -- `string` allows per-element css-style rules to be specified directly on a given element
-    * *externalResourcesRequired* -- `bool` *False*: if document rendering can proceed
-        even if external resources are unavailable else: *True*
-    * *viewBox* -- use IViewBox interface
-    * *preserveAspectRatio* -- use IViewBox interface
+    * **class** -- `string` assigns one or more css-class-names to an element
+    * **style** -- `string` allows per-element css-style rules to be specified directly on a given element
+    * **externalResourcesRequired** -- `bool` *False*: if document rendering can proceed
+                                       even if external resources are unavailable else: *True*
+    * **viewBox** -- use :class:`svgwrite.interface.IViewBox` interface
+    * **preserveAspectRatio** -- use :class:`svgwrite.interface.IViewBox` interface
 
     **Standard SVG Attributes**
 
@@ -204,20 +206,21 @@ class SVG(Symbol):
 
     **Supported Interfaces**
 
-    IViewBox: viewbox, stretch, fit
+    :class:`svgwrite.interface.IViewBox`
+        :meth:`viewbox`, :meth:`stretch`, :meth:`fit`
 
     **Supported SVG Attributes**
 
-    * *class* -- `string` assigns one or more css-class-names to an element
-    * *style* -- `string` allows per-element css-style rules to be specified directly on a given element
-    * *x* -- `coordinate` x-coordinate, if <svg> is enbedded into another <svg>-element
-    * *y* -- `coordinate` y-coordinate, if <svg> is enbedded into another <svg>-element
-    * *width* -- `length` canvas-width - default is '100%'
-    * *height* -- `length` canvas-height - default is '100%'
-    * *viewBox* -- use IViewBox interface
-    * *preserveAspectRatio*  -- use IViewBox interface
-    * *zoomAndPan* -- ``"disable"|"magnify"`` : default is ``"magnify"``
-    * *externalResourcesRequired* -- `bool` *False*: if document rendering can proceed
+    * **class** -- `string` assigns one or more css-class-names to an element
+    * **style** -- `string` allows per-element css-style rules to be specified directly on a given element
+    * **x** -- `coordinate` x-coordinate, if <svg> is enbedded into another <svg>-element
+    * **y** -- `coordinate` y-coordinate, if <svg> is enbedded into another <svg>-element
+    * **width** -- `length` canvas-width - default is '100%'
+    * **height** -- `length` canvas-height - default is '100%'
+    * **viewBox** -- :class:`svgwrite.interface.IViewBox` interface
+    * **preserveAspectRatio**  -- :class:`svgwrite.interface.IViewBox` interface
+    * **zoomAndPan** -- ``"disable"|"magnify"`` : default is ``"magnify"``
+    * **externalResourcesRequired** -- `bool` *False*: if document rendering can proceed
         even if external resources are unavailable else: *True*
 
     .. note::
@@ -290,19 +293,21 @@ class Use(BaseElement, ITransform):
 
     **Supported Interfaces**
 
-    ITransform: translate, rotate, scale, skewX, skewY, matrix, rev, del_transform
+    :class:`svgwrite.interface.ITransform`
+        :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
+        :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
 
     **Supported svg-attributes**
 
-    * *class* -- `string` assigns one or more css-class-names to an element
-    * *style* -- `string` allows per-element css-style rules to be specified directly on a given element
-    * *x* -- `coordinate` insert x-coordinate, set on __init__(insert)
-    * *y* -- `coordinate` insert y-coordinate, set on __init__(insert)
-    * *width* -- `length` width - default is ``'100%'``, set on __init__(size)
-    * *height* -- `length` height - default is ``'100%'``, set on __init__(size)
-    * *transform* -- use ITransform interface
-    * *xlink:href* -- , set on __init__(href)
-    * *externalResourcesRequired* -- `bool` *False*: if document rendering can proceed
+    * **class** -- `string` assigns one or more css-class-names to an element
+    * **style** -- `string` allows per-element css-style rules to be specified directly on a given element
+    * **x** -- `coordinate` insert x-coordinate, set on __init__(insert)
+    * **y** -- `coordinate` insert y-coordinate, set on __init__(insert)
+    * **width** -- `length` width - default is ``'100%'``, set on __init__(size)
+    * **height** -- `length` height - default is ``'100%'``, set on __init__(size)
+    * **transform** -- :class:`svgwrite.interface.ITransform` interface
+    * **xlink:href** -- , set on __init__(href)
+    * **externalResourcesRequired** -- `bool` *False*: if document rendering can proceed
         even if external resources are unavailable else: *True*
 
     **Standard SVG Attributes**
