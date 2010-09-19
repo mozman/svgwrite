@@ -6,14 +6,12 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-__docformat__ = "restructuredtext en"
-
 from svgwrite import parameter
 from svgwrite.validator import check_coordinate
 from container import SVG, Defs
 
 class Drawing(SVG):
-    """This is the svg-drawing represented by the top level <svg /> element.
+    """ This is the svg-drawing represented by the top level <svg /> element.
 
     A drawing consists of any number of SVG elements contained within the drawing
     element, stored in the element-attribute.
@@ -22,45 +20,69 @@ class Drawing(SVG):
     to a very simple drawing containing a single svg-element such as a <rect>,
     to a complex, deeply nested collection of container elements and graphics elements.
 
-    Attributes:
-    -----------
-    filename -- should be valid for open(filename, 'w')
+    :param string filename: filesystem-filename, should be supported by the open-command
+    :param 2-tuple size: width, height
+    :param keywords extra: additional svg-attributs for th `<svg />` object
 
-    Inherited Attributes:
-    ---------------------
-    attribs -- <dict> svg attributes dictionary
-    elements -- <list> list of containing svg-elements
-    defs -- <Defs> container for referenced elements
+    .. py:attribute:: filename
 
-    Methods:
-    --------
-    write(fileobj) -- write xml-string to fileobject, 'utf-8' encoded
-    save() -- store xml-string to the filesystem (uses self.filename)
-    saveas(filename) -- store xml-string to 'filename' resource
-    add_stylesheet(href, title, alternate, media) -- add a stylsheet reference
-    get_xml() -- get the xml-representation as ElementTree object
+       `string` should be valid for open(filename, 'w')
+
+    .. py:attribute:: attribs
+
+       <inherited> `dict` svg attributes dictionary
+
+    .. py:attribute:: elements
+
+       <inherited> `list` of containing svg-elements
+
+    .. py:attribute:: defs
+
+       <inherited> `Defs` container for referenced elements
+
+    .. py:method:: write(fileobj)
+
+       write xml-string to fileobject, 'utf-8' encoded
+
+    .. py:method:: save()
+
+       store xml-string to the filesystem (uses self.filename)
+
+    .. py:method:: saveas(filename)
+
+       store xml-string to 'filename' resource
+
+    .. py:method:: add_stylesheet(href, title, alternate, media)
+
+       add a stylsheet reference
+
+    .. py:method:: get_xml()
+
+       get the xml-representation as ElementTree object
 
     Inherited Methods:
-    ------------------
-    add(svg-element) -- add an svg-element
-    tostring() -- get the xml-representation as <string> 'utf-8' encoded
+
+    .. py:method:: add(svg-element)
+
+       add an svg-element
+
+    .. py:method:: tostring()
+
+       get the xml-representation as <string> 'utf-8' encoded
 
     Supported Interfaces:
-    ---------------------
     IViewBox: viewbox, stretch, fit
 
     Supported svg-attributes:
-    -------------------------
     see <SVG> class in container.py
     """
     def __init__(self, filename="noname.svg", size=('100%', '100%'), **extra):
         """ Constructor
 
-        Arguments:
-        ----------
-        filename -- filesystem-filename, should be supported by the open-command
-        size -- <2-tuple> width, height
-        **extra -- additional svg-attributs for th <svg /> object
+        :param string filename: filesystem-filename, should be supported by the open-command
+        :param 2-tuple size: width, height
+        :param keywords extra: additional svg-attributs for th `<svg />` object
+
         """
         super(Drawing, self).__init__(size=size, **extra)
         self.filename = filename
@@ -82,13 +104,10 @@ class Drawing(SVG):
     def add_stylesheet(self, href, title, alternate="no", media="screen"):
         """ Add a stylesheet reference.
 
-        Arguments:
-        -----------
-        href -- link to stylesheet <URI>
-        title -- name of stylesheet
-        alternate -- 'yes' | 'no'
-        media -- 'all' | 'aureal' | 'braille' | 'embossed' | 'handheld' |
-                 'print' | 'projection' | 'screen' | 'tty' | 'tv'
+        :param string href: link to stylesheet <URI>
+        :param string title: name of stylesheet
+        :param string alternate: 'yes' | 'no'
+        :param string media: 'all' | 'aureal' | 'braille' | 'embossed' | 'handheld' | 'print' | 'projection' | 'screen' | 'tty' | 'tv'
         """
         self._stylesheets.append( (href, title, alternate, media) )
 
@@ -102,7 +121,7 @@ class Drawing(SVG):
         # write stylesheets
         for stylesheet in self._stylesheets:
             stylestr = u'<?xml-stylesheet href="%s" type="text/css" title="%s" ' \
-                        'alternate="%s" media="%s"?>\n' % stylesheet
+                     'alternate="%s" media="%s"?>\n' % stylesheet
             fileobj.write(stylestr.encode('utf-8'))
 
         xmlstr = self.tostring()

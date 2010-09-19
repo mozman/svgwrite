@@ -9,16 +9,18 @@
 import os
 from distutils.core import setup
 
+from svgwrite.metadata import VERSION, AUTHOR_NAME, AUTHOR_EMAIL
+
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(name='svgwrite',
-    version='0.1.0',
+    version=VERSION,
     description='A Python library to create SVG drawings.',
-    author='mozman',
+    author=AUTHOR_NAME,
     url='http://bitbucket.org/mozman/svgwrite',
     download_url='http://bitbucket.org/mozman/svgwrite/downloads',
-    author_email='mozman@gmx.at',
+    author_email=AUTHOR_EMAIL,
     packages=['svgwrite'],
     provides=['svgwrite'],
     long_description=read('README.TXT')+read('NEWS.TXT'),

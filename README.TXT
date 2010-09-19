@@ -27,6 +27,7 @@ or from source::
 
 Documentation
 =============
+http://packages.python.org/svgwrite
 http://bitbucket.org/mozman/svgwrite/wiki/Home
 
 send feedback to mozman@gmx.at
