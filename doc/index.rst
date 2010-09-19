@@ -11,9 +11,10 @@ Welcome! This is the documentation for svgwrite |version|, last updated |today|.
 **Contents:**
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 1
 
    overview
+   classes/base
 
 **Structural objects:**
 
