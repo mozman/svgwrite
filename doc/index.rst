@@ -3,17 +3,42 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-svgwrite documentation
-======================
+svgwrite |version| documentation
+================================
 
-Contents:
+Welcome! This is the documentation for svgwrite |version|, last updated |today|.
+
+**Contents:**
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
-   basic_data_types
-   validator
+   overview
+
+**Structural objects:**
+
+.. toctree::
+   :titlesonly:
+
    drawing
+   svg
+   group
+
+**Graphical objects:**
+
+.. toctree::
+   :titlesonly:
+
+   path
+
+**Utility functions and modules:**
+
+.. toctree::
+   :titlesonly:
+
+   utils
+   validator
+
 
 Indices and tables
 ==================

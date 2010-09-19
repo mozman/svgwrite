@@ -1,4 +1,4 @@
 validator module
 ================
 
-.. autofunction:: svgwrite.validator.check_attribute_names
+.. automodule:: svgwrite.validator

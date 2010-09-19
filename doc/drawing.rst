@@ -1,5 +1,5 @@
-drawing module
+Drawing class
 ==============
 
-.. autoclass:: svgwrite.drawing.Drawing
+.. autoclass:: svgwrite.Drawing
    :members:

@@ -24,6 +24,8 @@ class Drawing(SVG):
     :param 2-tuple size: width, height
     :param keywords extra: additional svg-attributs for th `<svg />` object
 
+    **Attributes:**
+
     .. py:attribute:: filename
 
        `string` should be valid for open(filename, 'w')
@@ -39,6 +41,8 @@ class Drawing(SVG):
     .. py:attribute:: defs
 
        <inherited> `Defs` container for referenced elements
+
+    **Methods:**
 
     .. py:method:: write(fileobj)
 
