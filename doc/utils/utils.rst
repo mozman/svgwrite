@@ -1,4 +1,4 @@
-utils module
-============
+:mod:`utils` module
+===================
 
 .. automodule:: svgwrite.utils

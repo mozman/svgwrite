@@ -15,7 +15,18 @@ Contents:
    :maxdepth: 1
 
    overview
-   classes/base
+   reference
+
+Modules:
+--------
+
+.. toctree::
+   :titlesonly:
+
+   svgwrite
+   utils/parameter
+   utils/utils
+   utils/validator
 
 Structural objects:
 -------------------
@@ -23,6 +34,7 @@ Structural objects:
 .. toctree::
    :maxdepth: 1
 
+   classes/base
    classes/drawing
    classes/svg
    classes/group
@@ -45,18 +57,6 @@ Interfaces:
    :maxdepth: 1
 
    classes/interface
-
-Utility functions and modules:
-------------------------------
-
-.. toctree::
-   :titlesonly:
-
-   utils/parameter
-   utils/utils
-   utils/validator
-
-
 
 Indices and tables
 ==================
