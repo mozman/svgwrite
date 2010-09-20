@@ -1,10 +1,5 @@
-:mod:`base` module
-==================
-
-.. automodule:: svgwrite.base
-
 :class:`BaseElement` objects
-----------------------------
+============================
 
 .. autoclass:: svgwrite.base.BaseElement
 

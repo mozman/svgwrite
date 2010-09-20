@@ -5,7 +5,21 @@
 # Created: 08.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
+"""
+A Python library to create SVG drawings.
 
+work in progress - pre-alpha status.
+
+a simple example::
+
+    import svgwrite as svg
+
+    drawing = svg.Drawing('test.svg')
+    drawing.add(svg.Line((0, 0), (10, 0), stroke=svg.rgb(10, 10, 16, '%')))
+    drawing.add(svg.Text('Test', insert=(0, 0.2))
+    drawing.save()
+
+"""
 
 from svgwrite.parameter import init
 from svgwrite.drawing import Drawing

@@ -5,18 +5,8 @@
 # Created: 08.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
-
 """
 The :class:`BaseElement` is the root for all SVG elements.
-
-set/get SVG attributes::
-
-    element['attribute'] = value
-    value = element['attribute']
-
-.. seealso::
-   :ref:`Common SVG Attributs <Common-SVG-Attributs>`
-
 """
 
 import xml.etree.ElementTree as etree
@@ -29,10 +19,10 @@ from svgwrite.validator import check_attribute_names, check_attribute_value, \
 class BaseElement(object):
     """
     The :class:`BaseElement` is the root for all SVG elements. The SVG attributes
-    are stored in the *dictionary* :attr:`attribs`, and the SVG subelements
-    of this SVG element are stored in the *list* :attr:`elements`.
+    are stored in :attr:`attribs`, and the SVG subelements are stored in
+    :attr:`elements`.
 
-    .. automethod:: __init__([attribs=None, **extra])
+    .. automethod:: svgwrite.base.BaseElement.__init__([attribs=None, **extra])
 
 
     **Attributes**
@@ -47,15 +37,24 @@ class BaseElement(object):
 
     **Methods**
 
-    .. automethod:: BaseElement.add(element)
 
-    .. automethod:: BaseElement.tostring()
+    .. automethod:: svgwrite.base.BaseElement.add(element)
 
-    .. automethod:: BaseElement.get_xml()
+    .. automethod:: svgwrite.base.BaseElement.tostring()
 
-    .. automethod:: BaseElement.__getitem__(key)
+    .. automethod:: svgwrite.base.BaseElement.get_xml()
 
-    .. automethod:: BaseElement.__setitem__(key, value)
+    .. automethod:: svgwrite.base.BaseElement.__getitem__(key)
+
+    .. automethod:: svgwrite.base.BaseElement.__setitem__(key, value)
+
+    set/get SVG attributes::
+
+        element['attribute'] = value
+        value = element['attribute']
+
+    .. seealso::
+       :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 
     """
     def __init__(self, attribs=None, **extra):
