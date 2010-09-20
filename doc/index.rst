@@ -50,6 +50,14 @@ Graphical objects:
    classes/path
    classes/shapes
 
+Text objects:
+-------------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/text
+
 Interfaces:
 -----------
 

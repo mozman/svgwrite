@@ -77,8 +77,7 @@ class Group(BaseElement, ITransform):
     * Graphical Event Attributes
     * Presentation Attributes
     """
-    def _elementname(self):
-        return 'g'
+    elementname = 'g'
 
     def group(self, **attributes):
         """ Create a new group with SVG *attributs* and add the new group as subelement.
@@ -96,8 +95,7 @@ class Defs(Group):
     understandability and accessibility reasons, it is recommended that, whenever
     possible, referenced elements be defined inside of a *defs*.
     """
-    def _elementname(self):
-        return 'defs'
+    elementname= 'defs'
 
 class Symbol(BaseElement, IViewBox):
     """ The <symbol> element is used to define graphical template objects which
@@ -151,8 +149,7 @@ class Symbol(BaseElement, IViewBox):
     * Presentation Attributes
     """
     # ITransform interface is not valid for Symbol -> do not inherit from Group
-    def _elementname(self):
-        return 'symbol'
+    elementname = 'symbol'
 
     def group(self, **attributes):
         """ Create a new group with SVG *attributs* and add the new group as subelement.
@@ -237,6 +234,8 @@ class SVG(Symbol):
     * Graphical Event Attributes
     * Presentation Attributes
     """
+    elementname = 'svg'
+
     def __init__(self, insert=None, size=None, attribs=None, **extra):
         """
         :param 2-tuple insert: insert position
@@ -262,9 +261,6 @@ class SVG(Symbol):
 
         self.defs = Defs() # defs container
         self.add(self.defs) # add defs as first element
-
-    def _elementname(self):
-        return 'svg'
 
 class Use(BaseElement, ITransform):
     """ The <use> element references another element and indicates that the graphical
@@ -320,6 +316,8 @@ class Use(BaseElement, ITransform):
     * Presentation Attributes
     * XLink Attributes
     """
+    elementname = 'use'
+
     def __init__(self, href, insert=None, size=None, attribs=None, **extra):
         """
         :param string href: object link (link to id) or an object with an id-attribute

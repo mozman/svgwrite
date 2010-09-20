@@ -57,6 +57,8 @@ class BaseElement(object):
        :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 
     """
+    elementname = 'baseElement'
+
     def __init__(self, attribs=None, **extra):
         """
         :param dict attribs: a dictinary of SVG attributes
@@ -70,7 +72,7 @@ class BaseElement(object):
             self.attribs = dict(attribs)
         self.attribs.update(extra)
         if parameter.debug_mode:
-            check_attribute_names(self._elementname(), self.attribs)
+            check_attribute_names(self.elementname, self.attribs)
         self.elements = list()
 
     def __getitem__(self, key):
@@ -100,7 +102,7 @@ class BaseElement(object):
 
         """
         if parameter.debug_mode:
-            check_valid_content(self._elementname(), element._elementname())
+            check_valid_content(self.elementname, element.elementname)
         self.elements.append(element)
 
     def tostring(self):
@@ -120,8 +122,8 @@ class BaseElement(object):
         """
         debug_mode = parameter.debug_mode
         if debug_mode:
-            check_attribute_names(self._elementname(), self.attribs)
-        xml = etree.Element(self._elementname())
+            check_attribute_names(self.elementname, self.attribs)
+        xml = etree.Element(self.elementname)
         for attribute, value in self.attribs.iteritems():
             value = value_to_string(value)
             if debug_mode:
@@ -131,9 +133,4 @@ class BaseElement(object):
         for element in self.elements:
             xml.append(element.get_xml())
         return xml
-
-    def _elementname(self):
-        """ Returns the SVG name of this class, defaults to the lowercase class name."""
-        name = self.__class__.__name__
-        return name[0].lower() + name[1:]
 

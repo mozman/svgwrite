@@ -25,6 +25,8 @@ class Line(BaseElement, ITransform):
     * **x2** -- `coordinate` end-x
     * **y2** -- `coordinate` end-y
     """
+    elementname = 'line'
+
     def __init__(self, start=(0, 0), end=(0, 0),
                  attribs=None, **extra):
         """
@@ -61,6 +63,8 @@ class Rect(BaseElement, ITransform):
     * **ry** -- `length` For rounded rectangles, the y-axis radius of the
                 ellipse used to round off the corners of the rectangle.
     """
+    elementname = 'rect'
+
     def __init__(self, insert=(0, 0), size=(1, 1), rx=None, ry=None,
                  attribs=None, **extra):
         """
@@ -93,6 +97,8 @@ class Circle(BaseElement, ITransform):
     * **cy** -- `coordinate` The y-axis coordinate of the center of the circle.
     * **r** -- `length` The radius of the circle.
     """
+    elementname = 'circle'
+
     def __init__(self, center=(0, 0), r=1, attribs=None, **extra):
         """
         :param 2-tuple center: circle center point (cx, cy)
@@ -120,6 +126,8 @@ class Ellipse(BaseElement, ITransform):
     * **rx** -- `length` The x-axis radius of the ellipse.
     * **ry** -- `length` The y-axis radius of the ellipse.
     """
+    elementname = 'ellipse'
+
     def __init__(self, center=(0, 0), r=(1, 1), attribs=None, **extra):
         """
         :param 2-tuple center: ellipse center point (cx, cy)
@@ -157,6 +165,8 @@ class Polyline(BaseElement, ITransform):
         Polyline.points.append( point )
         Polyline.points.extend( [point1, point2, point3, ...] )
     """
+    elementname = 'polyline'
+
     def __init__(self, points=[], attribs=None, **extra):
         """
         :param `iterable` points: of points
@@ -177,4 +187,5 @@ class Polygon(Polyline):
 
     Same as :class:`Polyline` but closed.
     """
-    pass
+    elementname = 'polygon'
+

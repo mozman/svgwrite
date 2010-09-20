@@ -118,6 +118,7 @@ class Path(BaseElement, ITransform):
     * Graphical Event Attributes
     * Presentation Attributes
     """
+    elementname = 'path'
     def __init__(self, d=None, attribs=None, **extra):
         """
         :param `iterable` d: *coordinates*, *length* and *commands*
