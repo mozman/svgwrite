@@ -13,8 +13,7 @@ from svgwrite.base import BaseElement
 from svgwrite import init
 
 class MockBase(BaseElement):
-    def _elementname(self):
-        return 'svg' # necessary for validator
+    elementname = 'svg' # necessary for validator
 
 class TestBaseElement(unittest.TestCase):
     def setUp(self):

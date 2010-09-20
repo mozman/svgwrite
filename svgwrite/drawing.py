@@ -37,7 +37,7 @@ class Drawing(SVG):
     to a very simple drawing containing a single SVG element such as a <rect>,
     to a complex, deeply nested collection of container elements and graphics elements.
 
-    .. automethod:: __init__([filename="noname.svg", size=('100%', '100%'), **extra])
+    .. automethod:: svgwrite.Drawing.__init__([filename="noname.svg", size=('100%', '100%'), **extra])
 
     **Attributes**
 

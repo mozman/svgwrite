@@ -26,6 +26,7 @@ from svgwrite.drawing import Drawing
 from svgwrite.container import Group, Symbol, Use, SVG
 from svgwrite.shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
 from svgwrite.path import Path
+from svgwrite.text import Text, TSpan, TRef, TextPath
 from svgwrite.utils import rgb
 
 class Unit(object):
