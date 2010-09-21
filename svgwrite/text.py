@@ -6,7 +6,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 """
-Description of the :mod:`text` module.
+Text that is to be rendered as part of an SVG document fragment is specified
+using the <text> element. The characters to be drawn are expressed as XML
+character data inside the <text> element.
 
 """
 from svgwrite.base import BaseElement
@@ -161,6 +163,48 @@ class TSpan(BaseElement):
        to any rotation due to text on a path and to ‘glyph-orientation-horizontal’
        or ‘glyph-orientation-vertical’.
 
+    .. _TSpan-SVG-Attributes:
+
+    **Supported SVG Attributes**
+
+    * **class** -- `string` assigns one or more css-class-names to an element
+    * **style** -- `string` allows per-element css-style rules to be specified directly on a given element
+    * **externalResourcesRequired** -- `bool` *False*: if document rendering can proceed
+        even if external resources are unavailable else: *True*
+    * **textLength** -- `length` The purpose of this attribute is to allow
+      the author to achieve exact alignment, in visual rendering order after
+      any bidirectional reordering, for the first and last rendered glyphs
+      that correspond to this element; thus, for the last rendered character
+      (in visual rendering order after any bidirectional reordering), any
+      supplemental inter-character spacing beyond normal glyph advances are
+      ignored (in most cases) when the user agent determines the appropriate
+      amount to expand/compress the text string to fit within a length of
+      *textLength*.
+
+    * **lengthAdjust** -- ``"spacing|spacingAndGlyphs"`` Indicates the type
+      of adjustments which the user agent shall make to make the rendered
+      length of the text match the value specified on the *textLength*
+      attribute.
+
+      * ``"spacing"`` indicates that only the advance values are adjusted. The
+        glyphs themselves are not stretched or compressed.
+
+      * ``"spacingAndGlyphs"`` indicates that the advance values are adjusted and
+        the glyphs themselves stretched or compressed in one axis (i.e., a
+        direction parallel to the inline-progression-direction).
+
+      If the attribute is not specified, the effect is as a value of *spacing*
+      were specified.
+
+    **Standard SVG Attributes**
+
+    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+
+    * Core Attributes
+    * Conditional Processing Attributes
+    * Graphical Event Attributes
+    * Presentation Attributes
+
     """
     elementname = 'tspan'
 
@@ -205,6 +249,9 @@ class Text(TSpan, ITransform):
        If the attribute is not specified, the effect is as if a value of "0"
        were specified.
 
+       Refer to the description of the :attr:`~TSpan.x` attribute on the :class:`~svgwrite.TSpan`
+       element.
+
     .. attribute:: y
 
        `list`
@@ -216,6 +263,9 @@ class Text(TSpan, ITransform):
 
        If the attribute is not specified, the effect is as if a value of "0"
        were specified.
+
+       Refer to the description of the :attr:`~TSpan.y` attribute on the :class:`~svgwrite.TSpan`
+       element.
 
     .. attribute:: dx
 
@@ -259,44 +309,75 @@ class Text(TSpan, ITransform):
 
     **SVG Attributes**
 
-    * **textLength** -- `length` The purpose of this attribute is to allow
-      the author to achieve exact alignment, in visual rendering order after
-      any bidirectional reordering, for the first and last rendered glyphs
-      that correspond to this element; thus, for the last rendered character
-      (in visual rendering order after any bidirectional reordering), any
-      supplemental inter-character spacing beyond normal glyph advances are
-      ignored (in most cases) when the user agent determines the appropriate
-      amount to expand/compress the text string to fit within a length of
-      *textLength*.
-
-    * **lengthAdjust** -- ``"spacing|spacingAndGlyphs"`` Indicates the type
-      of adjustments which the user agent shall make to make the rendered
-      length of the text match the value specified on the *textLength*
-      attribute.
-
-      * ``"spacing"`` indicates that only the advance values are adjusted. The
-        glyphs themselves are not stretched or compressed.
-
-      * ``"spacingAndGlyphs"`` indicates that the advance values are adjusted and
-        the glyphs themselves stretched or compressed in one axis (i.e., a
-        direction parallel to the inline-progression-direction).
-
-      If the attribute is not specified, the effect is as a value of *spacing*
-      were specified.
+    Refer to :ref:`TSpan SVG Attributes <TSpan-SVG-Attributes>`
 
     """
     elementname = 'text'
 
 class TRef(BaseElement):
-    """ The <tref> element.
+    """
+    The textual content for a <text> can be either character data directly
+    embedded within the <text> element or the character data content of a
+    referenced element, where the referencing is specified with a <tref>
+    element.
 
-    **Attributes**
+    .. automethod:: svgwrite.TRef.__init__(element, attribs=None, **extra)
+
+    .. automethod:: svgwrite.TRef.set_href(element)
+
+    **SVG Attributes**
+
+    * **class** -- `string` assigns one or more css-class-names to an element
+    * **style** -- `string` allows per-element css-style rules to be specified
+      directly on a given element
+    * **externalResourcesRequired** -- `bool` *False*: if document rendering
+      can proceed even if external resources are unavailable else: *True*
+    * **xlink:href** -- `string` A IRI reference to an element whose
+      character data content shall be used as character data for this <tref>
+      element.
+
+    **Standard SVG Attributes**
+
+    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+
+    * Core Attributes
+    * Conditional Processing Attributes
+    * Graphical Event Attributes
+    * Presentation Attributes
 
     """
     elementname = 'tref'
 
+    def __init__(self, element, attribs=None, **extra):
+        """
+        :param element: create a reference this element, if element is a
+          `string` its the *id* name of the referenced element, if element
+          is a :class:`~svgwrite.base.BaseElement` the *id* SVG Attribute is
+          used to create the reference.
+        """
+        super(TRef, self).__init(attribs=attribs, **extra)
+        self.set_href(element)
+
+    def set_href(self, element):
+        """
+        Create a reference this *element*.
+
+        :param element: if element is a `string` its the *id* name of the
+          referenced element, if element is a :class:`~svgwrite.base.BaseElement`
+          the *id* SVG Attribute is used to create the reference.
+
+        """
+        if isinstance(element, BaseElement):
+            element = element['id'] # expect an id attribute
+        self['xlink:href'] = "#%s" % element
+
 class TextPath(BaseElement):
-    """ The <textPath> element.
+    """
+    In addition to text drawn in a straight line, SVG also includes the
+    ability to place text along the shape of a <path> element. To specify that
+    a block of text is to be rendered along the shape of a <path>, include
+    the given text within a <textPath> element which includes an `xlink:href`
+    attribute with a IRI reference to a <path> element.
 
     **Attributes**
 

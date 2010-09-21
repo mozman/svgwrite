@@ -128,7 +128,8 @@ class BaseElement(object):
             value = value_to_string(value)
             if debug_mode:
                 check_attribute_value(attribute, value)
-            xml.set(attribute, value)
+            if value: # just add not empty attributes
+                xml.set(attribute, value)
 
         for element in self.elements:
             xml.append(element.get_xml())
