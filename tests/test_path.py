@@ -19,7 +19,7 @@ class TestPath(unittest.TestCase):
     def test_constructor(self):
         p = Path(pathLength=100)
         self.assertEqual(p['pathLength'], 100)
-        self.assertEqual(p.tostring(), '<path d="" pathLength="100" />')
+        self.assertEqual(p.tostring(), '<path pathLength="100" />')
 
         # init path with command-string
         p = Path(d='M 10,7')
@@ -31,7 +31,7 @@ class TestPath(unittest.TestCase):
 
     def test_flat_commands(self):
         p = Path()
-        self.assertEqual(p.tostring(), '<path d="" />')
+        self.assertEqual(p.tostring(), '<path />')
         # push separated commands and values
         p.push('M', 100, 100, 100, 200)
         self.assertEqual(p.tostring(), '<path d="M 100 100 100 200" />')
