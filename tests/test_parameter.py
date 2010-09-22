@@ -9,15 +9,16 @@
 import sys
 import unittest
 
-import svgwrite.parameter as parameter
+from svgwrite import parameter
 
 
 class TestInit(unittest.TestCase):
     """Test init method"""
     def test_init(self):
-        parameter.init(baseProfile='TINY', debug=True)
+        parameter.set_debug()
+        parameter.set_profile('TINY')
         self.assertEqual(parameter.profile, 'tiny')
-        self.assertTrue(parameter.debug_mode)
+        self.assertTrue(parameter.debug)
 
 
 if __name__=='__main__':

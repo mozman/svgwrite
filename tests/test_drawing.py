@@ -10,13 +10,14 @@ import sys
 import unittest
 from StringIO import StringIO
 
-from svgwrite.parameter import init
+from svgwrite import parameter
 from svgwrite.drawing import Drawing
 from svgwrite.container import Group
 
 class TestDrawingFullProfile(unittest.TestCase):
     def setUp(self):
-        init(baseProfile='full', debug=True)
+        parameter.set_debug()
+        parameter.set_profile('full')
 
     def test_empty_drawing(self):
         dwg = Drawing()
@@ -38,7 +39,8 @@ class TestDrawingFullProfile(unittest.TestCase):
 
 class TestDrawingTinyProfile(unittest.TestCase):
     def setUp(self):
-        init(baseProfile='tiny', debug=True)
+        parameter.set_debug()
+        parameter.set_profile('tiny')
 
     def test_empty_drawing(self):
         dwg = Drawing()
@@ -58,7 +60,8 @@ class TestDrawingTinyProfile(unittest.TestCase):
             '<svg baseProfile="tiny" height="100%" version="1.2" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
 class TestDefs(unittest.TestCase):
     def setUp(self):
-        init(baseProfile='full', debug=True)
+        parameter.set_debug()
+        parameter.set_profile('full')
 
     def test_simple_defs(self):
         dwg = Drawing()

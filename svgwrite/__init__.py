@@ -21,7 +21,9 @@ a simple example::
 
 """
 
-from svgwrite.parameter import init
+from svgwrite.parameter import _Parameter
+parameter = _Parameter()
+
 from svgwrite.drawing import Drawing
 from svgwrite.container import Group, Symbol, Use, SVG
 from svgwrite.shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline

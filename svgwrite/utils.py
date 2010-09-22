@@ -52,19 +52,19 @@ def strlist2(*args):
     return " ".join([str(value) for value in iterflatlist(args) if value is not None])
 
 def value_to_string(value):
-    if parameter.debug_mode and parameter.profile=='tiny' and isinstance(value, (int, float)):
+    if parameter.debug and parameter.profile=='tiny' and isinstance(value, (int, float)):
         check_tiny(value)
     return unicode(value)
 
 def points_to_string(points):
     strings = []
     profile = parameter.profile
-    debug_mode = parameter.debug_mode
+    debug = parameter.debug
     for point in points:
         if isinstance(point, tuple):
             if len(point) != 2:
                 raise ValueError("<2-tuple> is required: '%s'" % str(point))
-            if debug_mode:
+            if debug:
                 check_coordinate(point[0], profile)
                 check_coordinate(point[1], profile)
             point = u"%s,%s" % point

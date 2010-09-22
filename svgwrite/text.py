@@ -11,6 +11,7 @@ using the <text> element. The characters to be drawn are expressed as XML
 character data inside the <text> element.
 
 """
+from svgwrite import parameter
 from svgwrite.base import BaseElement
 from svgwrite.interface import ITransform
 from svgwrite.utils import iterflatlist, strlist2
@@ -368,7 +369,7 @@ class TRef(BaseElement):
 
         """
         if isinstance(element, BaseElement):
-            element = element['id'] # expect an id attribute
+            element = element.attribs.setdefault('id', parameter.get_auto_id())
         self['xlink:href'] = "#%s" % element
 
 class TextPath(BaseElement):
@@ -381,6 +382,27 @@ class TextPath(BaseElement):
 
     **Attributes**
 
+    **Standard SVG Attributes**
+
+    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+
+    * Core Attributes
+    * Conditional Processing Attributes
+    * Graphical Event Attributes
+    * Presentation Attributes
     """
     elementname = 'textPath'
+    def __init__(self, path, startOffset=0, method='align', spacing='exact',
+                 attribs=None, **extra):
+        super(TextPath, self).__init__(attribs=attribs, **extra)
+        if method == 'stretch':
+            self.attribs['method'] = method
+        if spacing == 'auto':
+            self.attribs['spacing'] = spacing
+        self.attribs['startOffset'] = startOffset
+        if isinstance(path, BaseElement):
+            path = path.attribs.setdefault('id', parameter.get_auto_id())
+        self.attribs['xlink:href'] = "#%s" % path
+
+
 

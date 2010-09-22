@@ -10,11 +10,12 @@ import sys
 import unittest
 
 from svgwrite.path import Path
-from svgwrite import init
+from svgwrite import parameter
 
 class TestPath(unittest.TestCase):
     def setUp(self):
-        init(baseProfile='full', debug=True)
+        parameter.set_debug()
+        parameter.set_profile('full')
 
     def test_constructor(self):
         p = Path(pathLength=100)
