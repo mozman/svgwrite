@@ -10,14 +10,16 @@ import sys
 import unittest
 
 from svgwrite.base import BaseElement
-from svgwrite import init
+from svgwrite import parameter
 
 class MockBase(BaseElement):
     elementname = 'svg' # necessary for validator
 
 class TestBaseElement(unittest.TestCase):
     def setUp(self):
-        init('full', True)
+        parameter.set_debug()
+        parameter.set_profile('full')
+
 
     def test_constructor_valid(self):
         # valid attributes

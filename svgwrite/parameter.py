@@ -6,7 +6,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 """
-.. data:: debug_mode
+.. autoclass:: svgwrite.parameter._Parameter
+
+.. attribute:: _Parameter.debug
 
    *True* : debug mode is **ON**, all SVG attributes are checked if valid
    in the element context. Also the included SVG subelements will be checked
@@ -14,29 +16,44 @@
 
    *False*: no validation checks will be done, but program execution is faster.
 
-.. data:: profile
+.. attribute:: _Parameter.profile
 
    A `string` containing the name of the SVG profile, valid profiles are:
    ``full``, ``basic`` and ``tiny``.
 
-.. autofunction:: init([baseProfile="full", debug=False])
+.. automethod:: _Parameter.__init__([baseProfile="full", debug=False])
+
+.. automethod:: _Parameter.set_debug(debug=True)
+
+.. automethod:: _Parameter.set_profile(profile)
+
+.. automethod:: _Parameter.get_auto_id()
 
 """
-debug_mode = False
-profile = "full"
+class _Parameter(object):
+    debug = False
+    profile = "full"
+    autoid = 1
+    def __init__(self):
+        self.debug = False
+        self.profile = "full"
 
-def init(baseProfile="full", debug=False):
-    """ Initialize or reassign values to the global variables.
+    def set_debug(self, debug=True):
+        self.debug = debug
 
-    :param string baseProfile: SVG Profile: ``full``, ``basic`` or ``tiny``
-    :param bool debug: set :data:`debug_mode`
+    def set_profile(self, profile):
+        """
+        :param string profile: SVG Profile: ``full``, ``basic`` or ``tiny``
 
-    """
-    global debug_mode
-    debug_mode = debug
-    baseProfile = baseProfile.lower()
-    if baseProfile in ('tiny', 'basic', 'full'):
-        global profile
-        profile = baseProfile
-    else:
-        raise ValueError("'%s' is not a valid profile." % baseProfile)
+        """
+        profile = profile.lower()
+        if profile in ('tiny', 'basic', 'full'):
+            self.profile = profile
+        else:
+            raise ValueError("'%s' is not a valid profile." % profile)
+
+    def get_auto_id(self):
+        """ Get an automatic generated SVG id string: ``id#``. """
+        retval = "id%d" %self.autoid
+        self.autoid += 1
+        return retval

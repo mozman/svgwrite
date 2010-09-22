@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite.parameter import init
+from svgwrite import parameter
 from svgwrite.utils import rgb, value_to_string, points_to_string
 from svgwrite.utils import strlist, rect_top_left_corner
 from svgwrite.utils import split_angle, split_coordinate
@@ -33,12 +33,14 @@ class TestRgb(unittest.TestCase):
 
 class TestValueToString(unittest.TestCase):
     def test_full_profile(self):
-        init(baseProfile='full', debug=True)
+        parameter.set_debug()
+        parameter.set_profile('full')
         self.assertEqual(u'test', value_to_string('test'))
         self.assertEqual(u'10', value_to_string(10))
 
     def test_tiny_profile(self):
-        init(baseProfile='tiny', debug=True)
+        parameter.set_debug()
+        parameter.set_profile('tiny')
         # value out of range
         self.assertRaises(ValueError, value_to_string, 100000)
 
@@ -48,7 +50,8 @@ class TestValueToString(unittest.TestCase):
 
 class TestPointsToStringFullProfile(unittest.TestCase):
     def setUp(self):
-        init(baseProfile='full', debug=True)
+        parameter.set_debug()
+        parameter.set_profile('full')
 
     def test_valid_points(self):
         # valid units: cm|em|ex|in|mm|pc|pt|px|%
@@ -73,7 +76,8 @@ class TestPointsToStringFullProfile(unittest.TestCase):
 
 class TestPointsToStringTinyProfile(unittest.TestCase):
     def setUp(self):
-        init(baseProfile='tiny', debug=True)
+        parameter.set_debug()
+        parameter.set_profile('tiny')
 
     def test_valid_points(self):
         # valid units: cm|em|ex|in|mm|pc|pt|px|%

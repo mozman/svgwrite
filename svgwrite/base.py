@@ -71,7 +71,7 @@ class BaseElement(object):
         else:
             self.attribs = dict(attribs)
         self.attribs.update(extra)
-        if parameter.debug_mode:
+        if parameter.debug:
             check_attribute_names(self.elementname, self.attribs)
         self.elements = list()
 
@@ -101,7 +101,7 @@ class BaseElement(object):
         :param element: append this SVG element
 
         """
-        if parameter.debug_mode:
+        if parameter.debug:
             check_valid_content(self.elementname, element.elementname)
         self.elements.append(element)
 
@@ -120,7 +120,7 @@ class BaseElement(object):
         :return: XML `ElementTree` of this object and all its subelements
 
         """
-        debug_mode = parameter.debug_mode
+        debug_mode = parameter.debug
         if debug_mode:
             check_attribute_names(self.elementname, self.attribs)
         xml = etree.Element(self.elementname)

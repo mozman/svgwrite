@@ -233,6 +233,7 @@ class SVG(Symbol):
     * Document Event Attributes
     * Graphical Event Attributes
     * Presentation Attributes
+
     """
     elementname = 'svg'
 
@@ -244,7 +245,7 @@ class SVG(Symbol):
         :param extra: additional SVG attributs as keyword-arguments
         """
         super(SVG, self).__init__(attribs=attribs, **extra)
-        debug = parameter.debug_mode
+        debug = parameter.debug
         profile = parameter.profile
         if insert:
             if debug:
@@ -266,8 +267,9 @@ class Use(BaseElement, ITransform):
     """ The <use> element references another element and indicates that the graphical
     contents of that element is included/drawn at that given point in the document.
 
-    Link to objects by href = ``'#object-id'`` or use the object itself as href-argument,
-    the object has to have an ``'id'`` attribute.
+    Link to objects by href = ``'#object-id'`` or use the object itself as
+    href-argument, if the given element has no *id* attribute it gets an
+    automatic generated id.
 
     **Inherited Attributes**
 
@@ -320,7 +322,7 @@ class Use(BaseElement, ITransform):
 
     def __init__(self, href, insert=None, size=None, attribs=None, **extra):
         """
-        :param string href: object link (link to id) or an object with an id-attribute
+        :param string href: object link (id-string) or an object with an id-attribute
         :param 2-tuple insert: insert point (x, y)
         :param 2-tuple size: width, height
         :param attribs dict: additional SVG attributes
@@ -328,13 +330,11 @@ class Use(BaseElement, ITransform):
         """
         super(Use, self).__init__(attribs, **extra)
         if isinstance(href, BaseElement):
-            try:
-                href = "#%s" % href['id']
-            except KeyError:
-                raise KeyError("<href> should have an id attribute or has to be a <string>.")
-        debug = parameter.debug_mode
+            href = href.attribs.setdefault('id', parameter.get_auto_id())
+
+        debug = parameter.debug
         profile = parameter.profile
-        self.attribs['xlink:href'] = href
+        self.attribs['xlink:href'] = "#%s" % href
         if insert:
             if debug:
                 check_coordinate(insert[0], profile)

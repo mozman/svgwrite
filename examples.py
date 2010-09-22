@@ -13,7 +13,8 @@ from svgwrite import cm, mm, rgb, deg
 # baseProfile -- full, basic or tiny baseProfile (default: full)
 # debug -- verify property-names and property-values and for each element verify
 #          valid subelements(default: False)
-svg.init(baseProfile='full', debug=True)
+svg.parameter.set_debug()
+svg.parameter.set_profile('full')
 
 def example_empty_drawing(name):
     drawing = svg.Drawing(filename=name)
