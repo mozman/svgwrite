@@ -13,7 +13,7 @@ character data inside the <text> element.
 """
 from svgwrite import parameter
 from svgwrite.base import BaseElement
-from svgwrite.interface import ITransform
+from svgwrite.interface import ITransform, IXLink
 from svgwrite.utils import iterflatlist, strlist2
 
 class TSpan(BaseElement):
@@ -315,7 +315,7 @@ class Text(TSpan, ITransform):
     """
     elementname = 'text'
 
-class TRef(BaseElement):
+class TRef(BaseElement, IXLink):
     """
     The textual content for a <text> can be either character data directly
     embedded within the <text> element or the character data content of a
@@ -359,20 +359,11 @@ class TRef(BaseElement):
         super(TRef, self).__init(attribs=attribs, **extra)
         self.set_href(element)
 
-    def set_href(self, element):
-        """
-        Create a reference this *element*.
+    def get_xml(self):
+        self.update_id() # if href is an object - 'id' - attribute may be changed!
+        return super(TRef, self).get_xml()
 
-        :param element: if element is a `string` its the *id* name of the
-          referenced element, if element is a :class:`~svgwrite.base.BaseElement`
-          the *id* SVG Attribute is used to create the reference.
-
-        """
-        if isinstance(element, BaseElement):
-            element = element.attribs.setdefault('id', parameter.get_auto_id())
-        self['xlink:href'] = "#%s" % element
-
-class TextPath(BaseElement):
+class TextPath(BaseElement, IXLink):
     """
     In addition to text drawn in a straight line, SVG also includes the
     ability to place text along the shape of a <path> element. To specify that
@@ -400,9 +391,9 @@ class TextPath(BaseElement):
         if spacing == 'auto':
             self.attribs['spacing'] = spacing
         self.attribs['startOffset'] = startOffset
-        if isinstance(path, BaseElement):
-            path = path.attribs.setdefault('id', parameter.get_auto_id())
-        self.attribs['xlink:href'] = "#%s" % path
+        self.set_href(path)
 
-
+    def get_xml(self):
+        self.update_id() # if href is an object - 'id' - attribute may be changed!
+        return super(TextPath, self).get_xml()
 
