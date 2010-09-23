@@ -176,3 +176,25 @@ class ITransform(object):
     def _add_transformation(self, new_transform):
         old_transform = self.attribs.get('transform', '')
         self.attribs['transform'] = ("%s %s" % (old_transform, new_transform)).strip()
+
+class IXLink(object):
+    def set_href(self, element):
+        """
+        Create a reference this *element*.
+
+        :param element: if element is a `string` its the *id* name of the
+          referenced element, if element is a :class:`~svgwrite.base.BaseElement`
+          the *id* SVG Attribute is used to create the reference.
+
+        """
+
+        self.href = element
+        self.update_id()
+
+    def update_id(self):
+        if isinstance(self.href, BaseElement):
+            idstr = self.href.attribs.setdefault('id', parameter.get_auto_id())
+        else:
+            idstr = self.href
+        self.attribs['xlink:href'] =  "#%s" % idstr
+

@@ -24,7 +24,7 @@ set/get SVG attributes::
 
 from svgwrite import parameter
 from svgwrite.base import BaseElement
-from svgwrite.interface import IViewBox, ITransform
+from svgwrite.interface import IViewBox, ITransform, IXLink
 from svgwrite.validator import check_coordinate
 
 
@@ -263,7 +263,7 @@ class SVG(Symbol):
         self.defs = Defs() # defs container
         self.add(self.defs) # add defs as first element
 
-class Use(BaseElement, ITransform):
+class Use(BaseElement, ITransform, IXLink):
     """ The <use> element references another element and indicates that the graphical
     contents of that element is included/drawn at that given point in the document.
 
@@ -329,12 +329,10 @@ class Use(BaseElement, ITransform):
         :param extra: additional SVG attributs as keyword-arguments
         """
         super(Use, self).__init__(attribs, **extra)
-        if isinstance(href, BaseElement):
-            href = href.attribs.setdefault('id', parameter.get_auto_id())
 
         debug = parameter.debug
         profile = parameter.profile
-        self.attribs['xlink:href'] = "#%s" % href
+        self.set_href(href)
         if insert:
             if debug:
                 check_coordinate(insert[0], profile)
@@ -347,3 +345,7 @@ class Use(BaseElement, ITransform):
                 check_coordinate(size[1], profile)
             self.attribs['width'] = size[0]
             self.attribs['height'] = size[1]
+
+    def get_xml(self):
+        self.update_id() # if href is an object - 'id' - attribute may be changed!
+        return super(Use, self).get_xml()
