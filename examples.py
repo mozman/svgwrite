@@ -57,5 +57,6 @@ def main():
     example_empty_drawing('example_empty_drawing.svg')
     example_base_shapes_drawing('example_base_shapes_drawing.svg')
     example_use_drawing('example_use_drawing.svg')
+
 if __name__ == '__main__':
     main()
