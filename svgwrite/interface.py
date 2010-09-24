@@ -47,7 +47,7 @@ class IViewBox(object):
         if parameter.debug_mode:
             for value in (minx, miny, width, height):
                 check_number(value, parameter.profile)
-        self.attribs['viewBox'] = strlist(minx, miny, width, height)
+        self.attribs['viewBox'] = strlist( [minx, miny, width, height] )
 
     def stretch(self):
         """ Strech viewBox in x and y direction to fill viewport, does not
@@ -104,7 +104,7 @@ class ITransform(object):
             profile = parameter.profile
             check_number(tx, profile)
             if ty : check_number(ty, profile)
-        self._add_transformation("translate(%s)" % strlist(tx, ty))
+        self._add_transformation("translate(%s)" % strlist( [tx, ty] ))
 
     def rotate(self, angle, center=None):
         """
@@ -122,7 +122,7 @@ class ITransform(object):
             if center:
                 check_number(center[0], profile)
                 check_number(center[1], profile)
-        self._add_transformation("rotate(%s)" % strlist(angle, center))
+        self._add_transformation("rotate(%s)" % strlist( [angle, center] ))
 
     def scale(self, sx, sy=None):
         """
@@ -137,7 +137,7 @@ class ITransform(object):
             profile = parameter.profile
             check_number(sx)
             if sy : check_number(sy)
-        self._add_transformation("scale(%s)" % strlist(sx, sy))
+        self._add_transformation("scale(%s)" % strlist( [sx, sy] ))
 
     def skewX(self, angle):
         """ Specifies a skew transformation along the x-axis.
@@ -160,7 +160,7 @@ class ITransform(object):
         self._add_transformation("skewY(%s)" % angle)
 
     def matrix(self, a, b, c, d, e, f):
-        self._add_transformation("matrix(%s)" % strlist(a, b, c, d, e, f))
+        self._add_transformation("matrix(%s)" % strlist( [a, b, c, d, e, f] ))
 
     def rev(self, tx=None, ty=None):
         """ tx, ty in **user space coordinates** (parent system) - no units allowed """
@@ -168,7 +168,7 @@ class ITransform(object):
             profile = parameter.profile
             check_number(tx)
             if ty : check_number(ty)
-        self._add_transformation("rev(%s)" % strlist('svg', tx, ty))
+        self._add_transformation("rev(%s)" % strlist( ['svg', tx, ty] ))
 
     def del_transform(self):
         self.attribs.pop('transform', None)
