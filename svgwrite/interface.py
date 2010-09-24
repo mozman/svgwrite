@@ -5,8 +5,6 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-__docformat__ = "restructuredtext en"
-
 _horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
 _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
 
@@ -178,16 +176,22 @@ class ITransform(object):
         self.attribs['transform'] = ("%s %s" % (old_transform, new_transform)).strip()
 
 class IXLink(object):
+    """ Xlink interface
+
+    **Methods**
+
+    .. automethod:: svgwrite.interface.IXLink.set_href(element)
+
+    """
     def set_href(self, element):
         """
-        Create a reference this *element*.
+        Create a reference to *element*.
 
         :param element: if element is a `string` its the *id* name of the
           referenced element, if element is a :class:`~svgwrite.base.BaseElement`
           the *id* SVG Attribute is used to create the reference.
 
         """
-
         self.href = element
         self.update_id()
 
@@ -197,4 +201,3 @@ class IXLink(object):
         else:
             idstr = self.href
         self.attribs['xlink:href'] =  "#%s" % idstr
-

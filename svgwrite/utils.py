@@ -6,8 +6,6 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-__docformat__ = "restructuredtext en"
-
 import re
 
 from svgwrite import parameter
@@ -15,10 +13,18 @@ from svgwrite. validator import check_tiny, check_coordinate, \
      _coordinate_pattern, _angle_pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
-    """Convert r, g, b values to a string.
+    """Convert r, g, b values to a <string>.
 
-    mode -- "RGB" returnd a rgb-string format: 'rgb(r, g, b)'
-    mode -- "%" returns percent-values as rgb-string format: 'rgb(r%, g%, b%)'
+    :param r: red part
+    :param g: green part
+    :param b: blue part
+    :param string mode: ``'RGB'|'%'``
+
+      * ``'RGB'`` -- returns a rgb-string format: ``'rgb(r, g, b)'``
+      * ``'%'`` -- returns percent-values as rgb-string format: ``'rgb(r%, g%, b%)'``
+
+    :rtype: string
+
     """
     def percent(value):
         value = float(value)
@@ -44,7 +50,7 @@ def iterflatlist(alist):
             yield element
 
 def strlist(args, seperator=","):
-    """ Concatenate args with *sepertator*, returns a *string*. """
+    """ Concatenate args with *sepertator*, returns a <string>. """
     return seperator.join([str(value) for value in iterflatlist(args) if value is not None])
 
 def value_to_string(value):
@@ -98,18 +104,19 @@ def split_angle(angle):
 
 def rect_top_left_corner(insert, size, pos='top-left'):
     """ Calculate top-left corner of a rectangle.
-      - x-coordinate and width has to have the same unit
-      - y-coordinate and height has to have the same unit.
 
-    Returns a <2-tuple>
+    *insert* and *size* must have the same *units*.
 
-    Parameter:
-    ----------
-    insert -- <2-tuple> insert point
-    size -- <2-tuple> (width, height)
-    pos -- <string> insert position 'vert-horiz'
-        vert -- 'top'|'middle'|'bottom'
-        horiz -- 'left'|'center'|'right'
+    :param 2-tuple insert: insert point
+    :param 2-tuple size: (width, height)
+    :param string pos: insert position ``'vert-horiz'``
+
+      * vert -- ``'top'|'middle'|'bottom'``
+      * horiz -- ``'left'|'center'|'right'``
+
+    :return: ``'top-left'`` corner of the rect
+    :rtype: 2-tuple
+
     """
     vert, horiz = pos.lower().split('-')
     x, xunit = split_coordinate(insert[0])
