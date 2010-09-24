@@ -43,13 +43,9 @@ def iterflatlist(alist):
         else:
             yield element
 
-def strlist(*args):
-    """ concatenate args with comma ',', returns a <string>. """
-    return ",".join([str(value) for value in iterflatlist(args) if value is not None])
-
-def strlist2(*args):
-    """ concatenate args with space ' ', returns a <string>. """
-    return " ".join([str(value) for value in iterflatlist(args) if value is not None])
+def strlist(args, seperator=","):
+    """ Concatenate args with *sepertator*, returns a *string*. """
+    return seperator.join([str(value) for value in iterflatlist(args) if value is not None])
 
 def value_to_string(value):
     if parameter.debug and parameter.profile=='tiny' and isinstance(value, (int, float)):

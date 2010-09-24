@@ -96,13 +96,18 @@ class TestPointsToStringTinyProfile(unittest.TestCase):
 
 class TestStrList(unittest.TestCase):
     def test_basic_types(self):
-        self.assertEqual(strlist(1,2,3), "1,2,3")
-        self.assertEqual(strlist(1,None,3), "1,3")
-        self.assertEqual(strlist(1,2,None), "1,2")
+        self.assertEqual(strlist([1,2,3]), "1,2,3" )
+        self.assertEqual(strlist([1,None,3]), "1,3")
+        self.assertEqual(strlist([1,2,None]), "1,2")
+
+    def test_seperator(self):
+        self.assertEqual(strlist([1,2,3], ' '), "1 2 3" )
+        self.assertEqual(strlist([1,None,3], ';'), "1;3")
+        self.assertEqual(strlist([1,2,None], ':'), "1:2")
 
     def test_list(self):
-        self.assertEqual(strlist( (5, 'abc', None), (1, 2, None) ), "5,abc,1,2")
-        self.assertEqual(strlist( (1,None,3), 4) , "1,3,4")
+        self.assertEqual(strlist( [(5, 'abc', None), (1, 2, None)] ), "5,abc,1,2")
+        self.assertEqual(strlist( [(1,None,3), 4]), "1,3,4")
 
 class TestRectTopLeftCorner(unittest.TestCase):
     def test_top_left(self):

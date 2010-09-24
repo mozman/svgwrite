@@ -14,7 +14,7 @@ character data inside the <text> element.
 from svgwrite import parameter
 from svgwrite.base import BaseElement
 from svgwrite.interface import ITransform, IXLink
-from svgwrite.utils import iterflatlist, strlist2
+from svgwrite.utils import iterflatlist, strlist
 
 class TSpan(BaseElement):
     """ Within a :class:`~svgwrite.Text` element, text and font properties
@@ -219,11 +219,11 @@ class TSpan(BaseElement):
         self.rotate = list(iterflatlist(rotate))
 
     def to_xml(self):
-        self['x'] = strlist2(iterflatlist(self.x))
-        self['y'] = strlist2(iterflatlist(self.y))
-        self['dx'] = strlist2(iterflatlist(self.dx))
-        self['dy'] = strlist2(iterflatlist(self.dy))
-        self['rotate'] = strlist2(iterflatlist(self.rotate))
+        self['x'] = strlist(iterflatlist(self.x), ' ')
+        self['y'] = strlist(iterflatlist(self.y), ' ')
+        self['dx'] = strlist(iterflatlist(self.dx), ' ')
+        self['dy'] = strlist(iterflatlist(self.dy), ' ')
+        self['rotate'] = strlist(iterflatlist(self.rotate), ' ')
         xml = super(TSpan, self).to_xml()
         xml.text = self.text
         return xml

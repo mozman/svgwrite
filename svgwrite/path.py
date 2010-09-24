@@ -6,7 +6,7 @@
 # License: GPLv3
 
 from svgwrite.base import BaseElement
-from svgwrite.utils import strlist2
+from svgwrite.utils import strlist
 from svgwrite.interface import ITransform
 
 class Path(BaseElement, ITransform):
@@ -147,5 +147,5 @@ class Path(BaseElement, ITransform):
         see `path command`_
 
         """
-        self.attribs['d'] = unicode(strlist2(self.commands))
+        self.attribs['d'] = unicode(strlist(self.commands, ' '))
         return super(Path, self).get_xml()
