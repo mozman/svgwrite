@@ -43,7 +43,7 @@ class IViewBox(object):
         :param number height: height of the viewBox
 
         """
-        if parameter.debug_mode:
+        if parameter.debug:
             for value in (minx, miny, width, height):
                 check_number(value, parameter.profile)
         self.attribs['viewBox'] = strlist( [minx, miny, width, height] )
@@ -69,6 +69,8 @@ class IViewBox(object):
         ============= ===========
 
         """
+        if parameter.debug and scale not in ('meet', 'slice'):
+            raise ValueError("Invalid scale parameter '%s'" % scale)
         self.attribs['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)
 
 class ITransform(object):
@@ -99,10 +101,10 @@ class ITransform(object):
         :param number tx: user coordinate - no units allowed
         :param number ty: user coordinate - no units allowed
         """
-        if parameter.debug_mode:
+        if parameter.debug:
             profile = parameter.profile
-            check_number(tx, profile)
-            if ty : check_number(ty, profile)
+            check_number(tx, parameter.profile)
+            if ty : check_number(ty, parameter.profile)
         self._add_transformation("translate(%s)" % strlist( [tx, ty] ))
 
     def rotate(self, angle, center=None):
@@ -115,12 +117,11 @@ class ITransform(object):
         :param 2-tuple center: rotate-center as user coordinate - no units allowed
 
         """
-        if parameter.debug_mode:
-            profile = parameter.profile
-            check_number(angle, profile)
+        if parameter.debug:
+            check_number(angle, parameter.profile)
             if center:
-                check_number(center[0], profile)
-                check_number(center[1], profile)
+                check_number(center[0], parameter.profile)
+                check_number(center[1], parameter.profile)
         self._add_transformation("rotate(%s)" % strlist( [angle, center] ))
 
     def scale(self, sx, sy=None):
@@ -132,10 +133,9 @@ class ITransform(object):
         :param number sy: scalar factor y-axis, no units allowed
 
         """
-        if parameter.debug_mode:
-            profile = parameter.profile
+        if parameter.debug:
             check_number(sx)
-            if sy : check_number(sy)
+            if sy : check_number(sy, parameter.profile)
         self._add_transformation("scale(%s)" % strlist( [sx, sy] ))
 
     def skewX(self, angle):
@@ -144,7 +144,7 @@ class ITransform(object):
         :param number angle: skew-angle in degrees, no units allowed
 
         """
-        if parameter.debug_mode:
+        if parameter.debug:
             check_number(angle, parameter.profile)
         self._add_transformation("skewX(%s)" % angle)
 
@@ -154,7 +154,7 @@ class ITransform(object):
         :param number angle: skew-angle in degrees, no units allowed
 
         """
-        if parameter.debug_mode:
+        if parameter.debug:
             check_number(angle, parameter.profile)
         self._add_transformation("skewY(%s)" % angle)
 
@@ -163,10 +163,9 @@ class ITransform(object):
 
     def rev(self, tx=None, ty=None):
         """ tx, ty in **user space coordinates** (parent system) - no units allowed """
-        if parameter.debug_mode:
-            profile = parameter.profile
+        if parameter.debug:
             check_number(tx)
-            if ty : check_number(ty)
+            if ty : check_number(ty, parameter.profile)
         self._add_transformation("rev(%s)" % strlist( ['svg', tx, ty] ))
 
     def del_transform(self):
