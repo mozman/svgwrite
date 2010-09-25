@@ -8,3 +8,8 @@
 
 .. autoclass:: svgwrite.interface.ITransform
 
+:class:`IXLink` interface
+=========================
+
+.. autoclass:: svgwrite.interface.IXLink
+

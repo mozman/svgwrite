@@ -80,7 +80,7 @@ class Drawing(SVG):
 
     **Supported Interfaces**
 
-    :class:`~svgwrite.IViewBox`: viewbox, stretch, fit
+    :class:`~svgwrite.interface.IViewBox`
 
     """
     def __init__(self, filename="noname.svg", size=('100%', '100%'), **extra):
@@ -116,10 +116,9 @@ class Drawing(SVG):
 
         :param string href: link to stylesheet <URI>
         :param string title: name of stylesheet
-        :param string alternate: ``'yes'`` | ``'no'``
-        :param string media: ``'all'`` | ``'aureal'`` | ``'braille'`` |
-            ``'embossed'`` | ``'handheld'`` | ``'print'`` | ``'projection'`` |
-            ``'screen'`` | ``'tty'`` | ``'tv'``
+        :param string alternate: ``'yes'|'no'``
+        :param string media: ``'all'|'aureal'|'braille'|'embossed'|'handheld'|
+            'print'|'projection'|'screen'|'tty'|'tv'``
 
         """
         self._stylesheets.append( (href, title, alternate, media) )

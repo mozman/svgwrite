@@ -5,6 +5,27 @@
 # Created: 08.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
+"""
+
+.. autofunction:: rgb([r=0, g=0, b=0, mode='RGB'])
+
+.. autofunction:: iterflatlist(values)
+
+.. autofunction:: strlist(values, [seperator=","])
+
+.. autofunction:: value_to_string(value)
+
+.. autofunction:: points_to_string(points)
+
+.. autofunction:: get_unit(coordinate)
+
+.. autofunction:: split_coordinate(coordinate)
+
+.. autofunction:: split_angle(angle)
+
+.. autofunction:: rect_top_left_corner(insert, size, [pos='top-left'])
+
+"""
 
 import re
 
@@ -13,7 +34,8 @@ from svgwrite. validator import check_tiny, check_coordinate, \
      _coordinate_pattern, _angle_pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
-    """Convert r, g, b values to a <string>.
+    """
+    Convert *r*, *g*, *b* values to a <string>.
 
     :param r: red part
     :param g: green part
@@ -41,34 +63,51 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
     else:
         raise ValueError("Invalid mode '%s'" % mode)
 
-def iterflatlist(alist):
-    for element in alist:
+def iterflatlist(values):
+    """
+    Flatten nested *values*, returns an *iterator*.
+
+    """
+    for element in values:
         if hasattr(element, "__iter__") and not isinstance(element, basestring):
             for item in iterflatlist(element):
                 yield item
         else:
             yield element
 
-def strlist(args, seperator=","):
-    """ Concatenate args with *sepertator*, returns a <string>. """
-    return seperator.join([str(value) for value in iterflatlist(args) if value is not None])
+def strlist(values, seperator=","):
+    """
+    Concatenate *values* with *sepertator*, <None> values will be excluded.
+
+    :param values: *iterable* object
+    :returns: <string>
+
+    """
+    return seperator.join([str(value) for value in iterflatlist(values) if value is not None])
 
 def value_to_string(value):
+    """
+    Converts *value* into a <string> includes some value checks depending
+    on debug-state and SVG-profile.
+
+    """
     if parameter.debug and parameter.profile=='tiny' and isinstance(value, (int, float)):
         check_tiny(value)
     return unicode(value)
 
 def points_to_string(points):
+    """
+    Convert a <list> of points <2-tuples> to a <string> ``'p1x,p1y p2x,p2y ...'``.
+
+    """
     strings = []
-    profile = parameter.profile
-    debug = parameter.debug
     for point in points:
         if isinstance(point, tuple):
             if len(point) != 2:
                 raise ValueError("<2-tuple> is required: '%s'" % str(point))
-            if debug:
-                check_coordinate(point[0], profile)
-                check_coordinate(point[1], profile)
+            if parameter.debug:
+                check_coordinate(point[0], parameter.profile)
+                check_coordinate(point[1], parameter.profile)
             point = u"%s,%s" % point
         else:
             TypeError("'%s' <string> is given, but <2-tuple> is required." % point)
@@ -76,6 +115,11 @@ def points_to_string(points):
     return u' '.join(strings)
 
 def get_unit(coordinate):
+    """
+    Get the *unit*-identifier of *coordinate*, if *coordinate* has a valid
+    *unit* identifier appended, else returns <None>.
+
+    """
     if isinstance(coordinate, (int, float)):
         return None
     result = _coordinate_pattern.match(coordinate)
@@ -85,6 +129,13 @@ def get_unit(coordinate):
         raise ValueError("Invalid format: '%s'" % coordinate)
 
 def split_coordinate(coordinate):
+    """
+    Split coordinate into *number* and *unit*-identifier.
+
+    :returns: <2-tuple> (number,unit-identifier) or (number,None) if no unit-identifier
+      is present or coordinate is an int or float.
+
+    """
     if isinstance(coordinate, (int, float)):
         return (float(coordinate), None)
     result = _coordinate_pattern.match(coordinate)
@@ -94,6 +145,14 @@ def split_coordinate(coordinate):
         raise ValueError("Invalid format: '%s'" % coordinate)
 
 def split_angle(angle):
+    """
+    Split angle into *number* and *angle*-identifier.
+
+    :returns: <2-tuple> (number,angle-identifier) or (number,None) if no angle-identifier
+      is present or angle is an int or float.
+
+    """
+
     if isinstance(angle, (int, float)):
         return (float(angle), None)
     result = _angle_pattern.match(angle)
@@ -103,7 +162,8 @@ def split_angle(angle):
         raise ValueError("Invalid format: '%s'" % angle)
 
 def rect_top_left_corner(insert, size, pos='top-left'):
-    """ Calculate top-left corner of a rectangle.
+    """
+    Calculate top-left corner of a rectangle.
 
     *insert* and *size* must have the same *units*.
 
