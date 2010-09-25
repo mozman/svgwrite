@@ -210,7 +210,7 @@ class TSpan(BaseElement):
     elementname = 'tspan'
 
     def __init__(self, text, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra):
-        super(TSpan, self).__init(attribs=attribs, **extra)
+        super(TSpan, self).__init__(attribs=attribs, **extra)
         self.text = text
         self.x = list(iterflatlist(x))
         self.y = list(iterflatlist(y))
@@ -218,14 +218,14 @@ class TSpan(BaseElement):
         self.dy = list(iterflatlist(dy))
         self.rotate = list(iterflatlist(rotate))
 
-    def to_xml(self):
+    def get_xml(self):
         self['x'] = strlist(iterflatlist(self.x), ' ')
         self['y'] = strlist(iterflatlist(self.y), ' ')
         self['dx'] = strlist(iterflatlist(self.dx), ' ')
         self['dy'] = strlist(iterflatlist(self.dy), ' ')
         self['rotate'] = strlist(iterflatlist(self.rotate), ' ')
-        xml = super(TSpan, self).to_xml()
-        xml.text = self.text
+        xml = super(TSpan, self).get_xml()
+        xml.text = unicode(self.text)
         return xml
 
 class Text(TSpan, ITransform):
@@ -356,7 +356,7 @@ class TRef(BaseElement, IXLink):
           is a :class:`~svgwrite.base.BaseElement` the *id* SVG Attribute is
           used to create the reference.
         """
-        super(TRef, self).__init(attribs=attribs, **extra)
+        super(TRef, self).__init__(attribs=attribs, **extra)
         self.set_href(element)
 
     def get_xml(self):

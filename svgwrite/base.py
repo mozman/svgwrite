@@ -120,14 +120,18 @@ class BaseElement(object):
         :return: XML `ElementTree` of this object and all its subelements
 
         """
-        debug_mode = parameter.debug
-        if debug_mode:
+        if parameter.debug:
             check_attribute_names(self.elementname, self.attribs)
         xml = etree.Element(self.elementname)
         for attribute, value in self.attribs.iteritems():
             value = value_to_string(value)
-            if debug_mode:
-                check_attribute_value(attribute, value)
+            if parameter.debug:
+                if self.elementname not in ('text', 'tspan'):
+                    check_attribute_value(attribute, value)
+                    # attribute check does not work for text and tspan:
+                    # x, y, dx, dy, rotate are lists
+                elif attribute not in ('x', 'y', 'dx', 'dy', 'rotate'):
+                    check_attribute_value(attribute, value)
             if value: # just add not empty attributes
                 xml.set(attribute, value)
 
