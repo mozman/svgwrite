@@ -20,6 +20,11 @@ class TestInit(unittest.TestCase):
         self.assertEqual(parameter.profile, 'tiny')
         self.assertTrue(parameter.debug)
 
+    def test_get_auto_id(self):
+        parameter.autoid = 9 # only for testing !!!
+        self.assertEqual(parameter.get_auto_id(), "id9")
+        self.assertEqual(parameter.get_auto_id(), "id10")
+        self.assertEqual(parameter.get_auto_id(), "id11")
 
 if __name__=='__main__':
     unittest.main()

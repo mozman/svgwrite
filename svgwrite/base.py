@@ -92,8 +92,8 @@ class BaseElement(object):
 
         """
         self.attribs[key] = value
-        if parameter.debug_mode:
-            check_attribute_names(self._elementname(), self.attribs)
+        if parameter.debug:
+            check_attribute_names(self.elementname, self.attribs)
 
     def add(self, element):
         """ Add an SVG element as subelement.

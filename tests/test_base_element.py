@@ -41,6 +41,11 @@ class TestBaseElement(unittest.TestCase):
         m = MockBase(width=100, height=200)
         self.assertEqual(m.tostring(), '<svg height="200" width="100" />')
 
+    def test_attribute_access(self):
+        m = MockBase()
+        m['id'] = 'test'
+        self.assertEqual(m['id'], 'test')
+
 
 
 if __name__=='__main__':

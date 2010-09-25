@@ -10,6 +10,7 @@ _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
 
 from svgwrite import parameter
 
+from svgwrite.base import BaseElement
 from svgwrite.utils import strlist
 from svgwrite.validator import check_coordinate, check_angle, check_number
 
@@ -56,9 +57,9 @@ class IViewBox(object):
     def fit(self, horiz="center", vert="middle", scale="meet"):
         """ Set the preserveAspectRatio attribute.
 
-        :param string horiz: horizontal alignment ``'left' | 'center' | 'right'``
-        :param string vert: vertical alignment ``'top' | 'middle' | 'bottom'``
-        :param string scale: scale method ``'meet' | 'slice'``
+        :param string horiz: horizontal alignment ``'left'|'center'|'right'``
+        :param string vert: vertical alignment ``'top'|'middle'|'bottom'``
+        :param string scale: scale method ``'meet'|'slice'``
 
         ============= ===========
         Scale methods Description
