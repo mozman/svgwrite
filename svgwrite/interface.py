@@ -30,7 +30,7 @@ class IViewBox(object):
 
     .. automethod:: svgwrite.interface.IViewBox.stretch()
 
-    .. automethod:: svgwrite.interface.IViewBox.fit()
+    .. automethod:: svgwrite.interface.IViewBox.fit([horiz="center", vert="middle", scale="meet"])
 
     """
     def viewbox(self, minx=0, miny=0, width=0, height=0):
@@ -39,7 +39,7 @@ class IViewBox(object):
 
         :param number minx: left border of the viewBox
         :param number miny: top border of the viewBox
-        :param number witdh: width of the viewBox
+        :param number width: width of the viewBox
         :param number height: height of the viewBox
 
         """
@@ -49,7 +49,7 @@ class IViewBox(object):
         self.attribs['viewBox'] = strlist( [minx, miny, width, height] )
 
     def stretch(self):
-        """ Strech viewBox in x and y direction to fill viewport, does not
+        """ Stretch viewBox in x and y direction to fill viewport, does not
         preserve aspect ratio.
         """
         self.attribs['preserveAspectRatio'] = 'none'

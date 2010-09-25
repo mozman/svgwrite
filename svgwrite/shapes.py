@@ -18,7 +18,7 @@ class Line(BaseElement, ITransform):
 
     .. automethod:: svgwrite.Line.__init__
 
-    **Supported SVG attributes**
+    **Supported SVG Attributes**
 
     * **x1** -- `coordinate` start-x
     * **y1** -- `coordinate` start-y
@@ -38,10 +38,12 @@ class Line(BaseElement, ITransform):
         """
         super(Line, self).__init__(attribs=attribs, **extra)
         profile = parameter.profile
-        self.attribs['x1'] = check_coordinate(start[0], profile)
-        self.attribs['y1'] = check_coordinate(start[1], profile)
-        self.attribs['x2'] = check_coordinate(end[0], profile)
-        self.attribs['y2'] = check_coordinate(end[1], profile)
+        x1, y1 = start
+        x2, y2 = end
+        self.attribs['x1'] = check_coordinate(x1, profile)
+        self.attribs['y1'] = check_coordinate(y1, profile)
+        self.attribs['x2'] = check_coordinate(x2, profile)
+        self.attribs['y2'] = check_coordinate(y2, profile)
 
 class Rect(BaseElement, ITransform):
     """ The <rect> element defines a rectangle which is axis-aligned with the current
@@ -50,7 +52,7 @@ class Rect(BaseElement, ITransform):
 
     .. automethod:: svgwrite.Rect.__init__
 
-    **Supported svg-attributes**
+    **Supported SVG Attributes**
 
     * **x** -- `coordinate` The x-axis coordinate of the side of the
                rectangle which has the smaller x-axis coordinate value
@@ -79,10 +81,12 @@ class Rect(BaseElement, ITransform):
         super(Rect, self).__init__(attribs=attribs, **extra)
 
         profile = parameter.profile
-        self.attribs['x'] = check_coordinate(insert[0], profile)
-        self.attribs['y'] = check_coordinate(insert[1], profile)
-        self.attribs['width'] = check_coordinate(size[0], profile)
-        self.attribs['height'] = check_coordinate(size[1], profile)
+        x, y = insert
+        width, height = size
+        self.attribs['x'] = check_coordinate(x, profile)
+        self.attribs['y'] = check_coordinate(y, profile)
+        self.attribs['width'] = check_coordinate(width, profile)
+        self.attribs['height'] = check_coordinate(height, profile)
         if rx: self.attribs['rx'] = check_coordinate(rx, profile)
         if ry: self.attribs['ry'] = check_coordinate(ry, profile)
 
@@ -91,7 +95,7 @@ class Circle(BaseElement, ITransform):
 
     .. automethod:: svgwrite.Circle.__init__
 
-    **Supported SVG attributes**
+    **Supported SVG Attributes**
 
     * **cx** -- `coordinate` The x-axis coordinate of the center of the circle.
     * **cy** -- `coordinate` The y-axis coordinate of the center of the circle.
@@ -109,9 +113,12 @@ class Circle(BaseElement, ITransform):
         """
         super(Circle, self).__init__(attribs=attribs, **extra)
         profile = parameter.profile
-        self.attribs['cx'] = check_coordinate(center[0], profile)
-        self.attribs['cy'] = check_coordinate(center[1], profile)
+        cx, cy = center
+        self.attribs['cx'] = check_coordinate(cx, profile)
+        self.attribs['cy'] = check_coordinate(cy, profile)
         self.attribs['r'] = check_coordinate(r, profile)
+
+
 
 class Ellipse(BaseElement, ITransform):
     """ The <ellipse> element defines an ellipse which is axis-aligned with the
@@ -119,7 +126,7 @@ class Ellipse(BaseElement, ITransform):
 
     .. automethod:: svgwrite.Ellipse.__init__
 
-    **Supported SVG attributes**
+    **Supported SVG Attributes**
 
     * **cx** -- `coordinate` The x-axis coordinate of the center of the ellipse.
     * **cy** -- `coordinate` The y-axis coordinate of the center of the ellipse.
@@ -138,10 +145,12 @@ class Ellipse(BaseElement, ITransform):
         """
         super(Ellipse, self).__init__(attribs=attribs, **extra)
         profile = parameter.profile
-        self.attribs['cx'] = check_coordinate(center[0], profile)
-        self.attribs['cy'] = check_coordinate(center[1], profile)
-        self.attribs['rx'] = check_coordinate(r[0], profile)
-        self.attribs['ry'] = check_coordinate(r[1], profile)
+        cx, cy = center
+        rx, ry = r
+        self.attribs['cx'] = check_coordinate(cx, profile)
+        self.attribs['cy'] = check_coordinate(cy, profile)
+        self.attribs['rx'] = check_coordinate(rx, profile)
+        self.attribs['ry'] = check_coordinate(ry, profile)
 
 class Polyline(BaseElement, ITransform):
     """ The <polyline> element defines a set of connected straight line segments.
@@ -151,14 +160,15 @@ class Polyline(BaseElement, ITransform):
 
     **Attributes**
 
-    .. attribute: points
-       `list` of points, a point is a `2-tuple` (x, y): x, y = `number`
+    .. attribute:: Polyline.points
 
-    **Supported svg-attributes**
+       *list* of points, a point is a <2-tuple> (x, y): x, y = <number>
 
-    * **points** -- `list-of-points` The points that make up the polyline.
-                    All coordinate values are in the **user coordinate system**
-                    (no units allowed).
+    **Supported SVG Attributes**
+
+    * **points** -- <list-of-points> The points that make up the polyline.
+       All coordinate values are in the **user coordinate system** (no units
+       allowed).
 
     How to append points::
 
@@ -169,12 +179,17 @@ class Polyline(BaseElement, ITransform):
 
     def __init__(self, points=[], attribs=None, **extra):
         """
-        :param `iterable` points: of points
+        :param `iterable` points: of points and points are <2-tuple>s
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
 
         """
         super(Polyline, self).__init__(attribs=attribs, **extra)
+        if parameter.debug:
+            for point in points:
+                x, y = point
+                check_coordinate(x, parameter.profile)
+                check_coordinate(y, parameter.profile)
         self.points = list(points)
 
     def get_xml(self):
@@ -185,7 +200,7 @@ class Polygon(Polyline):
     """ The <polygon> element defines a closed shape consisting of a set of connected
     straight line segments.
 
-    Same as :class:`Polyline` but closed.
+    Same as :class:`~svgwrite.shapes.Polyline` but closed.
     """
     elementname = 'polygon'
 

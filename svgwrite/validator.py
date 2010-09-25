@@ -28,7 +28,7 @@ def check_attribute_value(attributename, value):
     if not isinstance(value, basestring):
         value = unicode(value)
     if not validate_attribute[attributename](value):
-        raise ValueError("Value '%s' is not valid for atttribute '%s'." % (value, attributename))
+        raise ValueError("Value '%s' is not valid for attribute '%s'." % (value, attributename))
     return value # pass-through function
 
 def check_valid_content(element, subelement):
@@ -47,6 +47,8 @@ def get_coordinate(value, profile='tiny'):
 
     Raises ValueError if not valid.
     """
+    if value is None:
+        raise TypeError("None type not allowed.")
     if isinstance(value, (int, float)):
         number, unit = float(value), None
     else:
@@ -65,6 +67,8 @@ def get_angle(value, profile='tiny'):
 
     Raises ValueError if not valid.
     """
+    if value is None:
+        raise TypeError("None type not allowed.")
     if isinstance(value, (int, float)):
         number, unit = float(value), None
     else:
@@ -723,7 +727,7 @@ _content_model = {
 'symbol' : (animation_elements, descriptive_elements, shape_elements, structural_elements, gradient_elements,
     ("a", "altGlyphDef", "clipPath", "color-profile", "cursor", "filter", "font", "font-face",
      "foreignObject", "image", "marker", "mask", "pattern", "script", "style", "switch","text", "view")),
-'text' : (animation_elements, descriptive_elements, text_content_child_elements, ('a', )),
+'text' : (animation_elements, descriptive_elements, text_content_child_elements, ('a',)),
 'textPath' : (descriptive_elements, ("a", "altGlyph", "animate", "animateColor", "set", "tref", "tspan")),
 'title' : (any_elements, ),
 'tref' : (descriptive_elements, ('animate', 'animateColor', 'set')),
