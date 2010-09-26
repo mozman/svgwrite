@@ -66,11 +66,15 @@ class BaseElement(object):
 
         SVG attribute names will be checked, if :data:`~svgwrite.parameter.debug_mode` is `True`.
         """
+        def update(attribs, extra):
+            for key, value in extra.iteritems():
+                attribs[key.replace('_', '-')] = value
+
         if attribs == None:
             self.attribs = dict()
         else:
             self.attribs = dict(attribs)
-        self.attribs.update(extra)
+        update(self.attribs, extra)
         if parameter.debug:
             check_attribute_names(self.elementname, self.attribs)
         self.elements = list()

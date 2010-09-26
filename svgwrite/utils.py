@@ -91,8 +91,11 @@ def value_to_string(value):
     on debug-state and SVG-profile.
 
     """
-    if parameter.debug and parameter.profile=='tiny' and isinstance(value, (int, float)):
-        check_tiny(value)
+    if isinstance(value, (int, float)) and parameter.profile=='tiny':
+        if parameter.debug:
+            check_tiny(value)
+        if isinstance(value, float):
+            value = round(value, 4)
     return unicode(value)
 
 def points_to_string(points):
@@ -102,15 +105,16 @@ def points_to_string(points):
     """
     strings = []
     for point in points:
-        if isinstance(point, tuple):
-            if len(point) != 2:
-                raise ValueError("<2-tuple> is required: '%s'" % str(point))
-            if parameter.debug:
-                check_coordinate(point[0], parameter.profile)
-                check_coordinate(point[1], parameter.profile)
-            point = u"%s,%s" % point
-        else:
-            TypeError("'%s' <string> is given, but <2-tuple> is required." % point)
+        x, y = point
+        if parameter.debug:
+            check_coordinate(x, parameter.profile)
+            check_coordinate(y, parameter.profile)
+        if parameter.profile == 'tiny':
+            if isinstance(x, float):
+                x = round(x, 4)
+            if isinstance(y, float):
+                y = round(y, 4)
+        point = u"%s,%s" % (x, y)
         strings.append(point)
     return u' '.join(strings)
 
