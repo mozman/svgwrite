@@ -19,6 +19,10 @@ class TestTSpan(unittest.TestCase):
         txt = TSpan('testtext')
         self.assertEqual(txt.tostring(), '<tspan>testtext</tspan>')
 
+    def test_insert(self):
+        txt = TSpan('testtext', insert=(1,1))
+        self.assertEqual(txt.tostring(), '<tspan x="1" y="1">testtext</tspan>')
+
     def test_subelement(self):
         txt = TSpan('testtext')
         txt.add(TSpan('subtext1'))
@@ -56,6 +60,13 @@ class TestTSpan(unittest.TestCase):
         self.assertRaises(TypeError, TSpan,"txt", dy=1)
         self.assertRaises(TypeError, TSpan,"txt", rotate=None)
         self.assertRaises(TypeError, TSpan,"txt", rotate=1)
+
+    def test_insert_errors(self):
+        self.assertRaises(TypeError, TSpan, "txt", insert=1)
+        self.assertRaises(TypeError, TSpan, "txt", insert='1')
+        # do not use 'insert' and 'x' or 'y' at the same time
+        self.assertRaises(ValueError, TSpan, "txt", insert=(1,1), x=[1])
+        self.assertRaises(ValueError, TSpan, "txt", insert=(1,1), y=[1])
 
 class TestTRef(unittest.TestCase):
     def setUp(self):

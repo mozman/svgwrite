@@ -282,8 +282,28 @@ def LSystem(name, formula=LevyCurve):
     dwg.viewbox(xmin, ymin, xmax-xmin, ymax-ymin)
     dwg.add(curve)
     dwg.save()
-
 ## end of http://code.activestate.com/recipes/577159/ }}}
+
+def simple_text(name):
+    dwg = svg.Drawing(name, (200, 200))
+    paragraph = dwg.group(font_size=14)
+    paragraph.add(svg.Text("This is a Test!", (10,20)))
+    # 'x', 'y', 'dx', 'dy' and 'rotate' has to be a <list> or a <tuple>!!!
+    # 'param'[0] .. first letter, 'param'[1] .. second letter, and so on
+    # if there are more letters than values, the last list-value is used
+    #
+    # different 'y' coordinates does not work with Firefox 3.6
+    paragraph.add(svg.Text("This is a Test!", x=[10], y=[40, 45, 50, 55, 60]))
+
+    # different formats can be used by the TSpan element
+    # The atext.tspan(...) method is a shortcut for: atext.add(svg.TSpan(...))
+    atext = svg.Text("A", insert=(10, 80))
+
+    # text color is set by the 'fill' property and 'stroke sets the outline color.
+    atext.tspan(' Word', font_size='1.5em', fill='red')
+    atext.tspan(' is a Word!', dy=['1em'], font_size='0.7em', fill='green')
+    paragraph.add(atext)
+    dwg.save()
 
 def main():
     longrun = True
@@ -292,6 +312,9 @@ def main():
 
     print("start: example_empty_drawing.svg\n")
     empty_drawing('example_empty_drawing.svg')
+
+    print("start: example_simple_text.svg\n")
+    simple_text('example_simple_text.svg')
 
     print("start: example_base_shapes_drawing.svg\n")
     base_shapes_drawing('example_base_shapes_drawing.svg')
