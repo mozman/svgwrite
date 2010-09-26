@@ -49,6 +49,12 @@ class TestTSpan(unittest.TestCase):
         txt = TSpan('text', rotate=[1,2,3,4])
         self.assertEqual(txt.tostring(), '<tspan rotate="1 2 3 4">text</tspan>')
 
+    def test_subelement_tspan(self):
+        txt = TSpan('text')
+        txt.tspan('subtext')
+        self.assertEqual(txt.tostring(), '<tspan>text<tspan>subtext</tspan></tspan>')
+
+
     def test_errors(self):
         self.assertRaises(TypeError, TSpan, "txt", x=None)
         self.assertRaises(TypeError, TSpan,"txt", x=1)
@@ -81,9 +87,14 @@ class TestTextPath(unittest.TestCase):
         parameter.set_debug(True)
 
     def test_constructor(self):
-        tref = TextPath('test', startOffset=10, spacing='auto', method='stretch')
+        tref = TextPath('test', 'The Text', startOffset=10, spacing='auto', method='stretch')
         self.assertEqual(tref.tostring(), '<textPath method="stretch" spacing="auto"' \
-                         ' startOffset="10" xlink:href="#test" />')
+                         ' startOffset="10" xlink:href="#test">The Text</textPath>')
+
+    def test_subelement_tspan(self):
+        txt = TextPath('test', 'text')
+        txt.tspan('subtext')
+        self.assertEqual(txt.tostring(), '<textPath xlink:href="#test">text<tspan>subtext</tspan></textPath>')
 
 if __name__=='__main__':
     unittest.main()
