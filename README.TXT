@@ -4,6 +4,7 @@ svgwrite
 
 Abstract
 ========
+
 A Python library to create SVG drawings.
 
 a simple example::
@@ -11,8 +12,10 @@ a simple example::
     import svgwrite as svg
     drawing = svg.Drawing('test.svg')
     drawing.add(svg.Line((0, 0), (10, 0), color=svg.rgb(10, 10, 16, '%')))
-    drawing.add(svg.Text('Test', x=0 , y=0.2))
+    drawing.add(svg.Text('Test', insert=(0, 0.2)))
     drawing.save()
+
+for more examples see: examples.py
 
 Installation
 ============
@@ -27,8 +30,8 @@ or from source::
 
 Documentation
 =============
+
 http://packages.python.org/svgwrite
-http://bitbucket.org/mozman/svgwrite/wiki/Home
 
 send feedback to mozman@gmx.at
 

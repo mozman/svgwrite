@@ -21,6 +21,10 @@ class TSpan(BaseElement):
     and the current text position can be adjusted with absolute or relative
     coordinate values by using the :class:`~svgwrite.TSpan` element.
 
+    :param 2-tuple insert: The *insert* parameter is the absolute insert point
+        of the text, don't use this parameter in combination with the *x* or the
+        *y* parameter.
+
     **Attributes**
 
     .. attribute:: x
@@ -209,14 +213,31 @@ class TSpan(BaseElement):
     """
     elementname = 'tspan'
 
-    def __init__(self, text, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra):
+    def __init__(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
+                 attribs=None, **extra):
         super(TSpan, self).__init__(attribs=attribs, **extra)
         self.text = text
+        if insert is not None:
+            if isinstance(insert, basestring):
+                raise TypeError("'insert' should be a <tuple> or a <list>  with" \
+                                " at least two elements.")
+            if x or y:
+                raise ValueError("Use 'insert' and 'x' or 'y' parameter not" \
+                                 " at the same time!")
+            x = [insert[0]]
+            y = [insert[1]]
+
         self.x = list(iterflatlist(x))
         self.y = list(iterflatlist(y))
         self.dx = list(iterflatlist(dx))
         self.dy = list(iterflatlist(dy))
         self.rotate = list(iterflatlist(rotate))
+
+    def tspan(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
+              attribs=None, **extra):
+        txt = TSpan(text, insert, x, y, dx, dy, rotate, attribs=None, **extra)
+        self.add(txt)
+        return txt
 
     def get_xml(self):
         self['x'] = strlist(iterflatlist(self.x), ' ')

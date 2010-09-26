@@ -9,7 +9,7 @@ Version 0.1.0 - 26 September 2010
     * path element
     * text element
     * container elements: g, symbol, svg, use, defs
-  * for examples see examples.py
+  * for examples see: examples.py
 
 Version 0.0.0 - 08 September 2010
   * project start

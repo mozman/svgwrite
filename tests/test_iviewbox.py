@@ -53,9 +53,9 @@ class TestITransfer(unittest.TestCase):
 
     def test_fit_err(self):
         m = Mock()
-        self.assertRaises(ValueError, scale='invalid')
-        self.assertRaises(KeyError, horiz='invalid')
-        self.assertRaises(KeyError, vert='invalid')
+        self.assertRaises(ValueError, m.fit, scale='invalid')
+        self.assertRaises(KeyError, m.fit, horiz='invalid')
+        self.assertRaises(KeyError, m.fit, vert='invalid')
 
 if __name__=='__main__':
     unittest.main()
