@@ -11,8 +11,8 @@ a simple example::
 
     import svgwrite as svg
     drawing = svg.Drawing('test.svg')
-    drawing.add(svg.Line((0, 0), (10, 0), color=svg.rgb(10, 10, 16, '%')))
-    drawing.add(svg.Text('Test', insert=(0, 0.2)))
+    drawing.add(svg.Line((0, 0), (10, 0), stroke=svg.rgb(10, 10, 16, '%')))
+    drawing.add(svg.Text('Test', insert=(0, 0.2), fill='red'))
     drawing.save()
 
 for more examples see: examples.py

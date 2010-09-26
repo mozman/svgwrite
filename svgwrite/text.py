@@ -168,6 +168,12 @@ class TSpan(BaseElement):
        to any rotation due to text on a path and to ‘glyph-orientation-horizontal’
        or ‘glyph-orientation-vertical’.
 
+    **Methods**
+
+    .. automethod:: svgwrite.TSpan.__init__(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra)
+
+    .. automethod:: svgwrite.TSpan.tspan(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra)
+
     .. _TSpan-SVG-Attributes:
 
     **Supported SVG Attributes**
@@ -203,18 +209,26 @@ class TSpan(BaseElement):
 
     **Standard SVG Attributes**
 
-    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
-
-    * Core Attributes
-    * Conditional Processing Attributes
-    * Graphical Event Attributes
-    * Presentation Attributes
+    * :doc:`Core Attributes </attributes/core>`
+    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
+    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
+    * :doc:`Presentation Attributes </attributes/presentation>`
 
     """
     elementname = 'tspan'
 
     def __init__(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
                  attribs=None, **extra):
+        """
+        :param string text: <tspan> content
+        :param 2-tuple insert: insert pos (x, y)
+        :param list x: list of absolute x-axis values for characters
+        :param list y: list of absolute y-axis values for characters
+        :param list dx: list of relative x-axis values for characters
+        :param list dy: list of relative y-axis values for characters
+        :param list rotate: list of rotation-values for characters (in degrees)
+
+        """
         super(TSpan, self).__init__(attribs=attribs, **extra)
         self.text = text
         if insert is not None:
@@ -235,6 +249,10 @@ class TSpan(BaseElement):
 
     def tspan(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
               attribs=None, **extra):
+        """
+        Add a <TSpan> object as subelement. Same params as :meth:`__init__`.
+
+        """
         txt = TSpan(text, insert, x, y, dx, dy, rotate, attribs=None, **extra)
         self.add(txt)
         return txt
@@ -360,12 +378,10 @@ class TRef(BaseElement, IXLink):
 
     **Standard SVG Attributes**
 
-    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
-
-    * Core Attributes
-    * Conditional Processing Attributes
-    * Graphical Event Attributes
-    * Presentation Attributes
+    * :doc:`Core Attributes </attributes/core>`
+    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
+    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
+    * :doc:`Presentation Attributes </attributes/presentation>`
 
     """
     elementname = 'tref'
@@ -392,29 +408,81 @@ class TextPath(BaseElement, IXLink):
     the given text within a <textPath> element which includes an `xlink:href`
     attribute with a IRI reference to a <path> element.
 
-    **Attributes**
+    **Methods**
+
+    .. automethod:: svgwrite.TextPath.__init__(path, text, startOffset=None, method='align', spacing='exact', attribs=None, **extra)
+
+    .. automethod:: svgwrite.TextPath.tspan(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra)
+
+    **SVG Attributes**
+
+    * **class** -- `string` assigns one or more css-class-names to an element
+    * **style** -- `string` allows per-element css-style rules to be specified
+      directly on a given element
+    * **externalResourcesRequired** -- `bool` *False*: if document rendering
+      can proceed even if external resources are unavailable else: *True*
+    * **xlink:href** -- `string` A IRI reference to an element whose
+      character data content shall be used as character data for this <tref>
+      element.
+    * **startOffset** -- `length` An offset from the start of the *path* for
+      the initial current text position, calculated using the user agent's
+      distance along the path algorithm. Value as percentage or distance along
+      the path measured in the current user coordinate system.
+    * **method** -- ``align|stretch`` Indicates the method by which text
+      should be rendered along the path.
+    * **spacing** -- ``auto|exact`` Indicates how the user agent should
+      determine the spacing between glyphs that are to be rendered along a path.
 
     **Standard SVG Attributes**
 
-    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+    * :doc:`Core Attributes </attributes/core>`
+    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
+    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
+    * :doc:`Presentation Attributes </attributes/presentation>`
 
-    * Core Attributes
-    * Conditional Processing Attributes
-    * Graphical Event Attributes
-    * Presentation Attributes
     """
     elementname = 'textPath'
-    def __init__(self, path, startOffset=0, method='align', spacing='exact',
+    def __init__(self, path, text, startOffset=None, method='align', spacing='exact',
                  attribs=None, **extra):
+        """
+        :param path: link to <path>, *id-string* or <Path> object
+        :param string text: <textPath> content
+        :param number startOffset: text starts with offset from begin of path.
+        :param string method: ``align|stretch``
+        :param string spacing: ``exact|auto``
+
+        """
         super(TextPath, self).__init__(attribs=attribs, **extra)
+        self.text = text
         if method == 'stretch':
             self.attribs['method'] = method
         if spacing == 'auto':
             self.attribs['spacing'] = spacing
-        self.attribs['startOffset'] = startOffset
+        if startOffset:
+            self.attribs['startOffset'] = startOffset
         self.set_href(path)
+
+    def tspan(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
+              attribs=None, **extra):
+        """
+        Add a <TSpan> object as subelement.
+
+        :param string text: <tspan> content
+        :param 2-tuple insert: insert pos (x, y)
+        :param list x: list of absolute x-axis values for characters
+        :param list y: list of absolute y-axis values for characters
+        :param list dx: list of relative x-axis values for characters
+        :param list dy: list of relative y-axis values for characters
+        :param list rotate: list of rotation-values for characters (in degrees)
+
+        """
+        txt = TSpan(text, insert, x, y, dx, dy, rotate, attribs=None, **extra)
+        self.add(txt)
+        return txt
 
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
-        return super(TextPath, self).get_xml()
+        xml = super(TextPath, self).get_xml()
+        xml.text = unicode(self.text)
+        return xml
 
