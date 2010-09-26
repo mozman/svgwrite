@@ -1,0 +1,6 @@
+
+NEWS
+====
+
+Version 0.0.0 - 08 September 2010
+  * project start
