@@ -160,11 +160,11 @@ def mandelbrot(name):
     # FB - 201003254
 
     def putpixel(pos, color):
-        mandelbrot_group.add(svg.Rect(insert=pos, size=(1, 1), fill=color))
+        mandelbrot_group.add(svg.Circle(center=pos, r=.5, fill=color))
 
     # image size
-    imgx = 320
-    imgy = 200
+    imgx = 160
+    imgy = 100
 
     # drawing defines the output size
     dwg = svg.Drawing(name, ('32cm', '20cm'))
@@ -194,6 +194,97 @@ def mandelbrot(name):
     dwg.save()
     ## end of http://code.activestate.com/recipes/577111/ }}}
 
+
+LevyDragon = {'length':1, 'numAngle':4, 'level':16, 'init': 'FX',
+              'target': 'X', 'replacement': 'X+YF+', 'target2': 'Y',
+              'replacement2': '-FX-Y'}
+
+KochSnowflake = {'length':1, 'numAngle':6, 'level':6, 'init': 'F++F++F',
+                 'target': 'F', 'replacement': 'F-F++F-F', 'target2': '',
+                 'replacement2': ''}
+
+LevyCurve = {'length':1, 'numAngle':8, 'level':17, 'init': 'F',
+             'target': 'F', 'replacement': '+F--F+', 'target2': '',
+             'replacement2': ''}
+
+HilbertSpaceFillingCurve = {'length':1, 'numAngle':4, 'level':5, 'init': 'L',
+             'target': 'L', 'replacement': '+RF-LFL-FR+', 'target2': 'R',
+             'replacement2': '-LF+RFR+FL-'}
+
+def LSystem(name, formula=LevyCurve):
+    ## {{{ http://code.activestate.com/recipes/577159/ (r1)
+    # L-System Fractals
+    # FB - 201003276
+    # image size
+
+    # generate the fractal drawing string
+    def _LSystem(formula):
+        state = formula['init']
+        target = formula['target']
+        replacement = formula['replacement']
+        target2 = formula['target2']
+        replacement2 = formula['replacement2']
+        level = formula['level']
+
+        for counter in range(level):
+            state2 = ''
+            for character in state:
+                if character == target:
+                    state2 += replacement
+                elif character == target2:
+                    state2 += replacement2
+                else:
+                    state2 += character
+            state = state2
+        return state
+    print("creating: %s\n" % name)
+    xmin, ymin = (100000, 100000)
+    xmax, ymax = (-100000, -100000)
+
+    numAngle = formula['numAngle']
+    length = formula['length']
+    fractal = _LSystem(formula)
+    na = 2.0 * math.pi / numAngle
+    sn = []
+    cs = []
+    for i in range(numAngle):
+        sn.append(math.sin(na * i))
+        cs.append(math.cos(na * i))
+
+    x = 0.0
+    y = 0.0
+
+    # jx = int((x - xa) / (xb - xa) * (imgx - 1))
+    # jy = int((y - ya) / (yb - ya) * (imgy - 1))
+    k = 0
+    curve = svg.Polyline(points=[(x, y)], stroke='green', fill='none', stroke_width=0.1)
+    for ch in fractal:
+        if ch == 'F':
+            # turtle forward(length)
+            x +=  length * cs[k]
+            y += length * sn[k]
+
+            curve.points.append( (x, y) )
+
+            # find maxima
+            xmin = min(xmin, x)
+            xmax = max(xmax, x)
+            ymin = min(ymin, y)
+            ymax = max(ymax, y)
+        elif ch == '+':
+            # turtle right(angle)
+            k = (k + 1) % numAngle
+        elif ch == '-':
+            # turtle left(angle)
+            k = ((k - 1) + numAngle) % numAngle
+    print("L-System with %d segements.\n" % (len(curve.points)-1))
+    dwg = svg.Drawing(name)
+    dwg.viewbox(xmin, ymin, xmax-xmin, ymax-ymin)
+    dwg.add(curve)
+    dwg.save()
+
+## end of http://code.activestate.com/recipes/577159/ }}}
+
 def main():
     longrun = True
     # short time running
@@ -211,11 +302,18 @@ def main():
     print("start: example_koch_snowflake.svg\n")
     koch_snowflake('example_koch_snowflake.svg')
 
+
     if longrun:
         print("start long time running examples!\n")
 
         print("start: example_mandelbrot.svg\n")
         mandelbrot('example_mandelbrot.svg')
+
+        print("start: example_lsystem.svg\n")
+        LSystem('example_lsys_hilbertspacefillingcurve.svg', formula=HilbertSpaceFillingCurve)
+        LSystem('example_lsys_levydragon.svg', formula=LevyDragon)
+        LSystem('example_lsys_levycurve.svg', formula=LevyCurve)
+        LSystem('example_lsys_kochsnowflake.svg', formula=KochSnowflake)
 
 if __name__ == '__main__':
     main()
