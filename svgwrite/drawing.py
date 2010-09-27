@@ -24,7 +24,6 @@ The *Drawing* class inherits from: :class:`~svgwrite.SVG`
 """
 
 from svgwrite import parameter
-from svgwrite.validator import check_coordinate
 from container import SVG, Defs
 
 class Drawing(SVG):
@@ -100,11 +99,12 @@ class Drawing(SVG):
         :return: XML `ElementTree` of this object and all its subelements
 
         """
-        profile = parameter.profile
-        if profile == 'tiny':
-            version = '1.2' # only tiny
-        else:
-            version = '1.1' # basic or full
+        profile = parameter.get_profile()
+        version = parameter.get_version()
+#        if profile == 'tiny':
+#            version = '1.2' # only tiny
+#        else:
+#            version = '1.1' # basic or full
         self.attribs['xmlns'] = "http://www.w3.org/2000/svg"
         self.attribs['xmlns:xlink'] = "http://www.w3.org/1999/xlink"
         self.attribs['baseProfile'] = profile
@@ -131,7 +131,7 @@ class Drawing(SVG):
         """
         # write xml header
         fileobj.write('<?xml version="1.0" encoding="utf-8" ?>\n')
-        if parameter.profile != 'tiny': # tiny profile has no DOCTYPE
+        if parameter.get_profile() != 'tiny': # tiny profile has no DOCTYPE
             fileobj.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" ' \
                           '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n')
         # write stylesheets

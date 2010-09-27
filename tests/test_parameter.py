@@ -17,7 +17,7 @@ class TestInit(unittest.TestCase):
     def test_init(self):
         parameter.set_debug()
         parameter.set_profile('TINY')
-        self.assertEqual(parameter.profile, 'tiny')
+        self.assertEqual(parameter.get_profile(), 'tiny')
         self.assertTrue(parameter.debug)
 
     def test_get_auto_id(self):

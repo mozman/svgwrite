@@ -8,7 +8,6 @@
 
 from svgwrite import parameter
 from svgwrite.base import BaseElement
-from svgwrite.validator import check_coordinate
 from svgwrite.utils import points_to_string
 from svgwrite.interface import ITransform
 
@@ -37,13 +36,12 @@ class Line(BaseElement, ITransform):
 
         """
         super(Line, self).__init__(attribs=attribs, **extra)
-        profile = parameter.profile
         x1, y1 = start
         x2, y2 = end
-        self.attribs['x1'] = check_coordinate(x1, profile)
-        self.attribs['y1'] = check_coordinate(y1, profile)
-        self.attribs['x2'] = check_coordinate(x2, profile)
-        self.attribs['y2'] = check_coordinate(y2, profile)
+        self.attribs['x1'] = parameter.validator.check_coordinate(x1)
+        self.attribs['y1'] = parameter.validator.check_coordinate(y1)
+        self.attribs['x2'] = parameter.validator.check_coordinate(x2)
+        self.attribs['y2'] = parameter.validator.check_coordinate(y2)
 
 class Rect(BaseElement, ITransform):
     """ The <rect> element defines a rectangle which is axis-aligned with the current
@@ -79,16 +77,14 @@ class Rect(BaseElement, ITransform):
 
         """
         super(Rect, self).__init__(attribs=attribs, **extra)
-
-        profile = parameter.profile
         x, y = insert
         width, height = size
-        self.attribs['x'] = check_coordinate(x, profile)
-        self.attribs['y'] = check_coordinate(y, profile)
-        self.attribs['width'] = check_coordinate(width, profile)
-        self.attribs['height'] = check_coordinate(height, profile)
-        if rx: self.attribs['rx'] = check_coordinate(rx, profile)
-        if ry: self.attribs['ry'] = check_coordinate(ry, profile)
+        self.attribs['x'] = parameter.validator.check_coordinate(x)
+        self.attribs['y'] = parameter.validator.check_coordinate(y)
+        self.attribs['width'] = parameter.validator.check_length(width)
+        self.attribs['height'] = parameter.validator.check_length(height)
+        if rx: self.attribs['rx'] = parameter.validator.check_length(rx)
+        if ry: self.attribs['ry'] = parameter.validator.check_length(ry)
 
 class Circle(BaseElement, ITransform):
     """ The <circle> element defines a circle based on a center point and a radius.
@@ -112,11 +108,10 @@ class Circle(BaseElement, ITransform):
 
         """
         super(Circle, self).__init__(attribs=attribs, **extra)
-        profile = parameter.profile
         cx, cy = center
-        self.attribs['cx'] = check_coordinate(cx, profile)
-        self.attribs['cy'] = check_coordinate(cy, profile)
-        self.attribs['r'] = check_coordinate(r, profile)
+        self.attribs['cx'] = parameter.validator.check_coordinate(cx)
+        self.attribs['cy'] = parameter.validator.check_coordinate(cy)
+        self.attribs['r'] = parameter.validator.check_length(r)
 
 
 
@@ -144,13 +139,12 @@ class Ellipse(BaseElement, ITransform):
 
         """
         super(Ellipse, self).__init__(attribs=attribs, **extra)
-        profile = parameter.profile
         cx, cy = center
         rx, ry = r
-        self.attribs['cx'] = check_coordinate(cx, profile)
-        self.attribs['cy'] = check_coordinate(cy, profile)
-        self.attribs['rx'] = check_coordinate(rx, profile)
-        self.attribs['ry'] = check_coordinate(ry, profile)
+        self.attribs['cx'] = parameter.validator.check_coordinate(cx)
+        self.attribs['cy'] = parameter.validator.check_coordinate(cy)
+        self.attribs['rx'] = parameter.validator.check_length(rx)
+        self.attribs['ry'] = parameter.validator.check_length(ry)
 
 class Polyline(BaseElement, ITransform):
     """ The <polyline> element defines a set of connected straight line segments.
@@ -188,8 +182,8 @@ class Polyline(BaseElement, ITransform):
         if parameter.debug:
             for point in points:
                 x, y = point
-                check_coordinate(x, parameter.profile)
-                check_coordinate(y, parameter.profile)
+                parameter.validator.check_coordinate(x)
+                parameter.validator.check_coordinate(y)
         self.points = list(points)
 
     def get_xml(self):

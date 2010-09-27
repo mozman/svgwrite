@@ -12,7 +12,6 @@ from svgwrite import parameter
 
 from svgwrite.base import BaseElement
 from svgwrite.utils import strlist
-from svgwrite.validator import check_coordinate, check_angle, check_number
 
 class IViewBox(object):
     """ The *IViewBox* interface provides the ability to specify that a given set
@@ -45,7 +44,7 @@ class IViewBox(object):
         """
         if parameter.debug:
             for value in (minx, miny, width, height):
-                check_number(value, parameter.profile)
+                parameter.validator.check_number(value)
         self.attribs['viewBox'] = strlist( [minx, miny, width, height] )
 
     def stretch(self):
@@ -102,9 +101,8 @@ class ITransform(object):
         :param number ty: user coordinate - no units allowed
         """
         if parameter.debug:
-            profile = parameter.profile
-            check_number(tx, parameter.profile)
-            if ty : check_number(ty, parameter.profile)
+            parameter.validator.check_number(tx)
+            if ty : parameter.validator.check_number(ty)
         self._add_transformation("translate(%s)" % strlist( [tx, ty] ))
 
     def rotate(self, angle, center=None):
@@ -118,10 +116,10 @@ class ITransform(object):
 
         """
         if parameter.debug:
-            check_number(angle, parameter.profile)
+            parameter.validator.check_number(angle)
             if center:
-                check_number(center[0], parameter.profile)
-                check_number(center[1], parameter.profile)
+                parameter.validator.check_number(center[0])
+                parameter.validator.check_number(center[1])
         self._add_transformation("rotate(%s)" % strlist( [angle, center] ))
 
     def scale(self, sx, sy=None):
@@ -134,8 +132,8 @@ class ITransform(object):
 
         """
         if parameter.debug:
-            check_number(sx)
-            if sy : check_number(sy, parameter.profile)
+            parameter.validator.check_number(sx)
+            if sy : parameter.validator.check_number(sy)
         self._add_transformation("scale(%s)" % strlist( [sx, sy] ))
 
     def skewX(self, angle):
@@ -145,7 +143,7 @@ class ITransform(object):
 
         """
         if parameter.debug:
-            check_number(angle, parameter.profile)
+            parameter.validator.check_number(angle)
         self._add_transformation("skewX(%s)" % angle)
 
     def skewY(self, angle):
@@ -155,7 +153,7 @@ class ITransform(object):
 
         """
         if parameter.debug:
-            check_number(angle, parameter.profile)
+            parameter.validator.check_number(angle)
         self._add_transformation("skewY(%s)" % angle)
 
     def matrix(self, a, b, c, d, e, f):
@@ -164,8 +162,8 @@ class ITransform(object):
     def rev(self, tx=None, ty=None):
         """ tx, ty in **user space coordinates** (parent system) - no units allowed """
         if parameter.debug:
-            check_number(tx)
-            if ty : check_number(ty, parameter.profile)
+            parameter.validator.check_number(tx)
+            if ty : parameter.validator.check_number(ty)
         self._add_transformation("rev(%s)" % strlist( ['svg', tx, ty] ))
 
     def del_transform(self):
