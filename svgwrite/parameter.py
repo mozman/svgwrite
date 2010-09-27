@@ -21,6 +21,10 @@
    A `string` containing the name of the SVG profile, valid profiles are:
    ``full``, ``basic`` and ``tiny``.
 
+.. attribute:: _Parameter.validator
+
+   *validator* provides methods to check validity of SVG attributes and values
+
 .. automethod:: _Parameter.__init__([baseProfile="full", debug=False])
 
 .. automethod:: _Parameter.set_debug(debug=True)
@@ -30,16 +34,24 @@
 .. automethod:: _Parameter.get_auto_id()
 
 """
+from svgwrite.validator import Validator
+
 class _Parameter(object):
     debug = False
     profile = "full"
+    validator = None
     autoid = 1
     def __init__(self):
         self.debug = False
         self.profile = "full"
+        self._init_validator()
+
+    def _init_validator(self):
+        self.validator = Validator(self.profile, self.debug)
 
     def set_debug(self, debug=True):
         self.debug = debug
+        self._init_validator()
 
     def set_profile(self, profile):
         """
@@ -49,6 +61,7 @@ class _Parameter(object):
         profile = profile.lower()
         if profile in ('tiny', 'basic', 'full'):
             self.profile = profile
+            self._init_validator()
         else:
             raise ValueError("'%s' is not a valid profile." % profile)
 

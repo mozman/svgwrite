@@ -30,8 +30,7 @@
 import re
 
 from svgwrite import parameter
-from svgwrite. validator import check_tiny, check_coordinate, \
-     _coordinate_pattern, _angle_pattern
+from svgwrite import pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
     """
@@ -93,7 +92,7 @@ def value_to_string(value):
     """
     if isinstance(value, (int, float)) and parameter.profile=='tiny':
         if parameter.debug:
-            check_tiny(value)
+            parameter.validator.check_tiny(value)
         if isinstance(value, float):
             value = round(value, 4)
     return unicode(value)
@@ -107,8 +106,8 @@ def points_to_string(points):
     for point in points:
         x, y = point
         if parameter.debug:
-            check_coordinate(x, parameter.profile)
-            check_coordinate(y, parameter.profile)
+            parameter.validator.check_coordinate(x)
+            parameter.validator.check_coordinate(y)
         if parameter.profile == 'tiny':
             if isinstance(x, float):
                 x = round(x, 4)
@@ -126,7 +125,7 @@ def get_unit(coordinate):
     """
     if isinstance(coordinate, (int, float)):
         return None
-    result = _coordinate_pattern.match(coordinate)
+    result = pattern.coordinate.match(coordinate)
     if result:
         return result.group(3)
     else:
@@ -142,7 +141,7 @@ def split_coordinate(coordinate):
     """
     if isinstance(coordinate, (int, float)):
         return (float(coordinate), None)
-    result = _coordinate_pattern.match(coordinate)
+    result = pattern.coordinate.match(coordinate)
     if result:
         return (float(result.group(1)), result.group(3))
     else:
@@ -159,7 +158,7 @@ def split_angle(angle):
 
     if isinstance(angle, (int, float)):
         return (float(angle), None)
-    result = _angle_pattern.match(angle)
+    result = pattern.angle.match(angle)
     if result:
         return (float(result.group(1)), result.group(3))
     else:

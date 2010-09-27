@@ -13,8 +13,6 @@ import xml.etree.ElementTree as etree
 
 from svgwrite import parameter
 from svgwrite.utils import value_to_string
-from svgwrite.validator import check_attribute_names, check_attribute_value, \
-     check_valid_content, check_coordinate
 
 class BaseElement(object):
     """
@@ -76,7 +74,7 @@ class BaseElement(object):
             self.attribs = dict(attribs)
         update(self.attribs, extra)
         if parameter.debug:
-            check_attribute_names(self.elementname, self.attribs)
+            parameter.validator.check_attribute_names(self.elementname, self.attribs)
         self.elements = list()
 
     def __getitem__(self, key):
@@ -97,7 +95,7 @@ class BaseElement(object):
         """
         self.attribs[key] = value
         if parameter.debug:
-            check_attribute_names(self.elementname, self.attribs)
+            parameter.validator.check_attribute_names(self.elementname, self.attribs)
 
     def add(self, element):
         """ Add an SVG element as subelement.
@@ -106,7 +104,7 @@ class BaseElement(object):
 
         """
         if parameter.debug:
-            check_valid_content(self.elementname, element.elementname)
+            parameter.validator.check_valid_content(self.elementname, element.elementname)
         self.elements.append(element)
 
     def tostring(self):
@@ -125,17 +123,17 @@ class BaseElement(object):
 
         """
         if parameter.debug:
-            check_attribute_names(self.elementname, self.attribs)
+            parameter.validator.check_attribute_names(self.elementname, self.attribs)
         xml = etree.Element(self.elementname)
         for attribute, value in self.attribs.iteritems():
             value = value_to_string(value)
             if parameter.debug:
                 if self.elementname not in ('text', 'tspan'):
-                    check_attribute_value(attribute, value)
+                    parameter.validator.check_attribute_value(attribute, value)
                     # attribute check does not work for text and tspan:
                     # x, y, dx, dy, rotate are lists
                 elif attribute not in ('x', 'y', 'dx', 'dy', 'rotate'):
-                    check_attribute_value(attribute, value)
+                    parameter.validator.check_attribute_value(attribute, value)
             if value: # just add not empty attributes
                 xml.set(attribute, value)
 

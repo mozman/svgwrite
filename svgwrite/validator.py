@@ -8,6 +8,131 @@
 
 import re
 
+from svgwrite import pattern
+
+_VERSION_1_1 = 11
+_VERSION_1_2 = 12
+
+class Validator(object):
+    def __init__(self, profile, debug=True):
+        self.debug = debug
+        if profile == 'tiny':
+            profile = 'tiny-12'
+        if profile in ['full', 'basic']: # basic is equal to full
+            profile = 'full-11'
+
+        if profile in ['full-11', 'tiny-12']:
+            self.profile = profile
+            self.version = int(profile[-2:])
+            if profile.startswith('tiny'):
+                self.tiny = True
+            else:
+                self.tiny = False
+        else:
+            raise ValueError("Valid profiles are: 'tiny', 'basic', 'full', 'tiny-12', 'full-11'.")
+
+    def check_attribute_names(self, elementname, attribs):
+        """Checks if all attribute-names (keys of attribs) for element 'elementname'
+        are valid.
+
+        Raises ValueError if not valid.
+        """
+        valid_attribs = attributes[elementname]
+        for key in attribs.iterkeys():
+            if key not in valid_attribs:
+                raise ValueError("Invalid attribute '%s' for element '%s'." % (key, elementname))
+        return attribs # pass-through function
+
+    def check_attribute_value(self, attributename, value):
+        """Checks if value is valid for attribute 'attribute-name'.
+
+        Raises ValueError if not valid.
+        """
+        if not isinstance(value, basestring):
+            value = unicode(value)
+        if not validate_attribute[attributename](value):
+            raise ValueError("Value '%s' is not valid for attribute '%s'." % (value, attributename))
+        return value # pass-through function
+
+    def check_valid_content(self, element, subelement):
+        """ Check if element can contain subelement.
+
+        Raises ValueError for invalid subelement.
+        """
+        valid_subelements = content_model[element]
+        if '*' not in valid_subelements:
+            if subelement not in valid_subelements:
+                raise ValueError("Invalid content '%s' for element '%s'." % (subelement, element))
+        return subelement
+
+    def get_coordinate(self, value):
+        """ Split value in (number, unit) if value has an unit or (number, None).
+
+        Raises ValueError if not valid.
+        """
+        if value is None:
+            raise TypeError("invalid type 'None'.")
+        if isinstance(value, (int, float)):
+            number, unit = float(value), None
+        else:
+            result = pattern.coordinate.match(value.strip())
+            if result:
+                number, tmp, unit = result.groups()
+                number = float(number)
+            else:
+                raise ValueError("'%s' has not a valid svg coordinate." % value)
+        if self.tiny: # check value range of tiny profile
+            number = self.check_tiny(round(number, 4)) # round to four places for tiny profile
+        return number, unit
+
+    def get_angle(self, value):
+        """ Split value in (number, unit) if value has an unit or (number, None).
+
+        Raises ValueError if not valid.
+        """
+        if value is None:
+            raise TypeError("invalid type 'None'.")
+        if isinstance(value, (int, float)):
+            number, unit = float(value), None
+        else:
+            result = _angle_pattern.match(value.strip())
+            if result:
+                number, tmp, unit = result.groups()
+                number = float(number)
+            else:
+                raise ValueError("'%s' has not a valid svg angle." % value)
+        if self.tiny: # check value range of tiny profile
+            number = self.check_tiny(round(number, 4)) # round to four places for tiny profile
+        return number, unit
+
+    def check_coordinate(self, value):
+        """ Check if value is a valid coordinate, raises ValueError if not valid.
+        """
+        number, unit = self.get_coordinate(value)
+        return value
+
+    def check_angle(self, value):
+        """ Check if value is a valid angle, raises ValueError if not valid.
+        """
+        number, unit = self.get_angle(value)
+        return value
+
+    def check_number(self, value):
+        number = float(value) # ok if we get a float number
+        if self.tiny:
+            self.check_tiny(number)
+        return value
+
+    def check_tiny(self, number):
+        """ Check if number is a valid 'tiny' number, raises ValueError
+        if number is not valid.
+
+        Raises ValueError if not valid.
+        """
+        if not (-32767.9999 <= number <= 32767.9999):
+            raise ValueError("'%.4f' out of range for baseProfile 'tiny'" % number)
+        return number # pass-through function
+
 def check_attribute_names(elementname, attribs):
     """Checks if all attribute-names (keys of attribs) for element 'elementname'
     are valid.
@@ -52,7 +177,7 @@ def get_coordinate(value, profile='tiny'):
     if isinstance(value, (int, float)):
         number, unit = float(value), None
     else:
-        result = _coordinate_pattern.match(value.strip())
+        result = pattern.coordinate.match(value.strip())
         if result:
             number, tmp, unit = result.groups()
             number = float(number)
@@ -72,7 +197,7 @@ def get_angle(value, profile='tiny'):
     if isinstance(value, (int, float)):
         number, unit = float(value), None
     else:
-        result = _angle_pattern.match(value.strip())
+        result = pattern.angle.match(value.strip())
         if result:
             number, tmp, unit = result.groups()
             number = float(number)
@@ -334,16 +459,12 @@ attributes = flatten_attributes()
 def _always_valid(value):
     return True
 
-_coordinate_pattern = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(cm|em|ex|in|mm|pc|pt|px|%)?$") # coordinates with optional unit
-_angle_pattern = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(deg|rad|grad)?$") # coordinates with optional unit
-_number_pattern = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)$") # numbers without units
-
 def _valid_angle(value):
-    return _angle_pattern.match(value) is not None
+    return pattern.angle.match(value) is not None
 def _valid_coordinate(value):
-    return _coordinate_pattern.match(value) is not None
+    return pattern.coordinate.match(value) is not None
 def _valid_number(value):
-    return _number_pattern.match(value) is not None
+    return pattern.number.match(value) is not None
 
 validate_attribute = {
     'accent-height' : _always_valid,
