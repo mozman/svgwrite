@@ -90,9 +90,9 @@ def value_to_string(value):
     on debug-state and SVG-profile.
 
     """
-    if isinstance(value, (int, float)) and parameter.profile=='tiny':
+    if isinstance(value, (int, float)):
         if parameter.debug:
-            parameter.validator.check_tiny(value)
+            parameter.validator.check_number(value)
         if isinstance(value, float):
             value = round(value, 4)
     return unicode(value)

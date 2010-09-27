@@ -34,7 +34,7 @@
 .. automethod:: _Parameter.get_auto_id()
 
 """
-from svgwrite.validator import Validator
+from svgwrite import validator
 
 class _Parameter(object):
     debug = False
@@ -43,15 +43,27 @@ class _Parameter(object):
     autoid = 1
     def __init__(self):
         self.debug = False
-        self.profile = "full"
+        self._profile = "full"
         self._init_validator()
 
     def _init_validator(self):
-        self.validator = Validator(self.profile, self.debug)
+        if self._profile == 'tiny':
+            self.validator = validator.TinyProfileValidator(self.debug)
+        else:
+            self.validator = validator.FullProfileValidator(self.debug)
 
     def set_debug(self, debug=True):
         self.debug = debug
         self._init_validator()
+
+    def get_version(self):
+        if self._profile == 'tiny':
+            return '1.2'
+        else:
+            return '1.1'
+
+    def get_profile(self):
+        return self._profile
 
     def set_profile(self, profile):
         """
@@ -60,7 +72,7 @@ class _Parameter(object):
         """
         profile = profile.lower()
         if profile in ('tiny', 'basic', 'full'):
-            self.profile = profile
+            self._profile = profile
             self._init_validator()
         else:
             raise ValueError("'%s' is not a valid profile." % profile)

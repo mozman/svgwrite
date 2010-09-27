@@ -25,8 +25,6 @@ set/get SVG attributes::
 from svgwrite import parameter
 from svgwrite.base import BaseElement
 from svgwrite.interface import IViewBox, ITransform, IXLink
-from svgwrite.validator import check_coordinate
-
 
 class Group(BaseElement, ITransform):
     """ The <g> element is a container element for grouping together
@@ -245,18 +243,16 @@ class SVG(Symbol):
         :param extra: additional SVG attributs as keyword-arguments
         """
         super(SVG, self).__init__(attribs=attribs, **extra)
-        debug = parameter.debug
-        profile = parameter.profile
         if insert:
-            if debug:
-                check_coordinate(insert[0], profile)
-                check_coordinate(insert[1], profile)
+            if parameter.debug:
+                parameter.validator.check_coordinate(insert[0])
+                parameter.validator.check_coordinate(insert[1])
             self.attribs['x'] = insert[0]
             self.attribs['y'] = insert[1]
         if size:
-            if debug:
-                check_coordinate(size[0], profile)
-                check_coordinate(size[1], profile)
+            if parameter.debug:
+                parameter.validator.check_coordinate(size[0])
+                parameter.validator.check_coordinate(size[1])
             self.attribs['width'] = size[0]
             self.attribs['height'] = size[1]
 
@@ -329,20 +325,17 @@ class Use(BaseElement, ITransform, IXLink):
         :param extra: additional SVG attributs as keyword-arguments
         """
         super(Use, self).__init__(attribs, **extra)
-
-        debug = parameter.debug
-        profile = parameter.profile
         self.set_href(href)
         if insert:
-            if debug:
-                check_coordinate(insert[0], profile)
-                check_coordinate(insert[1], profile)
+            if parameter.debug:
+                parameter.validator.check_coordinate(insert[0])
+                parameter.validator.check_coordinate(insert[1])
             self.attribs['x'] = insert[0]
             self.attribs['y'] = insert[1]
         if size:
-            if debug:
-                check_coordinate(size[0], profile)
-                check_coordinate(size[1], profile)
+            if parameter.debug:
+                parameter.validator.check_coordinate(size[0])
+                parameter.validator.check_coordinate(size[1])
             self.attribs['width'] = size[0]
             self.attribs['height'] = size[1]
 
