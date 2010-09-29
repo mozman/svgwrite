@@ -29,7 +29,7 @@ class TestUse(unittest.TestCase):
         self.assertEqual(use.tostring(), '<use xlink:href="#test" />')
 
     def test_object_link_auto_id(self):
-        parameter.autoid = 999 # only for testing !!!!
+        parameter._set_auto_id(999) # only for testing !!!!
         g = Group()
         use = Use(g)
         self.assertEqual(use.tostring(), '<use xlink:href="#id999" />')

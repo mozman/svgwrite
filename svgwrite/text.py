@@ -20,6 +20,8 @@ class TSpan(BaseElement):
     """ Within a :class:`~svgwrite.Text` element, text and font properties
     and the current text position can be adjusted with absolute or relative
     coordinate values by using the :class:`~svgwrite.TSpan` element.
+    The characters to be drawn are expressed as XML character data inside the
+    <tspan> element.
 
     :param 2-tuple insert: The *insert* parameter is the absolute insert point
         of the text, don't use this parameter in combination with the *x* or the
@@ -268,7 +270,10 @@ class TSpan(BaseElement):
         return xml
 
 class Text(TSpan, ITransform):
-    """ The *Text* element defines a graphics element consisting of text.
+    """
+    The *Text* element defines a graphics element consisting of text.
+    The characters to be drawn are expressed as XML character data inside the
+    <text> element.
 
     **Attributes**
 

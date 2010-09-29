@@ -24,7 +24,6 @@ Modules:
    :titlesonly:
 
    svgwrite
-   utils/parameter
    utils/utils
    utils/validator
 

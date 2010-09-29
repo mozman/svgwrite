@@ -14,7 +14,7 @@ from svgwrite import parameter
 
 class TestPath(unittest.TestCase):
     def setUp(self):
-        parameter.set_debug()
+        parameter.set_debug(True)
         parameter.set_profile('full')
 
     def test_constructor(self):

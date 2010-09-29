@@ -68,12 +68,11 @@ class Group(BaseElement, ITransform):
 
     **Standard SVG Attributes**
 
-    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+    * :doc:`Core Attributes </attributes/core>`
+    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
+    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
+    * :doc:`Presentation Attributes </attributes/presentation>`
 
-    * Core Attributes
-    * Conditional Processing Attributes
-    * Graphical Event Attributes
-    * Presentation Attributes
     """
     elementname = 'g'
 
@@ -140,11 +139,10 @@ class Symbol(BaseElement, IViewBox):
 
     **Standard SVG Attributes**
 
-    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+    * :doc:`Core Attributes </attributes/core>`
+    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
+    * :doc:`Presentation Attributes </attributes/presentation>`
 
-    * Core Attributes
-    * Graphical Event Attributes
-    * Presentation Attributes
     """
     # ITransform interface is not valid for Symbol -> do not inherit from Group
     elementname = 'symbol'
@@ -224,13 +222,11 @@ class SVG(Symbol):
 
     **Standard SVG Attributes**
 
-    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
-
-    * Core Attributes
-    * Conditional Processing Attributes
-    * Document Event Attributes
-    * Graphical Event Attributes
-    * Presentation Attributes
+    * :doc:`Core Attributes </attributes/core>`
+    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
+    * :doc:`Document Event Attributes </attributes/document_event>`
+    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
+    * :doc:`Presentation Attributes </attributes/presentation>`
 
     """
     elementname = 'svg'
@@ -306,13 +302,12 @@ class Use(BaseElement, ITransform, IXLink):
 
     **Standard SVG Attributes**
 
-    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+    * :doc:`Core Attributes </attributes/core>`
+    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
+    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
+    * :doc:`Presentation Attributes </attributes/presentation>`
+    * :doc:`XLink Attributes </attributes/xlink>`
 
-    * Core Attributes
-    * Conditional Processing Attributes
-    * Graphical Event Attributes
-    * Presentation Attributes
-    * XLink Attributes
     """
     elementname = 'use'
 

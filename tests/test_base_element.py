@@ -17,7 +17,7 @@ class MockBase(BaseElement):
 
 class TestBaseElement(unittest.TestCase):
     def setUp(self):
-        parameter.set_debug()
+        parameter.debug=True
         parameter.set_profile('full')
 
 

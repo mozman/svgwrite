@@ -108,7 +108,7 @@ def points_to_string(points):
         if parameter.debug:
             parameter.validator.check_coordinate(x)
             parameter.validator.check_coordinate(y)
-        if parameter.profile == 'tiny':
+        if parameter.get_profile() == 'tiny':
             if isinstance(x, float):
                 x = round(x, 4)
             if isinstance(y, float):

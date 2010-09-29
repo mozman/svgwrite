@@ -8,8 +8,6 @@
 """
 A Python library to create SVG drawings.
 
-work in progress - pre-alpha status.
-
 a simple example::
 
     import svgwrite as svg
@@ -18,6 +16,14 @@ a simple example::
     drawing.add(svg.Line((0, 0), (10, 0), stroke=svg.rgb(10, 10, 16, '%')))
     drawing.add(svg.Text('Test', insert=(0, 0.2))
     drawing.save()
+
+SVG Version
+-----------
+
+Only two types of SVG drawings could be created:
+
+* *SVG 1.2 Tiny Profile* for svgwrite.parameter.profile = ``'tiny'``
+* *SVG 1.1 Full Profile* for svgwrite.parameter.profile = ``'full|basic'``
 
 """
 
