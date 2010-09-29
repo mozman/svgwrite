@@ -6,7 +6,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'mozman@gmx.at'
 CYEAR = '2010'
