@@ -14,8 +14,8 @@ from svgwrite import cm, mm, rgb, deg
 # set_profile -- full, basic or tiny baseProfile (default: full)
 # set_debug -- verify property-names and property-values and for each element
 #     verify valid subelements(default: False)
-svg.parameter.set_debug(True)
-svg.parameter.set_profile('full')
+svg.parameter.debug = True
+svg.parameter.profile = 'full'
 
 def empty_drawing(name):
     drawing = svg.Drawing(filename=name)

@@ -111,12 +111,11 @@ class Path(BaseElement, ITransform):
 
     **Standard SVG Attributes**
 
-    for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+    * :doc:`Core Attributes </attributes/core>`
+    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
+    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
+    * :doc:`Presentation Attributes </attributes/presentation>`
 
-    * Core Attributes
-    * Conditional Processing Attributes
-    * Graphical Event Attributes
-    * Presentation Attributes
     """
     elementname = 'path'
     def __init__(self, d=None, attribs=None, **extra):

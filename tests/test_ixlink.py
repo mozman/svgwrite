@@ -36,7 +36,7 @@ class TestIXLink(unittest.TestCase):
         self.assertEqual(m.tostring(), '<use xlink:href="#test" />')
 
     def test_object_link_auto_id(self):
-        parameter.autoid = 999 # only for testing !!!!
+        parameter._set_auto_id(999) # only for testing !!!!
         g = Group()
         m = Mock()
         m.set_href(g)

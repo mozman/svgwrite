@@ -1,8 +1,3 @@
-:mod:`text` module
-==================
-
-.. automodule:: svgwrite.text
-
 :class:`Text` objects
 =====================
 

@@ -101,10 +101,6 @@ class Drawing(SVG):
         """
         profile = parameter.get_profile()
         version = parameter.get_version()
-#        if profile == 'tiny':
-#            version = '1.2' # only tiny
-#        else:
-#            version = '1.1' # basic or full
         self.attribs['xmlns'] = "http://www.w3.org/2000/svg"
         self.attribs['xmlns:xlink'] = "http://www.w3.org/1999/xlink"
         self.attribs['baseProfile'] = profile
