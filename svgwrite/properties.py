@@ -6,9 +6,15 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-class SVGProperty(object):
+class SVGAttribute(object):
     def __init__(self, name, anim, inherit, types, strings):
         self.name = name
         self.anim = anim
         self.valid_types = types
         self.valid_strings = strings
+
+class SVGElement(object):
+    def __init__(self, name, attributes, subelements):
+        self.name = name
+        self.valid_attributes = attributes
+        self.valid_subelements = subelements
