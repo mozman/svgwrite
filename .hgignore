@@ -2,6 +2,7 @@ syntax: glob
 build/*
 dist/*
 doc/_build/*
+makedata/.cache/*
 *.err
 *.orig
 *.bak
