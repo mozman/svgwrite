@@ -60,7 +60,7 @@ class SVGElement(object):
         return self.name
 
     def tostring(self):
-        return "SVGElement('%s', attributes=%s,\n    properties=%s,\n    children=%s)" % (
+        return "SVGElement('%s',\n    attributes=%s,\n    properties=%s,\n    children=%s)" % (
             self.name,
             self.attribute_names,
             self.property_names,
@@ -153,7 +153,7 @@ def write_elements(filename, elements):
     keys.sort()
     for name in keys:
         element = elements[name]
-        f.write(element.tostring()+',\n\n')
+        f.write("    '%s': %s,\n\n" % (name, element.tostring()))
     f.write("}\n")
     f.close()
 
