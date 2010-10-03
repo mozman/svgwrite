@@ -6,9 +6,13 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from tiny12attributes import tiny12_attributes
-from tiny12elements import tiny12_elements
-import tiny12typechecker
+from svgwrite.data.tiny12_atttributes import tiny12_attributes
+from svgwrite.data.tiny12elements import tiny12_elements
+import svgwrite.data.tiny12typechecker as tiny12typechecker
+
+from svgwrite.data.full11_atttributes import full11_attributes
+from svgwrite.data.full11elements import full11_elements
+import svgwrite.data.full11typechecker as full11typechecker
 
 class Tiny12Validator(object):
     def __init__(self, debug=True):
@@ -35,7 +39,10 @@ class Tiny12Validator(object):
         attribute = self.attributes[attributename]
         # check if value match a valid datatype
         for typename in attribute.valid_types:
-            if self.typechecker[typename](value):
+            if typename.startswith('list-of-'):
+                t = typename[8:]
+                return self.typechecker['list-of-T'](value, t)
+            elif self.typechecker[typename](value):
                 return True
         # check if value is a valid constant
         valuestr = str(value)
