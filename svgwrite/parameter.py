@@ -28,7 +28,7 @@
    name of the SVG profile, valid profiles are: ``'full|basic|tiny'``
 
 """
-from svgwrite import validator
+from svgwrite import validator2
 
 class _Parameter(object):
     _debug = False
@@ -43,9 +43,11 @@ class _Parameter(object):
 
     def _init_validator(self):
         if self.get_profile() == 'tiny':
-            self.validator = validator.TinyProfileValidator(self.debug)
+            #self.validator = validator.TinyProfileValidator(self.debug)
+            self.validator = validator2.Tiny12Validator(self.debug)
         else:
-            self.validator = validator.FullProfileValidator(self.debug)
+            #self.validator = validator.FullProfileValidator(self.debug)
+            self.validator = validator2.Full11Validator(self.debug)
 
     def get_debug(self):
         return _Parameter._debug

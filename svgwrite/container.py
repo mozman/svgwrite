@@ -240,18 +240,13 @@ class SVG(Symbol):
         """
         super(SVG, self).__init__(attribs=attribs, **extra)
         if insert:
-            if parameter.debug:
-                parameter.validator.check_coordinate(insert[0])
-                parameter.validator.check_coordinate(insert[1])
             self.attribs['x'] = insert[0]
             self.attribs['y'] = insert[1]
         if size:
-            if parameter.debug:
-                parameter.validator.check_coordinate(size[0])
-                parameter.validator.check_coordinate(size[1])
             self.attribs['width'] = size[0]
             self.attribs['height'] = size[1]
-
+        if parameter.debug:
+            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
         self.defs = Defs() # defs container
         self.add(self.defs) # add defs as first element
 

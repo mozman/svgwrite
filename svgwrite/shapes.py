@@ -38,10 +38,12 @@ class Line(BaseElement, ITransform):
         super(Line, self).__init__(attribs=attribs, **extra)
         x1, y1 = start
         x2, y2 = end
-        self.attribs['x1'] = parameter.validator.check_coordinate(x1)
-        self.attribs['y1'] = parameter.validator.check_coordinate(y1)
-        self.attribs['x2'] = parameter.validator.check_coordinate(x2)
-        self.attribs['y2'] = parameter.validator.check_coordinate(y2)
+        self.attribs['x1'] = x1
+        self.attribs['y1'] = y1
+        self.attribs['x2'] = x2
+        self.attribs['y2'] = y2
+        if parameter.debug:
+            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
 class Rect(BaseElement, ITransform):
     """ The <rect> element defines a rectangle which is axis-aligned with the current
@@ -79,12 +81,14 @@ class Rect(BaseElement, ITransform):
         super(Rect, self).__init__(attribs=attribs, **extra)
         x, y = insert
         width, height = size
-        self.attribs['x'] = parameter.validator.check_coordinate(x)
-        self.attribs['y'] = parameter.validator.check_coordinate(y)
-        self.attribs['width'] = parameter.validator.check_length(width)
-        self.attribs['height'] = parameter.validator.check_length(height)
-        if rx: self.attribs['rx'] = parameter.validator.check_length(rx)
-        if ry: self.attribs['ry'] = parameter.validator.check_length(ry)
+        self.attribs['x'] = x
+        self.attribs['y'] = y
+        self.attribs['width'] = width
+        self.attribs['height'] = height
+        if rx: self.attribs['rx'] = rx
+        if ry: self.attribs['ry'] = ry
+        if parameter.debug:
+            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
 class Circle(BaseElement, ITransform):
     """ The <circle> element defines a circle based on a center point and a radius.
@@ -109,11 +113,11 @@ class Circle(BaseElement, ITransform):
         """
         super(Circle, self).__init__(attribs=attribs, **extra)
         cx, cy = center
-        self.attribs['cx'] = parameter.validator.check_coordinate(cx)
-        self.attribs['cy'] = parameter.validator.check_coordinate(cy)
-        self.attribs['r'] = parameter.validator.check_length(r)
-
-
+        self.attribs['cx'] = cx
+        self.attribs['cy'] = cy
+        self.attribs['r'] = r
+        if parameter.debug:
+            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
 class Ellipse(BaseElement, ITransform):
     """ The <ellipse> element defines an ellipse which is axis-aligned with the
@@ -141,10 +145,12 @@ class Ellipse(BaseElement, ITransform):
         super(Ellipse, self).__init__(attribs=attribs, **extra)
         cx, cy = center
         rx, ry = r
-        self.attribs['cx'] = parameter.validator.check_coordinate(cx)
-        self.attribs['cy'] = parameter.validator.check_coordinate(cy)
-        self.attribs['rx'] = parameter.validator.check_length(rx)
-        self.attribs['ry'] = parameter.validator.check_length(ry)
+        self.attribs['cx'] = cx
+        self.attribs['cy'] = cy
+        self.attribs['rx'] = rx
+        self.attribs['ry'] = ry
+        if parameter.debug:
+            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
 class Polyline(BaseElement, ITransform):
     """ The <polyline> element defines a set of connected straight line segments.
@@ -182,8 +188,8 @@ class Polyline(BaseElement, ITransform):
         if parameter.debug:
             for point in points:
                 x, y = point
-                parameter.validator.check_coordinate(x)
-                parameter.validator.check_coordinate(y)
+                parameter.validator.check_svg_type(x, 'number')
+                parameter.validator.check_svg_type(y, 'number')
         self.points = list(points)
 
     def get_xml(self):

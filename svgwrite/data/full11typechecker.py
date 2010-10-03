@@ -1,21 +1,35 @@
 from svgwrite import pattern
 
+def iterflatlist(values):
+    """
+    Flatten nested *values*, returns an *iterator*.
+
+    """
+    for element in values:
+        if hasattr(element, "__iter__") and not isinstance(element, basestring):
+            for item in iterflatlist(element):
+                yield item
+        else:
+            yield element
+
 INVALID_NAME_CHARS = frozenset([' ', '\t', '\r', '\n', ',', '(', ')'])
 WHITESPACE = frozenset([' ', '\t', '\r', '\n'])
 
 class Full11TypeChecker(object):
-    @staticmethod
-    def is_angle(value):
+    def is_angle(self, value):
         #angle ::= number (~"deg" | ~"grad" | ~"rad")?
-        return True
+        if self.is_number(value):
+            return True
+        elif isinstance(value, basestring):
+            return pattern.angle.match(value) is not None
+        return False
 
-    @staticmethod
-    def is_anything(value):
+    def is_anything(self, value):
         #anything ::= Char*
         return True
+    is_string = is_anything
 
-    @staticmethod
-    def is_color(value):
+    def is_color(self, value):
         #color    ::= "#" hexdigit hexdigit hexdigit (hexdigit hexdigit hexdigit)?
         #             | "rgb(" wsp* integer comma integer comma integer wsp* ")"
         #             | "rgb(" wsp* integer "%" comma integer "%" comma integer "%" wsp* ")"
@@ -24,85 +38,106 @@ class Full11TypeChecker(object):
         #comma    ::= wsp* "," wsp*
         return True
 
-    @staticmethod
-    def is_frequency(value):
+    def is_frequency(self, value):
         #frequency ::= number (~"Hz" | ~"kHz")
-        return True
+        if self.is_number(value):
+            return True
+        elif isinstance(value, basestring):
+            return pattern.frequency.match(value) is not None
+        return False
 
-    @staticmethod
-    def is_FuncIRI(value):
+    def is_FuncIRI(self, value):
         #FuncIRI ::= "url(" <IRI> ")"
         return True
-    @staticmethod
-    def is_icccolor(value):
+
+    def is_icccolor(self, value):
         #icccolor ::= "icc-color(" name (comma-wsp number)+ ")"
         return True
-    @staticmethod
-    def is_integer(value):
-        #integer ::= [+-]? [0-9]+
-        return True
 
-    @staticmethod
-    def is_IRI(value):
+    def is_integer(self, value):
+        try:
+            number = int(value)
+            return True
+        except:
+            return False
+
+    def is_IRI(self, value):
         #Internationalized Resource Identifiers
         #a more generalized complement to Uniform Resource Identifiers (URIs)
         return True
 
-    @staticmethod
-    def is_length(value):
+    def is_length(self, value):
         #length ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%")?
-        return True
+        if value is None:
+            return False
+        if isinstance(value, (int, float)):
+            return self.is_number(value)
+        elif isinstance(value, basestring):
+            result = pattern.length.match(value.strip())
+            if result:
+                number, tmp, unit = result.groups()
+                return self.is_number(number) # for tiny check!
+        return False
+
     is_coordinate = is_length
 
-    @staticmethod
-    def is_list_of_T(value, t='string'):
+    def is_list_of_T(self, value, t='string'):
         def split(value):
             #TODO: improve split function!!!!
-            return value.split()
+            if isinstance(value, (int, float)):
+                return (value, )
+            if isinstance(value, basestring):
+                return iterflatlist(v.split(',') for v in value.split(' '))
+            return value
         #list-of-Ts ::= T
         #               | T comma-wsp list-of-Ts
         #comma-wsp  ::= (wsp+ ","? wsp*) | ("," wsp*)
         #wsp        ::= (#x20 | #x9 | #xD | #xA)
-        checker = checkfuncs[t]
+        checker = self.get_func_by_name(t)
         for v in split(value):
             if not checker(v):
                 return False
         return True
 
-    @staticmethod
-    def is_semicolon_list(value):
+    def is_semicolon_list(self, value):
         #a semicolon-separated list of values
         #               | value comma-wsp list-of-values
         #comma-wsp  ::= (wsp+ ";" wsp*) | ("," wsp*)
         #wsp        ::= (#x20 | #x9 | #xD | #xA)
         return True
 
-    @staticmethod
-    def is_name(value):
+    def is_name(self, value):
         #name  ::= [^,()#x20#x9#xD#xA] /* any char except ",", "(", ")" or wsp */
-        if not isinstance(value, basestring):
-            return False
-        name = frozenset(value)
+        name = frozenset(str(value))
         if name.isdisjoint(INVALID_NAME_CHARS):
             return True
         return False
 
-    @staticmethod
-    def is_number(value):
+    def is_number(self, value):
         try:
             number = float(value)
             return True
-        except ValueError:
+        except:
             return False
 
-    @staticmethod
-    def is_number_optional_number(value):
+    def is_number_optional_number(self, value):
         #number-optional-number ::= number
         #                           | number comma-wsp number
-        return True
+        if isinstance(value, basestring):
+            pass
+        else:
+            try: # is it a 2-tuple
+                n1, n2 = value
+                if self.is_number(n1) and \
+                   self.is_number(n2):
+                    return True
+            except TypeError: # just one value
+                return self.is_number(value)
+            except ValueError: # more than 2 values
+                pass
+        return False
 
-    @staticmethod
-    def is_paint(value):
+    def is_paint(self, value):
         #paint ::=	"none" |
         #           "currentColor" |
         #           <color> [<icccolor>] |
@@ -110,27 +145,29 @@ class Full11TypeChecker(object):
         #           "inherit"
         return True
 
-    @staticmethod
-    def is_percentage(value):
+    def is_percentage(self, value):
         #percentage ::= number "%"
-        return True
+        if is_number(value):
+            return True
+        elif isinstance(value, basestring):
+            return pattern.percentage.match(value) is not None
+        return False
 
-    @staticmethod
-    def is_time(value):
+    def is_time(self, value):
         #time ::= <number> (~"ms" | ~"s")?
+        if is_number(value):
+            return True
+        elif isinstance(value, basestring):
+            return pattern.time.match(value) is not None
+        return False
+
+    def is_transform_list(self, value):
         return True
 
-    @staticmethod
-    def is_transform_list(value):
+    def is_XML_Name(self, value):
         return True
 
-    @staticmethod
-    def is_XML_Name(value):
-        return True
-
-    is_string = is_anything
-    @staticmethod
-    def is_shape(value):
+    def is_shape(self, value):
         #shape ::= (<top> <right> <bottom> <left>)
         # where <top>, <bottom> <right>, and <left> specify offsets from the
         # respective sides of the box.
@@ -139,4 +176,10 @@ class Full11TypeChecker(object):
         return True
 
     def get_func_by_name(self, funcname):
-        return getattr(self, funcname, self.is_anything)
+        return getattr(self, 'is_'+funcname, self.is_anything)
+
+    def check(self, typename, value):
+        if typename.startswith('list-of-'):
+            t = typename[8:]
+            return self.is_list_of_T(value, t)
+        return self.get_func_by_name(typename)(value)

@@ -92,7 +92,7 @@ def value_to_string(value):
     """
     if isinstance(value, (int, float)):
         if parameter.debug:
-            parameter.validator.check_number(value)
+            parameter.validator.check_svg_type(value, 'number')
         if isinstance(value, float):
             value = round(value, 4)
     return unicode(value)
@@ -104,10 +104,12 @@ def points_to_string(points):
     """
     strings = []
     for point in points:
+        if len(point) != 2:
+            raise TypeError('got %s values, but expected 2 values.' % len(point))
         x, y = point
         if parameter.debug:
-            parameter.validator.check_coordinate(x)
-            parameter.validator.check_coordinate(y)
+            parameter.validator.check_svg_type(x, 'coordinate')
+            parameter.validator.check_svg_type(y, 'coordinate')
         if parameter.get_profile() == 'tiny':
             if isinstance(x, float):
                 x = round(x, 4)

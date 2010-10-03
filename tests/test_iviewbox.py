@@ -32,7 +32,7 @@ class TestITransfer(unittest.TestCase):
     def test_viewbox_err(self):
         m = Mock()
         # no units allowed
-        self.assertRaises(ValueError, m.viewbox, '10cm')
+        self.assertRaises(TypeError, m.viewbox, '10cm')
 
     def test_strech(self):
         m = Mock()

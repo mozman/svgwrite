@@ -38,7 +38,7 @@ class TestITransfer(unittest.TestCase):
     def test_translate_err(self):
         m = Mock()
         # no units allowed
-        self.assertRaises(ValueError, m.translate, '10cm')
+        self.assertRaises(TypeError, m.translate, '10cm')
 
     def test_rotate(self):
         m = Mock()
@@ -54,8 +54,8 @@ class TestITransfer(unittest.TestCase):
     def test_rotate_err(self):
         m = Mock()
         # no units allowed
-        self.assertRaises(ValueError, m.rotate, '30deg')
-        self.assertRaises(ValueError, m.rotate, '30', center=('1cm', '1cm'))
+        self.assertRaises(TypeError, m.rotate, '30deg')
+        self.assertRaises(TypeError, m.rotate, '30', center=('1cm', '1cm'))
 
     def test_scale_sx(self):
         m = Mock()
@@ -70,8 +70,8 @@ class TestITransfer(unittest.TestCase):
     def test_scale_err(self):
         m = Mock()
         # no units allowed
-        self.assertRaises(ValueError, m.scale, '3cm')
-        self.assertRaises(ValueError, m.scale, '3', '2cm')
+        self.assertRaises(TypeError, m.scale, '3cm')
+        self.assertRaises(TypeError, m.scale, '3', '2cm')
 
     def test_skewX(self):
         m = Mock()
@@ -86,7 +86,7 @@ class TestITransfer(unittest.TestCase):
     def test_skewX_err(self):
         m = Mock()
         # no units allowed
-        self.assertRaises(ValueError, m.skewX, '3deg')
+        self.assertRaises(TypeError, m.skewX, '3deg')
 
     def test_skewY(self):
         m = Mock()
@@ -101,7 +101,7 @@ class TestITransfer(unittest.TestCase):
     def test_skewY_err(self):
         m = Mock()
         # no units allowed
-        self.assertRaises(ValueError, m.skewY, '3deg')
+        self.assertRaises(TypeError, m.skewY, '3deg')
 
     def test_matrix(self):
         m = Mock()
@@ -125,7 +125,7 @@ class TestITransfer(unittest.TestCase):
     def test_rev_err(self):
         m = Mock()
         # no units alowed
-        self.assertRaises(ValueError, m.rev, '10cm')
+        self.assertRaises(TypeError, m.rev, '10cm')
 
     def test_combine_tranformation(self):
         m = Mock()

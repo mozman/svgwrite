@@ -42,7 +42,7 @@ class TestValueToString(unittest.TestCase):
         parameter.set_debug(True)
         parameter.set_profile('tiny')
         # value out of range
-        self.assertRaises(ValueError, value_to_string, 100000)
+        self.assertRaises(TypeError, value_to_string, 100000)
 
     def test_is_unicode(self):
         self.assertTrue(isinstance(value_to_string(10), unicode))
@@ -66,13 +66,13 @@ class TestPointsToStringFullProfile(unittest.TestCase):
 
     def test_invalid_points(self):
         # invalid unit #'p'
-        self.assertRaises(ValueError, points_to_string, [(10,10), ('20p', '20px')])
+        self.assertRaises(TypeError, points_to_string, [(10,10), ('20p', '20px')])
 
     def test_invalid_tuple_count(self):
         # 3-tuple not allowed
-        self.assertRaises(ValueError, points_to_string, [(10,10), ('20px', '20px', '20px')])
+        self.assertRaises(TypeError, points_to_string, [(10,10), ('20px', '20px', '20px')])
         # 1-tuple not allowed
-        self.assertRaises(ValueError, points_to_string, [(10,10), ('20px', )])
+        self.assertRaises(TypeError, points_to_string, [(10,10), ('20px', )])
 
 class TestPointsToStringTinyProfile(unittest.TestCase):
     def setUp(self):
@@ -89,10 +89,10 @@ class TestPointsToStringTinyProfile(unittest.TestCase):
 
     def test_value_range(self):
         # invalid unit #'p'
-        self.assertRaises(ValueError, points_to_string, [(100000,10)])
-        self.assertRaises(ValueError, points_to_string, [(-100000,10)])
-        self.assertRaises(ValueError, points_to_string, [(10,100000)])
-        self.assertRaises(ValueError, points_to_string, [(-10,-100000)])
+        self.assertRaises(TypeError, points_to_string, [(100000,10)])
+        self.assertRaises(TypeError, points_to_string, [(-100000,10)])
+        self.assertRaises(TypeError, points_to_string, [(10,100000)])
+        self.assertRaises(TypeError, points_to_string, [(-10,-100000)])
 
 class TestStrList(unittest.TestCase):
     def test_basic_types(self):

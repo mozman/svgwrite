@@ -9,10 +9,8 @@
 import sys
 import unittest
 
-#from svgwrite.validator2 import Tiny12Validator as TinyProfileValidator
-#from svgwrite.validator2 import Full11Validator as FullProfileValidator
-from svgwrite.validator import TinyProfileValidator
-from svgwrite.validator import FullProfileValidator
+from svgwrite.validator2 import Tiny12Validator as TinyProfileValidator
+from svgwrite.validator2 import Full11Validator as FullProfileValidator
 
 class TestGetCoordinate(unittest.TestCase):
     def test_valid_units(self):
@@ -35,6 +33,7 @@ class TestGetCoordinate(unittest.TestCase):
         validator = TinyProfileValidator()
         for value in (' 1s00in ', ' 1s00mm ', ' 1s00% '):
             self.assertRaises(ValueError, validator.get_coordinate, value)
+            self.assertRaises(ValueError, validator.get_length, value)
 
     def test_not_valid_units(self):
         validator = TinyProfileValidator()
@@ -62,49 +61,49 @@ class TestCheckCoordinate(unittest.TestCase):
                                     (' 100cm', 100, 'cm'),
                                     (' 100in', 100, 'in'),
                                     (' 5%', 5, '%')]:
-            value2 = validator.check_coordinate(value) # checks also value pass through
+            value2 = validator.check_svg_type(value, 'coordinate') # checks also value pass through
             self.assertEqual(value, value2)
 
     def test_not_valid_numbers(self):
         validator = TinyProfileValidator()
         for value in (' 1s00in ', ' 1s00mm ', ' 1s00% '):
-            self.assertRaises(ValueError, validator.check_coordinate, value)
+            self.assertRaises(TypeError, validator.check_svg_type, value, 'coordinate')
 
     def test_not_valid_units(self):
         validator = TinyProfileValidator()
         for value in (' 100km ', ' 100mi ', ' 100$ '):
-            self.assertRaises(ValueError, validator.check_coordinate, value)
+            self.assertRaises(TypeError, validator.check_svg_type, value, 'coordinate')
 
     def test_not_valid_tiny_values(self):
         validator = TinyProfileValidator()
         for value in (100000, '100000', -100000, '-100000'):
-            self.assertRaises(ValueError, validator.check_coordinate, value)
+            self.assertRaises(TypeError, validator.check_svg_type, value, 'coordinate')
         # but valid for full profile - do not raise an error
         validator = FullProfileValidator()
         for value in (100000, '100000', -100000, '-100000'):
-            validator.check_coordinate(value)
+            validator.check_svg_type(value, 'coordinate')
 
 class TestCheckTiny(unittest.TestCase):
     def test_valid_tiny(self):
         validator = TinyProfileValidator()
         for value in (10000, 0, -10000., -32767.9999, +32767.9999):
-            validator.check_tiny(value) # no exception should raised
+            validator.check_svg_type(value, 'number') # no exception should raised
 
     def test_invalid_tiny(self):
         validator = TinyProfileValidator()
         for value in (100000, -100000., -32768, 32768):
-            self.assertRaises(ValueError, validator.check_tiny, value)
+            self.assertRaises(TypeError, validator.check_svg_type, value, 'number')
 
 class TestCheckAngle(unittest.TestCase):
     def test_valid_angle(self):
         validator = TinyProfileValidator()
         for value in ('100deg', '0.5grad', '-1.5rad'):
-            validator.check_angle(value) # no exception should raised
+            validator.check_svg_type(value, 'angle') # no exception should raised
 
     def test_invalid_angle(self):
         validator = TinyProfileValidator()
         for value in ('10cm', '-10px', '10in', '1gon', '3°'):
-            self.assertRaises(ValueError, validator.check_angle, value)
+            self.assertRaises(TypeError, validator.check_svg_type, value, 'angle')
 
 if __name__=='__main__':
     unittest.main()
