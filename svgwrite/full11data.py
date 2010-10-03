@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 #coding:utf-8
 # Author:  mozman
-# Purpose: svg 1.1 full profile data
+# Purpose: svg 1.1 full profile data - DEPRICATED VERSION
 # Created: 28.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
 from svgwrite import pattern
+
+print("Deprication Warning for validator.py: This module will be replaced by validator2.py.")
+
+pass
 
 def get_content_model():
     _content_model = {}

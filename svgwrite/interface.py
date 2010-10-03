@@ -44,7 +44,7 @@ class IViewBox(object):
         """
         if parameter.debug:
             for value in (minx, miny, width, height):
-                parameter.validator.check_number(value)
+                parameter.validator.check_svg_type(value, 'number')
         self.attribs['viewBox'] = strlist( [minx, miny, width, height] )
 
     def stretch(self):
@@ -101,8 +101,8 @@ class ITransform(object):
         :param number ty: user coordinate - no units allowed
         """
         if parameter.debug:
-            parameter.validator.check_number(tx)
-            if ty : parameter.validator.check_number(ty)
+            parameter.validator.check_svg_type(tx, 'number')
+            if ty : parameter.validator.check_svg_type(ty, 'number')
         self._add_transformation("translate(%s)" % strlist( [tx, ty] ))
 
     def rotate(self, angle, center=None):
@@ -116,10 +116,10 @@ class ITransform(object):
 
         """
         if parameter.debug:
-            parameter.validator.check_number(angle)
+            parameter.validator.check_svg_type(angle, 'number')
             if center:
-                parameter.validator.check_number(center[0])
-                parameter.validator.check_number(center[1])
+                parameter.validator.check_svg_type(center[0], 'number')
+                parameter.validator.check_svg_type(center[1], 'number')
         self._add_transformation("rotate(%s)" % strlist( [angle, center] ))
 
     def scale(self, sx, sy=None):
@@ -132,8 +132,8 @@ class ITransform(object):
 
         """
         if parameter.debug:
-            parameter.validator.check_number(sx)
-            if sy : parameter.validator.check_number(sy)
+            parameter.validator.check_svg_type(sx, 'number')
+            if sy : parameter.validator.check_svg_type(sy, 'number')
         self._add_transformation("scale(%s)" % strlist( [sx, sy] ))
 
     def skewX(self, angle):
@@ -143,7 +143,7 @@ class ITransform(object):
 
         """
         if parameter.debug:
-            parameter.validator.check_number(angle)
+            parameter.validator.check_svg_type(angle, 'number')
         self._add_transformation("skewX(%s)" % angle)
 
     def skewY(self, angle):
@@ -153,7 +153,7 @@ class ITransform(object):
 
         """
         if parameter.debug:
-            parameter.validator.check_number(angle)
+            parameter.validator.check_svg_type(angle, 'number')
         self._add_transformation("skewY(%s)" % angle)
 
     def matrix(self, a, b, c, d, e, f):
@@ -162,8 +162,8 @@ class ITransform(object):
     def rev(self, tx=None, ty=None):
         """ tx, ty in **user space coordinates** (parent system) - no units allowed """
         if parameter.debug:
-            parameter.validator.check_number(tx)
-            if ty : parameter.validator.check_number(ty)
+            parameter.validator.check_svg_type(tx, 'number')
+            if ty : parameter.validator.check_svg_type(ty, 'number')
         self._add_transformation("rev(%s)" % strlist( ['svg', tx, ty] ))
 
     def del_transform(self):

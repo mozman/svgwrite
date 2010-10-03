@@ -1,7 +1,7 @@
 #coding:utf-8
 
 from svgwrite.types import SVGElement
-from tiny12data import property_names, media_group_names
+from tiny12attributes import property_names, media_group_names
 
 tiny12_elements = {
     'a': SVGElement('a',
@@ -195,7 +195,7 @@ tiny12_elements = {
     children=[u'animate', u'animateColor', u'animateMotion', u'animateTransform', u'desc', u'discard', u'metadata', u'set', u'switch', u'title']),
 
     'svg': SVGElement('svg',
-    attributes=[u'about', u'baseProfile', u'class', u'content', u'contentScriptType', u'datatype', u'externalResourcesRequired', u'focusHighlight', u'focusable', u'height', u'id', u'nav-down', u'nav-down-left', u'nav-down-right', u'nav-left', u'nav-next', u'nav-prev', u'nav-right', u'nav-up', u'nav-up-left', u'nav-up-right', u'playbackOrder', u'preserveAspectRatio', u'property', u'rel', u'resource', u'rev', u'role', u'snapshotTime', u'syncBehaviorDefault', u'syncToleranceDefault', u'timelineBegin', u'typeof', u'version', u'viewBox', u'width', u'xml:base', u'xml:id', u'xml:lang', u'xml:space', u'zoomAndPan'],
+    attributes=[u'about', u'baseProfile', u'class', u'content', u'contentScriptType', u'datatype', u'externalResourcesRequired', u'focusHighlight', u'focusable', u'height', u'id', u'nav-down', u'nav-down-left', u'nav-down-right', u'nav-left', u'nav-next', u'nav-prev', u'nav-right', u'nav-up', u'nav-up-left', u'nav-up-right', u'playbackOrder', u'preserveAspectRatio', u'property', u'rel', u'resource', u'rev', u'role', u'snapshotTime', u'syncBehaviorDefault', u'syncToleranceDefault', u'timelineBegin', u'typeof', u'version', u'viewBox', u'width', u'xml:base', u'xml:id', u'xml:lang', u'xml:space', u'xmlns', u'xmlns:xlink', u'zoomAndPan'],
     properties=property_names,
     children=[u'a', u'animate', u'animateColor', u'animateMotion', u'animateTransform', u'animation', u'audio', u'circle', u'defs', u'desc', u'discard', u'ellipse', u'font', u'font-face', u'foreignObject', u'g', u'handler', u'image', u'line', u'linearGradient', u'listener', u'metadata', u'path', u'polygon', u'polyline', u'prefetch', u'radialGradient', u'rect', u'script', u'set', u'solidColor', u'switch', u'text', u'textArea', u'title', u'use', u'video']),
 
