@@ -317,17 +317,14 @@ class Use(BaseElement, ITransform, IXLink):
         super(Use, self).__init__(attribs, **extra)
         self.set_href(href)
         if insert:
-            if parameter.debug:
-                parameter.validator.check_coordinate(insert[0])
-                parameter.validator.check_coordinate(insert[1])
             self.attribs['x'] = insert[0]
             self.attribs['y'] = insert[1]
         if size:
-            if parameter.debug:
-                parameter.validator.check_coordinate(size[0])
-                parameter.validator.check_coordinate(size[1])
             self.attribs['width'] = size[0]
             self.attribs['height'] = size[1]
+        if parameter.debug:
+            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+
 
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!

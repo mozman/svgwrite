@@ -1,3 +1,4 @@
+import re
 import pattern
 
 def iterflatlist(values):
@@ -14,6 +15,7 @@ def iterflatlist(values):
 
 INVALID_NAME_CHARS = frozenset([' ', '\t', '\r', '\n', ',', '(', ')'])
 WHITESPACE = frozenset([' ', '\t', '\r', '\n'])
+SHAPE_PATTERN = re.compile("rect\((.*),(.*),(.*),(.*)\)")
 
 class Full11TypeChecker(object):
     def get_version(self):
@@ -24,7 +26,7 @@ class Full11TypeChecker(object):
         if self.is_number(value):
             return True
         elif isinstance(value, basestring):
-            return pattern.angle.match(value) is not None
+            return pattern.angle.match(value.strip()) is not None
         return False
 
     def is_anything(self, value):
@@ -46,7 +48,7 @@ class Full11TypeChecker(object):
         if self.is_number(value):
             return True
         elif isinstance(value, basestring):
-            return pattern.frequency.match(value) is not None
+            return pattern.frequency.match(value.strip()) is not None
         return False
 
     def is_FuncIRI(self, value):
@@ -127,7 +129,12 @@ class Full11TypeChecker(object):
         #number-optional-number ::= number
         #                           | number comma-wsp number
         if isinstance(value, basestring):
-            pass
+            values = re.split(' *,? *', value.strip())
+            if 0 < len(values) < 3: # 1 or 2 numbers
+                for v in values:
+                    if not self.is_number(v):
+                        return False
+                return True
         else:
             try: # is it a 2-tuple
                 n1, n2 = value
@@ -150,18 +157,18 @@ class Full11TypeChecker(object):
 
     def is_percentage(self, value):
         #percentage ::= number "%"
-        if is_number(value):
+        if self.is_number(value):
             return True
         elif isinstance(value, basestring):
-            return pattern.percentage.match(value) is not None
+            return pattern.percentage.match(value.strip()) is not None
         return False
 
     def is_time(self, value):
         #time ::= <number> (~"ms" | ~"s")?
-        if is_number(value):
+        if self.is_number(value):
             return True
         elif isinstance(value, basestring):
-            return pattern.time.match(value) is not None
+            return pattern.time.match(value.strip()) is not None
         return False
 
     def is_transform_list(self, value):
@@ -176,10 +183,19 @@ class Full11TypeChecker(object):
         # respective sides of the box.
         # <top>, <right>, <bottom>, and <left> are <length> values
         # i.e. 'rect(5px, 10px, 10px, 5px)'
+        res = SHAPE_PATTERN.match(value.strip())
+        if res:
+            for arg in res.groups():
+                if not self.is_length(arg):
+                    return False
+        else:
+            return False
         return True
 
     def get_func_by_name(self, funcname):
-        return getattr(self, 'is_'+funcname, self.is_anything)
+        return getattr(self,
+                       'is_'+funcname.replace('-', '_'),
+                       self.is_anything)
 
     def check(self, typename, value):
         if typename.startswith('list-of-'):
