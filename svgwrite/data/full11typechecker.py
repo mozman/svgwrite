@@ -111,7 +111,10 @@ class Full11TypeChecker(object):
 
     def is_name(self, value):
         #name  ::= [^,()#x20#x9#xD#xA] /* any char except ",", "(", ")" or wsp */
-        return INVALID_NAME_CHARS.isdisjoint(frozenset(str(value)))
+        if INVALID_NAME_CHARS.intersection(frozenset(str(value))):
+            return False
+        else:
+            return True
 
     def is_number(self, value):
         try:
