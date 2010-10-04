@@ -1,6 +1,6 @@
 #coding:utf-8
 
-from svgwrite.types import SVGAttribute
+from types import SVGAttribute
 
 tiny12_attributes = {
 'about': SVGAttribute('about', anim=True,

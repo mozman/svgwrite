@@ -30,7 +30,7 @@
 import re
 
 from svgwrite import parameter
-from svgwrite import pattern
+from data import pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
     """

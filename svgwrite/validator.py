@@ -12,8 +12,8 @@
 
 """
 
-from svgwrite import pattern
-from svgwrite import full11data
+from data import pattern
+import full11data
 
 class FullProfileValidator(object):
     content_model = full11data.get_content_model()

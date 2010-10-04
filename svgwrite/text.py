@@ -260,11 +260,16 @@ class TSpan(BaseElement):
         return txt
 
     def get_xml(self):
-        self['x'] = strlist(iterflatlist(self.x), ' ')
-        self['y'] = strlist(iterflatlist(self.y), ' ')
-        self['dx'] = strlist(iterflatlist(self.dx), ' ')
-        self['dy'] = strlist(iterflatlist(self.dy), ' ')
-        self['rotate'] = strlist(iterflatlist(self.rotate), ' ')
+        if self.x:
+            self['x'] = strlist(iterflatlist(self.x), ' ')
+        if self.y:
+            self['y'] = strlist(iterflatlist(self.y), ' ')
+        if self.dx:
+            self['dx'] = strlist(iterflatlist(self.dx), ' ')
+        if self.dy:
+            self['dy'] = strlist(iterflatlist(self.dy), ' ')
+        if self.rotate:
+            self['rotate'] = strlist(iterflatlist(self.rotate), ' ')
         xml = super(TSpan, self).get_xml()
         xml.text = unicode(self.text)
         return xml

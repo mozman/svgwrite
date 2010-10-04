@@ -1,4 +1,4 @@
-from svgwrite import pattern
+import pattern
 
 def iterflatlist(values):
     """
@@ -16,6 +16,9 @@ INVALID_NAME_CHARS = frozenset([' ', '\t', '\r', '\n', ',', '(', ')'])
 WHITESPACE = frozenset([' ', '\t', '\r', '\n'])
 
 class Full11TypeChecker(object):
+    def get_version(self):
+        return ('1.1', 'full')
+
     def is_angle(self, value):
         #angle ::= number (~"deg" | ~"grad" | ~"rad")?
         if self.is_number(value):
@@ -108,10 +111,7 @@ class Full11TypeChecker(object):
 
     def is_name(self, value):
         #name  ::= [^,()#x20#x9#xD#xA] /* any char except ",", "(", ")" or wsp */
-        name = frozenset(str(value))
-        if name.isdisjoint(INVALID_NAME_CHARS):
-            return True
-        return False
+        return INVALID_NAME_CHARS.isdisjoint(frozenset(str(value)))
 
     def is_number(self, value):
         try:
