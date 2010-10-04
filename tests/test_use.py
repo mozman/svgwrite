@@ -18,10 +18,10 @@ class TestUse(unittest.TestCase):
         parameter.set_debug(True)
 
     def test_constructor(self):
-        use = Use('an_id')
+        use = Use('an_id', x=10, y=20, width=100, height=200)
         self.assertTrue(isinstance(use, ITransform))
         self.assertTrue(isinstance(use, IXLink))
-        self.assertEqual(use.tostring(), '<use xlink:href="#an_id" />')
+        self.assertEqual(use.tostring(), '<use height="200" width="100" x="10" xlink:href="#an_id" y="20" />')
 
     def test_object_link(self):
         g = Group(id='test')
