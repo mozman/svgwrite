@@ -16,7 +16,7 @@ from data.tiny12typechecker import Tiny12TypeChecker
 
 from data import pattern
 
-def get_validator(profile, debug):
+def get_validator(profile, debug=True):
     if profile == 'tiny':
         return Tiny12Validator(debug)
     elif profile in ('full', 'basic', 'none'):
