@@ -243,11 +243,11 @@ class TSpan(BaseElement):
             x = [insert[0]]
             y = [insert[1]]
 
-        self.x = list(iterflatlist(x))
-        self.y = list(iterflatlist(y))
-        self.dx = list(iterflatlist(dx))
-        self.dy = list(iterflatlist(dy))
-        self.rotate = list(iterflatlist(rotate))
+        if x: self['x'] = strlist(list(iterflatlist(x)), ' ')
+        if y:self['y'] = strlist(list(iterflatlist(y)), ' ')
+        if dx: self['dx'] = strlist(list(iterflatlist(dx)), ' ')
+        if dy: self['dy'] = strlist(list(iterflatlist(dy)), ' ')
+        if rotate: self['rotate'] = strlist(list(iterflatlist(rotate)), ' ')
 
     def tspan(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
               attribs=None, **extra):
@@ -260,16 +260,16 @@ class TSpan(BaseElement):
         return txt
 
     def get_xml(self):
-        if self.x:
-            self['x'] = strlist(iterflatlist(self.x), ' ')
-        if self.y:
-            self['y'] = strlist(iterflatlist(self.y), ' ')
-        if self.dx:
-            self['dx'] = strlist(iterflatlist(self.dx), ' ')
-        if self.dy:
-            self['dy'] = strlist(iterflatlist(self.dy), ' ')
-        if self.rotate:
-            self['rotate'] = strlist(iterflatlist(self.rotate), ' ')
+        #if self.x:
+            #self['x'] = strlist(iterflatlist(self.x), ' ')
+        #if self.y:
+            #self['y'] = strlist(iterflatlist(self.y), ' ')
+        #if self.dx:
+            #self['dx'] = strlist(iterflatlist(self.dx), ' ')
+        #if self.dy:
+            #self['dy'] = strlist(iterflatlist(self.dy), ' ')
+        #if self.rotate:
+            #self['rotate'] = strlist(iterflatlist(self.rotate), ' ')
         xml = super(TSpan, self).get_xml()
         xml.text = unicode(self.text)
         return xml

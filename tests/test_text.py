@@ -56,15 +56,11 @@ class TestTSpan(unittest.TestCase):
 
 
     def test_errors(self):
-        self.assertRaises(TypeError, TSpan, "txt", x=None)
+        # None for x, y, dx, dy, rotate is valid - willl be ignored
         self.assertRaises(TypeError, TSpan,"txt", x=1)
-        self.assertRaises(TypeError, TSpan,"txt", y=None)
         self.assertRaises(TypeError, TSpan,"txt", y=1)
-        self.assertRaises(TypeError, TSpan,"txt", dx=None)
         self.assertRaises(TypeError, TSpan,"txt", dx=1)
-        self.assertRaises(TypeError, TSpan,"txt", dy=None)
         self.assertRaises(TypeError, TSpan,"txt", dy=1)
-        self.assertRaises(TypeError, TSpan,"txt", rotate=None)
         self.assertRaises(TypeError, TSpan,"txt", rotate=1)
 
     def test_insert_errors(self):
