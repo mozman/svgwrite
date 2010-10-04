@@ -6,17 +6,23 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-import svgwrite
+from data.full11attributes import full11_attributes
+from data.full11elements import full11_elements
+from data.full11typechecker import Full11TypeChecker
 
-from svgwrite.data.full11attributes import full11_attributes
-from svgwrite.data.full11elements import full11_elements
-from svgwrite.data.full11typechecker import Full11TypeChecker
+from data.tiny12attributes import tiny12_attributes
+from data.tiny12elements import tiny12_elements
+from data.tiny12typechecker import Tiny12TypeChecker
 
-from svgwrite.data.tiny12attributes import tiny12_attributes
-from svgwrite.data.tiny12elements import tiny12_elements
-from svgwrite.data.tiny12typechecker import Tiny12TypeChecker
+from data import pattern
 
-from svgwrite import pattern
+def get_validator(profile, debug):
+    if profile == 'tiny':
+        return Tiny12Validator(debug)
+    elif profile in ('full', 'basic', 'none'):
+        return Full11Validator(debug)
+    else:
+        raise ValueError('Unsupported profile: %s'  % profile)
 
 class Tiny12Validator(object):
     def __init__(self, debug=True):
@@ -112,7 +118,8 @@ class Tiny12Validator(object):
         if self.typechecker.is_number(result[0]):
             return result
         else:
-            raise ValueError("%s is not a valid number for profile: %s." % (value, svgwrite.parameter.profile))
+            version = "SVG %s %s" % self.typechecker.get_version()
+            raise ValueError("%s is not a valid number for: %s." % (value, version))
     get_length = get_coordinate
 
 class Full11Validator(Tiny12Validator):

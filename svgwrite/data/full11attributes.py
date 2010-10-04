@@ -1,6 +1,6 @@
 #coding:utf-8
 
-from svgwrite.types import SVGAttribute
+from types import SVGAttribute
 
 full11_attributes = {
 'accent-height': SVGAttribute('accent-height', anim=False,

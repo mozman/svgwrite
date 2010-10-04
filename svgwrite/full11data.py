@@ -6,7 +6,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from svgwrite import pattern
+from data import pattern
 
 print("Deprication Warning for validator.py: This module will be replaced by validator2.py.")
 

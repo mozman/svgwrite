@@ -5,6 +5,9 @@ FOCUS_CONST = frozenset(['nav-next', 'nav-prev', 'nav-up', 'nav-down', 'nav-left
                          'nav-down-right'])
 
 class Tiny12TypeChecker(Full11TypeChecker):
+    def get_version(self):
+        return ('1.2', 'tiny')
+
     def is_boolean(self, value):
         if isinstance(value, bool):
             return True

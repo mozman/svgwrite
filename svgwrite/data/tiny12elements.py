@@ -1,6 +1,6 @@
 #coding:utf-8
 
-from svgwrite.types import SVGElement
+from types import SVGElement
 from tiny12attributes import property_names, media_group_names
 
 tiny12_elements = {

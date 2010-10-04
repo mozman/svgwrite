@@ -1,6 +1,6 @@
 #coding:utf-8
 
-from svgwrite.types import SVGElement
+from types import SVGElement
 
 presentation_attributes = frozenset([ "alignment-baseline", "baseline-shift",
     "clip", "clip-path", "clip-rule", "color", "color-interpolation",
