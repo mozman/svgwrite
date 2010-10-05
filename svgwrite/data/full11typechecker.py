@@ -16,6 +16,7 @@ def iterflatlist(values):
 INVALID_NAME_CHARS = frozenset([' ', '\t', '\r', '\n', ',', '(', ')'])
 WHITESPACE = frozenset([' ', '\t', '\r', '\n'])
 SHAPE_PATTERN = re.compile("rect\((.*),(.*),(.*),(.*)\)")
+FUNCIRI_PATTERN = re.compile("url\((.*)\)")
 
 class Full11TypeChecker(object):
     def get_version(self):
@@ -53,7 +54,10 @@ class Full11TypeChecker(object):
 
     def is_FuncIRI(self, value):
         #FuncIRI ::= "url(" <IRI> ")"
-        return True
+        res = FUNCIRI_PATTERN.match(value.strip())
+        if res:
+            return self.is_IRI(res.group(1))
+        return False
 
     def is_icccolor(self, value):
         #icccolor ::= "icc-color(" name (comma-wsp number)+ ")"
@@ -66,10 +70,9 @@ class Full11TypeChecker(object):
         except:
             return False
 
-    def is_IRI(self, value):
+    is_IRI = is_anything
         #Internationalized Resource Identifiers
         #a more generalized complement to Uniform Resource Identifiers (URIs)
-        return True
 
     def is_length(self, value):
         #length ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%")?
