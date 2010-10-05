@@ -176,6 +176,15 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertFalse(self.checker.is_number_optional_number([]))
         self.assertFalse(self.checker.is_number_optional_number([1,2,3]))
         self.assertFalse(self.checker.is_number_optional_number([1, '1px']))
+    def test_is_FuncIRI(self):
+        self.assertTrue(self.checker.is_FuncIRI("url()"))
+        self.assertTrue(self.checker.is_FuncIRI("url(http://localhost:8080?a=12)"))
+        self.assertTrue(self.checker.is_FuncIRI("url(ftp://something/234)"))
+    def test_is_not_FuncIRI(self):
+        self.assertFalse(self.checker.is_FuncIRI("url"))
+        self.assertFalse(self.checker.is_FuncIRI("url("))
+        self.assertFalse(self.checker.is_FuncIRI("url(http://localhost:8080"))
+        self.assertFalse(self.checker.is_FuncIRI("http://localhost:8080"))
 
 if __name__=='__main__':
     unittest.main()
