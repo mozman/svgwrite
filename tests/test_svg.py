@@ -9,7 +9,8 @@
 import sys
 import unittest
 
-from svgwrite import SVG, Symbol, parameter
+from svgwrite import SVG, Symbol
+from svgwrite.params import parameter
 
 class TestSVG(unittest.TestCase):
     def setUp(self):
