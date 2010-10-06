@@ -10,7 +10,7 @@ import sys
 import unittest
 
 from svgwrite.base import BaseElement
-from svgwrite import parameter
+from svgwrite.params import parameter
 
 class MockBase(BaseElement):
     elementname = 'svg' # necessary for validator
