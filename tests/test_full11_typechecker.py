@@ -52,6 +52,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_name(100.123))
 
     def test_is_not_name(self):
+        self.assertFalse(self.checker.is_name(''))
         self.assertFalse(self.checker.is_name('mozman,mozman[2]'))
         self.assertFalse(self.checker.is_name('mozman mozman[2]'))
         self.assertFalse(self.checker.is_name('mozman(mozman)[2]'))
@@ -169,6 +170,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_number_optional_number( [1, 2] ))
     def test_is_not_number_optional_number(self):
         self.assertFalse(self.checker.is_number_optional_number(' 1px, 2'))
+        self.assertFalse(self.checker.is_number_optional_number(''))
         self.assertFalse(self.checker.is_number_optional_number(' , 2'))
         self.assertFalse(self.checker.is_number_optional_number(' 1 , 2 , 3'))
         self.assertFalse(self.checker.is_number_optional_number(' 1. 2. 3.'))
@@ -176,15 +178,108 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertFalse(self.checker.is_number_optional_number([]))
         self.assertFalse(self.checker.is_number_optional_number([1,2,3]))
         self.assertFalse(self.checker.is_number_optional_number([1, '1px']))
+
     def test_is_FuncIRI(self):
-        self.assertTrue(self.checker.is_FuncIRI("url()"))
         self.assertTrue(self.checker.is_FuncIRI("url(http://localhost:8080?a=12)"))
         self.assertTrue(self.checker.is_FuncIRI("url(ftp://something/234)"))
     def test_is_not_FuncIRI(self):
+        self.assertFalse(self.checker.is_FuncIRI("url()"))
         self.assertFalse(self.checker.is_FuncIRI("url"))
         self.assertFalse(self.checker.is_FuncIRI("url("))
         self.assertFalse(self.checker.is_FuncIRI("url(http://localhost:8080"))
         self.assertFalse(self.checker.is_FuncIRI("http://localhost:8080"))
 
-if __name__=='__main__':
+    def test_is_semicolon_list(self):
+        self.assertTrue(self.checker.is_semicolon_list("1;2;3;4;5"))
+        self.assertTrue(self.checker.is_semicolon_list("1;2,3;4,5"))
+        self.assertTrue(self.checker.is_semicolon_list("1.;2.,3.;4.,5."))
+        self.assertTrue(self.checker.is_semicolon_list("1"))
+        self.assertTrue(self.checker.is_semicolon_list("1 2;3;4;5"))
+    def test_is_not_semicolon_list(self):
+        # only numbers!
+        self.assertFalse(self.checker.is_semicolon_list("1 A;3 4;5,Z"))
+        self.assertFalse(self.checker.is_semicolon_list(""))
+
+    def test_is_icc_color(self):
+        self.assertTrue(self.checker.is_icccolor("icc-color(red)"))
+        self.assertTrue(self.checker.is_icccolor("icc-color(red mozman)"))
+        self.assertTrue(self.checker.is_icccolor("icc-color(red,mozman)"))
+        self.assertTrue(self.checker.is_icccolor("icc-color(red,mozman 123)"))
+    def test_is_not_icc_color(self):
+        self.assertFalse(self.checker.is_icccolor("icc-color()"))
+        self.assertFalse(self.checker.is_icccolor("icc-color((a))"))
+
+    def test_is_hex_color(self):
+        self.assertTrue(self.checker.is_color("#101010"))
+        self.assertTrue(self.checker.is_color("#111"))
+        self.assertTrue(self.checker.is_color("#FFFFFF"))
+        self.assertTrue(self.checker.is_color("#FFF"))
+        self.assertTrue(self.checker.is_color("#aaaaaa"))
+        self.assertTrue(self.checker.is_color("#aaa"))
+    def test_is_not_hex_color(self):
+        self.assertFalse(self.checker.is_color("#1"))
+        self.assertFalse(self.checker.is_color("#22"))
+        self.assertFalse(self.checker.is_color("#4444"))
+        self.assertFalse(self.checker.is_color("#55555"))
+        self.assertFalse(self.checker.is_color("#7777777"))
+        self.assertFalse(self.checker.is_color("#gghhii"))
+
+    def test_is_rgb_int_color(self):
+        self.assertTrue(self.checker.is_color("rgb(1,2,3)"))
+        self.assertTrue(self.checker.is_color("rgb( 1, 2, 3 )"))
+        self.assertTrue(self.checker.is_color("rgb( 11, 21, 31 )"))
+        self.assertTrue(self.checker.is_color("rgb( 0, 0, 0 )"))
+        self.assertTrue(self.checker.is_color("rgb( 255 , 255 , 255 )"))
+    def test_is_not_rgb_int_color(self):
+        self.assertFalse(self.checker.is_color("rgb(,2,3)"))
+        self.assertFalse(self.checker.is_color("rgb(1,,3)"))
+        self.assertFalse(self.checker.is_color("rgb(1,2)"))
+        self.assertFalse(self.checker.is_color("rgb(1)"))
+        self.assertFalse(self.checker.is_color("rgb(a,2,3)"))
+        self.assertFalse(self.checker.is_color("rgb()"))
+
+    def test_is_rgb_percentage_color(self):
+        self.assertTrue(self.checker.is_color("rgb(1%,2%,3%)"))
+        self.assertTrue(self.checker.is_color("rgb( 1%, 2%, 3% )"))
+        self.assertTrue(self.checker.is_color("rgb( 11%, 21%, 31% )"))
+        self.assertTrue(self.checker.is_color("rgb( 0%, 0%, 0% )"))
+        # this is not really valid
+        self.assertTrue(self.checker.is_color("rgb( 255% , 255% , 255% )"))
+    def test_is_not_rgb_percentage_color(self):
+        self.assertFalse(self.checker.is_color("rgb()"))
+        self.assertFalse(self.checker.is_color("rgb(1,2%,3%)"))
+        self.assertFalse(self.checker.is_color("rgb(,2%,3%)"))
+        self.assertFalse(self.checker.is_color("rgb(,,)"))
+        self.assertFalse(self.checker.is_color("rgb(a%,b%,c%)"))
+        # no decimal points
+        self.assertFalse(self.checker.is_color("rgb(1.0%, 2.0%, 3.0%)"))
+
+    def test_is_color_name(self):
+        self.assertTrue(self.checker.is_color("blue"))
+    def test_is_not_color_name(self):
+        self.assertFalse(self.checker.is_color("blau"))
+
+    def test_is_paint(self):
+        self.assertTrue(self.checker.is_paint("inherit"))
+        self.assertTrue(self.checker.is_paint("none"))
+        self.assertTrue(self.checker.is_paint("currentColor"))
+        self.assertTrue(self.checker.is_paint("rgb(10,20,30)"))
+        self.assertTrue(self.checker.is_paint("rgb(10%,20%,30%)"))
+        self.assertTrue(self.checker.is_paint("url(localhost)"))
+        self.assertTrue(self.checker.is_paint("red"))
+    def test_is_not_paint(self):
+        self.assertFalse(self.checker.is_paint("(123)"))
+        self.assertFalse(self.checker.is_paint("123"))
+        self.assertFalse(self.checker.is_paint("schwarz"))
+
+    def test_is_XML_name(self):
+        self.assertTrue(self.checker.is_XML_Name("Name:xml123"))
+        self.assertTrue(self.checker.is_XML_Name("Name-xml123"))
+        self.assertTrue(self.checker.is_XML_Name("Name.xml123"))
+    def test_is_not_XML_name(self):
+        self.assertFalse(self.checker.is_XML_Name("Name xml123"))
+        self.assertFalse(self.checker.is_XML_Name("0Name:xml123"))
+        self.assertFalse(self.checker.is_XML_Name(".Name:xml123"))
+
+if __name__=='__main__' :
     unittest.main()
