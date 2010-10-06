@@ -1,6 +1,8 @@
 import re
 import pattern
 
+from colors import colornames
+
 def iterflatlist(values):
     """ Flatten nested *values*, returns an *iterator*. """
     for element in values:
@@ -14,6 +16,13 @@ INVALID_NAME_CHARS = frozenset([' ', '\t', '\r', '\n', ',', '(', ')'])
 WHITESPACE = frozenset([' ', '\t', '\r', '\n'])
 SHAPE_PATTERN = re.compile("rect\((.*),(.*),(.*),(.*)\)")
 FUNCIRI_PATTERN = re.compile("url\((.*)\)")
+ICCCOLOR_PATTERN = re.compile("icc-color\((.*)\)")
+COLOR_HEXDIGIT_PATTERN = re.compile("^#[a-fA-F0-9]{3}([a-fA-F0-9]{3})?$")
+COLOR_RGB_INTEGER_PATTERN = re.compile("^rgb\( *\d+ *, *\d+ *, *\d+ *\)$")
+COLOR_RGB_PERCENTAGE_PATTERN = re.compile("^rgb\( *\d+% *, *\d+% *, *\d+% *\)$")
+NMTOKEN_PATTERN = re.compile("^[a-zA-Z_:][\w\-\.:]*$")
+
+TRANSFORM_PATTERN = re.compile("((?:matrix|translate|scale|rotate|skewX|skewY)\(.*?\))+")
 
 class Full11TypeChecker(object):
     def get_version(self):
@@ -29,7 +38,7 @@ class Full11TypeChecker(object):
 
     def is_anything(self, value):
         #anything ::= Char*
-        return True
+        return bool(str(value).strip())
     is_string = is_anything
 
     def is_color(self, value):
@@ -39,7 +48,22 @@ class Full11TypeChecker(object):
         #             | color-keyword
         #hexdigit ::= [0-9A-Fa-f]
         #comma    ::= wsp* "," wsp*
-        return True
+        value = str(value).strip()
+        if value.startswith('#'):
+            if COLOR_HEXDIGIT_PATTERN.match(value):
+                return True
+            else:
+                return False
+        elif value.startswith('rgb('):
+            if COLOR_RGB_INTEGER_PATTERN.match(value):
+                return True
+            elif COLOR_RGB_PERCENTAGE_PATTERN.match(value):
+                return True
+            return False
+        return self.is_color_keyword(value)
+
+    def is_color_keyword(self, value):
+        return value.strip() in colornames
 
     def is_frequency(self, value):
         #frequency ::= number (~"Hz" | ~"kHz")
@@ -51,14 +75,17 @@ class Full11TypeChecker(object):
 
     def is_FuncIRI(self, value):
         #FuncIRI ::= "url(" <IRI> ")"
-        res = FUNCIRI_PATTERN.match(value.strip())
+        res = FUNCIRI_PATTERN.match(str(value).strip())
         if res:
             return self.is_IRI(res.group(1))
         return False
 
     def is_icccolor(self, value):
         #icccolor ::= "icc-color(" name (comma-wsp number)+ ")"
-        return True
+        res = ICCCOLOR_PATTERN.match(str(value).strip())
+        if res:
+            return self.is_list_of_T(res.group(1), 'name')
+        return False
 
     def is_integer(self, value):
         try:
@@ -109,11 +136,12 @@ class Full11TypeChecker(object):
         #               | value comma-wsp list-of-values
         #comma-wsp  ::= (wsp+ ";" wsp*) | ("," wsp*)
         #wsp        ::= (#x20 | #x9 | #xD | #xA)
-        return True
+        return self.is_list_of_T(value.replace(';', ' '), 'number')
 
     def is_name(self, value):
         #name  ::= [^,()#x20#x9#xD#xA] /* any char except ",", "(", ")" or wsp */
-        if INVALID_NAME_CHARS.intersection(frozenset(str(value))):
+        chars = frozenset(str(value).strip())
+        if not chars or INVALID_NAME_CHARS.intersection(chars):
             return False
         else:
             return True
@@ -153,6 +181,18 @@ class Full11TypeChecker(object):
         #           <color> [<icccolor>] |
         #           <funciri> [ "none" | "currentColor" | <color> [<icccolor>] |
         #           "inherit"
+        value = str(value).strip()
+
+        for value in [v.strip() for v in value.split()]:
+            if value in ('none', 'currentColor', 'inherit'):
+                continue
+            elif self.is_color(value):
+                continue
+            elif self.is_icccolor(value):
+                continue
+            elif self.is_FuncIRI(value):
+                continue
+            return False
         return True
 
     def is_percentage(self, value):
@@ -172,10 +212,17 @@ class Full11TypeChecker(object):
         return False
 
     def is_transform_list(self, value):
+        #FIX: this check is not correct
+        for v in TRANSFORM_PATTERN.findall(value):
+            if not self.is_list_of_T(v.strip(), 'number'):
+                return False
         return True
 
     def is_XML_Name(self, value):
-        return True
+        # http://www.w3.org/TR/2006/REC-xml-20060816/#NT-Name
+        # Nmtoken
+        return bool(NMTOKEN_PATTERN.match(str(value).strip()))
+
 
     def is_shape(self, value):
         #shape ::= (<top> <right> <bottom> <left>)
