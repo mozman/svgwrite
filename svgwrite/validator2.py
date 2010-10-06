@@ -23,7 +23,7 @@ def get_validator(profile, debug=True):
     elif profile in ('full', 'basic', 'none'):
         return Full11Validator(debug)
     else:
-        raise ValueError('Unsupported profile: %s'  % profile)
+        raise ValueError("Unsupported profile: '%s'"  % profile)
 
 class Tiny12Validator(object):
     def __init__(self, debug=True):
@@ -75,7 +75,7 @@ class Tiny12Validator(object):
         # check if 'value' is a valid constant
         valuestr = str(value)
         if not valuestr in attribute.valid_const:
-            raise TypeError("%s is not a valid value for '%s'." % (value, attributename))
+            raise TypeError("'%s' is not a valid value for '%s'." % (value, attributename))
 
     def _check_valid_svg_attribute_name(self, elementname, attributename):
         """ Check if 'attributename' is a valid svg-attribute for svg-element
