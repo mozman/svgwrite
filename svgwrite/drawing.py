@@ -23,7 +23,7 @@ set/get SVG attributes::
 The *Drawing* class inherits from: :class:`~svgwrite.SVG`
 """
 
-from svgwrite import parameter
+from params import parameter
 from container import SVG, Defs
 
 class Drawing(SVG):

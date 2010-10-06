@@ -11,10 +11,10 @@ using the <text> element. The characters to be drawn are expressed as XML
 character data inside the <text> element.
 
 """
-from svgwrite import parameter
-from svgwrite.base import BaseElement
-from svgwrite.interface import ITransform, IXLink
-from svgwrite.utils import iterflatlist, strlist
+from params import parameter
+from base import BaseElement
+from interface import ITransform, IXLink
+from utils import iterflatlist, strlist
 
 class TSpan(BaseElement):
     """ Within a :class:`~svgwrite.Text` element, text and font properties

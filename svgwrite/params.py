@@ -43,7 +43,7 @@ class _Parameter(object):
         self._init_validator()
 
     def _init_validator(self):
-        _Parameter.validator = get_validator(self.get_profile(),  self.get_debug())
+        _Parameter.validator = get_validator(self.profile,  self.debug)
 
     def get_debug(self):
         return _Parameter._debug
@@ -85,3 +85,6 @@ class _Parameter(object):
     def _set_auto_id(self, value):
         """Just for testing. """
         _Parameter._autoid = value
+
+# global var
+parameter = _Parameter()

@@ -11,8 +11,8 @@ The :class:`BaseElement` is the root for all SVG elements.
 
 import xml.etree.ElementTree as etree
 
-from svgwrite import parameter
-from svgwrite.utils import value_to_string
+from params import parameter
+from utils import value_to_string
 
 class BaseElement(object):
     """

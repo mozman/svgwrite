@@ -6,10 +6,10 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from svgwrite import parameter
-from svgwrite.base import BaseElement
-from svgwrite.utils import points_to_string
-from svgwrite.interface import ITransform
+from params import parameter
+from base import BaseElement
+from utils import points_to_string
+from interface import ITransform
 
 class Line(BaseElement, ITransform):
     """ The <line> element defines a line segment that starts at one point and ends

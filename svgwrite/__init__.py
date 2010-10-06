@@ -27,15 +27,13 @@ Only two types of SVG drawings could be created:
 
 """
 
-from svgwrite.parameter import _Parameter
-parameter = _Parameter()
-
-from svgwrite.drawing import Drawing
-from svgwrite.container import Group, Defs, Symbol, Use, SVG
-from svgwrite.shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
-from svgwrite.path import Path
-from svgwrite.text import Text, TSpan, TRef, TextPath
-from svgwrite.utils import rgb
+from params import parameter
+from drawing import Drawing
+from container import Group, Defs, Symbol, Use, SVG
+from shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
+from path import Path
+from text import Text, TSpan, TRef, TextPath
+from utils import rgb
 
 class Unit(object):
     """ Add units to values.
@@ -72,3 +70,5 @@ percent = Unit('%')
 deg = Unit('deg')
 grad = Unit('grad')
 rad = Unit('rad')
+Hz = Unit('Hz')
+kHz = Unit('kHz')

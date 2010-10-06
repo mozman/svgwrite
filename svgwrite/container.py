@@ -22,9 +22,9 @@ set/get SVG attributes::
    :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 """
 
-from svgwrite import parameter
-from svgwrite.base import BaseElement
-from svgwrite.interface import IViewBox, ITransform, IXLink
+from params import parameter
+from base import BaseElement
+from interface import IViewBox, ITransform, IXLink
 
 class Group(BaseElement, ITransform):
     """ The <g> element is a container element for grouping together

@@ -5,9 +5,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from svgwrite.base import BaseElement
-from svgwrite.utils import strlist
-from svgwrite.interface import ITransform
+from base import BaseElement
+from utils import strlist
+from interface import ITransform
 
 class Path(BaseElement, ITransform):
     """ The <path> element represent the outline of a shape which can be filled,

@@ -29,7 +29,7 @@
 
 import re
 
-from svgwrite import parameter
+from params import parameter
 from data import pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
@@ -93,7 +93,7 @@ def value_to_string(value):
     if isinstance(value, (int, float)):
         if parameter.debug:
             parameter.validator.check_svg_type(value, 'number')
-        if isinstance(value, float):
+        if isinstance(value, float) and parameter.profile == 'tiny':
             value = round(value, 4)
     return unicode(value)
 

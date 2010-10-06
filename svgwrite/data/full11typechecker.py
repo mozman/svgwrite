@@ -2,10 +2,7 @@ import re
 import pattern
 
 def iterflatlist(values):
-    """
-    Flatten nested *values*, returns an *iterator*.
-
-    """
+    """ Flatten nested *values*, returns an *iterator*. """
     for element in values:
         if hasattr(element, "__iter__") and not isinstance(element, basestring):
             for item in iterflatlist(element):
