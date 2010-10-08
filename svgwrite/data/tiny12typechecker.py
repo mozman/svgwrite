@@ -12,7 +12,7 @@ class Tiny12TypeChecker(Full11TypeChecker):
         if isinstance(value, bool):
             return True
         if isinstance(value, basestring):
-            return value in ('true','false')
+            return value.strip().lower() in ('true', 'false')
         return False
 
     def is_number(self, value):
@@ -22,8 +22,8 @@ class Tiny12TypeChecker(Full11TypeChecker):
                 return True
             else:
                 return False
-        except ValueError:
+        except:
             return False
 
     def is_focus(self, value):
-        return value in FOCUS_CONST
+        return str(value).strip() in FOCUS_CONST

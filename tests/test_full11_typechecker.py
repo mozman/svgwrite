@@ -281,5 +281,29 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertFalse(self.checker.is_XML_Name("0Name:xml123"))
         self.assertFalse(self.checker.is_XML_Name(".Name:xml123"))
 
+    def test_is_transform_list(self):
+        self.assertTrue(self.checker.is_transform_list("translate(10,10)"))
+        self.assertTrue(self.checker.is_transform_list("scale(2 2)"))
+        self.assertTrue(self.checker.is_transform_list("rotate( 30 )"))
+        self.assertTrue(self.checker.is_transform_list("skewX(15)"))
+        self.assertTrue(self.checker.is_transform_list("skewY(-15)"))
+        self.assertTrue(self.checker.is_transform_list("matrix(.1 .2 .3 .4 .5 .6)"))
+
+        self.assertTrue(self.checker.is_transform_list("translate(10,10),  rotate( 30 )"))
+        self.assertTrue(self.checker.is_transform_list("translate(10,10) , rotate( 30 )"))
+        self.assertTrue(self.checker.is_transform_list("translate(10,10) , rotate( 30 )"))
+        self.assertTrue(self.checker.is_transform_list("translate(10,10)   rotate( 30 )"))
+
+    def test_is_not_transform_list(self):
+        self.assertFalse(self.checker.is_transform_list("mozman(10,10)"))
+        self.assertFalse(self.checker.is_transform_list("translate(10,10"))
+        self.assertFalse(self.checker.is_transform_list("translate 10, 10"))
+        self.assertFalse(self.checker.is_transform_list("translate(10, 10))"))
+        self.assertFalse(self.checker.is_transform_list("translate((10, 10))"))
+
+    def test_is_not_transform_list_invalid_separator(self):
+        self.assertFalse(self.checker.is_transform_list("translate(10,10) ,, rotate( 30 )"))
+        self.assertFalse(self.checker.is_transform_list("translate(10,10) x rotate( 30 )"))
+
 if __name__=='__main__' :
     unittest.main()
