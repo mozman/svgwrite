@@ -159,13 +159,6 @@ class ITransform(object):
     def matrix(self, a, b, c, d, e, f):
         self._add_transformation("matrix(%s)" % strlist( [a, b, c, d, e, f] ))
 
-    def rev(self, tx=None, ty=None):
-        """ tx, ty in **user space coordinates** (parent system) - no units allowed """
-        if parameter.debug:
-            parameter.validator.check_svg_type(tx, 'number')
-            if ty : parameter.validator.check_svg_type(ty, 'number')
-        self._add_transformation("rev(%s)" % strlist( ['svg', tx, ty] ))
-
     def del_transform(self):
         self.attribs.pop('transform', None)
 

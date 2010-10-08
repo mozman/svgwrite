@@ -112,21 +112,6 @@ class TestITransfer(unittest.TestCase):
         m = Mock()
         self.assertRaises(TypeError, m.matrix, 1, 2, 3, 4, 5)
 
-    def test_rev_tx(self):
-        m = Mock()
-        m.rev(tx=10)
-        self.assertEqual(m.tostring(), '<g transform="rev(svg,10)" />')
-
-    def test_rev_ty(self):
-        m = Mock()
-        m.rev(tx='10', ty=20)
-        self.assertEqual(m.tostring(), '<g transform="rev(svg,10,20)" />')
-
-    def test_rev_err(self):
-        m = Mock()
-        # no units alowed
-        self.assertRaises(TypeError, m.rev, '10cm')
-
     def test_combine_tranformation(self):
         m = Mock()
         m.translate(10,20)

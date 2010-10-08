@@ -22,8 +22,6 @@ COLOR_RGB_INTEGER_PATTERN = re.compile("^rgb\( *\d+ *, *\d+ *, *\d+ *\)$")
 COLOR_RGB_PERCENTAGE_PATTERN = re.compile("^rgb\( *\d+% *, *\d+% *, *\d+% *\)$")
 NMTOKEN_PATTERN = re.compile("^[a-zA-Z_:][\w\-\.:]*$")
 
-TRANSFORM_PATTERN = re.compile("((?:matrix|translate|scale|rotate|skewX|skewY)\(.*?\))+")
-
 class Full11TypeChecker(object):
     def get_version(self):
         return ('1.1', 'full')
@@ -212,10 +210,34 @@ class Full11TypeChecker(object):
         return False
 
     def is_transform_list(self, value):
-        #FIX: this check is not correct
-        for v in TRANSFORM_PATTERN.findall(value):
-            if not self.is_list_of_T(v.strip(), 'number'):
-                return False
+        def iter_transformations(transform):
+            if not transform:
+                raise ValueError
+            while transform:
+                for transformation in ('translate(', 'rotate(', 'skewX(', 'skewY(', 'scale(', 'matrix('):
+                    if transform.startswith(transformation):
+                        end = transform.find(')')
+                        if end > 0 :
+                            yield transform[:end+1]
+                            break
+                        else: # ')' not found
+                            raise ValueError()
+                else: # no transformation matched
+                    raise ValueError()
+                transform = (transform[end+2:]).strip()
+                if transform.startswith(','): # *one* ',' is allowed between transform commands
+                    transform = (transform[1:]).strip()
+
+        def is_transform(transform):
+            start = transform.find('(')
+            values = transform[start+1:-1]
+            return self.is_list_of_T(values.strip(), 'number')
+        try:
+            for transform in iter_transformations(value.strip()):
+                if not is_transform(transform.strip()):
+                    return False
+        except ValueError:
+            return False
         return True
 
     def is_XML_Name(self, value):
