@@ -361,7 +361,7 @@ full11_elements = {
     children=frozenset(['*'])),
 
     'svg': SVGElement('svg',
-    attributes=frozenset(['requiredExtensions', 'onerror', 'onfocusout', 'xml:space', 'height', 'onscroll', 'baseProfile', 'contentStyleType', 'id', 'onabort', 'onload', 'style', 'nmousedown', 'onzoom', 'onresize', 'width', 'version', 'onmousemove', 'onmouseup', 'xmlns:xlink', 'onfocusin', 'xml:base', 'onclick', 'onmouseout', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'zoomAndPan', 'class', 'onunload', 'xmlns', 'onactivate', 'viewBox', 'requiredFeatures', 'xml:lang', 'y', 'x', 'preserveAspectRatio', 'contentScriptType']),
+    attributes=frozenset(['requiredExtensions', 'onerror', 'onfocusout', 'xml:space', 'height', 'onscroll', 'baseProfile', 'contentStyleType', 'id', 'onabort', 'onload', 'style', 'nmousedown', 'onzoom', 'onresize', 'width', 'version', 'onmousemove', 'onmouseup', 'xmlns:xlink', 'xmlns:ev', 'onfocusin', 'xml:base', 'onclick', 'onmouseout', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'zoomAndPan', 'class', 'onunload', 'xmlns', 'onactivate', 'viewBox', 'requiredFeatures', 'xml:lang', 'y', 'x', 'preserveAspectRatio', 'contentScriptType']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 

@@ -103,6 +103,8 @@ class Drawing(SVG):
         version = parameter.get_version()
         self.attribs['xmlns'] = "http://www.w3.org/2000/svg"
         self.attribs['xmlns:xlink'] = "http://www.w3.org/1999/xlink"
+        self.attribs['xmlns:ev'] = "http://www.w3.org/2001/xml-events"
+
         self.attribs['baseProfile'] = profile
         self.attribs['version'] = version
         return super(Drawing, self).get_xml()
@@ -127,9 +129,10 @@ class Drawing(SVG):
         """
         # write xml header
         fileobj.write('<?xml version="1.0" encoding="utf-8" ?>\n')
-        if parameter.get_profile() != 'tiny': # tiny profile has no DOCTYPE
-            fileobj.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" ' \
-                          '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n')
+
+
+        # don't use DOCTYPE. It's useless. see also:
+        # http://tech.groups.yahoo.com/group/svg-developers/message/48562
         # write stylesheets
         for stylesheet in self._stylesheets:
             stylestr = u'<?xml-stylesheet href="%s" type="text/css" title="%s" ' \
