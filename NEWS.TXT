@@ -2,13 +2,20 @@
 NEWS
 ====
 
+Version 0.2.0 - xxx
+  * alpha version
+  * validator rewritten as validator2.py
+  * new elements:
+    - Hyperlink <a>
+    - Image
+
 Version 0.1.0 - 26 September 2010
   * alpha version
-  * usable elements:
-    - basic shapes: line, rect, circle, ellipse, polyline, polygon
-    - path element
-    - text element
-    - container elements: g, symbol, svg, use, defs
+  * classes:
+    - basic shapes: Line, Rect, Circle, Ellipse, Polyline, Polygon
+    - Path element
+    - text elements: Text, TSpan, TRef, TextPath
+    - container elements: Group, Symbol, SVG, Use, Defs
   * for examples see: examples.py
 
 Version 0.0.0 - 08 September 2010

@@ -179,6 +179,17 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertFalse(self.checker.is_number_optional_number([1,2,3]))
         self.assertFalse(self.checker.is_number_optional_number([1, '1px']))
 
+    def test_is_IRI(self):
+        # every none empty string is valid - no real url validation is done
+        self.assertTrue(self.checker.is_IRI("http://localhost:8080?a=12"))
+        self.assertTrue(self.checker.is_IRI("%&/(/&%$"))
+    def test_is_not_IRI(self):
+        self.assertFalse(self.checker.is_IRI(""))
+        self.assertFalse(self.checker.is_IRI(1))
+        self.assertFalse(self.checker.is_IRI(3.1415))
+        self.assertFalse(self.checker.is_IRI( (1, 0)))
+        self.assertFalse(self.checker.is_IRI(dict(a=1)))
+
     def test_is_FuncIRI(self):
         self.assertTrue(self.checker.is_FuncIRI("url(http://localhost:8080?a=12)"))
         self.assertTrue(self.checker.is_FuncIRI("url(ftp://something/234)"))

@@ -1,4 +1,4 @@
 :mod:`validator` module
 =======================
 
-.. automodule:: svgwrite.validator
+.. automodule:: svgwrite.validator2

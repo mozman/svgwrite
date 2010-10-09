@@ -39,6 +39,7 @@ Structural objects:
    classes/group
    classes/defs
    classes/use
+   classes/hyperlink
 
 Graphical objects:
 ------------------
@@ -48,6 +49,7 @@ Graphical objects:
 
    classes/path
    classes/shapes
+   classes/image
 
 Text objects:
 -------------

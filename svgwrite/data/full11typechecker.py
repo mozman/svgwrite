@@ -92,9 +92,13 @@ class Full11TypeChecker(object):
         except:
             return False
 
-    is_IRI = is_anything
+    def is_IRI(self, value):
         #Internationalized Resource Identifiers
         #a more generalized complement to Uniform Resource Identifiers (URIs)
+        if isinstance(value, basestring):
+            return bool(value.strip())
+        else:
+            return False
 
     def is_length(self, value):
         #length ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%")?

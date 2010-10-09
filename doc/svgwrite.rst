@@ -3,7 +3,7 @@
 
 .. automodule:: svgwrite
 
-:attr:`svgwrite.parameter`
+:attr:`params.parameter`
 --------------------------
 
-.. automodule:: svgwrite.parameter
+.. automodule:: svgwrite.params

@@ -29,8 +29,9 @@ Only two types of SVG drawings could be created:
 
 from params import parameter
 from drawing import Drawing
-from container import Group, Defs, Symbol, Use, SVG
+from container import Group, Defs, Symbol, Use, SVG, Hyperlink
 from shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
+from image import Image
 from path import Path
 from text import Text, TSpan, TRef, TextPath
 from utils import rgb
