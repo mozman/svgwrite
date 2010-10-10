@@ -9,22 +9,22 @@
 import re
 
 #coordinate ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%")?
-coordinate = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(cm|em|ex|in|mm|pc|pt|px|%)?$")
+coordinate = re.compile(r"(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(cm|em|ex|in|mm|pc|pt|px|%)?$")
 
 #length ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%")?
 length = coordinate
 
 #angle ::= number (~"deg" | ~"grad" | ~"rad")?
-angle = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(deg|rad|grad)?$")
+angle = re.compile(r"(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(deg|rad|grad)?$")
 
 # numbers without units
-number = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)$")
+number = re.compile(r"(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)$")
 
 # number as percentage value '###%'
-percentage = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)%$")
+percentage = re.compile(r"(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)%$")
 
 #frequency ::= number (~"Hz" | ~"kHz")
-frequency = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(Hz|kHz)?$")
+frequency = re.compile(r"(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(Hz|kHz)?$")
 
 #time ::= number (~"s" | ~"ms")
-time = re.compile("(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(s|ms)?$")
+time = re.compile(r"(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(s|ms)?$")
