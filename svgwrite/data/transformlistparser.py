@@ -37,7 +37,7 @@ class TransformScanner(GenericScanner):
 
     def t_comma(self, s):
         r" , "
-        self.rv.append(Token('comma'))
+        self.rv.append(Token(s))
 
     def t_wsp(self, s):
         r" \s+ "
@@ -46,36 +46,12 @@ class TransformScanner(GenericScanner):
         r"[-+]?\d*\.?\d+([eE][-+]?\d+)?"
         self.rv.append(Token('number', float(s)))
 
-    def t_lp(self, s):
-        r" \( "
-        self.rv.append(Token('lp'))
-
-    def t_rp(self, s):
-        r" \) "
-        self.rv.append(Token('rp'))
-
-    def t_translate(self, s):
-        r" translate "
+    def t_parenthese(self, s):
+        r" \(|\) "
         self.rv.append(Token(s))
 
-    def t_rotate(self, s):
-        r" rotate "
-        self.rv.append(Token(s))
-
-    def t_matrix(self,s):
-        r" matrix "
-        self.rv.append(Token(s))
-
-    def t_scale(self, s):
-        r" scale "
-        self.rv.append(Token(s))
-
-    def t_skewX(self, s):
-        r" skewX "
-        self.rv.append(Token(s))
-
-    def t_skewY(self, s):
-        r" skewY "
+    def t_command(self, s):
+        r" translate|rotate|matrix|rotate|scale|skewX|skewY "
         self.rv.append(Token(s))
 
 class TransformParser(GenericParser):
@@ -87,7 +63,7 @@ class TransformParser(GenericParser):
     def p_transforms(self, args):
         """
         transforms ::= transform
-        transforms ::= transform cwsp transforms
+        transforms ::= transform cw transforms
 
         transform ::= matrixfunc
         transform ::= translatefunc
@@ -96,16 +72,16 @@ class TransformParser(GenericParser):
         transform ::= skewXfunc
         transform ::= skewYfunc
 
-        matrixfunc ::= matrix lp number cwsp number cwsp number cwsp number cwsp number cwsp number rp
-        translatefunc ::= translate lp number cwsp number  rp
-        translatefunc ::= translate lp number rp
-        scalefunc ::= scale lp number cwsp number rp
-        scalefunc ::= scale lp number rp
-        rotatefunc ::= rotate lp number cwsp number cwsp number rp
-        rotatefunc ::= rotate lp number rp
-        skewXfunc ::= skewX lp number rp
-        skewYfunc ::= skewY lp number rp
+        matrixfunc ::= matrix ( number cw number cw number cw number cw number cw number )
+        translatefunc ::= translate ( number cw number  )
+        translatefunc ::= translate ( number )
+        scalefunc ::= scale ( number cw number )
+        scalefunc ::= scale ( number )
+        rotatefunc ::= rotate ( number cw number cw number )
+        rotatefunc ::= rotate ( number )
+        skewXfunc ::= skewX ( number )
+        skewYfunc ::= skewY ( number )
 
-        cwsp ::= comma
-        cwsp ::=
+        cw ::= ,
+        cw ::=
         """
