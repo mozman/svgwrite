@@ -14,8 +14,23 @@ SVG Implementation Status
 
 * Firefox: http://www.mozilla.org/projects/svg/status.html
 * Opera:
+
   - Elements: http://www.opera.com/docs/specs/opera95/svg/elements.xml
   - Attributes: http://www.opera.com/docs/specs/opera95/svg/attributes.xml
   - SVG-CSS: http://www.opera.com/docs/specs/opera95/svg/cssproperties.xml
   - SVG-DOM: http://www.opera.com/docs/specs/opera95/svg/dominterfaces.xml
+
 * Webkit: http://webkit.org/projects/svg/status.xml
+
+Foreign Python modules
+======================
+
+spark.py
+--------
+
+by John Aycock (Department of Computer Science, University of Calgary)
+
+http://pages.cpsc.ucalgary.ca/~aycock/spark/
+
+Using :mod:`spark.py` for validation of the 'transform' attribute and the 'd'
+attribute of the <path> element.
