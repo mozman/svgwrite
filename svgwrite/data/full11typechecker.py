@@ -14,13 +14,13 @@ def iterflatlist(values):
 
 INVALID_NAME_CHARS = frozenset([' ', '\t', '\r', '\n', ',', '(', ')'])
 WHITESPACE = frozenset([' ', '\t', '\r', '\n'])
-SHAPE_PATTERN = re.compile("rect\((.*),(.*),(.*),(.*)\)")
-FUNCIRI_PATTERN = re.compile("url\((.*)\)")
-ICCCOLOR_PATTERN = re.compile("icc-color\((.*)\)")
-COLOR_HEXDIGIT_PATTERN = re.compile("^#[a-fA-F0-9]{3}([a-fA-F0-9]{3})?$")
-COLOR_RGB_INTEGER_PATTERN = re.compile("^rgb\( *\d+ *, *\d+ *, *\d+ *\)$")
-COLOR_RGB_PERCENTAGE_PATTERN = re.compile("^rgb\( *\d+% *, *\d+% *, *\d+% *\)$")
-NMTOKEN_PATTERN = re.compile("^[a-zA-Z_:][\w\-\.:]*$")
+SHAPE_PATTERN = re.compile(r"^rect\((.*),(.*),(.*),(.*)\)$")
+FUNCIRI_PATTERN = re.compile(r"^url\((.*)\)$")
+ICCCOLOR_PATTERN = re.compile(r"^icc-color\((.*)\)$")
+COLOR_HEXDIGIT_PATTERN = re.compile(r"^#[a-fA-F0-9]{3}([a-fA-F0-9]{3})?$")
+COLOR_RGB_INTEGER_PATTERN = re.compile(r"^rgb\( *\d+ *, *\d+ *, *\d+ *\)$")
+COLOR_RGB_PERCENTAGE_PATTERN = re.compile(r"^rgb\( *\d+% *, *\d+% *, *\d+% *\)$")
+NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
 
 class Full11TypeChecker(object):
     def get_version(self):
@@ -93,8 +93,10 @@ class Full11TypeChecker(object):
             return False
 
     def is_IRI(self, value):
-        #Internationalized Resource Identifiers
-        #a more generalized complement to Uniform Resource Identifiers (URIs)
+        # Internationalized Resource Identifiers
+        # a more generalized complement to Uniform Resource Identifiers (URIs)
+        # nearly everything can be a valid <IRI>
+        # only a none-empty string ist a valid input
         if isinstance(value, basestring):
             return bool(value.strip())
         else:
