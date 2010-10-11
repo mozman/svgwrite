@@ -43,10 +43,11 @@ class TransformScanner(GenericScanner):
         r" \s+ "
 
     def t_number(self, s):
+        # FIXIT: this match .1, 1.0 but not 1. !!!
         r"[-+]?\d*\.?\d+([eE][-+]?\d+)?"
         self.rv.append(Token('number', float(s)))
 
-    def t_parenthese(self, s):
+    def t_bracket(self, s):
         r" \(|\) "
         self.rv.append(Token(s))
 
