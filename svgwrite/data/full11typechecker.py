@@ -1,7 +1,9 @@
 import re
+
 import pattern
 
 from colors import colornames
+import transformlistparser as tfp
 
 def iterflatlist(values):
     """ Flatten nested *values*, returns an *iterator*. """
@@ -23,6 +25,10 @@ COLOR_RGB_PERCENTAGE_PATTERN = re.compile(r"^rgb\( *\d+% *, *\d+% *, *\d+% *\)$"
 NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
 
 class Full11TypeChecker(object):
+    def __init__(self):
+        self._transform_parser = tfp.TransformParser()
+        self._transform_scanner = tfp.TransformScanner()
+
     def get_version(self):
         return ('1.1', 'full')
 
@@ -216,35 +222,17 @@ class Full11TypeChecker(object):
         return False
 
     def is_transform_list(self, value):
-        def iter_transformations(transform):
-            if not transform:
-                raise ValueError
-            while transform:
-                for transformation in ('translate(', 'rotate(', 'skewX(', 'skewY(', 'scale(', 'matrix('):
-                    if transform.startswith(transformation):
-                        end = transform.find(')')
-                        if end > 0 :
-                            yield transform[:end+1]
-                            break
-                        else: # ')' not found
-                            raise ValueError()
-                else: # no transformation matched
-                    raise ValueError()
-                transform = (transform[end+2:]).strip()
-                if transform.startswith(','): # *one* ',' is allowed between transform commands
-                    transform = (transform[1:]).strip()
-
-        def is_transform(transform):
-            start = transform.find('(')
-            values = transform[start+1:-1]
-            return self.is_list_of_T(values.strip(), 'number')
-        try:
-            for transform in iter_transformations(value.strip()):
-                if not is_transform(transform.strip()):
-                    return False
-        except ValueError:
+        if isinstance(value, basestring):
+            try:
+                tokens = self._transform_scanner.tokenize(value)
+                self._transform_parser.parse(tokens)
+                return True
+            except tfp.LexicalError:
+                return False
+            except tfp.ParseError:
+                return False
+        else:
             return False
-        return True
 
     def is_XML_Name(self, value):
         # http://www.w3.org/TR/2006/REC-xml-20060816/#NT-Name
