@@ -122,5 +122,13 @@ class TestTransformParser(unittest.TestCase):
         self.assertRaises(ParseError, self.parser.parse, self.scan("matrix(1, 2, 3, 4, 5, )"))
         self.assertRaises(ParseError, self.parser.parse, self.scan("matrix(1, 2, 3, 4)"))
 
+    def test_multi_command(self):
+        self.transform_command("matrix(1 2 3 4 5 6) skewX(30)")
+        self.transform_command("skewY(15), matrix(1 2 3 4 5 6) skewX(30)")
+
+    def test_multi_command_errors(self):
+        self.assertRaises(ParseError, self.parser.parse, self.scan("skewX(15),, skewY(15)"))
+        self.assertRaises(ParseError, self.parser.parse, self.scan("skewX(15), skewY(15) ,"))
+
 if __name__=='__main__':
     unittest.main()
