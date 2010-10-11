@@ -32,15 +32,14 @@ class ParseError(Exception):
     pass
 
 def _namelist(instance):
-    namelist, namedict, classlist = [], {}, [instance.__class__]
-    for c in classlist:
-        for b in c.__bases__:
-            classlist.append(b)
-        for name in c.__dict__.keys():
-            if not namedict.has_key(name):
-                namelist.append(name)
-                namedict[name] = 1
-    return namelist
+    names = set()
+    classes = [instance.__class__]
+    for cls in classes:
+        classes.extend(cls.__bases__)
+        for name in cls.__dict__:
+            if name not in names:
+                names.add(name)
+                yield name
 
 class GenericScanner:
     def __init__(self, flags=0):
@@ -53,17 +52,13 @@ class GenericScanner:
 
     def makeRE(self, name):
         doc = getattr(self, name).__doc__
-        rv = '(?P<%s>%s)' % (name[2:], doc)
-        return rv
+        return '(?P<%s>%s)' % (name[2:], doc)
 
     def reflect(self):
-        rv = []
-        for name in _namelist(self):
-            if name[:2] == 't_' and name != 't_default':
-                rv.append(self.makeRE(name))
-
+        rv = [ self.makeRE(name) for name in _namelist(self)
+               if name.startswith('t_') and name != 't_default' ]
         rv.append(self.makeRE('t_default'))
-        return string.join(rv, '|')
+        return '|'.join(rv)
 
     def error(self, s, pos):
         raise LexicalError("Lexical error at position %s" % pos)
@@ -83,12 +78,10 @@ class GenericScanner:
             if m is None:
                 self.error(s, self.pos)
 
-            groups = m.groups()
             self.pos = m.end()
-            for i in range(len(groups)):
-                if groups[i] is not None and \
-                   self.index2func.has_key(i):
-                    self.index2func[i](groups[i])
+            for i, group in enumerate(m.groups()):
+                if group and i in self.index2func:
+                    self.index2func[i](group)
 
     def t_default(self, s):
         r'( . | \n )+'
@@ -210,7 +203,7 @@ class GenericParser:
 
     def collectRules(self):
         for name in _namelist(self):
-            if name[:2] == 'p_':
+            if name.startswith('p_'):
                 func = getattr(self, name)
                 doc = func.__doc__
                 self.addRule(doc, func)

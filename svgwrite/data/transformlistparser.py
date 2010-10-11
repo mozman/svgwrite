@@ -39,16 +39,28 @@ class TransformScanner(GenericScanner):
         r" , "
         self.rv.append(Token(s))
 
+    def t_point(self, s):
+        r" \. "
+        self.rv.append(Token(s))
+
     def t_wsp(self, s):
         r" \s+ "
+        self.rv.append(Token('wsp+'))
 
-    def t_number(self, s):
-        # FIXIT: this match .1, 1.0 but not 1. !!!
-        r"[-+]?\d*\.?\d+([eE][-+]?\d+)?"
-        self.rv.append(Token('number', float(s)))
+    def t_digit(self, s):
+        r" \d "
+        self.rv.append(Token(s))
+
+    def t_sign(self, s):
+        r" [\-\+] "
+        self.rv.append(Token(s))
+
+    def t_exponent(self, s):
+        r" [eE] "
+        self.rv.append(Token('e'))
 
     def t_bracket(self, s):
-        r" \(|\) "
+        r" [\(\)] "
         self.rv.append(Token(s))
 
     def t_command(self, s):
@@ -64,25 +76,65 @@ class TransformParser(GenericParser):
     def p_transforms(self, args):
         """
         transforms ::= transform
-        transforms ::= transform cw transforms
+        transforms ::= transform comma-wsp transforms
 
-        transform ::= matrixfunc
-        transform ::= translatefunc
-        transform ::= scalefunc
-        transform ::= rotatefunc
-        transform ::= skewXfunc
-        transform ::= skewYfunc
+        transform ::= matrix-func
+        transform ::= translate-func
+        transform ::= scale-func
+        transform ::= rotate-func
+        transform ::= skewX-func
+        transform ::= skewY-func
 
-        matrixfunc ::= matrix ( number cw number cw number cw number cw number cw number )
-        translatefunc ::= translate ( number cw number  )
-        translatefunc ::= translate ( number )
-        scalefunc ::= scale ( number cw number )
-        scalefunc ::= scale ( number )
-        rotatefunc ::= rotate ( number cw number cw number )
-        rotatefunc ::= rotate ( number )
-        skewXfunc ::= skewX ( number )
-        skewYfunc ::= skewY ( number )
+        matrix-func ::= matrix wsp* ( wsp* number comma-wsp number comma-wsp number comma-wsp number comma-wsp number comma-wsp number wsp* )
+        translate-func ::= translate wsp* ( wsp* number comma-wsp number wsp* )
+        translate-func ::= translate wsp* ( wsp* number wsp* )
+        scale-func ::= scale wsp* ( wsp* number comma-wsp number wsp* )
+        scale-func ::= scale wsp* ( wsp* number wsp* )
+        rotate-func ::= rotate wsp* ( wsp* number comma-wsp number comma-wsp number wsp* )
+        rotate-func ::= rotate wsp* ( wsp* number wsp* )
+        skewX-func ::= skewX wsp* ( wsp* number wsp* )
+        skewY-func ::= skewY wsp* ( wsp* number wsp* )
 
-        cw ::= ,
-        cw ::=
+        number ::= integer-constant
+        number ::= sign integer-constant
+        number ::= floating-point-constant
+        number ::= sign floating-point-constant
+
+        integer-constant ::= digit-sequence
+
+        floating-point-constant ::=  fractional-constant
+        floating-point-constant ::=  fractional-constant exponent
+        floating-point-constant ::=  digit-sequence
+        floating-point-constant ::=  digit-sequence exponent
+
+        fractional-constant ::=  digit-sequence . digit-sequence
+        fractional-constant ::=  . digit-sequence
+        fractional-constant ::=  digit-sequence .
+
+        exponent ::=  e sign digit-sequence
+        exponent ::=  e digit-sequence
+
+        digit-sequence ::= digit
+        digit-sequence ::= digit digit-sequence
+
+        digit ::= 0
+        digit ::= 1
+        digit ::= 2
+        digit ::= 3
+        digit ::= 4
+        digit ::= 5
+        digit ::= 6
+        digit ::= 7
+        digit ::= 8
+        digit ::= 9
+
+        sign ::= -
+        sign ::= +
+
+        comma-wsp ::= wsp+ , wsp*
+        comma-wsp ::= , wsp*
+        comma-wsp ::= wsp+
+
+        wsp* ::= wsp+
+        wsp* ::=
         """
