@@ -13,6 +13,8 @@ class SVGAttribute(object):
         self._types = types
         self._const = const
 
+    # 'elementname' is ignored, but necessary because of the signatures of
+    # the SVGMultiAttribute class methods get_...()
     def get_anim(self, elementname='*'):
         return self._anim
     def get_types(self, elementname='*'):
@@ -21,13 +23,13 @@ class SVGAttribute(object):
         return self._const
 
 class SVGMultiAttribute(object):
-    # exmple: SVGMultiAttribute('x', '*'=SVGAttribute(...), 'text tref'=SVGAttribute(...))
-    # 'x' is the attribute name
+    # example: SVGMultiAttribute({'*':SVGAttribute(...), 'text tref':SVGAttribute(...)} )
+    # parametr is a dict-like object
     # '*' is the default attribute definition
     # 'text' and 'tref' share the same attribute definition
 
-    def __init__(self, name, **attributes):
-        self.name = name
+    def __init__(self, attributes):
+        self.name = None
         self._attributes = {}
         firstkey = None
 
@@ -35,8 +37,14 @@ class SVGMultiAttribute(object):
             for name in names.split():
                 name = name.strip()
                 self._attributes[name] = attribute
+                if not self.name:
+                    self.name = attribute.name
+                elif self.name != attribute.name:
+                    raise ValueError("Different attribute-names for SVGMultiAttribute "\
+                                     "(%s != %s)." % (self.name, attribute.name))
                 if not firstkey:
                     firstkey = name
+
 
         if '*' not in self._attributes:
             # if no default attribute definition were given

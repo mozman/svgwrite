@@ -32,35 +32,32 @@
 from validator2 import get_validator
 
 class _Parameter(object):
-    _debug = False
-    _profile = "full"
-    _autoid = 1
-    validator = None
-
     def __init__(self):
-        _Parameter._debug = False
-        _Parameter._profile = "full"
+        self._debug = False
+        self._profile = "full"
+        self._autoid = 1
+        self.validator = None
         self._init_validator()
 
     def _init_validator(self):
-        _Parameter.validator = get_validator(self.profile,  self.debug)
+        self.validator = get_validator(self.profile,  self.debug)
 
     def get_debug(self):
-        return _Parameter._debug
+        return self._debug
 
     def set_debug(self, debug):
-        _Parameter._debug = debug
+        self._debug = debug
         self._init_validator()
     debug = property(get_debug, set_debug)
 
     def get_version(self):
-        if _Parameter._profile == 'tiny':
+        if self._profile == 'tiny':
             return '1.2'
         else:
             return '1.1'
 
     def get_profile(self):
-        return _Parameter._profile
+        return self._profile
 
     def set_profile(self, profile):
         """
@@ -70,7 +67,7 @@ class _Parameter(object):
         """
         profile = profile.lower()
         if profile in ('tiny', 'basic', 'full'):
-            _Parameter._profile = profile
+            self._profile = profile
             self._init_validator()
         else:
             raise ValueError("'%s' is not a valid profile." % profile)
@@ -78,13 +75,13 @@ class _Parameter(object):
 
     def get_auto_id(self):
         """ Get an automatic generated SVG id string: ``id###``. """
-        retval = "id%d" % _Parameter._autoid
-        _Parameter._autoid += 1
+        retval = "id%d" % self._autoid
+        self._autoid += 1
         return retval
 
     def _set_auto_id(self, value):
         """Just for testing. """
-        _Parameter._autoid = value
+        self._autoid = value
 
 # global var
 parameter = _Parameter()
