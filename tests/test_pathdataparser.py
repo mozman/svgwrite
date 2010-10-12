@@ -27,27 +27,27 @@ class TestPathDataScanner(unittest.TestCase):
     def test_digits_sign(self):
         tokens = self.scanner.tokenize("-1")
         self.assertEqual(len(tokens), 2)
-        self.assertAlmostEqual(tokens[0], '-')
-        self.assertAlmostEqual(tokens[1], '1')
+        self.assertEqual(tokens[0], '-')
+        self.assertEqual(tokens[1], '1')
 
     def test_float(self):
         tokens = self.scanner.tokenize("-1.e3")
         self.assertEqual(len(tokens), 5)
-        self.assertAlmostEqual(tokens[0], '-')
-        self.assertAlmostEqual(tokens[1], '1')
-        self.assertAlmostEqual(tokens[2], '.')
-        self.assertAlmostEqual(tokens[3], 'e')
-        self.assertAlmostEqual(tokens[4], '3')
+        self.assertEqual(tokens[0], '-')
+        self.assertEqual(tokens[1], '1')
+        self.assertEqual(tokens[2], '.')
+        self.assertEqual(tokens[3], 'e')
+        self.assertEqual(tokens[4], '3')
 
     def test_special_chars(self):
         tokens = self.scanner.tokenize("-+ ,.E")
         self.assertEqual(len(tokens), 6)
-        self.assertAlmostEqual(tokens[0], '-')
-        self.assertAlmostEqual(tokens[1], '+')
-        self.assertAlmostEqual(tokens[2], 'wsp+')
-        self.assertAlmostEqual(tokens[3], ',')
-        self.assertAlmostEqual(tokens[4], '.')
-        self.assertAlmostEqual(tokens[5], 'e')
+        self.assertEqual(tokens[0], '-')
+        self.assertEqual(tokens[1], '+')
+        self.assertEqual(tokens[2], 'wsp+')
+        self.assertEqual(tokens[3], ',')
+        self.assertEqual(tokens[4], '.')
+        self.assertEqual(tokens[5], 'e')
 
     def test_valid_commands_1(self):
         cmdstr = "mMlLhHvVqQcCsSqQtTaA"

@@ -28,11 +28,6 @@ def get_validator(profile, debug=True):
 class Tiny12Validator(object):
     def __init__(self, debug=True):
         self.debug = debug
-        self._init_data()
-
-    def _init_data(self):
-        """ Set validator-attributs depending on type of validator.
-        """
         self.attributes = tiny12_attributes
         self.elements = tiny12_elements
         self.typechecker = Tiny12TypeChecker()
@@ -147,7 +142,8 @@ class Tiny12Validator(object):
     get_length = get_coordinate
 
 class Full11Validator(Tiny12Validator):
-    def _init_data(self):
+    def __init__(self, debug=True):
+        self.debug = debug
         self.attributes = full11_attributes
         self.elements = full11_elements
         self.typechecker = Full11TypeChecker()
