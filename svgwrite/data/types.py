@@ -21,10 +21,27 @@ class SVGAttribute(object):
         return self._const
 
 class SVGMultiAttribute(object):
-    # exmple: SVGMultiAttribute('*'=SVGAttribute(...), 'text'=SVGAttribute(...))
+    # exmple: SVGMultiAttribute('x', '*'=SVGAttribute(...), 'text tref'=SVGAttribute(...))
+    # 'x' is the attribute name
+    # '*' is the default attribute definition
+    # 'text' and 'tref' share the same attribute definition
+
     def __init__(self, name, **attributes):
         self.name = name
-        self._attributes = attributes
+        self._attributes = {}
+        firstkey = None
+
+        for names, attribute in attributes.iteritems():
+            for name in names.split():
+                name = name.strip()
+                self._attributes[name] = attribute
+                if not firstkey:
+                    firstkey = name
+
+        if '*' not in self._attributes:
+            # if no default attribute definition were given
+            # set the first attribute definition as the default attribute definition
+            self._attributes['*'] = self._attributes[firstkey]
 
     def get_attribute(self, elementname):
         if elementname in self._attributes:
