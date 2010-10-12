@@ -3,7 +3,9 @@ import re
 import pattern
 
 from colors import colornames
-import transformlistparser as tfp
+from spark import LexicalError, ParseError
+import transformlistparser
+import pathdataparser
 
 def iterflatlist(values):
     """ Flatten nested *values*, returns an *iterator*. """
@@ -26,8 +28,10 @@ NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
 
 class Full11TypeChecker(object):
     def __init__(self):
-        self._transform_parser = tfp.TransformParser()
-        self._transform_scanner = tfp.TransformScanner()
+        self._transform_parser = transformlistparser.TransformParser()
+        self._transform_scanner = transformlistparser.TransformScanner()
+        self._path_data_parser = pathdataparser.PathDataParser()
+        self._path_data_scanner = pathdataparser.PathDataScanner()
 
     def get_version(self):
         return ('1.1', 'full')
@@ -44,6 +48,7 @@ class Full11TypeChecker(object):
         #anything ::= Char*
         return bool(str(value).strip())
     is_string = is_anything
+    is_content_type = is_anything
 
     def is_color(self, value):
         #color    ::= "#" hexdigit hexdigit hexdigit (hexdigit hexdigit hexdigit)?
@@ -227,9 +232,22 @@ class Full11TypeChecker(object):
                 tokens = self._transform_scanner.tokenize(value)
                 self._transform_parser.parse(tokens)
                 return True
-            except tfp.LexicalError:
+            except LexicalError:
                 return False
-            except tfp.ParseError:
+            except ParseError:
+                return False
+        else:
+            return False
+
+    def is_path_data(self, value):
+        if isinstance(value, basestring):
+            try:
+                tokens = self._path_data_scanner.tokenize(value)
+                self._path_data_parser.parse(tokens)
+                return True
+            except LexicalError:
+                return False
+            except ParseError:
                 return False
         else:
             return False
