@@ -19,6 +19,8 @@ presentation_attributes = frozenset([ "alignment-baseline", "baseline-shift",
     "text-rendering", "unicode-bidi", "visibility", "word-spacing",
     "writing-mode"])
 
+empty_list = []
+
 full11_elements = {
     'a': SVGElement('a',
     attributes=frozenset(['xlink:title', 'xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'id', 'xlink:actuate', 'onload', 'style', 'xlink:show', 'target', 'onactivate', 'nmousedown', 'transform', 'class', 'xlink:role', 'requiredFeatures', 'xml:lang', 'onmousemove', 'xmlns:xlink', 'onclick', 'xlink:arcrole', 'onfocusin']),
@@ -28,36 +30,36 @@ full11_elements = {
     'altGlyph': SVGElement('altGlyph',
     attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'id', 'onload', 'style', 'nmousedown', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'format', 'xlink:title', 'systemLanguage', 'onmouseover', 'dx', 'dy', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'glyphRef', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'rotate']),
     properties=presentation_attributes,
-    children=[]),
+    children=empty_list),
 
     'altGlyphDef': SVGElement('altGlyphDef',
     attributes=frozenset(['xml:space', 'xml:lang', 'xml:base', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['*'])),
 
     'altGlyphItem': SVGElement('altGlyphItem',
     attributes=frozenset(['xml:space', 'xml:lang', 'xml:base', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['*'])),
 
     'animate': SVGElement('animate',
     attributes=frozenset(['requiredExtensions', 'from', 'repeatCount', 'xml:space', 'xlink:href', 'xlink:type', 'attributeType', 'repeatDur', 'id', 'fill', 'onload', 'additive', 'calcMode', 'min', 'keySplines', 'to', 'dur', 'xlink:arcrole', 'onend', 'begin', 'xml:base', 'max', 'xlink:title', 'attributeName', 'onbegin', 'systemLanguage', 'accumulate', 'end', 'externalResourcesRequired', 'by', 'restart', 'xlink:actuate', 'xlink:show', 'xlink:role', 'requiredFeatures', 'xml:lang', 'values', 'keyTimes', 'onrepeat']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'animateColor': SVGElement('animateColor',
     attributes=frozenset(['requiredExtensions', 'from', 'repeatCount', 'xml:space', 'xlink:href', 'xlink:type', 'attributeType', 'repeatDur', 'id', 'fill', 'onload', 'additive', 'calcMode', 'min', 'keySplines', 'to', 'dur', 'xlink:arcrole', 'onend', 'begin', 'xml:base', 'max', 'xlink:title', 'attributeName', 'onbegin', 'systemLanguage', 'accumulate', 'end', 'externalResourcesRequired', 'by', 'restart', 'xlink:actuate', 'xlink:show', 'xlink:role', 'requiredFeatures', 'xml:lang', 'values', 'keyTimes', 'onrepeat']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'animateMotion': SVGElement('animateMotion',
     attributes=frozenset(['origin', 'requiredExtensions', 'from', 'repeatCount', 'xml:space', 'xlink:href', 'xlink:type', 'repeatDur', 'id', 'fill', 'onload', 'additive', 'calcMode', 'min', 'keySplines', 'to', 'dur', 'xlink:arcrole', 'onend', 'begin', 'xlink:title', 'xml:base', 'max', 'end', 'keyPoints', 'onbegin', 'systemLanguage', 'accumulate', 'path', 'externalResourcesRequired', 'by', 'restart', 'xlink:actuate', 'xlink:show', 'xlink:role', 'requiredFeatures', 'xml:lang', 'values', 'keyTimes', 'onrepeat', 'rotate']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'mpath', 'title'])),
 
     'animateTransform': SVGElement('animateTransform',
     attributes=frozenset(['requiredExtensions', 'from', 'repeatCount', 'xml:space', 'xlink:href', 'xlink:type', 'attributeType', 'repeatDur', 'id', 'fill', 'onload', 'additive', 'calcMode', 'min', 'keySplines', 'to', 'dur', 'xlink:arcrole', 'type', 'onend', 'begin', 'xml:base', 'max', 'xlink:title', 'attributeName', 'onbegin', 'systemLanguage', 'accumulate', 'end', 'externalResourcesRequired', 'by', 'restart', 'xlink:actuate', 'xlink:show', 'xlink:role', 'requiredFeatures', 'xml:lang', 'values', 'keyTimes', 'onrepeat']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'circle': SVGElement('circle',
@@ -72,12 +74,12 @@ full11_elements = {
 
     'color-profile': SVGElement('color-profile',
     attributes=frozenset(['xlink:actuate', 'xlink:show', 'xml:base', 'name', 'rendering-intent', 'xml:space', 'xlink:href', 'xlink:role', 'xml:lang', 'xlink:type', 'xlink:title', 'xlink:arcrole', 'local', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'cursor': SVGElement('cursor',
     attributes=frozenset(['xlink:title', 'xml:base', 'requiredExtensions', 'xml:space', 'xlink:href', 'systemLanguage', 'xlink:type', 'externalResourcesRequired', 'id', 'xlink:actuate', 'xlink:show', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'xlink:arcrole']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'defs': SVGElement('defs',
@@ -87,7 +89,7 @@ full11_elements = {
 
     'desc': SVGElement('desc',
     attributes=frozenset(['style', 'xml:lang', 'xml:base', 'xml:space', 'class', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['*'])),
 
     'ellipse': SVGElement('ellipse',
@@ -132,7 +134,7 @@ full11_elements = {
 
     'feDistantLight': SVGElement('feDistantLight',
     attributes=frozenset(['xml:lang', 'elevation', 'azimuth', 'xml:base', 'xml:space', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['animate', 'set'])),
 
     'feFlood': SVGElement('feFlood',
@@ -142,22 +144,22 @@ full11_elements = {
 
     'feFuncA': SVGElement('feFuncA',
     attributes=frozenset(['slope', 'xml:base', 'tableValues', 'xml:space', 'xml:lang', 'intercept', 'amplitude', 'offset', 'type', 'id', 'exponent']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['animate', 'set'])),
 
     'feFuncB': SVGElement('feFuncB',
     attributes=frozenset(['slope', 'xml:base', 'tableValues', 'xml:space', 'xml:lang', 'intercept', 'amplitude', 'offset', 'type', 'id', 'exponent']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['animate', 'set'])),
 
     'feFuncG': SVGElement('feFuncG',
     attributes=frozenset(['slope', 'xml:base', 'tableValues', 'xml:space', 'xml:lang', 'intercept', 'amplitude', 'offset', 'type', 'id', 'exponent']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['animate', 'set'])),
 
     'feFuncR': SVGElement('feFuncR',
     attributes=frozenset(['slope', 'xml:base', 'tableValues', 'xml:space', 'xml:lang', 'intercept', 'amplitude', 'offset', 'type', 'id', 'exponent']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['animate', 'set'])),
 
     'feGaussianBlur': SVGElement('feGaussianBlur',
@@ -177,7 +179,7 @@ full11_elements = {
 
     'feMergeNode': SVGElement('feMergeNode',
     attributes=frozenset(['xml:space', 'xml:lang', 'xml:base', 'id', 'in']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['animate', 'set'])),
 
     'feMorphology': SVGElement('feMorphology',
@@ -192,7 +194,7 @@ full11_elements = {
 
     'fePointLight': SVGElement('fePointLight',
     attributes=frozenset(['xml:lang', 'xml:base', 'y', 'x', 'xml:space', 'z', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['animate', 'set'])),
 
     'feSpecularLighting': SVGElement('feSpecularLighting',
@@ -202,7 +204,7 @@ full11_elements = {
 
     'feSpotLight': SVGElement('feSpotLight',
     attributes=frozenset(['pointsAtX', 'xml:base', 'xml:space', 'limitingConeAngle', 'xml:lang', 'specularExponent', 'pointsAtZ', 'y', 'x', 'pointsAtY', 'z', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['animate', 'set'])),
 
     'feTile': SVGElement('feTile',
@@ -213,7 +215,7 @@ full11_elements = {
     'feTurbulence': SVGElement('feTurbulence',
     attributes=frozenset(['xml:base', 'baseFrequency', 'xml:space', 'stitchTiles', 'height', 'width', 'xml:lang', 'id', 'result', 'x', 'y', 'numOctaves', 'type', 'seed']),
     properties=presentation_attributes,
-    children=[]),
+    children=empty_list),
 
     'filter': SVGElement('filter',
     attributes=frozenset(['xlink:title', 'xml:base', 'xml:space', 'xlink:href', 'height', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'style', 'xlink:show', 'filterRes', 'primitiveUnits', 'id', 'xlink:role', 'width', 'xml:lang', 'y', 'x', 'xlink:arcrole', 'filterUnits']),
@@ -227,22 +229,22 @@ full11_elements = {
 
     'font-face': SVGElement('font-face',
     attributes=frozenset(['mathematical', 'slope', 'font-size', 'xml:space', 'v-hanging', 'hanging', 'overline-thickness', 'ascent', 'id', 'strikethrough-position', 'underline-position', 'descent', 'cap-height', 'units-per-em', 'font-style', 'unicode-range', 'font-stretch', 'font-variant', 'x-height', 'font-weight', 'xml:base', 'panose-1', 'strikethrough-thickness', 'stemh', 'v-alphabetic', 'stemv', 'bbox', 'underline-thickness', 'font-family', 'v-mathematical', 'v-ideographic', 'ideographic', 'overline-position', 'widths', 'xml:lang', 'accent-height', 'alphabetic']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'font-face-src', 'title'])),
 
     'font-face-format': SVGElement('font-face-format',
     attributes=frozenset(['xml:space', 'xml:lang', 'xml:base', 'id']),
-    properties=[],
-    children=[]),
+    properties=empty_list,
+    children=empty_list),
 
     'font-face-name': SVGElement('font-face-name',
     attributes=frozenset(['xml:space', 'xml:lang', 'xml:base', 'id', 'name']),
-    properties=[],
-    children=[]),
+    properties=empty_list,
+    children=empty_list),
 
     'font-face-uri': SVGElement('font-face-uri',
     attributes=frozenset(['xlink:actuate', 'xlink:show', 'xml:base', 'xml:space', 'xlink:href', 'xlink:role', 'xml:lang', 'xlink:type', 'xlink:title', 'xlink:arcrole', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['font-face-format'])),
 
     'foreignObject': SVGElement('foreignObject',
@@ -263,12 +265,12 @@ full11_elements = {
     'glyphRef': SVGElement('glyphRef',
     attributes=frozenset(['xlink:title', 'xml:base', 'format', 'xml:space', 'xlink:href', 'dx', 'dy', 'xlink:type', 'class', 'xlink:actuate', 'style', 'xlink:show', 'id', 'xlink:role', 'xml:lang', 'y', 'x', 'xlink:arcrole', 'glyphRef']),
     properties=presentation_attributes,
-    children=[]),
+    children=empty_list),
 
     'hkern': SVGElement('hkern',
     attributes=frozenset(['xml:base', 'g2', 'g1', 'xml:space', 'u1', 'u2', 'xml:lang', 'id', 'k']),
-    properties=[],
-    children=[]),
+    properties=empty_list,
+    children=empty_list),
 
     'image': SVGElement('image',
     attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'height', 'id', 'onload', 'style', 'nmousedown', 'transform', 'width', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'preserveAspectRatio']),
@@ -297,7 +299,7 @@ full11_elements = {
 
     'metadata': SVGElement('metadata',
     attributes=frozenset(['xml:space', 'xml:lang', 'xml:base', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['*'])),
 
     'missing-glyph': SVGElement('missing-glyph',
@@ -307,7 +309,7 @@ full11_elements = {
 
     'mpath': SVGElement('mpath',
     attributes=frozenset(['xlink:actuate', 'xlink:show', 'xml:base', 'xml:space', 'xlink:href', 'id', 'xlink:role', 'xml:lang', 'xlink:type', 'xlink:title', 'xlink:arcrole', 'externalResourcesRequired']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'path': SVGElement('path',
@@ -342,12 +344,12 @@ full11_elements = {
 
     'script': SVGElement('script',
     attributes=frozenset(['xlink:actuate', 'xlink:show', 'xml:base', 'xml:space', 'xlink:href', 'id', 'xlink:role', 'xml:lang', 'xlink:type', 'xlink:title', 'xlink:arcrole', 'type', 'externalResourcesRequired']),
-    properties=[],
-    children=[]),
+    properties=empty_list,
+    children=empty_list),
 
     'set': SVGElement('set',
     attributes=frozenset(['begin', 'xlink:title', 'xml:base', 'requiredExtensions', 'repeatCount', 'xml:space', 'xlink:href', 'attributeName', 'onbegin', 'systemLanguage', 'attributeType', 'xlink:type', 'externalResourcesRequired', 'id', 'restart', 'fill', 'xlink:actuate', 'onload', 'xlink:show', 'end', 'min', 'repeatDur', 'xlink:role', 'to', 'requiredFeatures', 'xml:lang', 'max', 'dur', 'xlink:arcrole', 'onrepeat', 'onend']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'stop': SVGElement('stop',
@@ -357,7 +359,7 @@ full11_elements = {
 
     'style': SVGElement('style',
     attributes=frozenset(['xml:lang', 'xml:base', 'title', 'media', 'xml:space', 'type', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['*'])),
 
     'svg': SVGElement('svg',
@@ -387,7 +389,7 @@ full11_elements = {
 
     'title': SVGElement('title',
     attributes=frozenset(['style', 'xml:lang', 'xml:base', 'xml:space', 'class', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['*'])),
 
     'tref': SVGElement('tref',
@@ -407,12 +409,12 @@ full11_elements = {
 
     'view': SVGElement('view',
     attributes=frozenset(['xml:base', 'viewTarget', 'xml:space', 'viewBox', 'xml:lang', 'preserveAspectRatio', 'externalResourcesRequired', 'zoomAndPan', 'id']),
-    properties=[],
+    properties=empty_list,
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'vkern': SVGElement('vkern',
     attributes=frozenset(['xml:base', 'g2', 'g1', 'xml:space', 'u1', 'u2', 'xml:lang', 'id', 'k']),
-    properties=[],
-    children=[]),
+    properties=empty_list,
+    children=empty_list),
 
 }
