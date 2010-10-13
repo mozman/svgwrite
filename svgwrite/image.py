@@ -85,21 +85,19 @@ class Image(BaseElement, ITransform):
         :param extra: additional SVG attributs as keyword-arguments
         """
         super(Image, self).__init__(attribs, **extra)
-        self.attribs['xlink:href'] = href
+        self['xlink:href'] = href
         if insert:
-            self.attribs['x'] = insert[0]
-            self.attribs['y'] = insert[1]
+            self['x'] = insert[0]
+            self['y'] = insert[1]
         if size:
-            self.attribs['width'] = size[0]
-            self.attribs['height'] = size[1]
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+            self['width'] = size[0]
+            self['height'] = size[1]
 
     def stretch(self):
         """ Stretch viewBox in x and y direction to fill viewport, does not
         preserve aspect ratio.
         """
-        self.attribs['preserveAspectRatio'] = 'none'
+        self['preserveAspectRatio'] = 'none'
 
     def fit(self, horiz="center", vert="middle", scale="meet"):
         """ Set the preserveAspectRatio attribute.

@@ -244,7 +244,7 @@ class TSpan(BaseElement):
             y = [insert[1]]
 
         if x: self['x'] = strlist(list(iterflatlist(x)), ' ')
-        if y:self['y'] = strlist(list(iterflatlist(y)), ' ')
+        if y: self['y'] = strlist(list(iterflatlist(y)), ' ')
         if dx: self['dx'] = strlist(list(iterflatlist(dx)), ' ')
         if dy: self['dy'] = strlist(list(iterflatlist(dy)), ' ')
         if rotate: self['rotate'] = strlist(list(iterflatlist(rotate)), ' ')
@@ -260,16 +260,6 @@ class TSpan(BaseElement):
         return txt
 
     def get_xml(self):
-        #if self.x:
-            #self['x'] = strlist(iterflatlist(self.x), ' ')
-        #if self.y:
-            #self['y'] = strlist(iterflatlist(self.y), ' ')
-        #if self.dx:
-            #self['dx'] = strlist(iterflatlist(self.dx), ' ')
-        #if self.dy:
-            #self['dy'] = strlist(iterflatlist(self.dy), ' ')
-        #if self.rotate:
-            #self['rotate'] = strlist(iterflatlist(self.rotate), ' ')
         xml = super(TSpan, self).get_xml()
         xml.text = unicode(self.text)
         return xml
@@ -465,11 +455,11 @@ class TextPath(BaseElement, IXLink):
         super(TextPath, self).__init__(attribs=attribs, **extra)
         self.text = text
         if method == 'stretch':
-            self.attribs['method'] = method
+            self['method'] = method
         if spacing == 'auto':
-            self.attribs['spacing'] = spacing
+            self['spacing'] = spacing
         if startOffset:
-            self.attribs['startOffset'] = startOffset
+            self['startOffset'] = startOffset
         self.set_href(path)
 
     def tspan(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
@@ -496,3 +486,33 @@ class TextPath(BaseElement, IXLink):
         xml.text = unicode(self.text)
         return xml
 
+class TextArea(BaseElement):
+    #TODO: testing for TestArea
+    elementname = 'textArea'
+    def __init__(self, insert, size=None, attribs={}, **extra):
+        super(TextArea, self).__init__(attribs, **extra)
+        self['x'] = insert[0]
+        self['y'] = insert[1]
+        if size:
+            self['width'] = size[0]
+            self['height'] = size[1]
+        self.text = []
+
+    def line_increment(self, value):
+        """ line-spacing """
+        self['line-increment'] = value
+
+    def write(self, text):
+        self.text.append(text)
+
+    def writeline(self, text):
+        self.write(text)
+        self.tbreak()
+
+    def tbreak(self):
+        self.text.append('<tbreak />')
+
+    def get_xml(self):
+        xml = super(TextArea, self).get_xml()
+        xml.text = u''.join(self.text)
+        return xml

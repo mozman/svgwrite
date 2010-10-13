@@ -316,5 +316,13 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertFalse(self.checker.is_transform_list("translate(10,10) ,, rotate( 30 )"))
         self.assertFalse(self.checker.is_transform_list("translate(10,10) x rotate( 30 )"))
 
+    def test_is_four_numbers(self):
+        self.assertTrue(self.checker.is_four_numbers(' 1, 2, 3, 4 '))
+        self.assertTrue(self.checker.is_four_numbers(' 1  2 3  4 '))
+    def test_is_not_four_numbers(self):
+        self.assertFalse(self.checker.is_four_numbers(' 1, 2, 3, '))
+        self.assertFalse(self.checker.is_four_numbers(' 1, 2 '))
+        self.assertFalse(self.checker.is_four_numbers(' 1 '))
+
 if __name__=='__main__' :
     unittest.main()
