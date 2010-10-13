@@ -9,7 +9,7 @@ tiny12_elements = {
     'a': SVGElement('a',
     attributes=[u'about', u'class', u'content', u'datatype', u'externalResourcesRequired', u'focusHighlight', u'focusable', u'id', u'nav-down', u'nav-down-left', u'nav-down-right', u'nav-left', u'nav-next', u'nav-prev', u'nav-right', u'nav-up', u'nav-up-left', u'nav-up-right', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'target', u'transform', u'typeof', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
     properties=property_names,
-    children=['likeparent']),
+    children=['likeparent', 'defs', 'text', 'g', 'textArea', 'svg']),
 
     'animate': SVGElement('animate',
     attributes=[u'about', u'accumulate', u'additive', u'attributeName', u'attributeType', u'begin', u'by', u'calcMode', u'class', u'content', u'datatype', u'dur', u'end', u'fill', u'from', u'id', u'keySplines', u'keyTimes', u'max', u'min', u'property', u'rel', u'repeatCount', u'repeatDur', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'restart', u'rev', u'role', u'systemLanguage', u'to', u'typeof', u'values', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
@@ -204,7 +204,7 @@ tiny12_elements = {
     'switch': SVGElement('switch',
     attributes=[u'about', u'class', u'content', u'datatype', u'externalResourcesRequired', u'focusHighlight', u'focusable', u'id', u'nav-down', u'nav-down-left', u'nav-down-right', u'nav-left', u'nav-next', u'nav-prev', u'nav-right', u'nav-up', u'nav-up-left', u'nav-up-right', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'transform', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
     properties=property_names,
-    children=['likeparent']),
+    children=['likeparent', 'set', 'textArea', 'text', 'image', 'missing-glyph', 'font-face', 'video', 'path', 'animate', 'font', 'ellipse', 'glyph', 'use', 'font-face-src', 'polygon', 'script', 'handler', 'circle', 'radialGradient', 'prefetch', 'defs', 'mpath', 'stop', 'animateMotion', 'animateColor', 'discard', 'solidColor', 'hkern', 'line', 'animation', 'rect', 'g', 'svg', 'animateTransform', 'linearGradient', 'font-face-uri', 'foreignObject', 'polyline', 'audio']),
 
     'tbreak': SVGElement('tbreak',
     attributes=[u'about', u'class', u'content', u'datatype', u'id', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
@@ -229,7 +229,7 @@ tiny12_elements = {
     'tspan': SVGElement('tspan',
     attributes=[u'about', u'class', u'content', u'datatype', u'focusHighlight', u'focusable', u'id', u'nav-down', u'nav-down-left', u'nav-down-right', u'nav-left', u'nav-next', u'nav-prev', u'nav-right', u'nav-up', u'nav-up-left', u'nav-up-right', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
     properties=property_names,
-    children=['likeparent']),
+    children=['likeparent', 'text', 'textArea']),
 
     'use': SVGElement('use',
     attributes=[u'about', u'class', u'content', u'datatype', u'externalResourcesRequired', u'focusHighlight', u'focusable', u'id', u'nav-down', u'nav-down-left', u'nav-down-right', u'nav-left', u'nav-next', u'nav-prev', u'nav-right', u'nav-up', u'nav-up-left', u'nav-up-right', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'transform', u'typeof', u'x', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space', u'y'],

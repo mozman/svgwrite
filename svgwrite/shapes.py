@@ -38,12 +38,10 @@ class Line(BaseElement, ITransform):
         super(Line, self).__init__(attribs=attribs, **extra)
         x1, y1 = start
         x2, y2 = end
-        self.attribs['x1'] = x1
-        self.attribs['y1'] = y1
-        self.attribs['x2'] = x2
-        self.attribs['y2'] = y2
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+        self['x1'] = x1
+        self['y1'] = y1
+        self['x2'] = x2
+        self['y2'] = y2
 
 class Rect(BaseElement, ITransform):
     """ The <rect> element defines a rectangle which is axis-aligned with the current
@@ -81,14 +79,12 @@ class Rect(BaseElement, ITransform):
         super(Rect, self).__init__(attribs=attribs, **extra)
         x, y = insert
         width, height = size
-        self.attribs['x'] = x
-        self.attribs['y'] = y
-        self.attribs['width'] = width
-        self.attribs['height'] = height
-        if rx: self.attribs['rx'] = rx
-        if ry: self.attribs['ry'] = ry
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+        self['x'] = x
+        self['y'] = y
+        self['width'] = width
+        self['height'] = height
+        if rx: self['rx'] = rx
+        if ry: self['ry'] = ry
 
 class Circle(BaseElement, ITransform):
     """ The <circle> element defines a circle based on a center point and a radius.
@@ -113,11 +109,9 @@ class Circle(BaseElement, ITransform):
         """
         super(Circle, self).__init__(attribs=attribs, **extra)
         cx, cy = center
-        self.attribs['cx'] = cx
-        self.attribs['cy'] = cy
-        self.attribs['r'] = r
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+        self['cx'] = cx
+        self['cy'] = cy
+        self['r'] = r
 
 class Ellipse(BaseElement, ITransform):
     """ The <ellipse> element defines an ellipse which is axis-aligned with the
@@ -145,12 +139,10 @@ class Ellipse(BaseElement, ITransform):
         super(Ellipse, self).__init__(attribs=attribs, **extra)
         cx, cy = center
         rx, ry = r
-        self.attribs['cx'] = cx
-        self.attribs['cy'] = cy
-        self.attribs['rx'] = rx
-        self.attribs['ry'] = ry
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+        self['cx'] = cx
+        self['cy'] = cy
+        self['rx'] = rx
+        self['ry'] = ry
 
 class Polyline(BaseElement, ITransform):
     """ The <polyline> element defines a set of connected straight line segments.

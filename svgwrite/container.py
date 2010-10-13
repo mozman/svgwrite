@@ -247,13 +247,11 @@ class SVG(Symbol):
         """
         super(SVG, self).__init__(attribs=attribs, **extra)
         if insert:
-            self.attribs['x'] = insert[0]
-            self.attribs['y'] = insert[1]
+            self['x'] = insert[0]
+            self['y'] = insert[1]
         if size:
-            self.attribs['width'] = size[0]
-            self.attribs['height'] = size[1]
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+            self['width'] = size[0]
+            self['height'] = size[1]
         self.defs = Defs() # defs container
         self.add(self.defs) # add defs as first element
 
@@ -330,13 +328,11 @@ class Use(BaseElement, ITransform, IXLink):
         super(Use, self).__init__(attribs, **extra)
         self.set_href(href)
         if insert:
-            self.attribs['x'] = insert[0]
-            self.attribs['y'] = insert[1]
+            self['x'] = insert[0]
+            self['y'] = insert[1]
         if size:
-            self.attribs['width'] = size[0]
-            self.attribs['height'] = size[1]
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+            self['width'] = size[0]
+            self['height'] = size[1]
 
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!

@@ -42,16 +42,13 @@ class IViewBox(object):
         :param number height: height of the viewBox
 
         """
-        if parameter.debug:
-            for value in (minx, miny, width, height):
-                parameter.validator.check_svg_type(value, 'number')
-        self.attribs['viewBox'] = strlist( [minx, miny, width, height] )
+        self['viewBox'] = strlist( [minx, miny, width, height] )
 
     def stretch(self):
         """ Stretch viewBox in x and y direction to fill viewport, does not
         preserve aspect ratio.
         """
-        self.attribs['preserveAspectRatio'] = 'none'
+        self['preserveAspectRatio'] = 'none'
 
     def fit(self, horiz="center", vert="middle", scale="meet"):
         """ Set the preserveAspectRatio attribute.
@@ -70,7 +67,7 @@ class IViewBox(object):
         """
         if parameter.debug and scale not in ('meet', 'slice'):
             raise ValueError("Invalid scale parameter '%s'" % scale)
-        self.attribs['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)
+        self['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)
 
 class ITransform(object):
     """ The *ITransform* interface operates on the *transform* attribute.
@@ -100,9 +97,6 @@ class ITransform(object):
         :param number tx: user coordinate - no units allowed
         :param number ty: user coordinate - no units allowed
         """
-        if parameter.debug:
-            parameter.validator.check_svg_type(tx, 'number')
-            if ty : parameter.validator.check_svg_type(ty, 'number')
         self._add_transformation("translate(%s)" % strlist( [tx, ty] ))
 
     def rotate(self, angle, center=None):
@@ -115,11 +109,6 @@ class ITransform(object):
         :param 2-tuple center: rotate-center as user coordinate - no units allowed
 
         """
-        if parameter.debug:
-            parameter.validator.check_svg_type(angle, 'number')
-            if center:
-                parameter.validator.check_svg_type(center[0], 'number')
-                parameter.validator.check_svg_type(center[1], 'number')
         self._add_transformation("rotate(%s)" % strlist( [angle, center] ))
 
     def scale(self, sx, sy=None):
@@ -131,9 +120,6 @@ class ITransform(object):
         :param number sy: scalar factor y-axis, no units allowed
 
         """
-        if parameter.debug:
-            parameter.validator.check_svg_type(sx, 'number')
-            if sy : parameter.validator.check_svg_type(sy, 'number')
         self._add_transformation("scale(%s)" % strlist( [sx, sy] ))
 
     def skewX(self, angle):
@@ -142,8 +128,6 @@ class ITransform(object):
         :param number angle: skew-angle in degrees, no units allowed
 
         """
-        if parameter.debug:
-            parameter.validator.check_svg_type(angle, 'number')
         self._add_transformation("skewX(%s)" % angle)
 
     def skewY(self, angle):
@@ -152,8 +136,6 @@ class ITransform(object):
         :param number angle: skew-angle in degrees, no units allowed
 
         """
-        if parameter.debug:
-            parameter.validator.check_svg_type(angle, 'number')
         self._add_transformation("skewY(%s)" % angle)
 
     def matrix(self, a, b, c, d, e, f):
@@ -164,7 +146,7 @@ class ITransform(object):
 
     def _add_transformation(self, new_transform):
         old_transform = self.attribs.get('transform', '')
-        self.attribs['transform'] = ("%s %s" % (old_transform, new_transform)).strip()
+        self['transform'] = ("%s %s" % (old_transform, new_transform)).strip()
 
 class IXLink(object):
     """ Xlink interface

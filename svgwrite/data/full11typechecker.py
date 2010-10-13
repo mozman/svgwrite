@@ -146,6 +146,23 @@ class Full11TypeChecker(object):
                 return False
         return True
 
+    def is_four_numbers(self, value):
+        def split(value):
+            if isinstance(value, basestring):
+                values = iterflatlist( (v.strip().split(' ') for v in value.split(',')) )
+                return (v for v in values if v)
+            else:
+                return iterflatlist(value)
+
+        values = list(split(value))
+        if len(values) != 4:
+            return False
+        checker = self.get_func_by_name('number')
+        for v in values:
+            if not checker(v):
+                return False
+        return True
+
     def is_semicolon_list(self, value):
         #a semicolon-separated list of values
         #               | value comma-wsp list-of-values
