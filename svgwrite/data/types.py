@@ -73,13 +73,7 @@ class SVGMultiAttribute(object):
 class SVGElement(object):
     def __init__(self, name, attributes, properties, children):
         self.name = name
-        s = set()
-        if attributes:
-            s.update(attributes)
-        if properties:
-            s.update(properties)
+        s = set(attributes)
+        s.update(properties)
         self.valid_attributes = frozenset(s)
-        s =set()
-        if children:
-            s.update(children)
-        self.valid_children = frozenset(s)
+        self.valid_children = frozenset(children)

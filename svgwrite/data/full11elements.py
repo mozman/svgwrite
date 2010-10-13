@@ -233,12 +233,12 @@ full11_elements = {
     'font-face-format': SVGElement('font-face-format',
     attributes=frozenset(['xml:space', 'xml:lang', 'xml:base', 'id']),
     properties=[],
-    children=frozenset([])),
+    children=[]),
 
     'font-face-name': SVGElement('font-face-name',
     attributes=frozenset(['xml:space', 'xml:lang', 'xml:base', 'id', 'name']),
     properties=[],
-    children=frozenset([])),
+    children=[]),
 
     'font-face-uri': SVGElement('font-face-uri',
     attributes=frozenset(['xlink:actuate', 'xlink:show', 'xml:base', 'xml:space', 'xlink:href', 'xlink:role', 'xml:lang', 'xlink:type', 'xlink:title', 'xlink:arcrole', 'id']),
@@ -263,12 +263,12 @@ full11_elements = {
     'glyphRef': SVGElement('glyphRef',
     attributes=frozenset(['xlink:title', 'xml:base', 'format', 'xml:space', 'xlink:href', 'dx', 'dy', 'xlink:type', 'class', 'xlink:actuate', 'style', 'xlink:show', 'id', 'xlink:role', 'xml:lang', 'y', 'x', 'xlink:arcrole', 'glyphRef']),
     properties=presentation_attributes,
-    children=frozenset([])),
+    children=[]),
 
     'hkern': SVGElement('hkern',
     attributes=frozenset(['xml:base', 'g2', 'g1', 'xml:space', 'u1', 'u2', 'xml:lang', 'id', 'k']),
     properties=[],
-    children=frozenset([])),
+    children=[]),
 
     'image': SVGElement('image',
     attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'height', 'id', 'onload', 'style', 'nmousedown', 'transform', 'width', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'preserveAspectRatio']),
@@ -413,6 +413,6 @@ full11_elements = {
     'vkern': SVGElement('vkern',
     attributes=frozenset(['xml:base', 'g2', 'g1', 'xml:space', 'u1', 'u2', 'xml:lang', 'id', 'k']),
     properties=[],
-    children=frozenset([])),
+    children=[]),
 
 }
