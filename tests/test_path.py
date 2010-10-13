@@ -52,5 +52,15 @@ class TestPath(unittest.TestCase):
         p = Path(d=('M 1,2', ['L', (7, 7, 'H 1 2 3 4 5')]))
         self.assertEqual(p.tostring(), '<path d="M 1,2 L 7 7 H 1 2 3 4 5" />')
 
+    def test_push_arc_1(self):
+        p = Path('m0,0')
+        p.push_arc(target=(7,7), rotation=30, r=5)
+        self.assertEqual(p.tostring(), '<path d="m0,0 a 5 5 30 1,1 7 7" />')
+
+    def test_push_arc_2(self):
+        p = Path('m0,0')
+        p.push_arc(target=(7,7), rotation=30, r=(2,4), large_arc=False, angle_dir='-', absolute=True)
+        self.assertEqual(p.tostring(), '<path d="m0,0 A 2 4 30 0,0 7 7" />')
+
 if __name__=='__main__':
     unittest.main()
