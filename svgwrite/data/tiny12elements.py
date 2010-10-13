@@ -3,6 +3,8 @@
 from types import SVGElement
 from tiny12attributes import property_names, media_group_names
 
+empty_list = []
+
 tiny12_elements = {
     'a': SVGElement('a',
     attributes=[u'about', u'class', u'content', u'datatype', u'externalResourcesRequired', u'focusHighlight', u'focusable', u'id', u'nav-down', u'nav-down-left', u'nav-down-right', u'nav-left', u'nav-next', u'nav-prev', u'nav-right', u'nav-up', u'nav-up-left', u'nav-up-right', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'target', u'transform', u'typeof', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
@@ -11,22 +13,22 @@ tiny12_elements = {
 
     'animate': SVGElement('animate',
     attributes=[u'about', u'accumulate', u'additive', u'attributeName', u'attributeType', u'begin', u'by', u'calcMode', u'class', u'content', u'datatype', u'dur', u'end', u'fill', u'from', u'id', u'keySplines', u'keyTimes', u'max', u'min', u'property', u'rel', u'repeatCount', u'repeatDur', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'restart', u'rev', u'role', u'systemLanguage', u'to', u'typeof', u'values', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'handler', u'metadata', u'switch', u'title']),
 
     'animateColor': SVGElement('animateColor',
     attributes=[u'about', u'accumulate', u'additive', u'attributeName', u'attributeType', u'begin', u'by', u'calcMode', u'class', u'content', u'datatype', u'dur', u'end', u'fill', u'from', u'id', u'keySplines', u'keyTimes', u'max', u'min', u'property', u'rel', u'repeatCount', u'repeatDur', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'restart', u'rev', u'role', u'systemLanguage', u'to', u'typeof', u'values', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'handler', u'metadata', u'switch', u'title']),
 
     'animateMotion': SVGElement('animateMotion',
     attributes=[u'about', u'accumulate', u'additive', u'begin', u'by', u'calcMode', u'class', u'content', u'datatype', u'dur', u'end', u'fill', u'from', u'id', u'keyPoints', u'keySplines', u'keyTimes', u'max', u'min', u'origin', u'path', u'property', u'rel', u'repeatCount', u'repeatDur', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'restart', u'rev', u'role', u'rotate', u'systemLanguage', u'to', u'typeof', u'values', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'handler', u'metadata', u'mpath', u'switch', u'title']),
 
     'animateTransform': SVGElement('animateTransform',
     attributes=[u'about', u'accumulate', u'additive', u'attributeName', u'attributeType', u'begin', u'by', u'calcMode', u'class', u'content', u'datatype', u'dur', u'end', u'fill', u'from', u'id', u'keySplines', u'keyTimes', u'max', u'min', u'property', u'rel', u'repeatCount', u'repeatDur', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'restart', u'rev', u'role', u'systemLanguage', u'to', u'type', u'typeof', u'values', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'handler', u'metadata', u'switch', u'title']),
 
     'animation': SVGElement('animation',
@@ -52,11 +54,11 @@ tiny12_elements = {
     'desc': SVGElement('desc',
     attributes=[u'about', u'class', u'content', u'datatype', u'id', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
     properties=media_group_names,
-    children=[]),
+    children=empty_list),
 
     'discard': SVGElement('discard',
     attributes=[u'about', u'begin', u'class', u'content', u'datatype', u'id', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'typeof', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'handler', u'metadata', u'switch', u'title']),
 
     'ellipse': SVGElement('ellipse',
@@ -66,22 +68,22 @@ tiny12_elements = {
 
     'font': SVGElement('font',
     attributes=[u'about', u'class', u'content', u'datatype', u'externalResourcesRequired', u'horiz-adv-x', u'horiz-origin-x', u'id', u'property', u'rel', u'resource', u'rev', u'role', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'font-face', u'glyph', u'hkern', u'metadata', u'missing-glyph', u'switch', u'title']),
 
     'font-face': SVGElement('font-face',
     attributes=[u'about', u'accent-height', u'alphabetic', u'ascent', u'bbox', u'cap-height', u'class', u'content', u'datatype', u'descent', u'externalResourcesRequired', u'font-family', u'font-stretch', u'font-style', u'font-variant', u'font-weight', u'hanging', u'id', u'ideographic', u'mathematical', u'overline-position', u'overline-thickness', u'panose-1', u'property', u'rel', u'resource', u'rev', u'role', u'slope', u'stemh', u'stemv', u'strikethrough-position', u'strikethrough-thickness', u'typeof', u'underline-position', u'underline-thickness', u'unicode-range', u'units-per-em', u'widths', u'x-height', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'font-face-src', u'metadata', u'switch', u'title']),
 
     'font-face-src': SVGElement('font-face-src',
     attributes=[u'about', u'class', u'content', u'datatype', u'id', u'property', u'rel', u'resource', u'rev', u'role', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'font-face-uri', u'metadata', u'switch', u'title']),
 
     'font-face-uri': SVGElement('font-face-uri',
     attributes=[u'about', u'class', u'content', u'datatype', u'externalResourcesRequired', u'id', u'property', u'rel', u'resource', u'rev', u'role', u'typeof', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'metadata', u'switch', u'title']),
 
     'foreignObject': SVGElement('foreignObject',
@@ -96,17 +98,17 @@ tiny12_elements = {
 
     'glyph': SVGElement('glyph',
     attributes=[u'about', u'arabic-form', u'class', u'content', u'd', u'datatype', u'glyph-name', u'horiz-adv-x', u'id', u'lang', u'property', u'rel', u'resource', u'rev', u'role', u'typeof', u'unicode', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'metadata', u'switch', u'title']),
 
     'handler': SVGElement('handler',
     attributes=[u'about', u'class', u'content', u'datatype', u'ev:event', u'externalResourcesRequired', u'id', u'property', u'rel', u'resource', u'rev', u'role', u'type', u'typeof', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'metadata', u'switch', u'title']),
 
     'hkern': SVGElement('hkern',
     attributes=[u'about', u'class', u'content', u'datatype', u'g1', u'g2', u'id', u'k', u'property', u'rel', u'resource', u'rev', u'role', u'typeof', u'u1', u'u2', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'metadata', u'switch', u'title']),
 
     'image': SVGElement('image',
@@ -126,22 +128,22 @@ tiny12_elements = {
 
     'listener': SVGElement('listener',
     attributes=[u'about', u'class', u'content', u'datatype', u'defaultAction', u'event', u'handler', u'id', u'observer', u'phase', u'propagate', u'property', u'rel', u'resource', u'rev', u'role', u'target', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
-    children=[]),
+    properties=empty_list,
+    children=empty_list),
 
     'metadata': SVGElement('metadata',
     attributes=[u'about', u'class', u'content', u'datatype', u'id', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
     properties=media_group_names,
-    children=[]),
+    children=empty_list),
 
     'missing-glyph': SVGElement('missing-glyph',
     attributes=[u'about', u'class', u'content', u'd', u'datatype', u'horiz-adv-x', u'id', u'property', u'rel', u'resource', u'rev', u'role', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'metadata', u'switch', u'title']),
 
     'mpath': SVGElement('mpath',
     attributes=[u'about', u'class', u'content', u'datatype', u'id', u'property', u'rel', u'resource', u'rev', u'role', u'typeof', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'metadata', u'switch', u'title']),
 
     'path': SVGElement('path',
@@ -161,7 +163,7 @@ tiny12_elements = {
 
     'prefetch': SVGElement('prefetch',
     attributes=[u'about', u'bandwidth', u'class', u'content', u'datatype', u'id', u'mediaCharacterEncoding', u'mediaContentEncodings', u'mediaSize', u'mediaTime', u'property', u'rel', u'resource', u'rev', u'role', u'typeof', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'metadata', u'switch', u'title']),
 
     'radialGradient': SVGElement('radialGradient',
@@ -176,12 +178,12 @@ tiny12_elements = {
 
     'script': SVGElement('script',
     attributes=[u'about', u'class', u'content', u'datatype', u'externalResourcesRequired', u'id', u'property', u'rel', u'resource', u'rev', u'role', u'type', u'typeof', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'metadata', u'switch', u'title']),
 
     'set': SVGElement('set',
     attributes=[u'about', u'attributeName', u'attributeType', u'begin', u'class', u'content', u'datatype', u'dur', u'end', u'fill', u'id', u'max', u'min', u'property', u'rel', u'repeatCount', u'repeatDur', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'restart', u'rev', u'role', u'systemLanguage', u'to', u'typeof', u'xlink:actuate', u'xlink:arcrole', u'xlink:href', u'xlink:role', u'xlink:show', u'xlink:title', u'xlink:type', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
+    properties=empty_list,
     children=[u'desc', u'handler', u'metadata', u'switch', u'title']),
 
     'solidColor': SVGElement('solidColor',
@@ -206,8 +208,8 @@ tiny12_elements = {
 
     'tbreak': SVGElement('tbreak',
     attributes=[u'about', u'class', u'content', u'datatype', u'id', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
-    properties=[],
-    children=[]),
+    properties=empty_list,
+    children=empty_list),
 
     'text': SVGElement('text',
     attributes=[u'about', u'class', u'content', u'datatype', u'editable', u'focusHighlight', u'focusable', u'id', u'nav-down', u'nav-down-left', u'nav-down-right', u'nav-left', u'nav-next', u'nav-prev', u'nav-right', u'nav-up', u'nav-up-left', u'nav-up-right', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'rotate', u'systemLanguage', u'transform', u'typeof', u'x', u'xml:base', u'xml:id', u'xml:lang', u'xml:space', u'y'],
@@ -222,7 +224,7 @@ tiny12_elements = {
     'title': SVGElement('title',
     attributes=[u'about', u'class', u'content', u'datatype', u'id', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
     properties=media_group_names,
-    children=[]),
+    children=empty_list),
 
     'tspan': SVGElement('tspan',
     attributes=[u'about', u'class', u'content', u'datatype', u'focusHighlight', u'focusable', u'id', u'nav-down', u'nav-down-left', u'nav-down-right', u'nav-left', u'nav-next', u'nav-prev', u'nav-right', u'nav-up', u'nav-up-left', u'nav-up-right', u'property', u'rel', u'requiredExtensions', u'requiredFeatures', u'requiredFonts', u'requiredFormats', u'resource', u'rev', u'role', u'systemLanguage', u'typeof', u'xml:base', u'xml:id', u'xml:lang', u'xml:space'],
