@@ -8,6 +8,7 @@ Version 0.2.0 - xxx
   * new elements:
     - Hyperlink <a>
     - Image
+    - TextArea
 
 Version 0.1.0 - 26 September 2010
   * alpha version
