@@ -29,9 +29,15 @@ class TSpan(BaseElement):
 
     **Attributes**
 
+    .. attribute:: text
+
+       stores the text value.
+
+    **SVG Attributes**
+
     .. attribute:: x
 
-       `list`
+       *<coordinate+>*
 
        If a single <coordinate> is provided, then the value represents the new
        absolute X coordinate for the current text position for rendering the
@@ -75,7 +81,7 @@ class TSpan(BaseElement):
 
     .. attribute:: y
 
-       `list`
+       *<coordinate+>*
 
        The corresponding list of absolute Y coordinates for the glyphs
        corresponding to the characters within this element. The processing
@@ -84,7 +90,7 @@ class TSpan(BaseElement):
 
     .. attribute:: dx
 
-       `list`
+       *<length+>*
 
        If a single <length> is provided, this value represents the new
        relative X coordinate for the current text position for rendering
@@ -129,7 +135,7 @@ class TSpan(BaseElement):
 
     .. attribute:: dy
 
-       `list`
+       *<length+>*
 
        The corresponding list of relative Y coordinates for the characters
        within the ‘tspan’ element. The processing rules for the :attr:`dy` attribute
@@ -137,7 +143,7 @@ class TSpan(BaseElement):
 
     .. attribute:: rotate
 
-       `list`
+       *<angle+>*
 
        The supplemental rotation about the current text position that will be
        applied to all of the glyphs corresponding to each character within
@@ -270,86 +276,13 @@ class Text(TSpan, ITransform):
     The characters to be drawn are expressed as XML character data inside the
     <text> element.
 
-    **Attributes**
-
-    .. attribute:: x
-
-       `list`
-
-       If a single *coordinate*  is provided, then the value
-       represents the new absolute X coordinate for the current text position
-       for rendering the glyphs that correspond to the first character within
-       this element or any of its descendants.
-
-       If a `list` of n *coordinates* is provided, then the values represent
-       new absolute X *coordinates* for the current text position for rendering
-       the glyphs corresponding to each of the first n characters within this
-       element or any of its descendants.
-
-       If the attribute is not specified, the effect is as if a value of "0"
-       were specified.
-
-       Refer to the description of the :attr:`~TSpan.x` attribute on the :class:`~svgwrite.TSpan`
-       element.
-
-    .. attribute:: y
-
-       `list`
-
-       The corresponding `list` of absolute Y *coordinates* for the glyphs
-       corresponding to the characters within this element. The processing
-       rules for the *y* attribute parallel the processing rules for the *x*
-       attribute.
-
-       If the attribute is not specified, the effect is as if a value of "0"
-       were specified.
-
-       Refer to the description of the :attr:`~TSpan.y` attribute on the :class:`~svgwrite.TSpan`
-       element.
-
-    .. attribute:: dx
-
-       `list`
-
-       Shifts in the current text position along the x-axis for
-       the characters within this element or any of its descendants.
-
-       Refer to the description of the :attr:`~TSpan.dx` attribute on the :class:`~svgwrite.TSpan`
-       element.
-
-       If the attribute is not specified on this element or any of its
-       descendants, no supplemental shifts along the x-axis will occur.
-
-    .. attribute:: dy
-
-       `list`
-
-       Shifts in the current text position along the y-axis for
-       the characters within this element or any of its descendants.
-
-       Refer to the description of the :attr:`~TSpan.dy` attribute on the
-       :class:`~svgwrite.TSpan` element.
-
-       If the attribute is not specified on this element or any of its
-       descendants, no supplemental shifts along the y-axis will occur.
-
-    .. attribute:: rotate
-
-       `list`
-
-       The supplemental rotation about the current text position
-       that will be applied to all of the glyphs corresponding to each character
-       within this element.
-
-       Refer to the description of the :attr:`~TSpan.rotate` attribute on the :class:`~svgwrite.TSpan`
-       element.
-
-       If the attribute is not specified on this element or any of its
-       descendants, no supplemental rotations will occur.
-
-    **SVG Attributes**
-
     Refer to :ref:`TSpan SVG Attributes <TSpan-SVG-Attributes>`
+
+    **Supported Interfaces**
+
+    :class:`svgwrite.interface.ITransform`
+        :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
+        :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
 
     """
     elementname = 'text'
@@ -486,33 +419,162 @@ class TextPath(BaseElement, IXLink):
         xml.text = unicode(self.text)
         return xml
 
-class TextArea(BaseElement):
+class TBreak(BaseElement):
+    elementname = 'tbreak'
+    def __init__(self):
+        super (TBreak, self).__init__()
+    def __getitem__(self, key):
+        raise NotImplementedError("__getitem__() not supported by TBreak class.")
+    def __setitem__(self, key, value):
+        raise NotImplementedError("__setitem__() not supported by TBreak class.")
+    def add(self, element):
+        raise NotImplementedError("add() not supported by TBreak class.")
+
+class TextArea(BaseElement, ITransform):
     #TODO: testing for TestArea
+    """
+    At this time <textArea> is only available for SVG 1.2 Tiny profile.
+
+    The <textArea>  element allows simplistic wrapping of text content within a
+    given region. The 'tiny' profile of SVG specifies a single rectangular region.
+    Other profiles may allow a sequence of arbitrary shapes.
+
+    Text wrapping via the 'textArea' element is available as a lightweight and
+    convenient facility for simple text wrapping where a complete box model layout
+    engine is not required.
+
+    The layout of wrapped text is user agent dependent; thus, content developers
+    need to be aware that there might be different results, particularly with
+    regard to where line breaks occur.
+
+    The TextArea class wraps every text added by write() or writeline() as
+    <tspan> element.
+
+    **Methods**
+
+    .. automethod:: svgwrite.TextArea.write(text, \*\*extra)
+
+    **SVG Attributes**
+
+    .. attribute:: x
+
+       *<coordinate>*
+
+       The x-axis coordinate of one corner of the rectangular region into which
+       the text content will be placed. The lacuna value is '0'.
+
+    .. attribute:: y
+
+       *<coordinate>*
+
+       The y-axis coordinate of one corner of the rectangular region into which
+       the text content will be placed. The lacuna value is '0'.
+
+    .. attribute:: width
+
+       ``'auto'`` | *<coordinate>*
+
+       The width of the rectangular region into which the text content will be
+       placed. A value of 'auto' indicates that the width of the rectangular
+       region is infinite. The lacuna value is 'auto'.
+
+    .. attribute:: height
+
+       ``'auto'`` | *<coordinate>*
+
+       The height of the rectangular region into which the text content will be
+       placed. A value of 'auto' indicates that the height of the rectangular
+       region is infinite. The lacuna value is 'auto'.
+
+    .. attribute:: editable
+
+       ``'auto|simple'``
+
+       This attribute indicates whether the text can be edited. See the definition
+       of the 'editable' attribute.
+
+    .. attribute:: focusable
+
+       ``'true|false|auto'``
+
+       - **true:** The element is keyboard-aware and must be treated as any other
+         UI component that can get focus.
+       - **false:** The element is not focusable.
+       - **auto:** The lacuna value. Equivalent to 'false'
+         Exception: see http://www.w3.org/TR/SVGMobile12/interact.html#focusable-attr
+
+    .. attribute:: line-increment
+
+       ``'auto|inherit'`` | *<number>*
+
+       The 'line-increment' property provides limited control over the size of
+       each line in the block-progression-direction. This property applies to the
+       'textArea' element, and to child elements of the 'textArea' element.
+       The 'line-increment' property must not have any effect when used on an
+       element which is not, or does not have as an ancestor, a 'textArea' element.
+
+    .. attribute:: text-align
+
+       ``'start|end|center|inherit'``
+
+       Alignment in the inline progression direction in flowing text is provided
+       by the text-align property.
+
+    .. attribute:: display-align
+
+       ``'auto|before|center|after|inherit'``
+
+       The 'display-align' property specifies the alignment, in the
+       block-progression-direction, of the text content of the 'textArea' element.
+
+       - **auto:** For SVG, auto is equivalent to before.
+       - **before:** The before-edge of the first line is aligned with the before-edge
+         of the first region.
+       - **center:** The lines are centered in the block-progression-direction.
+       - **after:** The after-edge of the last line is aligned with the after-edge
+         of the last region.
+
+       Layout rules: see http://www.w3.org/TR/SVGMobile12/text.html#TextAreaElement
+
+    **Supported Interfaces**
+
+    :class:`svgwrite.interface.ITransform`
+        :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
+        :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
+
+    """
     elementname = 'textArea'
-    def __init__(self, insert, size=None, attribs={}, **extra):
+    def __init__(self, text=None, insert=None, size=None, attribs={}, **extra):
         super(TextArea, self).__init__(attribs, **extra)
-        self['x'] = insert[0]
-        self['y'] = insert[1]
+        if text:
+            self.write(text)
+        if insert:
+            self['x'] = insert[0]
+            self['y'] = insert[1]
         if size:
             self['width'] = size[0]
             self['height'] = size[1]
-        self.text = []
 
     def line_increment(self, value):
-        """ line-spacing """
+        """ Set the line-spacing to *value*. """
         self['line-increment'] = value
 
-    def write(self, text):
-        self.text.append(text)
+    def write(self, text, **extra):
+        """
+        Add *text* as <tspan> elements, with extra-params for the <tspan> element.
 
-    def writeline(self, text):
-        self.write(text)
-        self.tbreak()
+        Use the '\n' character for line breaks.
+        """
+        if '\n' not in text:
+            self.add(TSpan(text, **extra))
+        else:
+            lines= text.split('\n')
+            for line in lines[:-1]:
+                if line: # no text between '\n'+
+                    self.add(TSpan(line, **extra))
+                self.add(TBreak())
+            # case "text\n" : last element is ''
+            # case "texta\ntextb : last element is 'textb'
+            if lines[-1]:
+                self.add(TSpan(lines[-1], **extra))
 
-    def tbreak(self):
-        self.text.append('<tbreak />')
-
-    def get_xml(self):
-        xml = super(TextArea, self).get_xml()
-        xml.text = u''.join(self.text)
-        return xml
