@@ -33,7 +33,7 @@ from container import Group, Defs, Symbol, Use, SVG, Hyperlink
 from shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
 from image import Image
 from path import Path
-from text import Text, TSpan, TRef, TextPath
+from text import Text, TSpan, TRef, TextPath, TextArea
 from utils import rgb
 
 class Unit(object):
