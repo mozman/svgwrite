@@ -174,3 +174,42 @@ class IXLink(object):
         else:
             idstr = self.href
         self.attribs['xlink:href'] =  "#%s" % idstr
+
+class IPresentation(object):
+    """
+    Helper methods to set presentation attributes.
+    """
+    def fill(self, color=None, rule=None, opacity=None):
+        if color:
+            self['fill'] = color
+        if rule:
+            self['fill-rule'] = rule
+        if opacity:
+            self['fill-opacity'] = opacity
+
+    def stroke(self, color=None, width=None, opacity=None, linecap=None,
+               linejoin=None, miterlimit=None):
+        if color:
+            self['stroke'] = color
+        if width:
+            self['stroke-width'] = width
+        if opacity:
+            self['stroke-opacity'] = opacity
+        if linecap:
+            self['stroke-linecap'] = linecap
+        if join:
+            self['stroke-linejoin'] = linejoin
+        if miterlimit:
+            self['stroke-miterlimit'] = miterlimit
+
+    def dasharray(self, definition=None, offset=None):
+        if definition:
+            self['stroke-array'] = definition
+        if offset:
+            self['stroke-dashoffset'] = offset
+
+    def viewport_fill(self, color=None, opacity=None):
+        if color:
+            self['viewport-fill'] = color
+        if opacity:
+            self['viewport-fill-opacity'] = opacity
