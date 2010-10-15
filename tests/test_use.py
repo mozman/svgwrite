@@ -9,13 +9,14 @@
 import sys
 import unittest
 
-from svgwrite import Use, Group, parameter
+from svgwrite import Use, Group
+from svgwrite.params import Parameter
 
 from svgwrite.interface import ITransform, IXLink
 
 class TestUse(unittest.TestCase):
     def setUp(self):
-        parameter.set_debug(True)
+        self.parameter = Parameter(debug=True, profile='full')
 
     def test_constructor(self):
         use = Use('an_id', x=10, y=20, width=100, height=200)
@@ -29,7 +30,7 @@ class TestUse(unittest.TestCase):
         self.assertEqual(use.tostring(), '<use xlink:href="#test" />')
 
     def test_object_link_auto_id(self):
-        parameter._set_auto_id(999) # only for testing !!!!
+        self.parameter._set_auto_id(999) # only for testing !!!!
         g = Group()
         use = Use(g)
         self.assertEqual(use.tostring(), '<use xlink:href="#id999" />')

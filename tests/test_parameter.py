@@ -10,9 +10,11 @@ import sys
 import unittest
 
 from svgwrite import parameter
+from svgwrite.params import Parameter
 
+parameter = Parameter()
 
-class TestInit(unittest.TestCase):
+class TestGlobalVariable(unittest.TestCase):
     """Test init method"""
     def test_init(self):
         parameter.set_debug(True)
@@ -25,6 +27,22 @@ class TestInit(unittest.TestCase):
         self.assertEqual(parameter.get_auto_id(), "id9")
         self.assertEqual(parameter.get_auto_id(), "id10")
         self.assertEqual(parameter.get_auto_id(), "id11")
+
+class testParameterClass(unittest.TestCase):
+    def test_init(self):
+        p = Parameter(debug=True, profile='TINY')
+        self.assertEqual(p.get_profile(), 'tiny')
+        self.assertTrue(p.debug)
+
+    def test_get_auto_id(self):
+        p = Parameter(debug=False)
+        p._set_auto_id(9) # only for testing !!!
+        self.assertEqual(parameter.get_auto_id(), "id9")
+        p2 = Parameter(debug=False)
+        self.assertEqual(parameter.get_auto_id(), "id10")
+        p3 = Parameter(debug=False)
+        self.assertEqual(parameter.get_auto_id(), "id11")
+
 
 if __name__=='__main__':
     unittest.main()

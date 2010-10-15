@@ -31,13 +31,24 @@
 
 from validator2 import get_validator
 
-class _Parameter(object):
-    def __init__(self):
-        self._debug = False
-        self._profile = "full"
-        self._autoid = 1
-        self.validator = None
-        self._init_validator()
+class Parameter(object):
+    __shared_mind = {} # 'singelton' - Borg design
+    def __init__(self, debug=None, profile=None):
+        self.__dict__ = self.__shared_mind
+        if debug is not None:
+            self._debug = debug
+
+        if profile is not None:
+            self.set_profile(profile)
+
+        if '_autoid' not in self.__shared_mind:
+            self._autoid = 1
+
+        if '_debug' not in self.__shared_mind:
+            self._debug = False
+
+        if '_profile' not in self.__shared_mind:
+            self.set_profile('full')
 
     def _init_validator(self):
         self.validator = get_validator(self.profile,  self.debug)
@@ -83,5 +94,5 @@ class _Parameter(object):
         """Just for testing. """
         self._autoid = value
 
-# global var
-parameter = _Parameter()
+#global variable
+parameter = Parameter(debug=False, profile='full')

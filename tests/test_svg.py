@@ -10,11 +10,11 @@ import sys
 import unittest
 
 from svgwrite import SVG, Symbol
-from svgwrite.params import parameter
+from svgwrite.params import Parameter
 
 class TestSVG(unittest.TestCase):
     def setUp(self):
-        parameter.set_debug(True)
+        self.parameter = Parameter(debug=True, profile='full')
 
     def test_constructor(self):
         svg = SVG()
