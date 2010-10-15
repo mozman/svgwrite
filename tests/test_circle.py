@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Circle
+from svgwrite.shapes import Circle
 
 class TestCircle(unittest.TestCase):
     def test_numbers(self):

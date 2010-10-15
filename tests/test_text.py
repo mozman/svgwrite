@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import TSpan, TRef, TextPath
+from svgwrite.text import TSpan, TRef, TextPath
 
 class TestTSpan(unittest.TestCase):
     def test_constructor(self):

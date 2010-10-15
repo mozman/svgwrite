@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Rect
+from svgwrite.shapes import Rect
 
 class TestRect(unittest.TestCase):
     def test_numbers(self):

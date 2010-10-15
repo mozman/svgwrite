@@ -1,11 +1,6 @@
 Overview
 ========
 
-Global Parameters
------------------
-
-:mod:`svgwrite.parameter`
-
 Structural Elements
 -------------------
 

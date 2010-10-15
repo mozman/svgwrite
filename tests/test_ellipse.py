@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Ellipse
+from svgwrite.shapes import Ellipse
 
 class TestEllipse(unittest.TestCase):
     def test_numbers(self):

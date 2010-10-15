@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import SVG, Symbol
+from svgwrite.container import SVG, Symbol
 
 class TestSVG(unittest.TestCase):
     def test_constructor(self):

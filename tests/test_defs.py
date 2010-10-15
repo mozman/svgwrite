@@ -9,8 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Group, Defs
-
+from svgwrite.container import Group, Defs
 from svgwrite.interface import ITransform
 
 class TestDefs(unittest.TestCase):
@@ -28,7 +27,7 @@ class TestDefs(unittest.TestCase):
 
     def test_add_group(self):
         defs = Defs(id='defs')
-        group = defs.group(id='group') # implicit call of add
+        group = defs.g(id='group') # implicit call of add
         self.assertEqual(defs.tostring(), '<defs id="defs"><g id="group" /></defs>')
 
 

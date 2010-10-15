@@ -5,6 +5,8 @@ NEWS
 Version 0.2.0 - xxx
   * alpha version
   * validator rewritten as validator2.py
+  * debug and profile options separated for each drawing object
+  * important change: create objects with factory functions of the Drawing class: drawing.<svg-elementname>(...)
   * new elements:
     - Hyperlink <a>
     - Image

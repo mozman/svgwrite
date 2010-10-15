@@ -42,7 +42,7 @@ class Group(BaseElement, ITransform):
 
     **Methods**
 
-    .. automethod:: svgwrite.Group.group(attributes)
+    .. automethod:: svgwrite.Group.g(attributes)
 
     **Inherited Methods**
 
@@ -77,16 +77,16 @@ class Group(BaseElement, ITransform):
     """
     elementname = 'g'
 
-    def group(self, **attributes):
+    def g(self, **attributes):
         """ Create a new group with SVG *attributs* and add the new group as subelement.
 
         :param attributes: SVG attributes as keyword arguments
         :return: the new created group element
 
         """
-        g = Group(**attributes)
-        self.add(g)
-        return g
+        group = Group(**attributes)
+        self.add(group)
+        return group
 
 class Defs(Group):
     """ The <defs> element is a container element for referenced elements. For
@@ -104,7 +104,7 @@ class Symbol(BaseElement, IViewBox):
 
     **Methods**
 
-    .. automethod:: svgwrite.Symbol.group(attributes)
+    .. automethod:: svgwrite.Symbol.g(attributes)
 
     **Inherited Attributes**
 
@@ -150,16 +150,16 @@ class Symbol(BaseElement, IViewBox):
     # ITransform interface is not valid for Symbol -> do not inherit from Group
     elementname = 'symbol'
 
-    def group(self, **attributes):
+    def g(self, **attributes):
         """ Create a new group with SVG *attributs* and add the new group as subelement.
 
         :param attributes: SVG attributes as keyword arguments
         :return: the new created group element
 
         """
-        g = Group(**attributes)
-        self.add(g)
-        return g
+        group = Group(**attributes)
+        self.add(group)
+        return group
 
 class SVG(Symbol):
     """ An SVG document fragment consists of any number of SVG elements contained
