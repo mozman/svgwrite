@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite.data.full11typechecker import Full11TypeChecker
+from svgwrite.data.typechecker import Full11TypeChecker
 
 class TestFull11TypeChecker(unittest.TestCase):
     def setUp(self):

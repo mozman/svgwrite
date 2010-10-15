@@ -6,13 +6,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from data.full11attributes import full11_attributes
-from data.full11elements import full11_elements
-from data.full11typechecker import Full11TypeChecker
-
-from data.tiny12attributes import tiny12_attributes
-from data.tiny12elements import tiny12_elements
-from data.tiny12typechecker import Tiny12TypeChecker
+from data import full11
+from data import tiny12
 
 from data import pattern
 
@@ -28,9 +23,9 @@ def get_validator(profile, debug=True):
 class Tiny12Validator(object):
     def __init__(self, debug=True):
         self.debug = debug
-        self.attributes = tiny12_attributes
-        self.elements = tiny12_elements
-        self.typechecker = Tiny12TypeChecker()
+        self.attributes = tiny12.attributes
+        self.elements = tiny12.elements
+        self.typechecker = tiny12.TypeChecker()
 
     def check_all_svg_attribute_values(self, elementname, attributes):
         """
@@ -144,6 +139,6 @@ class Tiny12Validator(object):
 class Full11Validator(Tiny12Validator):
     def __init__(self, debug=True):
         self.debug = debug
-        self.attributes = full11_attributes
-        self.elements = full11_elements
-        self.typechecker = Full11TypeChecker()
+        self.attributes = full11.attributes
+        self.elements = full11.elements
+        self.typechecker = full11.TypeChecker()

@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite.data.tiny12typechecker import Tiny12TypeChecker
+from svgwrite.data.typechecker import Tiny12TypeChecker
 
 class TestTiny12TypeChecker(unittest.TestCase):
     def setUp(self):

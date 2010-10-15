@@ -22,7 +22,6 @@ class BaseElement(object):
 
     .. automethod:: svgwrite.base.BaseElement.__init__([attribs=None, **extra])
 
-
     **Attributes**
 
     .. attribute:: BaseElement.attribs
@@ -34,7 +33,6 @@ class BaseElement(object):
        `list` of SVG subelements
 
     **Methods**
-
 
     .. automethod:: svgwrite.base.BaseElement.add(element)
 
@@ -60,9 +58,9 @@ class BaseElement(object):
     def __init__(self, attribs=None, **extra):
         """
         :param dict attribs: a dictinary of SVG attributes
-        :param keyword-args extra: extra SVG attributes, argument='value'
+        :param dict extra: extra SVG attributes, argument='value'
 
-        SVG attribute names will be checked, if :data:`~svgwrite.parameter.debug_mode` is `True`.
+        SVG attribute names will be checked, if :attr:`self.debug` is `True`.
         """
         def update(attribs, extra):
             for key, value in extra.iteritems():
@@ -110,8 +108,7 @@ class BaseElement(object):
         self._parameter = parameter
 
     def nextid(self, value=None):
-        n = AutoID()
-        return n.nextid(value)
+        return AutoID.nextid(value)
 
     def __getitem__(self, key):
         """ Get SVG attribute by `key`.
@@ -173,8 +170,8 @@ class BaseElement(object):
 
     def value_to_string(self, value):
         """
-        Converts *value* into a <string> includes some value checks depending
-        on debug-state and SVG-profile.
+        Converts *value* into a <string> includes a value check, depending
+        on :attr:`self.debug` and :attr:`self.profile`.
 
         """
         if isinstance(value, (int, float)):
@@ -183,4 +180,3 @@ class BaseElement(object):
             if isinstance(value, float) and self.profile == 'tiny':
                 value = round(value, 4)
         return unicode(value)
-
