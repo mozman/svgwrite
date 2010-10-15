@@ -40,17 +40,13 @@ class Group(BaseElement, ITransform):
 
        `list` of SVG subelements
 
-    **Methods**
-
-    .. automethod:: svgwrite.Group.g(attributes)
-
     **Inherited Methods**
 
-    .. automethod:: svgwrite.Group.add(element)
+    .. automethod:: svgwrite.container.Group.add(element)
 
-    .. automethod:: svgwrite.Group.tostring()
+    .. automethod:: svgwrite.container.Group.tostring()
 
-    .. automethod:: svgwrite.Group.get_xml()
+    .. automethod:: svgwrite.container.Group.get_xml()
 
     **Supported Interfaces**
 
@@ -77,18 +73,6 @@ class Group(BaseElement, ITransform):
     """
     elementname = 'g'
 
-    def g(self, **attributes):
-        """ Create a new group with SVG *attributs* and add the new group as subelement.
-
-        :param attributes: SVG attributes as keyword arguments
-        :return: the new created group element
-
-        """
-        attributes.setdefault('factory', self) # set creator object to self
-        group = Group(**attributes)
-        self.add(group)
-        return group
-
 class Defs(Group):
     """ The <defs> element is a container element for referenced elements. For
     understandability and accessibility reasons, it is recommended that, whenever
@@ -103,10 +87,6 @@ class Symbol(BaseElement, IViewBox):
     semantics. Documents that are rich in structure may be rendered graphically,
     as speech, or as braille, and thus promote accessibility.
 
-    **Methods**
-
-    .. automethod:: svgwrite.Symbol.g(attributes)
-
     **Inherited Attributes**
 
     .. attribute:: attribs
@@ -119,11 +99,11 @@ class Symbol(BaseElement, IViewBox):
 
     **Inherited Methods**
 
-    .. automethod:: svgwrite.Symbol.add(element)
+    .. automethod:: svgwrite.container.Symbol.add(element)
 
-    .. automethod:: svgwrite.Symbol.tostring()
+    .. automethod:: svgwrite.container.Symbol.tostring()
 
-    .. automethod:: svgwrite.Symbol.get_xml()
+    .. automethod:: svgwrite.container.Symbol.get_xml()
 
     **Supported Interfaces**
 
@@ -151,18 +131,6 @@ class Symbol(BaseElement, IViewBox):
     # ITransform interface is not valid for Symbol -> do not inherit from Group
     elementname = 'symbol'
 
-    def g(self, **attributes):
-        """ Create a new group with SVG *attributs* and add the new group as subelement.
-
-        :param attributes: SVG attributes as keyword arguments
-        :return: the new created group element
-
-        """
-        attributes.setdefault('factory', self) # set creator object to self
-        group = Group(**attributes)
-        self.add(group)
-        return group
-
 class SVG(Symbol):
     """ An SVG document fragment consists of any number of SVG elements contained
     within an <svg> element.
@@ -172,7 +140,7 @@ class SVG(Symbol):
     a single SVG graphics element such as a <rect>, to a complex, deeply nested
     collection of container elements and graphics elements.
 
-    .. automethod:: svgwrite.SVG.__init__([insert=None, size=None, attribs=None, \*\*extra])
+    .. automethod:: svgwrite.container.SVG.__init__([insert=None, size=None, attribs=None, \*\*extra])
 
     **Attributes**
 
@@ -196,11 +164,11 @@ class SVG(Symbol):
 
     **Inherited Methods**
 
-    .. automethod:: svgwrite.SVG.add(element)
+    .. automethod:: svgwrite.container.SVG.add(element)
 
-    .. automethod:: svgwrite.SVG.tostring()
+    .. automethod:: svgwrite.container.SVG.tostring()
 
-    .. automethod:: svgwrite.SVG.get_xml()
+    .. automethod:: svgwrite.container.SVG.get_xml()
 
     **Supported Interfaces**
 
@@ -253,7 +221,8 @@ class SVG(Symbol):
         if size:
             self['width'] = size[0]
             self['height'] = size[1]
-        self.defs = Defs() # defs container
+
+        self.defs = Defs(factory=self) # defs container
         self.add(self.defs) # add defs as first element
 
 class Use(BaseElement, ITransform, IXLink):
@@ -264,7 +233,7 @@ class Use(BaseElement, ITransform, IXLink):
     href-argument, if the given element has no *id* attribute it gets an
     automatic generated id.
 
-    .. automethod:: svgwrite.Use.__init__(href, [insert=None, size=None, attribs=None, \*\*extra])
+    .. automethod:: svgwrite.container.Use.__init__(href, [insert=None, size=None, attribs=None, \*\*extra])
 
     **Inherited Attributes**
 
@@ -278,11 +247,11 @@ class Use(BaseElement, ITransform, IXLink):
 
     **Inherited Methods**
 
-    .. automethod:: svgwrite.Use.add(element)
+    .. automethod:: svgwrite.container.Use.add(element)
 
-    .. automethod:: svgwrite.Use.tostring()
+    .. automethod:: svgwrite.container.Use.tostring()
 
-    .. automethod:: svgwrite.Use.get_xml()
+    .. automethod:: svgwrite.container.Use.get_xml()
 
     **Supported Interfaces**
 
@@ -340,7 +309,7 @@ class Use(BaseElement, ITransform, IXLink):
         return super(Use, self).get_xml()
 
 class Hyperlink(BaseElement, ITransform):
-    """ The <a> element indicate links (also known as :class:`Hyperlink`s or Web links).
+    """ The <a> element indicate links (also known as Hyperlinks or Web links).
 
     The remote resource (the destination for the link) is defined by a <IRI>
     specified by the XLink ``xlink:href`` attribute. The remote resource may be
@@ -354,7 +323,7 @@ class Hyperlink(BaseElement, ITransform):
     contained within the :class:`Hyperlink` class; add sublements as usual with
     the :meth:`add` method.
 
-    .. automethod:: svgwrite.Hyperlink.__init__(href, [target='_blank', attribs=None, \*\*extra])
+    .. automethod:: svgwrite.container.Hyperlink.__init__(href, [target='_blank', attribs=None, \*\*extra])
 
     **Inherited Attributes**
 
@@ -368,11 +337,11 @@ class Hyperlink(BaseElement, ITransform):
 
     **Inherited Methods**
 
-    .. automethod:: svgwrite.Hyperlink.add(element)
+    .. automethod:: svgwrite.container.Hyperlink.add(element)
 
-    .. automethod:: svgwrite.Hyperlink.tostring()
+    .. automethod:: svgwrite.container.Hyperlink.tostring()
 
-    .. automethod:: svgwrite.Hyperlink.get_xml()
+    .. automethod:: svgwrite.container.Hyperlink.get_xml()
 
     **Supported Interfaces**
 

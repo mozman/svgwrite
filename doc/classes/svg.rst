@@ -1,4 +1,4 @@
 :class:`SVG` objects --- <svg>
 ==============================
 
-.. autoclass:: svgwrite.SVG
+.. autoclass:: svgwrite.container.SVG

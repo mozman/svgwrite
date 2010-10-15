@@ -1,4 +1,4 @@
 :class:`Path` objects --- <path>
 ================================
 
-.. autoclass:: svgwrite.Path
+.. autoclass:: svgwrite.path.Path

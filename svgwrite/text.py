@@ -19,13 +19,11 @@ from utils import iterflatlist, strlist
 class TSpan(BaseElement):
     """ Within a :class:`~svgwrite.Text` element, text and font properties
     and the current text position can be adjusted with absolute or relative
-    coordinate values by using the :class:`~svgwrite.TSpan` element.
+    coordinate values by using the :class:`~svgwrite.text.TSpan` element.
     The characters to be drawn are expressed as XML character data inside the
     <tspan> element.
 
-    :param 2-tuple insert: The *insert* parameter is the absolute insert point
-        of the text, don't use this parameter in combination with the *x* or the
-        *y* parameter.
+    .. automethod::  svgwrite.text.TSpan.__init__(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, \*\*extra)
 
     **Attributes**
 
@@ -178,9 +176,7 @@ class TSpan(BaseElement):
 
     **Methods**
 
-    .. automethod:: svgwrite.TSpan.__init__(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra)
-
-    .. automethod:: svgwrite.TSpan.tspan(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra)
+    .. automethod:: svgwrite.text.TSpan.__init__(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra)
 
     .. _TSpan-SVG-Attributes:
 
@@ -229,7 +225,9 @@ class TSpan(BaseElement):
                  attribs=None, **extra):
         """
         :param string text: <tspan> content
-        :param 2-tuple insert: insert pos (x, y)
+        :param 2-tuple insert: The *insert* parameter is the absolute insert point
+                               of the text, don't use this parameter in combination
+                               with the *x* or the *y* parameter.
         :param list x: list of absolute x-axis values for characters
         :param list y: list of absolute y-axis values for characters
         :param list dx: list of relative x-axis values for characters
@@ -254,16 +252,6 @@ class TSpan(BaseElement):
         if dx: self['dx'] = strlist(list(iterflatlist(dx)), ' ')
         if dy: self['dy'] = strlist(list(iterflatlist(dy)), ' ')
         if rotate: self['rotate'] = strlist(list(iterflatlist(rotate)), ' ')
-
-    def tspan(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
-              attribs=None, **extra):
-        """
-        Add a <TSpan> object as subelement. Same params as :meth:`__init__`.
-
-        """
-        txt = TSpan(text, insert, x, y, dx, dy, rotate, attribs=None, **extra)
-        self.add(txt)
-        return txt
 
     def get_xml(self):
         xml = super(TSpan, self).get_xml()
@@ -294,9 +282,9 @@ class TRef(BaseElement, IXLink):
     referenced element, where the referencing is specified with a <tref>
     element.
 
-    .. automethod:: svgwrite.TRef.__init__(element, attribs=None, **extra)
+    .. automethod:: svgwrite.text.TRef.__init__(element, attribs=None, **extra)
 
-    .. automethod:: svgwrite.TRef.set_href(element)
+    .. automethod:: svgwrite.text.TRef.set_href(element)
 
     **SVG Attributes**
 
@@ -343,9 +331,7 @@ class TextPath(BaseElement, IXLink):
 
     **Methods**
 
-    .. automethod:: svgwrite.TextPath.__init__(path, text, startOffset=None, method='align', spacing='exact', attribs=None, **extra)
-
-    .. automethod:: svgwrite.TextPath.tspan(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra)
+    .. automethod:: svgwrite.text.TextPath.__init__(path, text, startOffset=None, method='align', spacing='exact', attribs=None, **extra)
 
     **SVG Attributes**
 
@@ -395,24 +381,6 @@ class TextPath(BaseElement, IXLink):
             self['startOffset'] = startOffset
         self.set_href(path)
 
-    def tspan(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
-              attribs=None, **extra):
-        """
-        Add a <TSpan> object as subelement.
-
-        :param string text: <tspan> content
-        :param 2-tuple insert: insert pos (x, y)
-        :param list x: list of absolute x-axis values for characters
-        :param list y: list of absolute y-axis values for characters
-        :param list dx: list of relative x-axis values for characters
-        :param list dy: list of relative y-axis values for characters
-        :param list rotate: list of rotation-values for characters (in degrees)
-
-        """
-        txt = TSpan(text, insert, x, y, dx, dy, rotate, attribs=None, **extra)
-        self.add(txt)
-        return txt
-
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
         xml = super(TextPath, self).get_xml()
@@ -431,7 +399,6 @@ class TBreak(BaseElement):
         raise NotImplementedError("add() not supported by TBreak class.")
 
 class TextArea(BaseElement, ITransform):
-    #TODO: testing for TestArea
     """
     At this time <textArea> is only available for SVG 1.2 Tiny profile.
 
@@ -452,7 +419,7 @@ class TextArea(BaseElement, ITransform):
 
     **Methods**
 
-    .. automethod:: svgwrite.TextArea.write(text, \*\*extra)
+    .. automethod:: svgwrite.text.TextArea.write(text, \*\*extra)
 
     **SVG Attributes**
 
@@ -563,7 +530,7 @@ class TextArea(BaseElement, ITransform):
         """
         Add *text* as <tspan> elements, with extra-params for the <tspan> element.
 
-        Use the '\n' character for line breaks.
+        Use the '\\\\n' character for line breaks.
         """
         if '\n' not in text:
             self.add(TSpan(text, **extra))

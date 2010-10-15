@@ -1,4 +1,4 @@
 :class:`Hyperlink` objects --- <a>
 ==================================
 
-.. autoclass:: svgwrite.Hyperlink
+.. autoclass:: svgwrite.container.Hyperlink

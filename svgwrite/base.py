@@ -142,6 +142,7 @@ class BaseElement(object):
         if self.debug:
             self.validator.check_valid_children(self.elementname, element.elementname)
         self.elements.append(element)
+        return element
 
     def tostring(self):
         """ Get the XML representation as `string`.

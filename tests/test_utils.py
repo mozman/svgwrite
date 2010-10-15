@@ -124,7 +124,7 @@ class TestSplitAngle(unittest.TestCase):
 
 class TestAutoID(unittest.TestCase):
     def test_nextid(self):
-        getter = AutoID()
+        getter = AutoID(1)
         self.assertEqual('id1', getter.nextid())
         getter = AutoID()
         self.assertEqual('id2', getter.nextid())

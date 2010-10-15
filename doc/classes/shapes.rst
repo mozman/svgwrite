@@ -1,27 +1,27 @@
 :class:`Line` objects --- <line>
 ================================
 
-.. autoclass:: svgwrite.Line
+.. autoclass:: svgwrite.shapes.Line
 
 :class:`Rect` objects --- <rect>
 ================================
 
-.. autoclass:: svgwrite.Rect
+.. autoclass:: svgwrite.shapes.Rect
 
 :class:`Circle` objects --- <circle>
 ====================================
 
-.. autoclass:: svgwrite.Circle
+.. autoclass:: svgwrite.shapes.Circle
 
 :class:`Ellipse` objects --- <ellipse>
 ======================================
 
-.. autoclass:: svgwrite.Ellipse
+.. autoclass:: svgwrite.shapes.Ellipse
 
 :class:`Polyline` objects --- <polyline>
 ========================================
 
-.. autoclass:: svgwrite.Polyline
+.. autoclass:: svgwrite.shapes.Polyline
 
 :class:`Polygon` objects --- <polygon>
 ======================================
