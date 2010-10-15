@@ -6,7 +6,6 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from params import parameter
 from base import BaseElement
 from interface import ITransform, _vert, _horiz
 
@@ -114,6 +113,6 @@ class Image(BaseElement, ITransform):
         ============= ===========
 
         """
-        if parameter.debug and scale not in ('meet', 'slice'):
+        if self.debug and scale not in ('meet', 'slice'):
             raise ValueError("Invalid scale parameter '%s'" % scale)
         self.attribs['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)

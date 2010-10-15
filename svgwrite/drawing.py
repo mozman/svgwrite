@@ -23,7 +23,6 @@ set/get SVG attributes::
 The *Drawing* class inherits from: :class:`~svgwrite.SVG`
 """
 
-from params import parameter
 from container import SVG, Defs
 
 class Drawing(SVG):
@@ -99,8 +98,8 @@ class Drawing(SVG):
         :return: XML `ElementTree` of this object and all its subelements
 
         """
-        profile = parameter.get_profile()
-        version = parameter.get_version()
+        profile = self.profile
+        version = self.get_version()
         self.attribs['xmlns'] = "http://www.w3.org/2000/svg"
         self.attribs['xmlns:xlink'] = "http://www.w3.org/1999/xlink"
         self.attribs['xmlns:ev'] = "http://www.w3.org/2001/xml-events"

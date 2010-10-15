@@ -8,9 +8,6 @@
 _horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
 _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
 
-from params import parameter
-
-from base import BaseElement
 from utils import strlist
 
 class IViewBox(object):
@@ -65,7 +62,7 @@ class IViewBox(object):
         ============= ===========
 
         """
-        if parameter.debug and scale not in ('meet', 'slice'):
+        if self.debug and scale not in ('meet', 'slice'):
             raise ValueError("Invalid scale parameter '%s'" % scale)
         self['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)
 
@@ -169,10 +166,10 @@ class IXLink(object):
         self.update_id()
 
     def update_id(self):
-        if isinstance(self.href, BaseElement):
-            idstr = self.href.attribs.setdefault('id', parameter.get_auto_id())
-        else:
+        if isinstance(self.href, basestring):
             idstr = self.href
+        else:
+            idstr = self.href.attribs.setdefault('id', self.nextid())
         self.attribs['xlink:href'] =  "#%s" % idstr
 
 class IPresentation(object):

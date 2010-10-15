@@ -147,4 +147,3 @@ class Full11Validator(Tiny12Validator):
         self.attributes = full11_attributes
         self.elements = full11_elements
         self.typechecker = Full11TypeChecker()
-

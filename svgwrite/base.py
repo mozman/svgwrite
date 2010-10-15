@@ -12,7 +12,6 @@ The :class:`BaseElement` is the root for all SVG elements.
 import xml.etree.ElementTree as etree
 
 from params import parameter
-from utils import value_to_string
 
 class BaseElement(object):
     """
@@ -67,15 +66,35 @@ class BaseElement(object):
         def update(attribs, extra):
             for key, value in extra.iteritems():
                 attribs[key.replace('_', '-')] = value
-
+        self._parameter = parameter # firs step to remove global parameters
         if attribs == None:
             self.attribs = dict()
         else:
             self.attribs = dict(attribs)
         update(self.attribs, extra)
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+        if self.debug:
+            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
         self.elements = list()
+
+    def get_debug(self):
+        return self._parameter.debug
+    debug = property(get_debug)
+
+    def get_profile(self):
+        return self._parameter.profile
+    profile = property(get_profile)
+
+    def get_validator(self):
+        return self._parameter.validator
+    validator = property(get_validator)
+
+    def get_version(self):
+        return self._parameter.get_version()
+
+    def nextid(self, reset=None):
+        if reset is not None:
+            self._parameter._set_auto_id(reset)
+        return self._parameter.get_auto_id()
 
     def __getitem__(self, key):
         """ Get SVG attribute by `key`.
@@ -93,8 +112,8 @@ class BaseElement(object):
         :param object value: SVG attribute value
 
         """
-        if parameter.debug:
-            parameter.validator.check_svg_attribute_value(self.elementname, key, value)
+        if self.debug:
+            self.validator.check_svg_attribute_value(self.elementname, key, value)
         self.attribs[key] = value
 
     def add(self, element):
@@ -103,8 +122,8 @@ class BaseElement(object):
         :param element: append this SVG element
 
         """
-        if parameter.debug:
-            parameter.validator.check_valid_children(self.elementname, element.elementname)
+        if self.debug:
+            self.validator.check_valid_children(self.elementname, element.elementname)
         self.elements.append(element)
 
     def tostring(self):
@@ -123,13 +142,27 @@ class BaseElement(object):
 
         """
         xml = etree.Element(self.elementname)
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+        if self.debug:
+            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
         for attribute, value in self.attribs.iteritems():
-            value = value_to_string(value)
+            value = self.value_to_string(value)
             if value: # just add not empty attributes
                 xml.set(attribute, value)
 
         for element in self.elements:
             xml.append(element.get_xml())
         return xml
+
+    def value_to_string(self, value):
+        """
+        Converts *value* into a <string> includes some value checks depending
+        on debug-state and SVG-profile.
+
+        """
+        if isinstance(value, (int, float)):
+            if self.debug:
+                self.validator.check_svg_type(value, 'number')
+            if isinstance(value, float) and self.profile == 'tiny':
+                value = round(value, 4)
+        return unicode(value)
+
