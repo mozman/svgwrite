@@ -40,8 +40,10 @@ class ElementBuilder(object):
         self.factory = factory
 
     def __call__(self, *args, **kwargs):
+        # inject creator object - inherit _parameter from factory
         kwargs['factory'] = self.factory
-        return self.cls(*args, **kwargs) # create an object of type 'cls'
+        # create an object of type 'cls'
+        return self.cls(*args, **kwargs)
 
 class ElementFactory(object):
     def __getattr__(self, name):
