@@ -9,12 +9,12 @@
 import sys
 import unittest
 
-from svgwrite import TSpan, TRef, TextPath, parameter
+from svgwrite import TSpan, TRef, TextPath
+from svgwrite.params import Parameter
 
 class TestTSpan(unittest.TestCase):
     def setUp(self):
-        parameter.debug = True
-        parameter.profile = 'full'
+        self.parameter = Parameter(debug=True, profile='full')
 
     def test_constructor(self):
         txt = TSpan('testtext')
@@ -73,8 +73,7 @@ class TestTSpan(unittest.TestCase):
 
 class TestTRef(unittest.TestCase):
     def setUp(self):
-        parameter.debug = True
-        parameter.profile = 'full'
+        self.parameter = Parameter(debug=True, profile='full')
 
     def test_constructor(self):
         tref = TRef('test')
@@ -82,8 +81,7 @@ class TestTRef(unittest.TestCase):
 
 class TestTextPath(unittest.TestCase):
     def setUp(self):
-        parameter.debug = True
-        parameter.profile = 'full'
+        self.parameter = Parameter(debug=True, profile='full')
 
     def test_constructor(self):
         tref = TextPath('test', 'The Text', startOffset=10, spacing='auto', method='stretch')
