@@ -10,12 +10,12 @@ A Python library to create SVG drawings.
 
 a simple example::
 
-    import svgwrite as svg
+    import svgwrite
 
-    drawing = svg.Drawing('test.svg')
-    drawing.add(svg.Line((0, 0), (10, 0), stroke=svg.rgb(10, 10, 16, '%')))
-    drawing.add(svg.Text('Test', insert=(0, 0.2))
-    drawing.save()
+    dwg = svgwrite.Drawing('test.svg', profile='tiny')
+    dwg.add(dwg.line((0, 0), (10, 0), stroke=svgwrite.rgb(10, 10, 16, '%')))
+    dwg.add(dwg.text('Test', insert=(0, 0.2))
+    dwg.save()
 
 SVG Version
 -----------
@@ -27,14 +27,8 @@ Only two types of SVG drawings could be created:
 
 """
 
-from params import Parameter
 from drawing import Drawing
-from container import Group, Defs, Symbol, Use, SVG, Hyperlink
-from shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
-from image import Image
-from path import Path
-from text import Text, TSpan, TRef, TextPath, TextArea
-from utils import rgb, AutoID
+from utils import rgb
 
 class Unit(object):
     """ Add units to values.

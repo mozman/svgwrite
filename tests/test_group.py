@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Group
+from svgwrite.container import Group
 from svgwrite.interface import ITransform
 
 class TestGroup(unittest.TestCase):
@@ -26,7 +26,7 @@ class TestGroup(unittest.TestCase):
 
     def test_add_group(self):
         group = Group(id='group')
-        subgroup = group.group(id='subgroup') # implicit call of add
+        subgroup = group.g(id='subgroup') # implicit call of add
         self.assertEqual(group.tostring(), '<g id="group"><g id="subgroup" /></g>')
 
 

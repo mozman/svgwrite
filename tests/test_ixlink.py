@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Group
+from svgwrite.container import Group
 from svgwrite.params import Parameter
 from svgwrite.base import BaseElement
 from svgwrite.interface import IXLink

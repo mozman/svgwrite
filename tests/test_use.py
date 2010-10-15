@@ -9,8 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Use, Group
-
+from svgwrite.container import Use, Group
 from svgwrite.interface import ITransform, IXLink
 from svgwrite.utils import AutoID
 

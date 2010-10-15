@@ -9,11 +9,12 @@ A Python library to create SVG drawings.
 
 a simple example::
 
-    import svgwrite as svg
-    drawing = svg.Drawing('test.svg')
-    drawing.add(svg.Line((0, 0), (10, 0), stroke=svg.rgb(10, 10, 16, '%')))
-    drawing.add(svg.Text('Test', insert=(0, 0.2), fill='red'))
-    drawing.save()
+    import svgwrite
+
+    dwg = svgwrite.Drawing('test.svg', profile='tiny')
+    dwg.add(dwg.line((0, 0), (10, 0), stroke=svgwrite.rgb(10, 10, 16, '%')))
+    dwg.add(dwg.text('Test', insert=(0, 0.2), fill='red'))
+    dwg.save()
 
 for more examples see: examples.py
 

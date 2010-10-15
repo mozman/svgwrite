@@ -8,7 +8,7 @@
 
 import math
 
-import svgwrite as svg
+import svgwrite
 from svgwrite import cm, mm, rgb, deg
 
 DEBUG = False
@@ -17,32 +17,18 @@ DEBUG = False
 #     verify valid subelements(default: False)
 
 def empty_drawing(name):
-    drawing = svg.Drawing(filename=name, debug=DEBUG)
+    drawing = svgwrite.Drawing(filename=name, debug=DEBUG)
     drawing.save()
 
 def base_shapes_drawing(name):
-    drawing = svg.Drawing(filename=name, debug=DEBUG)
-    hlines = drawing.group(id='hlines', stroke='green')
-    for y in range(20):
-        hlines.add(svg.Line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm)))
-    vlines = drawing.group(id='vline', stroke='blue')
-    for x in range(17):
-        vlines.add(svg.Line(start=((2+x)*cm, 2*cm), end=((2+x)*cm, 21*cm)))
-    shapes = drawing.group(id='shapes', fill='red')
-    shapes.add(svg.Rect(insert=(5*cm, 5*cm), size=(45*mm, 45*mm)))
-    shapes.add(svg.Circle(center=(15*cm, 8*cm), r='2.5cm', fill='blue'))
-    shapes.add(svg.Ellipse(center=(10*cm, 15*cm), r=('5cm', '10mm')))
-    drawing.save()
-
-def planned_new_interface(name):
-    dwg = svgwrite.Drawing(filename=name, profile='tiny', debug=DEBUG)
+    dwg = svgwrite.Drawing(filename=name, debug=DEBUG)
     hlines = dwg.g(id='hlines', stroke='green')
     for y in range(20):
         hlines.add(dwg.line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm)))
-    vlines = dw.g(id='vline', stroke='blue')
+    vlines = dwg.g(id='vline', stroke='blue')
     for x in range(17):
         vlines.add(dwg.line(start=((2+x)*cm, 2*cm), end=((2+x)*cm, 21*cm)))
-    shapes = drawing.g(id='shapes', fill='red')
+    shapes = dwg.g(id='shapes', fill='red')
     shapes.add(dwg.rect(insert=(5*cm, 5*cm), size=(45*mm, 45*mm)))
     shapes.add(dwg.circle(center=(15*cm, 8*cm), r='2.5cm', fill='blue'))
     shapes.add(dwg.ellipse(center=(10*cm, 15*cm), r=('5cm', '10mm')))
@@ -50,11 +36,11 @@ def planned_new_interface(name):
 
 def use_drawing(name):
     w, h = '100%', '100%'
-    dwg = svg.Drawing(filename=name, size=(w, h), debug=DEBUG)
-    dwg.add(svg.Rect(insert=(0,0), size=(w, h), fill='lightgray', stroke='black'))
-    g = dwg.defs.group(id='g001')
+    dwg = svgwrite.Drawing(filename=name, size=(w, h), debug=DEBUG)
+    dwg.add(dwg.rect(insert=(0,0), size=(w, h), fill='lightgray', stroke='black'))
+    g = dwg.defs.g(id='g001')
     unit=40
-    g.add(svg.Rect((0,0), (unit, unit)))
+    g.add(dwg.rect((0,0), (unit, unit)))
     for y in range(10):
         for x in range(5):
             x1 = 2*unit+2*unit*x
@@ -62,7 +48,7 @@ def use_drawing(name):
             cx = x1 + unit/2
             cy = y1 + unit/2
             cval = (y*5 + x)*2
-            u = svg.Use(g, insert=(x1, y1), fill=rgb(cval, cval, cval))
+            u = dwg.use(g, insert=(x1, y1), fill=rgb(cval, cval, cval))
             u.rotate(y*5+x, center=(cx, cy))
             dwg.add(u)
     dwg.save()
@@ -90,7 +76,7 @@ def koch_snowflake(name):
         points = [(x3, y3), (x4, y4), (x5, y5)]
 
         # append new polygon to snowflake element
-        snowflake.add(svg.Polygon(points))
+        snowflake.add(dwg.polygon(points))
         tf(x0, y0, x3, y3, x5, y5)
         tf(x3, y3, x1, y1, x4, y4)
         tf(x5, y5, x4, y4, x2, y2)
@@ -123,14 +109,14 @@ def koch_snowflake(name):
     imgy = 512
 
     # create a new drawing
-    dwg = svg.Drawing(name, (imgx, imgy), profile='tiny', debug=DEBUG)
+    dwg = svgwrite.Drawing(name, (imgx, imgy), profile='tiny', debug=DEBUG)
 
     # create a new <g /> element, wee will insert the snowflkae by the <use /> element
     # here we set stroke, fill and stroke-width for all subelements
     # attention: 'stroke-width' is not a valid Python identifier, so use 'stroke_witdth'
     #   underlines '_' will be converted to dashes '-', this is true for all svg-keyword-attributs
-    # if no 'id' is given ( like svg.Group(id="sflake") ), an automatic generated 'id' will be used
-    snowflake = svg.Group(stroke="blue", fill="rgb(90%,90%,100%)", stroke_width=0.25)
+    # if no 'id' is given ( like dwg.g(id="sflake") ), an automatic generated 'id' will be generated
+    snowflake = dwg.g(stroke="blue", fill="rgb(90%,90%,100%)", stroke_width=0.25)
 
     # don't use snowflake = dwg.group(...) this automatic adds the snowflake
     # group to 'dwg.elements' list and not to 'dwg.defs' list!
@@ -154,7 +140,7 @@ def koch_snowflake(name):
     tf(x0, y0, x1, y1, x2, y2)
 
     # create an <use /> element
-    use_snowflake = svg.Use(snowflake)
+    use_snowflake = dwg.use(snowflake)
 
     # you can transform each <use /> element
     # use_snowflake.rotate(15, center=(imgx/2, imgy/2))
@@ -171,19 +157,19 @@ def mandelbrot(name):
     # FB - 201003254
 
     def putpixel(pos, color):
-        mandelbrot_group.add(svg.Circle(center=pos, r=.5, fill=color))
+        mandelbrot_group.add(dwg.circle(center=pos, r=.5, fill=color))
 
     # image size
     imgx = 160
     imgy = 100
 
     # drawing defines the output size
-    dwg = svg.Drawing(name, ('32cm', '20cm'), debug=DEBUG)
+    dwg = svgwrite.Drawing(name, ('32cm', '20cm'), debug=DEBUG)
 
     # define a user coordinate system with viewbox()
     dwg.viewbox(0, 0, imgx, imgy)
 
-    mandelbrot_group = dwg.group(stroke_width=0, stroke='none')
+    mandelbrot_group = dwg.g(stroke_width=0, stroke='none')
 
     # drawing area
     xa = -2.0
@@ -268,7 +254,8 @@ def LSystem(name, formula=LevyCurve):
     # jx = int((x - xa) / (xb - xa) * (imgx - 1))
     # jy = int((y - ya) / (yb - ya) * (imgy - 1))
     k = 0
-    curve = svg.Polyline(points=[(x, y)], stroke='green', fill='none', stroke_width=0.1)
+    dwg = svgwrite.Drawing(name, debug=DEBUG)
+    curve = dwg.polyline(points=[(x, y)], stroke='green', fill='none', stroke_width=0.1)
     for ch in fractal:
         if ch == 'F':
             # turtle forward(length)
@@ -289,26 +276,25 @@ def LSystem(name, formula=LevyCurve):
             # turtle left(angle)
             k = ((k - 1) + numAngle) % numAngle
     print("L-System with %d segements.\n" % (len(curve.points)-1))
-    dwg = svg.Drawing(name, debug=DEBUG)
     dwg.viewbox(xmin, ymin, xmax-xmin, ymax-ymin)
     dwg.add(curve)
     dwg.save()
 ## end of http://code.activestate.com/recipes/577159/ }}}
 
 def simple_text(name):
-    dwg = svg.Drawing(name, (200, 200), debug=DEBUG)
-    paragraph = dwg.group(font_size=14)
-    paragraph.add(svg.Text("This is a Test!", (10,20)))
+    dwg = svgwrite.Drawing(name, (200, 200), debug=DEBUG)
+    paragraph = dwg.g(font_size=14)
+    paragraph.add(dwg.text("This is a Test!", (10,20)))
     # 'x', 'y', 'dx', 'dy' and 'rotate' has to be a <list> or a <tuple>!!!
     # 'param'[0] .. first letter, 'param'[1] .. second letter, and so on
     # if there are more letters than values, the last list-value is used
     #
     # different 'y' coordinates does not work with Firefox 3.6
-    paragraph.add(svg.Text("This is a Test!", x=[10], y=[40, 45, 50, 55, 60]))
+    paragraph.add(dwg.text("This is a Test!", x=[10], y=[40, 45, 50, 55, 60]))
 
     # different formats can be used by the TSpan element
-    # The atext.tspan(...) method is a shortcut for: atext.add(svg.TSpan(...))
-    atext = svg.Text("A", insert=(10, 80))
+    # The atext.tspan(...) method is a shortcut for: atext.add(dwg.tspan(...))
+    atext = dwg.text("A", insert=(10, 80))
 
     # text color is set by the 'fill' property and 'stroke sets the outline color.
     atext.tspan(' Word', font_size='1.5em', fill='red')

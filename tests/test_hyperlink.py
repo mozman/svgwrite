@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Hyperlink
+from svgwrite.container import Hyperlink
 
 class TestHyperlink(unittest.TestCase):
 

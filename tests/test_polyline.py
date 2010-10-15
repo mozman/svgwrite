@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Polyline
+from svgwrite.shapes import Polyline
 
 class TestPolyline(unittest.TestCase):
     def test_numbers(self):

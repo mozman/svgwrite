@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import TextArea
+from svgwrite.text import TextArea
 from svgwrite.text import TBreak
 
 class TestTBreak(unittest.TestCase):

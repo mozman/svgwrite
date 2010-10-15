@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Image
+from svgwrite.image import Image
 
 class TestImage(unittest.TestCase):
     def test_constructor(self):

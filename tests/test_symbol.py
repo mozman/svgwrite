@@ -9,7 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import Symbol, Group
+from svgwrite.container import Symbol, Group
 from svgwrite.interface import IViewBox, ITransform
 
 class TestSymbol(unittest.TestCase):
@@ -27,7 +27,7 @@ class TestSymbol(unittest.TestCase):
 
     def test_add_group(self):
         symbol = Symbol(id='symbol')
-        group = symbol.group(id='group') # implicit call of add
+        group = symbol.g(id='group') # implicit call of add
         self.assertEqual(symbol.tostring(), '<symbol id="symbol"><g id="group" /></symbol>')
 
 if __name__=='__main__':
