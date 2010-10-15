@@ -80,7 +80,7 @@ class TestTextPath(unittest.TestCase):
 
     def test_subelement_tspan(self):
         txt = TextPath('test', 'text')
-        txt.tspan('subtext')
+        txt.add(TSpan('subtext'))
         self.assertEqual(txt.tostring(), '<textPath xlink:href="#test">text<tspan>subtext</tspan></textPath>')
 
 if __name__=='__main__':

@@ -175,18 +175,19 @@ def rect_top_left_corner(insert, size, pos='top-left'):
     return (x, y)
 
 class AutoID(object):
-    __shared_data = {}
-    def __init__(self, initvalue=None):
-        self.__dict__ = self.__shared_data
-        if initvalue is None:
-            self.__shared_data.setdefault('_nextid', 1)
-        else:
-            self._nextid = initvalue
+    _nextid = 1
 
-    def nextid(self, value=None):
+    def __init__(self, value=None):
+        self._set_value(value)
+
+    @classmethod
+    def _set_value(cls, value=None):
         if value is not None:
-            self._nextid = value
-        retval = "id%d" % self._nextid
-        self._nextid += 1
-        return retval
+            cls._nextid = value
 
+    @classmethod
+    def nextid(cls, value=None):
+        cls._set_value(value)
+        retval = "id%d" % cls._nextid
+        cls._nextid += 1
+        return retval

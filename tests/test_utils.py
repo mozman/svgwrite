@@ -128,13 +128,12 @@ class TestAutoID(unittest.TestCase):
         self.assertEqual('id1', getter.nextid())
         getter = AutoID()
         self.assertEqual('id2', getter.nextid())
-        getter = AutoID()
-        self.assertEqual('id3', getter.nextid())
+        self.assertEqual('id3', AutoID.nextid())
 
     def test_set_nextid(self):
-        getter = AutoID()
-        self.assertEqual('id7', getter.nextid(7))
-        self.assertEqual('id8', getter.nextid())
+        #getter = AutoID()
+        self.assertEqual('id7', AutoID.nextid(7))
+        self.assertEqual('id8', AutoID.nextid())
 
 if __name__=='__main__':
     unittest.main()
