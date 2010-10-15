@@ -9,12 +9,9 @@
 import sys
 import unittest
 
-from svgwrite import Rect, parameter
+from svgwrite import Rect
 
 class TestRect(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-
     def test_numbers(self):
         rect = Rect(insert=(0,0), size=(10,20))
         self.assertEqual(rect.tostring(), '<rect height="20" width="10" x="0" y="0" />')

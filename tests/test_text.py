@@ -10,12 +10,8 @@ import sys
 import unittest
 
 from svgwrite import TSpan, TRef, TextPath
-from svgwrite.params import Parameter
 
 class TestTSpan(unittest.TestCase):
-    def setUp(self):
-        self.parameter = Parameter(debug=True, profile='full')
-
     def test_constructor(self):
         txt = TSpan('testtext')
         self.assertEqual(txt.tostring(), '<tspan>testtext</tspan>')
@@ -72,17 +68,11 @@ class TestTSpan(unittest.TestCase):
         self.assertRaises(ValueError, TSpan, "txt", insert=(1,1), y=[1])
 
 class TestTRef(unittest.TestCase):
-    def setUp(self):
-        self.parameter = Parameter(debug=True, profile='full')
-
     def test_constructor(self):
         tref = TRef('test')
         self.assertEqual(tref.tostring(), '<tref xlink:href="#test" />')
 
 class TestTextPath(unittest.TestCase):
-    def setUp(self):
-        self.parameter = Parameter(debug=True, profile='full')
-
     def test_constructor(self):
         tref = TextPath('test', 'The Text', startOffset=10, spacing='auto', method='stretch')
         self.assertEqual(tref.tostring(), '<textPath method="stretch" spacing="auto"' \

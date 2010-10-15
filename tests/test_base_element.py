@@ -10,16 +10,13 @@ import sys
 import unittest
 
 from svgwrite.base import BaseElement
-from svgwrite.params import parameter
+from svgwrite.params import Parameter
 
 class MockBase(BaseElement):
     elementname = 'svg' # necessary for validator
+    _parameter = Parameter(True, 'full')
 
 class TestBaseElement(unittest.TestCase):
-    def setUp(self):
-        parameter.debug=True
-        parameter.set_profile('full')
-
 
     def test_constructor_valid(self):
         # valid attributes
@@ -48,16 +45,14 @@ class TestBaseElement(unittest.TestCase):
 
 class TestValueToString(unittest.TestCase):
     def test_full_profile(self):
-        parameter.set_debug(True)
-        parameter.set_profile('full')
         element = MockBase()
         self.assertEqual(u'test', element.value_to_string('test'))
         self.assertEqual(u'10', element.value_to_string(10))
 
     def test_tiny_profile(self):
-        parameter.set_debug(True)
-        parameter.set_profile('tiny')
         element = MockBase()
+        element.set_parameter(Parameter(True, 'tiny'))
+
         # value out of range
         self.assertRaises(TypeError, element.value_to_string, 100000)
 

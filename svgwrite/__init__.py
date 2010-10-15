@@ -27,14 +27,14 @@ Only two types of SVG drawings could be created:
 
 """
 
-from params import parameter
+from params import Parameter
 from drawing import Drawing
 from container import Group, Defs, Symbol, Use, SVG, Hyperlink
 from shapes import Line, Rect, Circle, Ellipse, Polygon, Polyline
 from image import Image
 from path import Path
 from text import Text, TSpan, TRef, TextPath, TextArea
-from utils import rgb
+from utils import rgb, AutoID
 
 class Unit(object):
     """ Add units to values.

@@ -9,13 +9,10 @@
 import sys
 import unittest
 
-from svgwrite import Symbol, Group, parameter
+from svgwrite import Symbol, Group
 from svgwrite.interface import IViewBox, ITransform
 
 class TestSymbol(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-
     def test_constructor(self):
         symbol = Symbol()
         self.assertTrue(isinstance(symbol, IViewBox))
@@ -32,7 +29,6 @@ class TestSymbol(unittest.TestCase):
         symbol = Symbol(id='symbol')
         group = symbol.group(id='group') # implicit call of add
         self.assertEqual(symbol.tostring(), '<symbol id="symbol"><g id="group" /></symbol>')
-
 
 if __name__=='__main__':
     unittest.main()

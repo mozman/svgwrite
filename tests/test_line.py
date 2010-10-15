@@ -9,12 +9,9 @@
 import sys
 import unittest
 
-from svgwrite import Line, parameter
+from svgwrite import Line
 
 class TestLine(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-
     def test_numbers(self):
         line = Line(start=(0,0), end=(10,20))
         self.assertEqual(line.tostring(), '<line x1="0" x2="10" y1="0" y2="20" />')

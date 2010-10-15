@@ -9,12 +9,9 @@
 import sys
 import unittest
 
-from svgwrite import Polyline, parameter
+from svgwrite import Polyline
 
 class TestPolyline(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-
     def test_numbers(self):
         polyline = Polyline(points=[(0,0), (1,1)])
         self.assertEqual(polyline.tostring(), '<polyline points="0,0 1,1" />')
@@ -30,9 +27,7 @@ class TestPolyline(unittest.TestCase):
 
 class TestPointsToStringFullProfile(unittest.TestCase):
     def setUp(self):
-        parameter.set_debug(True)
-        parameter.set_profile('full')
-        self.polyline = Polyline()
+        self.polyline = Polyline(debug=True, profile='full')
 
     def test_valid_points(self):
         # valid units: cm|em|ex|in|mm|pc|pt|px|%
@@ -57,9 +52,7 @@ class TestPointsToStringFullProfile(unittest.TestCase):
 
 class TestPointsToStringTinyProfile(unittest.TestCase):
     def setUp(self):
-        parameter.set_debug(True)
-        parameter.set_profile('tiny')
-        self.polyline = Polyline()
+        self.polyline = Polyline(debug=True, profile='tiny')
 
     def test_valid_points(self):
         # valid units: cm|em|ex|in|mm|pc|pt|px|%

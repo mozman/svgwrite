@@ -9,19 +9,19 @@
 import sys
 import unittest
 
-from svgwrite import parameter, Group
+from svgwrite import Group
+from svgwrite.params import Parameter
 from svgwrite.base import BaseElement
 from svgwrite.interface import IXLink
 
 class Mock(BaseElement, IXLink):
     elementname = 'use'
+    _parameter = Parameter(True, 'full')
+
     def nextid(self):
         return "id999"
 
 class TestIXLink(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-
     def test_mock_class(self):
         m = Mock()
         self.assertEqual(m.tostring(), '<use />')
@@ -38,7 +38,6 @@ class TestIXLink(unittest.TestCase):
         self.assertEqual(m.tostring(), '<use xlink:href="#test" />')
 
     def test_object_link_auto_id(self):
-        parameter._set_auto_id(999) # only for testing !!!!
         g = Group()
         m = Mock()
         m.set_href(g)

@@ -9,12 +9,9 @@
 import sys
 import unittest
 
-from svgwrite import Circle, parameter
+from svgwrite import Circle
 
 class TestCircle(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-
     def test_numbers(self):
         circle = Circle(center=(0,0), r=2)
         self.assertEqual(circle.tostring(), '<circle cx="0" cy="0" r="2" />')

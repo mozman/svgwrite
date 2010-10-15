@@ -421,8 +421,8 @@ class TextPath(BaseElement, IXLink):
 
 class TBreak(BaseElement):
     elementname = 'tbreak'
-    def __init__(self):
-        super (TBreak, self).__init__()
+    def __init__(self, **extra):
+        super (TBreak, self).__init__(**extra)
     def __getitem__(self, key):
         raise NotImplementedError("__getitem__() not supported by TBreak class.")
     def __setitem__(self, key, value):

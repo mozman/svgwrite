@@ -25,7 +25,6 @@
 
 import re
 
-from params import parameter
 from data import pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
@@ -174,3 +173,20 @@ def rect_top_left_corner(insert, size, pos='top-left'):
     if yunit:
         y = "%s%s" %(y, yunit)
     return (x, y)
+
+class AutoID(object):
+    __shared_data = {}
+    def __init__(self, initvalue=None):
+        self.__dict__ = self.__shared_data
+        if initvalue is None:
+            self.__shared_data.setdefault('_nextid', 1)
+        else:
+            self._nextid = initvalue
+
+    def nextid(self, value=None):
+        if value is not None:
+            self._nextid = value
+        retval = "id%d" % self._nextid
+        self._nextid += 1
+        return retval
+

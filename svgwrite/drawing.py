@@ -25,7 +25,9 @@ The *Drawing* class inherits from: :class:`~svgwrite.SVG`
 
 from container import SVG, Defs
 
-class Drawing(SVG):
+from elementfactory import ElementFactory
+
+class Drawing(SVG, ElementFactory):
     """ This is the SVG drawing represented by the top level <svg /> element.
 
     A drawing consists of any number of SVG elements contained within the drawing

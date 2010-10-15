@@ -9,14 +9,11 @@
 import sys
 import unittest
 
-from svgwrite import Group, Defs, parameter
+from svgwrite import Group, Defs
 
 from svgwrite.interface import ITransform
 
 class TestDefs(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-
     def test_constructor(self):
         defs = Defs()
         self.assertTrue(isinstance(defs, ITransform))
