@@ -14,6 +14,8 @@ from svgwrite.params import Parameter
 
 class MockFactory(ElementFactory):
     _parameter = Parameter(debug=True, profile='full')
+    debug = True
+    profile = 'full'
 
 class TestElementFactory(unittest.TestCase):
     def setUp(self):

@@ -11,10 +11,7 @@ import math
 import svgwrite
 from svgwrite import cm, mm, rgb, deg
 
-DEBUG = False
-# set_profile -- full, basic or tiny baseProfile (default: full)
-# set_debug -- verify property-names and property-values and for each element
-#     verify valid subelements(default: False)
+DEBUG = True
 
 def empty_drawing(name):
     drawing = svgwrite.Drawing(filename=name, debug=DEBUG)

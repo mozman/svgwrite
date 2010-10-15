@@ -84,6 +84,7 @@ class Group(BaseElement, ITransform):
         :return: the new created group element
 
         """
+        attributes.setdefault('factory', self) # set creator object to self
         group = Group(**attributes)
         self.add(group)
         return group
@@ -157,6 +158,7 @@ class Symbol(BaseElement, IViewBox):
         :return: the new created group element
 
         """
+        attributes.setdefault('factory', self) # set creator object to self
         group = Group(**attributes)
         self.add(group)
         return group

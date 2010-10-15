@@ -68,7 +68,11 @@ class BaseElement(object):
             for key, value in extra.iteritems():
                 attribs[key.replace('_', '-')] = value
 
-        self._parameter = Parameter() # default parameter debug=True profile='full'
+        factory = extra.pop('factory', None) # the keyword 'factory' specifies the object creator
+        if factory is not None:
+            self._parameter = factory._parameter # take parameter from 'factory'
+        else:
+            self._parameter = Parameter() # default parameter debug=True profile='full'
 
         debug = extra.pop('debug', None) # override debug
         if debug is not None:
@@ -83,9 +87,9 @@ class BaseElement(object):
         else:
             self.attribs = dict(attribs)
         update(self.attribs, extra)
+        self.elements = list()
         if self.debug:
             self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
-        self.elements = list()
 
     def get_debug(self):
         return self._parameter.debug
