@@ -11,7 +11,7 @@ using the <text> element. The characters to be drawn are expressed as XML
 character data inside the <text> element.
 
 """
-from params import parameter
+
 from base import BaseElement
 from interface import ITransform, IXLink
 from utils import iterflatlist, strlist

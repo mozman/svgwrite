@@ -15,6 +15,8 @@ from svgwrite.interface import IXLink
 
 class Mock(BaseElement, IXLink):
     elementname = 'use'
+    def nextid(self):
+        return "id999"
 
 class TestIXLink(unittest.TestCase):
     def setUp(self):

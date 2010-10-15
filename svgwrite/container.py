@@ -23,7 +23,6 @@ set/get SVG attributes::
    :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 """
 
-from params import parameter
 from base import BaseElement
 from interface import IViewBox, ITransform, IXLink
 
@@ -438,5 +437,5 @@ class Hyperlink(BaseElement, ITransform):
         super(Hyperlink, self).__init__(attribs, **extra)
         self['xlink:href'] = href
         self['target'] = target
-        if parameter.debug:
-            parameter.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+        if self.debug:
+            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)

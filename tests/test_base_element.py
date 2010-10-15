@@ -46,6 +46,25 @@ class TestBaseElement(unittest.TestCase):
         m['id'] = 'test'
         self.assertEqual(m['id'], 'test')
 
+class TestValueToString(unittest.TestCase):
+    def test_full_profile(self):
+        parameter.set_debug(True)
+        parameter.set_profile('full')
+        element = MockBase()
+        self.assertEqual(u'test', element.value_to_string('test'))
+        self.assertEqual(u'10', element.value_to_string(10))
+
+    def test_tiny_profile(self):
+        parameter.set_debug(True)
+        parameter.set_profile('tiny')
+        element = MockBase()
+        # value out of range
+        self.assertRaises(TypeError, element.value_to_string, 100000)
+
+    def test_is_unicode(self):
+        element = MockBase()
+        self.assertTrue(isinstance(element.value_to_string(10), unicode))
+        self.assertTrue(isinstance(element.value_to_string('test'), unicode))
 
 
 if __name__=='__main__':

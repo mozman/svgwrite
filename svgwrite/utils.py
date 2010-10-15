@@ -13,10 +13,6 @@
 
 .. autofunction:: strlist(values, [seperator=","])
 
-.. autofunction:: value_to_string(value)
-
-.. autofunction:: points_to_string(points)
-
 .. autofunction:: get_unit(coordinate)
 
 .. autofunction:: split_coordinate(coordinate)
@@ -83,41 +79,6 @@ def strlist(values, seperator=","):
 
     """
     return seperator.join([str(value) for value in iterflatlist(values) if value is not None])
-
-def value_to_string(value):
-    """
-    Converts *value* into a <string> includes some value checks depending
-    on debug-state and SVG-profile.
-
-    """
-    if isinstance(value, (int, float)):
-        if parameter.debug:
-            parameter.validator.check_svg_type(value, 'number')
-        if isinstance(value, float) and parameter.profile == 'tiny':
-            value = round(value, 4)
-    return unicode(value)
-
-def points_to_string(points):
-    """
-    Convert a <list> of points <2-tuples> to a <string> ``'p1x,p1y p2x,p2y ...'``.
-
-    """
-    strings = []
-    for point in points:
-        if len(point) != 2:
-            raise TypeError('got %s values, but expected 2 values.' % len(point))
-        x, y = point
-        if parameter.debug:
-            parameter.validator.check_svg_type(x, 'coordinate')
-            parameter.validator.check_svg_type(y, 'coordinate')
-        if parameter.get_profile() == 'tiny':
-            if isinstance(x, float):
-                x = round(x, 4)
-            if isinstance(y, float):
-                y = round(y, 4)
-        point = u"%s,%s" % (x, y)
-        strings.append(point)
-    return u' '.join(strings)
 
 def get_unit(coordinate):
     """

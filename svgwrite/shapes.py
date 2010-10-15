@@ -6,9 +6,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from params import parameter
 from base import BaseElement
-from utils import points_to_string
 from interface import ITransform
 
 class Line(BaseElement, ITransform):
@@ -177,16 +175,38 @@ class Polyline(BaseElement, ITransform):
 
         """
         super(Polyline, self).__init__(attribs=attribs, **extra)
-        if parameter.debug:
+        if self.debug:
             for point in points:
                 x, y = point
-                parameter.validator.check_svg_type(x, 'number')
-                parameter.validator.check_svg_type(y, 'number')
+                self.validator.check_svg_type(x, 'number')
+                self.validator.check_svg_type(y, 'number')
         self.points = list(points)
 
     def get_xml(self):
-        self.attribs['points'] = points_to_string(self.points)
+        self.attribs['points'] = self.points_to_string(self.points)
         return super(Polyline, self).get_xml()
+
+    def points_to_string(self, points):
+        """
+        Convert a <list> of points <2-tuples> to a <string> ``'p1x,p1y p2x,p2y ...'``.
+
+        """
+        strings = []
+        for point in points:
+            if len(point) != 2:
+                raise TypeError('got %s values, but expected 2 values.' % len(point))
+            x, y = point
+            if self.debug:
+                self.validator.check_svg_type(x, 'coordinate')
+                self.validator.check_svg_type(y, 'coordinate')
+            if self.profile == 'tiny':
+                if isinstance(x, float):
+                    x = round(x, 4)
+                if isinstance(y, float):
+                    y = round(y, 4)
+            point = u"%s,%s" % (x, y)
+            strings.append(point)
+        return u' '.join(strings)
 
 class Polygon(Polyline):
     """ The <polygon> element defines a closed shape consisting of a set of connected
