@@ -9,12 +9,9 @@
 import sys
 import unittest
 
-from svgwrite import Ellipse, parameter
+from svgwrite import Ellipse
 
 class TestEllipse(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-
     def test_numbers(self):
         ellipse = Ellipse(center=(0,0), r=(2,1))
         self.assertEqual(ellipse.tostring(), '<ellipse cx="0" cy="0" rx="2" ry="1" />')

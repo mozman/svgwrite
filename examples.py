@@ -11,22 +11,21 @@ import math
 import svgwrite as svg
 from svgwrite import cm, mm, rgb, deg
 
+DEBUG = False
 # set_profile -- full, basic or tiny baseProfile (default: full)
 # set_debug -- verify property-names and property-values and for each element
 #     verify valid subelements(default: False)
-svg.parameter.debug = True
-svg.parameter.profile = 'full'
 
 def empty_drawing(name):
-    drawing = svg.Drawing(filename=name)
+    drawing = svg.Drawing(filename=name, debug=DEBUG)
     drawing.save()
 
 def base_shapes_drawing(name):
-    drawing = svg.Drawing(filename=name)
+    drawing = svg.Drawing(filename=name, debug=DEBUG)
     hlines = drawing.group(id='hlines', stroke='green')
     for y in range(20):
         hlines.add(svg.Line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm)))
-    vlines = drawing.group(id = 'vline', stroke='blue')
+    vlines = drawing.group(id='vline', stroke='blue')
     for x in range(17):
         vlines.add(svg.Line(start=((2+x)*cm, 2*cm), end=((2+x)*cm, 21*cm)))
     shapes = drawing.group(id='shapes', fill='red')
@@ -35,9 +34,23 @@ def base_shapes_drawing(name):
     shapes.add(svg.Ellipse(center=(10*cm, 15*cm), r=('5cm', '10mm')))
     drawing.save()
 
+def planned_new_interface(name):
+    dwg = svgwrite.Drawing(filename=name, profile='tiny', debug=DEBUG)
+    hlines = dwg.g(id='hlines', stroke='green')
+    for y in range(20):
+        hlines.add(dwg.line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm)))
+    vlines = dw.g(id='vline', stroke='blue')
+    for x in range(17):
+        vlines.add(dwg.line(start=((2+x)*cm, 2*cm), end=((2+x)*cm, 21*cm)))
+    shapes = drawing.g(id='shapes', fill='red')
+    shapes.add(dwg.rect(insert=(5*cm, 5*cm), size=(45*mm, 45*mm)))
+    shapes.add(dwg.circle(center=(15*cm, 8*cm), r='2.5cm', fill='blue'))
+    shapes.add(dwg.ellipse(center=(10*cm, 15*cm), r=('5cm', '10mm')))
+    dwg.save()
+
 def use_drawing(name):
     w, h = '100%', '100%'
-    dwg = svg.Drawing(filename=name, size=(w, h))
+    dwg = svg.Drawing(filename=name, size=(w, h), debug=DEBUG)
     dwg.add(svg.Rect(insert=(0,0), size=(w, h), fill='lightgray', stroke='black'))
     g = dwg.defs.group(id='g001')
     unit=40
@@ -109,10 +122,8 @@ def koch_snowflake(name):
     imgx = 512
     imgy = 512
 
-    svg.parameter.set_profile('tiny')
-
     # create a new drawing
-    dwg = svg.Drawing(name, (imgx, imgy))
+    dwg = svg.Drawing(name, (imgx, imgy), profile='tiny', debug=DEBUG)
 
     # create a new <g /> element, wee will insert the snowflkae by the <use /> element
     # here we set stroke, fill and stroke-width for all subelements
@@ -167,7 +178,7 @@ def mandelbrot(name):
     imgy = 100
 
     # drawing defines the output size
-    dwg = svg.Drawing(name, ('32cm', '20cm'))
+    dwg = svg.Drawing(name, ('32cm', '20cm'), debug=DEBUG)
 
     # define a user coordinate system with viewbox()
     dwg.viewbox(0, 0, imgx, imgy)
@@ -278,14 +289,14 @@ def LSystem(name, formula=LevyCurve):
             # turtle left(angle)
             k = ((k - 1) + numAngle) % numAngle
     print("L-System with %d segements.\n" % (len(curve.points)-1))
-    dwg = svg.Drawing(name)
+    dwg = svg.Drawing(name, debug=DEBUG)
     dwg.viewbox(xmin, ymin, xmax-xmin, ymax-ymin)
     dwg.add(curve)
     dwg.save()
 ## end of http://code.activestate.com/recipes/577159/ }}}
 
 def simple_text(name):
-    dwg = svg.Drawing(name, (200, 200))
+    dwg = svg.Drawing(name, (200, 200), debug=DEBUG)
     paragraph = dwg.group(font_size=14)
     paragraph.add(svg.Text("This is a Test!", (10,20)))
     # 'x', 'y', 'dx', 'dy' and 'rotate' has to be a <list> or a <tuple>!!!

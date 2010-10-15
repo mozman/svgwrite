@@ -9,11 +9,9 @@
 import sys
 import unittest
 
-from svgwrite import Hyperlink, parameter
+from svgwrite import Hyperlink
 
 class TestHyperlink(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
 
     def test_constructor(self):
         link = Hyperlink("http://localhost:8080")

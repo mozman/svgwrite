@@ -10,15 +10,10 @@ import sys
 import unittest
 from StringIO import StringIO
 
-from svgwrite import parameter
 from svgwrite.drawing import Drawing
 from svgwrite.container import Group
 
 class TestDrawingFullProfile(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-        parameter.set_profile('full')
-
     def test_empty_drawing(self):
         dwg = Drawing()
         result = dwg.tostring()
@@ -41,12 +36,8 @@ class TestDrawingFullProfile(unittest.TestCase):
             'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
 
 class TestDrawingTinyProfile(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-        parameter.set_profile('tiny')
-
     def test_empty_drawing(self):
-        dwg = Drawing()
+        dwg = Drawing(profile="tiny")
         result = dwg.tostring()
         self.assertEqual(result, '<svg baseProfile="tiny" height="100%" version="1.2" '\
             'width="100%" xmlns="http://www.w3.org/2000/svg" '\
@@ -54,13 +45,12 @@ class TestDrawingTinyProfile(unittest.TestCase):
             'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
 
     def test_stylesheet(self):
-        dwg = Drawing()
+        dwg = Drawing(profile="tiny")
         dwg.add_stylesheet('test.css', 'Test')
         f = StringIO()
         dwg.write(f)
         result = f.getvalue()
         f.close()
-        # no DOCTYPE! for tiny profile
         self.assertEqual(result, '<?xml version="1.0" encoding="utf-8" ?>\n' \
             '<?xml-stylesheet href="test.css" type="text/css" title="Test" alternate="no" media="screen"?>\n'
             '<svg baseProfile="tiny" height="100%" version="1.2" width="100%" '\
@@ -69,10 +59,6 @@ class TestDrawingTinyProfile(unittest.TestCase):
             'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
 
 class TestDefs(unittest.TestCase):
-    def setUp(self):
-        parameter.debug = True
-        parameter.set_profile('full')
-
     def test_simple_defs(self):
         dwg = Drawing()
         g = dwg.defs.group(id='test')

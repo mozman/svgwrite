@@ -9,8 +9,7 @@
 import sys
 import unittest
 
-from svgwrite import parameter
-from svgwrite.utils import rgb
+from svgwrite.utils import rgb, AutoID
 from svgwrite.utils import strlist, rect_top_left_corner
 from svgwrite.utils import split_angle, split_coordinate
 
@@ -122,6 +121,20 @@ class TestSplitAngle(unittest.TestCase):
         self.assertRaises(ValueError, split_coordinate, '100ccm')
         self.assertRaises(ValueError, split_coordinate, '10,0deg')
         self.assertRaises(ValueError, split_coordinate, '1.0.0deg')
+
+class TestAutoID(unittest.TestCase):
+    def test_nextid(self):
+        getter = AutoID()
+        self.assertEqual('id1', getter.nextid())
+        getter = AutoID()
+        self.assertEqual('id2', getter.nextid())
+        getter = AutoID()
+        self.assertEqual('id3', getter.nextid())
+
+    def test_set_nextid(self):
+        getter = AutoID()
+        self.assertEqual('id7', getter.nextid(7))
+        self.assertEqual('id8', getter.nextid())
 
 if __name__=='__main__':
     unittest.main()

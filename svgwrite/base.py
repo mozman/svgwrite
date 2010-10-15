@@ -11,7 +11,8 @@ The :class:`BaseElement` is the root for all SVG elements.
 
 import xml.etree.ElementTree as etree
 
-from params import parameter
+from params import Parameter
+from utils import AutoID
 
 class BaseElement(object):
     """
@@ -66,7 +67,17 @@ class BaseElement(object):
         def update(attribs, extra):
             for key, value in extra.iteritems():
                 attribs[key.replace('_', '-')] = value
-        self._parameter = parameter # firs step to remove global parameters
+
+        self._parameter = Parameter() # default parameter debug=True profile='full'
+
+        debug = extra.pop('debug', None) # override debug
+        if debug is not None:
+            self._parameter.set_debug(debug)
+
+        profile = extra.pop('profile', None) # override profile
+        if profile is not None:
+            self._parameter.set_profile(profile)
+
         if attribs == None:
             self.attribs = dict()
         else:
@@ -91,10 +102,12 @@ class BaseElement(object):
     def get_version(self):
         return self._parameter.get_version()
 
-    def nextid(self, reset=None):
-        if reset is not None:
-            self._parameter._set_auto_id(reset)
-        return self._parameter.get_auto_id()
+    def set_parameter(self, parameter):
+        self._parameter = parameter
+
+    def nextid(self, value=None):
+        n = AutoID()
+        return n.nextid(value)
 
     def __getitem__(self, key):
         """ Get SVG attribute by `key`.

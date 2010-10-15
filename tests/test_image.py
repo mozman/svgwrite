@@ -9,12 +9,9 @@
 import sys
 import unittest
 
-from svgwrite import Image, parameter
+from svgwrite import Image
 
 class TestImage(unittest.TestCase):
-    def setUp(self):
-        parameter.set_debug(True)
-
     def test_constructor(self):
         image = Image("http://localhost/test.jpg")
         self.assertEqual(image.tostring(), '<image xlink:href="http://localhost/test.jpg" />')
