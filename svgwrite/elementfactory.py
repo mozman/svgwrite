@@ -35,22 +35,18 @@ factoryelements = {
 }
 
 class ElementBuilder(object):
-    def __init__(self, cls, post_creation):
+    def __init__(self, cls, factory):
         self.cls = cls
-        self.post_creation = post_creation
+        self.factory = factory
 
     def __call__(self, *args, **kwargs):
-        element = self.cls(*args, **kwargs) # create an object of type 'cls'
-        self.post_creation(element) # do something after the object creation
-        return element # return the modified object
+        kwargs['factory'] = self.factory
+        return self.cls(*args, **kwargs) # create an object of type 'cls'
 
 class ElementFactory(object):
     def __getattr__(self, name):
         if name in factoryelements:
-            return ElementBuilder(factoryelements[name], self.post_creation)
+            return ElementBuilder(factoryelements[name], self)
         else:
             raise AttributeError("'%s' has no attribute '%s'" % (self.__class__.__name__, name))
 
-    def post_creation(self, element):
-        # every object get the same debug and profile parameters
-        element.set_parameter(self._parameter)
