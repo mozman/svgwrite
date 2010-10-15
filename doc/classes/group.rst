@@ -1,4 +1,4 @@
 :class:`Group` objects --- <g>
 ==============================
 
-.. autoclass:: svgwrite.Group
+.. autoclass:: svgwrite.shapes.Group

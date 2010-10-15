@@ -48,7 +48,7 @@ class TestTSpan(unittest.TestCase):
 
     def test_subelement_tspan(self):
         txt = TSpan('text')
-        txt.tspan('subtext')
+        txt.add(TSpan('subtext'))
         self.assertEqual(txt.tostring(), '<tspan>text<tspan>subtext</tspan></tspan>')
 
 

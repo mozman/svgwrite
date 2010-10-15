@@ -27,9 +27,8 @@ class TestDefs(unittest.TestCase):
 
     def test_add_group(self):
         defs = Defs(id='defs')
-        group = defs.g(id='group') # implicit call of add
+        group = defs.add(Group(id='group')) # implicit call of add
         self.assertEqual(defs.tostring(), '<defs id="defs"><g id="group" /></defs>')
-
 
 if __name__=='__main__':
     unittest.main()

@@ -1,21 +1,25 @@
 :class:`Text` objects
 =====================
 
-.. autoclass:: svgwrite.Text
+.. autoclass:: svgwrite.text.Text
 
 :class:`TSpan` objects
 ======================
 
-.. autoclass:: svgwrite.TSpan
+.. autoclass:: svgwrite.text.TSpan
 
 :class:`TRef` objects
 =====================
 
-.. autoclass:: svgwrite.TRef
+.. autoclass:: svgwrite.text.TRef
 
 :class:`TextPath` objects
 =========================
 
-.. autoclass:: svgwrite.TextPath
+.. autoclass:: svgwrite.text.TextPath
 
+:class:`TextArea` objects
+=========================
+
+.. autoclass:: svgwrite.text.TextArea
 

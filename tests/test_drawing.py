@@ -61,8 +61,8 @@ class TestDrawingTinyProfile(unittest.TestCase):
 class TestDefs(unittest.TestCase):
     def test_simple_defs(self):
         dwg = Drawing()
-        g = dwg.defs.g(id='test')
-        inner_g = g.g(id='innerTest')
+        g = dwg.defs.add(Group(id='test'))
+        inner_g = g.add(Group(id='innerTest'))
         result = dwg.tostring()
         self.assertEqual(result, '<svg baseProfile="full" height="100%" version="1.1" '\
             'width="100%" xmlns="http://www.w3.org/2000/svg" '\

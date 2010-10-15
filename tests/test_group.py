@@ -26,7 +26,7 @@ class TestGroup(unittest.TestCase):
 
     def test_add_group(self):
         group = Group(id='group')
-        subgroup = group.g(id='subgroup') # implicit call of add
+        subgroup = group.add(Group(id='subgroup'))
         self.assertEqual(group.tostring(), '<g id="group"><g id="subgroup" /></g>')
 
 

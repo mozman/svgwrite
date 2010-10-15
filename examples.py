@@ -19,13 +19,13 @@ def empty_drawing(name):
 
 def base_shapes_drawing(name):
     dwg = svgwrite.Drawing(filename=name, debug=DEBUG)
-    hlines = dwg.g(id='hlines', stroke='green')
+    hlines = dwg.add(dwg.g(id='hlines', stroke='green'))
     for y in range(20):
         hlines.add(dwg.line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm)))
-    vlines = dwg.g(id='vline', stroke='blue')
+    vlines = dwg.add(dwg.g(id='vline', stroke='blue'))
     for x in range(17):
         vlines.add(dwg.line(start=((2+x)*cm, 2*cm), end=((2+x)*cm, 21*cm)))
-    shapes = dwg.g(id='shapes', fill='red')
+    shapes = dwg.add(dwg.g(id='shapes', fill='red'))
     shapes.add(dwg.rect(insert=(5*cm, 5*cm), size=(45*mm, 45*mm)))
     shapes.add(dwg.circle(center=(15*cm, 8*cm), r='2.5cm', fill='blue'))
     shapes.add(dwg.ellipse(center=(10*cm, 15*cm), r=('5cm', '10mm')))
@@ -35,7 +35,7 @@ def use_drawing(name):
     w, h = '100%', '100%'
     dwg = svgwrite.Drawing(filename=name, size=(w, h), debug=DEBUG)
     dwg.add(dwg.rect(insert=(0,0), size=(w, h), fill='lightgray', stroke='black'))
-    g = dwg.defs.g(id='g001')
+    g = dwg.defs.add(dwg.g(id='g001'))
     unit=40
     g.add(dwg.rect((0,0), (unit, unit)))
     for y in range(10):
@@ -108,15 +108,12 @@ def koch_snowflake(name):
     # create a new drawing
     dwg = svgwrite.Drawing(name, (imgx, imgy), profile='tiny', debug=DEBUG)
 
-    # create a new <g /> element, wee will insert the snowflkae by the <use /> element
+    # create a new <g /> element, we will insert the snowflake by the <use /> element
     # here we set stroke, fill and stroke-width for all subelements
     # attention: 'stroke-width' is not a valid Python identifier, so use 'stroke_witdth'
     #   underlines '_' will be converted to dashes '-', this is true for all svg-keyword-attributs
     # if no 'id' is given ( like dwg.g(id="sflake") ), an automatic generated 'id' will be generated
     snowflake = dwg.g(stroke="blue", fill="rgb(90%,90%,100%)", stroke_width=0.25)
-
-    # don't use snowflake = dwg.group(...) this automatic adds the snowflake
-    # group to 'dwg.elements' list and not to 'dwg.defs' list!
 
     # add the <g /> element to the <defs /> element of the drawing
     dwg.defs.add(snowflake)
@@ -166,7 +163,7 @@ def mandelbrot(name):
     # define a user coordinate system with viewbox()
     dwg.viewbox(0, 0, imgx, imgy)
 
-    mandelbrot_group = dwg.g(stroke_width=0, stroke='none')
+    mandelbrot_group = dwg.add(dwg.g(stroke_width=0, stroke='none'))
 
     # drawing area
     xa = -2.0
@@ -280,7 +277,7 @@ def LSystem(name, formula=LevyCurve):
 
 def simple_text(name):
     dwg = svgwrite.Drawing(name, (200, 200), debug=DEBUG)
-    paragraph = dwg.g(font_size=14)
+    paragraph = dwg.add(dwg.g(font_size=14))
     paragraph.add(dwg.text("This is a Test!", (10,20)))
     # 'x', 'y', 'dx', 'dy' and 'rotate' has to be a <list> or a <tuple>!!!
     # 'param'[0] .. first letter, 'param'[1] .. second letter, and so on
@@ -294,8 +291,8 @@ def simple_text(name):
     atext = dwg.text("A", insert=(10, 80))
 
     # text color is set by the 'fill' property and 'stroke sets the outline color.
-    atext.tspan(' Word', font_size='1.5em', fill='red')
-    atext.tspan(' is a Word!', dy=['1em'], font_size='0.7em', fill='green')
+    atext.add(dwg.tspan(' Word', font_size='1.5em', fill='red'))
+    atext.add(dwg.tspan(' is a Word!', dy=['1em'], font_size='0.7em', fill='green'))
     paragraph.add(atext)
     dwg.save()
 

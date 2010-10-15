@@ -1,4 +1,4 @@
 :class:`Use` objects --- <use>
 ===============================
 
-.. autoclass:: svgwrite.Use
+.. autoclass:: svgwrite.container.Use

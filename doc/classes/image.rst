@@ -1,4 +1,4 @@
 :class:`Image` objects --- <image>
 ==================================
 
-.. autoclass:: svgwrite.Image
+.. autoclass:: svgwrite.container.Image
