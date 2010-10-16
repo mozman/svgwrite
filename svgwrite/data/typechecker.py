@@ -9,11 +9,8 @@
 import re
 
 import pattern
-
 from colors import colornames
-from spark import LexicalError, ParseError
-import transformlistparser
-import pathdataparser
+from svgparser import TransformListParser, PathDataParser
 
 def iterflatlist(values):
     """ Flatten nested *values*, returns an *iterator*. """
@@ -35,12 +32,6 @@ COLOR_RGB_PERCENTAGE_PATTERN = re.compile(r"^rgb\( *\d+% *, *\d+% *, *\d+% *\)$"
 NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
 
 class Full11TypeChecker(object):
-    def __init__(self):
-        self._transform_parser = transformlistparser.TransformParser()
-        self._transform_scanner = transformlistparser.TransformScanner()
-        self._path_data_parser = pathdataparser.PathDataParser()
-        self._path_data_scanner = pathdataparser.PathDataScanner()
-
     def get_version(self):
         return ('1.1', 'full')
 
@@ -253,27 +244,13 @@ class Full11TypeChecker(object):
 
     def is_transform_list(self, value):
         if isinstance(value, basestring):
-            try:
-                tokens = self._transform_scanner.tokenize(value)
-                self._transform_parser.parse(tokens)
-                return True
-            except LexicalError:
-                return False
-            except ParseError:
-                return False
+            return TransformListParser.is_valid(value)
         else:
             return False
 
     def is_path_data(self, value):
         if isinstance(value, basestring):
-            try:
-                tokens = self._path_data_scanner.tokenize(value)
-                self._path_data_parser.parse(tokens)
-                return True
-            except LexicalError:
-                return False
-            except ParseError:
-                return False
+            return PathDataParser.is_valid(value)
         else:
             return False
 
