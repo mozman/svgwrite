@@ -25,12 +25,12 @@ SVG Implementation Status
 Foreign Python modules
 ======================
 
-spark.py
---------
+pyparsing.py
+------------
 
-by John Aycock (Department of Computer Science, University of Calgary)
+Copyright (c) 2003-2010  Paul T. McGuire
 
-http://pages.cpsc.ucalgary.ca/~aycock/spark/
+http://pyparsing.wikispaces.com/
 
-Using :mod:`spark.py` for validation of the 'transform' attribute and the 'd'
-attribute of the <path> element.
+Using :mod:`pyparsing.py` for validation of the 'transform' attribute and the
+'d' attribute of the <path> element.
