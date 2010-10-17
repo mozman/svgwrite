@@ -11,27 +11,6 @@ import unittest
 from svgwrite.data.svgparser import PathDataParser
 
 class TestPathDataParser(unittest.TestCase):
-
-    def test_integer(self):
-        self.assertTrue(PathDataParser.is_valid("m +100, -100"))
-
-    def test_integer_error(self):
-        self.assertFalse(PathDataParser.is_valid("m +100e, -100"))
-
-    def test_float(self):
-        self.assertTrue(PathDataParser.is_valid("m +10.00, -10.00"))
-        self.assertTrue(PathDataParser.is_valid("m +10., -10."))
-        self.assertTrue(PathDataParser.is_valid("m +.00, -.00"))
-        self.assertTrue(PathDataParser.is_valid("m +10.00e10, -10.00e-30"))
-        self.assertTrue(PathDataParser.is_valid("m +10.00E10, -10.00E-30"))
-        self.assertTrue(PathDataParser.is_valid("m +10E10, -10E-30"))
-        self.assertTrue(PathDataParser.is_valid("m +.10E10, -.10E-30"))
-
-    def test_float_error(self):
-        self.assertFalse(PathDataParser.is_valid("m +100e, -100"))
-        self.assertFalse(PathDataParser.is_valid("m +1.0.0, -10-0"))
-        self.assertFalse(PathDataParser.is_valid("m +1.0.0, -10e-1.0"))
-
     def test_moveto(self):
         self.assertTrue(PathDataParser.is_valid("m 0, 0"))
         self.assertTrue(PathDataParser.is_valid("m 0,0"))

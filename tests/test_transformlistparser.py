@@ -11,27 +11,6 @@ import unittest
 from svgwrite.data.svgparser import TransformListParser
 
 class TestTransformListParser(unittest.TestCase):
-
-    def test_integer(self):
-        self.assertTrue(TransformListParser.is_valid("translate(+100, -100)"))
-
-    def test_integer_error(self):
-        self.assertFalse(TransformListParser.is_valid("translate(+100e, -100)"))
-
-    def test_float(self):
-        self.assertTrue(TransformListParser.is_valid("translate(+10.00, -10.00)"))
-        self.assertTrue(TransformListParser.is_valid("translate( +10., -10.)"))
-        self.assertTrue(TransformListParser.is_valid("translate(+.00, -.00)"))
-        self.assertTrue(TransformListParser.is_valid("translate(+10.00e10, -10.00e-30)"))
-        self.assertTrue(TransformListParser.is_valid("translate(+10.00E10, -10.00E-30)"))
-        self.assertTrue(TransformListParser.is_valid("translate(+10E10, -10E-30)"))
-        self.assertTrue(TransformListParser.is_valid("translate(+.10E10, -.10E-30)"))
-
-    def test_float_error(self):
-        self.assertFalse(TransformListParser.is_valid("translate(+100e, -100)"))
-        self.assertFalse(TransformListParser.is_valid("translate(+1.0.0, -10-0)"))
-        self.assertFalse(TransformListParser.is_valid("translate( +1.0.0, -10e-1.0)"))
-
     def test_matrix_1(self):
         self.assertTrue(TransformListParser.is_valid("matrix(1 2 3 4 5 6)"))
 

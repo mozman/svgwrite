@@ -9,16 +9,20 @@
 
 from pyparsing import *
 
+sign = oneOf('+ -')
+comma = Literal(',')*(0,1) # zeroOrOne ','
+digits = Word(nums)
+integer_constant = digits
+
+exponent = CaselessLiteral('E') + Optional(sign) + digits
+fractional_constant = Combine(Optional(digits) + '.' + digits) \
+                    ^ Combine(digits + '.')
+scientific_constant = Combine(fractional_constant + Optional(exponent)) \
+                        ^ Combine(digits + exponent)
+number = Combine(Optional(sign) + integer_constant) \
+       ^ Combine(Optional(sign) + scientific_constant)
+
 def _build_transferlist_parser():
-    sign = oneOf('+ -')
-    comma = Literal(',')*(0,1) # zeroOrOne ','
-    digits = Word(nums)
-
-    exponent = CaselessLiteral('E') + Optional(sign) + digits
-    frac_const = Combine(Optional(digits) + '.' + digits) ^ Combine(digits + '.')
-    float_const = Combine(frac_const + Optional(exponent)) ^ Combine(digits + exponent)
-    number = Combine(Optional(sign) + digits) ^ Combine(Optional(sign) + float_const)
-
     matrix = Literal("matrix") + '(' + number + (Suppress(comma) + number) * 5 + ')'
     translate = Literal("translate") + '(' + number + Optional(comma + number) + ')'
     scale = Literal("scale") + '(' + number + Optional(comma + number) + ')'
@@ -29,19 +33,10 @@ def _build_transferlist_parser():
     return transform + ZeroOrMore(comma + transform)
 
 def _build_pathdata_parser():
-    sign = oneOf('+ -')
-    flag = oneOf('0 1')
-    comma = Literal(',')*(0,1) # zeroOrOne ','
-    digits = Word(nums)
-
-    exponent = CaselessLiteral('E') + Optional(sign) + digits
-    frac_const = Combine(Optional(digits) + '.' + digits) ^ Combine(digits + '.')
-    float_const = Combine(frac_const + Optional(exponent)) ^ Combine(digits + exponent)
-    number = Combine(Optional(sign) + digits) ^ Combine(Optional(sign) + float_const)
-
     coordinate = number
     coordinate_pair = coordinate + comma + coordinate
-    nonnegative_number = digits ^ float_const
+    nonnegative_number = digits ^ scientific_constant
+    flag = oneOf('0 1')
 
     closepath = oneOf('Z z')
     moveto = oneOf('M m') + coordinate_pair + ZeroOrMore(comma + coordinate_pair)
@@ -66,7 +61,8 @@ def _build_pathdata_parser():
                              + quadratic_bezier_curveto_argument_sequence \
                              + ZeroOrMore(comma + quadratic_bezier_curveto_argument_sequence)
 
-    smooth_quadratic_bezier_curveto = oneOf('T t') + coordinate_pair + ZeroOrMore(comma + coordinate_pair)
+    smooth_quadratic_bezier_curveto = oneOf('T t') + coordinate_pair \
+                                    + ZeroOrMore(comma + coordinate_pair)
 
     elliptical_arc_argument = nonnegative_number + comma + nonnegative_number \
                             + comma + number + comma + flag + comma + flag \
