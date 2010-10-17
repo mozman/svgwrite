@@ -10,15 +10,13 @@
 from pyparsing import *
 
 sign = oneOf('+ -')
-comma = Literal(',')*(0,1) # zeroOrOne ','
-digits = Word(nums)
-integer_constant = digits
-
-exponent = CaselessLiteral('E') + Optional(sign) + digits
-fractional_constant = Combine(Optional(digits) + '.' + digits) \
-                    ^ Combine(digits + '.')
+comma = Literal(',') * (0, 1) # zero or one ','
+integer_constant = Word(nums)
+exponent = CaselessLiteral('E') + Optional(sign) + integer_constant
+fractional_constant = Combine(Optional(integer_constant) + '.' + integer_constant) \
+                    ^ Combine(integer_constant + '.')
 scientific_constant = Combine(fractional_constant + Optional(exponent)) \
-                        ^ Combine(digits + exponent)
+                    ^ Combine(integer_constant + exponent)
 number = Combine(Optional(sign) + integer_constant) \
        ^ Combine(Optional(sign) + scientific_constant)
 
@@ -35,7 +33,7 @@ def _build_transferlist_parser():
 def _build_pathdata_parser():
     coordinate = number
     coordinate_pair = coordinate + comma + coordinate
-    nonnegative_number = digits ^ scientific_constant
+    nonnegative_number = integer_constant ^ scientific_constant
     flag = oneOf('0 1')
 
     closepath = oneOf('Z z')
@@ -83,24 +81,21 @@ def _build_pathdata_parser():
     moveto_drawto_command_group = moveto + ZeroOrMore(drawto_commands)
     return moveto_drawto_command_group + ZeroOrMore(moveto_drawto_command_group)
 
-class TransformListParser(object):
+class _AbstractParser(object):
+    @classmethod
+    def is_valid(cls, value):
+        try:
+            cls._parser.parseString(value, parseAll=True)
+            return True
+        except ParseException:
+            return False
+
+    @classmethod
+    def parse(cls, value):
+        raise NotImplementedError('parsing not implemented')
+
+class TransformListParser(_AbstractParser):
     _parser = _build_transferlist_parser()
 
-    @staticmethod
-    def is_valid(value):
-        try:
-            TransformListParser._parser.parseString(value, parseAll=True)
-            return True
-        except ParseException:
-            return False
-
-class PathDataParser(object):
+class PathDataParser(_AbstractParser):
     _parser = _build_pathdata_parser()
-
-    @staticmethod
-    def is_valid(value):
-        try:
-            PathDataParser._parser.parseString(value, parseAll=True)
-            return True
-        except ParseException:
-            return False
