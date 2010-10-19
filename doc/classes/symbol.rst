@@ -1,34 +1,33 @@
-:class:`Group` objects --- <g>
-==============================
+:class:`Symbol` objects --- <symbol>
+====================================
 
-.. autoclass:: svgwrite.container.Group
+.. autoclass:: svgwrite.container.Symbol
 
 Inherited Attributes
 --------------------
 
-.. attribute:: Group.attribs
+.. attribute:: Symbol.attribs
 
    `dict` of SVG attributes
 
-.. attribute:: Group.elements
+.. attribute:: Symbol.elements
 
    `list` of SVG subelements
 
 Inherited Methods
 -----------------
 
-.. automethod:: svgwrite.container.Group.add(element)
+.. automethod:: svgwrite.container.Symbol.add(element)
 
-.. automethod:: svgwrite.container.Group.tostring()
+.. automethod:: svgwrite.container.Symbol.tostring()
 
-.. automethod:: svgwrite.container.Group.get_xml()
+.. automethod:: svgwrite.container.Symbol.get_xml()
 
 Supported Interfaces
 --------------------
 
-:class:`svgwrite.interface.ITransform`
-    :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
-    :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
+:class:`svgwrite.interface.IViewBox`
+    :meth:`viewbox`, :meth:`stretch`, :meth:`fit`
 
 SVG attributes
 --------------
@@ -38,12 +37,13 @@ SVG attributes
   directly on a given element
 * **externalResourcesRequired** -- `bool` *False*: if document rendering
   can proceed even if external resources are unavailable else: *True*
-* **transform** -- use :class:`svgwrite.interface.ITransform` interface
+* **viewBox** -- use :class:`svgwrite.interface.IViewBox` interface
+* **preserveAspectRatio** -- use :class:`svgwrite.interface.IViewBox`
+  interface
 
 Standard SVG Attributes
 -----------------------
 
 * :doc:`Core Attributes </attributes/core>`
-* :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
 * :doc:`Graphical Event Attributes </attributes/graphical_event>`
 * :doc:`Presentation Attributes </attributes/presentation>`

@@ -32,5 +32,5 @@ Copyright (c) 2003-2010  Paul T. McGuire
 
 http://pyparsing.wikispaces.com/
 
-Using :mod:`pyparsing.py` for validation of the 'transform' attribute and the
-'d' attribute of the <path> element.
+Using :mod:`pyparsing.py` for validation of the **transform** attribute and the
+**d** attribute of the <path> element.

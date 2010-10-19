@@ -5,33 +5,28 @@
 # Created: 10.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
-"""
-.. attribute:: svgwrite.parameter
-
-   The global parameter object.
-
-.. attribute:: svgwrite.parameter.debug
-
-   *read/write* property
-
-   * *True* : debug mode is on, all SVG attributes are checked if valid
-     in the element context. Also the included SVG subelements will be
-     checked if they are valid for the parent SVG element.
-
-   * *False*: no validation checks will be done, but program execution is
-     faster.
-
-.. attribute:: svgwrite.parameter.profile
-
-   *read/write* property
-
-   name of the SVG profile, valid profiles are: ``'full|basic|tiny'``
-
-"""
 
 from validator2 import get_validator
 
 class Parameter(object):
+    """
+    .. attribute:: Parameter.debug
+
+       *read/write* property
+
+       * *True* : debug mode is on, all SVG attributes are checked if valid
+         in the element context. Also the included SVG subelements will be
+         checked if they are valid for the parent SVG element.
+
+       * *False*: no validation checks will be done, but program execution is
+         faster.
+
+    .. attribute:: Parameter.profile
+
+       *read/write* property
+
+       name of the SVG profile, valid profiles are: ``'full|basic|tiny'``
+    """
     __slots__ = ['_debug', 'validator', '_profile']
 
     def __init__(self, debug=True, profile='full'):

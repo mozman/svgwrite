@@ -13,9 +13,9 @@ class Line(BaseElement, ITransform):
     """ The <line> element defines a line segment that starts at one point and ends
     at another.
 
-    .. automethod:: svgwrite.Line.__init__
+    .. automethod:: svgwrite.shapes.Line.__init__
 
-    **Supported SVG Attributes**
+    **SVG Attributes**
 
     * **x1** -- `coordinate` start-x
     * **y1** -- `coordinate` start-y
@@ -46,9 +46,9 @@ class Rect(BaseElement, ITransform):
     user coordinate system. Rounded rectangles can be achieved by setting appropriate
     values for attributes <rx> and <ry>.
 
-    .. automethod:: svgwrite.Rect.__init__
+    .. automethod:: svgwrite.shapes.Rect.__init__
 
-    **Supported SVG Attributes**
+    **SVG Attributes**
 
     * **x** -- `coordinate` The x-axis coordinate of the side of the
                rectangle which has the smaller x-axis coordinate value
@@ -87,9 +87,9 @@ class Rect(BaseElement, ITransform):
 class Circle(BaseElement, ITransform):
     """ The <circle> element defines a circle based on a center point and a radius.
 
-    .. automethod:: svgwrite.Circle.__init__
+    .. automethod:: svgwrite.shapes.Circle.__init__
 
-    **Supported SVG Attributes**
+    **SVG Attributes**
 
     * **cx** -- `coordinate` The x-axis coordinate of the center of the circle.
     * **cy** -- `coordinate` The y-axis coordinate of the center of the circle.
@@ -115,9 +115,9 @@ class Ellipse(BaseElement, ITransform):
     """ The <ellipse> element defines an ellipse which is axis-aligned with the
     current user coordinate system based on a center point and two radii.
 
-    .. automethod:: svgwrite.Ellipse.__init__
+    .. automethod:: svgwrite.shapes.Ellipse.__init__
 
-    **Supported SVG Attributes**
+    **SVG Attributes**
 
     * **cx** -- `coordinate` The x-axis coordinate of the center of the ellipse.
     * **cy** -- `coordinate` The y-axis coordinate of the center of the ellipse.
@@ -146,7 +146,7 @@ class Polyline(BaseElement, ITransform):
     """ The <polyline> element defines a set of connected straight line segments.
     Typically, <polyline> elements define open shapes.
 
-    .. automethod:: svgwrite.Polyline.__init__
+    .. automethod:: svgwrite.shapes.Polyline.__init__
 
     **Attributes**
 
@@ -154,7 +154,7 @@ class Polyline(BaseElement, ITransform):
 
        *list* of points, a point is a <2-tuple> (x, y): x, y = <number>
 
-    **Supported SVG Attributes**
+    **SVG Attributes**
 
     * **points** -- <list-of-points> The points that make up the polyline.
        All coordinate values are in the **user coordinate system** (no units

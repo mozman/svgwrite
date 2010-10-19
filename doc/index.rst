@@ -8,8 +8,8 @@ svgwrite |version| documentation
 
 Welcome! This is the documentation for svgwrite |version|, last updated |today|.
 
-Contents:
----------
+Contents
+--------
 
 .. toctree::
    :maxdepth: 1
@@ -17,18 +17,17 @@ Contents:
    overview
    reference
 
-Modules:
---------
+Modules
+-------
 
 .. toctree::
    :titlesonly:
 
    svgwrite
    utils/utils
-   utils/validator
 
-Structural objects:
--------------------
+Structural objects
+------------------
 
 .. toctree::
    :maxdepth: 1
@@ -38,11 +37,12 @@ Structural objects:
    classes/svg
    classes/group
    classes/defs
+   classes/symbol
    classes/use
    classes/hyperlink
 
-Graphical objects:
-------------------
+Graphical objects
+-----------------
 
 .. toctree::
    :maxdepth: 1
@@ -51,16 +51,16 @@ Graphical objects:
    classes/shapes
    classes/image
 
-Text objects:
--------------
+Text objects
+------------
 
 .. toctree::
    :maxdepth: 1
 
    classes/text
 
-Interfaces:
------------
+Interfaces
+----------
 
 .. toctree::
    :maxdepth: 1

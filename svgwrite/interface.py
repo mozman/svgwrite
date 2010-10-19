@@ -20,14 +20,6 @@ class IViewBox(object):
     viewport established by the given element, taking into account attribute
     *preserveAspectRatio*.
 
-    **Methods**
-
-    .. automethod:: svgwrite.interface.IViewBox.viewbox([minx=0, miny=0, width=0, height=0])
-
-    .. automethod:: svgwrite.interface.IViewBox.stretch()
-
-    .. automethod:: svgwrite.interface.IViewBox.fit([horiz="center", vert="middle", scale="meet"])
-
     """
     def viewbox(self, minx=0, miny=0, width=0, height=0):
         """ Specify a rectangle in **user space** (no units allowed) which should be
@@ -72,18 +64,6 @@ class ITransform(object):
     as a list of transform definitions, which are applied in the order provided.
     The individual transform definitions are separated by whitespace and/or a comma.
     All coordinates are **user space coordinates**.
-
-    **Methods**
-
-    .. automethod:: svgwrite.interface.ITransform.translate(tx, [ty=None])
-
-    .. automethod:: svgwrite.interface.ITransform.rotate(angle, [center=None])
-
-    .. automethod:: svgwrite.interface.ITransform.skewX(angle)
-
-    .. automethod:: svgwrite.interface.ITransform.skewY(angle)
-
-    .. automethod:: svgwrite.interface.ITransform.scale(sx, [sy=None])
 
     """
     def translate(self, tx, ty=None):
@@ -146,13 +126,7 @@ class ITransform(object):
         self['transform'] = ("%s %s" % (old_transform, new_transform)).strip()
 
 class IXLink(object):
-    """ Xlink interface
-
-    **Methods**
-
-    .. automethod:: svgwrite.interface.IXLink.set_href(element)
-
-    """
+    """ Xlink interface """
     def set_href(self, element):
         """
         Create a reference to *element*.

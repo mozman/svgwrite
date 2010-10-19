@@ -11,7 +11,9 @@ Structural Elements
    classes/svg
    classes/group
    classes/defs
+   classes/symbol
    classes/use
+   classes/hyperlink
 
 Graphical Elements
 ------------------

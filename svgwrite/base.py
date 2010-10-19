@@ -20,38 +20,6 @@ class BaseElement(object):
     are stored in :attr:`attribs`, and the SVG subelements are stored in
     :attr:`elements`.
 
-    .. automethod:: svgwrite.base.BaseElement.__init__([attribs=None, **extra])
-
-    **Attributes**
-
-    .. attribute:: BaseElement.attribs
-
-       `dict` of SVG attributes
-
-    .. attribute:: BaseElement.elements
-
-       `list` of SVG subelements
-
-    **Methods**
-
-    .. automethod:: svgwrite.base.BaseElement.add(element)
-
-    .. automethod:: svgwrite.base.BaseElement.tostring()
-
-    .. automethod:: svgwrite.base.BaseElement.get_xml()
-
-    .. automethod:: svgwrite.base.BaseElement.__getitem__(key)
-
-    .. automethod:: svgwrite.base.BaseElement.__setitem__(key, value)
-
-    set/get SVG attributes::
-
-        element['attribute'] = value
-        value = element['attribute']
-
-    .. seealso::
-       :ref:`Common SVG Attributs <Common-SVG-Attributs>`
-
     """
     elementname = 'baseElement'
 
