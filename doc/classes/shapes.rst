@@ -26,7 +26,7 @@
 :class:`Polygon` objects --- <polygon>
 ======================================
 
-.. autoclass:: svgwrite.Polygon
+.. autoclass:: svgwrite.shapes.Polygon
 
 Common for: Line, Rect, Circle, Ellipse, Polyline, Polygon
 ----------------------------------------------------------
@@ -34,13 +34,13 @@ Common for: Line, Rect, Circle, Ellipse, Polyline, Polygon
 Inherited Attributes
 ~~~~~~~~~~~~~~~~~~~~
 
-.. attribute:: attribs
+.. attribute:: Polygon.attribs
 
-   `dict` of SVG attributes
+   *dict* of SVG attributes
 
-.. attribute:: elements
+.. attribute:: Polygon.elements
 
-   `list` of SVG subelements
+   *list* of SVG subelements
 
 Inherited Methods
 ~~~~~~~~~~~~~~~~~

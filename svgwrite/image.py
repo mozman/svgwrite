@@ -15,63 +15,6 @@ class Image(BaseElement, ITransform):
     system. The <image> element can refer to raster image files such as PNG
     or JPEG or to files with MIME type of "image/svg+xml".
 
-    **Methods**
-
-    .. automethod:: svgwrite.Image.__init__(href ,[insert=None, size=None, attribs=None, \*\*extra])
-
-    .. automethod:: svgwrite.Image.stretch()
-
-    .. automethod:: svgwrite.Image.fit([horiz="center", vert="middle", scale="meet"])
-
-    **Inherited Attributes**
-
-    .. attribute:: attribs
-
-       `dict` of SVG attributes
-
-    .. attribute:: elements
-
-       `list` of SVG subelements
-
-    **Inherited Methods**
-
-    .. automethod:: svgwrite.Image.add(element)
-
-    .. automethod:: svgwrite.Image.tostring()
-
-    .. automethod:: svgwrite.Image.get_xml()
-
-    **Supported Interfaces**
-
-    :class:`svgwrite.interface.ITransform`
-        :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
-        :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
-
-    **Supported svg-attributes**
-
-    * **class** -- `string` assigns one or more css-class-names to an element
-    * **style** -- `string` allows per-element css-style rules to be specified
-      directly on a given element
-    * **x** -- `coordinate` insert x-coordinate, insert[0] parameter at
-      :meth:`__init__`, default=0
-    * **y** -- `coordinate` insert y-coordinate, insert[1] parameter at
-      :meth:`__init__`, default=0
-    * **width** -- `length` width - size[0] parameter at :meth:`__init__`
-    * **height** -- `length` height - size[1] parameter at :meth:`__init__`
-    * **transform** -- :class:`svgwrite.interface.ITransform` interface
-    * **xlink:href** -- `string` hyperlink to the image resource,
-      href parameter at :meth:`__init__`
-    * **externalResourcesRequired** -- `bool` *False*: if document rendering
-      can proceed even if external resources are unavailable else: *True*
-
-    **Standard SVG Attributes**
-
-    * :doc:`Core Attributes </attributes/core>`
-    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
-    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
-    * :doc:`Presentation Attributes </attributes/presentation>`
-    * :doc:`XLink Attributes </attributes/xlink>`
-
     """
     elementname = 'image'
 

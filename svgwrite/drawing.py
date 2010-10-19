@@ -36,52 +36,6 @@ class Drawing(SVG, ElementFactory):
     A drawing can range from an empty drawing (i.e., no content inside of the drawing),
     to a very simple drawing containing a single SVG element such as a <rect>,
     to a complex, deeply nested collection of container elements and graphics elements.
-
-    .. automethod:: svgwrite.Drawing.__init__([filename="noname.svg", size=('100%', '100%'), **extra])
-
-    **Attributes**
-
-    .. attribute:: filename
-
-       `string` should be valid for :func:`open`.
-
-    **Inherited Attributes**
-
-    .. attribute:: attribs
-
-       `dict` of SVG attributes
-
-    .. attribute:: elements
-
-       `list` of SVG subelements
-
-    .. attribute:: defs
-
-       `Defs` container for referenced SVG elements
-
-    **Methods**
-
-    .. automethod:: write(fileobj)
-
-    .. automethod:: save()
-
-    .. automethod:: saveas(filename)
-
-    .. automethod:: add_stylesheet(href, title, alternate, media)
-
-    .. automethod:: get_xml()
-
-    **Inherited Methods**
-
-    .. automethod:: add(element)
-
-
-    .. automethod:: tostring()
-
-    **Supported Interfaces**
-
-    :class:`~svgwrite.interface.IViewBox`
-
     """
     def __init__(self, filename="noname.svg", size=('100%', '100%'), **extra):
         """

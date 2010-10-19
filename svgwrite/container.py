@@ -29,47 +29,6 @@ from interface import IViewBox, ITransform, IXLink
 class Group(BaseElement, ITransform):
     """ The <g> element is a container element for grouping together
     related graphics elements.
-
-    **Inherited Attributes**
-
-    .. attribute:: attribs
-
-       `dict` of SVG attributes
-
-    .. attribute:: elements
-
-       `list` of SVG subelements
-
-    **Inherited Methods**
-
-    .. automethod:: svgwrite.container.Group.add(element)
-
-    .. automethod:: svgwrite.container.Group.tostring()
-
-    .. automethod:: svgwrite.container.Group.get_xml()
-
-    **Supported Interfaces**
-
-    :class:`svgwrite.interface.ITransform`
-        :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
-        :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
-
-    **Supported SVG attributes**
-
-    * **class** -- `string` assigns one or more css-class-names to an element
-    * **style** -- `string` allows per-element css-style rules to be specified
-      directly on a given element
-    * **externalResourcesRequired** -- `bool` *False*: if document rendering
-      can proceed even if external resources are unavailable else: *True*
-    * **transform** -- use :class:`svgwrite.interface.ITransform` interface
-
-    **Standard SVG Attributes**
-
-    * :doc:`Core Attributes </attributes/core>`
-    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
-    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
-    * :doc:`Presentation Attributes </attributes/presentation>`
-
     """
     elementname = 'g'
 
@@ -86,47 +45,6 @@ class Symbol(BaseElement, IViewBox):
     graphics that are used multiple times in the same document adds structure and
     semantics. Documents that are rich in structure may be rendered graphically,
     as speech, or as braille, and thus promote accessibility.
-
-    **Inherited Attributes**
-
-    .. attribute:: attribs
-
-       `dict` of SVG attributes
-
-    .. attribute:: elements
-
-       `list` of SVG subelements
-
-    **Inherited Methods**
-
-    .. automethod:: svgwrite.container.Symbol.add(element)
-
-    .. automethod:: svgwrite.container.Symbol.tostring()
-
-    .. automethod:: svgwrite.container.Symbol.get_xml()
-
-    **Supported Interfaces**
-
-    :class:`svgwrite.interface.IViewBox`
-        :meth:`viewbox`, :meth:`stretch`, :meth:`fit`
-
-    **Supported svg-attributes**
-
-    * **class** -- `string` assigns one or more css-class-names to an element
-    * **style** -- `string` allows per-element css-style rules to be specified
-      directly on a given element
-    * **externalResourcesRequired** -- `bool` *False*: if document rendering
-      can proceed even if external resources are unavailable else: *True*
-    * **viewBox** -- use :class:`svgwrite.interface.IViewBox` interface
-    * **preserveAspectRatio** -- use :class:`svgwrite.interface.IViewBox`
-      interface
-
-    **Standard SVG Attributes**
-
-    * :doc:`Core Attributes </attributes/core>`
-    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
-    * :doc:`Presentation Attributes </attributes/presentation>`
-
     """
     # ITransform interface is not valid for Symbol -> do not inherit from Group
     elementname = 'symbol'
@@ -139,71 +57,6 @@ class SVG(Symbol):
     inside of the <svg> element), to a very simple SVG document fragment containing
     a single SVG graphics element such as a <rect>, to a complex, deeply nested
     collection of container elements and graphics elements.
-
-    .. automethod:: svgwrite.container.SVG.__init__([insert=None, size=None, attribs=None, \*\*extra])
-
-    **Attributes**
-
-    .. attribute:: defs
-
-       `Defs` container for referenced elements
-
-       adding SVG elements to *defs*::
-
-         svgobject.defs.add(element)
-
-    **Inherited Attributes**
-
-    .. attribute:: attribs
-
-       `dict` of SVG attributes
-
-    .. attribute:: elements
-
-       `list` of SVG subelements
-
-    **Inherited Methods**
-
-    .. automethod:: svgwrite.container.SVG.add(element)
-
-    .. automethod:: svgwrite.container.SVG.tostring()
-
-    .. automethod:: svgwrite.container.SVG.get_xml()
-
-    **Supported Interfaces**
-
-    :class:`svgwrite.interface.IViewBox`
-        :meth:`viewbox`, :meth:`stretch`, :meth:`fit`
-
-    **Supported SVG Attributes**
-
-    * **class** -- `string` assigns one or more css-class-names to an element
-    * **style** -- `string` allows per-element css-style rules to be specified
-      directly on a given element
-    * **x** -- `coordinate` x-coordinate, if <svg> is enbedded into another
-      <svg>-element
-    * **y** -- `coordinate` y-coordinate, if <svg> is enbedded into another
-      <svg>-element
-    * **width** -- `length` canvas-width - default is '100%'
-    * **height** -- `length` canvas-height - default is '100%'
-    * **viewBox** -- :class:`svgwrite.interface.IViewBox` interface
-    * **preserveAspectRatio**  -- :class:`svgwrite.interface.IViewBox` interface
-    * **zoomAndPan** -- ``"disable"|"magnify"`` : default is ``"magnify"``
-    * **externalResourcesRequired** -- `bool` *False*: if document rendering
-      can proceed even if external resources are unavailable else: *True*
-
-    .. note::
-       do not set or change following SVG attributes:
-       version, baseProfile, contentScriptType, contentStyleType
-
-    **Standard SVG Attributes**
-
-    * :doc:`Core Attributes </attributes/core>`
-    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
-    * :doc:`Document Event Attributes </attributes/document_event>`
-    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
-    * :doc:`Presentation Attributes </attributes/presentation>`
-
     """
     elementname = 'svg'
 
@@ -232,57 +85,6 @@ class Use(BaseElement, ITransform, IXLink):
     Link to objects by href = ``'#object-id'`` or use the object itself as
     href-argument, if the given element has no *id* attribute it gets an
     automatic generated id.
-
-    .. automethod:: svgwrite.container.Use.__init__(href, [insert=None, size=None, attribs=None, \*\*extra])
-
-    **Inherited Attributes**
-
-    .. attribute:: attribs
-
-       `dict` of SVG attributes
-
-    .. attribute:: elements
-
-       `list` of SVG subelements
-
-    **Inherited Methods**
-
-    .. automethod:: svgwrite.container.Use.add(element)
-
-    .. automethod:: svgwrite.container.Use.tostring()
-
-    .. automethod:: svgwrite.container.Use.get_xml()
-
-    **Supported Interfaces**
-
-    :class:`svgwrite.interface.ITransform`
-        :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
-        :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
-
-    :class:`svgwrite.interface.IXLink`
-        :meth:`set_href`
-
-    **Supported svg-attributes**
-
-    * **class** -- `string` assigns one or more css-class-names to an element
-    * **style** -- `string` allows per-element css-style rules to be specified
-      directly on a given element
-    * **x** -- `coordinate` insert x-coordinate, set on __init__(insert)
-    * **y** -- `coordinate` insert y-coordinate, set on __init__(insert)
-    * **width** -- `length` width - default is ``'100%'``, set on __init__(size)
-    * **height** -- `length` height - default is ``'100%'``, set on __init__(size)
-    * **transform** -- :class:`svgwrite.interface.ITransform` interface
-    * **xlink:href** -- `string` set on __init__(href)
-    * **externalResourcesRequired** -- `bool` *False*: if document rendering
-      can proceed even if external resources are unavailable else: *True*
-
-    **Standard SVG Attributes**
-
-    * :doc:`Core Attributes </attributes/core>`
-    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
-    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
-    * :doc:`Presentation Attributes </attributes/presentation>`
-    * :doc:`XLink Attributes </attributes/xlink>`
 
     """
     elementname = 'use'
@@ -322,79 +124,6 @@ class Hyperlink(BaseElement, ITransform):
     A :class:`Hyperlink` is defined for each separate rendered element
     contained within the :class:`Hyperlink` class; add sublements as usual with
     the :meth:`add` method.
-
-    .. automethod:: svgwrite.container.Hyperlink.__init__(href, [target='_blank', attribs=None, \*\*extra])
-
-    **Inherited Attributes**
-
-    .. attribute:: attribs
-
-       `dict` of SVG attributes
-
-    .. attribute:: elements
-
-       `list` of SVG subelements
-
-    **Inherited Methods**
-
-    .. automethod:: svgwrite.container.Hyperlink.add(element)
-
-    .. automethod:: svgwrite.container.Hyperlink.tostring()
-
-    .. automethod:: svgwrite.container.Hyperlink.get_xml()
-
-    **Supported Interfaces**
-
-    :class:`svgwrite.interface.ITransform`
-        :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
-        :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
-
-    **Supported svg-attributes**
-
-    * **class** -- `string` assigns one or more css-class-names to an element
-    * **style** -- `string` allows per-element css-style rules to be specified
-      directly on a given element
-    * **transform** -- :class:`svgwrite.interface.ITransform` interface
-    * **xlink:href** -- `string` set on :meth:`__init__`
-    * **xlink:show** -- ``'new|replace'`` use the **target** attribute
-    * **xlink:acuate** -- `string` ``'onRequest'`` This attribute provides
-      documentation to XLink-aware processors that an application should
-      traverse from the starting resource to the ending resource only on a
-      post-loading event triggered for the purpose of traversal.
-    * **target** -- `string` This attribute specifies the name or portion of
-      the target window, frame, pane, tab, or other relevant presentation
-      context (e.g., an HTML or XHTML frame, iframe, or object element)
-      into which a document is to be opened when the link is activated.
-
-      - ``_replace``: The current SVG image is replaced by the linked
-        content in the same rectangular area in the same frame as the
-        current SVG image.
-      - ``_self``: The current SVG image is replaced by the linked content
-         in the same frame as the current SVG image. This is the lacuna
-         value, if the target attribute is not specified.
-      - ``_parent``: The immediate frameset parent of the SVG image is
-        replaced by the linked content.
-      - ``_top``: The content of the full window or tab, including any
-        frames, is replaced by the linked content
-      - ``_blank``: A new un-named window or tab is requested for the
-        display of the linked content. If this fails, the result is the
-        same as ``_top``
-      - ``<XML-Name>``: Specifies the name of the frame, pane, or other
-        relevant presentation context for display of the linked content.
-        If this already exists, it is re-used, replacing the existing
-        content. If it does not exist, it is created (the same as ``_blank``,
-        except that it now has a name).
-
-    * **externalResourcesRequired** -- `bool` *False*: if document rendering
-      can proceed even if external resources are unavailable else: *True*
-
-    **Standard SVG Attributes**
-
-    * :doc:`Core Attributes </attributes/core>`
-    * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
-    * :doc:`Graphical Event Attributes </attributes/graphical_event>`
-    * :doc:`Presentation Attributes </attributes/presentation>`
-    * :doc:`XLink Attributes </attributes/xlink>`
 
     """
     elementname = 'a'

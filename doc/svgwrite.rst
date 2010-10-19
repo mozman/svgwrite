@@ -2,8 +2,3 @@
 ======================
 
 .. automodule:: svgwrite
-
-:attr:`params.parameter`
---------------------------
-
-.. automodule:: svgwrite.params
