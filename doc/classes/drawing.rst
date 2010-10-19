@@ -14,6 +14,98 @@ Attributes
 
    `string` should be valid for :func:`open`.
 
+Methods
+-------
+
+.. automethod:: svgwrite.drawing.Drawing.write(fileobj)
+
+.. automethod:: svgwrite.drawing.Drawing.save()
+
+.. automethod:: svgwrite.drawing.Drawing.saveas(filename)
+
+.. automethod:: svgwrite.drawing.Drawing.add_stylesheet(href, title, alternate, media)
+
+.. automethod:: svgwrite.drawing.Drawing.get_xml()
+
+Factory Methods
+---------------
+
+.. method:: Drawing.line(start=(0, 0), end=(0, 0), attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.shapes.Line` object.
+
+.. method:: Drawing.rect(insert=(0, 0), size=(1, 1), rx=None, ry=None, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.shapes.Rect` object.
+
+.. method:: Drawing.circle(center=(0, 0), r=1, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.shapes.Circle` object.
+
+.. method:: Drawing.ellipse(center=(0, 0), r=(1, 1), attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.shapes.Ellipse` object.
+
+.. method:: Drawing.polyline(points=[], attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.shapes.Polyline` object.
+
+.. method:: Drawing.polygon(points=[], attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.shapes.Polygon` object.
+
+.. method:: Drawing.text(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.text.Text` object.
+
+.. method:: Drawing.tspan(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.text.TSpan` object.
+
+.. method:: Drawing.tref(element, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.text.TRef` object.
+
+.. method:: Drawing.textPath(path, text, startOffset=None, method='align', spacing='exact', attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.text.TextPath` object.
+
+.. method:: Drawing.textArea(text=None, insert=None, size=None, attribs={}, \*\*extra)
+
+   Create a :class:`svgwrite.text.TextArea` object.
+
+.. method:: Drawing.path(d=None, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.path.Path` object.
+
+.. method:: Drawing.image(href, insert=None, size=None, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.image.Image` object.
+
+.. method:: Drawing.g(attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.container.Group` object.
+
+.. method:: Drawing.defs(attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.container.Defs` object.
+
+.. method:: Drawing.symbol(attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.container.Symbol` object.
+
+.. method:: Drawing.svg(insert=None, size=None, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.container.SVG` object.
+
+.. method:: Drawing.use(href, insert=None, size=None, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.container.Use` object.
+
+.. method:: Drawing.a(href, target='_blank', attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.container.Hyperlink` object.
+
 Inherited Attributes
 --------------------
 
@@ -28,19 +120,6 @@ Inherited Attributes
 .. attribute:: Drawing.defs
 
    *Defs* container for referenced SVG elements
-
-Methods
--------
-
-.. automethod:: svgwrite.drawing.Drawing.write(fileobj)
-
-.. automethod:: svgwrite.drawing.Drawing.save()
-
-.. automethod:: svgwrite.drawing.Drawing.saveas(filename)
-
-.. automethod:: svgwrite.drawing.Drawing.add_stylesheet(href, title, alternate, media)
-
-.. automethod:: svgwrite.drawing.Drawing.get_xml()
 
 Inherited Methods
 -----------------

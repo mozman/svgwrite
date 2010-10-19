@@ -67,6 +67,14 @@ Interfaces
 
    classes/interface
 
+Mixins
+------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/mixins
+
 Indices and tables
 ==================
 
