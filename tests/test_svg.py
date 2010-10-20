@@ -13,9 +13,9 @@ from svgwrite.container import SVG, Symbol
 
 class TestSVG(unittest.TestCase):
     def test_constructor(self):
-        svg = SVG()
+        svg = SVG(insert=(10,20), size=(100,200))
         self.assertTrue(isinstance(svg, Symbol))
-        self.assertEqual(svg.tostring(), "<svg><defs /></svg>")
+        self.assertEqual(svg.tostring(), '<svg height="200" width="100" x="10" y="20"><defs /></svg>')
 
     def test_add_svg_as_subelement(self):
         svg = SVG(id='svg')

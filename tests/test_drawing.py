@@ -7,6 +7,8 @@
 # License: GPLv3
 
 import sys
+import os
+
 import unittest
 from StringIO import StringIO
 
@@ -34,6 +36,24 @@ class TestDrawingFullProfile(unittest.TestCase):
             '<svg baseProfile="full" height="100%" version="1.1" width="100%" '\
             'xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" '\
             'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
+
+    def test_save(self):
+        fn = 'test_drawing.svg'
+        if os.path.exists(fn):
+            os.remove(fn)
+        dwg = Drawing(fn)
+        dwg.save()
+        self.assertTrue(os.path.exists(fn))
+        os.remove(fn)
+
+    def test_save_as(self):
+        fn = 'test_drawing.svg'
+        if os.path.exists(fn):
+            os.remove(fn)
+        dwg = Drawing()
+        dwg.saveas(fn)
+        self.assertTrue(os.path.exists(fn))
+        os.remove(fn)
 
 class TestDrawingTinyProfile(unittest.TestCase):
     def test_empty_drawing(self):

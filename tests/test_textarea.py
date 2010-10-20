@@ -59,6 +59,10 @@ class TestTextAreaTinyProfile(unittest.TestCase):
         textarea = TextArea('line1\n \nline2\n', profile='tiny')
         self.assertEqual(textarea.tostring(), '<textArea><tspan>line1</tspan><tbreak />' \
                          '<tspan> </tspan><tbreak /><tspan>line2</tspan><tbreak /></textArea>')
+    def test_line_increment(self):
+        textarea = TextArea('line1\n', profile='tiny')
+        textarea.line_increment('14')
+        self.assertEqual(textarea.tostring(), '<textArea line-increment="14"><tspan>line1</tspan><tbreak /></textArea>')
 
     def test_write_lines_prepending_linebreak(self):
         textarea = TextArea('\nline1\n', profile='tiny')

@@ -16,6 +16,10 @@ class TestImage(unittest.TestCase):
         image = Image("http://localhost/test.jpg")
         self.assertEqual(image.tostring(), '<image xlink:href="http://localhost/test.jpg" />')
 
+    def test_constructor2(self):
+        image = Image("test.jpg", insert=(10,20), size=(30,40))
+        self.assertEqual(image.tostring(), '<image height="40" width="30" x="10" xlink:href="test.jpg" y="20" />')
+
     def test_errors(self):
         self.assertRaises(TypeError, Image, 1)
         self.assertRaises(TypeError, Image, 3.1415)

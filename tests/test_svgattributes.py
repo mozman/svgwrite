@@ -25,6 +25,20 @@ class TestSVGMultiAttribute(unittest.TestCase):
             }
         )
 
+    def test_no_default(self):
+        ma = SVGMultiAttribute({
+            'a': SVGAttribute('x',
+                              anim=True,
+                              types=frozenset([u'coordinate']),
+                              const=frozenset(['star'])),
+            'b': SVGAttribute('x',
+                              anim=False,
+                              types=frozenset([u'list-of-coordinate']),
+                              const=frozenset(['text']))
+            }
+        )
+        self.assertTrue('coordinate' in ma.get_types('c'))
+
     def test_get_types(self):
         coordinate = frozenset(['coordinate'])
         list_of_coordinates = frozenset(['list-of-coordinate'])

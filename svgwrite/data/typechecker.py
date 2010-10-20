@@ -96,6 +96,8 @@ class Full11TypeChecker(object):
         return False
 
     def is_integer(self, value):
+        if isinstance(value, float):
+            return False
         try:
             number = int(value)
             return True

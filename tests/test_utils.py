@@ -9,9 +9,10 @@
 import sys
 import unittest
 
-from svgwrite.utils import rgb, AutoID
+from svgwrite.utils import rgb, AutoID, get_unit
 from svgwrite.utils import strlist, rect_top_left_corner
 from svgwrite.utils import split_angle, split_coordinate
+from svgwrite import cm
 
 class TestRgb(unittest.TestCase):
     def test_rgb_8bit(self):
@@ -73,10 +74,16 @@ class TestRectTopLeftCorner(unittest.TestCase):
         res = rect_top_left_corner(insert=('10in','10in'), size=('10in','10in'), pos='bottom-center')
         self.assertEqual(res, ('5.0in','0.0in'))
 
-    def test_ivalid_units(self):
+    def test_invalid_units(self):
         # insert and size has to have the same units
         self.assertRaises(ValueError, rect_top_left_corner, insert=('10cm','10cm'), size=(10,10), pos='middle-center')
         self.assertRaises(ValueError, rect_top_left_corner, insert=('10mm','10mm'), size=('10cm','10cm'), pos='middle-center')
+        self.assertRaises(ValueError, rect_top_left_corner, insert=('10mm','10mm'), size=('10mm','10cm'), pos='middle-center')
+
+    def test_invalid_pos(self):
+        # insert and size has to have the same units
+        self.assertRaises(ValueError, rect_top_left_corner, insert=(1, 1), size=(1, 1), pos='middle-mitte')
+        self.assertRaises(ValueError, rect_top_left_corner, insert=(1, 1), size=(1, 1), pos='mitte-center')
 
 class TestSplitCoordinate(unittest.TestCase):
     def test_int_coordinates(self):
@@ -117,10 +124,10 @@ class TestSplitAngle(unittest.TestCase):
         self.assertEqual(res, (10.7, 'grad'))
 
     def test_invalid_str_angle(self):
-        self.assertRaises(ValueError, split_coordinate, '100km')
-        self.assertRaises(ValueError, split_coordinate, '100ccm')
-        self.assertRaises(ValueError, split_coordinate, '10,0deg')
-        self.assertRaises(ValueError, split_coordinate, '1.0.0deg')
+        self.assertRaises(ValueError, split_angle, '100km')
+        self.assertRaises(ValueError, split_angle, '100ccm')
+        self.assertRaises(ValueError, split_angle, '10,0deg')
+        self.assertRaises(ValueError, split_angle, '1.0.0deg')
 
 class TestAutoID(unittest.TestCase):
     def test_nextid(self):
@@ -134,6 +141,26 @@ class TestAutoID(unittest.TestCase):
         #getter = AutoID()
         self.assertEqual('id7', AutoID.nextid(7))
         self.assertEqual('id8', AutoID.nextid())
+
+class TestGetUnit(unittest.TestCase):
+    def test_number(self):
+        self.assertEqual(None, get_unit(1))
+        self.assertEqual(None, get_unit(1.0))
+
+    def test_valid_units(self):
+        self.assertEqual('cm', get_unit('1cm'))
+        self.assertEqual('mm', get_unit('3.1415mm'))
+        self.assertEqual('%', get_unit('300%'))
+
+    def test_invalid_units(self):
+        self.assertRaises(ValueError, get_unit, '1m')
+
+class TestUnit(unittest.TestCase):
+    def test_cm(self):
+        self.assertEqual('5cm', 5*cm)
+
+    def test_call_cm(self):
+        self.assertEqual('5cm,7cm', cm(5, 7))
 
 if __name__=='__main__':
     unittest.main()
