@@ -46,5 +46,36 @@ class TestElementFactory(unittest.TestCase):
         element = self.factory.a('link')
         self.assertEqual(element.elementname, 'a')
 
+    def test_line(self):
+        element = self.factory.line((0,0), (1,1))
+        self.assertEqual(element.elementname, 'line')
+
+    def test_rect(self):
+        element = self.factory.rect((0,0), (1,1))
+        self.assertEqual(element.elementname, 'rect')
+
+    def test_circle(self):
+        element = self.factory.circle((0,0), 5)
+        self.assertEqual(element.elementname, 'circle')
+
+    def test_ellipse(self):
+        element = self.factory.ellipse((0,0), (5, 5))
+        self.assertEqual(element.elementname, 'ellipse')
+
+    def test_polygon(self):
+        element = self.factory.polygon([(0, 0), (5, 5)])
+        self.assertEqual(element.elementname, 'polygon')
+
+    def test_polyline(self):
+        element = self.factory.polyline([(0, 0), (5, 5)])
+        self.assertEqual(element.elementname, 'polyline')
+
+    def test_AttributeError(self):
+        try:
+            self.factory.test()
+            self.fail('AttributeError not raised.')
+        except AttributeError:
+            self.assertTrue(True)
+
 if __name__=='__main__':
     unittest.main()

@@ -55,6 +55,7 @@ class TestValueToString(unittest.TestCase):
 
         # value out of range
         self.assertRaises(TypeError, element.value_to_string, 100000)
+        self.assertEqual('3.1416', element.value_to_string(3.141592))
 
     def test_is_unicode(self):
         element = MockBase()

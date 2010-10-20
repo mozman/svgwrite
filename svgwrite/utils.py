@@ -159,14 +159,14 @@ def rect_top_left_corner(insert, size, pos='top-left'):
     elif horiz == 'right':
         x = x - width
     elif horiz != 'left':
-        ValueError("Invalid horizontal position: '%s'" % horiz)
+        raise ValueError("Invalid horizontal position: '%s'" % horiz)
 
     if vert == 'middle':
         y = y - height / 2.
     elif vert == 'bottom':
         y = y - height
     elif vert != 'top':
-        ValueError("Invalid vertical position: '%s'" % vert)
+        raise ValueError("Invalid vertical position: '%s'" % vert)
 
     if xunit:
         x = "%s%s" %(x, xunit)

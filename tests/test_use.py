@@ -20,6 +20,12 @@ class TestUse(unittest.TestCase):
         self.assertTrue(isinstance(use, IXLink))
         self.assertEqual(use.tostring(), '<use height="200" width="100" x="10" xlink:href="#an_id" y="20" />')
 
+    def test_constructor2(self):
+        use = Use('an_id', insert=(10, 20), size=(100, 200))
+        self.assertTrue(isinstance(use, ITransform))
+        self.assertTrue(isinstance(use, IXLink))
+        self.assertEqual(use.tostring(), '<use height="200" width="100" x="10" xlink:href="#an_id" y="20" />')
+
     def test_object_link(self):
         g = Group(id='test')
         use = Use(g)

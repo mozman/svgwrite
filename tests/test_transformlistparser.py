@@ -64,5 +64,8 @@ class TestTransformListParser(unittest.TestCase):
         self.assertFalse(TransformListParser.is_valid("skewX(15),, skewY(15)"))
         self.assertFalse(TransformListParser.is_valid("skewX(15), skewY(15) ,"))
 
+    def test_parse(self):
+        self.assertRaises(NotImplementedError, TransformListParser.parse, 'test')
+
 if __name__=='__main__':
     unittest.main()

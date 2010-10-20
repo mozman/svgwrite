@@ -12,6 +12,13 @@ import unittest
 from svgwrite.validator2 import get_validator
 
 class TestGetCoordinate(unittest.TestCase):
+    def test_invalid_profile(self):
+        self.assertRaises(ValueError, get_validator, profile='invalid')
+
+    def test_get_none_coordinate(self):
+        validator = get_validator('tiny', debug=True)
+        self.assertRaises(TypeError, validator.get_coordinate, None)
+
     def test_valid_units(self):
         validator = get_validator('tiny', debug=True)
         for value, number, unit in [(' 100px ', 100, 'px'),
@@ -26,7 +33,6 @@ class TestGetCoordinate(unittest.TestCase):
             number2, unit2 = validator.get_coordinate(value)
             self.assertEqual(number2, number)
             self.assertEqual(unit2, unit)
-
 
     def test_not_valid_numbers(self):
         validator = get_validator('tiny', debug=True)
@@ -47,6 +53,26 @@ class TestGetCoordinate(unittest.TestCase):
         validator = get_validator('full', debug=True)
         for value in (100000, '100000', -100000, '-100000'):
             validator.get_coordinate(value)
+
+    def test_valid_elementname(self):
+        validator = get_validator('full', debug=True)
+        self.assertTrue(validator.is_valid_elementname('text'))
+
+    def test_invalid_elementname(self):
+        validator = get_validator('full', debug=True)
+        self.assertFalse(validator.is_valid_elementname('textArea'))
+
+    def test_valid_children(self):
+        validator = get_validator('full', debug=True)
+        self.assertTrue(validator.is_valid_children('text', 'tspan'))
+
+    def test_invalid_children(self):
+        validator = get_validator('full', debug=True)
+        self.assertFalse(validator.is_valid_children('text', 'line'))
+
+    def test_check_invalid_children(self):
+        validator = get_validator('full', debug=True)
+        self.assertRaises(ValueError, validator.check_valid_children, 'text', 'line')
 
 class TestCheckCoordinate(unittest.TestCase):
     def test_valid_units(self):

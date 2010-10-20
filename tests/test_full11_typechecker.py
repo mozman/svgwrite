@@ -15,6 +15,9 @@ class TestFull11TypeChecker(unittest.TestCase):
     def setUp(self):
         self.checker = Full11TypeChecker()
 
+    def test_version(self):
+        self.assertEqual(('1.1', 'full'), self.checker.get_version())
+
     def test_is_anything(self):
         """ Everything is valid. """
         self.assertTrue(self.checker.is_anything('abcdef  :::\n \r \t all is valid äüß'))
@@ -74,16 +77,16 @@ class TestFull11TypeChecker(unittest.TestCase):
     def test_is_integer(self):
         """ Integer also as String '100'. """
         # big numbers only valid for full profile
-        self.assertTrue(self.checker.is_number(100000))
-        self.assertTrue(self.checker.is_number(-100000))
-        self.assertTrue(self.checker.is_number('100000'))
-        self.assertTrue(self.checker.is_number('-100000'))
+        self.assertTrue(self.checker.is_integer(100000))
+        self.assertTrue(self.checker.is_integer(-100000))
+        self.assertTrue(self.checker.is_integer('100000'))
+        self.assertTrue(self.checker.is_integer('-100000'))
     def test_is_not_integer(self):
-        self.assertFalse(self.checker.is_number( (1,2) ))
-        self.assertFalse(self.checker.is_number('manfred'))
-        self.assertFalse(self.checker.is_number( dict(a=1, b=2) ))
-        self.assertTrue(self.checker.is_number(3.141592))
-        self.assertTrue(self.checker.is_number('3.141592'))
+        self.assertFalse(self.checker.is_integer( (1,2) ))
+        self.assertFalse(self.checker.is_integer('manfred'))
+        self.assertFalse(self.checker.is_integer( dict(a=1, b=2) ))
+        self.assertFalse(self.checker.is_integer(3.141592))
+        self.assertFalse(self.checker.is_integer('3.141592'))
 
     def test_is_percentage(self):
         self.assertTrue(self.checker.is_percentage(100))
@@ -319,10 +322,12 @@ class TestFull11TypeChecker(unittest.TestCase):
     def test_is_four_numbers(self):
         self.assertTrue(self.checker.is_four_numbers(' 1, 2, 3, 4 '))
         self.assertTrue(self.checker.is_four_numbers(' 1  2 3  4 '))
+        self.assertTrue(self.checker.is_four_numbers((1,2,3,4)))
     def test_is_not_four_numbers(self):
         self.assertFalse(self.checker.is_four_numbers(' 1, 2, 3, '))
         self.assertFalse(self.checker.is_four_numbers(' 1, 2 '))
         self.assertFalse(self.checker.is_four_numbers(' 1 '))
+        self.assertFalse(self.checker.is_four_numbers((1,2,3)))
 
 if __name__=='__main__' :
     unittest.main()
