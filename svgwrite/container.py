@@ -21,6 +21,7 @@ set/get SVG attributes::
     value = element['attribute']
 
 .. seealso::
+
    :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 """
 
@@ -57,6 +58,24 @@ class Marker(BaseElement, IViewBox, Presentation):
     or <polygon> element.
     """
     elementname = 'marker'
+    def __init__(self, insert=None, size=None, orient='auto', attribs=None, **extra):
+        """
+        :param 2-tuple insert: reference point
+        :param 2-tuple size: width, height
+        :param dict attribs: additional SVG attributes
+        :param extra: additional SVG attributs as keyword-arguments
+        """
+        super(Marker, self).__init__(attribs=attribs, **extra)
+        if insert:
+            self['refX'] = insert[0]
+            self['refY'] = insert[1]
+        if size:
+            self['markerWidth'] = size[0]
+            self['markerHeight'] = size[1]
+
+        self['orient'] = orient
+        if 'id' not in self.attribs: # an 'id' is necessary
+            self['id'] = self.nextid()
 
 class SVG(Symbol):
     """ An SVG document fragment consists of any number of SVG elements contained

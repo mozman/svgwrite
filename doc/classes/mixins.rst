@@ -32,7 +32,7 @@ Methods
    * http://www.w3.org/TR/SVG11/painting.html#StrokeDashoffsetProperty
 
 :class:`MediaGroup` mixin
-===========================
+=========================
 
 .. autoclass:: svgwrite.mixins.MediaGroup
 
@@ -50,3 +50,19 @@ Methods
    * http://www.w3.org/TR/SVGMobile12/painting.html#viewport-fill-property
    * http://www.w3.org/TR/SVGMobile12/painting.html#viewport-fill-opacity-property
 
+:class:`Markers` mixin
+======================
+
+.. autoclass:: svgwrite.mixins.Markers
+
+Methods
+-------
+
+.. automethod:: svgwrite.mixins.Markers.set_markers(markers)
+
+.. seealso::
+
+   * http://www.w3.org/TR/SVG11/painting.html#MarkerProperty
+   * http://www.w3.org/TR/SVG11/painting.html#MarkerStartProperty
+   * http://www.w3.org/TR/SVG11/painting.html#MarkerMidProperty
+   * http://www.w3.org/TR/SVG11/painting.html#MarkerEndProperty

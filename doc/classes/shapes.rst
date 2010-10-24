@@ -3,6 +3,13 @@
 
 .. autoclass:: svgwrite.shapes.Line
 
+Used Mixins
+~~~~~~~~~~~
+
+:class:`svgwrite.mixins.Markers`
+
+    :meth:`set_markers`
+
 :class:`Rect` objects --- <rect>
 ================================
 
@@ -23,10 +30,24 @@
 
 .. autoclass:: svgwrite.shapes.Polyline
 
+Used Mixins
+~~~~~~~~~~~
+
+:class:`svgwrite.mixins.Markers`
+
+    :meth:`set_markers`
+
 :class:`Polygon` objects --- <polygon>
 ======================================
 
 .. autoclass:: svgwrite.shapes.Polygon
+
+Used Mixins
+~~~~~~~~~~~
+
+:class:`svgwrite.mixins.Markers`
+
+    :meth:`set_markers`
 
 Common for: Line, Rect, Circle, Ellipse, Polyline, Polygon
 ----------------------------------------------------------

@@ -36,8 +36,10 @@ Used Mixins
 
     :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
 
-SVG attributes
+SVG Attributes
 --------------
+
+  .. seealso:: http://www.w3.org/TR/SVG11/struct.html#SymbolElement
 
 * **class** -- `string` assigns one or more css-class-names to an element
 * **style** -- `string` allows per-element css-style rules to be specified

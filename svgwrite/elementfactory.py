@@ -17,6 +17,7 @@ factoryelements = {
     'svg': container.SVG,
     'defs': container.Defs,
     'symbol': container.Symbol,
+    'marker': container.Marker,
     'use': container.Use,
     'a': container.Hyperlink,
     'line': shapes.Line,
