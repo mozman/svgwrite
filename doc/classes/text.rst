@@ -14,8 +14,16 @@ Supported Interfaces
 --------------------
 
 :class:`svgwrite.interface.ITransform`
+
     :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
     :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
+
+Used Mixins
+-----------
+
+:class:`svgwrite.mixins.Presentation`
+
+    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
 
 :class:`TSpan` objects
 ======================
@@ -35,6 +43,14 @@ Methods
 -------
 
 .. automethod:: svgwrite.text.TSpan.__init__(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, **extra)
+
+Used Mixins
+-----------
+
+:class:`svgwrite.mixins.Presentation`
+
+    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
+
 
 .. _TSpan-SVG-Attributes:
 
@@ -218,6 +234,13 @@ Standard SVG Attributes
 
 .. automethod:: svgwrite.text.TRef.set_href(element)
 
+Used Mixins
+-----------
+
+:class:`svgwrite.mixins.Presentation`
+
+    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
+
 SVG Attributes
 --------------
 
@@ -247,6 +270,13 @@ Methods
 -------
 
 .. automethod:: svgwrite.text.TextPath.__init__(path, text, startOffset=None, method='align', spacing='exact', attribs=None, **extra)
+
+Used Mixins
+-----------
+
+:class:`svgwrite.mixins.Presentation`
+
+    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
 
 SVG Attributes
 --------------
@@ -357,3 +387,10 @@ Supported Interfaces
 :class:`svgwrite.interface.ITransform`
     :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
     :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
+
+Used Mixins
+-----------
+
+:class:`svgwrite.mixins.Presentation`
+
+    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`

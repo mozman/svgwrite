@@ -14,9 +14,10 @@ character data inside the <text> element.
 
 from base import BaseElement
 from interface import ITransform, IXLink
+from mixins import Presentation
 from utils import iterflatlist, strlist
 
-class TSpan(BaseElement):
+class TSpan(BaseElement, Presentation):
     """
     Within a :class:`~svgwrite.Text` element, text and font properties
     and the current text position can be adjusted with absolute or relative
@@ -73,7 +74,7 @@ class Text(TSpan, ITransform):
     """
     elementname = 'text'
 
-class TRef(BaseElement, IXLink):
+class TRef(BaseElement, IXLink, Presentation):
     """
     The textual content for a <text> can be either character data directly
     embedded within the <text> element or the character data content of a
@@ -97,7 +98,7 @@ class TRef(BaseElement, IXLink):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
         return super(TRef, self).get_xml()
 
-class TextPath(BaseElement, IXLink):
+class TextPath(BaseElement, IXLink, Presentation):
     """
     In addition to text drawn in a straight line, SVG also includes the
     ability to place text along the shape of a <path> element. To specify that
@@ -144,7 +145,7 @@ class TBreak(BaseElement):
     def add(self, element):
         raise NotImplementedError("add() not supported by TBreak class.")
 
-class TextArea(BaseElement, ITransform):
+class TextArea(BaseElement, ITransform, Presentation):
     """
     At this time <textArea> is only available for SVG 1.2 Tiny profile.
 

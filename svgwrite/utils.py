@@ -43,17 +43,19 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
 
     """
     def percent(value):
-        value = float(value)
-        if value < 0.:
-            value = 0.
-        if value > 100.:
-            value = 100.
+        value = int(value)
+        if value < 0:
+            value = 0
+        if value > 100:
+            value = 100
         return value
 
     if mode.upper() == 'RGB':
         return u"rgb(%d,%d,%d)" % (int(r) & 255, int(g) & 255, int(b) & 255)
     elif mode == "%":
-        return u"rgb(%.3f%%,%.3f%%,%.3f%%)" % (percent(r), percent(g), percent(b))
+        # see http://www.w3.org/TR/SVG11/types.html#DataTypeColor
+        # percentage is an 'integer' value
+        return u"rgb(%d%%,%d%%,%d%%)" % (percent(r), percent(g), percent(b))
     else:
         raise ValueError("Invalid mode '%s'" % mode)
 
@@ -77,7 +79,10 @@ def strlist(values, seperator=","):
     :returns: <string>
 
     """
-    return seperator.join([str(value) for value in iterflatlist(values) if value is not None])
+    if isinstance(values, basestring):
+        return values
+    else:
+        return seperator.join([str(value) for value in iterflatlist(values) if value is not None])
 
 def get_unit(coordinate):
     """

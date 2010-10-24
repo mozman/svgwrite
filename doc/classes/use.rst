@@ -35,6 +35,13 @@ Supported Interfaces
 :class:`svgwrite.interface.IXLink`
     :meth:`set_href`
 
+Used Mixins
+-----------
+
+:class:`svgwrite.mixins.Presentation`
+
+    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
+
 SVG Attributes
 --------------
 
