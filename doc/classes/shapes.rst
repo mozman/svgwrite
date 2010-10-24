@@ -58,8 +58,16 @@ Supported Interfaces
 ~~~~~~~~~~~~~~~~~~~~
 
 :class:`svgwrite.interface.ITransform`
+
     :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
     :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
+
+Used Mixins
+~~~~~~~~~~~
+
+:class:`svgwrite.mixins.Presentation`
+
+    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
 
 Supported SVG attributes
 ~~~~~~~~~~~~~~~~~~~~~~~~

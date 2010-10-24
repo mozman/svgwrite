@@ -8,8 +8,9 @@
 from base import BaseElement
 from utils import strlist
 from interface import ITransform
+from mixins import Presentation
 
-class Path(BaseElement, ITransform):
+class Path(BaseElement, ITransform, Presentation):
     """ The <path> element represent the outline of a shape which can be filled,
     stroked, used as a clipping path, or any combination of the three.
 

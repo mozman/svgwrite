@@ -29,6 +29,13 @@ Supported Interfaces
 :class:`svgwrite.interface.IViewBox`
     :meth:`viewbox`, :meth:`stretch`, :meth:`fit`
 
+Used Mixins
+-----------
+
+:class:`svgwrite.mixins.Presentation`
+
+    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
+
 SVG attributes
 --------------
 

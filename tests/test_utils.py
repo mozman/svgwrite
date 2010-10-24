@@ -23,10 +23,10 @@ class TestRgb(unittest.TestCase):
         self.assertEqual(rgb(257, 257, 257), "rgb(1,1,1)")
 
     def test_rgb_percent(self):
-        self.assertEqual(rgb(50, 50, 50, '%'), "rgb(50.000%,50.000%,50.000%)")
-        self.assertEqual(rgb(mode='%'), "rgb(0.000%,0.000%,0.000%)")
+        self.assertEqual(rgb(50, 50, 50, '%'), "rgb(50%,50%,50%)")
+        self.assertEqual(rgb(mode='%'), "rgb(0%,0%,0%)")
         # value overflow
-        self.assertEqual(rgb(101, -1, 101, '%'), "rgb(100.000%,0.000%,100.000%)")
+        self.assertEqual(rgb(101, -1, 101, '%'), "rgb(100%,0%,100%)")
 
     def test_rgb_invalid_mode(self):
         self.assertRaises(ValueError, rgb, mode='$')
@@ -45,6 +45,9 @@ class TestStrList(unittest.TestCase):
     def test_list(self):
         self.assertEqual(strlist( [(5, 'abc', None), (1, 2, None)] ), "5,abc,1,2")
         self.assertEqual(strlist( [(1,None,3), 4]), "1,3,4")
+
+    def test_string(self):
+        self.assertEqual(strlist("5,abc,1,2") , "5,abc,1,2")
 
 class TestRectTopLeftCorner(unittest.TestCase):
     def test_top_left(self):

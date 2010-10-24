@@ -8,8 +8,9 @@
 
 from base import BaseElement
 from interface import ITransform
+from mixins import Presentation
 
-class Line(BaseElement, ITransform):
+class Line(BaseElement, ITransform, Presentation):
     """ The <line> element defines a line segment that starts at one point and ends
     at another.
 
@@ -41,7 +42,7 @@ class Line(BaseElement, ITransform):
         self['x2'] = x2
         self['y2'] = y2
 
-class Rect(BaseElement, ITransform):
+class Rect(BaseElement, ITransform, Presentation):
     """ The <rect> element defines a rectangle which is axis-aligned with the current
     user coordinate system. Rounded rectangles can be achieved by setting appropriate
     values for attributes <rx> and <ry>.
@@ -84,7 +85,7 @@ class Rect(BaseElement, ITransform):
         if rx: self['rx'] = rx
         if ry: self['ry'] = ry
 
-class Circle(BaseElement, ITransform):
+class Circle(BaseElement, ITransform, Presentation):
     """ The <circle> element defines a circle based on a center point and a radius.
 
     .. automethod:: svgwrite.shapes.Circle.__init__
@@ -111,7 +112,7 @@ class Circle(BaseElement, ITransform):
         self['cy'] = cy
         self['r'] = r
 
-class Ellipse(BaseElement, ITransform):
+class Ellipse(BaseElement, ITransform, Presentation):
     """ The <ellipse> element defines an ellipse which is axis-aligned with the
     current user coordinate system based on a center point and two radii.
 
@@ -142,7 +143,7 @@ class Ellipse(BaseElement, ITransform):
         self['rx'] = rx
         self['ry'] = ry
 
-class Polyline(BaseElement, ITransform):
+class Polyline(BaseElement, ITransform, Presentation):
     """ The <polyline> element defines a set of connected straight line segments.
     Typically, <polyline> elements define open shapes.
 

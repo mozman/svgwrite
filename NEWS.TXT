@@ -2,11 +2,12 @@
 NEWS
 ====
 
-Version 0.2.0 - xxx
+Version 0.2.0 - 24 October 2010
   * alpha version
   * validator rewritten as validator2.py
   * debug and profile options separated for each drawing object
   * important change: create objects with factory functions of the Drawing class: drawing.<svg-elementname>(...)
+  * added mixins for setting stroke and fill properties
   * new elements:
     - Hyperlink <a>
     - Image

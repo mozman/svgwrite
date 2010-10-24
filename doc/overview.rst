@@ -31,6 +31,14 @@ Interfaces
 
    classes/interface
 
+Mixins
+------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/mixins
+
 Common Attributes
 -----------------
 

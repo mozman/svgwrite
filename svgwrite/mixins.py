@@ -6,6 +6,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
+from utils import strlist
+
 class Presentation(object):
     """
     Helper methods to set presentation attributes.
@@ -21,6 +23,7 @@ class Presentation(object):
             self['fill-rule'] = rule
         if opacity:
             self['fill-opacity'] = opacity
+        return self
 
     def stroke(self, color=None, width=None, opacity=None, linecap=None,
                linejoin=None, miterlimit=None):
@@ -42,16 +45,28 @@ class Presentation(object):
             self['stroke-linejoin'] = linejoin
         if miterlimit:
             self['stroke-miterlimit'] = miterlimit
+        return self
 
-    def dasharray(self, definition=None, offset=None):
+    def dasharray(self, dasharray=None, offset=None):
         """
-        Set SVG Properties **stroke-dashoffset** and **stroke-array**.
+        Set SVG Properties **stroke-dashoffset** and **stroke-dasharray**.
 
+        Where *dasharray* specify the lengths of alternating dashes and gaps as
+        <list> of <int> or <float> values or a <string> of comma and/or white
+        space separated <lengths> or <percentages>. (e.g. as <list> dasharray=[1, 0.5]
+        or as <string> dasharray='1 0.5')
         """
-        if definition:
-            self['stroke-array'] = definition
+        if dasharray:
+            self['stroke-dasharray'] = strlist(dasharray, ' ')
         if offset:
             self['stroke-dashoffset'] = offset
+        return self
+
+class MediaGroup(object):
+    """
+    Helper methods to set media group attributes.
+
+    """
 
     def viewport_fill(self, color=None, opacity=None):
         """
@@ -62,3 +77,4 @@ class Presentation(object):
             self['viewport-fill'] = color
         if opacity:
             self['viewport-fill-opacity'] = opacity
+        return self

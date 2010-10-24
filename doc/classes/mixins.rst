@@ -24,16 +24,26 @@ Methods
    * http://www.w3.org/TR/SVG11/painting.html#StrokeLinecapProperty
    * http://www.w3.org/TR/SVG11/painting.html#StrokeMiterlimitProperty
 
-.. automethod:: svgwrite.mixins.Presentation.dasharray(definition=None, offset=None)
+.. automethod:: svgwrite.mixins.Presentation.dasharray(dasharray=None, offset=None)
 
 .. seealso::
 
-   * http://www.w3.org/TR/SVG11/painting.html#StrokeArrayProperty
+   * http://www.w3.org/TR/SVG11/painting.html#StrokeDasharrayProperty
    * http://www.w3.org/TR/SVG11/painting.html#StrokeDashoffsetProperty
 
-.. automethod:: svgwrite.mixins.Presentation.viewport_fill(color=None, opacity=None)
+:class:`MediaGroup` mixin
+===========================
 
-   only SVG 1.2 Tiny
+.. autoclass:: svgwrite.mixins.MediaGroup
+
+   SVG Tiny 1.2
+
+   valid for SVG Elements: animation, audio, desc, image, metadata, title, video
+
+Methods
+-------
+
+.. automethod:: svgwrite.mixins.MediaGroup.viewport_fill(color=None, opacity=None)
 
 .. seealso::
 

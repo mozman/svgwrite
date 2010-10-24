@@ -671,9 +671,55 @@ attributes = {
     const=frozenset([u'disable', u'magnify'])),
 }
 
-attribute_names = [u'slope', u'keySplines', u'rx', u'accumulate', u'bandwidth', u'attributeType', u'unicode', u'nav-right', u'arabic-form', u'y2', u'horiz-origin-x', u'underline-position', u'zoomAndPan', u'cap-height', u'defaultAction', u'to', u'syncBehavior', u'alphabetic', u'g2', u'g1', u'panose-1', u'strikethrough-thickness', u'attributeName', u'bbox', u'nav-up-left', u'nav-left', u'restart', u'target', u'xlink:actuate', u'rotate', u'resource', u'd', u'syncToleranceDefault', u'initialVisibility', u'transformBehavior', u'nav-up-right', u'keyTimes', u'x', u'requiredFormats', u'nav-next', u'glyph-name', u'xml:lang', u'mathematical', u'observer', u'repeatDur', u'hanging', u'y1', u'xml:base', u'ascent', u'event', u'strikethrough-position', u'overlay', u'rev', u'ry', u'overline-thickness', u'content', u'version', u'rel', u'focusable', u'requiredFonts', u'nav-down-right', u'xml:id', u'offset', u'additive', u'underline-thickness', u'font-family', u'by', u'mediaTime', u'timelineBegin', u'about', u'horiz-adv-x', u'widths', u'k', u'requiredFeatures', u'preserveAspectRatio', u'contentScriptType', u'origin', u'xml:space', u'xlink:href', u'height', u'baseProfile', u'cy', u'cx', u'path', u'xlink:role', u'from', u'u1', u'transform', u'units-per-em', u'u2', u'width', u'handler', u'font-variant', u'x-height', u'dur', u'xlink:arcrole', u'type', u'focusHighlight', u'mediaCharacterEncoding', u'xlink:title', u'editable', u'stemv', u'systemLanguage', u'x2', u'x1', u'ideographic', u'xlink:show', u'overline-position', u'syncTolerance', u'gradientUnits', u'r', u'values', u'typeof', u'mediaContentEncodings', u'property', u'requiredExtensions', u'repeatCount', u'ev:event', u'nav-down', u'mediaSize', u'pathLength', u'syncMaster', u'font-style', u'fill', u'end', u'descent', u'calcMode', u'min', u'stemh', u'id', u'unicode-range', u'nav-up', u'font-stretch', u'role', u'font-weight', u'begin', u'xlink:type', u'syncBehaviorDefault', u'max', u'snapshotTime', u'playbackOrder', u'keyPoints', u'nav-prev', u'propagate', u'phase', u'externalResourcesRequired', u'nav-down-left', u'class', u'lang', u'datatype', u'viewBox', u'points', u'accent-height', u'y']
-property_names = [u'stroke-linejoin', u'font-size', u'text-rendering', u'color-rendering', u'fill-opacity', u'color', u'shape-rendering', u'solid-color', u'stroke', u'stroke-linecap', u'vector-effect', u'stroke-width', u'font-style', u'fill', u'solid-opacity', u'fill-rule', u'viewport-fill-opacity', u'display-align', u'buffered-rendering', u'stroke-miterlimit', u'font-variant', u'stop-opacity', u'font-weight', u'opacity', u'direction', u'audio-level', u'visibility', u'unicode-bidi', u'line-increment', u'image-rendering', u'font-family', u'viewport-fill', u'text-align', u'stroke-opacity', u'stroke-dashoffset', u'text-anchor', u'stop-color', u'pointer-events', u'stroke-dasharray', u'display']
-media_group_names = ['audio-level', 'buffered-rendering', 'display', 'image-rendering', 'pointer-events', 'shape-rendering', 'text-rendering', 'viewport-fill', 'viewport-fill-opacity', 'visibility']
+attribute_names = [u'slope', u'keySplines', u'rx', u'accumulate', u'bandwidth',
+                   u'attributeType', u'unicode', u'nav-right', u'arabic-form',
+                   u'y2', u'horiz-origin-x', u'underline-position', u'zoomAndPan',
+                   u'cap-height', u'defaultAction', u'to', u'syncBehavior',
+                   u'alphabetic', u'g2', u'g1', u'panose-1', u'strikethrough-thickness',
+                   u'attributeName', u'bbox', u'nav-up-left', u'nav-left',
+                   u'restart', u'target', u'xlink:actuate', u'rotate', u'resource',
+                   u'd', u'syncToleranceDefault', u'initialVisibility',
+                   u'transformBehavior', u'nav-up-right', u'keyTimes',
+                   u'x', u'requiredFormats', u'nav-next', u'glyph-name',
+                   u'xml:lang', u'mathematical', u'observer', u'repeatDur',
+                   u'hanging', u'y1', u'xml:base', u'ascent', u'event',
+                   u'strikethrough-position', u'overlay', u'rev', u'ry',
+                   u'overline-thickness', u'content', u'version', u'rel',
+                   u'focusable', u'requiredFonts', u'nav-down-right', u'xml:id',
+                   u'offset', u'additive', u'underline-thickness', u'font-family',
+                   u'by', u'mediaTime', u'timelineBegin', u'about', u'horiz-adv-x',
+                   u'widths', u'k', u'requiredFeatures', u'preserveAspectRatio',
+                   u'contentScriptType', u'origin', u'xml:space', u'xlink:href',
+                   u'height', u'baseProfile', u'cy', u'cx', u'path', u'xlink:role',
+                   u'from', u'u1', u'transform', u'units-per-em', u'u2', u'width',
+                   u'handler', u'font-variant', u'x-height', u'dur', u'xlink:arcrole',
+                   u'type', u'focusHighlight', u'mediaCharacterEncoding',
+                   u'xlink:title', u'editable', u'stemv', u'systemLanguage',
+                   u'x2', u'x1', u'ideographic', u'xlink:show', u'overline-position',
+                   u'syncTolerance', u'gradientUnits', u'r', u'values', u'typeof',
+                   u'mediaContentEncodings', u'property', u'requiredExtensions',
+                   u'repeatCount', u'ev:event', u'nav-down', u'mediaSize', u'pathLength',
+                   u'syncMaster', u'font-style', u'fill', u'end', u'descent',
+                   u'calcMode', u'min', u'stemh', u'id', u'unicode-range',
+                   u'nav-up', u'font-stretch', u'role', u'font-weight', u'begin',
+                   u'xlink:type', u'syncBehaviorDefault', u'max', u'snapshotTime',
+                   u'playbackOrder', u'keyPoints', u'nav-prev', u'propagate',
+                   u'phase', u'externalResourcesRequired', u'nav-down-left',
+                   u'class', u'lang', u'datatype', u'viewBox', u'points',
+                   u'accent-height', u'y']
+property_names = [u'stroke-linejoin', u'font-size', u'text-rendering', u'color-rendering',
+                  u'fill-opacity', u'color', u'shape-rendering', u'solid-color', u'stroke',
+                  u'stroke-linecap', u'vector-effect', u'stroke-width', u'font-style',
+                  u'fill', u'solid-opacity', u'fill-rule', u'viewport-fill-opacity',
+                  u'display-align', u'buffered-rendering', u'stroke-miterlimit',
+                  u'font-variant', u'stop-opacity', u'font-weight', u'opacity', u'direction',
+                  u'audio-level', u'visibility', u'unicode-bidi', u'line-increment',
+                  u'image-rendering', u'font-family', u'viewport-fill', u'text-align',
+                  u'stroke-opacity', u'stroke-dashoffset', u'text-anchor', u'stop-color',
+                  u'pointer-events', u'stroke-dasharray', u'display']
+media_group_names = ['audio-level', 'buffered-rendering', 'display', 'image-rendering',
+                     'pointer-events', 'shape-rendering', 'text-rendering',
+                     'viewport-fill', 'viewport-fill-opacity', 'visibility']
 
 elements = {
     'a': SVGElement('a',
