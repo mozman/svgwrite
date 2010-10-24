@@ -11,6 +11,7 @@ The :mod:`container` module provides following structural objects:
 * :class:`svgwrite.SVG`
 * :class:`svgwrite.Defs`
 * :class:`svgwrite.Symbol`
+* :class:`svgwrite.Marker`
 * :class:`svgwrite.Use`
 * :class:`svgwrite.Hyperlink`
 
@@ -49,6 +50,13 @@ class Symbol(BaseElement, IViewBox, Presentation):
     """
     # ITransform interface is not valid for Symbol -> do not inherit from Group
     elementname = 'symbol'
+
+class Marker(BaseElement, IViewBox, Presentation):
+    """ The <marker> element defines the graphics that is to be used for
+    drawing arrowheads or polymarkers on a given <path>, <line>, <polyline>
+    or <polygon> element.
+    """
+    elementname = 'marker'
 
 class SVG(Symbol):
     """ An SVG document fragment consists of any number of SVG elements contained
