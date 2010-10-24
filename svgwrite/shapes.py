@@ -8,9 +8,9 @@
 
 from base import BaseElement
 from interface import ITransform
-from mixins import Presentation
+from mixins import Presentation, Markers
 
-class Line(BaseElement, ITransform, Presentation):
+class Line(BaseElement, ITransform, Presentation, Markers):
     """ The <line> element defines a line segment that starts at one point and ends
     at another.
 
@@ -143,7 +143,7 @@ class Ellipse(BaseElement, ITransform, Presentation):
         self['rx'] = rx
         self['ry'] = ry
 
-class Polyline(BaseElement, ITransform, Presentation):
+class Polyline(BaseElement, ITransform, Presentation, Markers):
     """ The <polyline> element defines a set of connected straight line segments.
     Typically, <polyline> elements define open shapes.
 

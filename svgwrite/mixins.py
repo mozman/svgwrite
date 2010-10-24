@@ -78,3 +78,42 @@ class MediaGroup(object):
         if opacity:
             self['viewport-fill-opacity'] = opacity
         return self
+
+class Markers(object):
+    """
+    Helper methods to set marker attributes.
+
+    """
+    def set_markers(self, markers):
+        """
+        Set markers for line elements (line, polygon, polyline, path) to
+        values specified by  `markers`.
+
+        * if `markers` is a 3-tuple:
+
+          * attribute 'marker-start' = markers[0]
+          * attribute 'marker-mid' = markers[1]
+          * attribute 'marker-end' = markers[2]
+
+        * `markers` is as `string` or a `Marker` class:
+
+          * attribute 'marker' = markers
+
+        """
+        def get_funciri(value):
+            if isinstance(value, basestring):
+                # strings has to be a valid reference including the '#'
+                return 'url(%s)' % value
+            else:
+                # else create a reference to the object '#id'
+                return 'url(#%s)' % value['id']
+        if isinstance(markers, basestring):
+            self['marker'] = get_funciri(markers)
+        else:
+            try:
+                markerstart, markermid, markerend = markers
+                self['marker-start'] = get_funciri(markerstart)
+                self['marker-mid'] = get_funciri(markermid)
+                self['marker-end'] = get_funciri(markerend)
+            except (TypeError, KeyError):
+                self['marker'] = get_funciri(markers)

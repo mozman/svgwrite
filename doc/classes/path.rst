@@ -55,6 +55,10 @@ Used Mixins
 
     :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
 
+:class:`svgwrite.mixins.Markers`
+
+    :meth:`set_markers`
+
 Path Commands
 -------------
 
