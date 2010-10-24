@@ -1195,7 +1195,7 @@ elements = {
     children=frozenset(['set', 'title', 'height', 'width', 'result', 'y', 'x', 'animate', 'metadata', 'desc'])),
 
     'font': SVGElement('font',
-    attributes=frozenset(['xml:base', 'xml:space', 'R', 'id', 'a', 'c', 'e', 'd', 'g', 'i', 'h', '-', 'l', 'o', 'n', 'q', 's', 'r', 'u', 't', 'v', 'y', 'x', 'z', 'xml:lang']),
+    attributes=frozenset(['xml:space', 'id', 'xml:lang', 'xml:base', 'class', 'style', 'externalResourcesRequired', 'horiz-origin-x', 'horiz-origin-y', 'horiz-adv-x', 'vert-origin-x', 'vert-origin-y', 'vert-adv-y']),
     properties=presentation_attributes,
     children=frozenset(['title', 'metadata', 'missing-glyph', 'font-face', 'vkern', 'hkern', 'glyph', 'desc'])),
 
@@ -1230,7 +1230,7 @@ elements = {
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 
     'glyph': SVGElement('glyph',
-    attributes=frozenset(['xml:base', 'm', 'xml:space', 'id', 'a', 'c', 'b', 'e', 'd', 'g', 'f', 'i', 'h', '-', 'l', 'o', 'n', 'p', 's', 'r', 'u', 't', 'v', 'y', 'x', 'z', 'xml:lang']),
+    attributes=frozenset(['xml:base', 'xml:space', 'id', 'xml:lang', 'class', 'style','d','horiz-adv-x', 'vert-origin-x', 'vert-origin-y', 'vert-adv-y', 'unicode', 'glyph-name', 'orientation', 'arabic-form', 'lang']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 
@@ -1260,7 +1260,7 @@ elements = {
     children=frozenset(['set', 'title', 'animate', 'animateTransform', 'stop', 'metadata', 'desc'])),
 
     'marker': SVGElement('marker',
-    attributes=frozenset(['xml:space', 'id', 'xml:lang', 'A', 'B', 'xml:base', 'H', 'R', 'U', 'W', 'Y', 'X', 'a', 'c', 'e', 'd', 'g', 'f', 'i', 'h', 'k', 'm', 'l', 'o', 'n', 'q', 'p', 's', 'r', 'u', 't', 'w', 'v', 'y', 'x']),
+    attributes=frozenset(['xml:space', 'id', 'xml:lang', 'xml:base', 'class', 'style', 'externalResourcesRequired', 'viewBox', 'preserveAspectRatio', 'refX', 'refY', 'markerUnits', 'markerWidth',  'markerHeight', 'orient']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 
@@ -1275,7 +1275,7 @@ elements = {
     children=frozenset(['*'])),
 
     'missing-glyph': SVGElement('missing-glyph',
-    attributes=frozenset(['xml:base', 'xml:space', 'id', 'a', 'c', 'e', 'd', 'g', 'i', 'h', '-', 'l', 'o', 'n', 's', 'r', 't', 'v', 'y', 'x', 'z', 'xml:lang']),
+    attributes=frozenset(['xml:base', 'xml:space', 'id', 'xml:lang', 'class', 'style', 'd', 'horiz-adv-x', 'vert-origin-x', 'vert-origin-y', 'vert-adv-y']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 

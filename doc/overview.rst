@@ -12,6 +12,7 @@ Structural Elements
    classes/group
    classes/defs
    classes/symbol
+   classes/marker
    classes/use
    classes/hyperlink
 
