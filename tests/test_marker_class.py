@@ -8,6 +8,7 @@
 
 import sys
 import unittest
+import re
 
 from svgwrite.container import Marker, Group
 
@@ -24,7 +25,9 @@ class TestMarker(unittest.TestCase):
     def test_add_subelement_with_autoid(self):
         marker = Marker(debug=True, profile='full')
         marker.add(Group())
-        self.assertEqual(marker.tostring(), '<marker id="id1" orient="auto"><g /></marker>')
+        self.assertTrue(
+            re.match('^<marker id="id\d+" orient="auto"><g /></marker>$',
+                     marker.tostring()), "getting an autoid for class Marker failed.")
 
     def test_insert(self):
         marker = Marker(id='test', insert=(1, 2), debug=True, profile='full')
