@@ -78,6 +78,16 @@ class BaseElement(object):
     def nextid(self, value=None):
         return AutoID.nextid(value)
 
+    def get_funciri(self):
+        """
+        Get the `FuncIRI` reference string of the object. (e.g. ``'url(#id)'``).
+
+        :returns: `string`
+        """
+        if 'id' not in self.attribs:
+            self['id'] = self.nextid()
+        return "url(#%s)" % self['id']
+
     def __getitem__(self, key):
         """ Get SVG attribute by `key`.
 
