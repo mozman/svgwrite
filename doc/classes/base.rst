@@ -25,6 +25,8 @@ Methods
 
 .. automethod:: svgwrite.base.BaseElement.get_xml()
 
+.. automethod:: svgwrite.base.BaseElement.get_funciri()
+
 .. automethod:: svgwrite.base.BaseElement.__getitem__(key)
 
 .. automethod:: svgwrite.base.BaseElement.__setitem__(key, value)

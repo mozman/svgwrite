@@ -95,9 +95,9 @@ class Markers(object):
           * attribute 'marker-mid' = markers[1]
           * attribute 'marker-end' = markers[2]
 
-        * `markers` is as `string` or a `Marker` class:
+        * `markers` is a `string` or a `Marker` class:
 
-          * attribute 'marker' = markers
+          * attribute 'marker' = `FuncIRI` of markers
 
         """
         def get_funciri(value):
@@ -107,6 +107,7 @@ class Markers(object):
             else:
                 # else create a reference to the object '#id'
                 return 'url(#%s)' % value['id']
+
         if isinstance(markers, basestring):
             self['marker'] = get_funciri(markers)
         else:

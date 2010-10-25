@@ -56,12 +56,17 @@ class Marker(BaseElement, IViewBox, Presentation):
     """ The <marker> element defines the graphics that is to be used for
     drawing arrowheads or polymarkers on a given <path>, <line>, <polyline>
     or <polygon> element.
+
+    Add Marker definitions to a `defs` section, preferred to the `defs` section
+    of the main drawing.
+
     """
     elementname = 'marker'
-    def __init__(self, insert=None, size=None, orient='auto', attribs=None, **extra):
+    def __init__(self, insert=None, size=None, orient=None, attribs=None, **extra):
         """
         :param 2-tuple insert: reference point
         :param 2-tuple size: width, height
+        :param orient: ``'auto'`` | `angle`
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
         """
@@ -72,8 +77,8 @@ class Marker(BaseElement, IViewBox, Presentation):
         if size:
             self['markerWidth'] = size[0]
             self['markerHeight'] = size[1]
-
-        self['orient'] = orient
+        if orient is not None:
+            self['orient'] = orient
         if 'id' not in self.attribs: # an 'id' is necessary
             self['id'] = self.nextid()
 

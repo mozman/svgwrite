@@ -57,6 +57,32 @@ def use_drawing(name):
             dwg.add(u)
     dwg.save()
 
+def marker_drawing(name):
+    dwg = svgwrite.Drawing(name, profile='full', debug=True)
+
+    # create a new marker object
+    # markerUnits='userSpaceOnUse'
+    marker = dwg.marker(insert=(5,5), size=(10,10))
+
+    # red point as marker
+    marker.add(dwg.circle((5, 5), r=5, fill='red'))
+
+    # add marker to defs section of the drawing
+    dwg.defs.add(marker)
+
+    # create a new line object
+    line = dwg.add(dwg.polyline(
+        [(10, 10), (50, 20), (70, 50), (100, 30)],
+        stroke='black', fill='none'))
+
+    # set marker (start, mid and end markers are the same)
+    line.set_markers(marker)
+
+    # or set markers direct as SVG Attributes 'marker-start', 'marker-mid',
+    # 'marker-end' or 'marker' if all markers are the same.
+    # line['marker'] = marker.get_funciri()
+    dwg.save()
+
 def koch_snowflake(name):
     # Koch Snowflake and Sierpinski Triangle combination fractal using recursion
     # ActiveState Recipe 577156
@@ -304,7 +330,7 @@ def simple_text(name):
     dwg.save()
 
 def main():
-    longrun = True
+    longrun = False
     # short time running
     print("start short time running examples!\n")
 
@@ -322,6 +348,9 @@ def main():
 
     print("start: example_koch_snowflake.svg\n")
     koch_snowflake('example_koch_snowflake.svg')
+
+    print("start: example_markers.svg\n")
+    marker_drawing('example_markers.svg')
 
 
     if longrun:

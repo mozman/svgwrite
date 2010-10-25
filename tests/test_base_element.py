@@ -43,6 +43,11 @@ class TestBaseElement(unittest.TestCase):
         m['id'] = 'test'
         self.assertEqual(m['id'], 'test')
 
+    def test_get_funciri(self):
+        m = MockBase()
+        m['id'] = 'test'
+        self.assertEqual(m.get_funciri(), "url(#test)")
+
 class TestValueToString(unittest.TestCase):
     def test_full_profile(self):
         element = MockBase()
