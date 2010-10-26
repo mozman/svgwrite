@@ -1,5 +1,5 @@
-:class:`BaseElement` objects
-============================
+:class:`BaseElement`
+====================
 
 .. autoclass:: svgwrite.base.BaseElement
 
@@ -24,6 +24,10 @@ Methods
 .. automethod:: svgwrite.base.BaseElement.tostring()
 
 .. automethod:: svgwrite.base.BaseElement.get_xml()
+
+.. automethod:: svgwrite.base.BaseElement.get_id()
+
+.. automethod:: svgwrite.base.BaseElement.get_iri()
 
 .. automethod:: svgwrite.base.BaseElement.get_funciri()
 

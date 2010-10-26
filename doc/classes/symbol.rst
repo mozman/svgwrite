@@ -1,5 +1,5 @@
-:class:`Symbol` objects --- <symbol>
-====================================
+:class:`Symbol`
+===============
 
 .. autoclass:: svgwrite.container.Symbol
 

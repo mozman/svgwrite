@@ -66,6 +66,7 @@ class ITransform(object):
     All coordinates are **user space coordinates**.
 
     """
+    transformname = 'transform'
     def translate(self, tx, ty=None):
         """
         Specifies a translation by *tx* and *ty*. If *ty* is not provided,
@@ -118,12 +119,9 @@ class ITransform(object):
     def matrix(self, a, b, c, d, e, f):
         self._add_transformation("matrix(%s)" % strlist( [a, b, c, d, e, f] ))
 
-    def del_transform(self):
-        self.attribs.pop('transform', None)
-
     def _add_transformation(self, new_transform):
-        old_transform = self.attribs.get('transform', '')
-        self['transform'] = ("%s %s" % (old_transform, new_transform)).strip()
+        old_transform = self.attribs.get(self.transformname, '')
+        self[self.transformname] = ("%s %s" % (old_transform, new_transform)).strip()
 
 class IXLink(object):
     """ Xlink interface """
@@ -143,5 +141,5 @@ class IXLink(object):
         if isinstance(self.href, basestring):
             idstr = self.href
         else:
-            idstr = self.href.attribs.setdefault('id', self.nextid())
-        self.attribs['xlink:href'] =  "#%s" % idstr
+            idstr = self.href.get_iri()
+        self.attribs['xlink:href'] = idstr

@@ -1,5 +1,5 @@
-:class:`Defs` objects --- <defs>
-================================
+:class:`Defs`
+=============
 
 .. autoclass:: svgwrite.container.Defs
 

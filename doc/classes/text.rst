@@ -3,8 +3,8 @@
 
 .. automodule:: svgwrite.text
 
-:class:`Text` objects
-=====================
+:class:`Text`
+=============
 
 .. autoclass:: svgwrite.text.Text
 
@@ -25,8 +25,8 @@ Used Mixins
 
     :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
 
-:class:`TSpan` objects
-======================
+:class:`TSpan`
+==============
 
 .. autoclass:: svgwrite.text.TSpan
 
@@ -225,8 +225,8 @@ Standard SVG Attributes
 * :doc:`Graphical Event Attributes </attributes/graphical_event>`
 * :doc:`Presentation Attributes </attributes/presentation>`
 
-:class:`TRef` objects
-=====================
+:class:`TRef`
+=============
 
 .. autoclass:: svgwrite.text.TRef
 
@@ -261,8 +261,8 @@ Standard SVG Attributes
 * :doc:`Graphical Event Attributes </attributes/graphical_event>`
 * :doc:`Presentation Attributes </attributes/presentation>`
 
-:class:`TextPath` objects
-=========================
+:class:`TextPath`
+=================
 
 .. autoclass:: svgwrite.text.TextPath
 
@@ -306,8 +306,8 @@ Standard SVG Attributes
 * :doc:`Graphical Event Attributes </attributes/graphical_event>`
 * :doc:`Presentation Attributes </attributes/presentation>`
 
-:class:`TextArea` objects
-=========================
+:class:`TextArea`
+=================
 
 .. autoclass:: svgwrite.text.TextArea
 

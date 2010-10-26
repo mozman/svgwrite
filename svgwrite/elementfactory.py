@@ -11,6 +11,7 @@ import shapes
 import path
 import image
 import text
+import gradients
 
 factoryelements = {
     'g': container.Group,
@@ -33,6 +34,8 @@ factoryelements = {
     'tref': text.TRef,
     'textPath': text.TextPath,
     'textArea': text.TextArea,
+    'linearGradient': gradients.LinearGradient,
+    'radialGradient': gradients.RadialGradient,
 }
 
 class ElementBuilder(object):

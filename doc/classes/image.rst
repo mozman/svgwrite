@@ -1,5 +1,5 @@
-:class:`Image` objects --- <image>
-==================================
+:class:`Image`
+==============
 
 .. autoclass:: svgwrite.image.Image
 

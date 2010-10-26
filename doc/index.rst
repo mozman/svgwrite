@@ -26,7 +26,7 @@ Modules
    svgwrite
    utils/utils
 
-Structural objects
+Structural Objects
 ------------------
 
 .. toctree::
@@ -42,7 +42,7 @@ Structural objects
    classes/use
    classes/hyperlink
 
-Graphical objects
+Graphical Objects
 -----------------
 
 .. toctree::
@@ -52,13 +52,21 @@ Graphical objects
    classes/shapes
    classes/image
 
-Text objects
+Text Objects
 ------------
 
 .. toctree::
    :maxdepth: 1
 
    classes/text
+
+Paint Server
+------------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/gradients
 
 Interfaces
 ----------

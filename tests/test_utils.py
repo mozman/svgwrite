@@ -133,17 +133,17 @@ class TestSplitAngle(unittest.TestCase):
         self.assertRaises(ValueError, split_angle, '1.0.0deg')
 
 class TestAutoID(unittest.TestCase):
-    def test_nextid(self):
+    def test_next_id(self):
         getter = AutoID(1)
-        self.assertEqual('id1', getter.nextid())
+        self.assertEqual('id1', getter.next_id())
         getter = AutoID()
-        self.assertEqual('id2', getter.nextid())
-        self.assertEqual('id3', AutoID.nextid())
+        self.assertEqual('id2', getter.next_id())
+        self.assertEqual('id3', AutoID.next_id())
 
-    def test_set_nextid(self):
+    def test_set_next_id(self):
         #getter = AutoID()
-        self.assertEqual('id7', AutoID.nextid(7))
-        self.assertEqual('id8', AutoID.nextid())
+        self.assertEqual('id7', AutoID.next_id(7))
+        self.assertEqual('id8', AutoID.next_id())
 
 class TestGetUnit(unittest.TestCase):
     def test_number(self):

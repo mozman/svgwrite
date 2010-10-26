@@ -8,6 +8,8 @@ Version 0.3.0 - End of November 2010
   * new elements:
 
     * Marker
+    * paint service: LinearGradient
+    * paint service: RadialGradient
 
 Version 0.2.0 - 24 October 2010
 

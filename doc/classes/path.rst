@@ -1,5 +1,5 @@
-:class:`Path` objects --- <path>
-================================
+:class:`Path`
+=============
 
 The <path> element represent the outline of a shape which can be filled,
 stroked, used as a clipping path, or any combination of the three.

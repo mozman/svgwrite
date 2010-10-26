@@ -18,7 +18,10 @@ class Presentation(object):
 
         """
         if color:
-            self['fill'] = color
+            if isinstance(color, basestring):
+                self['fill'] = color
+            else:
+                self['fill'] = color.get_paint_sever()
         if rule:
             self['fill-rule'] = rule
         if opacity:
@@ -34,7 +37,10 @@ class Presentation(object):
         """
 
         if color:
-            self['stroke'] = color
+            if isinstance(color, basestring):
+                self['stroke'] = color
+            else:
+                self['stroke'] = color.get_paint_server()
         if width:
             self['stroke-width'] = width
         if opacity:

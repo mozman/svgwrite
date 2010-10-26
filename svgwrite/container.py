@@ -80,7 +80,9 @@ class Marker(BaseElement, IViewBox, Presentation):
         if orient is not None:
             self['orient'] = orient
         if 'id' not in self.attribs: # an 'id' is necessary
-            self['id'] = self.nextid()
+            self['id'] = self.next_id()
+        if self.debug:
+            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
 class SVG(Symbol):
     """ An SVG document fragment consists of any number of SVG elements contained

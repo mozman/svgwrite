@@ -8,6 +8,7 @@
 
 import sys
 import unittest
+import re
 
 from svgwrite.container import Group
 from svgwrite.params import Parameter
@@ -18,7 +19,7 @@ class Mock(BaseElement, IXLink):
     elementname = 'use'
     _parameter = Parameter(True, 'full')
 
-    def nextid(self):
+    def next_id(self):
         return "id999"
 
 class TestIXLink(unittest.TestCase):
@@ -28,7 +29,7 @@ class TestIXLink(unittest.TestCase):
 
     def test_href(self):
         m = Mock()
-        m.set_href('an_id')
+        m.set_href('#an_id')
         self.assertEqual(m.tostring(), '<use xlink:href="#an_id" />')
 
     def test_object_link(self):
@@ -41,7 +42,7 @@ class TestIXLink(unittest.TestCase):
         g = Group()
         m = Mock()
         m.set_href(g)
-        self.assertEqual(m.tostring(), '<use xlink:href="#id999" />')
+        self.assertTrue(re.match('^<use xlink:href="#id\d+" />$', m.tostring()))
 
 if __name__=='__main__':
     unittest.main()

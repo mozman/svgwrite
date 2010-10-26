@@ -1,5 +1,5 @@
-:class:`Use` objects --- <use>
-===============================
+:class:`Use`
+============
 
 .. autoclass:: svgwrite.container.Use
 

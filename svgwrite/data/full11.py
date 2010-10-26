@@ -1325,7 +1325,7 @@ elements = {
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'stop': SVGElement('stop',
-    attributes=frozenset(['a', 'c', 'xml:base', 'f', 'xml:space', 'l', 'o', 's', 'xml:lang', 't', 'y', 'e', 'id']),
+    attributes=frozenset(['xml:base', 'xml:space', 'xml:lang', 'offset', 'style', 'class']),
     properties=presentation_attributes,
     children=frozenset(['animate', 'set', 'animateColor'])),
 
