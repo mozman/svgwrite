@@ -1,5 +1,7 @@
-:class:`Group` objects --- <g>
-==============================
+:class:`Group`
+==============
+
+The :class:`Group` represents the SVG <g> element.
 
 .. autoclass:: svgwrite.container.Group
 

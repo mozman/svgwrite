@@ -69,17 +69,17 @@ class TestTSpan(unittest.TestCase):
 
 class TestTRef(unittest.TestCase):
     def test_constructor(self):
-        tref = TRef('test')
+        tref = TRef('#test')
         self.assertEqual(tref.tostring(), '<tref xlink:href="#test" />')
 
 class TestTextPath(unittest.TestCase):
     def test_constructor(self):
-        tref = TextPath('test', 'The Text', startOffset=10, spacing='auto', method='stretch')
+        tref = TextPath('#test', 'The Text', startOffset=10, spacing='auto', method='stretch')
         self.assertEqual(tref.tostring(), '<textPath method="stretch" spacing="auto"' \
                          ' startOffset="10" xlink:href="#test">The Text</textPath>')
 
     def test_subelement_tspan(self):
-        txt = TextPath('test', 'text')
+        txt = TextPath('#test', 'text')
         txt.add(TSpan('subtext'))
         self.assertEqual(txt.tostring(), '<textPath xlink:href="#test">text<tspan>subtext</tspan></textPath>')
 

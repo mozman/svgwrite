@@ -1,5 +1,5 @@
-:class:`Marker` objects --- <marker>
-====================================
+:class:`Marker`
+===============
 
 .. autoclass:: svgwrite.container.Marker
 

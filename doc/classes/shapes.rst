@@ -1,5 +1,5 @@
-:class:`Line` objects --- <line>
-================================
+:class:`Line`
+=============
 
 .. autoclass:: svgwrite.shapes.Line
 
@@ -10,23 +10,23 @@ Used Mixins
 
     :meth:`set_markers`
 
-:class:`Rect` objects --- <rect>
-================================
+:class:`Rect`
+=============
 
 .. autoclass:: svgwrite.shapes.Rect
 
-:class:`Circle` objects --- <circle>
-====================================
+:class:`Circle`
+===============
 
 .. autoclass:: svgwrite.shapes.Circle
 
-:class:`Ellipse` objects --- <ellipse>
-======================================
+:class:`Ellipse`
+================
 
 .. autoclass:: svgwrite.shapes.Ellipse
 
-:class:`Polyline` objects --- <polyline>
-========================================
+:class:`Polyline`
+=================
 
 .. autoclass:: svgwrite.shapes.Polyline
 
@@ -37,8 +37,8 @@ Used Mixins
 
     :meth:`set_markers`
 
-:class:`Polygon` objects --- <polygon>
-======================================
+:class:`Polygon`
+================
 
 .. autoclass:: svgwrite.shapes.Polygon
 

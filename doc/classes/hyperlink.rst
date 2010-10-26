@@ -1,5 +1,7 @@
-:class:`Hyperlink` objects --- <a>
-==================================
+:class:`Hyperlink`
+==================
+
+The :class:`Hyperlink` represents the SVG <a> element.
 
 .. autoclass:: svgwrite.container.Hyperlink
 

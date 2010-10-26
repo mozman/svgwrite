@@ -1,5 +1,5 @@
-:class:`Drawing` objects
-========================
+:class:`Drawing`
+================
 
 .. automodule:: svgwrite.drawing
 

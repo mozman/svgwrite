@@ -191,7 +191,7 @@ class AutoID(object):
             cls._nextid = value
 
     @classmethod
-    def nextid(cls, value=None):
+    def next_id(cls, value=None):
         cls._set_value(value)
         retval = "id%d" % cls._nextid
         cls._nextid += 1

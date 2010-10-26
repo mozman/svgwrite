@@ -75,18 +75,34 @@ class BaseElement(object):
     def set_parameter(self, parameter):
         self._parameter = parameter
 
-    def nextid(self, value=None):
-        return AutoID.nextid(value)
+    def next_id(self, value=None):
+        return AutoID.next_id(value)
 
-    def get_funciri(self):
-        """
-        Get the `FuncIRI` reference string of the object. (e.g. ``'url(#id)'``).
+    def get_id(self):
+        """ Get the object `id` string, if the object does not have an `id`,
+        a new `id` will be created.
 
         :returns: `string`
         """
         if 'id' not in self.attribs:
-            self['id'] = self.nextid()
-        return "url(#%s)" % self['id']
+            self.attribs['id'] = self.next_id()
+        return self.attribs['id']
+
+    def get_iri(self):
+        """
+        Get the `IRI` reference string of the object. (i.e., ``'#id'``).
+
+        :returns: `string`
+        """
+        return "#%s" % self.get_id()
+
+    def get_funciri(self):
+        """
+        Get the `FuncIRI` reference string of the object. (i.e. ``'url(#id)'``).
+
+        :returns: `string`
+        """
+        return "url(%s)" % self.get_iri()
 
     def __getitem__(self, key):
         """ Get SVG attribute by `key`.
