@@ -39,10 +39,15 @@ def base_shapes_drawing(name):
     dwg.save()
 
 def use_drawing(name):
+    # Shows how to use the 'use' element.
+    #
     w, h = '100%', '100%'
     dwg = svgwrite.Drawing(filename=name, size=(w, h), debug=DEBUG)
     dwg.add(dwg.rect(insert=(0,0), size=(w, h), fill='lightgray', stroke='black'))
+
+    # add a group of graphic elements to the defs section of the main drawing
     g = dwg.defs.add(dwg.g(id='g001'))
+
     unit=40
     g.add(dwg.rect((0,0), (unit, unit)))
     for y in range(10):
@@ -52,35 +57,76 @@ def use_drawing(name):
             cx = x1 + unit/2
             cy = y1 + unit/2
             cval = (y*5 + x)*2
+
+            # reference the group by the 'use' element, you can overwrite
+            # graphical properties, ...
             u = dwg.use(g, insert=(x1, y1), fill=rgb(cval, cval, cval))
+            # ... and you can also transform the the whole reference object.
             u.rotate(y*5+x, center=(cx, cy))
             dwg.add(u)
     dwg.save()
 
 def marker_drawing(name):
-    dwg = svgwrite.Drawing(name, profile='full', debug=True)
+    # Shows how to use the <marker> element.
+    # W3C reference: http://www.w3.org/TR/SVG11/painting.html#MarkerElement
+    #
+    dwg = svgwrite.Drawing(name, width='20cm', height='15cm', profile='full', debug=True)
+    # set user coordinate space
+    dwg.viewbox(width=200, height=150)
 
-    # create a new marker object
-    # markerUnits='userSpaceOnUse'
-    marker = dwg.marker(insert=(5,5), size=(10,10))
+    #--start-- A red point as marker-start element
+    # 'insert' represents the insertation point in user coordinate space
+    # in this example its the midpoint of the circle, see below
+    marker_start = dwg.marker(insert=(0, 0), size=(5, 5)) # target size of the marker
 
-    # red point as marker
-    marker.add(dwg.circle((5, 5), r=5, fill='red'))
+    # setting a user coordinate space for the appanded graphic elements
+    # bounding coordinates for this example:
+    # minx = -5, maxx = +5, miny = -5, maxy = +5
+    marker_start.viewbox(minx=-5, miny=-5, width=10, height=10) # the marker user coordinate space
+    marker_start.add(dwg.circle((0, 0), r=5)).fill('red', opacity=0.5)
+
+
+    #--end-- A blue point as marker-end element
+    # a shorter form of the code above:
+    marker_end = dwg.marker(size=(5, 5)) # marker defaults: insert=(0,0)
+    # set viewbox to the bounding coordinates of the circle
+    marker_end.viewbox(-1, -1, 2, 2)
+    marker_end.add(dwg.circle(fill='blue', fill_opacity=0.5)) # circle defaults: insert=(0,0), r=1
+
+    #--mid-- A green point as marker-mid element
+    # if you don't setup a user coordinate space, the default ucs is
+    # minx = 0, miny = 0, maxx=size[0], maxy=size[1]
+    # default size = (3, 3) defined by the SVG standard
+    # bounding coordinates for this example:
+    # minx = 0, maxx = 6, miny = 0, maxy = 6
+    # => center of the viewbox = (3, 3)!
+    marker_mid = dwg.marker(insert=(3, 3), size=(6, 6))
+    marker_mid.add(dwg.circle((3, 3), r=3)).fill('green', opacity=0.7)
+
+    # The drawing size of the 'start-marker' is greater than the drawing size of
+    # the 'marker-mid' (r=5 > r=3), but the resulting size is defined by the
+    # 'size' parameter of the marker object (size=(6,6) > size=(5,5)), so the
+    # 'marker-start' is smaller than the 'marker-mid'.
 
     # add marker to defs section of the drawing
-    dwg.defs.add(marker)
+    dwg.defs.add(marker_start)
+    dwg.defs.add(marker_mid)
+    dwg.defs.add(marker_end)
 
-    # create a new line object
+    # create a new line object, fill='none' is important, because by default
+    # the polyline and the polygon object is filled (tested with FF, Chrome).
+    # I am not sure, if this is concurring to the SVG Standard.
+
     line = dwg.add(dwg.polyline(
-        [(10, 10), (50, 20), (70, 50), (100, 30)],
+        [(10, 10), (50, 20), (70, 50), (100, 30), (120, 140), (170, 100)],
         stroke='black', fill='none'))
 
-    # set marker (start, mid and end markers are the same)
-    line.set_markers(marker)
+    # set markers 3-tuple = ('marker-start', 'marker-mid', 'marker-end')
+    line.set_markers( (marker_start, marker_mid, marker_end) )
 
     # or set markers direct as SVG Attributes 'marker-start', 'marker-mid',
     # 'marker-end' or 'marker' if all markers are the same.
-    # line['marker'] = marker.get_funciri()
+    # line['marker'] = marker.get_funciri() # but 'marker' works only with Firefox (26.10.2010)
     dwg.save()
 
 def koch_snowflake(name):
