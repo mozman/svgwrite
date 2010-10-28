@@ -14,11 +14,6 @@ class Path(BaseElement, ITransform, Presentation, Markers):
     """ The <path> element represent the outline of a shape which can be filled,
     stroked, used as a clipping path, or any combination of the three.
 
-    **Attributes**
-
-    commands:
-       *list* -- the command and coordinate stack
-
     """
     elementname = 'path'
     def __init__(self, d=None, attribs=None, **extra):

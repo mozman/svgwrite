@@ -106,6 +106,18 @@ Factory Methods
 
    Create a :class:`svgwrite.container.Hyperlink` object.
 
+.. method:: Drawing.marker(insert=None, size=None, orient=None, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.container.Marker` object.
+
+.. method:: Drawing.linearGradient(start=None, end=None, inherit=None, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.gradients.LinearGradient` object.
+
+.. method:: Drawing.radialGradient(center=None, r=None, focal=None, inherit=None, attribs=None, \*\*extra)
+
+   Create a :class:`svgwrite.gradients.RadialGradient` object.
+
 Inherited Attributes
 --------------------
 

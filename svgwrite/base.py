@@ -10,6 +10,7 @@ The :class:`BaseElement` is the root for all SVG elements.
 """
 
 import xml.etree.ElementTree as etree
+import copy
 
 from params import Parameter
 from utils import AutoID
@@ -56,6 +57,14 @@ class BaseElement(object):
         self.elements = list()
         if self.debug:
             self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+
+    def copy(self):
+        newobj = copy.copy(self) # shallow copy of object
+        newobj.attribs = copy.copy(self.attribs) # shallow copy of attributes
+        newobj.elements = copy.copy(self.elements) # shallow copy of subelements
+        if 'id' in newobj.attribs: # create a new 'id'
+            newobj['id'] = newobj.next_id()
+        return newobj
 
     def get_debug(self):
         return self._parameter.debug

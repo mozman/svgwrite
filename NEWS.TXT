@@ -2,7 +2,7 @@
 NEWS
 ====
 
-Version 0.3.0 - End of November 2010
+Version 0.2.1 - .. November 2010
 
   * alpha version
   * new elements:
