@@ -33,12 +33,24 @@ class TestLinearGradient(unittest.TestCase):
 
     def test_get_paint_server(self):
         lg = LinearGradient()
-        self.assertTrue(re.match("^url\(#id\d+\)$", lg.get_paint_server()))
+        self.assertTrue(re.match("^url\(#id\d+\) none$", lg.get_paint_server()))
+        self.assertTrue(re.match("^url\(#id\d+\) red$", lg.get_paint_server(default='red')))
 
     def test_add_stop_color(self):
         lg = LinearGradient()
         lg.add_stop_color(offset=0.5, color='red', opacity=1.0)
         self.assertEqual(lg.tostring(), '<linearGradient><stop offset="0.5" stop-color="red" stop-opacity="1.0" /></linearGradient>')
+
+    def test_add_colors(self):
+        lg = LinearGradient()
+        lg.add_colors(['white', 'red', 'blue', 'green'], opacity=0.5)
+        result = '<linearGradient>' \
+                 '<stop offset="0.0" stop-color="white" stop-opacity="0.5" />' \
+                 '<stop offset="0.333" stop-color="red" stop-opacity="0.5" />' \
+                 '<stop offset="0.667" stop-color="blue" stop-opacity="0.5" />' \
+                 '<stop offset="1.0" stop-color="green" stop-opacity="0.5" />' \
+                 '</linearGradient>'
+        self.assertEqual(lg.tostring(), result)
 
     def test_inherit(self):
         inherit_from = LinearGradient(id='test')
@@ -53,7 +65,8 @@ class TestRadialGradient(unittest.TestCase):
 
     def test_get_paint_server(self):
         rg = RadialGradient()
-        self.assertTrue(re.match("^url\(#id\d+\)$", rg.get_paint_server()))
+        self.assertTrue(re.match("^url\(#id\d+\) none$", rg.get_paint_server()))
+        self.assertTrue(re.match("^url\(#id\d+\) red$", rg.get_paint_server(default='red')))
 
     def test_add_stop_color(self):
         rg = RadialGradient()
