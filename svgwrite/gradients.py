@@ -15,8 +15,6 @@ linear gradients and radial gradients.
 
 """
 
-import copy
-
 from base import BaseElement
 from interface import ITransform, IXLink
 
@@ -62,6 +60,7 @@ class _AbstractGradient(BaseElement, ITransform, IXLink):
         :param opacity: defines the opacity of a given gradient stop
         """
         self.add(_GradientStop(offset, color, opacity, factory=self))
+        return self
 
     def add_colors(self, colors, sweep=(0., 1.), opacity=None):
         """ Add stop-colors from colors with linear offset distributuion
@@ -79,6 +78,7 @@ class _AbstractGradient(BaseElement, ITransform, IXLink):
         for color in colors:
             self.add_stop_color(round(offset, 3), color, opacity)
             offset += delta
+        return self
 
     def get_xml(self):
         if hasattr(self, 'href'):

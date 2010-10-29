@@ -24,6 +24,23 @@ Graphical Elements
    classes/path
    classes/shapes
 
+Text Objects
+------------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/text
+
+Paint Server
+------------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/gradients
+   classes/pattern
+
 Interfaces
 ----------
 

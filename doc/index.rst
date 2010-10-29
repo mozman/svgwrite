@@ -67,6 +67,7 @@ Paint Server
    :maxdepth: 1
 
    classes/gradients
+   classes/pattern
 
 Interfaces
 ----------
