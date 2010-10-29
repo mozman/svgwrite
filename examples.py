@@ -190,6 +190,26 @@ def linearGradient_drawing(name):
 
     dwg.save()
 
+def radialGradient_drawing(name):
+    dwg = svgwrite.Drawing(name, width='20cm', height='15cm', profile='full', debug=True)
+
+    # set user coordinate space
+    dwg.viewbox(width=200, height=150)
+
+    # create a new radialGradient element and add it to the defs section of
+    # the drawing
+    gradient1 = dwg.defs.add(dwg.radialGradient())
+    # define the gradient from red to white
+    gradient1.add_stop_color(0, 'red').add_stop_color(1, 'white')
+    # use gradient for filling the rect
+    dwg.add(dwg.rect((10,10), (50,50), fill=gradient1.get_paint_server()))
+
+    wave = dwg.defs.add(dwg.radialGradient())
+    wave.add_colors(['blue', 'lightblue'] * 8)
+    dwg.add(dwg.rect((70,10), (50,50), fill=wave.get_paint_server()))
+
+    dwg.save()
+
 def koch_snowflake(name):
     # Koch Snowflake and Sierpinski Triangle combination fractal using recursion
     # ActiveState Recipe 577156
@@ -461,6 +481,9 @@ def main():
 
     print("start: example_linearGradient.svg\n")
     linearGradient_drawing('example_linearGradient.svg')
+
+    print("start: example_radialGradient.svg\n")
+    radialGradient_drawing('example_radialGradient.svg')
 
     if longrun:
         print("start long time running examples!\n")
