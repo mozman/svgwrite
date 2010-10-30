@@ -124,3 +124,7 @@ class Markers(object):
                 self['marker-end'] = get_funciri(markerend)
             except (TypeError, KeyError):
                 self['marker'] = get_funciri(markers)
+
+class Clipping(object):
+    def clip_rect(self, top='auto', right='auto', bottom='auto', left='auto'):
+        self['clip'] = "rect(%s,%s,%s,%s)" % (top, right, bottom, left)

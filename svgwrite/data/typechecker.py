@@ -271,6 +271,8 @@ class Full11TypeChecker(object):
         res = SHAPE_PATTERN.match(value.strip())
         if res:
             for arg in res.groups():
+                if arg.strip() == 'auto':
+                    continue
                 if not self.is_length(arg):
                     return False
         else:

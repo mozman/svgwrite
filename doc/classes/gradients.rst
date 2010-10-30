@@ -22,6 +22,19 @@ Methods
 SVG Attributes
 ~~~~~~~~~~~~~~
 
+* **class** -- `string`
+
+  assigns one or more css-class-names to an element
+
+* **style** -- `string`
+
+  allows per-element css-style rules to be specified directly on a given element
+
+* **externalResourcesRequired** -- `bool`
+
+  *False*: if document rendering can proceed
+  even if external resources are unavailable else: *True*
+
 * **gradientUnits** -- ``'userSpaceOnUse | objectBoundingBox'``
 
   Defines the coordinate system for attributes **x1**, **y1**, **x2** and **y2**.
@@ -105,6 +118,19 @@ Methods
 
 SVG Attributes
 ~~~~~~~~~~~~~~
+
+* **class** -- `string`
+
+  assigns one or more css-class-names to an element
+
+* **style** -- `string`
+
+  allows per-element css-style rules to be specified directly on a given element
+
+* **externalResourcesRequired** -- `bool`
+
+  *False*: if document rendering can proceed
+  even if external resources are unavailable else: *True*
 
 * **gradientUnits** -- ``'userSpaceOnUse | objectBoundingBox'``
 

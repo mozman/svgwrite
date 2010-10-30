@@ -41,6 +41,14 @@ Paint Server
    classes/gradients
    classes/pattern
 
+Masking
+-------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/masking
+
 Interfaces
 ----------
 

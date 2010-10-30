@@ -45,6 +45,6 @@ class Pattern(BaseElement, IXLink, IViewBox, ITransform, Presentation):
         if self.debug:
             self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
-    def get_paint_server(self):
+    def get_paint_server(self, default='none'):
         """ Returns the <FuncIRI> of the gradient. """
-        return self.get_funciri()
+        return "%s %s" % (self.get_funciri(), default)

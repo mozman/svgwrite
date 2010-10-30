@@ -10,6 +10,9 @@ Version 0.2.1 - .. November 2010
     * Marker
     * paint service: LinearGradient
     * paint service: RadialGradient
+    * paint service: Pattern
+    * ClipPath
+    * Mask
 
 Version 0.2.0 - 24 October 2010
 
@@ -21,7 +24,7 @@ Version 0.2.0 - 24 October 2010
   * added mixins for setting stroke and fill properties
   * new elements:
 
-    * Hyperlink (is the SVG element: <a>)
+    * Hyperlink (the SVG <a> element)
     * Image
     * TextArea
 
