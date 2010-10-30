@@ -10,9 +10,6 @@ Gradients consist of continuously smooth color transitions along a vector
 from one color to another, possibly followed by additional transitions along
 the same vector to other colors. SVG provides for two types of gradients:
 linear gradients and radial gradients.
-
-.. seealso:: http://www.w3.org/TR/SVG11/pservers.html#Gradients
-
 """
 
 from base import BaseElement

@@ -8,6 +8,19 @@
 """
 A Python library to create SVG drawings.
 
+SVG is a language for describing two-dimensional graphics in XML. SVG allows
+for three types of graphic objects: vector graphic shapes (e.g., paths
+consisting of straight lines and curves), images and text. Graphical objects
+can be grouped, styled, transformed and composited into previously rendered
+objects. The feature set includes nested transformations, clipping paths,
+alpha masks, filter effects and template objects.
+
+SVG drawings can be interactive and dynamic. Animations can be defined and
+triggered either declaratively (i.e., by embedding SVG animation elements in
+SVG content) or via scripting.
+
+.. seealso:: http://www.w3.org/TR/SVG11/intro.html#AboutSVG
+
 a simple example::
 
     import svgwrite
@@ -20,10 +33,10 @@ a simple example::
 SVG Version
 -----------
 
-Only two types of SVG drawings could be created:
+You can only create two types of SVG drawings:
 
-* *SVG 1.2 Tiny Profile* for svgwrite.parameter.profile = ``'tiny'``
-* *SVG 1.1 Full Profile* for svgwrite.parameter.profile = ``'full|basic'``
+* *SVG 1.2 Tiny Profile*, use Drawing(profile= ``'tiny'``)
+* *SVG 1.1 Full Profile*, use Drawing(profile= ``'full'``)
 
 """
 
