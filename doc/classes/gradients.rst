@@ -1,17 +1,16 @@
-:mod:`gradients`
-================
-
+:class:`LinearGradient`
+=======================
 .. automodule:: svgwrite.gradients
 
-:class:`LinearGradient`
------------------------
+.. seealso::
 
-.. seealso:: http://www.w3.org/TR/SVG11/pservers.html#LinearGradients
+  * http://www.w3.org/TR/SVG11/pservers.html#Gradients
+  * http://www.w3.org/TR/SVG11/pservers.html#LinearGradients
 
 .. autoclass:: svgwrite.gradients.LinearGradient
 
 Methods
-~~~~~~~
+-------
 
 .. automethod:: svgwrite.gradients.LinearGradient.__init__(start=None, end=None, inherit=None, attribs=None, \*\*extra)
 
@@ -20,7 +19,7 @@ Methods
 .. automethod:: svgwrite.gradients.LinearGradient.get_paint_server()
 
 SVG Attributes
-~~~~~~~~~~~~~~
+--------------
 
 * **class** -- `string`
 
@@ -43,7 +42,7 @@ SVG Attributes
 
 * **gradientTransform** -- *<transform-list>*
 
-  Use the :class:`~svgwrite.interface.ITransform` interface to set transformations.
+  Use the :class:`-svgwrite.interface.ITransform` interface to set transformations.
 
   Contains the definition of an optional additional transformation from the
   gradient coordinate system onto the target coordinate system (i.e.,
@@ -101,14 +100,14 @@ SVG Attributes
   attributes or gradient stops.
 
 :class:`RadialGradient`
------------------------
+=======================
 
 .. seealso:: http://www.w3.org/TR/SVG11/pservers.html#RadialGradients
 
 .. autoclass:: svgwrite.gradients.RadialGradient
 
 Methods
-~~~~~~~
+-------
 
 .. automethod:: svgwrite.gradients.RadialGradient.__init__(center=None, r=None, focal=None, inherit=None, attribs=None, \*\*extra)
 
@@ -117,7 +116,7 @@ Methods
 .. automethod:: svgwrite.gradients.RadialGradient.get_paint_server()
 
 SVG Attributes
-~~~~~~~~~~~~~~
+--------------
 
 * **class** -- `string`
 
@@ -181,7 +180,7 @@ SVG Attributes
 
 * **gradientTransform** -- *<transform-list>*
 
-  Use the :class:`~svgwrite.interface.ITransform` interface to set transformations.
+  Use the :class:`-svgwrite.interface.ITransform` interface to set transformations.
 
   See :class:`LinearGradient`
 
