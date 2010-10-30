@@ -48,6 +48,14 @@ class TestBaseElement(unittest.TestCase):
         m['id'] = 'test'
         self.assertEqual(m.get_funciri(), "url(#test)")
 
+    def test_copy(self):
+        # valid attributes
+        m = MockBase(width=100, height=200)
+        m.add(MockBase(width=100, height=200))
+        copy = m.copy()
+        m['width'] = 999
+        self.assertEqual(copy.tostring(), '<svg height="200" width="100"><svg height="200" width="100" /></svg>')
+
 class TestValueToString(unittest.TestCase):
     def test_full_profile(self):
         element = MockBase()

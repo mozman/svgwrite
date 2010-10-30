@@ -210,6 +210,17 @@ def radialGradient_drawing(name):
 
     dwg.save()
 
+def pattern_drawing(name):
+    dwg = svgwrite.Drawing(name, width='20cm', height='15cm', profile='full', debug=True)
+
+    # set user coordinate space
+    dwg.viewbox(width=200, height=150)
+    pattern = dwg.defs.add(
+        dwg.pattern(size=(20, 20), patternUnits="userSpaceOnUse"))
+    pattern.add(dwg.circle((10, 10), 5))
+    dwg.add(dwg.circle((100, 100), 50, fill=pattern.get_paint_server()))
+    dwg.save()
+
 def koch_snowflake(name):
     # Koch Snowflake and Sierpinski Triangle combination fractal using recursion
     # ActiveState Recipe 577156
@@ -484,6 +495,9 @@ def main():
 
     print("start: example_radialGradient.svg\n")
     radialGradient_drawing('example_radialGradient.svg')
+
+    print("start: example_pattern.svg\n")
+    pattern_drawing('example_pattern.svg')
 
     if longrun:
         print("start long time running examples!\n")

@@ -8,8 +8,9 @@
 
 from base import BaseElement
 from interface import ITransform, _vert, _horiz
+from mixins import Clipping
 
-class Image(BaseElement, ITransform):
+class Image(BaseElement, ITransform, Clipping):
     """ The <image> element indicates that the contents of a complete file are
     to be rendered into a given rectangle within the current user coordinate
     system. The <image> element can refer to raster image files such as PNG

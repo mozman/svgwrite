@@ -13,6 +13,7 @@ import image
 import text
 import gradients
 import pattern
+import masking
 
 factoryelements = {
     'g': container.Group,
@@ -38,6 +39,8 @@ factoryelements = {
     'linearGradient': gradients.LinearGradient,
     'radialGradient': gradients.RadialGradient,
     'pattern': pattern.Pattern,
+    'clipPath': masking.ClipPath,
+    'mask': masking.Mask,
 }
 
 class ElementBuilder(object):

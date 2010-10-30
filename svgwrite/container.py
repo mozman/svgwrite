@@ -27,7 +27,7 @@ set/get SVG attributes::
 
 from base import BaseElement
 from interface import IViewBox, ITransform, IXLink
-from mixins import Presentation
+from mixins import Presentation, Clipping
 
 class Group(BaseElement, ITransform, Presentation):
     """ The <g> element is a container element for grouping together
@@ -42,7 +42,7 @@ class Defs(Group):
     """
     elementname= 'defs'
 
-class Symbol(BaseElement, IViewBox, Presentation):
+class Symbol(BaseElement, IViewBox, Presentation, Clipping):
     """ The <symbol> element is used to define graphical template objects which
     can be instantiated by a <use> element. The use of <symbol> elements for
     graphics that are used multiple times in the same document adds structure and

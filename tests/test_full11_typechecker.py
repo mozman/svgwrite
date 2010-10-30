@@ -329,5 +329,12 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertFalse(self.checker.is_four_numbers(' 1 '))
         self.assertFalse(self.checker.is_four_numbers((1,2,3)))
 
+    def test_is_shape(self):
+        self.assertTrue(self.checker.is_shape("rect(1,2,3,4)"))
+        self.assertTrue(self.checker.is_shape("rect(1px,2px,-3px,-4px)"))
+        self.assertTrue(self.checker.is_shape("rect( 1px , 2px , -3px , -4px )"))
+        self.assertTrue(self.checker.is_shape("rect(auto,auto,auto,auto)"))
+        self.assertTrue(self.checker.is_shape("rect( auto , auto , auto , auto )"))
+
 if __name__=='__main__' :
     unittest.main()
