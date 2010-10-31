@@ -7,19 +7,19 @@
 # License: GPLv3
 """
 
-.. autofunction:: rgb([r=0, g=0, b=0, mode='RGB'])
+.. autofunction:: rgb
 
-.. autofunction:: iterflatlist(values)
+.. autofunction:: iterflatlist
 
-.. autofunction:: strlist(values, [seperator=","])
+.. autofunction:: strlist
 
-.. autofunction:: get_unit(coordinate)
+.. autofunction:: get_unit
 
-.. autofunction:: split_coordinate(coordinate)
+.. autofunction:: split_coordinate
 
-.. autofunction:: split_angle(angle)
+.. autofunction:: split_angle
 
-.. autofunction:: rect_top_left_corner(insert, size, [pos='top-left'])
+.. autofunction:: rect_top_left_corner
 
 """
 
@@ -29,17 +29,21 @@ from data import pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
     """
-    Convert *r*, *g*, *b* values to a <string>.
+    Convert **r**, **g**, **b** values to a `string`.
 
     :param r: red part
     :param g: green part
     :param b: blue part
-    :param string mode: ``'RGB'|'%'``
-
-      * ``'RGB'`` -- returns a rgb-string format: ``'rgb(r, g, b)'``
-      * ``'%'`` -- returns percent-values as rgb-string format: ``'rgb(r%, g%, b%)'``
+    :param string mode: ``'RGB | %'``
 
     :rtype: string
+
+    ========= =============================================================
+    mode      Description
+    ========= =============================================================
+    ``'RGB'`` returns a rgb-string format: ``'rgb(r, g, b)'``
+    ``'%'``   returns percent-values as rgb-string format: ``'rgb(r%, g%, b%)'``
+    ========= =============================================================
 
     """
     def percent(value):
@@ -61,7 +65,7 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
 
 def iterflatlist(values):
     """
-    Flatten nested *values*, returns an *iterator*.
+    Flatten nested *values*, returns an `iterator`.
 
     """
     for element in values:
@@ -73,10 +77,10 @@ def iterflatlist(values):
 
 def strlist(values, seperator=","):
     """
-    Concatenate *values* with *sepertator*, <None> values will be excluded.
+    Concatenate **values** with **sepertator**, `None` values will be excluded.
 
-    :param values: *iterable* object
-    :returns: <string>
+    :param values: `iterable` object
+    :returns: `string`
 
     """
     if isinstance(values, basestring):
@@ -86,8 +90,8 @@ def strlist(values, seperator=","):
 
 def get_unit(coordinate):
     """
-    Get the *unit*-identifier of *coordinate*, if *coordinate* has a valid
-    *unit* identifier appended, else returns <None>.
+    Get the `unit` identifier of **coordinate**, if **coordinate** has a valid
+    `unit` identifier appended, else returns `None`.
 
     """
     if isinstance(coordinate, (int, float)):
@@ -100,9 +104,9 @@ def get_unit(coordinate):
 
 def split_coordinate(coordinate):
     """
-    Split coordinate into *number* and *unit*-identifier.
+    Split coordinate into `<number>` and 'unit` identifier.
 
-    :returns: <2-tuple> (number,unit-identifier) or (number,None) if no unit-identifier
+    :returns: <2-tuple> (number, unit-identifier) or (number, None) if no unit-identifier
       is present or coordinate is an int or float.
 
     """
@@ -116,9 +120,9 @@ def split_coordinate(coordinate):
 
 def split_angle(angle):
     """
-    Split angle into *number* and *angle*-identifier.
+    Split angle into `<number>` and `<angle>` identifier.
 
-    :returns: <2-tuple> (number,angle-identifier) or (number,None) if no angle-identifier
+    :returns: <2-tuple> (number, angle-identifier) or (number, None) if no angle-identifier
       is present or angle is an int or float.
 
     """
@@ -135,18 +139,20 @@ def rect_top_left_corner(insert, size, pos='top-left'):
     """
     Calculate top-left corner of a rectangle.
 
-    *insert* and *size* must have the same *units*.
+    **insert** and **size** must have the same units.
 
     :param 2-tuple insert: insert point
     :param 2-tuple size: (width, height)
     :param string pos: insert position ``'vert-horiz'``
-
-      * vert -- ``'top'|'middle'|'bottom'``
-      * horiz -- ``'left'|'center'|'right'``
-
     :return: ``'top-left'`` corner of the rect
     :rtype: 2-tuple
 
+    ========== ==============================
+    pos        valid values
+    ========== ==============================
+    **vert**   ``'top | middle | bottom'``
+    **horiz**  ``'left'|'center'|'right'``
+    ========== ==============================
     """
     vert, horiz = pos.lower().split('-')
     x, xunit = split_coordinate(insert[0])

@@ -1,12 +1,25 @@
 #!/usr/bin/env python
 #coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
-# Purpose: animate classes
-# Created: 24.09.2010
+# Purpose: animate elements
+# Created: 31.10.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from svgwrite.base import BaseElement
+from base import BaseElement
+
+class Set(BaseElement):
+    pass
+
+class Animate(BaseElement):
+    pass
+
+class AnimateColor(BaseElement):
+    pass
 
 class AnimateMotion(BaseElement):
     pass
+
+class AnimateTransform(BaseElement):
+    pass
+

@@ -1,4 +1,4 @@
-:mod:`svgwrite` module
-======================
+svgwrite module
+===============
 
 .. automodule:: svgwrite

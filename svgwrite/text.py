@@ -7,8 +7,8 @@
 # License: GPLv3
 """
 Text that is to be rendered as part of an SVG document fragment is specified
-using the <text> element. The characters to be drawn are expressed as XML
-character data inside the <text> element.
+using the **text** element. The characters to be drawn are expressed as XML
+character data inside the **text** element.
 
 """
 
@@ -19,11 +19,11 @@ from utils import iterflatlist, strlist
 
 class TSpan(BaseElement, Presentation):
     """
-    Within a :class:`~svgwrite.Text` element, text and font properties
+    Within a **Text** element, text and font properties
     and the current text position can be adjusted with absolute or relative
-    coordinate values by using the :class:`~svgwrite.text.TSpan` element.
+    coordinate values by using the **TSpan** element.
     The characters to be drawn are expressed as XML character data inside the
-    <tspan> element.
+    **TSpan** element.
 
     """
     elementname = 'tspan'
@@ -31,10 +31,10 @@ class TSpan(BaseElement, Presentation):
     def __init__(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
                  attribs=None, **extra):
         """
-        :param string text: <tspan> content
-        :param 2-tuple insert: The *insert* parameter is the absolute insert point
+        :param string text: **tspan** content
+        :param 2-tuple insert: The **insert** parameter is the absolute insert point
                                of the text, don't use this parameter in combination
-                               with the *x* or the *y* parameter.
+                               with the **x** or the **y** parameter.
         :param list x: list of absolute x-axis values for characters
         :param list y: list of absolute y-axis values for characters
         :param list dx: list of relative x-axis values for characters
@@ -67,18 +67,18 @@ class TSpan(BaseElement, Presentation):
 
 class Text(TSpan, ITransform):
     """
-    The *Text* element defines a graphics element consisting of text.
+    The **Text** element defines a graphics element consisting of text.
     The characters to be drawn are expressed as XML character data inside the
-    <text> element.
+    **Text** element.
 
     """
     elementname = 'text'
 
 class TRef(BaseElement, IXLink, Presentation):
     """
-    The textual content for a <text> can be either character data directly
+    The textual content for a **Text** can be either character data directly
     embedded within the <text> element or the character data content of a
-    referenced element, where the referencing is specified with a <tref>
+    referenced element, where the referencing is specified with a **TRef**
     element.
 
     """
@@ -87,8 +87,8 @@ class TRef(BaseElement, IXLink, Presentation):
     def __init__(self, element, attribs=None, **extra):
         """
         :param element: create a reference this element, if element is a
-          `string` its the *id* name of the referenced element, if element
-          is a :class:`~svgwrite.base.BaseElement` the *id* SVG Attribute is
+          `string` its the **id** name of the referenced element, if element
+          is a :class:`~svgwrite.base.BaseElement` the **id** SVG Attribute is
           used to create the reference.
         """
         super(TRef, self).__init__(attribs=attribs, **extra)
@@ -101,18 +101,18 @@ class TRef(BaseElement, IXLink, Presentation):
 class TextPath(BaseElement, IXLink, Presentation):
     """
     In addition to text drawn in a straight line, SVG also includes the
-    ability to place text along the shape of a <path> element. To specify that
-    a block of text is to be rendered along the shape of a <path>, include
-    the given text within a <textPath> element which includes an `xlink:href`
-    attribute with a IRI reference to a <path> element.
+    ability to place text along the shape of a **path** element. To specify that
+    a block of text is to be rendered along the shape of a **path**, include
+    the given text within a **textPath** element which includes an **xlink:href**
+    attribute with a IRI reference to a **path** element.
 
     """
     elementname = 'textPath'
     def __init__(self, path, text, startOffset=None, method='align', spacing='exact',
                  attribs=None, **extra):
         """
-        :param path: link to <path>, *id-string* or <Path> object
-        :param string text: <textPath> content
+        :param path: link to **path**, **id** string or **Path** object
+        :param string text: **textPath** content
         :param number startOffset: text starts with offset from begin of path.
         :param string method: ``align|stretch``
         :param string spacing: ``exact|auto``
@@ -147,13 +147,13 @@ class TBreak(BaseElement):
 
 class TextArea(BaseElement, ITransform, Presentation):
     """
-    At this time <textArea> is only available for SVG 1.2 Tiny profile.
+    At this time **textArea** is only available for SVG 1.2 Tiny profile.
 
-    The <textArea>  element allows simplistic wrapping of text content within a
-    given region. The 'tiny' profile of SVG specifies a single rectangular region.
+    The **textArea**  element allows simplistic wrapping of text content within a
+    given region. The `tiny` profile of SVG specifies a single rectangular region.
     Other profiles may allow a sequence of arbitrary shapes.
 
-    Text wrapping via the 'textArea' element is available as a lightweight and
+    Text wrapping via the **textArea** element is available as a lightweight and
     convenient facility for simple text wrapping where a complete box model layout
     engine is not required.
 
@@ -162,7 +162,7 @@ class TextArea(BaseElement, ITransform, Presentation):
     regard to where line breaks occur.
 
     The TextArea class wraps every text added by write() or writeline() as
-    <tspan> element.
+    **tspan** element.
 
     """
     elementname = 'textArea'
@@ -183,7 +183,7 @@ class TextArea(BaseElement, ITransform, Presentation):
 
     def write(self, text, **extra):
         """
-        Add *text* as <tspan> elements, with extra-params for the <tspan> element.
+        Add text as **tspan** elements, with extra-params for the **tspan** element.
 
         Use the '\\\\n' character for line breaks.
         """
@@ -199,4 +199,3 @@ class TextArea(BaseElement, ITransform, Presentation):
             # case "texta\ntextb : last element is 'textb'
             if lines[-1]:
                 self.add(TSpan(lines[-1], **extra))
-

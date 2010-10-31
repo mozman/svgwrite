@@ -1,5 +1,5 @@
-:class:`Path`
-=============
+Path
+====
 
 .. autoclass:: svgwrite.path.Path
 
@@ -17,48 +17,17 @@ Attributes
 Methods
 -------
 
-.. automethod:: svgwrite.path.Path.push(commands)
+.. automethod:: svgwrite.path.Path.push
 
-.. automethod:: svgwrite.path.Path.push_arc(target, rotation, r, large_arc=True, angle_dir='+', absolute=False)
+.. automethod:: svgwrite.path.Path.push_arc
 
-Inherited Attributes
---------------------
+Parent Classes
+--------------
 
-.. attribute:: attribs
-
-   `dict` of SVG attributes
-
-.. attribute:: elements
-
-   `list` of SVG subelements
-
-Inherited Methods
------------------
-
-.. automethod:: svgwrite.path.Path.add(element)
-
-.. automethod:: svgwrite.path.Path.tostring()
-
-.. automethod:: svgwrite.path.Path.get_xml()
-
-Supported Interfaces
---------------------
-
-:class:`svgwrite.interface.ITransform`
-
-    :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
-    :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
-
-Used Mixins
------------
-
-:class:`svgwrite.mixins.Presentation`
-
-    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
-
-:class:`svgwrite.mixins.Markers`
-
-    :meth:`set_markers`
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Presentation`
+* :class:`svgwrite.mixins.Markers`
 
 Path Commands
 -------------
@@ -134,7 +103,7 @@ indicates relative coordinates
 
   close current subpath
 
-SVG attributes
+SVG Attributes
 --------------
 
 * **class** -- `string`

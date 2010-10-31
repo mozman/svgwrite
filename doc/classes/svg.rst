@@ -1,9 +1,11 @@
-:class:`SVG`
-============
+SVG
+===
 
 .. autoclass:: svgwrite.container.SVG
 
-.. automethod:: svgwrite.container.SVG.__init__([insert=None, size=None, attribs=None, \*\*extra])
+.. seealso:: http://www.w3.org/TR/SVG11/struct.html#SVGElement
+
+.. automethod:: svgwrite.container.SVG.__init__
 
 Attributes
 ----------
@@ -16,57 +18,80 @@ Attributes
 
      svgobject.defs.add(element)
 
-Inherited Attributes
---------------------
+Parent Classes
+--------------
 
-.. attribute:: SVG.attribs
-
-   `dict` of SVG attributes
-
-.. attribute:: SVG.elements
-
-   `list` of SVG subelements
-
-Inherited Methods
------------------
-
-.. automethod:: svgwrite.container.SVG.add(element)
-
-.. automethod:: svgwrite.container.SVG.tostring()
-
-.. automethod:: svgwrite.container.SVG.get_xml()
-
-Supported Interfaces
---------------------
-
-:class:`svgwrite.interface.IViewBox`
-    :meth:`viewbox`, :meth:`stretch`, :meth:`fit`
-
-Used Mixins
------------
-
-:class:`svgwrite.mixins.Presentation`
-
-    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
-
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.container.Symbol`
+* :class:`svgwrite.container.SVG`
+* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.interface.IViewBox`
+* :class:`svgwrite.mixins.Presentation`
 
 SVG Attributes
 --------------
 
-* **class** -- `string` assigns one or more css-class-names to an element
-* **style** -- `string` allows per-element css-style rules to be specified
-  directly on a given element
-* **x** -- `coordinate` x-coordinate, if <svg> is enbedded into another
-  <svg>-element
-* **y** -- `coordinate` y-coordinate, if <svg> is enbedded into another
-  <svg>-element
-* **width** -- `length` canvas-width - default is '100%'
-* **height** -- `length` canvas-height - default is '100%'
+* **class** -- `string`
+
+  assigns one or more css-class-names to an element
+
+* **style** -- `string`
+
+  allows per-element css-style rules to be specified directly on a given
+  element
+
+* **externalResourcesRequired** -- `bool`
+
+  *False*: if document rendering can proceed even if external resources are
+  unavailable else: *True*
+
+* **transform** -- use :class:`svgwrite.interface.ITransform` interface
+
+* **x** -- `<coordinate>`
+
+  (Has no meaning or effect on :class:`~svgwrite.drawing.Drawing` .)
+
+  The x-axis coordinate of one corner of the rectangular region into which an
+  embedded **svg** element is placed.
+
+  Default is ``'0'``.
+
+* **y** -- `<coordinate>`
+
+  (Has no meaning or effect on :class:`~svgwrite.drawing.Drawing` .)
+
+  The y-axis coordinate of one corner of the rectangular region into which an
+  embedded **svg** element is placed.
+
+  Default is ``'0'``.
+
+* **width** -- `<length>`
+
+  For outermost **svg** elements (:class:`~svgwrite.drawing.Drawing`), the
+  intrinsic width of the SVG document fragment. For embedded **svg** elements,
+  the width of the rectangular region into which the **svg** element is placed.
+
+  A negative value is an error. A value of zero disables rendering of the element.
+
+  Default is ``'100%'``.
+
+* **height** -- `<length>`
+
+  For outermost **svg** elements (:class:`~svgwrite.drawing.Drawing`), the
+  intrinsic height of the SVG document fragment. For embedded **svg** elements,
+  the height of the rectangular region into which the **svg** element is placed.
+
+  A negative value is an error. A value of zero disables rendering of the element.
+
+  Default is ``'100%'``.
+
 * **viewBox** -- :class:`svgwrite.interface.IViewBox` interface
+
 * **preserveAspectRatio**  -- :class:`svgwrite.interface.IViewBox` interface
-* **zoomAndPan** -- ``"disable"|"magnify"`` : default is ``"magnify"``
-* **externalResourcesRequired** -- `bool` *False*: if document rendering
-  can proceed even if external resources are unavailable else: *True*
+
+* **zoomAndPan** -- ``'disable | magnify'``
+
+  Default is ``'magnify'``.
 
 .. note::
    do not set or change following SVG attributes:

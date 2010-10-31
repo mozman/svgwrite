@@ -1,5 +1,6 @@
-:class:`LinearGradient`
-=======================
+LinearGradient
+==============
+
 .. automodule:: svgwrite.gradients
 
 .. seealso::
@@ -12,11 +13,11 @@
 Methods
 -------
 
-.. automethod:: svgwrite.gradients.LinearGradient.__init__(start=None, end=None, inherit=None, attribs=None, \*\*extra)
+.. automethod:: svgwrite.gradients.LinearGradient.__init__
 
-.. automethod:: svgwrite.gradients.LinearGradient.add_stop_color(offset=None, color=None, opacity=None)
+.. automethod:: svgwrite.gradients.LinearGradient.add_stop_color
 
-.. automethod:: svgwrite.gradients.LinearGradient.get_paint_server()
+.. automethod:: svgwrite.gradients.LinearGradient.get_paint_server
 
 SVG Attributes
 --------------
@@ -40,7 +41,7 @@ SVG Attributes
 
   .. seealso:: http://www.w3.org/TR/SVG11/pservers.html#LinearGradientElementGradientUnitsAttribute
 
-* **gradientTransform** -- *<transform-list>*
+* **gradientTransform** -- `<transform-list>`
 
   Use the :class:`-svgwrite.interface.ITransform` interface to set transformations.
 
@@ -52,7 +53,7 @@ SVG Attributes
   including the implicit transformation necessary to convert from object
   bounding box units to user space.
 
-* **x1** -- *<coordinate>*
+* **x1** -- `<coordinate>`
 
   **x1**, **y1**, **x2** and **y2** define a gradient vector for the linear
   gradient. This gradient vector provides starting and ending points onto
@@ -61,15 +62,15 @@ SVG Attributes
 
   default is ``'0%'``
 
-* **y1** -- *<coordinate>*
+* **y1** -- `<coordinate>`
 
   See **x1**. Default is ``'0%'``
 
-* **x2** -- *<coordinate>*
+* **x2** -- `<coordinate>`
 
   See **x1**. Default is ``'100%'``
 
-* **y2** -- *<coordinate>*
+* **y2** -- `<coordinate>`
 
   See **x1**. Default is ``'0%'``
 
@@ -86,7 +87,7 @@ SVG Attributes
 
   default is ``'pad'``
 
-* **xlink:href** -- *<iri>* -- set by the 'inherit' parameter on :meth:`__init__`
+* **xlink:href** -- `<iri>` -- set by the **inherit** parameter on :meth:`__init__`
 
   A URI reference to a different :class:`LinearGradient` or :class:`RadialGradient`
   element within the current SVG document fragment. Any :class:`LinearGradient`
@@ -99,8 +100,8 @@ SVG Attributes
   its own **xlink:href** attribute, then the current element can inherit those
   attributes or gradient stops.
 
-:class:`RadialGradient`
-=======================
+RadialGradient
+==============
 
 .. seealso:: http://www.w3.org/TR/SVG11/pservers.html#RadialGradients
 
@@ -109,11 +110,11 @@ SVG Attributes
 Methods
 -------
 
-.. automethod:: svgwrite.gradients.RadialGradient.__init__(center=None, r=None, focal=None, inherit=None, attribs=None, \*\*extra)
+.. automethod:: svgwrite.gradients.RadialGradient.__init__
 
-.. automethod:: svgwrite.gradients.RadialGradient.add_stop_color(offset=None, color=None, opacity=None)
+.. automethod:: svgwrite.gradients.RadialGradient.add_stop_color
 
-.. automethod:: svgwrite.gradients.RadialGradient.get_paint_server()
+.. automethod:: svgwrite.gradients.RadialGradient.get_paint_server
 
 SVG Attributes
 --------------
@@ -138,7 +139,7 @@ SVG Attributes
 
   .. seealso:: http://www.w3.org/TR/SVG11/pservers.html#RadialGradientElementGradientUnitsAttribute
 
-* **cx** -- *<coordinate>*
+* **cx** -- `<coordinate>`
 
   **cx**, **cy** and **r** define the largest (i.e., outermost) circle for
   the radial gradient. The gradient will be drawn such that the 100% gradient
@@ -146,11 +147,11 @@ SVG Attributes
 
   default is ``'50%'``
 
-* **cy** -- *<coordinate>*
+* **cy** -- `<coordinate>`
 
   See **cx**. Default is ``'50%'``.
 
-* **r** -- *<length>*
+* **r** -- `<length>`
 
   See **cx**.
 
@@ -159,7 +160,7 @@ SVG Attributes
 
   Default is ``'50%'``.
 
-* **fx** -- *<coordinate>*
+* **fx** -- `<coordinate>`
 
   **fx** and **fy** define the focal point for the radial gradient. The
   gradient will be drawn such that the 0% gradient stop is mapped to (fx, fy).
@@ -169,7 +170,7 @@ SVG Attributes
   value for **fx**, then the value of 'fx' is inherited from the referenced
   element.
 
-* **fy** -- *<coordinate>*
+* **fy** -- `<coordinate>`
 
   See **fx**.
   If attribute **fy** is not specified, **fy** will coincide with the
@@ -178,7 +179,7 @@ SVG Attributes
   value for **fy**, then the value of **fy** is inherited from the referenced
   element.
 
-* **gradientTransform** -- *<transform-list>*
+* **gradientTransform** -- `<transform-list>`
 
   Use the :class:`-svgwrite.interface.ITransform` interface to set transformations.
 
@@ -188,6 +189,6 @@ SVG Attributes
 
   See :class:`LinearGradient`
 
-* **xlink:href** -- *<iri>* -- set by the 'inherit' parameter on :meth:`__init__`
+* **xlink:href** -- `<iri>` -- set by the **inherit** parameter on :meth:`__init__`
 
   See :class:`LinearGradient`

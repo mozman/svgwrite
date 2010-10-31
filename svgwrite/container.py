@@ -30,21 +30,31 @@ from interface import IViewBox, ITransform, IXLink
 from mixins import Presentation, Clipping
 
 class Group(BaseElement, ITransform, Presentation):
-    """ The <g> element is a container element for grouping together
-    related graphics elements.
+    """ The **Group** (SVG **g**) element is a container element for grouping
+    together related graphics elements.
+
+    Grouping constructs, when used in conjunction with the **desc** and **title**
+    elements, provide information about document structure and semantics.
+    Documents that are rich in structure may be rendered graphically, as speech,
+    or as braille, and thus promote accessibility.
+
+    A group of elements, as well as individual objects, can be given a name using
+    the **id** attribute. Named groups are needed for several purposes such as
+    animation and re-usable objects.
+
     """
     elementname = 'g'
 
 class Defs(Group):
-    """ The <defs> element is a container element for referenced elements. For
+    """ The **defs** element is a container element for referenced elements. For
     understandability and accessibility reasons, it is recommended that, whenever
-    possible, referenced elements be defined inside of a *defs*.
+    possible, referenced elements be defined inside of a **defs**.
     """
     elementname= 'defs'
 
 class Symbol(BaseElement, IViewBox, Presentation, Clipping):
-    """ The <symbol> element is used to define graphical template objects which
-    can be instantiated by a <use> element. The use of <symbol> elements for
+    """ The **symbol** element is used to define graphical template objects which
+    can be instantiated by a **use** element. The use of **symbol** elements for
     graphics that are used multiple times in the same document adds structure and
     semantics. Documents that are rich in structure may be rendered graphically,
     as speech, or as braille, and thus promote accessibility.
@@ -53,19 +63,19 @@ class Symbol(BaseElement, IViewBox, Presentation, Clipping):
     elementname = 'symbol'
 
 class Marker(BaseElement, IViewBox, Presentation):
-    """ The <marker> element defines the graphics that is to be used for
-    drawing arrowheads or polymarkers on a given <path>, <line>, <polyline>
-    or <polygon> element.
+    """ The **marker** element defines the graphics that is to be used for
+    drawing arrowheads or polymarkers on a given **path**, **line**, **polyline**
+    or **polygon** element.
 
-    Add Marker definitions to a `defs` section, preferred to the `defs` section
-    of the main drawing.
+    Add Marker definitions to a **defs** section, preferred to the **defs** section
+    of the **main drawing**.
 
     """
     elementname = 'marker'
     def __init__(self, insert=None, size=None, orient=None, attribs=None, **extra):
         """
-        :param 2-tuple insert: reference point
-        :param 2-tuple size: width, height
+        :param 2-tuple insert: reference point (**refX**, **refY**)
+        :param 2-tuple size: (**markerWidth**, **markerHeight**)
         :param orient: ``'auto'`` | `angle`
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
@@ -81,24 +91,22 @@ class Marker(BaseElement, IViewBox, Presentation):
             self['orient'] = orient
         if 'id' not in self.attribs: # an 'id' is necessary
             self['id'] = self.next_id()
-        if self.debug:
-            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
 class SVG(Symbol):
     """ An SVG document fragment consists of any number of SVG elements contained
-    within an <svg> element.
+    within an **svg** element.
 
     An SVG document fragment can range from an empty fragment (i.e., no content
-    inside of the <svg> element), to a very simple SVG document fragment containing
-    a single SVG graphics element such as a <rect>, to a complex, deeply nested
+    inside of the **svg** element), to a very simple SVG document fragment containing
+    a single SVG graphics element such as a **rect**, to a complex, deeply nested
     collection of container elements and graphics elements.
     """
     elementname = 'svg'
 
     def __init__(self, insert=None, size=None, attribs=None, **extra):
         """
-        :param 2-tuple insert: insert position
-        :param 2-tuple size: width, height
+        :param 2-tuple insert: insert position (**x**, **y**)
+        :param 2-tuple size: (**width**, **height**)
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
         """
@@ -114,11 +122,11 @@ class SVG(Symbol):
         self.add(self.defs) # add defs as first element
 
 class Use(BaseElement, ITransform, IXLink, Presentation):
-    """ The <use> element references another element and indicates that the graphical
+    """ The **use** element references another element and indicates that the graphical
     contents of that element is included/drawn at that given point in the document.
 
     Link to objects by href = ``'#object-id'`` or use the object itself as
-    href-argument, if the given element has no *id* attribute it gets an
+    href-argument, if the given element has no **id** attribute it gets an
     automatic generated id.
 
     """
@@ -127,8 +135,8 @@ class Use(BaseElement, ITransform, IXLink, Presentation):
     def __init__(self, href, insert=None, size=None, attribs=None, **extra):
         """
         :param string href: object link (id-string) or an object with an id-attribute
-        :param 2-tuple insert: insert point (x, y)
-        :param 2-tuple size: width, height
+        :param 2-tuple insert: insert point (**x**, **y**)
+        :param 2-tuple size: (**width**, **height**)
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
         """
@@ -146,19 +154,19 @@ class Use(BaseElement, ITransform, IXLink, Presentation):
         return super(Use, self).get_xml()
 
 class Hyperlink(BaseElement, ITransform, Presentation):
-    """ The <a> element indicate links (also known as Hyperlinks or Web links).
+    """ The **a** element indicate links (also known as Hyperlinks or Web links).
 
-    The remote resource (the destination for the link) is defined by a <IRI>
-    specified by the XLink ``xlink:href`` attribute. The remote resource may be
+    The remote resource (the destination for the link) is defined by a `<IRI>`
+    specified by the XLink **xlink:href** attribute. The remote resource may be
     any Web resource (e.g., an image, a video clip, a sound bite, a program,
     another SVG document, an HTML document, an element within the current
     document, an element within a different document, etc.). By activating
     these links (by clicking with the mouse, through keyboard input, voice
     commands, etc.), users may visit these resources.
 
-    A :class:`Hyperlink` is defined for each separate rendered element
-    contained within the :class:`Hyperlink` class; add sublements as usual with
-    the :meth:`add` method.
+    A **Hyperlink** is defined for each separate rendered element
+    contained within the **Hyperlink** class; add sublements as usual with
+    the `add` method.
 
     """
     elementname = 'a'
@@ -172,5 +180,3 @@ class Hyperlink(BaseElement, ITransform, Presentation):
         super(Hyperlink, self).__init__(attribs, **extra)
         self['xlink:href'] = href
         self['target'] = target
-        if self.debug:
-            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)

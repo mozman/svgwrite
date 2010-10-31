@@ -11,19 +11,20 @@ _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
 from utils import strlist
 
 class IViewBox(object):
-    """ The *IViewBox* interface provides the ability to specify that a given set
-    of graphics stretch to fit a particular container element.
+    """ The **IViewBox** interface provides the ability to specify that a
+    given set of graphics stretch to fit a particular container element.
 
-    The value of the *viewBox* attribute is a list of four numbers `min-x`, `min-y`,
-    `width` and `height`, separated by whitespace and/or a comma, which specify
-    a rectangle in **user space** which should be mapped to the bounds of the
-    viewport established by the given element, taking into account attribute
-    *preserveAspectRatio*.
+    The value of the **viewBox** attribute is a list of four numbers
+    **min-x**, **min-y**, **width** and **height**, separated by whitespace
+    and/or a comma, which specify a rectangle in **user space** which should
+    be mapped to the bounds of the viewport established by the given element,
+    taking into account attribute **preserveAspectRatio**.
 
     """
     def viewbox(self, minx=0, miny=0, width=0, height=0):
-        """ Specify a rectangle in **user space** (no units allowed) which should be
-        mapped to the bounds of the viewport established by the given element.
+        """ Specify a rectangle in **user space** (no units allowed) which
+        should be mapped to the bounds of the viewport established by the
+        given element.
 
         :param number minx: left border of the viewBox
         :param number miny: top border of the viewBox
@@ -40,18 +41,20 @@ class IViewBox(object):
         self['preserveAspectRatio'] = 'none'
 
     def fit(self, horiz="center", vert="middle", scale="meet"):
-        """ Set the preserveAspectRatio attribute.
+        """ Set the **preserveAspectRatio** attribute.
 
-        :param string horiz: horizontal alignment ``'left'|'center'|'right'``
-        :param string vert: vertical alignment ``'top'|'middle'|'bottom'``
-        :param string scale: scale method ``'meet'|'slice'``
+        :param string horiz: horizontal alignment ``'left | center | right'``
+        :param string vert: vertical alignment ``'top | middle | bottom'``
+        :param string scale: scale method ``'meet | slice'``
 
-        ============= ===========
+        ============= =======================================================
         Scale methods Description
-        ============= ===========
-        ``meet``      preserve aspect ration and zoom to limits of viewBox
-        ``slice``     preserve aspect ration and viewBox touch viewport on all bounds, viewBox will extend beyond the bounds of the viewport
-        ============= ===========
+        ============= =======================================================
+        ``'meet'``    preserve aspect ration and zoom to limits of viewBox
+        ``'slice'``   preserve aspect ration and viewBox touch viewport on
+                      all bounds, viewBox will extend beyond the bounds of
+                      the viewport
+        ============= =======================================================
 
         """
         if self.debug and scale not in ('meet', 'slice'):
@@ -59,17 +62,18 @@ class IViewBox(object):
         self['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)
 
 class ITransform(object):
-    """ The *ITransform* interface operates on the *transform* attribute.
-    The value of the *transform* attribute is a <transform-list>, which is defined
-    as a list of transform definitions, which are applied in the order provided.
-    The individual transform definitions are separated by whitespace and/or a comma.
-    All coordinates are **user space coordinates**.
+    """ The **ITransform** interface operates on the **transform** attribute.
+    The value of the **transform** attribute is a `<transform-list>`, which
+    is defined as a list of transform definitions, which are applied in the
+    order provided. The individual transform definitions are separated by
+    whitespace and/or a comma. All coordinates are **user
+    space coordinates**.
 
     """
     transformname = 'transform'
     def translate(self, tx, ty=None):
         """
-        Specifies a translation by *tx* and *ty*. If *ty* is not provided,
+        Specifies a translation by **tx** and **ty**. If **ty** is not provided,
         it is assumed to be zero.
 
         :param number tx: user coordinate - no units allowed
@@ -79,9 +83,9 @@ class ITransform(object):
 
     def rotate(self, angle, center=None):
         """
-        Specifies a rotation by *angle* degrees about a given point.
-        If optional parameter *ceneter* are not supplied, the rotate is about
-        the origin of the current user coordinate system.
+        Specifies a rotation by **angle** degrees about a given point.
+        If optional parameter **center** are not supplied, the rotate is
+        about the origin of the current user coordinate system.
 
         :param number angle: rotate-angle in degrees
         :param 2-tuple center: rotate-center as user coordinate - no units allowed
@@ -91,8 +95,8 @@ class ITransform(object):
 
     def scale(self, sx, sy=None):
         """
-        Specifies a scale operation by *sx* and *sy*. If *sy* is not provided,
-        it is assumed to be equal to *sx*.
+        Specifies a scale operation by **sx** and **sy**. If **sy** is not
+        provided, it is assumed to be equal to **sx**.
 
         :param number sx: scalar factor x-axis, no units allowed
         :param number sy: scalar factor y-axis, no units allowed
@@ -127,11 +131,11 @@ class IXLink(object):
     """ Xlink interface """
     def set_href(self, element):
         """
-        Create a reference to *element*.
+        Create a reference to **element**.
 
-        :param element: if element is a `string` its the *id* name of the
-          referenced element, if element is a :class:`~svgwrite.base.BaseElement`
-          the *id* SVG Attribute is used to create the reference.
+        :param element: if element is a `string` its the **id** name of the
+          referenced element, if element is a **BaseElement** class the **id**
+          SVG Attribute is used to create the reference.
 
         """
         self.href = element

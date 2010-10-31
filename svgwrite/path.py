@@ -26,6 +26,8 @@ class Path(BaseElement, ITransform, Presentation, Markers):
         super(Path, self).__init__(attribs, **extra)
         self.commands = []
         self.push(d)
+        if self.debug:
+            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
 
     def push(self, *elements):

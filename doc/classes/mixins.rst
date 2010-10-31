@@ -1,5 +1,5 @@
-:class:`Presentation` mixin
-===========================
+Presentation Mixin
+==================
 
 .. autoclass:: svgwrite.mixins.Presentation
 
@@ -31,8 +31,8 @@ Methods
    * http://www.w3.org/TR/SVG11/painting.html#StrokeDasharrayProperty
    * http://www.w3.org/TR/SVG11/painting.html#StrokeDashoffsetProperty
 
-:class:`MediaGroup` mixin
-=========================
+MediaGroup Mixin
+================
 
 .. autoclass:: svgwrite.mixins.MediaGroup
 
@@ -50,8 +50,8 @@ Methods
    * http://www.w3.org/TR/SVGMobile12/painting.html#viewport-fill-property
    * http://www.w3.org/TR/SVGMobile12/painting.html#viewport-fill-opacity-property
 
-:class:`Markers` mixin
-======================
+Markers Mixin
+=============
 
 .. autoclass:: svgwrite.mixins.Markers
 

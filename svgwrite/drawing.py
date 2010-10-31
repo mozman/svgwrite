@@ -6,21 +6,19 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 """
-The :class:`~svgwrite.Drawing` object is the overall container for all SVG
+The **Drawing** object is the overall container for all SVG
 elements. It provides the methods to store the drawing into a file or a
 file-like object. If you want to use stylesheets, the reference links
-to this stylesheets were also stored (:meth:`~Drawing.add_stylesheet`)
-in the :class:`~svgwrite.Drawing` object.
+to this stylesheets were also stored (`add_stylesheet`)
+in the **Drawing** object.
 
 set/get SVG attributes::
 
     element['attribute'] = value
     value = element['attribute']
 
-.. seealso::
-   :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+.. seealso:: :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 
-The *Drawing* class inherits from: :class:`~svgwrite.SVG`
 """
 
 from container import SVG, Defs
@@ -28,13 +26,13 @@ from container import SVG, Defs
 from elementfactory import ElementFactory
 
 class Drawing(SVG, ElementFactory):
-    """ This is the SVG drawing represented by the top level <svg /> element.
+    """ This is the SVG drawing represented by the top level **svg** element.
 
     A drawing consists of any number of SVG elements contained within the drawing
-    element, stored in the :attr:`elements` attribute.
+    element, stored in the **elements** attribute.
 
     A drawing can range from an empty drawing (i.e., no content inside of the drawing),
-    to a very simple drawing containing a single SVG element such as a <rect>,
+    to a very simple drawing containing a single SVG element such as a **rect**,
     to a complex, deeply nested collection of container elements and graphics elements.
     """
     def __init__(self, filename="noname.svg", size=('100%', '100%'), **extra):
@@ -70,8 +68,7 @@ class Drawing(SVG, ElementFactory):
         :param string href: link to stylesheet <URI>
         :param string title: name of stylesheet
         :param string alternate: ``'yes'|'no'``
-        :param string media: ``'all'|'aureal'|'braille'|'embossed'|'handheld'|
-            'print'|'projection'|'screen'|'tty'|'tv'``
+        :param string media: ``'all | aureal | braille | embossed | handheld | print | projection | screen | tty | tv'``
 
         """
         self._stylesheets.append( (href, title, alternate, media) )

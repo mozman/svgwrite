@@ -11,9 +11,9 @@ from interface import ITransform, _vert, _horiz
 from mixins import Clipping
 
 class Image(BaseElement, ITransform, Clipping):
-    """ The <image> element indicates that the contents of a complete file are
+    """ The **image** element indicates that the contents of a complete file are
     to be rendered into a given rectangle within the current user coordinate
-    system. The <image> element can refer to raster image files such as PNG
+    system. The **image** element can refer to raster image files such as PNG
     or JPEG or to files with MIME type of "image/svg+xml".
 
     """
@@ -22,8 +22,8 @@ class Image(BaseElement, ITransform, Clipping):
     def __init__(self, href, insert=None, size=None, attribs=None, **extra):
         """
         :param string href: hyperlink to the image resource
-        :param 2-tuple insert: insert point (x, y)
-        :param 2-tuple size: width, height
+        :param 2-tuple insert: insert point (**x**, **y**)
+        :param 2-tuple size: (**width**, **height**)
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
         """

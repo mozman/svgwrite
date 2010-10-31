@@ -1,52 +1,37 @@
-:class:`Symbol`
-===============
+Symbol
+======
 
 .. autoclass:: svgwrite.container.Symbol
 
-Inherited Attributes
---------------------
+.. seealso:: http://www.w3.org/TR/SVG11/struct.html#SymbolElement
 
-.. attribute:: Symbol.attribs
+Parent Classes
+--------------
 
-   `dict` of SVG attributes
-
-.. attribute:: Symbol.elements
-
-   `list` of SVG subelements
-
-Inherited Methods
------------------
-
-.. automethod:: svgwrite.container.Symbol.add(element)
-
-.. automethod:: svgwrite.container.Symbol.tostring()
-
-.. automethod:: svgwrite.container.Symbol.get_xml()
-
-Supported Interfaces
---------------------
-
-:class:`svgwrite.interface.IViewBox`
-    :meth:`viewbox`, :meth:`stretch`, :meth:`fit`
-
-Used Mixins
------------
-
-:class:`svgwrite.mixins.Presentation`
-
-    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.IViewBox`
+* :class:`svgwrite.mixins.Presentation`
+* :class:`svgwrite.mixins.Clipping`
 
 SVG Attributes
 --------------
 
-  .. seealso:: http://www.w3.org/TR/SVG11/struct.html#SymbolElement
+* **class** -- `string`
 
-* **class** -- `string` assigns one or more css-class-names to an element
-* **style** -- `string` allows per-element css-style rules to be specified
-  directly on a given element
-* **externalResourcesRequired** -- `bool` *False*: if document rendering
-  can proceed even if external resources are unavailable else: *True*
+  assigns one or more css-class-names to an element
+
+* **style** -- `string`
+
+  allows per-element css-style rules to be specified directly on a given
+  element
+
+* **externalResourcesRequired** -- `bool`
+
+  *False*: if document rendering can proceed even if external resources are
+  unavailable else: *True*
+
 * **viewBox** -- use :class:`svgwrite.interface.IViewBox` interface
+
 * **preserveAspectRatio** -- use :class:`svgwrite.interface.IViewBox`
   interface
 

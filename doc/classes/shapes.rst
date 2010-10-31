@@ -1,112 +1,213 @@
-:class:`Line`
-=============
+Line
+====
 
 .. autoclass:: svgwrite.shapes.Line
 
-Used Mixins
-~~~~~~~~~~~
+.. seealso:: http://www.w3.org/TR/SVG11/shapes.html#LineElement
 
-:class:`svgwrite.mixins.Markers`
+.. automethod:: svgwrite.shapes.Line.__init__
 
-    :meth:`set_markers`
+SVG Attributes
+--------------
 
-:class:`Rect`
-=============
+* **x1** -- `<coordinate>` start-x
+* **y1** -- `<coordinate>` start-y
+* **x2** -- `<coordinate>` end-x
+* **y2** -- `<coordinate>` end-y
+
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Presentation`
+* :class:`svgwrite.mixins.Markers`
+
+Rect
+====
 
 .. autoclass:: svgwrite.shapes.Rect
 
-:class:`Circle`
-===============
+.. seealso:: http://www.w3.org/TR/SVG11/shapes.html#RectElement
+
+.. automethod:: svgwrite.shapes.Rect.__init__
+
+SVG Attributes
+--------------
+
+* **x** -- `<coordinate>`
+
+  The x-axis coordinate of the side of the
+  rectangle which has the smaller x-axis coordinate value
+
+* **y** -- `<coordinate>`
+
+  The y-axis coordinate of the side of the
+  rectangle which has the smaller y-axis coordinate value
+
+* **width** -- `<lenght>`
+
+* **height** -- `<lenght>`
+
+* **rx** -- `<length>`
+
+  For rounded rectangles, the y-axis radius of the
+  ellipse used to round off the corners of the rectangle.
+
+* **ry** -- `<length>`
+
+  For rounded rectangles, the y-axis radius of the
+  ellipse used to round off the corners of the rectangle.
+
+
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Presentation`
+
+Circle
+======
 
 .. autoclass:: svgwrite.shapes.Circle
 
-:class:`Ellipse`
-================
+.. seealso:: http://www.w3.org/TR/SVG11/shapes.html#CircleElement
+
+.. automethod:: svgwrite.shapes.Circle.__init__
+
+SVG Attributes
+--------------
+
+* **cx** -- `<coordinate>`
+
+  The x-axis coordinate of the center of the circle.
+
+* **cy** -- `<coordinate>`
+
+  The y-axis coordinate of the center of the circle.
+
+* **r** -- `<length>`
+
+  The radius of the circle.
+
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Presentation`
+
+Ellipse
+=======
 
 .. autoclass:: svgwrite.shapes.Ellipse
 
-:class:`Polyline`
-=================
+.. seealso:: http://www.w3.org/TR/SVG11/shapes.html#EllipseElement
+
+.. automethod:: svgwrite.shapes.Ellipse.__init__
+
+SVG Attributes
+--------------
+
+* **cx** -- `<coordinate>`
+
+  The x-axis coordinate of the center of the ellipse.
+
+* **cy** -- `<coordinate>`
+
+  The y-axis coordinate of the center of the ellipse.
+
+* **rx** -- `<length>`
+
+  The x-axis radius of the ellipse.
+
+* **ry** -- `<length>`
+
+  The y-axis radius of the ellipse.
+
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Presentation`
+
+Polyline
+========
 
 .. autoclass:: svgwrite.shapes.Polyline
 
-Used Mixins
-~~~~~~~~~~~
+.. seealso:: http://www.w3.org/TR/SVG11/shapes.html#PolylineElement
 
-:class:`svgwrite.mixins.Markers`
+.. automethod:: svgwrite.shapes.Polyline.__init__
 
-    :meth:`set_markers`
+Attributes
+----------
 
-:class:`Polygon`
-================
+.. attribute:: Polyline.points
+
+   *list* of points, a point is a <2-tuple> (x, y): x, y = <number>
+
+SVG Attributes
+--------------
+
+* **points** -- `<list-of-points>`
+
+  The points that make up the polyline. All coordinate values are in the
+  **user coordinate system** (no units allowed).
+
+How to append points::
+
+    Polyline.points.append( point )
+    Polyline.points.extend( [point1, point2, point3, ...] )
+
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Presentation`
+* :class:`svgwrite.mixins.Markers`
+
+Polygon
+=======
 
 .. autoclass:: svgwrite.shapes.Polygon
 
-Used Mixins
-~~~~~~~~~~~
+.. seealso:: http://www.w3.org/TR/SVG11/shapes.html#PolygonElement
 
-:class:`svgwrite.mixins.Markers`
+Parent Classes
+--------------
 
-    :meth:`set_markers`
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Presentation`
+* :class:`svgwrite.mixins.Markers`
 
-Common for: Line, Rect, Circle, Ellipse, Polyline, Polygon
-----------------------------------------------------------
+Common SVG Attributes
+------------------------
 
-Inherited Attributes
-~~~~~~~~~~~~~~~~~~~~
+* **class** -- `string`
 
-.. attribute:: Polygon.attribs
+  assigns one or more css-class-names to an element
 
-   *dict* of SVG attributes
+* **style** -- `string`
 
-.. attribute:: Polygon.elements
+  allows per-element css-style rules to be specified directly on a given
+  element
 
-   *list* of SVG subelements
+* **externalResourcesRequired** -- `bool`
 
-Inherited Methods
-~~~~~~~~~~~~~~~~~
+  *False*: if document rendering can proceed even if external resources are
+  unavailable else: *True*
 
-.. automethod:: svgwrite.base.BaseElement.add(element)
-   :noindex:
-
-.. automethod:: svgwrite.base.BaseElement.tostring()
-   :noindex:
-
-.. automethod:: svgwrite.base.BaseElement.get_xml()
-   :noindex:
-
-Supported Interfaces
-~~~~~~~~~~~~~~~~~~~~
-
-:class:`svgwrite.interface.ITransform`
-
-    :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
-    :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
-
-Used Mixins
-~~~~~~~~~~~
-
-:class:`svgwrite.mixins.Presentation`
-
-    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
-
-Supported SVG attributes
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **class** -- `string` assigns one or more css-class-names to an element
-* **style** -- `string` allows per-element css-style rules to be specified
-  directly on a given element
-* **externalResourcesRequired** -- `bool` *False*: if document rendering can
-  proceed even if external resources are unavailable else: *True*
-* **transform** -- use :class:`~svgwrite.interface.ITransform` interface
+* **transform** -- use :class:`svgwrite.interface.ITransform` interface
 
 Standard SVG Attributes
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 * :doc:`Core Attributes </attributes/core>`
 * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
 * :doc:`Graphical Event Attributes </attributes/graphical_event>`
 * :doc:`Presentation Attributes </attributes/presentation>`
-
-
-for description see :ref:`Common SVG Attributs <Common-SVG-Attributs>`

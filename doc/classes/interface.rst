@@ -1,41 +1,41 @@
-:class:`IViewBox` interface
-===========================
+IViewBox interface
+==================
 
 .. autoclass:: svgwrite.interface.IViewBox
 
 Methods
 -------
 
-.. automethod:: svgwrite.interface.IViewBox.viewbox([minx=0, miny=0, width=0, height=0])
+.. automethod:: svgwrite.interface.IViewBox.viewbox
 
-.. automethod:: svgwrite.interface.IViewBox.stretch()
+.. automethod:: svgwrite.interface.IViewBox.stretch
 
-.. automethod:: svgwrite.interface.IViewBox.fit([horiz="center", vert="middle", scale="meet"])
+.. automethod:: svgwrite.interface.IViewBox.fit
 
-:class:`ITransform` interface
-=============================
+ITransform interface
+====================
 
 .. autoclass:: svgwrite.interface.ITransform
 
 Methods
 -------
 
-.. automethod:: svgwrite.interface.ITransform.translate(tx, [ty=None])
+.. automethod:: svgwrite.interface.ITransform.translate
 
-.. automethod:: svgwrite.interface.ITransform.rotate(angle, [center=None])
+.. automethod:: svgwrite.interface.ITransform.rotate
 
-.. automethod:: svgwrite.interface.ITransform.skewX(angle)
+.. automethod:: svgwrite.interface.ITransform.skewX
 
-.. automethod:: svgwrite.interface.ITransform.skewY(angle)
+.. automethod:: svgwrite.interface.ITransform.skewY
 
-.. automethod:: svgwrite.interface.ITransform.scale(sx, [sy=None])
+.. automethod:: svgwrite.interface.ITransform.scale
 
-:class:`IXLink` interface
-=========================
+IXLink interface
+================
 
 .. autoclass:: svgwrite.interface.IXLink
 
 Methods
 -------
 
-.. automethod:: svgwrite.interface.IXLink.set_href(element)
+.. automethod:: svgwrite.interface.IXLink.set_href
