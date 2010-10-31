@@ -1,5 +1,5 @@
-:class:`ClipPath`
-=================
+ClipPath
+========
 
 .. autoclass:: svgwrite.masking.ClipPath
 
@@ -52,8 +52,8 @@ Standard SVG Attributes
 * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
 * :doc:`Presentation Attributes </attributes/presentation>`
 
-:class:`Mask`
-=============
+Mask
+====
 
 .. autoclass:: svgwrite.masking.Mask
 
@@ -72,8 +72,8 @@ SVG Attributes
 
 * **externalResourcesRequired** -- `bool`
 
-  *False*: if document rendering can proceed even if external resources are
-  unavailable else: *True*
+  `False`: if document rendering can proceed even if external resources are
+  unavailable else: `True`
 
 * **maskUnits** -- ``'userSpaceOnUse | objectBoundingBox'``
 

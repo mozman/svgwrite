@@ -47,5 +47,3 @@ class Mask(BaseElement):
         if size is not None:
             self['width'] = size[0]
             self['height'] = size[1]
-        if self.debug:
-            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)

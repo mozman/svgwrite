@@ -27,10 +27,6 @@ class _GradientStop(BaseElement):
         if opacity is not None:
             self['stop-opacity'] = opacity
 
-        if self.debug:
-            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
-
-
 class _AbstractGradient(BaseElement, ITransform, IXLink):
     transformname = 'gradientTransform'
     def __init__(self, inherit=None, attribs=None, **extra):
@@ -49,7 +45,7 @@ class _AbstractGradient(BaseElement, ITransform, IXLink):
         """ Adds a stop-color to the gradient.
 
         :param offset: is either a <number> (usually ranging from 0 to 1) or
-          a <percentage> (usually ranging from 0% to 100%) which indicates where
+          a `<percentage>` (usually ranging from 0% to 100%) which indicates where
           the gradient stop is placed. Represents a location along the gradient
           vector. For radial gradients, it represents a percentage distance from
           (fx,fy) to the edge of the outermost/largest circle.
@@ -101,9 +97,6 @@ class LinearGradient(_AbstractGradient):
             self['x2'] = end[0]
             self['y2'] = end[1]
 
-        if self.debug:
-            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
-
 class RadialGradient(_AbstractGradient):
     """ Radial gradients are defined by a SVG <radialGradient> element.
     """
@@ -126,6 +119,3 @@ class RadialGradient(_AbstractGradient):
         if focal is not None:
             self['fx'] = focal[0]
             self['fy'] = focal[1]
-
-        if self.debug:
-            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)

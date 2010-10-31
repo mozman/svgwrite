@@ -1,60 +1,54 @@
-:class:`Hyperlink`
-==================
+Hyperlink
+=========
 
-The :class:`Hyperlink` represents the SVG <a> element.
+The **Hyperlink** class represents the SVG **a** element.
 
 .. autoclass:: svgwrite.container.Hyperlink
 
-.. automethod:: svgwrite.container.Hyperlink.__init__(href, [target='_blank', attribs=None, \*\*extra])
+.. seealso:: http://www.w3.org/TR/SVG11/linking.html#AElement
 
-Inherited Attributes
---------------------
+.. automethod:: svgwrite.container.Hyperlink.__init__
 
-.. attribute:: Hyperlink.attribs
-
-   *dict* of SVG attributes
-
-.. attribute:: Hyperlink.elements
-
-   *list* of SVG subelements
-
-Inherited Methods
------------------
-
-.. automethod:: svgwrite.container.Hyperlink.add(element)
-
-.. automethod:: svgwrite.container.Hyperlink.tostring()
-
-.. automethod:: svgwrite.container.Hyperlink.get_xml()
-
-Supported Interfaces
---------------------
-
-:class:`svgwrite.interface.ITransform`
-    :meth:`translate`, :meth:`rotate`, :meth:`scale`, :meth:`skewX`,
-    :meth:`skewY`, :meth:`matrix`, :meth:`rev`, :meth:`del_transform`
-
-Used Mixins
------------
-
-:class:`svgwrite.mixins.Presentation`
-
-    :meth:`fill`, :meth:`stroke`, :meth:`dasharray`
-
-SVG attributes
+Parent Classes
 --------------
 
-* **class** -- `string` assigns one or more css-class-names to an element
-* **style** -- `string` allows per-element css-style rules to be specified
-  directly on a given element
-* **transform** -- :class:`svgwrite.interface.ITransform` interface
-* **xlink:href** -- `string` set on :meth:`__init__`
-* **xlink:show** -- ``'new|replace'`` use the **target** attribute
-* **xlink:acuate** -- `string` ``'onRequest'`` This attribute provides
-  documentation to XLink-aware processors that an application should
-  traverse from the starting resource to the ending resource only on a
-  post-loading event triggered for the purpose of traversal.
-* **target** -- `string` This attribute specifies the name or portion of
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Presentation`
+
+SVG Attributes
+--------------
+
+* **class** -- `string`
+
+  assigns one or more css-class-names to an element
+
+* **style** -- `string`
+
+  allows per-element css-style rules to be specified directly on a given
+  element
+
+* **externalResourcesRequired** -- `bool`
+
+  *False*: if document rendering can proceed even if external resources are
+  unavailable else: *True*
+
+* **transform** -- use :class:`svgwrite.interface.ITransform` interface
+
+* **xlink:href** -- `string`
+
+* **xlink:show** -- ``'new|replace'``
+
+  use the **target** attribute
+
+* **xlink:acuate** -- ``'onRequest'``
+
+  This attribute provides documentation to XLink-aware processors that an
+  application should traverse from the starting resource to the ending
+  resource only on a post-loading event triggered for the purpose of traversal.
+
+* **target** -- `string`
+  This attribute specifies the name or portion of
   the target window, frame, pane, tab, or other relevant presentation
   context (e.g., an HTML or XHTML frame, iframe, or object element)
   into which a document is to be opened when the link is activated.
@@ -77,9 +71,6 @@ SVG attributes
     If this already exists, it is re-used, replacing the existing
     content. If it does not exist, it is created (the same as ``_blank``,
     except that it now has a name).
-
-* **externalResourcesRequired** -- `bool` *False*: if document rendering
-  can proceed even if external resources are unavailable else: *True*
 
 Standard SVG Attributes
 -----------------------

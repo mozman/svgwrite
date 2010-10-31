@@ -1,9 +1,9 @@
-:class:`BaseElement`
-====================
+BaseElement
+===========
 
 .. autoclass:: svgwrite.base.BaseElement
 
-.. automethod:: svgwrite.base.BaseElement.__init__([attribs=None, **extra])
+.. automethod:: svgwrite.base.BaseElement.__init__
 
 Attributes
 ----------
@@ -19,21 +19,21 @@ Attributes
 Methods
 -------
 
-.. automethod:: svgwrite.base.BaseElement.add(element)
+.. automethod:: svgwrite.base.BaseElement.add
 
-.. automethod:: svgwrite.base.BaseElement.tostring()
+.. automethod:: svgwrite.base.BaseElement.tostring
 
-.. automethod:: svgwrite.base.BaseElement.get_xml()
+.. automethod:: svgwrite.base.BaseElement.get_xml
 
-.. automethod:: svgwrite.base.BaseElement.get_id()
+.. automethod:: svgwrite.base.BaseElement.get_id
 
-.. automethod:: svgwrite.base.BaseElement.get_iri()
+.. automethod:: svgwrite.base.BaseElement.get_iri
 
-.. automethod:: svgwrite.base.BaseElement.get_funciri()
+.. automethod:: svgwrite.base.BaseElement.get_funciri
 
-.. automethod:: svgwrite.base.BaseElement.__getitem__(key)
+.. automethod:: svgwrite.base.BaseElement.__getitem__
 
-.. automethod:: svgwrite.base.BaseElement.__setitem__(key, value)
+.. automethod:: svgwrite.base.BaseElement.__setitem__
 
 set/get SVG attributes::
 

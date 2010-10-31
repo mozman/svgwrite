@@ -77,6 +77,13 @@ Masking
 
    classes/masking
 
+Animation
+---------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/animate
 
 Interfaces
 ----------

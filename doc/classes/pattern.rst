@@ -1,5 +1,5 @@
-:class:`Pattern`
-================
+Pattern
+=======
 
 .. autoclass:: svgwrite.pattern.Pattern
 
@@ -8,11 +8,11 @@
 Methods
 -------
 
-.. automethod:: svgwrite.pattern.Pattern.__init__(insert=None, size=None, inherit=None, attribs=None, \*\*extra)
+.. automethod:: svgwrite.pattern.Pattern.__init__
 
-.. method:: Pattern.add(element)
+.. method:: Pattern.add
 
-Add *element* to the pattern content.
+Add **element** to the pattern content.
 
 The contents of the **pattern** are relative to a new coordinate system.
 If there is a **viewBox** attribute, then the new coordinate system is fitted
@@ -81,7 +81,7 @@ SVG Attributes
 
   Default is ``'userSpaceOnUse'``.
 
-* **patternTransform** -- *<transform-list>*
+* **patternTransform** -- `<transform-list>`
 
   Use the :class:`~svgwrite.interface.ITransform` interface to set transformations.
 
@@ -93,20 +93,20 @@ SVG Attributes
   transformations, including the implicit transformation necessary to convert
   from object bounding box units to user space.
 
-* **x** -- *<coordinate>*
+* **x** -- `<coordinate>`
 
   **x**, **y**, **width** and **height** indicate how the pattern tiles are
   placed and spaced. These attributes represent coordinates and values in the
   coordinate space specified by the combination of attributes **patternUnits**
   and **patternTransform**.
 
-  Default is '0'.
+  Default is ``'0'``.
 
 * **y** -- *<coordinate>*
 
   See **x**.
 
-  Default is '0'.
+  Default is ``'0'``.
 
 * **width** -- *<length>*
 
@@ -115,7 +115,7 @@ SVG Attributes
   A negative value is an error. A value of zero disables rendering of the
   element (i.e., no paint is applied).
 
-  Default is '0'.
+  Default is ``'0'``.
 
 * **height** -- *<length>*
 
@@ -124,7 +124,7 @@ SVG Attributes
   A negative value is an error. A value of zero disables rendering of the
   element (i.e., no paint is applied).
 
-  Default is '0'.
+  Default is ``'0'``.
 
 * **xlink:href** -- `string`
 
