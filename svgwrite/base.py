@@ -6,7 +6,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 """
-The :class:`BaseElement` is the root for all SVG elements.
+The **BaseElement** is the root for all SVG elements.
 """
 
 import xml.etree.ElementTree as etree
