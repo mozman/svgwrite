@@ -11,8 +11,8 @@ from interface import ITransform
 from mixins import Presentation, Markers
 
 class Line(BaseElement, ITransform, Presentation, Markers):
-    """ The **line** element defines a line segment that starts at one point and ends
-    at another.
+    """ The **line** element defines a line segment that starts at one point
+    and ends at another.
     """
     elementname = 'line'
 
@@ -103,14 +103,14 @@ class Ellipse(BaseElement, ITransform, Presentation):
         self['ry'] = ry
 
 class Polyline(BaseElement, ITransform, Presentation, Markers):
-    """ The **polyline*** element defines a set of connected straight line segments.
-    Typically, **polyline** elements define open shapes.
+    """ The **polyline** element defines a set of connected straight line
+    segments. Typically, **polyline** elements define open shapes.
     """
     elementname = 'polyline'
 
     def __init__(self, points=[], attribs=None, **extra):
         """
-        :param `iterable` points: of points and points are <2-tuple>s
+        :param `iterable` points: `iterable` of points (points are `2-tuples`)
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
 
@@ -129,7 +129,7 @@ class Polyline(BaseElement, ITransform, Presentation, Markers):
 
     def points_to_string(self, points):
         """
-        Convert a <list> of points <2-tuples> to a <string> ``'p1x,p1y p2x,p2y ...'``.
+        Convert a `list` of points `2-tuples` to a `string` ``'p1x,p1y p2x,p2y ...'``.
 
         """
         strings = []
@@ -150,8 +150,8 @@ class Polyline(BaseElement, ITransform, Presentation, Markers):
         return u' '.join(strings)
 
 class Polygon(Polyline):
-    """ The <polygon> element defines a closed shape consisting of a set of connected
-    straight line segments.
+    """ The **polygon** element defines a closed shape consisting of a set of
+    connected straight line segments.
 
     Same as :class:`~svgwrite.shapes.Polyline` but closed.
     """

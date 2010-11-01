@@ -15,6 +15,33 @@ SVG Attributes
 * **x2** -- `<coordinate>` end-x
 * **y2** -- `<coordinate>` end-y
 
+Common SVG Attributes
+---------------------
+
+* **class** -- `string`
+
+  assigns one or more css-class-names to an element
+
+* **style** -- `string`
+
+  allows per-element css-style rules to be specified directly on a given
+  element
+
+* **externalResourcesRequired** -- `bool`
+
+  *False*: if document rendering can proceed even if external resources are
+  unavailable else: *True*
+
+* **transform** -- use :class:`svgwrite.interface.ITransform` interface
+
+Common Standard SVG Attributes
+------------------------------
+
+* :doc:`Core Attributes </attributes/core>`
+* :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
+* :doc:`Graphical Event Attributes </attributes/graphical_event>`
+* :doc:`Presentation Attributes </attributes/presentation>`
+
 Parent Classes
 --------------
 
@@ -147,12 +174,12 @@ Attributes
 
 .. attribute:: Polyline.points
 
-   *list* of points, a point is a <2-tuple> (x, y): x, y = <number>
+   `list` of points, a point is a `2-tuple` (x, y): x, y = `<number>`
 
 SVG Attributes
 --------------
 
-* **points** -- `<list-of-points>`
+* **points** -- `list` of points
 
   The points that make up the polyline. All coordinate values are in the
   **user coordinate system** (no units allowed).
@@ -184,30 +211,3 @@ Parent Classes
 * :class:`svgwrite.interface.ITransform`
 * :class:`svgwrite.mixins.Presentation`
 * :class:`svgwrite.mixins.Markers`
-
-Common SVG Attributes
-------------------------
-
-* **class** -- `string`
-
-  assigns one or more css-class-names to an element
-
-* **style** -- `string`
-
-  allows per-element css-style rules to be specified directly on a given
-  element
-
-* **externalResourcesRequired** -- `bool`
-
-  *False*: if document rendering can proceed even if external resources are
-  unavailable else: *True*
-
-* **transform** -- use :class:`svgwrite.interface.ITransform` interface
-
-Standard SVG Attributes
------------------------
-
-* :doc:`Core Attributes </attributes/core>`
-* :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
-* :doc:`Graphical Event Attributes </attributes/graphical_event>`
-* :doc:`Presentation Attributes </attributes/presentation>`
