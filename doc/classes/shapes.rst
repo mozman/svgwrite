@@ -18,6 +18,9 @@ SVG Attributes
 Common SVG Attributes
 ---------------------
 
+These are the common SVG Attributes for Line, Rect, Circle, Ellipse,
+Poliyline and Polygon.
+
 * **class** -- `string`
 
   assigns one or more css-class-names to an element
@@ -36,6 +39,9 @@ Common SVG Attributes
 
 Common Standard SVG Attributes
 ------------------------------
+
+These are the common Standard SVG Attributes for Line, Rect, Circle, Ellipse,
+Poliyline and Polygon.
 
 * :doc:`Core Attributes </attributes/core>`
 * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
