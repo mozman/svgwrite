@@ -5,7 +5,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 """
-The :mod:`container` module provides following structural objects:
+The **container** module provides following structural objects:
 
 * :class:`svgwrite.Group`
 * :class:`svgwrite.SVG`
@@ -20,9 +20,6 @@ set/get SVG attributes::
     element['attribute'] = value
     value = element['attribute']
 
-.. seealso::
-
-   :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 """
 
 from base import BaseElement
