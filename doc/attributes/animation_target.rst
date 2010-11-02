@@ -1,6 +1,8 @@
 Animation Target Attributes
 ===========================
 
+.. _attributeType:
+
 attributeType
 -------------
 
@@ -29,6 +31,8 @@ value       description
 The default value is ``'auto'``.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#AttributeTypeAttribute
+
+.. _attributeName:
 
 attributeName
 -------------

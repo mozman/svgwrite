@@ -7,14 +7,9 @@
 # License: GPLv3
 
 from base import BaseElement
+from interface import IXLink
 
-class Animate(BaseElement):
-    """ The **animate** element allows scalar attributes and properties to be
-    assigned different values over time .
-    """
-    elementname = 'animate'
-
-class Set(BaseElement):
+class Set(BaseElement, IXLink):
     """ The **set** element provides a simple means of just setting the value
     of an attribute for a specified duration. It supports all attribute types,
     including those that cannot reasonably be interpolated, such as string
@@ -23,22 +18,142 @@ class Set(BaseElement):
     """
     elementname = 'set'
 
-class AnimateColor(BaseElement):
+    def __init__(self, element=None, attribs=None, **extra):
+        """
+        :param element: target svg element, if element is not `None`; else
+          the target svg element is the parent svg element.
+        """
+        super(Animate, self).__init__(attribs=attribs, **extra)
+        if element is not None:
+            self.set_href(element)
+
+    def get_xml(self):
+        self.update_id() # if href is an object - 'id' - attribute may be changed!
+        return super(Animate, self).get_xml()
+
+    def set_target(self, attributeName, attributeType=None):
+        """
+        Set animation attributes :ref:`attributeName` and :ref:`attributeType`.
+        """
+        self['attrinbuteName'] = attributeName
+        if attributeType is not None:
+            self['attrinbuteType'] = attributeType
+
+
+    def set_event(self, onbegin=None, onend=None, onrepeat=None, onload=None):
+        """
+        Set animation attributes :ref:`onbegin`, :ref:`onend`, :ref:`onrepeat`
+        and :ref:`onload`.
+        """
+        if onbegin is not None:
+            self['onbegin'] = onbegin
+        if onend is not None:
+            self['onend'] = onend
+        if onrepeat is not None:
+            self['onrepeat'] = onrepeat
+        if onload is not None:
+            self['onload'] = onload
+
+    def set_timing(self, begin=None, end=None, dur=None, min=None, max=None,
+                   restart=None, repeatCount=None, repeatDur=None):
+        """
+        Set animation attributes :ref:`begin`, :ref:`end`, :ref:`dur`,
+        :ref:`min`, :ref:`max`, :ref:`restart`, :ref:`repeatCount` and
+        :ref:`repeatDur`.
+        """
+        if begin is not None:
+            self['begin']=begin
+        if end is not None:
+            self['end'] = end
+        if dur is not None:
+            self['dur'] = dur
+        if min is not None:
+            self['min'] = min
+        if max is not None:
+            self['max'] = max
+        if restart is not None:
+            self['restart'] = restart
+        if repeatCount is not None:
+            self['repeatCount'] = repeatCount
+        if repeatDur is not None:
+            self['repeatDur'] = repeatDur
+
+    def freeze(self):
+        """ Freeze the animation effect. (see also :ref:`fill <animateFill>`)
+        """
+        self['fill'] = 'freeze'
+
+class AnimateMotion(Set):
+    """ The **animateMotion** element causes a referenced element to move
+    along a motion path.
+    """
+    elementname = 'animateMotion'
+
+    def __init__(self, path=None, element=None, attribs=None, **extra):
+        """
+        :param path: the motion path
+        :param element: target svg element, if element is not `None`; else
+          the target svg element is the parent svg element.
+        """
+        super(AnimateMotion, self).__init__(element, attribs=attribs, **extra)
+        if path is not None:
+            self['path'] = path
+
+    def set_value(self, path=None, calcMode=None, keyPoints=None, rotate=None):
+        """
+        Set animation attributes `path`, `calcMode`, `keyPoints` and `rotate`.
+        """
+        if path is not None:
+            self['path'] = path
+        if calcMode is not None:
+            self['calcMode'] = calcMode
+        if keyPoints is not None:
+            self['keyPoints'] = keyPoints
+        if rotate is not None:
+            self['rotate'] = rotate
+
+class Animate(Set):
+    """ The **animate** element allows scalar attributes and properties to be
+    assigned different values over time .
+    """
+    elementname = 'animate'
+    def set_value(self, values, calcMode=None, keyTimes=None, keySplines=None,
+                  from_=None, to_=None, by_=None):
+        """
+        Set animation attributes :ref:`values`, :ref:`calcMode`, :ref:`keyTimes`,
+        :ref:`keySplines`, :ref:`from`, :ref:`to` and :ref:`by`.
+        """
+        self['values'] = values
+        if calcMode is not None:
+            self['calcMode'] = calcMode
+        if keyTimes is not None:
+            self['keyTimes'] = keyTimes
+        if keySplines is not None:
+            self['keySplines'] = keySplines
+        if from_ is not None:
+            self['to'] = to_
+        if to_ is not None:
+            self['from'] = from_
+        if by_ is not None:
+            self['by'] = by_
+
+class AnimateColor(Animate):
     """ The **animateColor** element specifies a color transformation over
     time.
     """
     elementname = 'animateColor'
 
-class AnimateMotion(BaseElement):
-    """ The **animateMotion** element causes a referenced element to move
-    along a motion path.
-    """
-    pass
-
-class AnimateTransform(BaseElement):
+class AnimateTransform(Animate):
     """ The **animateTransform** element animates a transformation attribute
     on a target element, thereby allowing animations to control translation,
     scaling, rotation and/or skewing.
     """
     elementname = 'animateTransform'
-
+    def __init__(self, transform, element=None, attribs=None, **extra):
+        """
+        :param element: target svg element, if element is not `None`; else
+          the target svg element is the parent svg element.
+        :param string transform: ``'translate | scale | rotate | skewX | skewY'``
+        """
+        super(AnimateTransform, self).__init__(element, attribs=attribs, **extra)
+        self['type'] = transform

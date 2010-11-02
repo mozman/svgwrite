@@ -1,6 +1,8 @@
 Animation Value Attributes
 ==========================
 
+.. _calcMode:
+
 calcMode
 --------
 
@@ -35,6 +37,8 @@ value          description
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#CalcModeAttribute
 
+.. _values:
+
 values
 ------
 
@@ -46,6 +50,8 @@ Per the SMIL specification, leading and trailing white space, and white
 space before and after semicolon separators, is allowed and will be ignored.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#ValuesAttribute
+
+.. _keyTimes:
 
 keyTimes
 --------
@@ -85,6 +91,8 @@ ignored.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#KeyTimesAttribute
 
+.. _keySplines:
+
 keySplines
 ----------
 
@@ -110,6 +118,8 @@ many or too few values), the document fragment is in error.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#KeySplinesAttribute
 
+.. _from:
+
 from
 ----
 
@@ -119,6 +129,8 @@ Specifies the starting value of the animation.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#FromAttribute
 
+.. _to:
+
 to
 ----
 
@@ -127,6 +139,8 @@ to = `<value>`
 Specifies the ending value of the animation.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#ToAttribute
+
+.. _by:
 
 by
 ----

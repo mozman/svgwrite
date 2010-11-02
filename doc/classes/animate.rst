@@ -6,43 +6,35 @@ vector graphics over time.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html
 
-Animate
-=======
-
-.. autoclass:: svgwrite.animate.Animate
-
-.. seealso:: http://www.w3.org/TR/SVG11/animate.html#AnimateElement
-
-SVG Animation Attributes
-------------------------
-
-* onbegin, onend, onrepeat, onload (:doc:`Animation Event Attributes </attributes/animation_events>`)
-* attributeType, attributeName (:doc:`Animation Target Attributes </attributes/animation_target>`)
-* begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (:doc:`Animation Timing Attributes </attributes/animation_timing>`)
-* calcMode, values, keyTimes, keySplines, from, to, by (:doc:`Animation Value Attributes </attributes/animation_value>`)
-* additive, accumulate (:doc:`Animation Addition Attributes </attributes/animation_addition>`)
-
-SVG Attributes
---------------
-
-* **externalResourcesRequired** -- `bool`
-
-  *False*: if document rendering can proceed even if external resources are
-  unavailable else: *True*
-
-Standard SVG Attributes
------------------------
-
-* :doc:`Core Attributes </attributes/core>`
-* :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
-* :doc:`XLink Attributes </attributes/xlink>`
-
 Set
 ===
 
 .. autoclass:: svgwrite.animate.Set
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#SetElement
+
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.IXLink`
+
+Methods
+-------
+
+.. automethod:: svgwrite.animate.Set.__init__
+
+.. method:: Animate.set_href(element)
+
+  :param element: set target svg element to `element`
+
+.. automethod:: svgwrite.animate.Animate.set_target
+
+.. automethod:: svgwrite.animate.Animate.set_event
+
+.. automethod:: svgwrite.animate.Animate.set_timing
+
+.. automethod:: svgwrite.animate.Animate.freeze
 
 SVG Animation Attributes
 ------------------------
@@ -77,6 +69,20 @@ AnimateMotion
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#AnimateMotionElement
 
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.animate.Set`
+
+Methods
+-------
+
+.. automethod:: svgwrite.animate.AnimateMotion.__init__
+
+.. automethod:: svgwrite.animate.AnimateMotion.set_value
+
 SVG Animation Attributes
 ------------------------
 
@@ -99,7 +105,12 @@ SVG Attributes
 
 * **path** -- `<path-data>`
 
-  The motion path, expressed in the same format and interpreted the same way as the ‘d’ attribute on the ‘path’ element. The effect of a motion path animation is to add a supplemental transformation matrix onto the CTM for the referenced object which causes a translation along the x- and y-axes of the current user coordinate system by the computed X and Y values computed over time.
+  The motion path, expressed in the same format and interpreted the same way
+  as the :ref:`d <pathCommands>` attribute on the **Path** element.
+  The effect of a motion path animation is to add a supplemental
+  transformation matrix onto the CTM for the referenced object which causes a
+  translation along the x- and y-axes of the current user coordinate system
+  by the computed X and Y values computed over time.
 
 * **keyPoints** -- `<list-of-numbers>`
 
@@ -116,7 +127,7 @@ SVG Attributes
   If there are any errors in the **keyPoints** specification (bad values,
   too many or too few values), then the document is in error.
 
-* **rotate** -- `<number>` | ``'auto | auto-reverse'``
+* **rotate** -- `<number>` | ``'auto'`` | ``'auto-reverse'``
 
   The **rotate** attribute post-multiplies a supplemental transformation
   matrix onto the CTM of the target element to apply a rotation
@@ -124,12 +135,12 @@ SVG Attributes
   The rotation transformation is applied after the supplemental translation
   transformation that is computed due to the **path** attribute.
 
-  * ``auto``
+  * ``'auto'``
 
     Indicates that the object is rotated over time by the angle of the
     direction (i.e., directional tangent vector) of the motion path.
 
-  * ``auto-reverse``
+  * ``'auto-reverse'``
 
     Indicates that the object is rotated over time by the angle of the
     direction (i.e., directional tangent vector) of the motion path plus
@@ -143,10 +154,53 @@ SVG Attributes
 
     Default value is ``'0'``.
 
-* **origin** -- ``default``
+* **origin** -- ``'default'``
 
   The **origin** attribute is defined in the
   `SMIL Animation specification <http://www.w3.org/TR/2001/REC-smil-animation-20010904/#MotionOriginAttribute>`_
+
+Standard SVG Attributes
+-----------------------
+
+* :doc:`Core Attributes </attributes/core>`
+* :doc:`Conditional Processing Attributes </attributes/conditional_processing>`
+* :doc:`XLink Attributes </attributes/xlink>`
+
+Animate
+=======
+
+.. autoclass:: svgwrite.animate.Animate
+
+.. seealso:: http://www.w3.org/TR/SVG11/animate.html#AnimateElement
+
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.animate.Set`
+
+Methods
+-------
+
+.. automethod:: svgwrite.animate.Animate.set_value
+
+SVG Animation Attributes
+------------------------
+
+* onbegin, onend, onrepeat, onload (:doc:`Animation Event Attributes </attributes/animation_events>`)
+* attributeType, attributeName (:doc:`Animation Target Attributes </attributes/animation_target>`)
+* begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (:doc:`Animation Timing Attributes </attributes/animation_timing>`)
+* calcMode, values, keyTimes, keySplines, from, to, by (:doc:`Animation Value Attributes </attributes/animation_value>`)
+* additive, accumulate (:doc:`Animation Addition Attributes </attributes/animation_addition>`)
+
+SVG Attributes
+--------------
+
+* **externalResourcesRequired** -- `bool`
+
+  *False*: if document rendering can proceed even if external resources are
+  unavailable else: *True*
 
 Standard SVG Attributes
 -----------------------
@@ -180,6 +234,13 @@ might preclude consistent behavior across different systems.
 The **color-interpolation** property applies to color interpolations that
 result from **animateColor** animations.
 
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.animate.Animate`
+
 SVG Animation Attributes
 ------------------------
 
@@ -202,6 +263,18 @@ AnimateTransform
 .. autoclass:: svgwrite.animate.AnimateTransform
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#AnimateTransformElement
+
+Parent Classes
+--------------
+
+* :class:`svgwrite.base.BaseElement`
+* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.animate.Animate`
+
+Methods
+-------
+
+.. automethod:: svgwrite.animate.Set.__init__
 
 SVG Animation Attributes
 ------------------------

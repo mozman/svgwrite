@@ -29,6 +29,8 @@ Parent Classes
 * :class:`svgwrite.mixins.Presentation`
 * :class:`svgwrite.mixins.Markers`
 
+.. _pathCommands:
+
 Path Commands
 -------------
 

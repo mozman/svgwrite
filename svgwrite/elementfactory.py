@@ -14,6 +14,7 @@ import text
 import gradients
 import pattern
 import masking
+import animate
 
 factoryelements = {
     'g': container.Group,
@@ -41,6 +42,11 @@ factoryelements = {
     'pattern': pattern.Pattern,
     'clipPath': masking.ClipPath,
     'mask': masking.Mask,
+    'animate': animate.Animate,
+    'set': animate.Set,
+    'animateColor': animate.AnimateColor,
+    'animateMotion': animate.AnimateMotion,
+    'animateTranform': animate.AnimateTransform,
 }
 
 class ElementBuilder(object):
