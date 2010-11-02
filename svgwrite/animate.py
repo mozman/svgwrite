@@ -12,7 +12,7 @@ class Animate(BaseElement):
     """ The **animate** element allows scalar attributes and properties to be
     assigned different values over time .
     """
-    pass
+    elementname = 'animate'
 
 class Set(BaseElement):
     """ The **set** element provides a simple means of just setting the value
@@ -21,13 +21,13 @@ class Set(BaseElement):
     and boolean values. The **set** element is non-additive. The additive and
     accumulate attributes are not allowed, and will be ignored if specified.
     """
-    pass
+    elementname = 'set'
 
 class AnimateColor(BaseElement):
     """ The **animateColor** element specifies a color transformation over
     time.
     """
-    pass
+    elementname = 'animateColor'
 
 class AnimateMotion(BaseElement):
     """ The **animateMotion** element causes a referenced element to move
@@ -40,5 +40,5 @@ class AnimateTransform(BaseElement):
     on a target element, thereby allowing animations to control translation,
     scaling, rotation and/or skewing.
     """
-    pass
+    elementname = 'animateTransform'
 
