@@ -1,6 +1,8 @@
 Animation Timing Attributes
 ===========================
 
+.. _begin:
+
 begin
 -----
 
@@ -9,6 +11,8 @@ Defines when the element should begin (i.e. become active).
 The attribute value is a semicolon separated list of values.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#BeginAttribute
+
+.. _dur:
 
 dur
 ---
@@ -37,6 +41,8 @@ indefinite (although this may still be useful for **set** elements).
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#DurAttribute
 
+.. _end:
+
 end
 ---
 
@@ -51,6 +57,8 @@ determined by an endElement method call (the animation DOM methods are
 described in DOM interfaces).
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#EndAttribute
+
+.. _min:
 
 min
 ---
@@ -76,6 +84,8 @@ duration at all.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#MinAttribute
 
+.. _max:
+
 max
 ---
 
@@ -100,6 +110,8 @@ duration at all.
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#MaxAttribute
 
+.. _restart:
+
 restart
 -------
 
@@ -121,6 +133,8 @@ value               description
 =================== ==========================================================
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#RestartAttribute
+
+.. _repeatCount:
 
 repeatCount
 -----------
@@ -144,6 +158,8 @@ value            description
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#RepeatCountAttribute
 
+.. _repeatDur:
+
 repeatDur
 ---------
 
@@ -162,6 +178,8 @@ value            description
 ================ ============================================================
 
 .. seealso:: http://www.w3.org/TR/SVG11/animate.html#RepeatDurAttribute
+
+.. _animateFill:
 
 fill
 ----

@@ -1,6 +1,8 @@
 Animation Events Attributes
 ===========================
 
+.. _onbegin:
+
 onbegin
 -------
 
@@ -15,6 +17,8 @@ event each of these event attributes corresponds to.
 
 Complete list of support events: http://www.w3.org/TR/SVG11/interact.html#SVGEvents
 
+.. _onend:
+
 onend
 -----
 
@@ -24,6 +28,8 @@ Complete list of support events: http://www.w3.org/TR/SVG11/interact.html#SVGEve
 
 .. seealso:: http://www.w3.org/TR/SVG11/script.html#OnEndEventAttribute
 
+.. _onrepeat:
+
 onrepeat
 --------
 
@@ -32,6 +38,8 @@ onrepeat = `<anything>`
 Complete list of support events: http://www.w3.org/TR/SVG11/interact.html#SVGEvents
 
 .. seealso:: http://www.w3.org/TR/SVG11/script.html#OnRepeatEventAttribute
+
+.. _onload:
 
 onload
 ------
