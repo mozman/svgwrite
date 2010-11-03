@@ -15,7 +15,7 @@ import gradients
 import pattern
 import masking
 import animate
-import filter
+import filters
 
 factoryelements = {
     'g': container.Group,
@@ -48,7 +48,27 @@ factoryelements = {
     'animateColor': animate.AnimateColor,
     'animateMotion': animate.AnimateMotion,
     'animateTranform': animate.AnimateTransform,
-    'filter': filter.Filter,
+    'filter': filters.Filter,
+    'feBlend': filters.feBlend,
+    'feColorMatrix': filters.feColorMatrix,
+    'feComponentTransfer': filters.feComponentTransfer,
+    'feFuncR': filters.feFuncR,
+    'feFuncG': filters.feFuncG,
+    'feFuncB': filters.feFuncB,
+    'feFuncA': filters.feFuncA,
+    'feComposite': filters.feComposite,
+    'feConvolveMatrix': filters.feConvolveMatrix,
+    'feDiffuseLightning': filters.feDiffuseLightning,
+    'feDisplacementMap': filters.feDisplacementMap,
+    'feFlood': filters.feFlood,
+    'feGaussianBlur': filters.feGaussianBlur,
+    'feImage': filters.feImage,
+    'feMerge': filters.feMerge,
+    'feMorphology': filters.feMorphology,
+    'feOffset': filters.feOffset,
+    'feSpecularLightning': filters.feSpecularLightning,
+    'feTile': filters.feTile,
+    'feTurbolence': filters.feTurbolance,
 }
 
 class ElementBuilder(object):
@@ -68,4 +88,3 @@ class ElementFactory(object):
             return ElementBuilder(factoryelements[name], self)
         else:
             raise AttributeError("'%s' has no attribute '%s'" % (self.__class__.__name__, name))
-

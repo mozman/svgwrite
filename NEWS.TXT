@@ -9,7 +9,7 @@ Version 0.2.2 - 07 November 2010
     see BaseElement class, use 'class_', 'from_', 'stroke_width' as keyword
     arguments
   * new elements: Set, Animate, AnimateMotion, AnimateColor,
-    AnimateTransform, Filter
+    AnimateTransform, all filter elements
 
 Version 0.2.1 - 31 October 2010
 
