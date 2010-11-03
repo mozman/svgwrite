@@ -9,8 +9,17 @@
 
 from pyparsing import *
 
+event_names = [
+    "focusin", "focusout", "acivate", "click", "mouseown", "mouseup", "mouseover",
+    "mousemove", "mouseout", "DOMSubtreemodified", "DOMNodeInserted", "DOMNoderemoved",
+    "DOMNodeRemovedFromDocument", "DOMNodeInsertedetoDocument", "DOMAttrModified",
+    "DOMCharacterDataModified", "SVGLoad", "SVGUnload", "SVGAbort", "SVGError",
+    "SVGResize", "SVGScroll", "SVGZoom", "beginEvent", "endEvent", "repeatEvent",
+    ]
+
 sign = oneOf('+ -')
 comma = Literal(',') * (0, 1) # zero or one ','
+semicolon = Literal(';') * (0, 1) # zero or one ';'
 integer_constant = Word(nums)
 exponent = CaselessLiteral('E') + Optional(sign) + integer_constant
 fractional_constant = Combine(Optional(integer_constant) + '.' + integer_constant) \
@@ -81,6 +90,37 @@ def _build_pathdata_parser():
     moveto_drawto_command_group = moveto + ZeroOrMore(drawto_commands)
     return moveto_drawto_command_group + ZeroOrMore(moveto_drawto_command_group)
 
+def _build_clock_val_parser():
+    digit2 = Word(nums, exact=2)
+    timecount = integer_constant
+    fraction = integer_constant
+    seconds = digit2
+    minutes = digit2
+    hours = integer_constant
+    metric = oneOf("h min s ms")
+    timecount_val = timecount + Optional("." + fraction) + Optional(metric)
+    partial_clock_val = minutes + ":" + seconds + Optional("." + fraction)
+    full_clock_val = hours + ":" + minutes + ":" + seconds + Optional("." + fraction)
+    return full_clock_val | partial_clock_val | timecount_val
+
+def _build_animation_timing_parser():
+    clock_val = _build_clock_val_parser()
+    event_ref = oneOf(event_names)
+    id_value = "#" + Word(alphanums + "-_")
+    opt_clock_val = Optional(sign + clock_val)
+
+    # I don't know the wall_clock_value format
+    wallclock_value = clock_val
+    wallclock_sync_value = Literal("wallclock(") + wallclock_value + ")"
+    accesskey_value = Literal("accessKey(") + Word(alphas, exact=1) + ")" + opt_clock_val
+    repeat_value = Optional(id_value + "." ) + Literal("repeat(") + integer_constant + opt_clock_val
+    event_value = Optional(id_value + "." ) + event_ref + opt_clock_val
+    syncbase_value = id_value + "." + oneOf("begin end") + opt_clock_val
+    offset_value = sign + clock_val
+    begin_value = offset_value | syncbase_value | event_value | repeat_value \
+                | accesskey_value | wallclock_value | Literal("indefinite")
+    return begin_value + ZeroOrMore(semicolon + begin_value)
+
 class _AbstractParser(object):
     @classmethod
     def is_valid(cls, value):
@@ -99,3 +139,6 @@ class TransformListParser(_AbstractParser):
 
 class PathDataParser(_AbstractParser):
     _parser = _build_pathdata_parser()
+
+class AnimationTimingParser(_AbstractParser):
+    _parser = _build_animation_timing_parser()

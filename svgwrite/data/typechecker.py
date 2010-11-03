@@ -10,7 +10,7 @@ import re
 
 import pattern
 from colors import colornames
-from svgparser import TransformListParser, PathDataParser
+from svgparser import TransformListParser, PathDataParser, AnimationTimingParser
 
 def iterflatlist(values):
     """ Flatten nested *values*, returns an *iterator*. """
@@ -278,6 +278,12 @@ class Full11TypeChecker(object):
         else:
             return False
         return True
+
+    def is_timing_value_list(self, value):
+        if isinstance(value, basestring):
+            return AnimationTimingParser.is_valid(value)
+        else:
+            return False
 
     def get_func_by_name(self, funcname):
         return getattr(self,

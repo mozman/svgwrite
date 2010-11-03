@@ -142,6 +142,8 @@ class IXLink(object):
         self.update_id()
 
     def update_id(self):
+        if not hasattr(self, 'href'):
+            return
         if isinstance(self.href, basestring):
             idstr = self.href
         else:
