@@ -30,27 +30,38 @@ class BaseElement(object):
 
         SVG attribute names will be checked, if :attr:`self.debug` is `True`.
         """
-        factory = extra.pop('factory', None) # the keyword 'factory' specifies the object creator
+        # the keyword 'factory' specifies the object creator
+        factory = extra.pop('factory', None)
         if factory is not None:
-            self._parameter = factory._parameter # take parameter from 'factory'
+            # take parameter from 'factory'
+            self._parameter = factory._parameter
         else:
-            self._parameter = Parameter() # default parameter debug=True profile='full'
+            # default parameter debug=True profile='full'
+            self._parameter = Parameter()
 
-        debug = extra.pop('debug', None) # override debug
+        # override debug setting
+        debug = extra.pop('debug', None)
         if debug is not None:
             self._parameter.set_debug(debug)
 
-        profile = extra.pop('profile', None) # override profile
+        # override profile setting
+        profile = extra.pop('profile', None)
         if profile is not None:
             self._parameter.set_profile(profile)
 
         self.attribs = dict()
         self.update(extra)
         self.elements = list()
-        if self.debug:
-            self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
     def update(self, attribs):
+        """ Update SVG Attributes from `dict` attribs.
+
+        Rules for keys:
+
+        1. trailing '_' will be removed ('class\_' -> 'class')
+        2. inner '_' will be replaced by '-' ('stroke_width' -> 'stroke-width')
+
+        """
         for key, value in attribs.iteritems():
             # remove trailing underscores
             # and replace inner underscores
@@ -128,6 +139,8 @@ class BaseElement(object):
         :param object value: SVG attribute value
 
         """
+        # Attribute checking is only done by using the __setitem__() method or
+        # by self['attibute'] = value
         if self.debug:
             self.validator.check_svg_attribute_value(self.elementname, key, value)
         self.attribs[key] = value
