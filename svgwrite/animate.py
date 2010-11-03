@@ -18,12 +18,12 @@ class Set(BaseElement, IXLink):
     """
     elementname = 'set'
 
-    def __init__(self, element=None, attribs=None, **extra):
+    def __init__(self, element=None, **extra):
         """
         :param element: target svg element, if element is not `None`; else
           the target svg element is the parent svg element.
         """
-        super(Animate, self).__init__(attribs=attribs, **extra)
+        super(Animate, self).__init__(**extra)
         if element is not None:
             self.set_href(element)
 
@@ -89,13 +89,13 @@ class AnimateMotion(Set):
     """
     elementname = 'animateMotion'
 
-    def __init__(self, path=None, element=None, attribs=None, **extra):
+    def __init__(self, path=None, element=None, **extra):
         """
         :param path: the motion path
         :param element: target svg element, if element is not `None`; else
           the target svg element is the parent svg element.
         """
-        super(AnimateMotion, self).__init__(element, attribs=attribs, **extra)
+        super(AnimateMotion, self).__init__(element, **extra)
         if path is not None:
             self['path'] = path
 
@@ -118,7 +118,7 @@ class Animate(Set):
     """
     elementname = 'animate'
     def set_value(self, values, calcMode=None, keyTimes=None, keySplines=None,
-                  from_=None, to_=None, by_=None):
+                  from_=None, to=None, by=None):
         """
         Set animation attributes :ref:`values`, :ref:`calcMode`, :ref:`keyTimes`,
         :ref:`keySplines`, :ref:`from`, :ref:`to` and :ref:`by`.
@@ -131,11 +131,11 @@ class Animate(Set):
         if keySplines is not None:
             self['keySplines'] = keySplines
         if from_ is not None:
-            self['to'] = to_
-        if to_ is not None:
             self['from'] = from_
-        if by_ is not None:
-            self['by'] = by_
+        if to is not None:
+            self['to'] = to
+        if by is not None:
+            self['by'] = by
 
 class AnimateColor(Animate):
     """ The **animateColor** element specifies a color transformation over
@@ -149,11 +149,11 @@ class AnimateTransform(Animate):
     scaling, rotation and/or skewing.
     """
     elementname = 'animateTransform'
-    def __init__(self, transform, element=None, attribs=None, **extra):
+    def __init__(self, transform, element=None, **extra):
         """
         :param element: target svg element, if element is not `None`; else
           the target svg element is the parent svg element.
         :param string transform: ``'translate | scale | rotate | skewX | skewY'``
         """
-        super(AnimateTransform, self).__init__(element, attribs=attribs, **extra)
+        super(AnimateTransform, self).__init__(element, **extra)
         self['type'] = transform

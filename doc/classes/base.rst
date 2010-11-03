@@ -31,14 +31,23 @@ Methods
 
 .. automethod:: svgwrite.base.BaseElement.get_funciri
 
+.. automethod:: svgwrite.base.BaseElement.update
+
 .. automethod:: svgwrite.base.BaseElement.__getitem__
 
 .. automethod:: svgwrite.base.BaseElement.__setitem__
 
 set/get SVG attributes::
 
-    element['attribute'] = value
-    value = element['attribute']
+   element['attribute'] = value
+   value = element['attribute']
+
+   attribs = {
+     'class' = 'css-class',
+     'stroke' = 'black',
+   }
+   element.update(attribs)
+
 
 Common SVG Attributes
 ---------------------
