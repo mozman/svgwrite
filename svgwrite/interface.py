@@ -128,7 +128,7 @@ class ITransform(object):
         self[self.transformname] = ("%s %s" % (old_transform, new_transform)).strip()
 
 class IXLink(object):
-    """ Xlink interface """
+    """ XLink interface """
     def set_href(self, element):
         """
         Create a reference to **element**.
@@ -140,6 +140,23 @@ class IXLink(object):
         """
         self.href = element
         self.update_id()
+
+    def set_xlink(self, role=None, arcrole=None, title=None, show=None,
+                  actuate=None, type_=None):
+        """ Set XLink attributes, except `href` (for `href` use :meth:`set_href`).
+        """
+        if role is not None:
+            self['xlink:role'] = role
+        if arcrole is not None:
+            self['xlink:arcrole'] = arcrole
+        if title is not None:
+            self['xlink:title'] = title
+        if show is not None:
+            self['xlink:show'] = show
+        if actuate is not None:
+            self['xlink:actuate'] = actuate
+        if type_ is not None:
+            self['xlink:type'] = type_
 
     def update_id(self):
         if not hasattr(self, 'href'):

@@ -39,3 +39,5 @@ Methods
 -------
 
 .. automethod:: svgwrite.interface.IXLink.set_href
+
+.. automethod:: svgwrite.interface.IXLink.set_xlink
