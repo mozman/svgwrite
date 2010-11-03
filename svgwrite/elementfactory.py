@@ -15,6 +15,7 @@ import gradients
 import pattern
 import masking
 import animate
+import filter
 
 factoryelements = {
     'g': container.Group,
@@ -47,6 +48,7 @@ factoryelements = {
     'animateColor': animate.AnimateColor,
     'animateMotion': animate.AnimateMotion,
     'animateTranform': animate.AnimateTransform,
+    'filter': filter.Filter,
 }
 
 class ElementBuilder(object):
