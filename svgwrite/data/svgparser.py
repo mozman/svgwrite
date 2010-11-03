@@ -103,22 +103,39 @@ def _build_clock_val_parser():
     full_clock_val = hours + ":" + minutes + ":" + seconds + Optional("." + fraction)
     return full_clock_val | partial_clock_val | timecount_val
 
+def _build_wall_clock_val_parser():
+    # http://www.w3.org/TR/2005/REC-SMIL2-20050107/smil-timing.html#Timing-WallclockSyncValueSyntax
+    digit2 = Word(nums, exact=2)
+    fraction = integer_constant
+    seconds = digit2
+    minutes = digit2
+    hours24 = digit2
+    day = digit2
+    month = digit2
+    year = Word(nums, exact=4)
+    tzd = Literal("Z") | (sign + hours24 + ":" + minutes)
+    hhmmss = hours24 + ":" + minutes + Optional(":" + seconds + Optional("." + fraction))
+    walltime = hhmmss + Optional(tzd)
+    date = year + "-" + month + "-" + day
+    datetime = date + "T" + walltime
+    return (datetime | walltime | date)
+
+
 def _build_animation_timing_parser():
     clock_val = _build_clock_val_parser()
+    wallclock_value = _build_wall_clock_val_parser()
     event_ref = oneOf(event_names)
     id_value = "#" + Word(alphanums + "-_")
     opt_clock_val = Optional(sign + clock_val)
 
-    # I don't know the wall_clock_value format
-    wallclock_value = clock_val
     wallclock_sync_value = Literal("wallclock(") + wallclock_value + ")"
     accesskey_value = Literal("accessKey(") + Word(alphas, exact=1) + ")" + opt_clock_val
-    repeat_value = Optional(id_value + "." ) + Literal("repeat(") + integer_constant + opt_clock_val
+    repeat_value = Optional(id_value + "." ) + Literal("repeat(") + integer_constant +")" + opt_clock_val
     event_value = Optional(id_value + "." ) + event_ref + opt_clock_val
     syncbase_value = id_value + "." + oneOf("begin end") + opt_clock_val
     offset_value = sign + clock_val
     begin_value = offset_value | syncbase_value | event_value | repeat_value \
-                | accesskey_value | wallclock_value | Literal("indefinite")
+                | accesskey_value | wallclock_sync_value | Literal("indefinite")
     return begin_value + ZeroOrMore(semicolon + begin_value)
 
 class _AbstractParser(object):
