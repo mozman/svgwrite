@@ -29,16 +29,14 @@ class Line(BaseElement, ITransform, Presentation, Markers):
     """
     elementname = 'line'
 
-    def __init__(self, start=(0, 0), end=(0, 0),
-                 attribs=None, **extra):
+    def __init__(self, start=(0, 0), end=(0, 0), **extra):
         """
         :param 2-tuple start: start point (**x1**, **y1**)
         :param 2-tuple end: end point (**x2**, **y2**)
-        :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
 
         """
-        super(Line, self).__init__(attribs=attribs, **extra)
+        super(Line, self).__init__(**extra)
         x1, y1 = start
         x2, y2 = end
         self['x1'] = x1
@@ -53,18 +51,16 @@ class Rect(BaseElement, ITransform, Presentation):
     """
     elementname = 'rect'
 
-    def __init__(self, insert=(0, 0), size=(1, 1), rx=None, ry=None,
-                 attribs=None, **extra):
+    def __init__(self, insert=(0, 0), size=(1, 1), rx=None, ry=None, **extra):
         """
         :param 2-tuple insert: insert point (**x**, **y**), left-upper point
         :param 2-tuple size: (**width**, **height**)
         :param <length> rx: corner x-radius
         :param <length> ry: corner y-radius
-        :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
 
         """
-        super(Rect, self).__init__(attribs=attribs, **extra)
+        super(Rect, self).__init__(**extra)
         x, y = insert
         width, height = size
         self['x'] = x
@@ -79,15 +75,14 @@ class Circle(BaseElement, ITransform, Presentation):
     """
     elementname = 'circle'
 
-    def __init__(self, center=(0, 0), r=1, attribs=None, **extra):
+    def __init__(self, center=(0, 0), r=1, **extra):
         """
         :param 2-tuple center: circle center point (**cx**, **cy**)
         :param length r: circle-radius **r**
-        :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
 
         """
-        super(Circle, self).__init__(attribs=attribs, **extra)
+        super(Circle, self).__init__(**extra)
         cx, cy = center
         self['cx'] = cx
         self['cy'] = cy
@@ -99,15 +94,14 @@ class Ellipse(BaseElement, ITransform, Presentation):
     """
     elementname = 'ellipse'
 
-    def __init__(self, center=(0, 0), r=(1, 1), attribs=None, **extra):
+    def __init__(self, center=(0, 0), r=(1, 1), **extra):
         """
         :param 2-tuple center: ellipse center point (**cx**, **cy**)
         :param 2-tuple r: ellipse radii (**rx**, **ry**)
-        :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
 
         """
-        super(Ellipse, self).__init__(attribs=attribs, **extra)
+        super(Ellipse, self).__init__(**extra)
         cx, cy = center
         rx, ry = r
         self['cx'] = cx
@@ -121,14 +115,13 @@ class Polyline(BaseElement, ITransform, Presentation, Markers):
     """
     elementname = 'polyline'
 
-    def __init__(self, points=[], attribs=None, **extra):
+    def __init__(self, points=[], **extra):
         """
         :param `iterable` points: `iterable` of points (points are `2-tuples`)
-        :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
 
         """
-        super(Polyline, self).__init__(attribs=attribs, **extra)
+        super(Polyline, self).__init__(**extra)
         if self.debug:
             for point in points:
                 x, y = point

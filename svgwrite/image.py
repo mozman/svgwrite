@@ -19,7 +19,7 @@ class Image(BaseElement, ITransform, Clipping):
     """
     elementname = 'image'
 
-    def __init__(self, href, insert=None, size=None, attribs=None, **extra):
+    def __init__(self, href, insert=None, size=None, **extra):
         """
         :param string href: hyperlink to the image resource
         :param 2-tuple insert: insert point (**x**, **y**)
@@ -27,7 +27,7 @@ class Image(BaseElement, ITransform, Clipping):
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
         """
-        super(Image, self).__init__(attribs, **extra)
+        super(Image, self).__init__(**extra)
         self['xlink:href'] = href
         if insert:
             self['x'] = insert[0]

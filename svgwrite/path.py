@@ -29,14 +29,14 @@ class Path(BaseElement, ITransform, Presentation, Markers):
 
     """
     elementname = 'path'
-    def __init__(self, d=None, attribs=None, **extra):
+    def __init__(self, d=None, **extra):
         """
         :param `iterable` d: *coordinates*, *length* and *commands*
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
 
         """
-        super(Path, self).__init__(attribs, **extra)
+        super(Path, self).__init__(**extra)
         self.commands = []
         self.push(d)
         if self.debug:

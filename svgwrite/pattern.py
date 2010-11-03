@@ -22,14 +22,14 @@ class Pattern(BaseElement, IXLink, IViewBox, ITransform, Presentation):
     elementname = 'pattern'
     transformname = 'patternTransform'
 
-    def __init__(self, insert=None, size=None, inherit=None, attribs=None, **extra):
+    def __init__(self, insert=None, size=None, inherit=None, **extra):
         """
         :param 2-tuple insert: base point of the pattern (**x**, **y**)
         :param 2-tuple size: size of the pattern (**width**, **height**)
         :param inherit: pattern inherits properties from `inherit` see: **xlink:href**
 
         """
-        super(Pattern, self).__init__(attribs=attribs, **extra)
+        super(Pattern, self).__init__(**extra)
         if insert is not None:
             self['x'] = insert[0]
             self['y'] = insert[1]

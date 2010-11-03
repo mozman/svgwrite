@@ -6,8 +6,6 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-##TODO: remove clipping.py
-
 from base import BaseElement
 from interface import ITransform
 
@@ -39,8 +37,8 @@ class Mask(BaseElement):
     as a **g**.
     """
     elementname = 'mask'
-    def __init__(self, start=None, size=None, attribs=None, **extra):
-        super(Mask, self).__init__(attribs=attribs, **extra)
+    def __init__(self, start=None, size=None, **extra):
+        super(Mask, self).__init__(**extra)
         if start is not None:
             self['x'] = start[0]
             self['y'] = start[1]

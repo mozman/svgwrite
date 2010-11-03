@@ -29,8 +29,8 @@ class _GradientStop(BaseElement):
 
 class _AbstractGradient(BaseElement, ITransform, IXLink):
     transformname = 'gradientTransform'
-    def __init__(self, inherit=None, attribs=None, **extra):
-        super(_AbstractGradient, self).__init__(attribs=attribs, **extra)
+    def __init__(self, inherit=None, **extra):
+        super(_AbstractGradient, self).__init__(**extra)
         if inherit is not None:
             if isinstance(inherit, basestring):
                 self.set_href(inherit)
@@ -82,14 +82,14 @@ class LinearGradient(_AbstractGradient):
     """ Linear gradients are defined by a SVG <linearGradient> element.
     """
     elementname = 'linearGradient'
-    def __init__(self, start=None, end=None, inherit=None, attribs=None, **extra):
+    def __init__(self, start=None, end=None, inherit=None, **extra):
         """
         :param 2-tuple start: start point of the gradient (**x1**, **y1**)
         :param 2-tuple end: end point of the gradient (**x2**, **y2**)
         :param inherit: gradient inherits properties from `inherit` see: **xlink:href**
 
         """
-        super(LinearGradient, self).__init__(inherit=inherit, attribs=attribs, **extra)
+        super(LinearGradient, self).__init__(inherit=inherit, **extra)
         if start is not None:
             self['x1'] = start[0]
             self['y1'] = start[1]
@@ -101,7 +101,7 @@ class RadialGradient(_AbstractGradient):
     """ Radial gradients are defined by a SVG <radialGradient> element.
     """
     elementname = 'radialGradient'
-    def __init__(self, center=None, r=None, focal=None, inherit=None, attribs=None, **extra):
+    def __init__(self, center=None, r=None, focal=None, inherit=None, **extra):
         """
         :param 2-tuple center: center point for the gradient (**cx**, **cy**)
         :param r: radius for the gradient
@@ -110,7 +110,7 @@ class RadialGradient(_AbstractGradient):
 
         """
 
-        super(RadialGradient, self).__init__(inherit=inherit, attribs=attribs, **extra)
+        super(RadialGradient, self).__init__(inherit=inherit, **extra)
         if center is not None:
             self['cx'] = center[0]
             self['cy'] = center[1]
