@@ -5,6 +5,9 @@ NEWS
 Version 0.2.2 - 07 November 2010
 
   * alpha version
+  * removed 'attribs' parameter from all constructors (__init__)
+    see BaseElement class, use 'class_', 'from_', 'stroke_width' as keyword
+    arguments
   * new elements: Set, Animate, AnimateMotion, AnimateColor, AnimateTransform
 
 Version 0.2.1 - 31 October 2010
