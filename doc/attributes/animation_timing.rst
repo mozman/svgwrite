@@ -6,6 +6,8 @@ Animation Timing Attributes
 begin
 -----
 
+begin = `<begin-value-list>`
+
 Defines when the element should begin (i.e. become active).
 
 The attribute value is a semicolon separated list of values.

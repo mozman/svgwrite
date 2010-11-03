@@ -23,21 +23,21 @@ class Set(BaseElement, IXLink):
         :param element: target svg element, if element is not `None`; else
           the target svg element is the parent svg element.
         """
-        super(Animate, self).__init__(**extra)
+        super(Set, self).__init__(**extra)
         if element is not None:
             self.set_href(element)
 
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
-        return super(Animate, self).get_xml()
+        return super(Set, self).get_xml()
 
     def set_target(self, attributeName, attributeType=None):
         """
         Set animation attributes :ref:`attributeName` and :ref:`attributeType`.
         """
-        self['attrinbuteName'] = attributeName
+        self['attributeName'] = attributeName
         if attributeType is not None:
-            self['attrinbuteType'] = attributeType
+            self['attributeType'] = attributeType
 
 
     def set_event(self, onbegin=None, onend=None, onrepeat=None, onload=None):
