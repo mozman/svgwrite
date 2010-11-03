@@ -48,7 +48,6 @@ set/get SVG attributes::
    }
    element.update(attribs)
 
-
 Common SVG Attributes
 ---------------------
 

@@ -17,18 +17,32 @@ from utils import AutoID
 
 class BaseElement(object):
     """
-    The :class:`BaseElement` is the root for all SVG elements. The SVG attributes
-    are stored in :attr:`attribs`, and the SVG subelements are stored in
-    :attr:`elements`.
+    The **BaseElement** is the root for all SVG elements. The SVG attributes
+    are stored in **attribs**, and the SVG subelements are stored in
+    **elements**.
 
     """
     elementname = 'baseElement'
 
     def __init__(self, **extra):
         """
-        :param dict extra: extra SVG attributes, argument='value'
+        :param dict extra: extra SVG attributes (keyword arguments)
 
-        SVG attribute names will be checked, if :attr:`self.debug` is `True`.
+          * add trailing '_' to reserved keywords: ``'class_'``, ``'from_'``
+          * replace inner '-' by '_': ``'stroke_width'``
+
+
+        SVG attribute names will be checked, if **debug** is `True`.
+
+        workaround for removed **attribs** parameter in Version 0.2.2::
+
+            # replace
+            element = BaseElement(attribs=adict)
+
+            #by
+            element = BaseElement()
+            element.update(adict)
+
         """
         # the keyword 'factory' specifies the object creator
         factory = extra.pop('factory', None)
@@ -58,8 +72,8 @@ class BaseElement(object):
 
         Rules for keys:
 
-        1. trailing '_' will be removed ('class\_' -> 'class')
-        2. inner '_' will be replaced by '-' ('stroke_width' -> 'stroke-width')
+        1. trailing '_' will be removed (``'class_'`` -> ``'class'``)
+        2. inner '_' will be replaced by '-' (``'stroke_width'`` -> ``'stroke-width'``)
 
         """
         for key, value in attribs.iteritems():
