@@ -69,15 +69,14 @@ class Marker(BaseElement, IViewBox, Presentation):
 
     """
     elementname = 'marker'
-    def __init__(self, insert=None, size=None, orient=None, attribs=None, **extra):
+    def __init__(self, insert=None, size=None, orient=None, **extra):
         """
         :param 2-tuple insert: reference point (**refX**, **refY**)
         :param 2-tuple size: (**markerWidth**, **markerHeight**)
         :param orient: ``'auto'`` | `angle`
-        :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
         """
-        super(Marker, self).__init__(attribs=attribs, **extra)
+        super(Marker, self).__init__(**extra)
         if insert:
             self['refX'] = insert[0]
             self['refY'] = insert[1]
@@ -100,14 +99,13 @@ class SVG(Symbol):
     """
     elementname = 'svg'
 
-    def __init__(self, insert=None, size=None, attribs=None, **extra):
+    def __init__(self, insert=None, size=None, **extra):
         """
         :param 2-tuple insert: insert position (**x**, **y**)
         :param 2-tuple size: (**width**, **height**)
-        :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
         """
-        super(SVG, self).__init__(attribs=attribs, **extra)
+        super(SVG, self).__init__(**extra)
         if insert:
             self['x'] = insert[0]
             self['y'] = insert[1]
@@ -129,15 +127,14 @@ class Use(BaseElement, ITransform, IXLink, Presentation):
     """
     elementname = 'use'
 
-    def __init__(self, href, insert=None, size=None, attribs=None, **extra):
+    def __init__(self, href, insert=None, size=None, **extra):
         """
         :param string href: object link (id-string) or an object with an id-attribute
         :param 2-tuple insert: insert point (**x**, **y**)
         :param 2-tuple size: (**width**, **height**)
-        :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
         """
-        super(Use, self).__init__(attribs, **extra)
+        super(Use, self).__init__(**extra)
         self.set_href(href)
         if insert:
             self['x'] = insert[0]
@@ -167,13 +164,12 @@ class Hyperlink(BaseElement, ITransform, Presentation):
 
     """
     elementname = 'a'
-    def __init__(self, href, target='_blank', attribs=None, **extra):
+    def __init__(self, href, target='_blank', **extra):
         """
         :param string href: hyperlink to the target resource
         :param string target: ``'_blank|_replace|_self|_parent|_top|<XML-name>'``
-        :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributs as keyword-arguments
         """
-        super(Hyperlink, self).__init__(attribs, **extra)
+        super(Hyperlink, self).__init__(**extra)
         self['xlink:href'] = href
         self['target'] = target

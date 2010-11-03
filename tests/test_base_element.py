@@ -24,10 +24,13 @@ class TestBaseElement(unittest.TestCase):
         self.assertEqual(m['width'], 100)
         self.assertEqual(m['height'], 200)
 
-        # use attribs-dict
-        m = MockBase(attribs={'width':100, 'height':200})
-        self.assertEqual(m['width'], 100)
-        self.assertEqual(m['height'], 200)
+    def test_trailing_underscore(self):
+        m = MockBase(class_='test')
+        self.assertEqual(m['class'], 'test')
+
+    def test_inner_underscore(self):
+        m = MockBase(stroke_width='1.0')
+        self.assertEqual(m['stroke-width'], '1.0')
 
     def test_constructor_invalid(self):
         self.assertRaises(ValueError, MockBase, mozman=100)

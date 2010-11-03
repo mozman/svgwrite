@@ -24,17 +24,12 @@ class BaseElement(object):
     """
     elementname = 'baseElement'
 
-    def __init__(self, attribs=None, **extra):
+    def __init__(self, **extra):
         """
-        :param dict attribs: a dictinary of SVG attributes
         :param dict extra: extra SVG attributes, argument='value'
 
         SVG attribute names will be checked, if :attr:`self.debug` is `True`.
         """
-        def update(attribs, extra):
-            for key, value in extra.iteritems():
-                attribs[key.replace('_', '-')] = value
-
         factory = extra.pop('factory', None) # the keyword 'factory' specifies the object creator
         if factory is not None:
             self._parameter = factory._parameter # take parameter from 'factory'
@@ -49,14 +44,18 @@ class BaseElement(object):
         if profile is not None:
             self._parameter.set_profile(profile)
 
-        if attribs == None:
-            self.attribs = dict()
-        else:
-            self.attribs = dict(attribs)
-        update(self.attribs, extra)
+        self.attribs = dict()
+        self.update(extra)
         self.elements = list()
         if self.debug:
             self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
+
+    def update(self, attribs):
+        for key, value in attribs.iteritems():
+            # remove trailing underscores
+            # and replace inner underscores
+            key = key.rstrip('_').replace('_', '-')
+            self.__setitem__(key, value)
 
     def copy(self):
         newobj = copy.copy(self) # shallow copy of object

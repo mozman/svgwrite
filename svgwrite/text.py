@@ -29,7 +29,7 @@ class TSpan(BaseElement, Presentation):
     elementname = 'tspan'
 
     def __init__(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
-                 attribs=None, **extra):
+                 **extra):
         """
         :param string text: **tspan** content
         :param 2-tuple insert: The **insert** parameter is the absolute insert point
@@ -42,7 +42,7 @@ class TSpan(BaseElement, Presentation):
         :param list rotate: list of rotation-values for characters (in degrees)
 
         """
-        super(TSpan, self).__init__(attribs=attribs, **extra)
+        super(TSpan, self).__init__(**extra)
         self.text = text
         if insert is not None:
             if isinstance(insert, basestring):
@@ -84,14 +84,14 @@ class TRef(BaseElement, IXLink, Presentation):
     """
     elementname = 'tref'
 
-    def __init__(self, element, attribs=None, **extra):
+    def __init__(self, element, **extra):
         """
         :param element: create a reference this element, if element is a
           `string` its the **id** name of the referenced element, if element
           is a :class:`~svgwrite.base.BaseElement` the **id** SVG Attribute is
           used to create the reference.
         """
-        super(TRef, self).__init__(attribs=attribs, **extra)
+        super(TRef, self).__init__(**extra)
         self.set_href(element)
 
     def get_xml(self):
@@ -109,7 +109,7 @@ class TextPath(BaseElement, IXLink, Presentation):
     """
     elementname = 'textPath'
     def __init__(self, path, text, startOffset=None, method='align', spacing='exact',
-                 attribs=None, **extra):
+                 **extra):
         """
         :param path: link to **path**, **id** string or **Path** object
         :param string text: **textPath** content
@@ -118,7 +118,7 @@ class TextPath(BaseElement, IXLink, Presentation):
         :param string spacing: ``exact|auto``
 
         """
-        super(TextPath, self).__init__(attribs=attribs, **extra)
+        super(TextPath, self).__init__(**extra)
         self.text = text
         if method == 'stretch':
             self['method'] = method
@@ -166,8 +166,8 @@ class TextArea(BaseElement, ITransform, Presentation):
 
     """
     elementname = 'textArea'
-    def __init__(self, text=None, insert=None, size=None, attribs={}, **extra):
-        super(TextArea, self).__init__(attribs, **extra)
+    def __init__(self, text=None, insert=None, size=None, **extra):
+        super(TextArea, self).__init__(**extra)
         if text:
             self.write(text)
         if insert:
