@@ -10,8 +10,8 @@
 from pyparsing import *
 
 event_names = [
-    "focusin", "focusout", "acivate", "click", "mouseown", "mouseup", "mouseover",
-    "mousemove", "mouseout", "DOMSubtreemodified", "DOMNodeInserted", "DOMNoderemoved",
+    "focusin", "focusout", "activate", "click", "mousedown", "mouseup", "mouseover",
+    "mousemove", "mouseout", "DOMSubtreeModified", "DOMNodeInserted", "DOMNoderemoved",
     "DOMNodeRemovedFromDocument", "DOMNodeInsertedetoDocument", "DOMAttrModified",
     "DOMCharacterDataModified", "SVGLoad", "SVGUnload", "SVGAbort", "SVGError",
     "SVGResize", "SVGScroll", "SVGZoom", "beginEvent", "endEvent", "repeatEvent",
