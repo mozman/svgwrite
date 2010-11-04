@@ -1203,8 +1203,11 @@ elements = {
     'filter': SVGElement('filter',
     attributes=frozenset(['xlink:title', 'xml:base', 'xml:space', 'xlink:href', 'height', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'style', 'xlink:show', 'filterRes', 'primitiveUnits', 'id', 'xlink:role', 'width', 'xml:lang', 'y', 'x', 'xlink:arcrole', 'filterUnits']),
     properties=presentation_attributes,
-    children=frozenset(['set', 'title', 'height', 'width', 'result', 'y', 'x', 'animate', 'metadata', 'desc'])),
-
+    children=frozenset(['set', 'animate', 'metadata', 'desc', 'feBlend', 'feColorMatrix', 'feComponentTransfer',
+                               'feComposite', 'feConvolveMatrix', 'feDiffuseLighting',
+                               'feDisplacementMap', 'feFlood', 'feGaussianBlur',
+                               'feImage', 'feMerge', 'feMorphology', 'feOffset',
+                               'feSpecularLighting', 'feTile', 'feTurbulence'])),
     'font': SVGElement('font',
     attributes=frozenset(['xml:space', 'id', 'xml:lang', 'xml:base', 'class', 'style', 'externalResourcesRequired', 'horiz-origin-x', 'horiz-origin-y', 'horiz-adv-x', 'vert-origin-x', 'vert-origin-y', 'vert-adv-y']),
     properties=presentation_attributes,
