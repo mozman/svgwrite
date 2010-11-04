@@ -57,6 +57,15 @@ Animation
 
    classes/animate
 
+Filter Effects
+--------------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/filters
+   classes/filter_primitive
+
 Interfaces
 ----------
 

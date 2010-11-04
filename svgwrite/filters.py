@@ -144,8 +144,20 @@ class _FilterBuilder(object):
         return obj
 
 class Filter(BaseElement, IXLink, Presentation):
+    """
+    The filter element is a container element for filter primitives, and
+    also a **factory** for filter primitives.
+    """
     elementname = 'filter'
     def __init__(self, start=None, size=None, resolution=None, inherit=None, **extra):
+        """
+        :param 2-tuple start: defines the start point of the filter effects region (**x**, **y**)
+        :param 2-tuple size: defines the size of the filter effects region (**width**, **height**)
+        :param resolution: takes the form ``'x-pixels [y-pixels]'``, and indicates
+            the width and height of the intermediate images in pixels.
+        :param inherit: inherits properties from Filter `inherit` see: **xlink:href**
+
+        """
         super(Filter, self).__init__(**extra)
         if start is not None:
             self['x'] = start[0]

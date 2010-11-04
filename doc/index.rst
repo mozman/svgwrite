@@ -85,6 +85,18 @@ Animation
 
    classes/animate
 
+Filter Effects
+--------------
+
+.. toctree::
+   :maxdepth: 1
+
+   classes/filters
+   classes/filter_primitive
+   classes/fe_blend
+   classes/fe_color_matrix
+   classes/fe_component_transfer
+
 Interfaces
 ----------
 
