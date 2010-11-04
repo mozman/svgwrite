@@ -91,5 +91,236 @@ class Test_feComponentTransfer(unittest.TestCase):
                          'intercept="0" offset="0" slope="1" '\
                          'tableValues="1,2" type="identity" />')
 
+class Test_feComposite(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        pf = f.feComposite('input1', in2='input2')
+        self.assertEqual(pf.tostring(), '<feComposite in="input1" in2="input2" />')
+
+    def test_operator(self):
+        f = filters.Filter()
+        self.assertEqual(f.feComposite('input1', operator='over').tostring(),
+                         '<feComposite in="input1" operator="over" />')
+        self.assertEqual(f.feComposite('input1', operator='in').tostring(),
+                         '<feComposite in="input1" operator="in" />')
+        self.assertEqual(f.feComposite('input1', operator='out').tostring(),
+                         '<feComposite in="input1" operator="out" />')
+        self.assertEqual(f.feComposite('input1', operator='xor').tostring(),
+                         '<feComposite in="input1" operator="xor" />')
+        self.assertEqual(f.feComposite('input1', operator='arithmetic').tostring(),
+                         '<feComposite in="input1" operator="arithmetic" />')
+
+    def test_k1k2k3k4(self):
+        f = filters.Filter()
+        pf = f.feComposite('input1', k1=1, k2=2, k3=3, k4=4)
+        self.assertEqual(pf.tostring(), '<feComposite in="input1" k1="1" k2="2" k3="3" k4="4" />')
+
+class Test_feConvolveMatrix(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        pf = f.feConvolveMatrix('input1')
+        self.assertEqual(pf.tostring(), '<feConvolveMatrix in="input1" />')
+
+    def test_order(self):
+        f = filters.Filter()
+        pf = f.feConvolveMatrix('input1', order='1 2')
+        self.assertEqual(pf.tostring(), '<feConvolveMatrix in="input1" order="1 2" />')
+
+    def test_kernelMatrix(self):
+        f = filters.Filter()
+        pf = f.feConvolveMatrix('input1', kernelMatrix='1 2 3 4')
+        self.assertEqual(pf.tostring(), '<feConvolveMatrix in="input1" kernelMatrix="1 2 3 4" />')
+
+    def test_divisor_and_bias(self):
+        f = filters.Filter()
+        pf = f.feConvolveMatrix('input1', divisor=2.5, bias=0.5)
+        self.assertEqual(pf.tostring(), '<feConvolveMatrix bias="0.5" divisor="2.5" in="input1" />')
+
+    def test_targetX_and_targetY(self):
+        f = filters.Filter()
+        pf = f.feConvolveMatrix('input1', targetX=1, targetY=2)
+        self.assertEqual(pf.tostring(), '<feConvolveMatrix in="input1" targetX="1" targetY="2" />')
+
+    def test_edgeMode(self):
+        f = filters.Filter()
+        self.assertEqual(f.feConvolveMatrix('input1', edgeMode='duplicate').tostring(),
+                         '<feConvolveMatrix edgeMode="duplicate" in="input1" />')
+        self.assertEqual(f.feConvolveMatrix('input1', edgeMode='wrap').tostring(),
+                         '<feConvolveMatrix edgeMode="wrap" in="input1" />')
+        self.assertEqual(f.feConvolveMatrix('input1', edgeMode='none').tostring(),
+                         '<feConvolveMatrix edgeMode="none" in="input1" />')
+
+    def test_preserveAlpha(self):
+        f = filters.Filter()
+        self.assertEqual(f.feConvolveMatrix('input1', preserveAlpha='true').tostring(),
+                         '<feConvolveMatrix in="input1" preserveAlpha="true" />')
+        self.assertEqual(f.feConvolveMatrix('input1', preserveAlpha='false').tostring(),
+                         '<feConvolveMatrix in="input1" preserveAlpha="false" />')
+
+    def test_kernelUnitLength(self):
+        f = filters.Filter()
+        self.assertEqual(f.feConvolveMatrix('input1', kernelUnitLength=2).tostring(),
+                         '<feConvolveMatrix in="input1" kernelUnitLength="2" />')
+
+class Test_feDiffuseLighting(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feDiffuseLighting('input1').tostring(),
+                         '<feDiffuseLighting in="input1" />')
+
+    def test_surfaceScale(self):
+        f = filters.Filter()
+        self.assertEqual(f.feDiffuseLighting('input1', surfaceScale=1).tostring(),
+                         '<feDiffuseLighting in="input1" surfaceScale="1" />')
+
+    def test_diffuseConstant(self):
+        f = filters.Filter()
+        self.assertEqual(f.feDiffuseLighting('input1', diffuseConstant=1).tostring(),
+                         '<feDiffuseLighting diffuseConstant="1" in="input1" />')
+
+    def test_kernelUnitLength(self):
+        f = filters.Filter()
+        self.assertEqual(f.feDiffuseLighting('input1', kernelUnitLength=2).tostring(),
+                         '<feDiffuseLighting in="input1" kernelUnitLength="2" />')
+
+class Test_feDisplacementMap(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feDisplacementMap('input1', in2="input2").tostring(),
+                         '<feDisplacementMap in="input1" in2="input2" />')
+
+    def test_scale(self):
+        f = filters.Filter()
+        self.assertEqual(f.feDisplacementMap('input1', scale=2).tostring(),
+                         '<feDisplacementMap in="input1" scale="2" />')
+
+    def test_xChannelSelector_yChannelSelector(self):
+        f = filters.Filter()
+        self.assertEqual(f.feDisplacementMap('input1', xChannelSelector="R", yChannelSelector="G").tostring(),
+                         '<feDisplacementMap in="input1" xChannelSelector="R" yChannelSelector="G" />')
+
+class Test_feFlood(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feFlood().tostring(),
+                         '<feFlood />')
+    def test_flood_color(self):
+        f = filters.Filter()
+        self.assertEqual(f.feFlood(flood_color="red").tostring(),
+                         '<feFlood flood-color="red" />')
+    def test_flood_opacity(self):
+        f = filters.Filter()
+        self.assertEqual(f.feFlood(flood_opacity=0.5).tostring(),
+                         '<feFlood flood-opacity="0.5" />')
+
+class Test_feGaussianBlur(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feGaussianBlur("input1").tostring(),
+                         '<feGaussianBlur in="input1" />')
+    def test_stdDeviation(self):
+        f = filters.Filter()
+        self.assertEqual(f.feGaussianBlur("input1", stdDeviation="1 2").tostring(),
+                         '<feGaussianBlur in="input1" stdDeviation="1 2" />')
+
+class Test_feImage(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feImage("./image.png").tostring(),
+                         '<feImage xlink:href="./image.png" />')
+
+class Test_feMerge(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feMerge(['Layer1', 'Layer2']).tostring(),
+                         '<feMerge><feMergeNode in="Layer1" /><feMergeNode in="Layer2" /></feMerge>')
+    def test_layers(self):
+        f = filters.Filter()
+        merge = f.feMerge(['Layer1', 'Layer2'])
+        merge.feMergeNode( ('Layer3', ) )
+        self.assertEqual(merge.tostring(),
+                         '<feMerge><feMergeNode in="Layer1" /><feMergeNode in="Layer2" />'\
+                         '<feMergeNode in="Layer3" /></feMerge>')
+
+class Test_feMorphology(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feMorphology("input1").tostring(),
+                         '<feMorphology in="input1" />')
+    def test_operator(self):
+        f = filters.Filter()
+        self.assertEqual(f.feMorphology("input1", operator="erode").tostring(),
+                         '<feMorphology in="input1" operator="erode" />')
+        self.assertEqual(f.feMorphology("input1", operator="dilate").tostring(),
+                         '<feMorphology in="input1" operator="dilate" />')
+    def test_radius(self):
+        f = filters.Filter()
+        self.assertEqual(f.feMorphology("input1", radius="1,2").tostring(),
+                         '<feMorphology in="input1" radius="1,2" />')
+
+class Test_feOffset(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feOffset("input1").tostring(),
+                         '<feOffset in="input1" />')
+
+    def test_dx_dy(self):
+        f = filters.Filter()
+        self.assertEqual(f.feOffset("input1", dx=10, dy=20).tostring(),
+                         '<feOffset dx="10" dy="20" in="input1" />')
+
+class Test_feSpecularLighting(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feSpecularLighting("input1").tostring(),
+                         '<feSpecularLighting in="input1" />')
+    def test_surfaceScale(self):
+        f = filters.Filter()
+        self.assertEqual(f.feSpecularLighting("input1", surfaceScale=7).tostring(),
+                         '<feSpecularLighting in="input1" surfaceScale="7" />')
+    def test_specularExponent(self):
+        f = filters.Filter()
+        self.assertEqual(f.feSpecularLighting("input1", specularExponent=7).tostring(),
+                         '<feSpecularLighting in="input1" specularExponent="7" />')
+    def test_kernelUnitLength(self):
+        f = filters.Filter()
+        self.assertEqual(f.feSpecularLighting("input1", kernelUnitLength="1,2").tostring(),
+                         '<feSpecularLighting in="input1" kernelUnitLength="1,2" />')
+
+class Test_feTile(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feTile("input1").tostring(),
+                         '<feTile in="input1" />')
+
+class Test_feTurbulence(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        self.assertEqual(f.feTurbulence().tostring(),
+                         '<feTurbulence />')
+
+    def test_baseFrequency(self):
+        f = filters.Filter()
+        self.assertEqual(f.feTurbulence(baseFrequency="1,2").tostring(),
+                         '<feTurbulence baseFrequency="1,2" />')
+    def test_numOctaves(self):
+        f = filters.Filter()
+        self.assertEqual(f.feTurbulence(numOctaves="1").tostring(),
+                         '<feTurbulence numOctaves="1" />')
+    def test_seed(self):
+        f = filters.Filter()
+        self.assertEqual(f.feTurbulence(seed="1").tostring(),
+                         '<feTurbulence seed="1" />')
+    def test_stitchTiles(self):
+        f = filters.Filter()
+        self.assertEqual(f.feTurbulence(stitchTiles="stitch").tostring(),
+                         '<feTurbulence stitchTiles="stitch" />')
+    def test_type(self):
+        f = filters.Filter()
+        self.assertEqual(f.feTurbulence(type_="fractalNoise").tostring(),
+                         '<feTurbulence type="fractalNoise" />')
+        self.assertEqual(f.feTurbulence(type_="turbulence").tostring(),
+                         '<feTurbulence type="turbulence" />')
+
 if __name__=='__main__':
     unittest.main()

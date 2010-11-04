@@ -781,7 +781,7 @@ attributes = {
         'type', anim=True,
         types=empty_list,
         const=frozenset([u'matrix', u'saturate', u'hueRotate', u'luminanceToAlpha'])),
-    'feTurbolence': SVGAttribute(
+    'feTurbulence': SVGAttribute(
         'type', anim=True,
         types=empty_list,
         const=frozenset([u'fractalNoise', 'turbulence'])),
@@ -1158,7 +1158,7 @@ elements = {
     'feMerge': SVGElement('feMerge',
     attributes=frozenset(['style', 'xml:base', 'xml:space', 'height', 'width', 'xml:lang', 'id', 'result', 'y', 'x', 'class']),
     properties=presentation_attributes,
-    children=frozenset(['animate', 'set'])),
+    children=frozenset(['animate', 'set', 'feMergeNode'])),
 
     'feMergeNode': SVGElement('feMergeNode',
     attributes=frozenset(['xml:space', 'xml:lang', 'xml:base', 'id', 'in']),
