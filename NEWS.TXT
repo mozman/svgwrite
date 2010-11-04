@@ -10,6 +10,7 @@ Version 0.2.2 - 07 November 2010
     arguments
   * new elements: Set, Animate, AnimateMotion, AnimateColor,
     AnimateTransform, all filter elements
+  * added set_desc(title, desc), set_metadata(xmldata) to BaseElement class
 
 Version 0.2.1 - 31 October 2010
 

@@ -41,3 +41,8 @@ Methods
 .. automethod:: svgwrite.interface.IXLink.set_href
 
 .. automethod:: svgwrite.interface.IXLink.set_xlink
+
+Set **xlink:actuate** and **xlink:type** by the index operator::
+
+    element['xlink:type'] = 'simple'
+    element['xlink:actuate'] = 'onLoad'

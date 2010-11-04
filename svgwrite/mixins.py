@@ -7,6 +7,7 @@
 # License: GPLv3
 
 from utils import strlist
+from base import Title, Desc
 
 class Presentation(object):
     """
@@ -21,7 +22,7 @@ class Presentation(object):
             if isinstance(color, basestring):
                 self['fill'] = color
             else:
-                self['fill'] = color.get_paint_sever()
+                self['fill'] = color.get_paint_server()
         if rule:
             self['fill-rule'] = rule
         if opacity:

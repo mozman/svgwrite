@@ -44,5 +44,27 @@ class TestIXLink(unittest.TestCase):
         m.set_href(g)
         self.assertTrue(re.match('^<use xlink:href="#id\d+" />$', m.tostring()))
 
+    def test_set_xlink_show(self):
+        m = Mock()
+        m.set_xlink(show='new')
+        self.assertEqual(m.tostring(), '<use xlink:show="new" />')
+        m.set_xlink(show='replace')
+        self.assertEqual(m.tostring(), '<use xlink:show="replace" />')
+
+    def test_set_xlink_role(self):
+        m = Mock()
+        m.set_xlink(role='http://test/role')
+        self.assertEqual(m.tostring(), '<use xlink:role="http://test/role" />')
+
+    def test_set_xlink_arcrole(self):
+        m = Mock()
+        m.set_xlink(arcrole='http://test/arcrole')
+        self.assertEqual(m.tostring(), '<use xlink:arcrole="http://test/arcrole" />')
+
+    def test_set_xlink_title(self):
+        m = Mock()
+        m.set_xlink(title='test')
+        self.assertEqual(m.tostring(), '<use xlink:title="test" />')
+
 if __name__=='__main__':
     unittest.main()
