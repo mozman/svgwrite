@@ -25,7 +25,10 @@ from distutils.core import setup
 from svgwrite.metadata import VERSION, AUTHOR_NAME, AUTHOR_EMAIL
 
 def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+    try:
+        return open(os.path.join(os.path.dirname(__file__), fname)).read()
+    except IOError:
+        return "File '%s' not found.\n" % fname
 
 setup(name='svgwrite',
     version=VERSION,
