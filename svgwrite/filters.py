@@ -14,16 +14,20 @@ from utils import strlist
 class _FilterPrimitive(BaseElement, Presentation):
     pass
 
-class _FilterRequireInput(_FilterPrimitive):
-    def __init__(self, in_, start=None, size=None, **extra):
-        super(_FilterRequireInput, self).__init__(**extra)
-        self['in'] = in_
+class _FilterNoInput(_FilterPrimitive):
+    def __init__(self, start=None, size=None, **extra):
+        super(_FilterNoInput, self).__init__(**extra)
         if start is not None:
             self['x'] = start[0]
             self['y'] = start[1]
         if size is not None:
             self['width'] = size[0]
             self['height'] = size[1]
+
+class _FilterRequireInput(_FilterNoInput):
+    def __init__(self, in_, **extra):
+        super(_FilterRequireInput, self).__init__(**extra)
+        self['in'] = in_
 
 class _feBlend(_FilterRequireInput):
     elementname = 'feBlend'
@@ -33,14 +37,14 @@ class _feColorMatrix(_FilterRequireInput):
 
 class _feComponentTransfer(_FilterRequireInput):
     elementname = 'feComponentTransfer'
-    def feFuncR(self, *args, **kwargs):
-        return self.add(_feFuncR(factory=self, *args, **kwargs))
-    def feFuncG(self, *args, **kwargs):
-        return self.add(_feFuncG(factory=self, *args, **kwargs))
-    def feFuncB(self, *args, **kwargs):
-        return self.add(_feFuncB(factory=self, *args, **kwargs))
-    def feFuncA(self, *args, **kwargs):
-        return self.add(_feFuncA(factory=self, *args, **kwargs))
+    def feFuncR(self, type_, **extra):
+        return self.add(_feFuncR(type_, factory=self, **extra))
+    def feFuncG(self, type_, **extra):
+        return self.add(_feFuncG(type_, factory=self, **extra))
+    def feFuncB(self, type_, **extra):
+        return self.add(_feFuncB(type_, factory=self, **extra))
+    def feFuncA(self, type_, **extra):
+        return self.add(_feFuncA(type_, factory=self, **extra))
 
 class _feFuncR(_FilterPrimitive):
     elementname = 'feFuncR'
@@ -63,27 +67,34 @@ class _feComposite(_FilterRequireInput):
 class _feConvolveMatrix(_FilterRequireInput):
     elementname = 'feConvolveMatrix'
 
-class _feDiffuseLightning(_FilterRequireInput):
-    elementname = 'feDiffuseLightning'
+class _feDiffuseLighting(_FilterRequireInput):
+    elementname = 'feDiffuseLighting'
 
 class _feDisplacementMap(_FilterRequireInput):
     elementname = 'feDisplacementMap'
 
-class _feFlood(_FilterRequireInput):
+class _feFlood(_FilterNoInput):
     elementname = 'feFlood'
 
 class _feGaussianBlur(_FilterRequireInput):
     elementname = 'feGaussianBlur'
 
-class _feImage(_FilterRequireInput):
+class _feImage(_FilterNoInput, IXLink):
     elementname = 'feImage'
+    def __init__(self, href, start=None, size=None, **extra):
+        super(_feImage, self).__init__(start, size, **extra)
+        self.set_href(href)
 
-class _feMergeNode(_FilterRequireInput):
+class _feMergeNode(_FilterPrimitive):
     elementname = 'feMergeNode'
 
-class _feMerge(_FilterRequireInput):
+class _feMerge(_FilterNoInput):
     elementname = 'feMerge'
-    def add_nodes(self, layernames):
+    def __init__(self, layernames, **extra):
+        super(_feMerge, self).__init__(**extra)
+        self.feMergeNode(layernames)
+
+    def feMergeNode(self, layernames):
         for layername in layernames:
             self.add(_feMergeNode(in_=layername, factory=self))
 
@@ -93,14 +104,14 @@ class _feMorphology(_FilterRequireInput):
 class _feOffset(_FilterRequireInput):
     elementname = 'feOffset'
 
-class _feSpecularLightning(_FilterRequireInput):
-    elementname = 'feSpecularLightning'
+class _feSpecularLighting(_FilterRequireInput):
+    elementname = 'feSpecularLighting'
 
 class _feTile(_FilterRequireInput):
     elementname = 'feTile'
 
-class _feTurbolance(_FilterRequireInput):
-    elementname = 'feTurbolance'
+class _feTurbulence(_FilterNoInput):
+    elementname = 'feTurbulence'
 
 filter_factory = {
     'feBlend': _feBlend,
@@ -108,7 +119,7 @@ filter_factory = {
     'feComponentTransfer': _feComponentTransfer,
     'feComposite': _feComposite,
     'feConvolveMatrix': _feConvolveMatrix,
-    'feDiffuseLightning': _feDiffuseLightning,
+    'feDiffuseLighting': _feDiffuseLighting,
     'feDisplacementMap': _feDisplacementMap,
     'feFlood': _feFlood,
     'feGaussianBlur': _feGaussianBlur,
@@ -116,9 +127,9 @@ filter_factory = {
     'feMerge': _feMerge,
     'feMorphology': _feMorphology,
     'feOffset': _feOffset,
-    'feSpecularLightning': _feSpecularLightning,
+    'feSpecularLighting': _feSpecularLighting,
     'feTile': _feTile,
-    'feTurbolence': _feTurbolance,
+    'feTurbulence': _feTurbulence,
 }
 
 class _FilterBuilder(object):
