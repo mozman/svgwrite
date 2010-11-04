@@ -26,7 +26,7 @@ class BaseElement(object):
 
     def __init__(self, **extra):
         """
-        :param dict extra: extra SVG attributes (keyword arguments)
+        :param extra: extra SVG attributes (keyword arguments)
 
           * add trailing '_' to reserved keywords: ``'class_'``, ``'from_'``
           * replace inner '-' by '_': ``'stroke_width'``
@@ -189,9 +189,11 @@ class BaseElement(object):
         if self.debug:
             self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
         for attribute, value in self.attribs.iteritems():
-            value = self.value_to_string(value)
-            if value: # just add not empty attributes
-                xml.set(attribute, value)
+            # filter 'None' values
+            if value is not None:
+                value = self.value_to_string(value)
+                if value: # just add not empty attributes
+                    xml.set(attribute, value)
 
         for element in self.elements:
             xml.append(element.get_xml())
@@ -209,3 +211,48 @@ class BaseElement(object):
             if isinstance(value, float) and self.profile == 'tiny':
                 value = round(value, 4)
         return unicode(value)
+
+    def set_desc(self, title=None, desc=None):
+        """ Insert a **title** and/or a **desc** element as first subelement.
+        """
+        if desc is not None:
+            self.elements.insert(0, Desc(desc))
+        if title is not None:
+            self.elements.insert(0, Title(title))
+
+    def set_metadata(self, xmldata):
+        """
+        :param xmldata: an xml.etree.ElementTree - Element() object.
+        """
+        metadata = Metadata(xmldata)
+        if len(self.elements) == 0:
+            self.elements.append(metadata)
+        else:
+            pos = 0
+            while self.elements[pos].elementname in ('title', 'desc'):
+                pos += 1
+                if pos == len(self.elements):
+                    self.elements.append(metadata)
+                    return
+            self.elements.insert(pos, metadata)
+
+class Title(object):
+    elementname = 'title'
+    def __init__(self, text):
+        self.xml = etree.Element(self.elementname)
+        self.xml.text = unicode(text)
+
+    def get_xml(self):
+        return self.xml
+
+class Desc(Title):
+    elementname = 'desc'
+
+class Metadata(Title):
+    elementname = 'metadata'
+    def __init__(self, xmldata):
+        """
+        :param xmldata: an xml.etree.ElementTree - Element() object.
+        """
+        self.xml = etree.Element('metadata')
+        self.xml.append(xmldata)

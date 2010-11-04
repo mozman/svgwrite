@@ -141,9 +141,8 @@ class IXLink(object):
         self.href = element
         self.update_id()
 
-    def set_xlink(self, role=None, arcrole=None, title=None, show=None,
-                  actuate=None, type_=None):
-        """ Set XLink attributes, except `href` (for `href` use :meth:`set_href`).
+    def set_xlink(self, title=None, show=None, role=None, arcrole=None):
+        """ Set XLink attributes (for `href` use :meth:`set_href`).
         """
         if role is not None:
             self['xlink:role'] = role
@@ -153,10 +152,6 @@ class IXLink(object):
             self['xlink:title'] = title
         if show is not None:
             self['xlink:show'] = show
-        if actuate is not None:
-            self['xlink:actuate'] = actuate
-        if type_ is not None:
-            self['xlink:type'] = type_
 
     def update_id(self):
         if not hasattr(self, 'href'):

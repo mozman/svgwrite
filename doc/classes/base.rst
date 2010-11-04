@@ -37,6 +37,10 @@ Methods
 
 .. automethod:: svgwrite.base.BaseElement.__setitem__
 
+.. automethod:: svgwrite.base.BaseElement.set_desc
+
+.. automethod:: svgwrite.base.BaseElement.set_metadata
+
 set/get SVG attributes::
 
    element['attribute'] = value

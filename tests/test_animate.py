@@ -15,6 +15,11 @@ class TestSet(unittest.TestCase):
         s = Set(debug=True)
         self.assertEqual(s.tostring(), '<set />')
 
+    def test_set_href(self):
+        s = Set(element='#test', debug=True)
+        self.assertEqual(s.tostring(), '<set xlink:href="#test" />')
+
+
     def test_set_target(self):
         s = Set(debug=True)
         s.set_target('x', 'XML')
@@ -63,6 +68,10 @@ class TestAnimateMotion(unittest.TestCase):
         s = AnimateMotion(debug=True)
         s.freeze()
         self.assertEqual(s.tostring(), '<animateMotion fill="freeze" />')
+
+    def test_init_with_path(self):
+        s = AnimateMotion('m 0 0', debug=True)
+        self.assertEqual(s.tostring(), '<animateMotion path="m 0 0" />')
 
     def test_set_value(self):
         a = AnimateMotion(debug=True)

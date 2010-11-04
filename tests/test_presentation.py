@@ -15,6 +15,10 @@ from svgwrite import rgb
 class PresentationClass(BaseElement, Presentation):
     elementname = "line" # element with valid presentation attributes
 
+class MockPaintServer:
+    def get_paint_server(self):
+        return "url(#mockpaintserver)"
+
 class TestPresentationMixin(unittest.TestCase):
     def test_fill(self):
         obj = PresentationClass(debug=True, profile='full')
@@ -34,6 +38,12 @@ class TestPresentationMixin(unittest.TestCase):
         self.assertEqual(obj.tostring(),
                          '<line fill="rgb(10%,20%,30%)" fill-opacity="1.0" fill-rule="evenodd" />')
 
+    def test_fill_paintserver(self):
+        obj = PresentationClass(debug=True, profile='full')
+        obj.fill(color=MockPaintServer())
+        self.assertEqual(obj.tostring(),
+                         '<line fill="url(#mockpaintserver)" />')
+
     def test_stroke(self):
         obj = PresentationClass(debug=True, profile='full')
         obj.stroke(color='red', width=2, opacity=0.5, linecap='round',
@@ -45,6 +55,12 @@ class TestPresentationMixin(unittest.TestCase):
                          'stroke-miterlimit="1.5" ' \
                          'stroke-opacity="0.5" ' \
                          'stroke-width="2" />')
+
+    def test_stroke_paintserver(self):
+        obj = PresentationClass(debug=True, profile='full')
+        obj.stroke(color=MockPaintServer())
+        self.assertEqual(obj.tostring(),
+                         '<line stroke="url(#mockpaintserver)" />')
 
     def test_dasharray(self):
         obj = PresentationClass(debug=True, profile='full')
