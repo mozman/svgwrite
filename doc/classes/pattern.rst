@@ -83,7 +83,7 @@ SVG Attributes
 
 * **patternTransform** -- `<transform-list>`
 
-  Use the :class:`~svgwrite.interface.ITransform` interface to set transformations.
+  Use the :class:`~svgwrite.mixins.Transform` interface to set transformations.
 
   Contains the definition of an optional additional transformation from the
   pattern coordinate system onto the target coordinate system (i.e.,
@@ -140,5 +140,5 @@ SVG Attributes
 
 * **preserveAspectRatio** -- ``'[defer] <align> [<meetOrSlice>]'``
 
-  Use the :class:`~svgwrite.interface.IViewBox` interface to set **viewbox**
+  Use the :class:`~svgwrite.mixins.ViewBox` interface to set **viewbox**
   and **preserveAspectRatio**.

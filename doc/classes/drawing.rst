@@ -161,8 +161,8 @@ Parent Classes
 * :class:`svgwrite.base.BaseElement`
 * :class:`svgwrite.container.Symbol`
 * :class:`svgwrite.container.SVG`
-* :class:`svgwrite.interface.ITransform`
-* :class:`svgwrite.interface.IViewBox`
+* :class:`svgwrite.mixins.Transform`
+* :class:`svgwrite.mixins.ViewBox`
 * :class:`svgwrite.mixins.Presentation`
 * :class:`svgwrite.mixins.Clipping`
 * :class:`svgwrite.elementfactory.ElementFactory`

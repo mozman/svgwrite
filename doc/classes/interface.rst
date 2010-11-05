@@ -1,46 +1,46 @@
-IViewBox interface
-==================
+ViewBox Mixin
+=============
 
-.. autoclass:: svgwrite.interface.IViewBox
-
-Methods
--------
-
-.. automethod:: svgwrite.interface.IViewBox.viewbox
-
-.. automethod:: svgwrite.interface.IViewBox.stretch
-
-.. automethod:: svgwrite.interface.IViewBox.fit
-
-ITransform interface
-====================
-
-.. autoclass:: svgwrite.interface.ITransform
+.. autoclass:: svgwrite.mixins.ViewBox
 
 Methods
 -------
 
-.. automethod:: svgwrite.interface.ITransform.translate
+.. automethod:: svgwrite.mixins.ViewBox.viewbox
 
-.. automethod:: svgwrite.interface.ITransform.rotate
+.. automethod:: svgwrite.mixins.ViewBox.stretch
 
-.. automethod:: svgwrite.interface.ITransform.skewX
+.. automethod:: svgwrite.mixins.ViewBox.fit
 
-.. automethod:: svgwrite.interface.ITransform.skewY
+Transform Mixin
+===============
 
-.. automethod:: svgwrite.interface.ITransform.scale
-
-IXLink interface
-================
-
-.. autoclass:: svgwrite.interface.IXLink
+.. autoclass:: svgwrite.mixins.Transform
 
 Methods
 -------
 
-.. automethod:: svgwrite.interface.IXLink.set_href
+.. automethod:: svgwrite.mixins.Transform.translate
 
-.. automethod:: svgwrite.interface.IXLink.set_xlink
+.. automethod:: svgwrite.mixins.Transform.rotate
+
+.. automethod:: svgwrite.mixins.Transform.skewX
+
+.. automethod:: svgwrite.mixins.Transform.skewY
+
+.. automethod:: svgwrite.mixins.Transform.scale
+
+XLink Mixin
+===========
+
+.. autoclass:: svgwrite.mixins.XLink
+
+Methods
+-------
+
+.. automethod:: svgwrite.mixins.XLink.set_href
+
+.. automethod:: svgwrite.mixins.XLink.set_xlink
 
 Set **xlink:actuate** and **xlink:type** by the index operator::
 

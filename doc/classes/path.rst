@@ -25,7 +25,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 * :class:`svgwrite.mixins.Markers`
 
@@ -121,7 +121,7 @@ SVG Attributes
   *False*: if document rendering can proceed
   even if external resources are unavailable else: *True*
 
-* **transform** -- use :class:`svgwrite.interface.ITransform` methods
+* **transform** -- use :class:`svgwrite.mixins.Transform` methods
 
 * **pathLength** -- `<number>`
 
