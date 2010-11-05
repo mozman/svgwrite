@@ -23,10 +23,10 @@ set/get SVG attributes::
 """
 
 from svgwrite.base import BaseElement
-from svgwrite.interface import IViewBox, ITransform, IXLink
+from svgwrite.mixins import ViewBox, Transform, XLink
 from svgwrite.mixins import Presentation, Clipping
 
-class Group(BaseElement, ITransform, Presentation):
+class Group(BaseElement, Transform, Presentation):
     """ The **Group** (SVG **g**) element is a container element for grouping
     together related graphics elements.
 
@@ -49,7 +49,7 @@ class Defs(Group):
     """
     elementname= 'defs'
 
-class Symbol(BaseElement, IViewBox, Presentation, Clipping):
+class Symbol(BaseElement, ViewBox, Presentation, Clipping):
     """ The **symbol** element is used to define graphical template objects which
     can be instantiated by a **use** element. The use of **symbol** elements for
     graphics that are used multiple times in the same document adds structure and
@@ -59,7 +59,7 @@ class Symbol(BaseElement, IViewBox, Presentation, Clipping):
     # ITransform interface is not valid for Symbol -> do not inherit from Group
     elementname = 'symbol'
 
-class Marker(BaseElement, IViewBox, Presentation):
+class Marker(BaseElement, ViewBox, Presentation):
     """ The **marker** element defines the graphics that is to be used for
     drawing arrowheads or polymarkers on a given **path**, **line**, **polyline**
     or **polygon** element.
@@ -116,7 +116,7 @@ class SVG(Symbol):
         self.defs = Defs(factory=self) # defs container
         self.add(self.defs) # add defs as first element
 
-class Use(BaseElement, ITransform, IXLink, Presentation):
+class Use(BaseElement, Transform, XLink, Presentation):
     """ The **use** element references another element and indicates that the graphical
     contents of that element is included/drawn at that given point in the document.
 
@@ -147,7 +147,7 @@ class Use(BaseElement, ITransform, IXLink, Presentation):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
         return super(Use, self).get_xml()
 
-class Hyperlink(BaseElement, ITransform, Presentation):
+class Hyperlink(BaseElement, Transform, Presentation):
     """ The **a** element indicate links (also known as Hyperlinks or Web links).
 
     The remote resource (the destination for the link) is defined by a `<IRI>`

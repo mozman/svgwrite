@@ -20,10 +20,9 @@
 
 from svgwrite.base import BaseElement
 from svgwrite.utils import strlist
-from svgwrite.interface import ITransform
-from svgwrite.mixins import Presentation, Markers
+from svgwrite.mixins import Presentation, Markers, Transform
 
-class Path(BaseElement, ITransform, Presentation, Markers):
+class Path(BaseElement, Transform, Presentation, Markers):
     """ The <path> element represent the outline of a shape which can be filled,
     stroked, used as a clipping path, or any combination of the three.
 

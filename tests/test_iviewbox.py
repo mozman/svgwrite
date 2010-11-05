@@ -11,13 +11,13 @@ import unittest
 
 from svgwrite.params import Parameter
 from svgwrite.base import BaseElement
-from svgwrite.interface import IViewBox
+from svgwrite.mixins import ViewBox
 
-class Mock(BaseElement, IViewBox):
+class Mock(BaseElement, ViewBox):
     elementname = 'svg'
     _parameter = Parameter(True, 'full')
 
-class TestITransfer(unittest.TestCase):
+class TestViewBox(unittest.TestCase):
     def test_mock_class(self):
         m = Mock()
         self.assertEqual(m.tostring(), '<svg />')

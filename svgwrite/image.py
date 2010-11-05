@@ -7,10 +7,9 @@
 # License: GPLv3
 
 from svgwrite.base import BaseElement
-from svgwrite.interface import ITransform, _vert, _horiz
-from svgwrite.mixins import Clipping
+from svgwrite.mixins import Transform, _vert, _horiz, Clipping
 
-class Image(BaseElement, ITransform, Clipping):
+class Image(BaseElement, Transform, Clipping):
     """ The **image** element indicates that the contents of a complete file are
     to be rendered into a given rectangle within the current user coordinate
     system. The **image** element can refer to raster image files such as PNG

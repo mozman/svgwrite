@@ -13,9 +13,9 @@ import re
 from svgwrite.container import Group
 from svgwrite.params import Parameter
 from svgwrite.base import BaseElement
-from svgwrite.interface import IXLink
+from svgwrite.mixins import XLink
 
-class Mock(BaseElement, IXLink):
+class Mock(BaseElement, XLink):
     elementname = 'use'
     _parameter = Parameter(True, 'full')
 

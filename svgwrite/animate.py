@@ -7,9 +7,9 @@
 # License: GPLv3
 
 from svgwrite.base import BaseElement
-from svgwrite.interface import IXLink
+from svgwrite.mixins import XLink
 
-class Set(BaseElement, IXLink):
+class Set(BaseElement, XLink):
     """ The **set** element provides a simple means of just setting the value
     of an attribute for a specified duration. It supports all attribute types,
     including those that cannot reasonably be interpolated, such as string

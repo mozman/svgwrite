@@ -10,12 +10,10 @@ import sys
 import unittest
 
 from svgwrite.container import Group
-from svgwrite.interface import ITransform
 
 class TestGroup(unittest.TestCase):
     def test_constructor(self):
         g = Group()
-        self.assertTrue(isinstance(g, ITransform))
         self.assertEqual(g.tostring(), "<g />")
 
     def test_add_subelement(self):

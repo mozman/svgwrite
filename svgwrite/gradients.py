@@ -13,7 +13,7 @@ linear gradients and radial gradients.
 """
 
 from svgwrite.base import BaseElement
-from svgwrite.interface import ITransform, IXLink
+from svgwrite.mixins import Transform, XLink
 
 class _GradientStop(BaseElement):
     elementname = 'stop'
@@ -27,7 +27,7 @@ class _GradientStop(BaseElement):
         if opacity is not None:
             self['stop-opacity'] = opacity
 
-class _AbstractGradient(BaseElement, ITransform, IXLink):
+class _AbstractGradient(BaseElement, Transform, XLink):
     transformname = 'gradientTransform'
     def __init__(self, inherit=None, **extra):
         super(_AbstractGradient, self).__init__(**extra)
