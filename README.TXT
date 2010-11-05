@@ -29,11 +29,18 @@ or from source::
 
     python setup.py install
 
-run tests with **nosetests** or
+Tests
+=====
+
+run tests with **nosetests** or **py.test**
 
 with Python 2.7::
 
     python -m unittest discover -s tests
+
+on Windows & Python 2.7::
+
+    runtests.bat
 
 Documentation
 =============
@@ -45,5 +52,3 @@ send feedback to mozman@gmx.at
 svgwrite can be found on bitbucket.org at:
 
 http://bitbucket.org/mozman/svgwrite
-
-
