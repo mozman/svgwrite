@@ -116,7 +116,6 @@ Mixins
 .. toctree::
    :maxdepth: 1
 
-   classes/interface
    classes/mixins
 
 Indices and tables
