@@ -13,7 +13,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.base.TSpan`
+* :class:`svgwrite.text.TSpan`
 * :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 

@@ -107,7 +107,7 @@ SVG Attributes
 
   Default is ``'userSpaceOnUse'``.
 
-* **x** -- `<coordinate>`
+* **x** -- `<coordinate>` -- **start** parameter
 
   The x-axis coordinate of one corner of the rectangle for the largest
   possible offscreen buffer. Note that the clipping path used to render any
@@ -117,14 +117,14 @@ SVG Attributes
 
   Default is ``'-10%'``.
 
-* **y** -- `<coordinate>`
+* **y** -- `<coordinate>` -- **start** parameter
 
   The y-axis coordinate of one corner of the rectangle for the largest
   possible offscreen buffer.
 
   Default is ``'-10%'``.
 
-* **width** -- `<length>`
+* **width** -- `<length>` -- **size** parameter
 
   The width of the largest possible offscreen buffer. Note that the clipping
   path used to render any graphics within the mask will consist of the
@@ -133,7 +133,7 @@ SVG Attributes
 
   Default is ``'120%'``.
 
-* **height** -- `<length>`
+* **height** -- `<length>` -- **size** parameter
 
   The height of the largest possible offscreen buffer.
 

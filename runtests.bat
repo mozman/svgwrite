@@ -1,6 +1,6 @@
-@ECHO OFF
+ECHO OFF
 ECHO runtests.bat requires Python 2.7
-ECHO for Python < 2.7 run 'nosetests' or 'py.test' if installed.
+ECHO for Python Versions before 2.7 run 'nosetests' or 'py.test' if installed.
 REM set correct path to Pyrhon 2.7
 SET PYTHON27=c:\python27\python.exe
 SET PARAMS=-m unittest discover -s tests

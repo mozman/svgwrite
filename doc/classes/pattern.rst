@@ -93,7 +93,7 @@ SVG Attributes
   transformations, including the implicit transformation necessary to convert
   from object bounding box units to user space.
 
-* **x** -- `<coordinate>`
+* **x** -- `<coordinate>` -- **insert** parameter
 
   **x**, **y**, **width** and **height** indicate how the pattern tiles are
   placed and spaced. These attributes represent coordinates and values in the
@@ -102,22 +102,13 @@ SVG Attributes
 
   Default is ``'0'``.
 
-* **y** -- *<coordinate>*
+* **y** -- `<coordinate>` -- **center** parameter
 
   See **x**.
 
   Default is ``'0'``.
 
-* **width** -- *<length>*
-
-  See **x**.
-
-  A negative value is an error. A value of zero disables rendering of the
-  element (i.e., no paint is applied).
-
-  Default is ``'0'``.
-
-* **height** -- *<length>*
+* **width** -- `<length>` -- **size** parameter
 
   See **x**.
 
@@ -126,7 +117,16 @@ SVG Attributes
 
   Default is ``'0'``.
 
-* **xlink:href** -- `string`
+* **height** -- `<length>` -- **size** parameter
+
+  See **x**.
+
+  A negative value is an error. A value of zero disables rendering of the
+  element (i.e., no paint is applied).
+
+  Default is ``'0'``.
+
+* **xlink:href** -- `string` -- **inherit** parameter
 
   A URI reference to a different **pattern** element within the current SVG
   document fragment. Any attributes which are defined on the referenced

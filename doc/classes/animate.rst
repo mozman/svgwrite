@@ -103,7 +103,7 @@ SVG Attributes
 
   Specifies the interpolation mode for the animation.
 
-* **path** -- `<path-data>`
+* **path** -- `<path-data>` -- **path** parameter
 
   The motion path, expressed in the same format and interpreted the same way
   as the :ref:`d <pathCommands>` attribute on the **Path** element.
@@ -276,7 +276,7 @@ Parent Classes
 Methods
 -------
 
-.. automethod:: svgwrite.animate.Set.__init__
+.. automethod:: svgwrite.animate.AnimateTransform.__init__
 
 SVG Animation Attributes
 ------------------------

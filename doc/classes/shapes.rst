@@ -10,10 +10,10 @@ Line
 SVG Attributes
 --------------
 
-* **x1** -- `<coordinate>` start-x
-* **y1** -- `<coordinate>` start-y
-* **x2** -- `<coordinate>` end-x
-* **y2** -- `<coordinate>` end-y
+* **x1** -- `<coordinate>` -- **start** parameter
+* **y1** -- `<coordinate>` -- **start** parameter
+* **x2** -- `<coordinate>` -- **end** parameter
+* **y2** -- `<coordinate>` -- **end** parameter
 
 Common SVG Attributes
 ---------------------
@@ -68,26 +68,26 @@ Rect
 SVG Attributes
 --------------
 
-* **x** -- `<coordinate>`
+* **x** -- `<coordinate>` -- **insert** parameter
 
   The x-axis coordinate of the side of the
   rectangle which has the smaller x-axis coordinate value
 
-* **y** -- `<coordinate>`
+* **y** -- `<coordinate>` -- **insert** parameter
 
   The y-axis coordinate of the side of the
   rectangle which has the smaller y-axis coordinate value
 
-* **width** -- `<lenght>`
+* **width** -- `<lenght>` -- **size** parameter
 
-* **height** -- `<lenght>`
+* **height** -- `<lenght>` -- **size** parameter
 
-* **rx** -- `<length>`
+* **rx** -- `<length>` -- **rx** parameter
 
   For rounded rectangles, the y-axis radius of the
   ellipse used to round off the corners of the rectangle.
 
-* **ry** -- `<length>`
+* **ry** -- `<length>` -- **ry** parameter
 
   For rounded rectangles, the y-axis radius of the
   ellipse used to round off the corners of the rectangle.
@@ -112,15 +112,15 @@ Circle
 SVG Attributes
 --------------
 
-* **cx** -- `<coordinate>`
+* **cx** -- `<coordinate>` -- **center** parameter
 
   The x-axis coordinate of the center of the circle.
 
-* **cy** -- `<coordinate>`
+* **cy** -- `<coordinate>` -- **center** parameter
 
   The y-axis coordinate of the center of the circle.
 
-* **r** -- `<length>`
+* **r** -- `<length>` -- **r** parameter
 
   The radius of the circle.
 
@@ -143,19 +143,19 @@ Ellipse
 SVG Attributes
 --------------
 
-* **cx** -- `<coordinate>`
+* **cx** -- `<coordinate>` -- **center** parameter
 
   The x-axis coordinate of the center of the ellipse.
 
-* **cy** -- `<coordinate>`
+* **cy** -- `<coordinate>` -- **center** parameter
 
   The y-axis coordinate of the center of the ellipse.
 
-* **rx** -- `<length>`
+* **rx** -- `<length>` -- **r** parameter
 
   The x-axis radius of the ellipse.
 
-* **ry** -- `<length>`
+* **ry** -- `<length>` -- **r** parameter
 
   The y-axis radius of the ellipse.
 
@@ -185,7 +185,7 @@ Attributes
 SVG Attributes
 --------------
 
-* **points** -- `list` of points
+* **points** -- `list` of points  -- **points** parameter
 
   The points that make up the polyline. All coordinate values are in the
   **user coordinate system** (no units allowed).

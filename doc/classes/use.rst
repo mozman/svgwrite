@@ -32,21 +32,21 @@ SVG Attributes
   *False*: if document rendering can proceed even if external resources are
   unavailable else: *True*
 
-* **x** -- `<coordinate>`
+* **x** -- `<coordinate>` -- **insert** parameter
 
   The x-axis coordinate of one corner of the rectangular region into which
   the referenced element is placed.
 
   Default is ``'0'``.
 
-* **y** -- `<coordinate>`
+* **y** -- `<coordinate>` -- **insert** parameter
 
   The y-axis coordinate of one corner of the rectangular region into which the
   referenced element is placed.
 
   Default is ``'0'``.
 
-* **width** -- `<length>`
+* **width** -- `<length>` -- **size** parameter
 
   The width of the rectangular region into which the referenced element is
   placed. A negative value is an error. A value of zero disables rendering
@@ -54,7 +54,7 @@ SVG Attributes
 
   Default is ``'100%'``.
 
-* **height** -- `<length>`
+* **height** -- `<length>` -- **size** parameter
 
   The height of the rectangular region into which the referenced element is
   placed. A negative value is an error. A value of zero disables rendering
@@ -64,7 +64,7 @@ SVG Attributes
 
 * **transform** -- :class:`svgwrite.mixins.Transform` interface
 
-* **xlink:href** -- `string`
+* **xlink:href** -- `string` -- **href** parameter
 
   set on __init__(href)
 
