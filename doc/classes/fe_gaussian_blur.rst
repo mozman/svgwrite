@@ -31,5 +31,5 @@ SVG Attributes
     A negative value is an error. A value of zero disables the effect of the
     given filter primitive (i.e., the result is the filter input image).
 
-    If the attribute is not specified, then the effect is as if a value of 0
+    If the attribute is not specified, then the effect is as if a value of ``'0'``
     were specified.

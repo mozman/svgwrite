@@ -16,7 +16,7 @@ class TestSet(unittest.TestCase):
         self.assertEqual(s.tostring(), '<set />')
 
     def test_set_href(self):
-        s = Set(element='#test', debug=True)
+        s = Set(href='#test', debug=True)
         self.assertEqual(s.tostring(), '<set xlink:href="#test" />')
 
 
@@ -43,7 +43,12 @@ class TestSet(unittest.TestCase):
         s.freeze()
         self.assertEqual(s.tostring(), '<set fill="freeze" />')
 
+
 class TestAnimate(unittest.TestCase):
+    def test_constructor(self):
+        a = Animate('x', debug=True)
+        self.assertEqual(a.tostring(), '<animate attributeName="x" />')
+
     def test_freeze(self):
         a = Animate(debug=True)
         a.freeze()
@@ -51,11 +56,23 @@ class TestAnimate(unittest.TestCase):
 
     def test_set_value(self):
         a = Animate(debug=True)
-        a.set_value('0', 'linear', '0', '0 0 0 0', 0, 0, 0)
+        a.set_value('0;1;2', 'linear', '0', '0 0 0 0', 0, 0, 0)
         self.assertEqual(a.tostring(),
                          '<animate by="0" calcMode="linear" from="0" ' \
                          'keySplines="0 0 0 0" keyTimes="0" to="0" '\
-                         'values="0" />')
+                         'values="0;1;2" />')
+
+    def test_values_string(self):
+        s = Animate(values="1;2;3", debug=True)
+        self.assertEqual(s.tostring(), '<animate values="1;2;3" />')
+
+    def test_values_list(self):
+        s = Animate(values=[1,2,3], debug=True)
+        self.assertEqual(s.tostring(), '<animate values="1;2;3" />')
+
+    def test_values_int(self):
+        s = Animate(values=(3,), debug=True)
+        self.assertEqual(s.tostring(), '<animate values="3" />')
 
 class TestAnimateColor(unittest.TestCase):
     def test_freeze(self):

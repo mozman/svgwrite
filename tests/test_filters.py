@@ -183,6 +183,11 @@ class Test_feDiffuseLighting(unittest.TestCase):
         self.assertEqual(f.feDiffuseLighting('input1', kernelUnitLength=2).tostring(),
                          '<feDiffuseLighting in="input1" kernelUnitLength="2" />')
 
+    def test_lighting_color(self):
+        f = filters.Filter()
+        self.assertEqual(f.feDiffuseLighting('input1', lighting_color='yellow').tostring(),
+                         '<feDiffuseLighting in="input1" lighting-color="yellow" />')
+
 class Test_feDisplacementMap(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
@@ -286,6 +291,10 @@ class Test_feSpecularLighting(unittest.TestCase):
         f = filters.Filter()
         self.assertEqual(f.feSpecularLighting("input1", kernelUnitLength="1,2").tostring(),
                          '<feSpecularLighting in="input1" kernelUnitLength="1,2" />')
+    def test_lighting_color(self):
+        f = filters.Filter()
+        self.assertEqual(f.feSpecularLighting('input1', lighting_color='yellow').tostring(),
+                         '<feSpecularLighting in="input1" lighting-color="yellow" />')
 
 class Test_feTile(unittest.TestCase):
     def test_constructor(self):
@@ -321,6 +330,50 @@ class Test_feTurbulence(unittest.TestCase):
                          '<feTurbulence type="fractalNoise" />')
         self.assertEqual(f.feTurbulence(type_="turbulence").tostring(),
                          '<feTurbulence type="turbulence" />')
+
+class TestDistantLight(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        fp = f.feDiffuseLighting('input1')
+        ls = fp.feDistantLight()
+        self.assertEqual(ls.tostring(), '<feDistantLight />')
+        self.assertEqual(fp.tostring(), '<feDiffuseLighting in="input1"><feDistantLight /></feDiffuseLighting>')
+        self.assertEqual(f.tostring(), '<filter><feDiffuseLighting in="input1"><feDistantLight /></feDiffuseLighting></filter>')
+    def test_all_parmeters(self):
+        f = filters.Filter()
+        ls = f.feDiffuseLighting('input1').feDistantLight(1, 2)
+        self.assertEqual(ls.tostring(), '<feDistantLight azimuth="1" elevation="2" />')
+
+class TestPointLight(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        fp = f.feDiffuseLighting('input1')
+        ls = fp.fePointLight()
+        self.assertEqual(ls.tostring(), '<fePointLight />')
+        self.assertEqual(fp.tostring(), '<feDiffuseLighting in="input1"><fePointLight /></feDiffuseLighting>')
+        self.assertEqual(f.tostring(), '<filter><feDiffuseLighting in="input1"><fePointLight /></feDiffuseLighting></filter>')
+    def test_all_parmeters(self):
+        f = filters.Filter()
+        ls = f.feDiffuseLighting('input1').fePointLight(source=(1,2,3))
+        self.assertEqual(ls.tostring(), '<fePointLight x="1" y="2" z="3" />')
+
+class TestSpotLight(unittest.TestCase):
+    def test_constructor(self):
+        f = filters.Filter()
+        fp = f.feDiffuseLighting('input1')
+        ls = fp.feSpotLight()
+        self.assertEqual(ls.tostring(), '<feSpotLight />')
+        self.assertEqual(fp.tostring(), '<feDiffuseLighting in="input1"><feSpotLight /></feDiffuseLighting>')
+        self.assertEqual(f.tostring(), '<filter><feDiffuseLighting in="input1"><feSpotLight /></feDiffuseLighting></filter>')
+    def test_all_parmeters(self):
+        f = filters.Filter()
+        ls = f.feDiffuseLighting('input1').feSpotLight(source=(1,2,3), target=(4,5,6),
+                                                       specularExponent=2,
+                                                       limitingConeAngle=15)
+        self.assertEqual(ls.tostring(), '<feSpotLight limitingConeAngle="15" '\
+                         'pointsAtX="4" pointsAtY="5" pointsAtZ="6" '\
+                         'specularExponent="2" x="1" y="2" z="3" />')
+
 
 if __name__=='__main__':
     unittest.main()

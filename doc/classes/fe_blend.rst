@@ -17,7 +17,7 @@ SVG Attributes
 * **mode** -- ``'normal | multiply | screen | darken | lighten'``
 
   One of the image blending modes. If attribute **mode** is not specified,
-  then the effect is as if a value of normal were specified.
+  then the effect is as if a value of ``'normal'`` were specified.
 
   see also: http://www.w3.org/TR/SVG11/filters.html#feBlendModeAttribute
 

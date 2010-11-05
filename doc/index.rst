@@ -109,6 +109,7 @@ Filter Effects
    classes/fe_specular_lighting
    classes/fe_tile
    classes/fe_turbulence
+   classes/fe_lights
 
 Mixins
 ------
