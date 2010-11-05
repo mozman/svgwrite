@@ -6,7 +6,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from validator2 import get_validator
+from svgwrite.validator2 import get_validator
 
 class Parameter(object):
     """

@@ -12,8 +12,8 @@ The **BaseElement** is the root for all SVG elements.
 import xml.etree.ElementTree as etree
 import copy
 
-from params import Parameter
-from utils import AutoID
+from svgwrite.params import Parameter
+from svgwrite.utils import AutoID
 
 class BaseElement(object):
     """

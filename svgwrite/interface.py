@@ -8,7 +8,7 @@
 _horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
 _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
 
-from utils import strlist
+from svgwrite.utils import strlist
 
 class IViewBox(object):
     """ The **IViewBox** interface provides the ability to specify that a

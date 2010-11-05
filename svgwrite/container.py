@@ -22,9 +22,9 @@ set/get SVG attributes::
 
 """
 
-from base import BaseElement
-from interface import IViewBox, ITransform, IXLink
-from mixins import Presentation, Clipping
+from svgwrite.base import BaseElement
+from svgwrite.interface import IViewBox, ITransform, IXLink
+from svgwrite.mixins import Presentation, Clipping
 
 class Group(BaseElement, ITransform, Presentation):
     """ The **Group** (SVG **g**) element is a container element for grouping

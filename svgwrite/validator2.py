@@ -6,10 +6,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from data import full11
-from data import tiny12
-
-from data import pattern
+from svgwrite.data import full11
+from svgwrite.data import tiny12
+from svgwrite.data import pattern
 
 def get_validator(profile, debug=True):
     """ Validator factory """

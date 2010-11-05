@@ -6,9 +6,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from base import BaseElement
-from interface import ITransform, _vert, _horiz
-from mixins import Clipping
+from svgwrite.base import BaseElement
+from svgwrite.interface import ITransform, _vert, _horiz
+from svgwrite.mixins import Clipping
 
 class Image(BaseElement, ITransform, Clipping):
     """ The **image** element indicates that the contents of a complete file are

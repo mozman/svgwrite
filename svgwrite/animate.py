@@ -6,8 +6,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from base import BaseElement
-from interface import IXLink
+from svgwrite.base import BaseElement
+from svgwrite.interface import IXLink
 
 class Set(BaseElement, IXLink):
     """ The **set** element provides a simple means of just setting the value

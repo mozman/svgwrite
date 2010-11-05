@@ -6,9 +6,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from base import BaseElement
-from interface import IXLink, IViewBox, ITransform
-from mixins import Presentation
+from svgwrite.base import BaseElement
+from svgwrite.interface import IXLink, IViewBox, ITransform
+from svgwrite.mixins import Presentation
 
 class Pattern(BaseElement, IXLink, IViewBox, ITransform, Presentation):
     """

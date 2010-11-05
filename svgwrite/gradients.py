@@ -12,8 +12,8 @@ the same vector to other colors. SVG provides for two types of gradients:
 linear gradients and radial gradients.
 """
 
-from base import BaseElement
-from interface import ITransform, IXLink
+from svgwrite.base import BaseElement
+from svgwrite.interface import ITransform, IXLink
 
 class _GradientStop(BaseElement):
     elementname = 'stop'

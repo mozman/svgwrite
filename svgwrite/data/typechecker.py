@@ -8,9 +8,9 @@
 
 import re
 
-import pattern
-from colors import colornames
-from svgparser import TransformListParser, PathDataParser, AnimationTimingParser
+from svgwrite.data import pattern
+from svgwrite.data.colors import colornames
+from svgwrite.data.svgparser import TransformListParser, PathDataParser, AnimationTimingParser
 
 def iterflatlist(values):
     """ Flatten nested *values*, returns an *iterator*. """

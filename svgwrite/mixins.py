@@ -6,8 +6,8 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from utils import strlist
-from base import Title, Desc
+from svgwrite.utils import strlist
+from svgwrite.base import Title, Desc
 
 class Presentation(object):
     """
