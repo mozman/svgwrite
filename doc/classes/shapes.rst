@@ -35,7 +35,7 @@ Poliyline and Polygon.
   *False*: if document rendering can proceed even if external resources are
   unavailable else: *True*
 
-* **transform** -- use :class:`svgwrite.interface.ITransform` interface
+* **transform** -- use :class:`svgwrite.mixins.Transform` interface
 
 Common Standard SVG Attributes
 ------------------------------
@@ -52,7 +52,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 * :class:`svgwrite.mixins.Markers`
 
@@ -97,7 +97,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 
 Circle
@@ -128,7 +128,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 
 Ellipse
@@ -163,7 +163,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 
 Polyline
@@ -199,7 +199,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 * :class:`svgwrite.mixins.Markers`
 
@@ -214,6 +214,6 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 * :class:`svgwrite.mixins.Markers`

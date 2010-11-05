@@ -17,7 +17,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.mixins.XLink`
 
 Methods
 -------
@@ -73,7 +73,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.mixins.XLink`
 * :class:`svgwrite.animate.Set`
 
 Methods
@@ -177,7 +177,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.mixins.XLink`
 * :class:`svgwrite.animate.Set`
 
 Methods
@@ -238,7 +238,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.mixins.XLink`
 * :class:`svgwrite.animate.Animate`
 
 SVG Animation Attributes
@@ -268,7 +268,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.mixins.XLink`
 * :class:`svgwrite.animate.Animate`
 
 Methods

@@ -67,8 +67,8 @@ Filter Effects
 Interfaces and Mixins
 ---------------------
 
-:class:`~svgwrite.interface.IViewBox`, :class:`~svgwrite.interface.ITransform`,
-:class:`~svgwrite.interface.IXLink`,
+:class:`~svgwrite.mixins.ViewBox`, :class:`~svgwrite.mixins.Transform`,
+:class:`~svgwrite.mixins.XLink`,
 :class:`~svgwrite.mixins.Presentation`, :class:`~svgwrite.mixins.MediaGroup`,
 :class:`~svgwrite.mixins.Markers`, :class:`~svgwrite.mixins.Clipping`,
 

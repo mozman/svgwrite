@@ -9,7 +9,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.IViewBox`
+* :class:`svgwrite.mixins.ViewBox`
 * :class:`svgwrite.mixins.Presentation`
 * :class:`svgwrite.mixins.Clipping`
 
@@ -30,9 +30,9 @@ SVG Attributes
   *False*: if document rendering can proceed even if external resources are
   unavailable else: *True*
 
-* **viewBox** -- use :class:`svgwrite.interface.IViewBox` interface
+* **viewBox** -- use :class:`svgwrite.mixins.ViewBox` interface
 
-* **preserveAspectRatio** -- use :class:`svgwrite.interface.IViewBox`
+* **preserveAspectRatio** -- use :class:`svgwrite.mixins.ViewBox`
   interface
 
 Standard SVG Attributes

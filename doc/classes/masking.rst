@@ -27,7 +27,7 @@ SVG Attributes
   *False*: if document rendering can proceed
   even if external resources are unavailable else: *True*
 
-* **transform** -- use :class:`svgwrite.interface.ITransform` methods
+* **transform** -- use :class:`svgwrite.mixins.Transform` methods
 
 * **clipPathUnits** -- ``'userSpaceOnUse | objectBoundingBox'``
 

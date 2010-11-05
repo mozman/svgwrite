@@ -24,8 +24,8 @@ Parent Classes
 * :class:`svgwrite.base.BaseElement`
 * :class:`svgwrite.container.Symbol`
 * :class:`svgwrite.container.SVG`
-* :class:`svgwrite.interface.ITransform`
-* :class:`svgwrite.interface.IViewBox`
+* :class:`svgwrite.mixins.Transform`
+* :class:`svgwrite.mixins.ViewBox`
 * :class:`svgwrite.mixins.Presentation`
 
 SVG Attributes
@@ -45,7 +45,7 @@ SVG Attributes
   *False*: if document rendering can proceed even if external resources are
   unavailable else: *True*
 
-* **transform** -- use :class:`svgwrite.interface.ITransform` interface
+* **transform** -- use :class:`svgwrite.mixins.Transform` interface
 
 * **x** -- `<coordinate>`
 
@@ -85,9 +85,9 @@ SVG Attributes
 
   Default is ``'100%'``.
 
-* **viewBox** -- :class:`svgwrite.interface.IViewBox` interface
+* **viewBox** -- :class:`svgwrite.mixins.ViewBox` interface
 
-* **preserveAspectRatio**  -- :class:`svgwrite.interface.IViewBox` interface
+* **preserveAspectRatio**  -- :class:`svgwrite.mixins.ViewBox` interface
 
 * **zoomAndPan** -- ``'disable | magnify'``
 

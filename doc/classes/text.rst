@@ -14,7 +14,7 @@ Parent Classes
 
 * :class:`svgwrite.base.BaseElement`
 * :class:`svgwrite.base.TSpan`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 
 TSpan
@@ -242,7 +242,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.mixins.XLink`
 * :class:`svgwrite.mixins.Presentation`
 
 SVG Attributes
@@ -289,7 +289,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.mixins.XLink`
 * :class:`svgwrite.mixins.Presentation`
 
 SVG Attributes
@@ -353,7 +353,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 
 SVG Attributes

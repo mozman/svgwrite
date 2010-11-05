@@ -43,7 +43,7 @@ SVG Attributes
 
 * **gradientTransform** -- `<transform-list>`
 
-  Use the :class:`-svgwrite.interface.ITransform` interface to set transformations.
+  Use the :class:`-svgwrite.mixins.Transform` interface to set transformations.
 
   Contains the definition of an optional additional transformation from the
   gradient coordinate system onto the target coordinate system (i.e.,
@@ -181,7 +181,7 @@ SVG Attributes
 
 * **gradientTransform** -- `<transform-list>`
 
-  Use the :class:`-svgwrite.interface.ITransform` interface to set transformations.
+  Use the :class:`-svgwrite.mixins.Transform` interface to set transformations.
 
   See :class:`LinearGradient`
 

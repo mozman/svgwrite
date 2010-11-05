@@ -29,7 +29,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.mixins.XLink`
 * :class:`svgwrite.mixins.Presentation`
 
 Methods

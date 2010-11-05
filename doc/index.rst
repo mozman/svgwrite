@@ -110,20 +110,13 @@ Filter Effects
    classes/fe_tile
    classes/fe_turbulence
 
-Interfaces
-----------
-
-.. toctree::
-   :maxdepth: 1
-
-   classes/interface
-
 Mixins
 ------
 
 .. toctree::
    :maxdepth: 1
 
+   classes/interface
    classes/mixins
 
 Indices and tables

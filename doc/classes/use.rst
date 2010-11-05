@@ -11,8 +11,8 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
-* :class:`svgwrite.interface.IXLink`
+* :class:`svgwrite.mixins.Transform`
+* :class:`svgwrite.mixins.XLink`
 * :class:`svgwrite.mixins.Presentation`
 
 SVG Attributes
@@ -62,7 +62,7 @@ SVG Attributes
 
   Default is ``'100%'``.
 
-* **transform** -- :class:`svgwrite.interface.ITransform` interface
+* **transform** -- :class:`svgwrite.mixins.Transform` interface
 
 * **xlink:href** -- `string`
 

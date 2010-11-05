@@ -16,7 +16,7 @@ Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.interface.ITransform`
+* :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Clipping`
 
 SVG Attributes
@@ -35,7 +35,7 @@ SVG Attributes
   *False*: if document rendering can proceed even if external resources are
   unavailable else: *True*
 
-* **transform** -- use :class:`svgwrite.interface.ITransform` interface
+* **transform** -- use :class:`svgwrite.mixins.Transform` interface
 
 * **x** -- `<coordinate>`
 
