@@ -35,7 +35,7 @@ SVG Attributes
 
 * **transform** -- use :class:`svgwrite.mixins.Transform` interface
 
-* **xlink:href** -- `string`
+* **xlink:href** -- `string` -- **href** parameter
 
 * **xlink:show** -- ``'new|replace'``
 
@@ -47,7 +47,8 @@ SVG Attributes
   application should traverse from the starting resource to the ending
   resource only on a post-loading event triggered for the purpose of traversal.
 
-* **target** -- `string`
+* **target** -- `string` -- **target** parameter
+
   This attribute specifies the name or portion of
   the target window, frame, pane, tab, or other relevant presentation
   context (e.g., an HTML or XHTML frame, iframe, or object element)

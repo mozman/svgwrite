@@ -129,27 +129,27 @@ SVG Attributes
   If attribute **primitiveUnits** is not specified, then the effect is as if
   a value of ``'userSpaceOnUse'`` were specified.
 
-* **x** -- `<coordinate>`
+* **x** -- `<coordinate>` -- **start** parameter
 
   See `Filter effects region. <http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion>`_
 
-* **y** -- `<coordinate>`
+* **y** -- `<coordinate>` -- **start** parameter
 
   See `Filter effects region. <http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion>`_
 
-* **width** -- `<lenght>`
+* **width** -- `<lenght>` -- **size** parameter
 
   See `Filter effects region. <http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion>`_
 
-* **height** -- `<lenght>`
+* **height** -- `<lenght>` -- **size** parameter
 
   See `Filter effects region. <http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion>`_
 
-* **filterRes** -- `<number-optional-number>`
+* **filterRes** -- `<number-optional-number>` -- **resolution** parameter
 
   See `Filter effects region. <http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion>`_
 
-* **xlink:href** -- `<iri>`
+* **xlink:href** -- `<iri>` -- **inherit** parameter
 
   A IRI reference to another **filter** element within the current SVG document
   fragment. Any attributes which are defined on the referenced **filter** element

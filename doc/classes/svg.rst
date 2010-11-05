@@ -47,7 +47,7 @@ SVG Attributes
 
 * **transform** -- use :class:`svgwrite.mixins.Transform` interface
 
-* **x** -- `<coordinate>`
+* **x** -- `<coordinate>` -- **insert** parameter
 
   (Has no meaning or effect on :class:`~svgwrite.drawing.Drawing` .)
 
@@ -56,7 +56,7 @@ SVG Attributes
 
   Default is ``'0'``.
 
-* **y** -- `<coordinate>`
+* **y** -- `<coordinate>` -- **insert** parameter
 
   (Has no meaning or effect on :class:`~svgwrite.drawing.Drawing` .)
 
@@ -65,7 +65,7 @@ SVG Attributes
 
   Default is ``'0'``.
 
-* **width** -- `<length>`
+* **width** -- `<length>` -- **size** parameter
 
   For outermost **svg** elements (:class:`~svgwrite.drawing.Drawing`), the
   intrinsic width of the SVG document fragment. For embedded **svg** elements,
@@ -75,7 +75,7 @@ SVG Attributes
 
   Default is ``'100%'``.
 
-* **height** -- `<length>`
+* **height** -- `<length>` -- **size** parameter
 
   For outermost **svg** elements (:class:`~svgwrite.drawing.Drawing`), the
   intrinsic height of the SVG document fragment. For embedded **svg** elements,

@@ -11,6 +11,7 @@ Version 0.2.2 - 07 November 2010
   * new elements: Set, Animate, AnimateMotion, AnimateColor,
     AnimateTransform, all filter elements
   * added set_desc(title, desc), set_metadata(xmldata) to BaseElement class
+  * moved content of interfaces.py to mixins.py, (ITransform -> Transform and so on)
 
 Version 0.2.1 - 31 October 2010
 

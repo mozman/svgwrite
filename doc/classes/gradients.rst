@@ -53,7 +53,7 @@ SVG Attributes
   including the implicit transformation necessary to convert from object
   bounding box units to user space.
 
-* **x1** -- `<coordinate>`
+* **x1** -- `<coordinate>`  -- **start** parameter
 
   **x1**, **y1**, **x2** and **y2** define a gradient vector for the linear
   gradient. This gradient vector provides starting and ending points onto
@@ -62,15 +62,15 @@ SVG Attributes
 
   default is ``'0%'``
 
-* **y1** -- `<coordinate>`
+* **y1** -- `<coordinate>`  -- **start** parameter
 
   See **x1**. Default is ``'0%'``
 
-* **x2** -- `<coordinate>`
+* **x2** -- `<coordinate>` -- **end** parameter
 
   See **x1**. Default is ``'100%'``
 
-* **y2** -- `<coordinate>`
+* **y2** -- `<coordinate>` -- **end** parameter
 
   See **x1**. Default is ``'0%'``
 
@@ -87,7 +87,7 @@ SVG Attributes
 
   default is ``'pad'``
 
-* **xlink:href** -- `<iri>` -- set by the **inherit** parameter on :meth:`__init__`
+* **xlink:href** -- `<iri>` -- **inherit** parameter
 
   A URI reference to a different :class:`LinearGradient` or :class:`RadialGradient`
   element within the current SVG document fragment. Any :class:`LinearGradient`
@@ -139,7 +139,7 @@ SVG Attributes
 
   .. seealso:: http://www.w3.org/TR/SVG11/pservers.html#RadialGradientElementGradientUnitsAttribute
 
-* **cx** -- `<coordinate>`
+* **cx** -- `<coordinate>` -- **center** parameter
 
   **cx**, **cy** and **r** define the largest (i.e., outermost) circle for
   the radial gradient. The gradient will be drawn such that the 100% gradient
@@ -147,11 +147,11 @@ SVG Attributes
 
   default is ``'50%'``
 
-* **cy** -- `<coordinate>`
+* **cy** -- `<coordinate>` -- **center** parameter
 
   See **cx**. Default is ``'50%'``.
 
-* **r** -- `<length>`
+* **r** -- `<length>` -- **r** parameter
 
   See **cx**.
 
@@ -160,7 +160,7 @@ SVG Attributes
 
   Default is ``'50%'``.
 
-* **fx** -- `<coordinate>`
+* **fx** -- `<coordinate>` -- **focal** parameter
 
   **fx** and **fy** define the focal point for the radial gradient. The
   gradient will be drawn such that the 0% gradient stop is mapped to (fx, fy).
@@ -170,7 +170,7 @@ SVG Attributes
   value for **fx**, then the value of 'fx' is inherited from the referenced
   element.
 
-* **fy** -- `<coordinate>`
+* **fy** -- `<coordinate>` -- **focal** parameter
 
   See **fx**.
   If attribute **fy** is not specified, **fy** will coincide with the
@@ -189,6 +189,6 @@ SVG Attributes
 
   See :class:`LinearGradient`
 
-* **xlink:href** -- `<iri>` -- set by the **inherit** parameter on :meth:`__init__`
+* **xlink:href** -- `<iri>` -- **inherit** parameter
 
   See :class:`LinearGradient`

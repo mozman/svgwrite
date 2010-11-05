@@ -37,33 +37,33 @@ SVG Attributes
 
 * **transform** -- use :class:`svgwrite.mixins.Transform` interface
 
-* **x** -- `<coordinate>`
+* **x** -- `<coordinate>` -- **insert** parameter
 
   The x-axis coordinate of one corner of the rectangular region into which
   the referenced document is placed.
 
   Default is ``'0'``.
 
-* **y** -- `<coordinate>`
+* **y** -- `<coordinate>` -- **insert** parameter
 
   The y-axis coordinate of one corner of the rectangular region into which
   the referenced document is placed.
 
   Default is ``'0'``.
 
-* **width** -- `<length>`
+* **width** -- `<length>` -- **size** parameter
 
   The width of the rectangular region into which the referenced document is
   placed. A negative value is an error. A value of zero disables rendering
   of the element.
 
-* **height** -- `<length>`
+* **height** -- `<length>` -- **size** parameter
 
   The height of the rectangular region into which the referenced document is
   placed. A negative value is an error. A value of zero disables rendering of
   the element.
 
-* **xlink:href** -- `string`
+* **xlink:href** -- `string` -- **href** parameter
 
   A IRI reference to the image resource.
 

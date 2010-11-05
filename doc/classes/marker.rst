@@ -76,32 +76,32 @@ SVG Attributes
   user coordinate system for the element referencing the **marker** element via
   a **marker**, **marker-start**, **marker-mid** or **marker-end** property).
 
-* **refX** -- `<coordinate>`
+* **refX** -- `<coordinate>` -- **insert** parameter
 
   The x-axis coordinate of the reference point which is to be aligned exactly
   at the marker position. The coordinate is defined in the coordinate system
   after application of the **viewBox** and **preserveAspectRatio** attributes.
   (default = "0")
 
-* **refY** -- `<coordinate>`
+* **refY** -- `<coordinate>` -- **insert** parameter
 
   The y-axis coordinate of the reference point which is to be aligned exactly
   at the marker position. The coordinate is defined in the coordinate system
   after application of the **viewBox** and **preserveAspectRatio** attributes.
   (default = "0")
 
-* **markerWidth** -- `<length>`
+* **markerWidth** -- `<length>` -- **size** parameter
 
   Represents the width of the viewport into which the marker is to be fitted
   when it is rendered. (default = "3")
 
-* **markerHeight** -- `<length>`
+* **markerHeight** -- `<length>` -- **size** parameter
 
   Represents the height of the viewport into which the marker is to be fitted
   when it is rendered. A value of zero disables rendering of the element.
   (default = "3")
 
-* **orient** -- ``'auto'`` | `<angle>`
+* **orient** -- ``'auto'`` | `<angle>` -- **orient** parameter
 
   Indicates how the marker is rotated. (SVG default = "0", but for :meth:`__init__`
   ``'auto'`` is the default value)
