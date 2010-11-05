@@ -468,7 +468,7 @@ def simple_text(name):
     dwg.save()
 
 def main():
-    longrun = False
+    longrun = True
     # short time running
     print("start short time running examples!\n")
 
