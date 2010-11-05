@@ -7,7 +7,7 @@
 # License: GPLv3
 # depends on: pyparsing.py by Paul T. McGuire - http://pyparsing.wikispaces.com/
 
-from pyparsing import *
+from svgwrite.data.pyparsing import *
 
 event_names = [
     "focusin", "focusout", "activate", "click", "mousedown", "mouseup", "mouseover",

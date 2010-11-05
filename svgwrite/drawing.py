@@ -21,9 +21,9 @@ set/get SVG attributes::
 
 """
 
-from container import SVG, Defs
+from svgwrite.container import SVG, Defs
 
-from elementfactory import ElementFactory
+from svgwrite.elementfactory import ElementFactory
 
 class Drawing(SVG, ElementFactory):
     """ This is the SVG drawing represented by the top level **svg** element.

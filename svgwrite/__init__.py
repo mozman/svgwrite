@@ -54,8 +54,8 @@ You can only create two types of SVG drawings:
 
 """
 
-from drawing import Drawing
-from utils import rgb
+from svgwrite.drawing import Drawing
+from svgwrite.utils import rgb
 
 class Unit(object):
     """ Add units to values.

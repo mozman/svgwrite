@@ -12,10 +12,10 @@ character data inside the **text** element.
 
 """
 
-from base import BaseElement
-from interface import ITransform, IXLink
-from mixins import Presentation
-from utils import iterflatlist, strlist
+from svgwrite.base import BaseElement
+from svgwrite.interface import ITransform, IXLink
+from svgwrite.mixins import Presentation
+from svgwrite.utils import iterflatlist, strlist
 
 class TSpan(BaseElement, Presentation):
     """

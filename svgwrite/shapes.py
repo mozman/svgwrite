@@ -19,9 +19,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from base import BaseElement
-from interface import ITransform
-from mixins import Presentation, Markers
+from svgwrite.base import BaseElement
+from svgwrite.interface import ITransform
+from svgwrite.mixins import Presentation, Markers
 
 class Line(BaseElement, ITransform, Presentation, Markers):
     """ The **line** element defines a line segment that starts at one point

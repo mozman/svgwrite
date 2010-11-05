@@ -25,7 +25,7 @@
 
 import re
 
-from data import pattern
+from svgwrite.data import pattern
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
     """

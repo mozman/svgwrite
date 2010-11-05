@@ -6,9 +6,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from types import SVGAttribute, SVGMultiAttribute
-from types import SVGElement
-from typechecker import Tiny12TypeChecker as TypeChecker
+from svgwrite.data.types import SVGAttribute, SVGMultiAttribute
+from svgwrite.data.types import SVGElement
+from svgwrite.data.typechecker import Tiny12TypeChecker as TypeChecker
 
 empty_list = []
 
