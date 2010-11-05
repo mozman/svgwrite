@@ -163,6 +163,7 @@ class BaseElement(object):
         """ Add an SVG element as subelement.
 
         :param element: append this SVG element
+        :returns: the added element
 
         """
         if self.debug:

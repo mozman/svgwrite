@@ -1,12 +1,7 @@
 Presentation Mixin
 ==================
 
-.. autoclass:: svgwrite.mixins.Presentation
-
-Methods
--------
-
-.. automethod:: svgwrite.mixins.Presentation.fill(color=None, rule=None, opacity=None)
+.. automethod:: svgwrite.mixins.Presentation.fill
 
 .. seealso::
 
@@ -14,7 +9,7 @@ Methods
    * http://www.w3.org/TR/SVG11/painting.html#FillRuleProperty
    * http://www.w3.org/TR/SVG11/painting.html#FillOpacityProperty
 
-.. automethod:: svgwrite.mixins.Presentation.stroke(color=None, width=None, opacity=None, linecap=None, linejoin=None, miterlimit=None)
+.. automethod:: svgwrite.mixins.Presentation.stroke
 
 .. seealso::
 
@@ -24,7 +19,7 @@ Methods
    * http://www.w3.org/TR/SVG11/painting.html#StrokeLinecapProperty
    * http://www.w3.org/TR/SVG11/painting.html#StrokeMiterlimitProperty
 
-.. automethod:: svgwrite.mixins.Presentation.dasharray(dasharray=None, offset=None)
+.. automethod:: svgwrite.mixins.Presentation.dasharray
 
 .. seealso::
 
@@ -34,16 +29,12 @@ Methods
 MediaGroup Mixin
 ================
 
-.. autoclass:: svgwrite.mixins.MediaGroup
-
    SVG Tiny 1.2
 
    valid for SVG Elements: animation, audio, desc, image, metadata, title, video
 
-Methods
--------
 
-.. automethod:: svgwrite.mixins.MediaGroup.viewport_fill(color=None, opacity=None)
+.. automethod:: svgwrite.mixins.MediaGroup.viewport_fill
 
 .. seealso::
 
@@ -53,12 +44,7 @@ Methods
 Markers Mixin
 =============
 
-.. autoclass:: svgwrite.mixins.Markers
-
-Methods
--------
-
-.. automethod:: svgwrite.mixins.Markers.set_markers(markers)
+.. automethod:: svgwrite.mixins.Markers.set_markers
 
 .. seealso::
 
@@ -66,3 +52,10 @@ Methods
    * http://www.w3.org/TR/SVG11/painting.html#MarkerStartProperty
    * http://www.w3.org/TR/SVG11/painting.html#MarkerMidProperty
    * http://www.w3.org/TR/SVG11/painting.html#MarkerEndProperty
+
+Clipping Mixin
+==============
+
+.. automethod:: svgwrite.mixins.Clipping.clip_rect
+
+.. seealso:: http://www.w3.org/TR/SVG11/masking.html#OverflowAndClipProperties

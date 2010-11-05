@@ -17,6 +17,8 @@ Attributes
 Methods
 -------
 
+.. automethod:: svgwrite.drawing.Drawing.add
+
 .. automethod:: svgwrite.drawing.Drawing.write
 
 .. automethod:: svgwrite.drawing.Drawing.save
@@ -26,6 +28,8 @@ Methods
 .. automethod:: svgwrite.drawing.Drawing.add_stylesheet
 
 .. automethod:: svgwrite.drawing.Drawing.get_xml
+
+.. automethod:: svgwrite.drawing.Drawing.tostring
 
 Factory Methods
 ---------------
@@ -117,6 +121,39 @@ Factory Methods
 .. method:: Drawing.radialGradient(center=None, r=None, focal=None, inherit=None, attribs=None, \*\*extra)
 
    Create a :class:`svgwrite.gradients.RadialGradient` object.
+
+.. method:: Drawing.mask(start=None, size=None, \*\*extra)
+
+   Create a :class:`svgwrite.masking.Mask` object.
+
+.. method:: Drawing.clipPath(\*\*extra)
+
+   Create a :class:`svgwrite.masking.ClipPath` object.
+
+.. method:: Drawing.set(element=None, \*\*extra)
+
+   Create a :class:`svgwrite.animate.Set` object.
+
+.. method:: Drawing.animate(element=None, \*\*extra)
+
+   Create a :class:`svgwrite.animate.Animate` object.
+
+.. method:: Drawing.animateColor(element=None, \*\*extra)
+
+   Create a :class:`svgwrite.animate.AnimateColor` object.
+
+.. method:: Drawing.animateMotion(element=None, \*\*extra)
+
+   Create a :class:`svgwrite.animate.AnimateMotion` object.
+
+.. method:: Drawing.animateTransform(transform, element=None, \*\*extra)
+
+   Create a :class:`svgwrite.animate.AnimateTransform` object.
+
+.. method:: Drawing.filter(start=None, size=None, resolution=None, inherit=None, \*\*extra)
+
+   Create a :class:`svgwrite.filters.Filter` object. (Filter Primitives are created
+   by **factory-methods** of the class **Filter**)
 
 Parent Classes
 --------------

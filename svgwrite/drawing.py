@@ -41,6 +41,11 @@ class Drawing(SVG, ElementFactory):
         :param 2-tuple size: width, height
         :param keywords extra: additional svg-attributs for the *SVG* object
 
+        Important (and not SVG Attibutes) **extra** parameters:
+
+        :param string profile: ``'tiny | full'`` - define the SVG baseProfile
+        :param bool debug: switch validation on/off
+
         """
         super(Drawing, self).__init__(size=size, **extra)
         self.filename = filename
