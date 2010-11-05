@@ -10,13 +10,10 @@ import sys
 import unittest
 
 from svgwrite.container import Group, Defs
-from svgwrite.interface import ITransform
 
 class TestDefs(unittest.TestCase):
     def test_constructor(self):
         defs = Defs()
-        self.assertTrue(isinstance(defs, ITransform))
-        self.assertTrue(isinstance(defs, Group))
         self.assertEqual(defs.tostring(), "<defs />")
 
     def test_add_subelement(self):

@@ -10,13 +10,10 @@ import sys
 import unittest
 
 from svgwrite.container import Symbol, Group
-from svgwrite.interface import IViewBox, ITransform
 
 class TestSymbol(unittest.TestCase):
     def test_constructor(self):
         symbol = Symbol()
-        self.assertTrue(isinstance(symbol, IViewBox))
-        self.assertFalse(isinstance(symbol, ITransform))
         self.assertEqual(symbol.tostring(), "<symbol />")
 
     def test_add_subelement(self):

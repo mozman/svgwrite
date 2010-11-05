@@ -20,10 +20,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from svgwrite.base import BaseElement
-from svgwrite.interface import ITransform
-from svgwrite.mixins import Presentation, Markers
+from svgwrite.mixins import Presentation, Markers, Transform
 
-class Line(BaseElement, ITransform, Presentation, Markers):
+class Line(BaseElement, Transform, Presentation, Markers):
     """ The **line** element defines a line segment that starts at one point
     and ends at another.
     """
@@ -44,7 +43,7 @@ class Line(BaseElement, ITransform, Presentation, Markers):
         self['x2'] = x2
         self['y2'] = y2
 
-class Rect(BaseElement, ITransform, Presentation):
+class Rect(BaseElement, Transform, Presentation):
     """ The **rect** element defines a rectangle which is axis-aligned with the current
     user coordinate system. Rounded rectangles can be achieved by setting appropriate
     values for attributes **rx** and **ry**.
@@ -70,7 +69,7 @@ class Rect(BaseElement, ITransform, Presentation):
         if rx: self['rx'] = rx
         if ry: self['ry'] = ry
 
-class Circle(BaseElement, ITransform, Presentation):
+class Circle(BaseElement, Transform, Presentation):
     """ The **circle** element defines a circle based on a center point and a radius.
     """
     elementname = 'circle'
@@ -88,7 +87,7 @@ class Circle(BaseElement, ITransform, Presentation):
         self['cy'] = cy
         self['r'] = r
 
-class Ellipse(BaseElement, ITransform, Presentation):
+class Ellipse(BaseElement, Transform, Presentation):
     """ The **ellipse** element defines an ellipse which is axis-aligned with the
     current user coordinate system based on a center point and two radii.
     """
@@ -109,7 +108,7 @@ class Ellipse(BaseElement, ITransform, Presentation):
         self['rx'] = rx
         self['ry'] = ry
 
-class Polyline(BaseElement, ITransform, Presentation, Markers):
+class Polyline(BaseElement, Transform, Presentation, Markers):
     """ The **polyline** element defines a set of connected straight line
     segments. Typically, **polyline** elements define open shapes.
     """

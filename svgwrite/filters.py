@@ -7,8 +7,7 @@
 # License: GPLv3
 
 from svgwrite.base import BaseElement
-from svgwrite.interface import IXLink
-from svgwrite.mixins import Presentation
+from svgwrite.mixins import XLink, Presentation
 from svgwrite.utils import strlist
 
 class _FilterPrimitive(BaseElement, Presentation):
@@ -79,7 +78,7 @@ class _feFlood(_FilterNoInput):
 class _feGaussianBlur(_FilterRequireInput):
     elementname = 'feGaussianBlur'
 
-class _feImage(_FilterNoInput, IXLink):
+class _feImage(_FilterNoInput, XLink):
     elementname = 'feImage'
     def __init__(self, href, start=None, size=None, **extra):
         super(_feImage, self).__init__(start, size, **extra)
@@ -143,7 +142,7 @@ class _FilterBuilder(object):
         self.parent.add(obj) # add primitive filter to parent Filter()
         return obj
 
-class Filter(BaseElement, IXLink, Presentation):
+class Filter(BaseElement, XLink, Presentation):
     """
     The filter element is a container element for filter primitives, and
     also a **factory** for filter primitives.

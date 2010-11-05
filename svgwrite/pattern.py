@@ -7,10 +7,9 @@
 # License: GPLv3
 
 from svgwrite.base import BaseElement
-from svgwrite.interface import IXLink, IViewBox, ITransform
-from svgwrite.mixins import Presentation
+from svgwrite.mixins import XLink, ViewBox, Transform, Presentation
 
-class Pattern(BaseElement, IXLink, IViewBox, ITransform, Presentation):
+class Pattern(BaseElement, XLink, ViewBox, Transform, Presentation):
     """
     A pattern is used to fill or stroke an object using a pre-defined graphic
     object which can be replicated ("tiled") at fixed intervals in x and y to

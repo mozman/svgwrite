@@ -7,9 +7,9 @@
 # License: GPLv3
 
 from svgwrite.base import BaseElement
-from svgwrite.interface import ITransform
+from svgwrite.mixins import Transform
 
-class ClipPath(BaseElement, ITransform):
+class ClipPath(BaseElement, Transform):
     """
     The clipping path restricts the region to which paint can be applied.
     Conceptually, any parts of the drawing that lie outside of the region

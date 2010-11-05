@@ -13,8 +13,7 @@ character data inside the **text** element.
 """
 
 from svgwrite.base import BaseElement
-from svgwrite.interface import ITransform, IXLink
-from svgwrite.mixins import Presentation
+from svgwrite.mixins import Presentation, Transform, XLink
 from svgwrite.utils import iterflatlist, strlist
 
 class TSpan(BaseElement, Presentation):
@@ -65,7 +64,7 @@ class TSpan(BaseElement, Presentation):
         xml.text = unicode(self.text)
         return xml
 
-class Text(TSpan, ITransform):
+class Text(TSpan, Transform):
     """
     The **Text** element defines a graphics element consisting of text.
     The characters to be drawn are expressed as XML character data inside the
@@ -74,7 +73,7 @@ class Text(TSpan, ITransform):
     """
     elementname = 'text'
 
-class TRef(BaseElement, IXLink, Presentation):
+class TRef(BaseElement, XLink, Presentation):
     """
     The textual content for a **Text** can be either character data directly
     embedded within the <text> element or the character data content of a
@@ -98,7 +97,7 @@ class TRef(BaseElement, IXLink, Presentation):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
         return super(TRef, self).get_xml()
 
-class TextPath(BaseElement, IXLink, Presentation):
+class TextPath(BaseElement, XLink, Presentation):
     """
     In addition to text drawn in a straight line, SVG also includes the
     ability to place text along the shape of a **path** element. To specify that
@@ -145,7 +144,7 @@ class TBreak(BaseElement):
     def add(self, element):
         raise NotImplementedError("add() not supported by TBreak class.")
 
-class TextArea(BaseElement, ITransform, Presentation):
+class TextArea(BaseElement, Transform, Presentation):
     """
     At this time **textArea** is only available for SVG 1.2 Tiny profile.
 

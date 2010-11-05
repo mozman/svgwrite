@@ -11,9 +11,9 @@ import unittest
 
 from svgwrite.params import Parameter
 from svgwrite.base import BaseElement
-from svgwrite.interface import ITransform
+from svgwrite.mixins import Transform
 
-class Mock(BaseElement, ITransform):
+class Mock(BaseElement, Transform):
     elementname = 'g'
     _parameter = Parameter(True, 'full')
 
