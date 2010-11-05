@@ -128,4 +128,8 @@ class Markers(object):
 
 class Clipping(object):
     def clip_rect(self, top='auto', right='auto', bottom='auto', left='auto'):
+        """
+        Set SVG Property **clip**.
+
+        """
         self['clip'] = "rect(%s,%s,%s,%s)" % (top, right, bottom, left)

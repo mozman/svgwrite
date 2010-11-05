@@ -96,6 +96,19 @@ Filter Effects
    classes/fe_blend
    classes/fe_color_matrix
    classes/fe_component_transfer
+   classes/fe_composite
+   classes/fe_convolve_matrix
+   classes/fe_diffuse_lighting
+   classes/fe_displacement_map
+   classes/fe_flood
+   classes/fe_gaussian_blur
+   classes/fe_image
+   classes/fe_merge
+   classes/fe_morphology
+   classes/fe_offset
+   classes/fe_specular_lighting
+   classes/fe_tile
+   classes/fe_turbulence
 
 Interfaces
 ----------

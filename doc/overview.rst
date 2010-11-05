@@ -1,86 +1,76 @@
 Overview
 ========
 
+SVG Elements
+------------
+
+.. note::
+
+   Use the **factory-methods** of the class **Drawing** to create new objects.
+   All **factory-methods** have the original SVG Elementname (e.g. Drawing.a(...),
+   Drawing.g(...), Drawing.symbol(...), Drawing.line(...))
+
+a short example::
+
+   dwg = svgwrite.Drawing()
+   link = dwg.add(dwg.a("http://link.to/internet"))
+   square = link.add(dwg.rect((0, 0), (1, 1), fill='blue'))
+
+
 Structural Elements
--------------------
+~~~~~~~~~~~~~~~~~~~
 
-.. toctree::
-   :titlesonly:
-
-   classes/drawing
-   classes/svg
-   classes/group
-   classes/defs
-   classes/symbol
-   classes/marker
-   classes/use
-   classes/hyperlink
+:class:`~svgwrite.drawing.Drawing`, :class:`~svgwrite.container.SVG`,
+:class:`~svgwrite.container.Group`, :class:`~svgwrite.container.Defs`,
+:class:`~svgwrite.container.Symbol`, :class:`~svgwrite.container.Marker`,
+:class:`~svgwrite.container.Use`, :class:`~svgwrite.container.Hyperlink`
 
 Graphical Elements
-------------------
-.. toctree::
-   :maxdepth: 1
+~~~~~~~~~~~~~~~~~~
 
-   classes/path
-   classes/shapes
+:class:`~svgwrite.shapes.Line`, :class:`~svgwrite.shapes.Rect`,
+:class:`~svgwrite.shapes.Circle`, :class:`~svgwrite.shapes.Ellipse`,
+:class:`~svgwrite.shapes.Polyline`, :class:`~svgwrite.shapes.Polygon`,
+:class:`~svgwrite.path.Path`
 
 Text Objects
-------------
+~~~~~~~~~~~~
 
-.. toctree::
-   :maxdepth: 1
-
-   classes/text
+:class:`~svgwrite.text.Text`, :class:`~svgwrite.text.TSpan`,
+:class:`~svgwrite.text.TRef`, :class:`~svgwrite.text.TextPath`,
+:class:`~svgwrite.text.TextArea`,
 
 Paint Server
-------------
+~~~~~~~~~~~~
 
-.. toctree::
-   :maxdepth: 1
-
-   classes/gradients
-   classes/pattern
+:class:`~svgwrite.gradients.LinearGradient`, :class:`~svgwrite.gradients.RadialGradient`,
+:class:`~svgwrite.pattern.Pattern`,
 
 Masking
--------
+~~~~~~~
 
-.. toctree::
-   :maxdepth: 1
-
-   classes/masking
+:class:`~svgwrite.masking.Mask`, :class:`~svgwrite.masking.ClipPath`
 
 Animation
----------
+~~~~~~~~~
 
-.. toctree::
-   :maxdepth: 1
-
-   classes/animate
+:class:`~svgwrite.animate.Set`, :class:`~svgwrite.animate.Animate`,
+:class:`~svgwrite.animate.AnimateColor`, :class:`~svgwrite.animate.AnimateMotion`,
+:class:`~svgwrite.animate.AnimateTransform`
 
 Filter Effects
---------------
+~~~~~~~~~~~~~~
 
-.. toctree::
-   :maxdepth: 1
+:class:`~svgwrite.filters.Filter`
 
-   classes/filters
-   classes/filter_primitive
 
-Interfaces
-----------
+Interfaces and Mixins
+---------------------
 
-.. toctree::
-   :maxdepth: 1
-
-   classes/interface
-
-Mixins
-------
-
-.. toctree::
-   :maxdepth: 1
-
-   classes/mixins
+:class:`~svgwrite.interface.IViewBox`, :class:`~svgwrite.interface.ITransform`,
+:class:`~svgwrite.interface.IXLink`,
+:class:`~svgwrite.mixins.Presentation`, :class:`~svgwrite.mixins.MediaGroup`,
+:class:`~svgwrite.mixins.Markers`, :class:`~svgwrite.mixins.Clipping`,
 
 Common Attributes
 -----------------

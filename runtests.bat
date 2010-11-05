@@ -1,11 +1,17 @@
 @ECHO OFF
-ECHO Requires Python 2.7
-SET RUNTEST_PARAMS= -m unittest discover -s tests
+ECHO runtests.bat requires Python 2.7
+ECHO for Python < 2.7 run 'nosetests' or 'py.test' if installed.
+REM set correct path to Pyrhon 2.7
+SET PYTHON27=c:\python27\python.exe
+SET PARAMS=-m unittest discover -s tests
 
-IF EXIST c:\python27\python.exe (
-   c:\python27\python.exe %RUNTEST_PARAMS%
-) ELSE (
-   ECHO Python 2.7 not installed at 'c:\python27\python.exe'
-   ECHO using just 'python.exe' but this maybe does not call Python 2.7
-   python.exe %RUNTEST_PARAMS%
+IF NOT EXIST %PYTHON27% (
+   ECHO Python 2.7 not installed at '%PYTHON27%'
+   ECHO using just 'python', maybe this does not call Python 2.7
+   ECHO edit this script: runtests.bat
+   ECHO SET PYTHON27=... path to Python 2.7
+
+   SET PYTHON27=python
 )
+
+%PYTHON27% %PARAMS%
