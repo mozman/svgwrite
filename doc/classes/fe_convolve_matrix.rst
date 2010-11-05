@@ -67,18 +67,18 @@ SVG Attributes
     that the matrix operations can be applied when the kernel is positioned at
     or near the edge of the input image.
 
-    * **duplicate** indicates that the input image is extended along each of its
+    * ``'duplicate'`` indicates that the input image is extended along each of its
       borders as necessary by duplicating the color values at the given edge of
       the input image.
 
-    * **wrap** indicates that the input image is extended by taking the color
+    * ``'wrap'`` indicates that the input image is extended by taking the color
       values from the opposite edge of the image.
 
-    * **none** indicates that the input image is extended with pixel values of
+    * ``'none'`` indicates that the input image is extended with pixel values of
       zero for R, G, B and A.
 
     If attribute **edgeMode** is not specified, then the effect is as if a value
-    of **duplicate** were specified.
+    of ``'duplicate'`` were specified.
 
 * **kernelUnitLength** -- `<number-optional-number>`
 
@@ -107,4 +107,4 @@ SVG Attributes
     component values, apply the kernel, and then re-premultiply at the end.
 
     If **preserveAlpha** is not specified, then the effect is as if a value of
-    false were specified.
+    ``'false'`` were specified.

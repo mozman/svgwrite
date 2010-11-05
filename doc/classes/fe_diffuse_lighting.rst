@@ -18,6 +18,26 @@ together before applying it to the texture image.
 
 For common properties see: :ref:`filter_primitive`
 
+Methods
+-------
+
+.. method:: feDiffuseLighting.feDistantLight(azimuth=0, elevation=0, **extra)
+
+    create and add a light source: :ref:`feDistantLight`
+
+.. method:: feDiffuseLighting.fePointLight(source=(0, 0, 0), **extra)
+
+    :param source: source 3D point (**x**, **y**, **z**)
+
+    create and add a light source: :ref:`fePointLight`
+
+.. method:: feDiffuseLighting.feSpotLight(source=(0, 0, 0), target=(0, 0, 0), **extra)
+
+    :param source: source 3D point (**x**, **y**, **z**)
+    :param target: target 3D point (**pointsAtX**, **pointsAtY**, **pointsAtZ**)
+
+    create and add a light source: :ref:`feSpotLight`
+
 SVG Attributes
 --------------
 
@@ -54,3 +74,7 @@ SVG Attributes
     will be achieved if the pixel grid of the temporary offscreen images aligns
     with the pixel grid of the kernel. A negative or zero value is an error.
 
+* **lighting-color** -- ``'currentColor'`` | `<color>` [`<icccolor>`] | ``'inherit'``
+
+    The **lighting-color** property defines the color of the light source for
+    filter primitives **feDiffuseLighting** and **feSpecularLighting**.

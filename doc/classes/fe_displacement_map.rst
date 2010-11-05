@@ -37,15 +37,15 @@ SVG Attributes
     from attribute **in**. This attribute can take on the same values as the
     **in** attribute.
 
-* **scale** = `<number>`
+* **scale** -- `<number>`
 
     Displacement scale factor. The amount is expressed in the coordinate system
     established by attribute **primitiveUnits** on the **filter** element.
 
-    When the value of this attribute is 0, this operation has no effect on the
+    When the value of this attribute is ``'0'``, this operation has no effect on the
     source image.
 
-    If the attribute is not specified, then the effect is as if a value of 0
+    If the attribute is not specified, then the effect is as if a value of ``'0'``
     were specified.
 
 * **xChannelSelector** -- ``'R | G | B | A'``
@@ -58,5 +58,5 @@ SVG Attributes
 
     Indicates which channel from **in2** to use to displace the pixels in **in**
     along the y-axis. If attribute **yChannelSelector** is not specified, then
-    the effect is as if a value of A were specified.
+    the effect is as if a value of ``'A'`` were specified.
 

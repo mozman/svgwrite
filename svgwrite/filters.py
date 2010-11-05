@@ -10,6 +10,42 @@ from svgwrite.base import BaseElement
 from svgwrite.mixins import XLink, Presentation
 from svgwrite.utils import strlist
 
+__all__ = ['Filter']
+
+class _feDistantLight(BaseElement):
+    elementname = 'feDistantLight'
+    def __init__(self, azimuth=0, elevation=0, **extra):
+        super(_feDistantLight, self).__init__(**extra)
+        if azimuth != 0:
+            self['azimuth'] = azimuth
+        if elevation != 0:
+            self['elevation'] = elevation
+
+class _fePointLight(BaseElement):
+    elementname = 'fePointLight'
+    def __init__(self, source=(0, 0, 0), **extra):
+        super(_fePointLight, self).__init__(**extra)
+        x, y, z = source
+        if x != 0:
+            self['x'] = x
+        if y != 0:
+            self['y'] = y
+        if z != 0:
+            self['z'] = z
+
+class _feSpotLight(_fePointLight):
+    elementname = 'feSpotLight'
+    def __init__(self, source=(0, 0, 0), target=(0, 0, 0), **extra):
+        super(_feSpotLight, self).__init__(source, **extra)
+        x, y, z = target
+        if x != 0:
+            self['pointsAtX'] = x
+        if y != 0:
+            self['pointsAtY'] = y
+        if z != 0:
+            self['pointsAtZ'] = z
+
+
 class _FilterPrimitive(BaseElement, Presentation):
     pass
 
@@ -24,7 +60,7 @@ class _FilterNoInput(_FilterPrimitive):
             self['height'] = size[1]
 
 class _FilterRequireInput(_FilterNoInput):
-    def __init__(self, in_, **extra):
+    def __init__(self, in_='SourceGraphic', **extra):
         super(_FilterRequireInput, self).__init__(**extra)
         self['in'] = in_
 
@@ -68,6 +104,12 @@ class _feConvolveMatrix(_FilterRequireInput):
 
 class _feDiffuseLighting(_FilterRequireInput):
     elementname = 'feDiffuseLighting'
+    def feDistantLight(self, azimuth=0, elevation=0, **extra):
+        return self.add(_feDistantLight(azimuth, elevation, **extra))
+    def fePointLight(self, source=(0, 0, 0), **extra):
+        return self.add(_fePointLight(source, **extra))
+    def feSpotLight(self, source=(0, 0, 0), target=(0, 0, 0), **extra):
+        return self.add(_feSpotLight(source, target, **extra))
 
 class _feDisplacementMap(_FilterRequireInput):
     elementname = 'feDisplacementMap'
@@ -103,7 +145,7 @@ class _feMorphology(_FilterRequireInput):
 class _feOffset(_FilterRequireInput):
     elementname = 'feOffset'
 
-class _feSpecularLighting(_FilterRequireInput):
+class _feSpecularLighting(_feDiffuseLighting):
     elementname = 'feSpecularLighting'
 
 class _feTile(_FilterRequireInput):
@@ -187,4 +229,5 @@ class Filter(BaseElement, XLink, Presentation):
             return _FilterBuilder(filter_factory[name], self)
         else:
             raise AttributeError("'%s' has no attribute '%s'" % (self.__class__.__name__, name))
+
 

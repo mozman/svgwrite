@@ -4,7 +4,7 @@ Overview
 SVG Elements
 ------------
 
-.. note::
+.. IMPORTANT::
 
    Use the **factory-methods** of the class **Drawing** to create new objects.
    All **factory-methods** have the original SVG Elementname (e.g. Drawing.a(...),

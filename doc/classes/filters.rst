@@ -161,3 +161,47 @@ Standard SVG Attributes
 * :doc:`Core Attributes </attributes/core>`
 * :doc:`Presentation Attributes </attributes/presentation>`
 * :doc:`XLink Attributes </attributes/xlink>`
+
+Example
+-------
+
+Source: https://secure.wikimedia.org/wikibooks/de/wiki/SVG/_Effekte#Urfilter_fePointLight.2C_Punktlichtquelle
+
+.. literalinclude:: ..\..\examples\fePointLight.py
+
+and the XML result (with manual reformatting):
+
+.. code-block:: xml
+
+  <?xml version="1.0" encoding="utf-8" ?>
+  <svg baseProfile="full" height="100%" version="1.1" width="100%"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+          <filter id="DL" filterUnits="userSpaceOnUse"
+            x="0" y="0" width="500" height="500" >
+              <feDiffuseLighting diffuseConstant="1"
+                x="0" y="0" width="500" height="500"
+                in="SourceGraphic"
+                kernelUnitLength="1"
+                lighting-color="#f8f"
+                surfaceScale="10">
+                  <fePointLight x="500" y="250" z="250">
+                      <animate attributeName="x"
+                        dur="30s"
+                        repeatDur="indefinite"
+                        values="0;100;500;100;0" />
+                      <animate attributeName="y"
+                        dur="31s"
+                        repeatDur="indefinite"
+                        values="0;500;400;-100;0" />
+                      <animate attributeName="z"
+                        dur="37s"
+                        repeatDur="indefinite"
+                        values="0;1000;500;-100;0" />
+                  </fePointLight>
+              </feDiffuseLighting>
+          </filter>
+      </defs>
+  </svg>

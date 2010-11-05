@@ -38,7 +38,7 @@ SVG Attributes
     If the attribute is not specified, then the effect is as if a value of ``'1'``
     were specified.
 
-* **seed** = `<number>`
+* **seed** -- `<number>`
 
     The starting number for the pseudo random number generator.
 

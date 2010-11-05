@@ -183,6 +183,8 @@ Parent Classes
 Methods
 -------
 
+.. automethod:: svgwrite.animate.Animate.__init__
+
 .. automethod:: svgwrite.animate.Animate.set_value
 
 SVG Animation Attributes

@@ -32,7 +32,7 @@ SVG Attributes
   The compositing operation that is to be performed. All of the **operator**
   types except arithmetic match the correspond operation as described in [PORTERDUFF].
   The arithmetic operator is described above. If attribute **operator** is not
-  specified, then the effect is as if a value of over were specified.
+  specified, then the effect is as if a value of ``'over'`` were specified.
 
 * **k1**, **k2**, **k3**, **k4** -- `<number>`
 

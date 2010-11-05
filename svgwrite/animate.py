@@ -8,6 +8,7 @@
 
 from svgwrite.base import BaseElement
 from svgwrite.mixins import XLink
+from svgwrite.utils import strlist
 
 class Set(BaseElement, XLink):
     """ The **set** element provides a simple means of just setting the value
@@ -18,14 +19,14 @@ class Set(BaseElement, XLink):
     """
     elementname = 'set'
 
-    def __init__(self, element=None, **extra):
+    def __init__(self, href=None, **extra):
         """
-        :param element: target svg element, if element is not `None`; else
-          the target svg element is the parent svg element.
+        :param href: target svg element, if **href** is not `None`; else
+          the target SVG Element is the parent SVG Element.
         """
         super(Set, self).__init__(**extra)
-        if element is not None:
-            self.set_href(element)
+        if href is not None:
+            self.set_href(href)
 
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
@@ -89,13 +90,13 @@ class AnimateMotion(Set):
     """
     elementname = 'animateMotion'
 
-    def __init__(self, path=None, element=None, **extra):
+    def __init__(self, path=None, href=None, **extra):
         """
         :param path: the motion path
-        :param element: target svg element, if element is not `None`; else
-          the target svg element is the parent svg element.
+        :param href: target svg element, if **href** is not `None`; else
+          the target SVG Element is the parent SVG Element.
         """
-        super(AnimateMotion, self).__init__(element, **extra)
+        super(AnimateMotion, self).__init__(href=href, **extra)
         if path is not None:
             self['path'] = path
 
@@ -117,13 +118,31 @@ class Animate(Set):
     assigned different values over time .
     """
     elementname = 'animate'
+
+    def __init__(self, attributeName=None, values=None, href=None, **extra):
+        """
+        :param attributeName: name of the SVG Attribute to animate
+        :param values: interpolation values, `string` as `<semicolon-list>` or a python `list`
+        :param href: target svg element, if **href** is not `None`; else
+          the target SVG Element is the parent SVG Element.
+        """
+        super(Animate, self).__init__(href=href, **extra)
+        if values is not None:
+            self.set_value(values)
+        if attributeName is not None:
+            self.set_target(attributeName)
+
     def set_value(self, values, calcMode=None, keyTimes=None, keySplines=None,
                   from_=None, to=None, by=None):
         """
         Set animation attributes :ref:`values`, :ref:`calcMode`, :ref:`keyTimes`,
         :ref:`keySplines`, :ref:`from`, :ref:`to` and :ref:`by`.
         """
-        self['values'] = values
+        if values is not None:
+            if not isinstance(values, basestring):
+                values = strlist(values, ';')
+            self['values'] = values
+
         if calcMode is not None:
             self['calcMode'] = calcMode
         if keyTimes is not None:
