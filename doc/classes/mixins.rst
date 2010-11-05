@@ -1,5 +1,47 @@
+ViewBox Mixin
+=============
+
+.. autoclass:: svgwrite.mixins.ViewBox
+
+.. automethod:: svgwrite.mixins.ViewBox.viewbox
+
+.. automethod:: svgwrite.mixins.ViewBox.stretch
+
+.. automethod:: svgwrite.mixins.ViewBox.fit
+
+Transform Mixin
+===============
+
+.. autoclass:: svgwrite.mixins.Transform
+
+.. automethod:: svgwrite.mixins.Transform.translate
+
+.. automethod:: svgwrite.mixins.Transform.rotate
+
+.. automethod:: svgwrite.mixins.Transform.skewX
+
+.. automethod:: svgwrite.mixins.Transform.skewY
+
+.. automethod:: svgwrite.mixins.Transform.scale
+
+XLink Mixin
+===========
+
+.. autoclass:: svgwrite.mixins.XLink
+
+.. automethod:: svgwrite.mixins.XLink.set_href
+
+.. automethod:: svgwrite.mixins.XLink.set_xlink
+
+Set **xlink:actuate** and **xlink:type** by the index operator::
+
+    element['xlink:type'] = 'simple'
+    element['xlink:actuate'] = 'onLoad'
+
 Presentation Mixin
 ==================
+
+.. autoclass:: svgwrite.mixins.Presentation
 
 .. automethod:: svgwrite.mixins.Presentation.fill
 
@@ -33,6 +75,7 @@ MediaGroup Mixin
 
    valid for SVG Elements: animation, audio, desc, image, metadata, title, video
 
+.. autoclass:: svgwrite.mixins.MediaGroup
 
 .. automethod:: svgwrite.mixins.MediaGroup.viewport_fill
 
@@ -43,6 +86,8 @@ MediaGroup Mixin
 
 Markers Mixin
 =============
+
+.. autoclass:: svgwrite.mixins.Markers
 
 .. automethod:: svgwrite.mixins.Markers.set_markers
 
@@ -55,6 +100,8 @@ Markers Mixin
 
 Clipping Mixin
 ==============
+
+.. autoclass:: svgwrite.mixins.Clipping
 
 .. automethod:: svgwrite.mixins.Clipping.clip_rect
 
