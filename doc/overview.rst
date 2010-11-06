@@ -79,7 +79,7 @@ Common Attributes
 -----------------
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 1
 
    attributes/core
    attributes/conditional_processing

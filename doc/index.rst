@@ -21,7 +21,7 @@ Modules
 -------
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 1
 
    svgwrite
    utils/utils
