@@ -168,6 +168,7 @@ Example
 Source: https://secure.wikimedia.org/wikibooks/de/wiki/SVG/_Effekte#Urfilter_fePointLight.2C_Punktlichtquelle
 
 .. literalinclude:: ../../examples/fePointLight.py
+   :lines: 8-
 
 and the XML result (with manual reformatting):
 
