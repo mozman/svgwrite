@@ -32,9 +32,7 @@ or from source::
 Tests
 =====
 
-run tests with **nosetests** or **py.test**
-
-with Python 2.7::
+run tests with **nosetests** or with Python 2.7::
 
     python -m unittest discover -s tests
 

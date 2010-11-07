@@ -3,6 +3,7 @@ build/*
 dist/*
 doc/_build/*
 makedata/.cache/*
+.coverage
 *.err
 *.orig
 *.bak
