@@ -223,3 +223,11 @@ Basic Shapes Examples
 
 .. literalinclude:: ../../examples/basic_shapes.py
    :lines: 16-
+
+basic_shapes.svg
+----------------
+
+.. image:: ../../examples/basic_shapes.svg
+   :width: 800
+   :height: 800
+   :alt: Your browser can't render SVG images.

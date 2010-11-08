@@ -27,10 +27,12 @@ def basic_shapes(name):
     shapes = dwg.add(dwg.g(id='shapes', fill='red'))
 
     # set presentation attributes at object creation as SVG-Attributes
-    shapes.add(dwg.circle(center=(15*cm, 8*cm), r='2.5cm', stroke='blue', stroke_width=3))
+    shapes.add(dwg.circle(center=(15*cm, 8*cm), r='2.5cm', stroke='blue',
+                          stroke_width=3))
 
     # override the 'fill' attribute of the parent group 'shapes'
-    shapes.add(dwg.rect(insert=(5*cm, 5*cm), size=(45*mm, 45*mm), fill='blue', stroke='red', stroke_width=3))
+    shapes.add(dwg.rect(insert=(5*cm, 5*cm), size=(45*mm, 45*mm),
+                        fill='blue', stroke='red', stroke_width=3))
 
     # or set presentation attributes by helper functions of the Presentation-Mixin
     ellipse = shapes.add(dwg.ellipse(center=(10*cm, 15*cm), r=('5cm', '10mm')))
