@@ -53,6 +53,10 @@ You can only create two types of SVG drawings:
 * *SVG 1.1 Full Profile*, use Drawing(profile= ``'full'``)
 
 """
+VERSION = '0.2.3'
+AUTHOR_NAME = 'Manfred Moitzi'
+AUTHOR_EMAIL = 'mozman@gmx.at'
+CYEAR = '2010'
 
 from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb

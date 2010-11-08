@@ -22,7 +22,7 @@
 import os
 from distutils.core import setup
 
-from svgwrite.metadata import VERSION, AUTHOR_NAME, AUTHOR_EMAIL
+from svgwrite import VERSION, AUTHOR_NAME, AUTHOR_EMAIL
 
 def read(fname):
     try:
@@ -43,7 +43,7 @@ setup(name='svgwrite',
     platforms="OS Independent",
     license="GPLv3",
     classifiers=[
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "License :: OSI Approved :: GNU General Public License (GPL)",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 2.5",
