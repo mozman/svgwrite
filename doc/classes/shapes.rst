@@ -217,3 +217,9 @@ Parent Classes
 * :class:`svgwrite.mixins.Transform`
 * :class:`svgwrite.mixins.Presentation`
 * :class:`svgwrite.mixins.Markers`
+
+Basic Shapes Examples
+=====================
+
+.. literalinclude:: ../../examples/basic_shapes.py
+   :lines: 16-

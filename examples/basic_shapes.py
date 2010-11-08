@@ -14,7 +14,7 @@ except ImportError:
     sys.path.insert(0, os.path.abspath(os.path.split(os.path.abspath(__file__))[0]+'/..'))
 
 import svgwrite
-from svgwrite import cm, mm, rgb, deg
+from svgwrite import cm, mm
 
 def basic_shapes(name):
     dwg = svgwrite.Drawing(filename=name, debug=True)
