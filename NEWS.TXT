@@ -7,6 +7,7 @@ Version 0.2.3 - .. November 2010
   * splitted examples.py into several files and moved them to
     the subdir 'examples'
   * added images to documentation
+  * Python 3.1 support
 
 Version 0.2.2 - 05 November 2010
 

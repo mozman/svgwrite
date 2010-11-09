@@ -11,7 +11,7 @@ import unittest
 
 PYTHON3 = sys.version_info[0] > 2
 
-if PYTHON3 > 2:
+if PYTHON3:
     import svgwrite.data.pyparsing_py3 as pp
 else:
     import svgwrite.data.pyparsing_py2 as pp

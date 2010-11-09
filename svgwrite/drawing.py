@@ -20,12 +20,10 @@ set/get SVG attributes::
 .. seealso:: :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 
 """
-import sys
-PYTHON3 = (sys.version_info[0] > 2)
 
 from svgwrite.container import SVG, Defs
-
 from svgwrite.elementfactory import ElementFactory
+from svgwrite.utils import PYTHON3
 
 class Drawing(SVG, ElementFactory):
     """ This is the SVG drawing represented by the top level **svg** element.
@@ -96,14 +94,10 @@ class Drawing(SVG, ElementFactory):
         for stylesheet in self._stylesheets:
             stylestr = '<?xml-stylesheet href="%s" type="text/css" title="%s" ' \
                      'alternate="%s" media="%s"?>\n' % stylesheet
-            fileobj.write(stylestr.encode('utf-8'))
+            fileobj.write(stylestr)
 
         xmlstr = self.tostring()
-
-        if PYTHON3:
-            fileobj.write(str(xmlstr))
-        else:
-            fileobj.write(xmlstr)
+        fileobj.write(xmlstr)
 
     def save(self):
         """ Write the ``utf-8`` encoded XML string to :attr:`filename`. """

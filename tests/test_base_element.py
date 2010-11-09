@@ -11,6 +11,7 @@ import unittest
 
 from svgwrite.base import BaseElement
 from svgwrite.params import Parameter
+from svgwrite.utils import is_string
 
 class MockBase(BaseElement):
     elementname = 'svg' # necessary for validator
@@ -62,8 +63,8 @@ class TestBaseElement(unittest.TestCase):
 class TestValueToString(unittest.TestCase):
     def test_full_profile(self):
         element = MockBase()
-        self.assertEqual(u'test', element.value_to_string('test'))
-        self.assertEqual(u'10', element.value_to_string(10))
+        self.assertEqual('test', element.value_to_string('test'))
+        self.assertEqual('10', element.value_to_string(10))
 
     def test_tiny_profile(self):
         element = MockBase()
@@ -75,8 +76,8 @@ class TestValueToString(unittest.TestCase):
 
     def test_is_unicode(self):
         element = MockBase()
-        self.assertTrue(isinstance(element.value_to_string(10), unicode))
-        self.assertTrue(isinstance(element.value_to_string('test'), unicode))
+        self.assertTrue(is_string(element.value_to_string(10)))
+        self.assertTrue(is_string(element.value_to_string('test')))
 
 
 if __name__=='__main__':

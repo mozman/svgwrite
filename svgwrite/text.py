@@ -130,7 +130,7 @@ class TextPath(BaseElement, XLink, Presentation):
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
         xml = super(TextPath, self).get_xml()
-        xml.text = unicode(self.text)
+        xml.text = to_unicode(self.text)
         return xml
 
 class TBreak(BaseElement):
