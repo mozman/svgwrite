@@ -6,15 +6,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-# Python 3 adaption
-import sys
-PYTHON3 = sys.version_info[0] > 2
-if PYTHON3:
-    basestring = str
-# Python 3 adaption
-
 from svgwrite.utils import strlist
 from svgwrite.base import Title, Desc
+from svgwrite.utils import is_string
 
 _horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
 _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
@@ -165,7 +159,7 @@ class XLink(object):
     def update_id(self):
         if not hasattr(self, 'href'):
             return
-        if isinstance(self.href, basestring):
+        if is_string(self.href):
             idstr = self.href
         else:
             idstr = self.href.get_iri()
@@ -181,7 +175,7 @@ class Presentation(object):
 
         """
         if color:
-            if isinstance(color, basestring):
+            if is_string(color):
                 self['fill'] = color
             else:
                 self['fill'] = color.get_paint_server()
@@ -200,7 +194,7 @@ class Presentation(object):
         """
 
         if color:
-            if isinstance(color, basestring):
+            if is_string(color):
                 self['stroke'] = color
             else:
                 self['stroke'] = color.get_paint_server()
@@ -270,14 +264,14 @@ class Markers(object):
 
         """
         def get_funciri(value):
-            if isinstance(value, basestring):
+            if is_string(value):
                 # strings has to be a valid reference including the '#'
                 return 'url(%s)' % value
             else:
                 # else create a reference to the object '#id'
                 return 'url(#%s)' % value['id']
 
-        if isinstance(markers, basestring):
+        if is_string(markers):
             self['marker'] = get_funciri(markers)
         else:
             try:

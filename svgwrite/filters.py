@@ -8,7 +8,7 @@
 
 from svgwrite.base import BaseElement
 from svgwrite.mixins import XLink, Presentation
-from svgwrite.utils import strlist
+from svgwrite.utils import strlist, is_string
 
 __all__ = ['Filter']
 
@@ -207,7 +207,7 @@ class Filter(BaseElement, XLink, Presentation):
             self['width'] = size[0]
             self['height'] = size[1]
         if resolution is not None:
-            if isinstance(resolution, basestring):
+            if is_string(resolution):
                 self['filterRes'] = resolution
             elif hasattr(resolution, '__iter__'):
                 self['filterRes'] = strlist(resolution, ' ')

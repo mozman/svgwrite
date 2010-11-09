@@ -22,15 +22,28 @@
 .. autofunction:: rect_top_left_corner
 
 """
-# Python 3 adaption
+
 import sys
-if sys.version_info[0] > 2:
-    basestring = str
+PYTHON3 = sys.version_info[0] > 2
+
+# Python 3 adaption
+def is_string(value):
+    if PYTHON3:
+        return isinstance(value, str)
+    else:
+        return isinstance(value, basestring)
+
+def to_unicode(value):
+    if PYTHON3:
+        return str(value)
+    else:
+        return unicode(value)
 # Python 3 adaption
 
 import re
 
 from svgwrite.data import pattern
+
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
     """
@@ -74,7 +87,7 @@ def iterflatlist(values):
 
     """
     for element in values:
-        if hasattr(element, "__iter__") and not isinstance(element, basestring):
+        if hasattr(element, "__iter__") and not is_string(element):
             for item in iterflatlist(element):
                 yield item
         else:
@@ -88,7 +101,7 @@ def strlist(values, seperator=","):
     :returns: `string`
 
     """
-    if isinstance(values, basestring):
+    if is_string(values):
         return values
     else:
         return seperator.join([str(value) for value in iterflatlist(values) if value is not None])

@@ -14,6 +14,7 @@ linear gradients and radial gradients.
 
 from svgwrite.base import BaseElement
 from svgwrite.mixins import Transform, XLink
+from svgwrite.utils import is_string
 
 class _GradientStop(BaseElement):
     elementname = 'stop'
@@ -32,7 +33,7 @@ class _AbstractGradient(BaseElement, Transform, XLink):
     def __init__(self, inherit=None, **extra):
         super(_AbstractGradient, self).__init__(**extra)
         if inherit is not None:
-            if isinstance(inherit, basestring):
+            if is_string(inherit):
                 self.set_href(inherit)
             else:
                 self.set_href(inherit.get_iri())

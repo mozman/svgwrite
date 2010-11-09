@@ -8,6 +8,7 @@
 
 from svgwrite.base import BaseElement
 from svgwrite.mixins import XLink, ViewBox, Transform, Presentation
+from svgwrite.utils import is_string
 
 class Pattern(BaseElement, XLink, ViewBox, Transform, Presentation):
     """
@@ -36,7 +37,7 @@ class Pattern(BaseElement, XLink, ViewBox, Transform, Presentation):
             self['width'] = size[0]
             self['height'] = size[1]
         if inherit is not None:
-            if isinstance(inherit, basestring):
+            if is_string(inherit):
                 self.set_href(inherit)
             else:
                 self.set_href(inherit.get_iri())
