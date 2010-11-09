@@ -11,17 +11,10 @@ using the **text** element. The characters to be drawn are expressed as XML
 character data inside the **text** element.
 
 """
-# Python 3 adaption
-import sys
-PYTHON3 = sys.version_info[0] > 2
-if PYTHON3:
-    basestring = str
-    unicode = lambda value: str(value)
-# Python 3 adaption
 
 from svgwrite.base import BaseElement
 from svgwrite.mixins import Presentation, Transform, XLink
-from svgwrite.utils import iterflatlist, strlist
+from svgwrite.utils import iterflatlist, strlist, is_string, to_unicode
 
 class TSpan(BaseElement, Presentation):
     """
@@ -51,7 +44,7 @@ class TSpan(BaseElement, Presentation):
         super(TSpan, self).__init__(**extra)
         self.text = text
         if insert is not None:
-            if isinstance(insert, basestring):
+            if is_string(insert):
                 raise TypeError("'insert' should be a <tuple> or a <list>  with" \
                                 " at least two elements.")
             if x or y:
@@ -68,7 +61,7 @@ class TSpan(BaseElement, Presentation):
 
     def get_xml(self):
         xml = super(TSpan, self).get_xml()
-        xml.text = unicode(self.text)
+        xml.text = to_unicode(self.text)
         return xml
 
 class Text(TSpan, Transform):

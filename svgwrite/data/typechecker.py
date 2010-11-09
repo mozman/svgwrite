@@ -6,23 +6,18 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-# Python 3 adaption
 import sys
-PYTHON3 = sys.version_info[0] > 2
-if PYTHON3:
-    basestring = str
-# Python 3 adaption
-
 import re
 
 from svgwrite.data import pattern
 from svgwrite.data.colors import colornames
 from svgwrite.data.svgparser import TransformListParser, PathDataParser, AnimationTimingParser
+from svgwrite.utils import is_string
 
 def iterflatlist(values):
     """ Flatten nested *values*, returns an *iterator*. """
     for element in values:
-        if hasattr(element, "__iter__") and not isinstance(element, basestring):
+        if hasattr(element, "__iter__") and not is_string(element):
             for item in iterflatlist(element):
                 yield item
         else:
@@ -46,7 +41,7 @@ class Full11TypeChecker(object):
         #angle ::= number (~"deg" | ~"grad" | ~"rad")?
         if self.is_number(value):
             return True
-        elif isinstance(value, basestring):
+        elif is_string(value):
             return pattern.angle.match(value.strip()) is not None
         return False
 
@@ -84,7 +79,7 @@ class Full11TypeChecker(object):
         #frequency ::= number (~"Hz" | ~"kHz")
         if self.is_number(value):
             return True
-        elif isinstance(value, basestring):
+        elif is_string(value):
             return pattern.frequency.match(value.strip()) is not None
         return False
 
@@ -116,7 +111,7 @@ class Full11TypeChecker(object):
         # a more generalized complement to Uniform Resource Identifiers (URIs)
         # nearly everything can be a valid <IRI>
         # only a none-empty string ist a valid input
-        if isinstance(value, basestring):
+        if is_string(value):
             return bool(value.strip())
         else:
             return False
@@ -127,7 +122,7 @@ class Full11TypeChecker(object):
             return False
         if isinstance(value, (int, float)):
             return self.is_number(value)
-        elif isinstance(value, basestring):
+        elif is_string(value):
             result = pattern.length.match(value.strip())
             if result:
                 number, tmp, unit = result.groups()
@@ -141,7 +136,7 @@ class Full11TypeChecker(object):
             #TODO: improve split function!!!!
             if isinstance(value, (int, float)):
                 return (value, )
-            if isinstance(value, basestring):
+            if is_string(value):
                 return iterflatlist(v.split(',') for v in value.split(' '))
             return value
         #list-of-Ts ::= T
@@ -156,7 +151,7 @@ class Full11TypeChecker(object):
 
     def is_four_numbers(self, value):
         def split(value):
-            if isinstance(value, basestring):
+            if is_string(value):
                 values = iterflatlist( (v.strip().split(' ') for v in value.split(',')) )
                 return (v for v in values if v)
             else:
@@ -196,7 +191,7 @@ class Full11TypeChecker(object):
     def is_number_optional_number(self, value):
         #number-optional-number ::= number
         #                           | number comma-wsp number
-        if isinstance(value, basestring):
+        if is_string(value):
             values = re.split(' *,? *', value.strip())
             if 0 < len(values) < 3: # 1 or 2 numbers
                 for v in values:
@@ -239,7 +234,7 @@ class Full11TypeChecker(object):
         #percentage ::= number "%"
         if self.is_number(value):
             return True
-        elif isinstance(value, basestring):
+        elif is_string(value):
             return pattern.percentage.match(value.strip()) is not None
         return False
 
@@ -247,18 +242,18 @@ class Full11TypeChecker(object):
         #time ::= <number> (~"ms" | ~"s")?
         if self.is_number(value):
             return True
-        elif isinstance(value, basestring):
+        elif is_string(value):
             return pattern.time.match(value.strip()) is not None
         return False
 
     def is_transform_list(self, value):
-        if isinstance(value, basestring):
+        if is_string(value):
             return TransformListParser.is_valid(value)
         else:
             return False
 
     def is_path_data(self, value):
-        if isinstance(value, basestring):
+        if is_string(value):
             return PathDataParser.is_valid(value)
         else:
             return False
@@ -287,7 +282,7 @@ class Full11TypeChecker(object):
         return True
 
     def is_timing_value_list(self, value):
-        if isinstance(value, basestring):
+        if is_string(value):
             return AnimationTimingParser.is_valid(value)
         else:
             return False
@@ -314,7 +309,7 @@ class Tiny12TypeChecker(Full11TypeChecker):
     def is_boolean(self, value):
         if isinstance(value, bool):
             return True
-        if isinstance(value, basestring):
+        if is_string(value):
             return value.strip().lower() in ('true', 'false')
         return False
 

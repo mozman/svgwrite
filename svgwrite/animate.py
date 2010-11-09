@@ -6,16 +6,9 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-# Python 3 adaption
-import sys
-PYTHON3 = sys.version_info[0] > 2
-if PYTHON3:
-    basestring = str
-# Python 3 adaption
-
 from svgwrite.base import BaseElement
 from svgwrite.mixins import XLink
-from svgwrite.utils import strlist
+from svgwrite.utils import strlist, is_string
 
 class Set(BaseElement, XLink):
     """ The **set** element provides a simple means of just setting the value
@@ -146,7 +139,7 @@ class Animate(Set):
         :ref:`keySplines`, :ref:`from`, :ref:`to` and :ref:`by`.
         """
         if values is not None:
-            if not isinstance(values, basestring):
+            if not is_string(values):
                 values = strlist(values, ';')
             self['values'] = values
 

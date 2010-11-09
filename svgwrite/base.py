@@ -9,18 +9,11 @@
 The **BaseElement** is the root for all SVG elements.
 """
 
-import sys
-PYTHON3 = sys.version_info[0] > 2
-if PYTHON3:
-    basestring = str
-    unicode = lambda value: str(value)
-
 import xml.etree.ElementTree as etree
 import copy
 
 from svgwrite.params import Parameter
-from svgwrite.utils import AutoID
-
+from svgwrite.utils import AutoID, to_unicode
 class BaseElement(object):
     """
     The **BaseElement** is the root for all SVG elements. The SVG attributes
@@ -217,7 +210,7 @@ class BaseElement(object):
                 self.validator.check_svg_type(value, 'number')
             if isinstance(value, float) and self.profile == 'tiny':
                 value = round(value, 4)
-        return unicode(value)
+        return to_unicode(value)
 
     def set_desc(self, title=None, desc=None):
         """ Insert a **title** and/or a **desc** element as first subelement.
