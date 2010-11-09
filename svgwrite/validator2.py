@@ -33,7 +33,7 @@ class Tiny12Validator(object):
 
         Raises ValueError.
         """
-        for attributename, value in attributes.iteritems():
+        for attributename, value in attributes.items():
             self.check_svg_attribute_value(elementname, attributename, value)
 
     def check_svg_attribute_value(self, elementname, attributename, value):

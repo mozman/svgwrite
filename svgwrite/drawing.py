@@ -20,6 +20,8 @@ set/get SVG attributes::
 .. seealso:: :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 
 """
+import sys
+PYTHON3 = (sys.version_info[0] > 2)
 
 from svgwrite.container import SVG, Defs
 
@@ -92,12 +94,16 @@ class Drawing(SVG, ElementFactory):
         # http://tech.groups.yahoo.com/group/svg-developers/message/48562
         # write stylesheets
         for stylesheet in self._stylesheets:
-            stylestr = u'<?xml-stylesheet href="%s" type="text/css" title="%s" ' \
+            stylestr = '<?xml-stylesheet href="%s" type="text/css" title="%s" ' \
                      'alternate="%s" media="%s"?>\n' % stylesheet
             fileobj.write(stylestr.encode('utf-8'))
 
         xmlstr = self.tostring()
-        fileobj.write(xmlstr)
+
+        if PYTHON3:
+            fileobj.write(str(xmlstr))
+        else:
+            fileobj.write(xmlstr)
 
     def save(self):
         """ Write the ``utf-8`` encoded XML string to :attr:`filename`. """

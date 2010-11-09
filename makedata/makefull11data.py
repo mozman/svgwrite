@@ -130,7 +130,7 @@ def write_elements(filename, elements):
 
 def create_elements_data(attributes, children):
     elements = {}
-    for name, attribute_names in attributes.iteritems():
+    for name, attribute_names in attributes.items():
         try:
             possible_children = children[name]
         except KeyError:

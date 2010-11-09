@@ -11,6 +11,13 @@ using the **text** element. The characters to be drawn are expressed as XML
 character data inside the **text** element.
 
 """
+# Python 3 adaption
+import sys
+PYTHON3 = sys.version_info[0] > 2
+if PYTHON3:
+    basestring = str
+    unicode = lambda value: str(value)
+# Python 3 adaption
 
 from svgwrite.base import BaseElement
 from svgwrite.mixins import Presentation, Transform, XLink

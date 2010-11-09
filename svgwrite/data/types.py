@@ -33,7 +33,7 @@ class SVGMultiAttribute(object):
         self._attributes = {}
         firstkey = None
 
-        for names, attribute in attributes.iteritems():
+        for names, attribute in attributes.items():
             for name in names.split():
                 name = name.strip()
                 self._attributes[name] = attribute

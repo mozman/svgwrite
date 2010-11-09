@@ -6,6 +6,13 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
+# Python 3 adaption
+import sys
+PYTHON3 = sys.version_info[0] > 2
+if PYTHON3:
+    basestring = str
+# Python 3 adaption
+
 from svgwrite.base import BaseElement
 from svgwrite.mixins import XLink
 from svgwrite.utils import strlist
