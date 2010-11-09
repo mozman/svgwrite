@@ -34,10 +34,10 @@ class TestPointsToStringFullProfile(unittest.TestCase):
         # dont't know if '%' is valid for points?
         result = self.polyline.points_to_string([(10,10), ('20cm', '20em'), ('30ex', '30in'), ('40mm', '40pc'), ('50pt', '50px'), ('60%', '60%')])
         # it's an unicode string
-        self.assertEqual(result, u"10,10 20cm,20em 30ex,30in 40mm,40pc 50pt,50px 60%,60%")
+        self.assertEqual(result, "10,10 20cm,20em 30ex,30in 40mm,40pc 50pt,50px 60%,60%")
         # e-notation is valid
         result = self.polyline.points_to_string([('1e10pt','1e-10in')])
-        self.assertEqual(result, u"1e10pt,1e-10in")
+        self.assertEqual(result, "1e10pt,1e-10in")
 
     def test_invalid_points(self):
         # invalid unit #'p'
@@ -58,11 +58,11 @@ class TestPointsToStringTinyProfile(unittest.TestCase):
         # dont't know if '%' is valid for points?
         result = self.polyline.points_to_string([(10,10), ('20cm', '20em'), ('30ex', '30in'), ('40mm', '40pc'), ('50pt', '50px'), ('60%', '60%')])
         # it's an unicode string
-        self.assertEqual(result, u"10,10 20cm,20em 30ex,30in 40mm,40pc 50pt,50px 60%,60%")
+        self.assertEqual(result, "10,10 20cm,20em 30ex,30in 40mm,40pc 50pt,50px 60%,60%")
 
     def test_float_points(self):
         result = self.polyline.points_to_string([(10.12345,10.12345),(3.14151, 3.14151)])
-        self.assertEqual(result, u"10.1235,10.1235 3.1415,3.1415")
+        self.assertEqual(result, "10.1235,10.1235 3.1415,3.1415")
 
     def test_value_range(self):
         # invalid unit #'p'

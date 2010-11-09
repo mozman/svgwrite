@@ -16,11 +16,11 @@ class TestSVGMultiAttribute(unittest.TestCase):
         self.ma = SVGMultiAttribute({
             '*': SVGAttribute('x',
                               anim=True,
-                              types=frozenset([u'coordinate']),
+                              types=frozenset(['coordinate']),
                               const=frozenset(['star'])),
             'text tref tspan': SVGAttribute('x',
                                             anim=False,
-                                            types=frozenset([u'list-of-coordinate']),
+                                            types=frozenset(['list-of-coordinate']),
                                             const=frozenset(['text']))
             }
         )
@@ -29,11 +29,11 @@ class TestSVGMultiAttribute(unittest.TestCase):
         ma = SVGMultiAttribute({
             'a': SVGAttribute('x',
                               anim=True,
-                              types=frozenset([u'coordinate']),
+                              types=frozenset(['coordinate']),
                               const=frozenset(['star'])),
             'b': SVGAttribute('x',
                               anim=False,
-                              types=frozenset([u'list-of-coordinate']),
+                              types=frozenset(['list-of-coordinate']),
                               const=frozenset(['text']))
             }
         )

@@ -13,7 +13,8 @@ import xml.etree.ElementTree as etree
 import copy
 
 from svgwrite.params import Parameter
-from svgwrite.utils import AutoID, to_unicode
+from svgwrite.utils import AutoID, to_unicode, PYTHON3
+
 class BaseElement(object):
     """
     The **BaseElement** is the root for all SVG elements. The SVG attributes
@@ -177,7 +178,11 @@ class BaseElement(object):
 
         """
         xml = self.get_xml()
-        return etree.tostring(xml, encoding='utf-8')
+        xml_utf8_str = etree.tostring(xml, encoding='utf-8')
+        if PYTHON3: # return an unicode string
+            return xml_utf8_str.decode()
+        else: #return the utf8 encoded string
+            return xml_utf8_str
 
     def get_xml(self):
         """ Get the XML representation as `ElementTree` object.
@@ -240,7 +245,7 @@ class Title(object):
     elementname = 'title'
     def __init__(self, text):
         self.xml = etree.Element(self.elementname)
-        self.xml.text = unicode(text)
+        self.xml.text = to_unicode(text)
 
     def get_xml(self):
         return self.xml

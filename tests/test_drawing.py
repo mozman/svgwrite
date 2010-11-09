@@ -10,7 +10,12 @@ import sys
 import os
 
 import unittest
-from StringIO import StringIO
+from svgwrite.utils import PYTHON3
+
+if PYTHON3:
+    from io import StringIO
+else:
+    from StringIO import StringIO
 
 from svgwrite.drawing import Drawing
 from svgwrite.container import Group

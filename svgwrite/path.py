@@ -21,6 +21,7 @@
 from svgwrite.base import BaseElement
 from svgwrite.utils import strlist
 from svgwrite.mixins import Presentation, Markers, Transform
+from svgwrite.utils import to_unicode
 
 class Path(BaseElement, Transform, Presentation, Markers):
     """ The <path> element represent the outline of a shape which can be filled,
@@ -84,5 +85,5 @@ class Path(BaseElement, Transform, Presentation, Markers):
         :return: XML `ElementTree` of this object and all its subelements
 
         """
-        self.attribs['d'] = unicode(strlist(self.commands, ' '))
+        self.attribs['d'] = to_unicode(strlist(self.commands, ' '))
         return super(Path, self).get_xml()
