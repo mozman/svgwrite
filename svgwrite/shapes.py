@@ -150,9 +150,9 @@ class Polyline(BaseElement, Transform, Presentation, Markers):
                     x = round(x, 4)
                 if isinstance(y, float):
                     y = round(y, 4)
-            point = u"%s,%s" % (x, y)
+            point = "%s,%s" % (x, y)
             strings.append(point)
-        return u' '.join(strings)
+        return ' '.join(strings)
 
 class Polygon(Polyline):
     """ The **polygon** element defines a closed shape consisting of a set of

@@ -8,7 +8,7 @@
 
 def get_content_model():
     _content_model = {}
-    for element, element_lists in content_model.iteritems():
+    for element, element_lists in content_model.items():
         collect = set()
         for elements in element_lists:
             collect.update(elements)
@@ -17,7 +17,7 @@ def get_content_model():
 
 def get_valid_attributes():
     _attributes = {}
-    for element, attrib_lists in attributes.iteritems():
+    for element, attrib_lists in attributes.items():
         collect = set(core_attributes)
         for attribs in attrib_lists:
             collect.update(attribs)

@@ -9,6 +9,12 @@
 The **BaseElement** is the root for all SVG elements.
 """
 
+import sys
+PYTHON3 = sys.version_info[0] > 2
+if PYTHON3:
+    basestring = str
+    unicode = lambda value: str(value)
+
 import xml.etree.ElementTree as etree
 import copy
 
@@ -76,7 +82,7 @@ class BaseElement(object):
         2. inner '_' will be replaced by '-' (``'stroke_width'`` -> ``'stroke-width'``)
 
         """
-        for key, value in attribs.iteritems():
+        for key, value in attribs.items():
             # remove trailing underscores
             # and replace inner underscores
             key = key.rstrip('_').replace('_', '-')
@@ -189,7 +195,7 @@ class BaseElement(object):
         xml = etree.Element(self.elementname)
         if self.debug:
             self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
-        for attribute, value in self.attribs.iteritems():
+        for attribute, value in self.attribs.items():
             # filter 'None' values
             if value is not None:
                 value = self.value_to_string(value)

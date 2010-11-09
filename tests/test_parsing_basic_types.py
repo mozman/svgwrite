@@ -8,8 +8,13 @@
 
 import sys
 import unittest
+PYTHON3 = sys.version_info[0] > 2
 
-import svgwrite.data.pyparsing as pp
+if PYTHON3:
+    import svgwrite.data.pyparsing_py3 as pp
+else:
+    import svgwrite.data.pyparsing_py2 as pp
+
 from svgwrite.data.svgparser import exponent, fractional_constant, \
      scientific_constant, number
 

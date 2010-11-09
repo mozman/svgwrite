@@ -9,7 +9,13 @@
 import sys
 import unittest
 
-import svgwrite.data.pyparsing as pp
+PYTHON3 = sys.version_info[0] > 2
+
+if PYTHON3 > 2:
+    import svgwrite.data.pyparsing_py3 as pp
+else:
+    import svgwrite.data.pyparsing_py2 as pp
+
 from svgwrite.data.svgparser import _build_clock_val_parser
 from svgwrite.data.svgparser import _build_wall_clock_val_parser
 

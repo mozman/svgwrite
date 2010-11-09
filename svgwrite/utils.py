@@ -22,6 +22,11 @@
 .. autofunction:: rect_top_left_corner
 
 """
+# Python 3 adaption
+import sys
+if sys.version_info[0] > 2:
+    basestring = str
+# Python 3 adaption
 
 import re
 
@@ -55,11 +60,11 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
         return value
 
     if mode.upper() == 'RGB':
-        return u"rgb(%d,%d,%d)" % (int(r) & 255, int(g) & 255, int(b) & 255)
+        return "rgb(%d,%d,%d)" % (int(r) & 255, int(g) & 255, int(b) & 255)
     elif mode == "%":
         # see http://www.w3.org/TR/SVG11/types.html#DataTypeColor
         # percentage is an 'integer' value
-        return u"rgb(%d%%,%d%%,%d%%)" % (percent(r), percent(g), percent(b))
+        return "rgb(%d%%,%d%%,%d%%)" % (percent(r), percent(g), percent(b))
     else:
         raise ValueError("Invalid mode '%s'" % mode)
 
