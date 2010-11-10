@@ -83,6 +83,9 @@ class Drawing(SVG, ElementFactory):
 
         :param fileobj: a *file-like* object
 
+        Python 3.x - set encoding at the open command::
+
+            use open('filename', 'w', encoding='utf-8')
         """
         # write xml header
         fileobj.write('<?xml version="1.0" encoding="utf-8" ?>\n')
@@ -98,7 +101,10 @@ class Drawing(SVG, ElementFactory):
 
     def save(self):
         """ Write the ``utf-8`` encoded XML string to :attr:`filename`. """
-        fileobj = open(self.filename, mode='w')
+        if PYTHON3:
+            fileobj = open(self.filename, mode='w', encoding='utf-8')
+        else:
+            fileobj = open(self.filename, mode='w')
         self.write(fileobj)
         fileobj.close()
 
