@@ -10,7 +10,7 @@ import sys
 import os
 
 import unittest
-from svgwrite.utils import PYTHON3
+from svgwrite.utils import PYTHON3, to_unicode
 
 if PYTHON3:
     from io import StringIO
@@ -60,25 +60,19 @@ class TestDrawingFullProfile(unittest.TestCase):
         self.assertTrue(os.path.exists(fn))
         os.remove(fn)
 
-    def test_non_us_ascii_cahrs(self):
+    def test_non_us_ascii_chars(self):
         dwg = Drawing()
         dwg.set_desc('öäü')
         f = StringIO()
         dwg.write(f)
         result = f.getvalue()
         f.close()
-        if PYTHON3: # result is an unicode string!
-            self.assertEqual(result, '<?xml version="1.0" encoding="utf-8" ?>\n' \
-                '<svg baseProfile="full" height="100%" version="1.1" width="100%" '\
-                'xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" '\
-                'xmlns:xlink="http://www.w3.org/1999/xlink">'
-                '<title>öäü</title><defs /></svg>')
-        else:
-            self.assertEqual(result, '<?xml version="1.0" encoding="utf-8" ?>\n' \
-                '<svg baseProfile="full" height="100%" version="1.1" width="100%" '\
-                'xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" '\
-                'xmlns:xlink="http://www.w3.org/1999/xlink">'
-                '<title>\xc3\xb6\xc3\xa4\xc3\xbc</title><defs /></svg>')
+        self.assertEqual(result, to_unicode(
+            '<?xml version="1.0" encoding="utf-8" ?>\n' \
+            '<svg baseProfile="full" height="100%" version="1.1" width="100%" '\
+            'xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" '\
+            'xmlns:xlink="http://www.w3.org/1999/xlink">'
+            '<title>öäü</title><defs /></svg>'))
 
 class TestDrawingTinyProfile(unittest.TestCase):
     def test_empty_drawing(self):

@@ -172,17 +172,14 @@ class BaseElement(object):
         return element
 
     def tostring(self):
-        """ Get the XML representation as `string`.
+        """ Get the XML representation as unicode `string`.
 
-        :return: ``utf-8`` encoded XML string of this object and all its subelements
+        :return: unicode XML string of this object and all its subelements
 
         """
         xml = self.get_xml()
         xml_utf8_str = etree.tostring(xml, encoding='utf-8')
-        if PYTHON3: # return an unicode string
-            return xml_utf8_str.decode()
-        else: #return the utf8 encoded string
-            return xml_utf8_str
+        return xml_utf8_str.decode('utf-8')
 
     def get_xml(self):
         """ Get the XML representation as `ElementTree` object.
