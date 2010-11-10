@@ -6,14 +6,13 @@ Version 0.2.3
 -------------
 
   * status: beta
-  * add more tests and examples
-  * add graphics to the documentation
-  * Python 3.x support
 
 Version 0.2.4
 -------------
 
   * status: beta
+  * add more tests and examples
+  * add graphics to the documentation
 
 Version 0.3.0
 -------------
@@ -55,4 +54,4 @@ Version 0.8.0
 Version 1.0.0
 -------------
 
-   * finished
+  * finished
