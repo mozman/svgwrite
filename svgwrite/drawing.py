@@ -87,7 +87,6 @@ class Drawing(SVG, ElementFactory):
         # write xml header
         fileobj.write('<?xml version="1.0" encoding="utf-8" ?>\n')
 
-
         # don't use DOCTYPE. It's useless. see also:
         # http://tech.groups.yahoo.com/group/svg-developers/message/48562
         # write stylesheets
@@ -95,9 +94,7 @@ class Drawing(SVG, ElementFactory):
             stylestr = '<?xml-stylesheet href="%s" type="text/css" title="%s" ' \
                      'alternate="%s" media="%s"?>\n' % stylesheet
             fileobj.write(stylestr)
-
-        xmlstr = self.tostring()
-        fileobj.write(xmlstr)
+        fileobj.write(self.tostring())
 
     def save(self):
         """ Write the ``utf-8`` encoded XML string to :attr:`filename`. """
