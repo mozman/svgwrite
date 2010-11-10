@@ -9,8 +9,9 @@
 import sys
 import unittest
 
-from svgwrite.utils import PYTHON3
+from svgwrite.utils import PYTHON3, to_unicode
 from svgwrite.text import TSpan, TRef, TextPath
+
 
 class TestTSpan(unittest.TestCase):
     def test_constructor(self):
@@ -54,11 +55,7 @@ class TestTSpan(unittest.TestCase):
 
     def test_non_us_ascii_chars(self):
         txt = TSpan('öäü')
-        if PYTHON3:
-            expected_result = '<tspan>öäü</tspan>'
-        else:
-            expected_result = '<tspan>\xc3\xb6\xc3\xa4\xc3\xbc</tspan>'
-        self.assertEqual(txt.tostring(), expected_result)
+        self.assertEqual(txt.tostring(), to_unicode('<tspan>öäü</tspan>'))
 
     def test_errors(self):
         # None for x, y, dx, dy, rotate is valid - willl be ignored

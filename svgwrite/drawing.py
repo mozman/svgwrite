@@ -79,7 +79,7 @@ class Drawing(SVG, ElementFactory):
         self._stylesheets.append( (href, title, alternate, media) )
 
     def write(self, fileobj):
-        """ Write the ``utf-8`` encoded XML string to *fileobj*.
+        """ Write XML string to **fileobj**.
 
         :param fileobj: a *file-like* object
 
@@ -100,7 +100,7 @@ class Drawing(SVG, ElementFactory):
         fileobj.write(self.tostring())
 
     def save(self):
-        """ Write the ``utf-8`` encoded XML string to :attr:`filename`. """
+        """ Write the XML string to **filename**. """
         if PYTHON3:
             fileobj = open(self.filename, mode='w', encoding='utf-8')
         else:
@@ -109,7 +109,7 @@ class Drawing(SVG, ElementFactory):
         fileobj.close()
 
     def saveas(self, filename):
-        """ Write the ``utf-8`` encoded XML string to *filename*.
+        """ Write the XML string to **filename**.
 
         :param string filename: filesystem filename valid for :func:`open`
         """
