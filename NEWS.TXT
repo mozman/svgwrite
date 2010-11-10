@@ -3,18 +3,16 @@ NEWS
 ====
 
 Version 0.2.3 - .. November 2010
+
   * beta version
+  * Python 3.1 support
   * splitted examples.py into several files and moved them to
     the subdir 'examples'
-  * added images to documentation
-  * Python 3.1 support
 
 Version 0.2.2 - 05 November 2010
 
   * alpha version
-  * removed 'attribs' parameter from all constructors (__init__)
-    see BaseElement class, use 'class_', 'from_', 'stroke_width' as keyword
-    arguments
+  * removed 'attribs' parameter from all constructors
   * new elements: Set, Animate, AnimateMotion, AnimateColor,
     AnimateTransform, all filter elements
   * added set_desc(title, desc), set_metadata(xmldata) to BaseElement class
