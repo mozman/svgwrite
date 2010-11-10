@@ -60,6 +60,19 @@ class TestDrawingFullProfile(unittest.TestCase):
         self.assertTrue(os.path.exists(fn))
         os.remove(fn)
 
+    def test_non_us_ascii_cahrs(self):
+        dwg = Drawing()
+        dwg.set_desc('öäü')
+        f = StringIO()
+        dwg.write(f)
+        result = f.getvalue()
+        f.close()
+        self.assertEqual(result, '<?xml version="1.0" encoding="utf-8" ?>\n' \
+            '<svg baseProfile="full" height="100%" version="1.1" width="100%" '\
+            'xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" '\
+            'xmlns:xlink="http://www.w3.org/1999/xlink">'
+            '<title>\xc3\xb6\xc3\xa4\xc3\xbc</title><defs /></svg>')
+
 class TestDrawingTinyProfile(unittest.TestCase):
     def test_empty_drawing(self):
         dwg = Drawing(profile="tiny")

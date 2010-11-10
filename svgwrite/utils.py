@@ -37,7 +37,7 @@ def to_unicode(value):
     if PYTHON3:
         return str(value)
     else:
-        return unicode(value)
+        return str(value).decode('utf-8')
 # Python 3 adaption
 
 import re
