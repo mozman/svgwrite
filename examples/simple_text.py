@@ -23,7 +23,7 @@ def simple_text(name):
     # if there are more letters than values, the last list-value is used
     #
     # different 'y' coordinates does not work with Firefox 3.6
-    paragraph.add(dwg.text("This is a Test!", x=[10], y=[40, 45, 50, 55, 60]))
+    paragraph.add(dwg.text("This is a Test", x=[10], y=[40, 45, 50, 55, 60]))
 
     # different formats can be used by the TSpan element
     # The atext.tspan(...) method is a shortcut for: atext.add(dwg.tspan(...))
@@ -32,6 +32,7 @@ def simple_text(name):
     # text color is set by the 'fill' property and 'stroke sets the outline color.
     atext.add(dwg.tspan(' Word', font_size='1.5em', fill='red'))
     atext.add(dwg.tspan(' is a Word!', dy=['1em'], font_size='0.7em', fill='green'))
+    paragraph.add(dwg.text("Das ist ein Test mit ÖÄÜäüö!", (10,120)))
     paragraph.add(atext)
     dwg.save()
 
