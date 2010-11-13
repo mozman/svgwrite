@@ -2,7 +2,7 @@
 NEWS
 ====
 
-Version 0.2.3 - .. November 2010
+Version 0.2.3 - 13 November 2010
 
   * beta version
   * Python 3.1 support
