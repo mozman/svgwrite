@@ -2,11 +2,6 @@
 TODO
 ====
 
-Version 0.2.3
--------------
-
-  * status: beta
-
 Version 0.2.4
 -------------
 
