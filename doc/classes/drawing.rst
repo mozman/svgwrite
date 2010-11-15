@@ -29,7 +29,13 @@ Methods
 
 .. automethod:: svgwrite.drawing.Drawing.get_xml
 
-.. automethod:: svgwrite.drawing.Drawing.tostring
+.. method:: Drawing.tostring()
+
+   Get the XML representation as unicode `string`. If you embed the SVG object
+   into a XHTML page, you have to link to the CSS files (if you use CSS classes)
+   in the header section of the surrounding XHTML page.
+
+   :return: unicode XML string of this object and all its subelements
 
 Factory Methods
 ---------------

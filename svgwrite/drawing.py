@@ -85,7 +85,7 @@ class Drawing(SVG, ElementFactory):
 
         Python 3.x - set encoding at the open command::
 
-            use open('filename', 'w', encoding='utf-8')
+            open('filename', 'w', encoding='utf-8')
         """
         # write xml header
         fileobj.write('<?xml version="1.0" encoding="utf-8" ?>\n')
