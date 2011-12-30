@@ -33,6 +33,7 @@ COLOR_RGB_INTEGER_PATTERN = re.compile(r"^rgb\( *\d+ *, *\d+ *, *\d+ *\)$")
 COLOR_RGB_PERCENTAGE_PATTERN = re.compile(r"^rgb\( *\d+% *, *\d+% *, *\d+% *\)$")
 NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
 
+
 class Full11TypeChecker(object):
     def get_version(self):
         return ('1.1', 'full')
@@ -216,9 +217,17 @@ class Full11TypeChecker(object):
         #           <color> [<icccolor>] |
         #           <funciri> [ "none" | "currentColor" | <color> [<icccolor>] |
         #           "inherit"
-        value = str(value).strip()
+        def split_values(value):
+            try:
+                funcIRI, value = value.split(")", 1)
+                values = [funcIRI+")"]
+                values.extend(split_values(value))
+                return values
+            except ValueError:
+                return value.split()
 
-        for value in [v.strip() for v in value.split()]:
+        values = split_values(str(value).strip())
+        for value in [v.strip() for v in values]:
             if value in ('none', 'currentColor', 'inherit'):
                 continue
             elif self.is_color(value):

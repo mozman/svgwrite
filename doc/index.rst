@@ -8,12 +8,6 @@ svgwrite |version| documentation
 
 Welcome! This is the documentation for svgwrite |version|, last updated |today|.
 
-.. raw:: html
-
-   <a href="http://flattr.com/thing/129230/svgwrite" target="_blank">
-   <img src="http://api.flattr.com/button/flattr-badge-large.png"
-   alt="Flattr this" title="Flattr this" border="0" /></a>
-
 Contents
 --------
 

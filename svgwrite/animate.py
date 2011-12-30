@@ -20,9 +20,10 @@ class Set(BaseElement, XLink):
     elementname = 'set'
 
     def __init__(self, href=None, **extra):
-        """
+        """ Set constructor.
+
         :param href: target svg element, if **href** is not `None`; else
-          the target SVG Element is the parent SVG Element.
+            the target SVG Element is the parent SVG Element.
         """
         super(Set, self).__init__(**extra)
         if href is not None:

@@ -30,7 +30,7 @@ objects. The feature set includes nested transformations, clipping paths,
 alpha masks, filter effects and template objects.
 
 SVG drawings can be interactive and dynamic. Animations can be defined and
-triggered either declaratively (i.e., by embedding SVG animation elements in
+triggered either declarative (i.e., by embedding SVG animation elements in
 SVG content) or via scripting.
 
 .. seealso:: http://www.w3.org/TR/SVG11/intro.html#AboutSVG
@@ -53,10 +53,13 @@ You can only create two types of SVG drawings:
 * *SVG 1.1 Full Profile*, use Drawing(profile= ``'full'``)
 
 """
-VERSION = '0.2.3'
+
+version = (0, 2, 4)
+VERSION = '%d.%d.%d' % version
+
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'mozman@gmx.at'
-CYEAR = '2010'
+CYEAR = '2011'
 
 from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb
@@ -65,10 +68,9 @@ class Unit(object):
     """ Add units to values.
     """
     def __init__(self, unit='cm'):
-        """ Constructor
+        """ Unit constructor
 
-        :Parameters:
-        - `unit`: specify the unit string
+        :param str unit: specify the unit string
         """
         self._unit=unit
 
@@ -77,10 +79,10 @@ class Unit(object):
         return "%s%s" % (other, self._unit)
 
     def __call__(self, *args):
-        """ add unit-strings to all arguments.
-        :Parameters:
-        - `*args` : list of values
-        e.g.: cm(1,2,3) => '1cm,2cm,3cm'
+        """ Add unit-strings to all arguments.
+
+        :param args: list of values
+            e.g.: cm(1,2,3) => '1cm,2cm,3cm'
         """
         return ','.join(["%s%s" % (arg, self._unit) for arg in args])
 

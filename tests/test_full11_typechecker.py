@@ -273,6 +273,15 @@ class TestFull11TypeChecker(unittest.TestCase):
     def test_is_not_color_name(self):
         self.assertFalse(self.checker.is_color("blau"))
 
+    def test_is_paint_with_funcIRI(self):
+        self.assertTrue(self.checker.is_paint("rgb(10, 20, 30)"))
+
+    def test_is_paint_with_funcIRI_2(self):
+        self.assertTrue(self.checker.is_paint("rgb(10, 20, 30) none"))
+
+    def test_is_paint_with_funcIRI_3(self):
+        self.assertTrue(self.checker.is_paint("url(localhost) rgb(10, 20, 30)"))
+
     def test_is_paint(self):
         self.assertTrue(self.checker.is_paint("inherit"))
         self.assertTrue(self.checker.is_paint("none"))

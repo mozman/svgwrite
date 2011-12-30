@@ -6,7 +6,6 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-import sys
 import unittest
 
 from svgwrite.validator2 import get_validator

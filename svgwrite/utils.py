@@ -27,20 +27,15 @@ import sys
 PYTHON3 = sys.version_info[0] > 2
 
 # Python 3 adaption
-def is_string(value):
-    if PYTHON3:
-        return isinstance(value, str)
-    else:
-        return isinstance(value, basestring)
-
-def to_unicode(value):
-    if PYTHON3:
-        return str(value)
-    else:
-        return str(value).decode('utf-8')
+if PYTHON3:
+    to_unicode = str
+    basestring = str
+else:
+    to_unicode = unicode
 # Python 3 adaption
 
-import re
+def is_string(value):
+    return isinstance(value, basestring)
 
 from svgwrite.data import pattern
 

@@ -5,17 +5,11 @@
 # Created: 11.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
+from __future__ import unicode_literals
 
-import sys
 import os
-
 import unittest
-from svgwrite.utils import PYTHON3, to_unicode
-
-if PYTHON3:
-    from io import StringIO
-else:
-    from StringIO import StringIO
+from io import StringIO
 
 from svgwrite.drawing import Drawing
 from svgwrite.container import Group
@@ -67,12 +61,12 @@ class TestDrawingFullProfile(unittest.TestCase):
         dwg.write(f)
         result = f.getvalue()
         f.close()
-        self.assertEqual(result, to_unicode(
+        self.assertEqual(result,
             '<?xml version="1.0" encoding="utf-8" ?>\n' \
             '<svg baseProfile="full" height="100%" version="1.1" width="100%" '\
             'xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" '\
             'xmlns:xlink="http://www.w3.org/1999/xlink">'
-            '<title>öäü</title><defs /></svg>'))
+            '<title>öäü</title><defs /></svg>')
 
 class TestDrawingTinyProfile(unittest.TestCase):
     def test_empty_drawing(self):
