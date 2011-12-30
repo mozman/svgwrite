@@ -17,7 +17,7 @@ set/get SVG attributes::
     element['attribute'] = value
     value = element['attribute']
 
-.. seealso:: :ref:`Common SVG Attributs <Common-SVG-Attributs>`
+.. seealso:: :ref:`Common SVG Attributes <Common-SVG-Attributes>`
 
 """
 from __future__ import unicode_literals
@@ -40,9 +40,9 @@ class Drawing(SVG, ElementFactory):
         """
         :param string filename: filesystem filename valid for :func:`open`
         :param 2-tuple size: width, height
-        :param keywords extra: additional svg-attributs for the *SVG* object
+        :param keywords extra: additional svg-attributes for the *SVG* object
 
-        Important (and not SVG Attibutes) **extra** parameters:
+        Important (and not SVG Attributes) **extra** parameters:
 
         :param string profile: ``'tiny | full'`` - define the SVG baseProfile
         :param bool debug: switch validation on/off
