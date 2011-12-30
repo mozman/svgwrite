@@ -2,6 +2,16 @@
 NEWS
 ====
 
+Version 0.2.4 - 30 December 2011
+
+  * beta version
+  * Python 2.7: all strings will be converted by the unicode() function, for
+    strings containing none-ascii-characters use prefix ``u""`` or better
+    use ``from __future__ import unicode_literals``, because this is
+    Python 3 compatible.
+  * tested with CPython 2.7, CPython 3.2, and PyPy 1.7
+  * BUGFIX: color parsing accepts white spaces in ``rgb()`` like ``rgb(0, 0, 0)``
+
 Version 0.2.3 - 13 November 2010
 
   * beta version

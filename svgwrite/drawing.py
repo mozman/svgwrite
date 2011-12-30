@@ -20,10 +20,11 @@ set/get SVG attributes::
 .. seealso:: :ref:`Common SVG Attributs <Common-SVG-Attributs>`
 
 """
+from __future__ import unicode_literals
+import io
 
 from svgwrite.container import SVG, Defs
 from svgwrite.elementfactory import ElementFactory
-from svgwrite.utils import PYTHON3
 
 class Drawing(SVG, ElementFactory):
     """ This is the SVG drawing represented by the top level **svg** element.
@@ -101,10 +102,7 @@ class Drawing(SVG, ElementFactory):
 
     def save(self):
         """ Write the XML string to **filename**. """
-        if PYTHON3:
-            fileobj = open(self.filename, mode='w', encoding='utf-8')
-        else:
-            fileobj = open(self.filename, mode='w')
+        fileobj = io.open(self.filename, mode='w', encoding='utf-8')
         self.write(fileobj)
         fileobj.close()
 
