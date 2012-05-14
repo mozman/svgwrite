@@ -74,7 +74,7 @@ class Marker(BaseElement, ViewBox, Presentation):
         :param 2-tuple insert: reference point (**refX**, **refY**)
         :param 2-tuple size: (**markerWidth**, **markerHeight**)
         :param orient: ``'auto'`` | `angle`
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
         """
         super(Marker, self).__init__(**extra)
         if insert:
@@ -103,7 +103,7 @@ class SVG(Symbol):
         """
         :param 2-tuple insert: insert position (**x**, **y**)
         :param 2-tuple size: (**width**, **height**)
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
         """
         super(SVG, self).__init__(**extra)
         if insert:
@@ -132,7 +132,7 @@ class Use(BaseElement, Transform, XLink, Presentation):
         :param string href: object link (id-string) or an object with an id-attribute
         :param 2-tuple insert: insert point (**x**, **y**)
         :param 2-tuple size: (**width**, **height**)
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
         """
         super(Use, self).__init__(**extra)
         self.set_href(href)
@@ -150,7 +150,7 @@ class Use(BaseElement, Transform, XLink, Presentation):
 class Hyperlink(BaseElement, Transform, Presentation):
     """ The **a** element indicate links (also known as Hyperlinks or Web links).
 
-    The remote resource (the destination for the link) is defined by a `<IRI>`
+    The remote resource (the destination for the link) is defined by a `<URI>`
     specified by the XLink **xlink:href** attribute. The remote resource may be
     any Web resource (e.g., an image, a video clip, a sound bite, a program,
     another SVG document, an HTML document, an element within the current
@@ -168,8 +168,32 @@ class Hyperlink(BaseElement, Transform, Presentation):
         """
         :param string href: hyperlink to the target resource
         :param string target: ``'_blank|_replace|_self|_parent|_top|<XML-name>'``
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
         """
         super(Hyperlink, self).__init__(**extra)
         self['xlink:href'] = href
         self['target'] = target
+
+
+class Script(BaseElement, Presentation):
+    """ The **script** element indicate links to a client-side language.  This
+    is normally a  (also known as Hyperlinks or Web links).
+
+    The remote resource (the source of the script) is defined by a `<URI>`
+    specified by the XLink **xlink:href** attribute. The remote resource must
+    be a text-file that contains the script contents.  This script can be used
+    within the SVG file by catching events or adding the mouseover/mousedown/
+    mouseup elements to the markup.
+
+    """
+
+    elementname = 'script'
+    def __init__(self, href, type='text/ecmascript', **extra):
+        """
+        :param string href: hyperlink to the target resource
+        :param string type: This is the type of script being used.
+        :param extra: additional attributes as keyword-arguments
+        """
+        super(Script, self).__init__(**extra)
+        self['xlink:href'] = href
+        self['type'] = type
