@@ -23,6 +23,54 @@ class TestDrawingFullProfile(unittest.TestCase):
             'xmlns:ev="http://www.w3.org/2001/xml-events" '\
             'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
 
+    def test_script_link(self):
+        dwg = Drawing()
+        dwg.add_script(type="text/ecmascript", href='test.js')
+        f = StringIO()
+        dwg.write(f)
+        result = f.getvalue()
+        f.close()
+        self.assertEqual(result, '<?xml version="1.0" encoding="utf-8" ?>\n' \
+            '<script type="text/ecmascript" xlink:href="test.js"/>\n' \
+            '<svg baseProfile="full" height="100%" version="1.1" width="100%" '\
+            'xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" '\
+            'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
+
+
+    def test_script_contents(self):
+        dwg = Drawing()
+        js = """        function stub() {
+            return {
+                of : function (name, callback, returnValue) {
+                    this[name] = function () {
+                      var args = Array.prototype.slice.call(arguments);
+                      this[name].calls.push(args);
+                      var ret = null;
+                      if(callback)
+                          ret = callback.apply(this, args);
+                      if(returnValue) return returnValue;
+                      return ret;
+                  };
+                  this[name].calls = [];
+         
+                  return this;
+                }
+            };
+        }"""
+        dwg.add_script(type="text/ecmascript", contents=js)
+        f = StringIO()
+        dwg.write(f)
+        result = f.getvalue()
+        f.close()
+        self.assertEqual(result, '<?xml version="1.0" encoding="utf-8" ?>\n' \
+            '<script type="text/ecmascript"><![CDATA[\n' \
+            + js + \
+            '\n]]></script>\n' \
+            '<svg baseProfile="full" height="100%" version="1.1" width="100%" '\
+            'xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" '\
+            'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
+
+
     def test_stylesheet(self):
         dwg = Drawing()
         dwg.add_stylesheet('test.css', 'Test')
@@ -76,6 +124,22 @@ class TestDrawingTinyProfile(unittest.TestCase):
             'width="100%" xmlns="http://www.w3.org/2000/svg" '\
             'xmlns:ev="http://www.w3.org/2001/xml-events" '\
             'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
+
+
+    def test_script_link(self):
+        dwg = Drawing(profile="tiny")
+        dwg.add_script(type="text/ecmascript", href='test.js')
+        f = StringIO()
+        dwg.write(f)
+        result = f.getvalue()
+        f.close()
+        self.assertEqual(result, '<?xml version="1.0" encoding="utf-8" ?>\n' \
+            '<script type="text/ecmascript" xlink:href="test.js"/>\n'
+            '<svg baseProfile="tiny" height="100%" version="1.2" width="100%" '\
+            'xmlns="http://www.w3.org/2000/svg" '\
+            'xmlns:ev="http://www.w3.org/2001/xml-events" '\
+            'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
+
 
     def test_stylesheet(self):
         dwg = Drawing(profile="tiny")

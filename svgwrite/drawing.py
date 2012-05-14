@@ -51,6 +51,8 @@ class Drawing(SVG, ElementFactory):
         super(Drawing, self).__init__(size=size, **extra)
         self.filename = filename
         self._stylesheets = [] # list of stylesheets appended
+        self._scriptlinks = []
+        self._scripts = []
 
     def get_xml(self):
         """ Get the XML representation as `ElementTree` object.
@@ -79,6 +81,23 @@ class Drawing(SVG, ElementFactory):
         """
         self._stylesheets.append( (href, title, alternate, media) )
 
+    def add_script(self, type, href=None, contents=None):
+        """ Add a script reference.  You should include a uri or the script contents. 
+
+        :param string type: type of script
+        :param string href: location of script <URI> (Optional)
+        :param string contents: script contents (Optional)
+
+        """
+        if href:
+            self._scriptlinks.append( (type, href) )
+            return
+
+        if contents:
+            self._scripts.append( (type, contents) )
+            return
+
+
     def write(self, fileobj):
         """ Write XML string to **fileobj**.
 
@@ -94,10 +113,16 @@ class Drawing(SVG, ElementFactory):
         # don't use DOCTYPE. It's useless. see also:
         # http://tech.groups.yahoo.com/group/svg-developers/message/48562
         # write stylesheets
-        for stylesheet in self._stylesheets:
-            stylestr = '<?xml-stylesheet href="%s" type="text/css" title="%s" ' \
-                     'alternate="%s" media="%s"?>\n' % stylesheet
-            fileobj.write(stylestr)
+        stylesheet_template = '<?xml-stylesheet href="%s" type="text/css" ' \
+                     'title="%s" alternate="%s" media="%s"?>\n'
+        map( lambda s: fileobj.write( stylesheet_template % s ), self._stylesheets)
+
+        script_template = '<script type="%s"><![CDATA[\n%s\n]]></script>\n'
+        map( lambda s: fileobj.write( script_template % s ), self._scripts)
+
+        scriptlink_template = '<script type="%s" xlink:href="%s"/>\n'
+        map( lambda s: fileobj.write( scriptlink_template % s ), self._scriptlinks)
+
         fileobj.write(self.tostring())
 
     def save(self):
