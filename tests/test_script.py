@@ -6,12 +6,11 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-import sys
 import unittest
 
 from svgwrite.container import Script
 
-class TestUse(unittest.TestCase):
+class TestScript(unittest.TestCase):
     def test_constructor(self):
         script = Script('test.js', "text/ecmascript")
         self.assertEqual(script.tostring(), '<script type="text/ecmascript" xlink:href="test.js" />')
