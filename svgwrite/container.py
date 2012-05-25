@@ -14,6 +14,7 @@ The **container** module provides following structural objects:
 * :class:`svgwrite.Marker`
 * :class:`svgwrite.Use`
 * :class:`svgwrite.Hyperlink`
+* :class:`svgwrite.Script`
 
 set/get SVG attributes::
 
