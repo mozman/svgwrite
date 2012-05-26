@@ -44,6 +44,7 @@ Documentation
 =============
 
 http://packages.python.org/svgwrite
+http://readthedocs.org/docs/svgwrite/
 
 send feedback to mozman@gmx.at
 

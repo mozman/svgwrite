@@ -11,9 +11,14 @@ import unittest
 from svgwrite.container import Script
 
 class TestScript(unittest.TestCase):
-    def test_constructor(self):
-        script = Script('test.js', "text/ecmascript")
-        self.assertEqual(script.tostring(), '<script type="text/ecmascript" xlink:href="test.js" />')
+    def test_link(self):
+        script = Script('test.js')
+        self.assertEqual(script.tostring(), '<script xlink:href="test.js" />')
+
+    def test_type(self):
+        script = Script('test.py', type='application/python')
+        self.assertEqual(script.tostring(), '<script type="application/python" xlink:href="test.py" />')
+
 
 if __name__=='__main__':
     unittest.main()

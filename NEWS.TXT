@@ -2,6 +2,10 @@
 NEWS
 ====
 
+Version 0.2.5 - ...
+  * added script tag - thx to jmahmood
+  * docs also available at: http://readthedocs.org/docs/svgwrite
+
 Version 0.2.4 - 30 December 2011
 
   * beta version
