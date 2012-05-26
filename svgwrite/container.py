@@ -23,6 +23,9 @@ set/get SVG attributes::
 
 """
 
+from lxml import etree
+from svgwrite.utils import to_unicode
+
 from svgwrite.base import BaseElement
 from svgwrite.mixins import ViewBox, Transform, XLink
 from svgwrite.mixins import Presentation, Clipping
@@ -189,12 +192,13 @@ class Script(BaseElement, Presentation):
     """
 
     elementname = 'script'
-    def __init__(self, href, type='text/ecmascript', **extra):
+    def __init__(self, href, **extra):
+        # tried to implement script text content, but failed on awkward
+        # lxml CDATA serialisation problems.
         """
         :param string href: hyperlink to the target resource
-        :param string type: This is the type of script being used.
         :param extra: additional attributes as keyword-arguments
         """
+        # removed type parameter, default is "application/ecmascript"
         super(Script, self).__init__(**extra)
         self['xlink:href'] = href
-        self['type'] = type

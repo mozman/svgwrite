@@ -96,7 +96,9 @@ class Drawing(SVG, ElementFactory):
         # write stylesheets
         stylesheet_template = '<?xml-stylesheet href="%s" type="text/css" ' \
                      'title="%s" alternate="%s" media="%s"?>\n'
-        map( lambda s: fileobj.write( stylesheet_template % s ), self._stylesheets)
+        # removed map(), does not work with Python 3
+        for stylesheet in self._stylesheets:
+            fileobj.write(stylesheet_template % stylesheet)
         fileobj.write(self.tostring())
 
     def save(self):
