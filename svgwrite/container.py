@@ -23,12 +23,10 @@ set/get SVG attributes::
 
 """
 
-from lxml import etree
-from svgwrite.utils import to_unicode
-
 from svgwrite.base import BaseElement
 from svgwrite.mixins import ViewBox, Transform, XLink
 from svgwrite.mixins import Presentation, Clipping
+from svgwrite.etree import CDATA
 
 class Group(BaseElement, Transform, Presentation):
     """ The **Group** (SVG **g**) element is a container element for grouping
@@ -192,13 +190,23 @@ class Script(BaseElement, Presentation):
     """
 
     elementname = 'script'
-    def __init__(self, href, **extra):
-        # tried to implement script text content, but failed on awkward
-        # lxml CDATA serialisation problems.
+    def __init__(self, href=None, content="", **extra):
         """
-        :param string href: hyperlink to the target resource
+        :param string href: hyperlink to the target resource or *None* if using *content*
+        :param string content: script content
         :param extra: additional attributes as keyword-arguments
+
+        Use *href* **or** *content*, but not both at the same time.
+
         """
         # removed type parameter, default is "application/ecmascript"
         super(Script, self).__init__(**extra)
-        self['xlink:href'] = href
+        if href:
+            self['xlink:href'] = href
+        self._content = content
+
+    def get_xml(self):
+        xml = super(Script, self).get_xml()
+        if self._content:
+            xml.append(CDATA(self._content))
+        return xml

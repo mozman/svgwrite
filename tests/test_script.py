@@ -19,6 +19,10 @@ class TestScript(unittest.TestCase):
         script = Script('test.py', type='application/python')
         self.assertEqual(script.tostring(), '<script type="application/python" xlink:href="test.py" />')
 
+    def test_content(self):
+        script = Script(content='function test(){return "<>"};')
+        result = script.tostring()
+        self.assertEqual(result, '<script><![CDATA[function test(){return "<>"};]]></script>')
 
 if __name__=='__main__':
     unittest.main()

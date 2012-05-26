@@ -9,7 +9,8 @@
 The **BaseElement** is the root for all SVG elements.
 """
 
-import xml.etree.ElementTree as etree
+from svgwrite.etree import etree
+
 import copy
 
 from svgwrite.params import Parameter
