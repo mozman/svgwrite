@@ -85,10 +85,11 @@ class TRef(BaseElement, XLink, Presentation):
 
     def __init__(self, element, **extra):
         """
-        :param element: create a reference this element, if element is a
-          `string` its the **id** name of the referenced element, if element
-          is a :class:`~svgwrite.base.BaseElement` the **id** SVG Attribute is
-          used to create the reference.
+        :param element: create a reference this element, if element is a \
+                        `string` its the **id** name of the referenced element, \
+                        if element is a :class:`~svgwrite.base.BaseElement` \
+                        the **id** SVG Attribute is used to create the reference.
+
         """
         super(TRef, self).__init__(**extra)
         self.set_href(element)
