@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
-# Purpose: test svg element
+# Purpose: test script element
 # Created: 25.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3

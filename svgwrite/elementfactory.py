@@ -26,6 +26,7 @@ factoryelements = {
     'use': container.Use,
     'a': container.Hyperlink,
     'script': container.Script,
+    'style': container.Style,
     'line': shapes.Line,
     'rect': shapes.Rect,
     'circle': shapes.Circle,
