@@ -2,7 +2,7 @@
 NEWS
 ====
 
-Version 1.0.0 - ... May 2012
+Version 1.0.0 - 27 May 2012
   * stable
   * tested with CPython 2.7, CPython 3.2, pypy-1.8
   * added script tag - thx to jmahmood
