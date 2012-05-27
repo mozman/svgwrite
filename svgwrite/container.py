@@ -15,6 +15,7 @@ The **container** module provides following structural objects:
 * :class:`svgwrite.Use`
 * :class:`svgwrite.Hyperlink`
 * :class:`svgwrite.Script`
+* :class:`svgwrite.Style`
 
 set/get SVG attributes::
 
@@ -177,7 +178,7 @@ class Hyperlink(BaseElement, Transform, Presentation):
         self['target'] = target
 
 
-class Script(BaseElement, Presentation):
+class Script(BaseElement):
     """ The **script** element indicate links to a client-side language.  This
     is normally a  (also known as Hyperlinks or Web links).
 
@@ -187,6 +188,7 @@ class Script(BaseElement, Presentation):
     within the SVG file by catching events or adding the mouseover/mousedown/
     mouseup elements to the markup.
 
+    usage: drawing.defs.add(drawing.script(...))
     """
 
     elementname = 'script'
@@ -210,3 +212,21 @@ class Script(BaseElement, Presentation):
         if self._content:
             xml.append(CDATA(self._content))
         return xml
+
+    def append(self, content):
+        self._content += content
+
+class Style(Script):
+    """
+    Create an inline stylesheet.
+
+    usage: drawing.defs.add(drawing.style(...))
+    """
+    elementname = 'style'
+    def __init__(self, content="", **extra):
+        """
+        :param string content: stylsheet content
+        """
+        super(Style, self).__init__(content=content, **extra)
+        self['type'] = "text/css"
+
