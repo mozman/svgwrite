@@ -54,12 +54,12 @@ You can only create two types of SVG drawings:
 
 """
 
-version = (0, 2, 4)
+version = (1, 0, 0)
 VERSION = '%d.%d.%d' % version
 
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'mozman@gmx.at'
-CYEAR = '2011'
+CYEAR = '2012'
 
 from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb

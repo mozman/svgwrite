@@ -30,20 +30,20 @@ def CDATA(text):
     element.text = text
     return element
 
-old_serialize_xml = etree._serialize_xml
+original_serialize_xml = etree._serialize_xml
 
 if PY3:
     def _serialize_xml_with_CDATA_support(write, elem, qnames, namespaces):
         if elem.tag == CDATA_TAG:
             write(CDATA_TPL % elem.text)
         else:
-            old_serialize_xml(write, elem, qnames, namespaces)
+            original_serialize_xml(write, elem, qnames, namespaces)
 else:
     def _serialize_xml_with_CDATA_support(write, elem, encoding, qnames, namespaces):
         if elem.tag == CDATA_TAG:
             write(CDATA_TPL % elem.text.encode(encoding))
         else:
-            old_serialize_xml(write, elem, encoding, qnames, namespaces)
+            original_serialize_xml(write, elem, encoding, qnames, namespaces)
 
 # ugly, ugly, ugly patching
 etree._serialize_xml = _serialize_xml_with_CDATA_support
