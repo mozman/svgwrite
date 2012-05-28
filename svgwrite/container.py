@@ -188,7 +188,6 @@ class Script(BaseElement):
     within the SVG file by catching events or adding the mouseover/mousedown/
     mouseup elements to the markup.
 
-    usage: drawing.defs.add(drawing.script(...))
     """
 
     elementname = 'script'
@@ -214,18 +213,19 @@ class Script(BaseElement):
         return xml
 
     def append(self, content):
+        """ Append content to the existing element-content. """
         self._content += content
 
 class Style(Script):
-    """
-    Create an inline stylesheet.
+    """ The *style* element allows style sheets to be embedded directly within
+    SVG content. SVG's *style* element has the same attributes as the
+    corresponding element in HTML.
 
-    usage: drawing.defs.add(drawing.style(...))
     """
     elementname = 'style'
     def __init__(self, content="", **extra):
         """
-        :param string content: stylsheet content
+        :param string content: stylesheet content
         """
         super(Style, self).__init__(content=content, **extra)
         self['type'] = "text/css"

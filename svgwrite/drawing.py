@@ -6,18 +6,21 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 """
-The **Drawing** object is the overall container for all SVG
+The *Drawing* object is the overall container for all SVG
 elements. It provides the methods to store the drawing into a file or a
 file-like object. If you want to use stylesheets, the reference links
 to this stylesheets were also stored (`add_stylesheet`)
-in the **Drawing** object.
+in the *Drawing* object.
 
 set/get SVG attributes::
 
     element['attribute'] = value
     value = element['attribute']
 
-.. seealso:: :ref:`Common SVG Attributes <Common-SVG-Attributes>`
+The Drawing object also includes a defs section, add elements to the defs
+section by::
+
+    drawing.defs.add(element)
 
 """
 from __future__ import unicode_literals
@@ -27,13 +30,13 @@ from svgwrite.container import SVG, Defs
 from svgwrite.elementfactory import ElementFactory
 
 class Drawing(SVG, ElementFactory):
-    """ This is the SVG drawing represented by the top level **svg** element.
+    """ This is the SVG drawing represented by the top level *svg* element.
 
     A drawing consists of any number of SVG elements contained within the drawing
-    element, stored in the **elements** attribute.
+    element, stored in the *elements* attribute.
 
     A drawing can range from an empty drawing (i.e., no content inside of the drawing),
-    to a very simple drawing containing a single SVG element such as a **rect**,
+    to a very simple drawing containing a single SVG element such as a *rect*,
     to a complex, deeply nested collection of container elements and graphics elements.
     """
     def __init__(self, filename="noname.svg", size=('100%', '100%'), **extra):
