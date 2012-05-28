@@ -14,6 +14,10 @@ Attributes
 
    `string` should be valid for :func:`open`.
 
+.. attribute:: Drawing.defs
+
+   SVG defs section - as :class:`~svgwrite.container.Defs` object.
+
 Methods
 -------
 
@@ -40,91 +44,95 @@ Methods
 Factory Methods
 ---------------
 
-.. method:: Drawing.line(start=(0, 0), end=(0, 0), attribs=None, \*\*extra)
+.. method:: Drawing.line(start=(0, 0), end=(0, 0), \*\*extra)
 
    Create a :class:`svgwrite.shapes.Line` object.
 
-.. method:: Drawing.rect(insert=(0, 0), size=(1, 1), rx=None, ry=None, attribs=None, \*\*extra)
+.. method:: Drawing.rect(insert=(0, 0), size=(1, 1), rx=None, ry=None, \*\*extra)
 
    Create a :class:`svgwrite.shapes.Rect` object.
 
-.. method:: Drawing.circle(center=(0, 0), r=1, attribs=None, \*\*extra)
+.. method:: Drawing.circle(center=(0, 0), r=1, \*\*extra)
 
    Create a :class:`svgwrite.shapes.Circle` object.
 
-.. method:: Drawing.ellipse(center=(0, 0), r=(1, 1), attribs=None, \*\*extra)
+.. method:: Drawing.ellipse(center=(0, 0), r=(1, 1), \*\*extra)
 
    Create a :class:`svgwrite.shapes.Ellipse` object.
 
-.. method:: Drawing.polyline(points=[], attribs=None, \*\*extra)
+.. method:: Drawing.polyline(points=[], \*\*extra)
 
    Create a :class:`svgwrite.shapes.Polyline` object.
 
-.. method:: Drawing.polygon(points=[], attribs=None, \*\*extra)
+.. method:: Drawing.polygon(points=[], \*\*extra)
 
    Create a :class:`svgwrite.shapes.Polygon` object.
 
-.. method:: Drawing.text(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, \*\*extra)
+.. method:: Drawing.text(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], \*\*extra)
 
    Create a :class:`svgwrite.text.Text` object.
 
-.. method:: Drawing.tspan(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], attribs=None, \*\*extra)
+.. method:: Drawing.tspan(text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[], \*\*extra)
 
    Create a :class:`svgwrite.text.TSpan` object.
 
-.. method:: Drawing.tref(element, attribs=None, \*\*extra)
+.. method:: Drawing.tref(element, \*\*extra)
 
    Create a :class:`svgwrite.text.TRef` object.
 
-.. method:: Drawing.textPath(path, text, startOffset=None, method='align', spacing='exact', attribs=None, \*\*extra)
+.. method:: Drawing.textPath(path, text, startOffset=None, method='align', spacing='exact', \*\*extra)
 
    Create a :class:`svgwrite.text.TextPath` object.
 
-.. method:: Drawing.textArea(text=None, insert=None, size=None, attribs={}, \*\*extra)
+.. method:: Drawing.textArea(text=None, insert=None, size=None, \*\*extra)
 
    Create a :class:`svgwrite.text.TextArea` object.
 
-.. method:: Drawing.path(d=None, attribs=None, \*\*extra)
+.. method:: Drawing.path(d=None, \*\*extra)
 
    Create a :class:`svgwrite.path.Path` object.
 
-.. method:: Drawing.image(href, insert=None, size=None, attribs=None, \*\*extra)
+.. method:: Drawing.image(href, insert=None, size=None, \*\*extra)
 
    Create a :class:`svgwrite.image.Image` object.
 
-.. method:: Drawing.g(attribs=None, \*\*extra)
+.. method:: Drawing.g(\*\*extra)
 
    Create a :class:`svgwrite.container.Group` object.
 
-.. method:: Drawing.defs(attribs=None, \*\*extra)
-
-   Create a :class:`svgwrite.container.Defs` object.
-
-.. method:: Drawing.symbol(attribs=None, \*\*extra)
+.. method:: Drawing.symbol(\*\*extra)
 
    Create a :class:`svgwrite.container.Symbol` object.
 
-.. method:: Drawing.svg(insert=None, size=None, attribs=None, \*\*extra)
+.. method:: Drawing.svg(insert=None, size=None, \*\*extra)
 
    Create a :class:`svgwrite.container.SVG` object.
 
-.. method:: Drawing.use(href, insert=None, size=None, attribs=None, \*\*extra)
+.. method:: Drawing.use(href, insert=None, size=None, \*\*extra)
 
    Create a :class:`svgwrite.container.Use` object.
 
-.. method:: Drawing.a(href, target='_blank', attribs=None, \*\*extra)
+.. method:: Drawing.a(href, target='_blank', \*\*extra)
 
    Create a :class:`svgwrite.container.Hyperlink` object.
 
-.. method:: Drawing.marker(insert=None, size=None, orient=None, attribs=None, \*\*extra)
+.. method:: Drawing.marker(insert=None, size=None, orient=None, \*\*extra)
 
    Create a :class:`svgwrite.container.Marker` object.
 
-.. method:: Drawing.linearGradient(start=None, end=None, inherit=None, attribs=None, \*\*extra)
+.. method:: Drawing.script(href=None, content='', \*\*extra)
+
+   Create a :class:`svgwrite.container.Script` object.
+
+.. method:: Drawing.style(content='', \*\*extra)
+
+   Create a :class:`svgwrite.container.Style` object.
+
+.. method:: Drawing.linearGradient(start=None, end=None, inherit=None, \*\*extra)
 
    Create a :class:`svgwrite.gradients.LinearGradient` object.
 
-.. method:: Drawing.radialGradient(center=None, r=None, focal=None, inherit=None, attribs=None, \*\*extra)
+.. method:: Drawing.radialGradient(center=None, r=None, focal=None, inherit=None, \*\*extra)
 
    Create a :class:`svgwrite.gradients.RadialGradient` object.
 

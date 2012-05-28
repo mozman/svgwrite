@@ -1,7 +1,7 @@
 Script
-=========
+======
 
-The **script** element indicate links to a client-side language.
+The *script* element indicate links to a client-side language.
 
 .. autoclass:: svgwrite.container.Script
 
@@ -9,11 +9,17 @@ The **script** element indicate links to a client-side language.
 
 .. automethod:: svgwrite.container.Script.__init__
 
+.. automethod:: svgwrite.container.Script.append
+
+Best place for the *script* element is the *defs* attribute of the
+:class:`~svgwrite.drawing.Drawing` class::
+
+    drawing.defs.add(drawing.script('script-content'))
+
 Parent Classes
 --------------
 
 * :class:`svgwrite.base.BaseElement`
-* :class:`svgwrite.mixins.Presentation`
 
 SVG Attributes
 --------------

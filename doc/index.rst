@@ -42,6 +42,7 @@ Structural Objects
    classes/use
    classes/hyperlink
    classes/script
+   classes/style
 
 Graphical Objects
 -----------------
