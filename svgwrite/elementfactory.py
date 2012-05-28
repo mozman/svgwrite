@@ -6,16 +6,16 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
-from svgwrite import container
-from svgwrite import shapes
-from svgwrite import path
-from svgwrite import image
-from svgwrite import text
-from svgwrite import gradients
-from svgwrite import pattern
-from svgwrite import masking
-from svgwrite import animate
-from svgwrite import filters
+import container
+import shapes
+import path
+import image
+import text
+import gradients
+import pattern
+import masking
+import animate
+import filters
 
 factoryelements = {
     'g': container.Group,

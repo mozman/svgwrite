@@ -61,8 +61,8 @@ AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'mozman@gmx.at'
 CYEAR = '2012'
 
-from svgwrite.drawing import Drawing
-from svgwrite.utils import rgb
+from .drawing import Drawing
+from .utils import rgb
 
 class Unit(object):
     """ Add units to values.
