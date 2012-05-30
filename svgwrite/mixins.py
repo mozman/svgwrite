@@ -7,7 +7,6 @@
 # License: GPLv3
 
 from svgwrite.utils import strlist
-from svgwrite.base import Title, Desc
 from svgwrite.utils import is_string
 
 _horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
