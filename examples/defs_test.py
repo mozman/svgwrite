@@ -53,7 +53,7 @@ def create_svg(name):
     symbol_without_fill.viewbox(-half_size, -half_size, triangle_size, triangle_size)
 
     # and define how the symbol should behave on resizing by <use>
-    # default paramteres for fit(horiz="center", vert="middle", scale="meet")
+    # default parameters for fit(horiz="center", vert="middle", scale="meet")
     # seems not necessary
     # symbol_without_fill.fit()
 
