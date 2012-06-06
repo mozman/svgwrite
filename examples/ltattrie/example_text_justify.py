@@ -6,9 +6,10 @@
 # License: LGPL
 # Python version 2.7
 
+import sys
 import svgwrite
 
-PROGNAME = 'example_text_justify'
+PROGNAME = sys.argv[0].rstrip('.py')
 
 def create_svg(name):
     svg_size = 900

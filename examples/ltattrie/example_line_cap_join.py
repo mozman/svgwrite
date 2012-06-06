@@ -5,9 +5,11 @@
 # Copyright (C) 2012, L. Tattrie
 # License: LGPL
 # Python version 2.7
-import svgwrite
-PROGNAME = 'example_line_cap_join'
 
+import sys
+import svgwrite
+
+PROGNAME = sys.argv[0].rstrip('.py')
 
 def create_svg(name):
     svg_size = 900

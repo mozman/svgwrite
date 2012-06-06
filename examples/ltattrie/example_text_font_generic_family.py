@@ -5,12 +5,14 @@
 # Copyright (C) 2012, L. Tattrie
 # License: LGPL
 # Python version 2.7
+
+import sys
 import svgwrite
-#
+
 # http://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#propdef-font-family
 # 'serif', 'sans-serif', 'cursive', 'fantasy', and 'monospace' from the CSS specification
-#
-PROGNAME = 'example_text_font_generic_family'
+
+PROGNAME = sys.argv[0].rstrip('.py')
 
 
 def create_svg(name):

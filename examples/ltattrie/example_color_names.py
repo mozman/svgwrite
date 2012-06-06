@@ -6,12 +6,16 @@
 # License: LGPL
 # Python version 2.7
 
+import sys
 import svgwrite
+
 #
 # http://www.w3.org/TR/SVG11/types.html#ColorKeywords
 # Note both grey and gray are valid but only color not colour is valid.
 #
-PROGNAME = 'example_color_names'
+
+
+PROGNAME = sys.argv[0].rstrip('.py')
 
 
 def create_svg(name):

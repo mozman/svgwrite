@@ -5,13 +5,15 @@
 # Copyright (C) 2012, L. Tattrie
 # License: LGPL
 # Python version 2.7
+
+import sys
 import svgwrite
-from svgwrite import cm, mm
+
 #
 # http://www.w3.org/TR/SVG/coords.html#Units
 # The supported length unit identifiers are: em, ex, px, pt, pc, cm, mm, in, and percentages.
 #
-PROGNAME = 'example_length_units'
+PROGNAME = sys.argv[0].rstrip('.py')
 
 def create_svg(name):
     SVG_SIZE = 900

@@ -5,12 +5,13 @@
 # Copyright (C) 2012, L. Tattrie
 # License: LGPL
 # Python version 2.7
-import svgwrite
-#
-# http://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-size-props
-#
-PROGNAME = 'example_text_font_size'
 
+import sys
+import svgwrite
+
+PROGNAME = sys.argv[0].rstrip('.py')
+
+# http://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-size-props
 
 def create_svg(name):
     svg_size = 900
