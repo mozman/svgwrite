@@ -6,14 +6,15 @@
 # License: LGPL
 # Python version 2.7
 
-import math
+import math, sys
 import svgwrite
 from svgwrite import rgb
 #
 # http://www.w3.org/TR/SVG11/types.html#ColorKeywords
 # Note both grey and gray are valide but only color not colour is valid.
 #
-PROGNAME = 'color_triangles_function'
+
+PROGNAME = sys.argv[0].rstrip('.py')
 
 def create_svg(name):
     WIDTH = 900

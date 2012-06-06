@@ -5,9 +5,11 @@
 # Copyright (C) 2012, L. Tattrie
 # License: LGPL
 # Python version 2.7
+import sys
 import svgwrite
 from itertools import *
-PROGNAME = 'example_bezier'
+
+PROGNAME = sys.argv[0].rstrip('.py')
 
 # http://code.activestate.com/recipes/66472-frange-a-range-function-with-float-increments/
 # but instead of parameter for float increments there is a parameter for n points.

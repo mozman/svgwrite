@@ -5,12 +5,14 @@
 # Copyright (C) 2012, L. Tattrie
 # License: LGPL
 # Python version 2.7
-import math
+import math, sys
 import random
 import svgwrite
-from svgwrite import rgb
+
 # globals
-progname = 'tenticles'
+
+PROGNAME = sys.argv[0].rstrip('.py')
+
 file_log = ''
 dwg = ''
 
@@ -304,6 +306,6 @@ def create_svg(name):
 
 
 if __name__ == '__main__':
-    create_svg(progname + '.svg')
+    create_svg(PROGNAME + '.svg')
 
 # vim: expandtab shiftwidth=4 tabstop=8 softtabstop=4 textwidth=99

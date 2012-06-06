@@ -2,11 +2,10 @@ from __future__ import print_function
 
 import sys
 import os
-import string
 import colorsys
 import svgwrite
 
-PROGNAME = 'xkcd_colour_data_svgwrite_3'
+PROGNAME = sys.argv[0].rstrip('.py')
 RGB_TXT = 'rgb.txt'
 
 print("program %s started." % PROGNAME)
@@ -106,7 +105,7 @@ def create_svg(name):
     dwg.save()
 
 if __name__ == '__main__':
-    create_svg(PROGNAME+'_hl.svg')
+    create_svg(PROGNAME + '_hl.svg')
 print  ('program %s ended. ' % PROGNAME)
 
 # vim: expandtab shiftwidth=4 tabstop=8 softtabstop=4 textwidth=99
