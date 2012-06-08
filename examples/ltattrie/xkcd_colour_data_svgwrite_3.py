@@ -8,8 +8,6 @@ import svgwrite
 PROGNAME = sys.argv[0].rstrip('.py')
 RGB_TXT = 'rgb.txt'
 
-print("program %s started." % PROGNAME)
-
 # To Do
 #   Automate the file name and title and axis swatch_y
 #   Create multiple layers and put the third component divided into 10 layers?
@@ -101,11 +99,9 @@ def create_svg(name):
         tx_y = int(swatch_y + swatch_h/2)
         group_rec_text.add(dwg.text(colour_item[0], insert = (tx_x, tx_y),
             font_family="sans-serif", font_size='6px', fill='white', stroke='black', stroke_width='0.1px'))
-    print("line_count %d" % line_count)
     dwg.save()
 
 if __name__ == '__main__':
     create_svg(PROGNAME + '_hl.svg')
-print  ('program %s ended. ' % PROGNAME)
 
 # vim: expandtab shiftwidth=4 tabstop=8 softtabstop=4 textwidth=99

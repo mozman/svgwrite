@@ -1,4 +1,4 @@
 include NEWS.TXT README.TXT LICENSE.TXT
 include runtests.bat
-recursive-include examples *.py *.bat *.sh
+recursive-include examples *.py *.bat *.sh *.txt
 recursive-include tests *.py

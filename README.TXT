@@ -29,22 +29,12 @@ or from source::
 
     python setup.py install
 
-Tests
-=====
-
-run tests with **nosetests** or with Python 2.7::
-
-    python -m unittest discover -s tests
-
-on Windows & Python 2.7::
-
-    runtests.bat
 
 Documentation
 =============
 
-http://packages.python.org/svgwrite
-http://readthedocs.org/docs/svgwrite/
+  * http://packages.python.org/svgwrite
+  * http://readthedocs.org/docs/svgwrite/
 
 send feedback to mozman@gmx.at
 
