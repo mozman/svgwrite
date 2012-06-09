@@ -9,6 +9,12 @@ SVG References
 * SVG on Wikibooks (de): http://de.wikibooks.org/wiki/Svg
 * SVG Authoring Guidelines: http://jwatt.org/svg/authoring/ by Jonathan Watt
 
+Additional SVG Documentation
+============================
+
+* O'Reilly commons: http://commons.oreilly.com/wiki/index.php/SVG_Essentials
+* SelfSVG (de): http://www.selfsvg.info
+
 SVG Implementation Status
 =========================
 

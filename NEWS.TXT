@@ -2,7 +2,13 @@
 NEWS
 ====
 
-Version 1.0.1 - 08.06.2012
+Version 1.0.2 - ... 2012
+
+  * BUGFIX: dwg.animateTranform() -> dwg.animateTransform()
+  * added examples
+  * edit docs
+
+Version 1.0.1 - 08 June 2012
 
   * added inline stylesheets
   * added examples created by Lawrence Tattrie
