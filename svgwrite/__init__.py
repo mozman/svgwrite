@@ -54,7 +54,7 @@ You can only create two types of SVG drawings:
 
 """
 
-version = (1, 0, 1)
+version = (1, 0, 2)
 VERSION = '%d.%d.%d' % version
 
 AUTHOR_NAME = 'Manfred Moitzi'
@@ -75,7 +75,7 @@ class Unit(object):
         self._unit=unit
 
     def __rmul__(self, other):
-        """ add unit-strint to 'other'. (e.g. 5*cm => '5cm') """
+        """ add unit-string to 'other'. (e.g. 5*cm => '5cm') """
         return "%s%s" % (other, self._unit)
 
     def __call__(self, *args):

@@ -49,7 +49,7 @@ factoryelements = {
     'set': animate.Set,
     'animateColor': animate.AnimateColor,
     'animateMotion': animate.AnimateMotion,
-    'animateTranform': animate.AnimateTransform,
+    'animateTransform': animate.AnimateTransform,
     'filter': filters.Filter,
 }
 
