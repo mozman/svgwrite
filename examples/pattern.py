@@ -15,7 +15,7 @@ except ImportError:
 import svgwrite
 
 def pattern(name):
-    dwg = svgwrite.Drawing(name, width='20cm', height='15cm', profile='full', debug=True)
+    dwg = svgwrite.Drawing(name, size=('20cm', '15cm'), profile='full', debug=True)
 
     # set user coordinate space
     dwg.viewbox(width=200, height=150)

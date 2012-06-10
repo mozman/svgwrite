@@ -18,7 +18,7 @@ def marker(name):
     # Shows how to use the <marker> element.
     # W3C reference: http://www.w3.org/TR/SVG11/painting.html#MarkerElement
     #
-    dwg = svgwrite.Drawing(name, width='20cm', height='15cm', profile='full', debug=True)
+    dwg = svgwrite.Drawing(name, size=('20cm', '15cm'), profile='full', debug=True)
     # set user coordinate space
     dwg.viewbox(width=200, height=150)
 
