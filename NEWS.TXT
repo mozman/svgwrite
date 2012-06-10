@@ -5,6 +5,7 @@ NEWS
 Version 1.0.2 - ... 2012
 
   * BUGFIX: dwg.animateTranform() -> dwg.animateTransform()
+  * BUGFIX: in examples, replaced width and height params by size parameter
   * added examples
   * edit docs
 
