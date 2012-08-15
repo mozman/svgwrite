@@ -7,6 +7,7 @@ Version 1.1.0 - 15 August 2012
   * License changed to MIT License
   * tested with CPython2.7, CPython3.2, CPython3.3 and pypy-1.9 on Win7 Pro 32-bit
   * BUGFIX: dwg.animateTranform() -> dwg.animateTransform()
+  * BUGFIX: in examples, replaced width and height params by size parameter
   * added examples
   * edit docs
 
