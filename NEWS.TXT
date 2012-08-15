@@ -1,0 +1,76 @@
+
+NEWS
+====
+
+Version 1.1.0 - 15 August 2012
+
+  * License changed to MIT License
+  * tested with CPython2.7, CPython3.2, CPython3.3 and pypy-1.9 on Win7 Pro 32-bit
+  * BUGFIX: dwg.animateTranform() -> dwg.animateTransform()
+  * added examples
+  * edit docs
+
+Version 1.0.1 - 08 June 2012
+
+  * added inline stylesheets
+  * added examples created by Lawrence Tattrie
+
+Version 1.0.0 - 27 May 2012
+
+  * stable
+  * tested with CPython 2.7, CPython 3.2, pypy-1.8
+  * added script tag - thx to jmahmood
+  * docs also available at: http://readthedocs.org/docs/svgwrite
+
+Version 0.2.4 - 30 December 2011
+
+  * beta version
+  * Python 2.7: all strings will be converted by the unicode() function, for
+    strings containing none-ascii-characters use prefix ``u""`` or better
+    use ``from __future__ import unicode_literals``, because this is
+    Python 3 compatible.
+  * tested with CPython 2.7, CPython 3.2, and PyPy 1.7
+  * BUGFIX: color parsing accepts white spaces in ``rgb()`` like ``rgb(0, 0, 0)``
+
+Version 0.2.3 - 13 November 2010
+
+  * beta version
+  * Python 3.1 support
+  * splitted examples.py into several files and moved them to
+    the subdir 'examples'
+
+Version 0.2.2 - 05 November 2010
+
+  * alpha version
+  * removed 'attribs' parameter from all constructors
+  * new elements: Set, Animate, AnimateMotion, AnimateColor,
+    AnimateTransform, all filter elements
+  * added set_desc(title, desc), set_metadata(xmldata) to BaseElement class
+  * moved content of interfaces.py to mixins.py, (ITransform -> Transform and so on)
+
+Version 0.2.1 - 31 October 2010
+
+  * alpha version
+  * new elements: Marker, ClipPath, Mask
+  * paint service: LinearGradient, RadialGradient, Pattern
+
+Version 0.2.0 - 24 October 2010
+
+  * alpha version
+  * validator rewritten as validator2.py
+  * debug and profile options separated for each drawing object
+  * important change: create objects with factory functions of the
+    *Drawing* class: drawing.<svg-elementname>(...)
+  * added mixins for setting stroke and fill properties
+  * new elements: Hyperlink, Image, TextArea,
+
+Version 0.1.0 - 26 September 2010
+
+  * alpha version
+  * new elements:
+
+    * basic shapes: Line, Rect, Circle, Ellipse, Polyline, Polygon, Path
+    * text elements: Text, TSpan, TRef, TextPath
+    * container elements: Group, Symbol, SVG, Use, Defs
+
+  * for examples see: examples.py

@@ -1,0 +1,1175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Attribute and Property Tables &#x2013; SVG Tiny 1.2</title>
+    <meta http-equiv="Content-type" content="application/xhtml+xml;charset=utf-8"/>
+  <link rel="stylesheet" href="style/svg-style.css" type="text/css"/>
+  <link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/W3C-REC" type="text/css"/>
+  <link rel="contents" href="expanded-toc.html"/>
+  <link rel="prev" href="elementTable.html"/>
+  <link rel="next" href="mimereg.html"/>
+</head>
+  <body>
+
+<div class="header">
+  SVG Tiny 1.2 &#x2013; 20081222
+  <ul>
+    <li><a href="index.html">Top</a></li>
+    <li><a href="expanded-toc.html">Contents</a></li>
+    <li><a href="elementTable.html">Previous</a></li>
+    <li><a href="mimereg.html">Next</a></li>
+    <li><a href="elementTable.html">Elements</a></li>
+    <li><a href="attributeTable.html">Attributes</a></li>
+  </ul>
+</div>
+    <h1>L Attribute and Property Tables</h1>
+
+<h2 id="toc">Contents</h2>
+<ul class="toc">
+  <li>L.1 <a href="#PropertyTable">Property table</a></li>
+  <li>L.2 <a href="#AttributeTable">Attribute table</a></li>
+</ul>
+    <p><em>This appendix is informative.</em></p>
+    <p>
+      This appendix lists the attributes and properties defined in this specification. While
+      both attributes and properties are set on elements using the XML attributes syntax,
+      they are conceptually different and therefore listed separately. Attributes are straightforward
+      XML attributes that generally capture information specific to a given element, such as
+      for instance the radius of a circle or the height of a text area. Properties add to that
+      the fact that they capture CSS information, and therefore behave as if the equivalent
+      CSS property had been set on the same element using a style sheet. SVG Tiny 1.2 does not
+      require support for a style sheet language, but should the user agent use one these properties
+      are also usable for use with it.
+    </p>
+    <p>
+      The following legend details how these two tables should be read.
+    </p>
+    <dl>
+      <dt>Property or Attribute</dt>
+      <dd>
+        The name of the property or attribute being described.
+      </dd>
+      <dt>Value</dt>
+      <dd>
+        For each property or attribute, the values that it accepts.
+      </dd>
+      <dt>Elements</dt>
+      <dd>
+        For each attribute, the elements that it may occur on.
+      </dd>
+      <dt>ani.</dt>
+      <dd>
+        This column indicates whether or not the given attribute or property may be animated. There
+        are two options:
+        <dl>
+          <dt class="true">&#x2714;</dt>
+          <dd>
+            This attribute or property may be animated.
+          </dd>
+          <dt class="false">&#x2718;</dt>
+          <dd>
+            This attribute or property may not be animated.
+          </dd>
+        </dl>
+      </dd>
+      <dt>inh.</dt>
+      <dd>
+        This column indicates whether or not the given attribute or property is inheritable. There
+        are two options:
+        <dl>
+          <dt class="true">&#x2714;</dt>
+          <dd>
+            This attribute or property is inherited by default.
+          </dd>
+          <dt class="false">&#x2718;</dt>
+          <dd>
+            This attribute or property is not be inherited by default.
+          </dd>
+        </dl>
+      </dd>
+      <dt>&lt;text&gt;</dt>
+      <dd>
+        Indicates that character data can occur as the value of a given attribute.
+      </dd>
+    </dl>
+
+
+    <h2 id="PropertyTable">L.1 Property table</h2>
+
+    <table class="reference-list" id="properties" summary="Table of all the properties available in SVG Tiny 1.2">
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>ani.</th>
+      <th>inh.</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="property" id="property_audio-level">
+      <td class="property-name" nowrap="nowrap"><a href="multimedia.html#AudioLevelProperty"><span class="prop-name">'audio-level'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_buffered-rendering">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#BufferedRenderingProperty"><span class="prop-name">'buffered-rendering'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value">'auto' | 'dynamic' | 'static' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_color">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#ColorProperty"><span class="prop-name">'color'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypeSVGColor">&lt;color&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_color-rendering">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#ColorRenderingProperty"><span class="prop-name">'color-rendering'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'auto' | 'optimizeSpeed' | 'optimizeQuality' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_direction">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#DirectionProperty"><span class="prop-name">'direction'</span></a></td>
+      <td class="false">&#x2718;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'ltr' | 'rtl' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_display">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#DisplayProperty"><span class="prop-name">'display'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value">'inline' | 'block' | 'list-item' | 'run-in' | 'compact' | 'marker' | 'table' | 'inline-table' | 'table-row-group' | 'table-header-group' | 'table-footer-group' | 'table-row' | 'table-column-group' | 'table-column' | 'table-cell' | 'table-caption' | 'none' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_display-align">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#DisplayAlignProperty"><span class="prop-name">'display-align'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'auto' | 'before' | 'center' | 'after' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_fill">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#FillProperty"><span class="prop-name">'fill'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypePaint">&lt;paint&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_fill-opacity">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#FillOpacityProperty"><span class="prop-name">'fill-opacity'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_fill-rule">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#FillRuleProperty"><span class="prop-name">'fill-rule'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'nonzero' | 'evenodd' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_font-family">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#FontFamilyProperty"><span class="prop-name">'font-family'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypeFontFamilyValue">&lt;font-family-value&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_font-size">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#FontSizeProperty"><span class="prop-name">'font-size'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypeFontSizeValue">&lt;font-size-value&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_font-style">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#FontStyleProperty"><span class="prop-name">'font-style'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'normal' | 'italic' | 'oblique' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_font-variant">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#FontVariantProperty"><span class="prop-name">'font-variant'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'normal' | 'small-caps' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_font-weight">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#FontWeightProperty"><span class="prop-name">'font-weight'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'normal' | 'bold' | 'bolder' | 'lighter' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_image-rendering">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#ImageRenderingProperty"><span class="prop-name">'image-rendering'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'auto' | 'optimizeSpeed' | 'optimizeQuality' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_line-increment">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#LineIncrementProperty"><span class="prop-name">'line-increment'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'auto' | <a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_opacity">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#groupOpacity"><span class="prop-name">'opacity'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_pointer-events">
+      <td class="property-name" nowrap="nowrap"><a href="interact.html#PointerEventsProperty"><span class="prop-name">'pointer-events'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'visiblePainted' | 'visibleFill' | 'visibleStroke' | 'visible' | 'painted' | 'fill' | 'stroke' | 'all' | 'none' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_shape-rendering">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#ShapeRenderingProperty"><span class="prop-name">'shape-rendering'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'auto' | 'optimizeSpeed' | 'crispEdges' | 'geometricPrecision' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_solid-color">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#SolidColorProperty"><span class="prop-name">'solid-color'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value"><a href="types.html#DataTypeSVGColor">&lt;color&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_solid-opacity">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#SolidOpacityProperty"><span class="prop-name">'solid-opacity'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stop-color">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StopColorProperty"><span class="prop-name">'stop-color'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value"><a href="types.html#DataTypeSVGColor">&lt;color&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stop-opacity">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StopOpacityProperty"><span class="prop-name">'stop-opacity'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stroke">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StrokeProperty"><span class="prop-name">'stroke'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypePaint">&lt;paint&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stroke-dasharray">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StrokeDasharrayProperty"><span class="prop-name">'stroke-dasharray'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'none' | <a href="types.html#DataTypeLengths">&lt;list-of-lengths&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stroke-dashoffset">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StrokeDashoffsetProperty"><span class="prop-name">'stroke-dashoffset'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypeLength">&lt;length&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stroke-linecap">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StrokeLinecapProperty"><span class="prop-name">'stroke-linecap'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'butt' | 'round' | 'square' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stroke-linejoin">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StrokeLinejoinProperty"><span class="prop-name">'stroke-linejoin'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'miter' | 'round' | 'bevel' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stroke-miterlimit">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StrokeMiterlimitProperty"><span class="prop-name">'stroke-miterlimit'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stroke-opacity">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StrokeOpacityProperty"><span class="prop-name">'stroke-opacity'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_stroke-width">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#StrokeWidthProperty"><span class="prop-name">'stroke-width'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value"><a href="types.html#DataTypeLength">&lt;length&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_text-align">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#TextAlignProperty"><span class="prop-name">'text-align'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'start' | 'center' | 'end' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_text-anchor">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#TextAnchorProperty"><span class="prop-name">'text-anchor'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'start' | 'middle' | 'end' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_text-rendering">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#TextRenderingProperty"><span class="prop-name">'text-rendering'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'auto' | 'optimizeSpeed' | 'optimizeLegibility' | 'geometricPrecision' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_unicode-bidi">
+      <td class="property-name" nowrap="nowrap"><a href="text.html#UnicodeBidiProperty"><span class="prop-name">'unicode-bidi'</span></a></td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value">'normal' | 'embed' | 'bidi-override' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_vector-effect">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#NonScalingStroke"><span class="prop-name">'vector-effect'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value">'none' | 'non-scaling-stroke' | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_viewport-fill">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#viewport-fill-property"><span class="prop-name">'viewport-fill'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value">'none' | <a href="types.html#DataTypeColor">&lt;color&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_viewport-fill-opacity">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#viewport-fill-opacity-property"><span class="prop-name">'viewport-fill-opacity'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="property-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'inherit'      </td>    </tr>
+    <tr class="property" id="property_visibility">
+      <td class="property-name" nowrap="nowrap"><a href="painting.html#VisibilityProperty"><span class="prop-name">'visibility'</span></a></td>
+      <td class="true">&#x2714;</td>
+      <td class="true">&#x2714;</td>
+      <td class="property-value">'visible' | 'hidden' | 'inherit'      </td>    </tr>
+  </tbody>
+</table>
+
+
+    <h2 id="AttributeTable">L.2 Attribute table</h2>
+
+    <table class="reference-list" id="attributes" summary="Table of all the attributes available in SVG Tiny 1.2">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>ani.</th>
+      <th>inh.</th>
+      <th>Value</th>
+      <th>Elements</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="attribute" id="attribute_about">
+      <td class="attribute-name" nowrap="nowrap">about</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeListOfString">&lt;list-of-strings&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_accent-height">
+      <td class="attribute-name" nowrap="nowrap">accent-height</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_accumulate">
+      <td class="attribute-name" nowrap="nowrap">accumulate</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'none' | 'sum'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_additive">
+      <td class="attribute-name" nowrap="nowrap">additive</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'replace' | 'sum'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_alphabetic">
+      <td class="attribute-name" nowrap="nowrap">alphabetic</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_arabic-form">
+      <td class="attribute-name" nowrap="nowrap">arabic-form</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_glyph" class="element">glyph</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_ascent">
+      <td class="attribute-name" nowrap="nowrap">ascent</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_attributeName">
+      <td class="attribute-name" nowrap="nowrap">attributeName</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeQName">&lt;QName&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_set" class="element">set</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_attributeType">
+      <td class="attribute-name" nowrap="nowrap">attributeType</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'XML' | 'CSS' | 'auto'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_set" class="element">set</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_bandwidth">
+      <td class="attribute-name" nowrap="nowrap">bandwidth</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a> | 'auto'</td>      <td class="attribute-parents"><a href="elementTable.html#element_prefetch" class="element">prefetch</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_baseProfile">
+      <td class="attribute-name" nowrap="nowrap">baseProfile</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'none' | 'tiny' | 'basic' | 'full'</td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_bbox">
+      <td class="attribute-name" nowrap="nowrap">bbox</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_begin">
+      <td class="attribute-name" nowrap="nowrap">begin</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_by">
+      <td class="attribute-name" nowrap="nowrap">by</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_calcMode">
+      <td class="attribute-name" nowrap="nowrap">calcMode</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'discrete' | 'linear' | 'paced' | 'spline'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_cap-height">
+      <td class="attribute-name" nowrap="nowrap">cap-height</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_class">
+      <td class="attribute-name" nowrap="nowrap">class</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeXML-NMTOKENS">&lt;XML-NMTOKENS&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_content">
+      <td class="attribute-name" nowrap="nowrap">content</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeString">&lt;string&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_contentScriptType">
+      <td class="attribute-name" nowrap="nowrap">contentScriptType</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeContentType">&lt;content-type&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_cx">
+      <td class="attribute-name" nowrap="nowrap">cx</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinate">&lt;coordinate&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_cy">
+      <td class="attribute-name" nowrap="nowrap">cy</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinate">&lt;coordinate&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_d">
+      <td class="attribute-name" nowrap="nowrap">d</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypePathData">&lt;path-data&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_path" class="element">path</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_datatype">
+      <td class="attribute-name" nowrap="nowrap">datatype</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeString">&lt;string&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_defaultAction">
+      <td class="attribute-name" nowrap="nowrap">defaultAction</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'perform' | 'cancel'</td>      <td class="attribute-parents"><a href="elementTable.html#element_listener" class="element">listener</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_descent">
+      <td class="attribute-name" nowrap="nowrap">descent</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_dur">
+      <td class="attribute-name" nowrap="nowrap">dur</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_editable">
+      <td class="attribute-name" nowrap="nowrap">editable</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'none' | 'simple'</td>      <td class="attribute-parents"><a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_end">
+      <td class="attribute-name" nowrap="nowrap">end</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_ev__event">
+      <td class="attribute-name" nowrap="nowrap">ev:event</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeXML-NMTOKEN">&lt;XML-NMTOKEN&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_handler" class="element">handler</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_event">
+      <td class="attribute-name" nowrap="nowrap">event</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeXML-NMTOKEN">&lt;XML-NMTOKEN&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_listener" class="element">listener</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_externalResourcesRequired">
+      <td class="attribute-name" nowrap="nowrap">externalResourcesRequired</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeBoolean">&lt;boolean&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_fill">
+      <td class="attribute-name" nowrap="nowrap">fill</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'remove' | 'freeze'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_focusHighlight">
+      <td class="attribute-name" nowrap="nowrap">focusHighlight</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'auto' | 'none'</td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_focusable">
+      <td class="attribute-name" nowrap="nowrap">focusable</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'auto' | <a href="types.html#DataTypeBoolean">&lt;boolean&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_font-family">
+      <td class="attribute-name" nowrap="nowrap">font-family</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_font-stretch">
+      <td class="attribute-name" nowrap="nowrap">font-stretch</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_font-style">
+      <td class="attribute-name" nowrap="nowrap">font-style</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_font-variant">
+      <td class="attribute-name" nowrap="nowrap">font-variant</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_font-weight">
+      <td class="attribute-name" nowrap="nowrap">font-weight</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_from">
+      <td class="attribute-name" nowrap="nowrap">from</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_g1">
+      <td class="attribute-name" nowrap="nowrap">g1</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_hkern" class="element">hkern</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_g2">
+      <td class="attribute-name" nowrap="nowrap">g2</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_hkern" class="element">hkern</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_glyph-name">
+      <td class="attribute-name" nowrap="nowrap">glyph-name</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_glyph" class="element">glyph</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_gradientUnits">
+      <td class="attribute-name" nowrap="nowrap">gradientUnits</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'userSpaceOnUse' | 'objectBoundingBox'</td>      <td class="attribute-parents"><a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_handler">
+      <td class="attribute-name" nowrap="nowrap">handler</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeIRI">&lt;IRI&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_listener" class="element">listener</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_hanging">
+      <td class="attribute-name" nowrap="nowrap">hanging</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_height">
+      <td class="attribute-name" nowrap="nowrap">height</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLength">&lt;length&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_height_1">
+      <td class="attribute-name" nowrap="nowrap">height</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLength">&lt;length&gt;</a> | 'auto'</td>      <td class="attribute-parents"><a href="elementTable.html#element_textArea" class="element">textArea</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_horiz-adv-x">
+      <td class="attribute-name" nowrap="nowrap">horiz-adv-x</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_horiz-origin-x">
+      <td class="attribute-name" nowrap="nowrap">horiz-origin-x</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font" class="element">font</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_id">
+      <td class="attribute-name" nowrap="nowrap">id</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeID">&lt;ID&gt;</a> | <a href="types.html#DataTypeNCName">&lt;NCName&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_ideographic">
+      <td class="attribute-name" nowrap="nowrap">ideographic</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_initialVisibility">
+      <td class="attribute-name" nowrap="nowrap">initialVisibility</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'whenStarted' | 'always'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_k">
+      <td class="attribute-name" nowrap="nowrap">k</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_hkern" class="element">hkern</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_keyPoints">
+      <td class="attribute-name" nowrap="nowrap">keyPoints</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_keySplines">
+      <td class="attribute-name" nowrap="nowrap">keySplines</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_keyTimes">
+      <td class="attribute-name" nowrap="nowrap">keyTimes</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_lang">
+      <td class="attribute-name" nowrap="nowrap">lang</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLanguageIDs">&lt;list-of-language-ids&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_glyph" class="element">glyph</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_mathematical">
+      <td class="attribute-name" nowrap="nowrap">mathematical</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_max">
+      <td class="attribute-name" nowrap="nowrap">max</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_mediaCharacterEncoding">
+      <td class="attribute-name" nowrap="nowrap">mediaCharacterEncoding</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_prefetch" class="element">prefetch</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_mediaContentEncodings">
+      <td class="attribute-name" nowrap="nowrap">mediaContentEncodings</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_prefetch" class="element">prefetch</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_mediaSize">
+      <td class="attribute-name" nowrap="nowrap">mediaSize</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_prefetch" class="element">prefetch</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_mediaTime">
+      <td class="attribute-name" nowrap="nowrap">mediaTime</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_prefetch" class="element">prefetch</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_min">
+      <td class="attribute-name" nowrap="nowrap">min</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-down">
+      <td class="attribute-name" nowrap="nowrap">nav-down</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-down-left">
+      <td class="attribute-name" nowrap="nowrap">nav-down-left</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-down-right">
+      <td class="attribute-name" nowrap="nowrap">nav-down-right</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-left">
+      <td class="attribute-name" nowrap="nowrap">nav-left</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-next">
+      <td class="attribute-name" nowrap="nowrap">nav-next</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-prev">
+      <td class="attribute-name" nowrap="nowrap">nav-prev</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-right">
+      <td class="attribute-name" nowrap="nowrap">nav-right</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-up">
+      <td class="attribute-name" nowrap="nowrap">nav-up</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-up-left">
+      <td class="attribute-name" nowrap="nowrap">nav-up-left</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_nav-up-right">
+      <td class="attribute-name" nowrap="nowrap">nav-up-right</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFocus">&lt;focus&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_observer">
+      <td class="attribute-name" nowrap="nowrap">observer</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeIDREF">&lt;IDREF&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_listener" class="element">listener</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_offset">
+      <td class="attribute-name" nowrap="nowrap">offset</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_stop" class="element">stop</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_origin">
+      <td class="attribute-name" nowrap="nowrap">origin</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_overlay">
+      <td class="attribute-name" nowrap="nowrap">overlay</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'none' | 'top'</td>      <td class="attribute-parents"><a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_overline-position">
+      <td class="attribute-name" nowrap="nowrap">overline-position</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_overline-thickness">
+      <td class="attribute-name" nowrap="nowrap">overline-thickness</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_panose-1">
+      <td class="attribute-name" nowrap="nowrap">panose-1</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_path">
+      <td class="attribute-name" nowrap="nowrap">path</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_pathLength">
+      <td class="attribute-name" nowrap="nowrap">pathLength</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_path" class="element">path</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_phase">
+      <td class="attribute-name" nowrap="nowrap">phase</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'default' | 'capture'</td>      <td class="attribute-parents"><a href="elementTable.html#element_listener" class="element">listener</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_playbackOrder">
+      <td class="attribute-name" nowrap="nowrap">playbackOrder</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'all' | 'forwardOnly'</td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_points">
+      <td class="attribute-name" nowrap="nowrap">points</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypePoints">&lt;points-data&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_preserveAspectRatio">
+      <td class="attribute-name" nowrap="nowrap">preserveAspectRatio</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_propagate">
+      <td class="attribute-name" nowrap="nowrap">propagate</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'continue' | 'stop'</td>      <td class="attribute-parents"><a href="elementTable.html#element_listener" class="element">listener</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_property">
+      <td class="attribute-name" nowrap="nowrap">property</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeListOfString">&lt;list-of-strings&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_r">
+      <td class="attribute-name" nowrap="nowrap">r</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLength">&lt;length&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_rel">
+      <td class="attribute-name" nowrap="nowrap">rel</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeListOfString">&lt;list-of-strings&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_repeatCount">
+      <td class="attribute-name" nowrap="nowrap">repeatCount</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_repeatDur">
+      <td class="attribute-name" nowrap="nowrap">repeatDur</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_requiredExtensions">
+      <td class="attribute-name" nowrap="nowrap">requiredExtensions</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeListOfIRI">&lt;list-of-IRIs&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_requiredFeatures">
+      <td class="attribute-name" nowrap="nowrap">requiredFeatures</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeListOfIRI">&lt;list-of-IRIs&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_requiredFonts">
+      <td class="attribute-name" nowrap="nowrap">requiredFonts</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFontList">&lt;list-of-family-names&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_requiredFormats">
+      <td class="attribute-name" nowrap="nowrap">requiredFormats</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeFormatList">&lt;list-of-content-types&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_resource">
+      <td class="attribute-name" nowrap="nowrap">resource</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeString">&lt;string&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_restart">
+      <td class="attribute-name" nowrap="nowrap">restart</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'always' | 'never' | 'whenNotActive'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_rev">
+      <td class="attribute-name" nowrap="nowrap">rev</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeListOfString">&lt;list-of-strings&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_role">
+      <td class="attribute-name" nowrap="nowrap">role</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeListOfString">&lt;list-of-strings&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_rotate">
+      <td class="attribute-name" nowrap="nowrap">rotate</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_rotate_1">
+      <td class="attribute-name" nowrap="nowrap">rotate</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumbers">&lt;list-of-numbers&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_text" class="element">text</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_rx">
+      <td class="attribute-name" nowrap="nowrap">rx</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLength">&lt;length&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_rect" class="element">rect</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_ry">
+      <td class="attribute-name" nowrap="nowrap">ry</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLength">&lt;length&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_rect" class="element">rect</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_slope">
+      <td class="attribute-name" nowrap="nowrap">slope</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_snapshotTime">
+      <td class="attribute-name" nowrap="nowrap">snapshotTime</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'none' | <a href="types.html#DataTypeClock-value">&lt;Clock-value&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_stemh">
+      <td class="attribute-name" nowrap="nowrap">stemh</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_stemv">
+      <td class="attribute-name" nowrap="nowrap">stemv</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_strikethrough-position">
+      <td class="attribute-name" nowrap="nowrap">strikethrough-position</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_strikethrough-thickness">
+      <td class="attribute-name" nowrap="nowrap">strikethrough-thickness</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_syncBehavior">
+      <td class="attribute-name" nowrap="nowrap">syncBehavior</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'canSlip' | 'locked' | 'independent' | 'default'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_syncBehaviorDefault">
+      <td class="attribute-name" nowrap="nowrap">syncBehaviorDefault</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'canSlip' | 'locked' | 'independent' | 'inherit'</td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_syncMaster">
+      <td class="attribute-name" nowrap="nowrap">syncMaster</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeBoolean">&lt;boolean&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_syncTolerance">
+      <td class="attribute-name" nowrap="nowrap">syncTolerance</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeClock-value">&lt;Clock-value&gt;</a> | 'default'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_syncToleranceDefault">
+      <td class="attribute-name" nowrap="nowrap">syncToleranceDefault</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeClock-value">&lt;Clock-value&gt;</a> | 'inherit'</td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_systemLanguage">
+      <td class="attribute-name" nowrap="nowrap">systemLanguage</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLanguageIDs">&lt;list-of-language-ids&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_target">
+      <td class="attribute-name" nowrap="nowrap">target</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'_replace' | '_self' | '_parent' | '_top' | '_blank' | <a href="types.html#DataTypeXML-Name">&lt;XML-Name&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_target_1">
+      <td class="attribute-name" nowrap="nowrap">target</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeIDREF">&lt;IDREF&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_listener" class="element">listener</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_timelineBegin">
+      <td class="attribute-name" nowrap="nowrap">timelineBegin</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'onLoad' | 'onStart'</td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_to">
+      <td class="attribute-name" nowrap="nowrap">to</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_set" class="element">set</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_transform">
+      <td class="attribute-name" nowrap="nowrap">transform</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeTransformList">&lt;transform&gt;</a> | 'none'</td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_transformBehavior">
+      <td class="attribute-name" nowrap="nowrap">transformBehavior</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'geometric' | 'pinned' | 'pinned90' | 'pinned180' | 'pinned270'</td>      <td class="attribute-parents"><a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_type">
+      <td class="attribute-name" nowrap="nowrap">type</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeContentType">&lt;content-type&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_script" class="element">script</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_type_1">
+      <td class="attribute-name" nowrap="nowrap">type</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeContentType">&lt;content-type&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_type_2">
+      <td class="attribute-name" nowrap="nowrap">type</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_typeof">
+      <td class="attribute-name" nowrap="nowrap">typeof</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeListOfString">&lt;list-of-strings&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_u1">
+      <td class="attribute-name" nowrap="nowrap">u1</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_hkern" class="element">hkern</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_u2">
+      <td class="attribute-name" nowrap="nowrap">u2</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_hkern" class="element">hkern</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_underline-position">
+      <td class="attribute-name" nowrap="nowrap">underline-position</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_underline-thickness">
+      <td class="attribute-name" nowrap="nowrap">underline-thickness</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_unicode">
+      <td class="attribute-name" nowrap="nowrap">unicode</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_glyph" class="element">glyph</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_unicode-range">
+      <td class="attribute-name" nowrap="nowrap">unicode-range</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_units-per-em">
+      <td class="attribute-name" nowrap="nowrap">units-per-em</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_values">
+      <td class="attribute-name" nowrap="nowrap">values</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_version">
+      <td class="attribute-name" nowrap="nowrap">version</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'1.0' | '1.1' | '1.2'</td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_viewBox">
+      <td class="attribute-name" nowrap="nowrap">viewBox</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_width">
+      <td class="attribute-name" nowrap="nowrap">width</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLength">&lt;length&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_width_1">
+      <td class="attribute-name" nowrap="nowrap">width</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLength">&lt;length&gt;</a> | 'auto'</td>      <td class="attribute-parents"><a href="elementTable.html#element_textArea" class="element">textArea</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_widths">
+      <td class="attribute-name" nowrap="nowrap">widths</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_x">
+      <td class="attribute-name" nowrap="nowrap">x</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinate">&lt;coordinate&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_x-height">
+      <td class="attribute-name" nowrap="nowrap">x-height</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNumber">&lt;number&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_font-face" class="element">font-face</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_x1">
+      <td class="attribute-name" nowrap="nowrap">x1</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinate">&lt;coordinate&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_x2">
+      <td class="attribute-name" nowrap="nowrap">x2</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinate">&lt;coordinate&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_x_1">
+      <td class="attribute-name" nowrap="nowrap">x</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinates">&lt;list-of-coordinates&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_text" class="element">text</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__actuate">
+      <td class="attribute-name" nowrap="nowrap">xlink:actuate</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'onLoad'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__actuate_1">
+      <td class="attribute-name" nowrap="nowrap">xlink:actuate</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'onRequest'</td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__arcrole">
+      <td class="attribute-name" nowrap="nowrap">xlink:arcrole</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeIRI">&lt;IRI&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__href">
+      <td class="attribute-name" nowrap="nowrap">xlink:href</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeIRI">&lt;IRI&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__role">
+      <td class="attribute-name" nowrap="nowrap">xlink:role</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeIRI">&lt;IRI&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__show">
+      <td class="attribute-name" nowrap="nowrap">xlink:show</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'other'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__show_1">
+      <td class="attribute-name" nowrap="nowrap">xlink:show</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'embed'</td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__show_2">
+      <td class="attribute-name" nowrap="nowrap">xlink:show</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'new' | 'replace'</td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__title">
+      <td class="attribute-name" nowrap="nowrap">xlink:title</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">&lt;text&gt;</td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xlink__type">
+      <td class="attribute-name" nowrap="nowrap">xlink:type</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'simple'</td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xml__base">
+      <td class="attribute-name" nowrap="nowrap">xml:base</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeIRI">&lt;IRI&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xml__id">
+      <td class="attribute-name" nowrap="nowrap">xml:id</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeNCName">&lt;NCName&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xml__lang">
+      <td class="attribute-name" nowrap="nowrap">xml:lang</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeLanguageID">&lt;language-id&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_script" class="element">script</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xml__space">
+      <td class="attribute-name" nowrap="nowrap">xml:space</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'default' | 'preserve'</td>      <td class="attribute-parents"><a href="elementTable.html#element_a" class="element">a</a>, <a href="elementTable.html#element_animate" class="element">animate</a>, <a href="elementTable.html#element_animateColor" class="element">animateColor</a>, <a href="elementTable.html#element_animateMotion" class="element">animateMotion</a>, <a href="elementTable.html#element_animateTransform" class="element">animateTransform</a>, <a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_audio" class="element">audio</a>, <a href="elementTable.html#element_circle" class="element">circle</a>, <a href="elementTable.html#element_defs" class="element">defs</a>, <a href="elementTable.html#element_desc" class="element">desc</a>, <a href="elementTable.html#element_discard" class="element">discard</a>, <a href="elementTable.html#element_ellipse" class="element">ellipse</a>, <a href="elementTable.html#element_font" class="element">font</a>, <a href="elementTable.html#element_font-face" class="element">font-face</a>, <a href="elementTable.html#element_font-face-src" class="element">font-face-src</a>, <a href="elementTable.html#element_font-face-uri" class="element">font-face-uri</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_g" class="element">g</a>, <a href="elementTable.html#element_glyph" class="element">glyph</a>, <a href="elementTable.html#element_hkern" class="element">hkern</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>, <a href="elementTable.html#element_listener" class="element">listener</a>, <a href="elementTable.html#element_metadata" class="element">metadata</a>, <a href="elementTable.html#element_missing-glyph" class="element">missing-glyph</a>, <a href="elementTable.html#element_mpath" class="element">mpath</a>, <a href="elementTable.html#element_path" class="element">path</a>, <a href="elementTable.html#element_polygon" class="element">polygon</a>, <a href="elementTable.html#element_polyline" class="element">polyline</a>, <a href="elementTable.html#element_prefetch" class="element">prefetch</a>, <a href="elementTable.html#element_radialGradient" class="element">radialGradient</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_set" class="element">set</a>, <a href="elementTable.html#element_solidColor" class="element">solidColor</a>, <a href="elementTable.html#element_stop" class="element">stop</a>, <a href="elementTable.html#element_svg" class="element">svg</a>, <a href="elementTable.html#element_switch" class="element">switch</a>, <a href="elementTable.html#element_tbreak" class="element">tbreak</a>, <a href="elementTable.html#element_text" class="element">text</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_title" class="element">title</a>, <a href="elementTable.html#element_tspan" class="element">tspan</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_xml__space_1">
+      <td class="attribute-name" nowrap="nowrap">xml:space</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'preserve'</td>      <td class="attribute-parents"><a href="elementTable.html#element_handler" class="element">handler</a>, <a href="elementTable.html#element_script" class="element">script</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_y">
+      <td class="attribute-name" nowrap="nowrap">y</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinate">&lt;coordinate&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_animation" class="element">animation</a>, <a href="elementTable.html#element_foreignObject" class="element">foreignObject</a>, <a href="elementTable.html#element_image" class="element">image</a>, <a href="elementTable.html#element_rect" class="element">rect</a>, <a href="elementTable.html#element_textArea" class="element">textArea</a>, <a href="elementTable.html#element_use" class="element">use</a>, <a href="elementTable.html#element_video" class="element">video</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_y1">
+      <td class="attribute-name" nowrap="nowrap">y1</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinate">&lt;coordinate&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_y2">
+      <td class="attribute-name" nowrap="nowrap">y2</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinate">&lt;coordinate&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_line" class="element">line</a>, <a href="elementTable.html#element_linearGradient" class="element">linearGradient</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_y_1">
+      <td class="attribute-name" nowrap="nowrap">y</td>
+      <td class="true">&#x2714;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value"><a href="types.html#DataTypeCoordinates">&lt;list-of-coordinates&gt;</a></td>      <td class="attribute-parents"><a href="elementTable.html#element_text" class="element">text</a>      </td>    </tr>
+    <tr class="attribute" id="attribute_zoomAndPan">
+      <td class="attribute-name" nowrap="nowrap">zoomAndPan</td>
+      <td class="false">&#x2718;</td>
+      <td class="false">&#x2718;</td>
+      <td class="attribute-value">'disable' | 'magnify'</td>      <td class="attribute-parents"><a href="elementTable.html#element_svg" class="element">svg</a>      </td>    </tr>
+  </tbody>
+</table>
+
+
+<div class="footer">
+  SVG Tiny 1.2 &#x2013; 20081222
+  <ul>
+    <li><a href="index.html">Top</a></li>
+    <li><a href="expanded-toc.html">Contents</a></li>
+    <li><a href="elementTable.html">Previous</a></li>
+    <li><a href="mimereg.html">Next</a></li>
+    <li><a href="elementTable.html">Elements</a></li>
+    <li><a href="attributeTable.html">Attributes</a></li>
+  </ul>
+</div>
+
+</body>
+</html>
