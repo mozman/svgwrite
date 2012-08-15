@@ -2,7 +2,7 @@
 NEWS
 ====
 
-Version 1.1.0 - 15 August 2012
+Version 1.1.1 - 15 August 2012
 
   * License changed to MIT License
   * tested with CPython2.7, CPython3.2, CPython3.3 and pypy-1.9 on Win7 Pro 32-bit
