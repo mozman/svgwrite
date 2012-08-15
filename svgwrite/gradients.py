@@ -4,7 +4,7 @@
 # Purpose: gradients module
 # Created: 26.10.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 """
 Gradients consist of continuously smooth color transitions along a vector
 from one color to another, possibly followed by additional transitions along

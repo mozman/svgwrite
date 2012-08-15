@@ -4,7 +4,7 @@
 # Purpose: svg types
 # Created: 30.09.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 class SVGAttribute(object):
     def __init__(self, name, anim, types, const):

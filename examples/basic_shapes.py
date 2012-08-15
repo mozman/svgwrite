@@ -4,7 +4,7 @@
 # Purpose: svg examples
 # Created: 07.11.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 try:
     import svgwrite

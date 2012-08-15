@@ -4,7 +4,7 @@
 # Purpose: pattern module
 # Created: 29.10.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 from svgwrite.base import BaseElement
 from svgwrite.mixins import XLink, ViewBox, Transform, Presentation

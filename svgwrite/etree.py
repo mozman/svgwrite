@@ -4,7 +4,7 @@
 # Purpose: a hack to generate XML containing CDATA by ElementTree
 # Created: 26.05.2012
 # Copyright (C) 2012, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 # usage:
 #

@@ -4,7 +4,7 @@
 # Purpose: svgparser using pyparser
 # Created: 16.10.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 # depends on: pyparsing.py by Paul T. McGuire - http://pyparsing.wikispaces.com/
 
 import sys

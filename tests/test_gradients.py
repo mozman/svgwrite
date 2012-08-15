@@ -4,7 +4,7 @@
 # Purpose: test gradients module
 # Created: 26.10.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 import unittest
 import re

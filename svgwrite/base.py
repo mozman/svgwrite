@@ -4,7 +4,7 @@
 # Purpose: svg base element
 # Created: 08.09.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 """
 The **BaseElement** is the root for all SVG elements.
 """

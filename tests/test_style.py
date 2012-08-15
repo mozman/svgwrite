@@ -4,7 +4,7 @@
 # Purpose: test style element
 # Created: 27.05.2012
 # Copyright (C) 2012, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 import unittest
 

@@ -3,7 +3,7 @@
 # Purpose: svg container classes
 # Created: 15.09.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 """
 The **container** module provides following structural objects:
 

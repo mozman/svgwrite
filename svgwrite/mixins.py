@@ -4,7 +4,7 @@
 # Purpose: mixins
 # Created: 19.10.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 from svgwrite.utils import strlist
 from svgwrite.utils import is_string

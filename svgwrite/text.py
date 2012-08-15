@@ -4,7 +4,7 @@
 # Purpose: text objects
 # Created: 20.09.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 """
 Text that is to be rendered as part of an SVG document fragment is specified
 using the **text** element. The characters to be drawn are expressed as XML

@@ -4,7 +4,7 @@
 # Purpose: drawing
 # Created: 10.09.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 """
 The *Drawing* object is the overall container for all SVG
 elements. It provides the methods to store the drawing into a file or a

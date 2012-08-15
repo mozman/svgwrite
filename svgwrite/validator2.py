@@ -4,7 +4,7 @@
 # Purpose: validator2 module - new validator module
 # Created: 01.10.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 from svgwrite.data import full11
 from svgwrite.data import tiny12

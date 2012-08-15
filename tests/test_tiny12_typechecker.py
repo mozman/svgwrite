@@ -4,7 +4,7 @@
 # Purpose: test tiny12 typechecker
 # Created: 08.10.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 import sys
 import unittest

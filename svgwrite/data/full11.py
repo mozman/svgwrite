@@ -4,7 +4,7 @@
 # Purpose: full11 data
 # Created: 15.10.2010
 # Copyright (C) 2010, Manfred Moitzi
-# License: GPLv3
+# License: MIT License
 
 from svgwrite.data.types import SVGAttribute, SVGMultiAttribute
 from svgwrite.data.types import SVGElement
