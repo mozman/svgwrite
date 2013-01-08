@@ -22,7 +22,9 @@ def read(fname):
 # contains modules with Python2 and Python3 Syntax:
 # data/pyparsing_py2.py
 # data/pyparsing_py3.py
-sys.argv.append('--no-compile')
+args = sys.argv[1:]
+if 'install' in args:
+    args.append('--no-compile')
 
 setup(name='svgwrite',
     version=VERSION,
@@ -33,6 +35,7 @@ setup(name='svgwrite',
     author_email=AUTHOR_EMAIL,
     packages=['svgwrite', 'svgwrite/data'],
     provides=['svgwrite'],
+    script_args=args,
     long_description=read('README.TXT')+read('NEWS.TXT'),
     platforms="OS Independent",
     license="MIT License",
