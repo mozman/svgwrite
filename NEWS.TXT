@@ -1,9 +1,11 @@
 
 NEWS
 ====
-Version 1.1.2 - 08 Januar 2013
+
+Version 1.1.2 - 08 January 2013
 
   * prevent setup.py from compiling all modules - error with 'pyparsing_py2.py' and Python3
+  * BUGFIX: all tests run with CPython3.3
 
 Version 1.1.1 - 15 August 2012
 
