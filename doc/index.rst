@@ -10,7 +10,7 @@ Welcome! This is the documentation for svgwrite |version|, last updated |today|.
 
 If you are looking for a SVG Documentation beyond the official W3C papers, go
 to O'Reilly commons: http://commons.oreilly.com/wiki/index.php/SVG_Essentials,
- or (german) http://www.selfsvg.info .
+or (german) http://www.selfsvg.info .
 
 Contents
 --------

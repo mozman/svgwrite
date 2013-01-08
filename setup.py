@@ -7,7 +7,7 @@
 # Copyright (C) 2010-2012  Manfred Moitzi
 
 
-import os
+import os, sys
 from distutils.core import setup
 
 from svgwrite import VERSION, AUTHOR_NAME, AUTHOR_EMAIL
@@ -17,6 +17,12 @@ def read(fname):
         return open(os.path.join(os.path.dirname(__file__), fname)).read()
     except IOError:
         return "File '%s' not found.\n" % fname
+
+# do not compile modules
+# contains modules with Python2 and Python3 Syntax:
+# data/pyparsing_py2.py
+# data/pyparsing_py3.py
+sys.argv.append('--no-compile')
 
 setup(name='svgwrite',
     version=VERSION,
