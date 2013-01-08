@@ -31,7 +31,6 @@ class SVGMultiAttribute(object):
     def __init__(self, attributes):
         self.name = None
         self._attributes = {}
-        firstkey = None
 
         for names, attribute in attributes.items():
             for name in names.split():
@@ -42,13 +41,11 @@ class SVGMultiAttribute(object):
                 elif self.name != attribute.name:
                     raise ValueError("Different attribute-names for SVGMultiAttribute "\
                                      "(%s != %s)." % (self.name, attribute.name))
-                if not firstkey:
-                    firstkey = name
 
-
-        if '*' not in self._attributes:
+        if '*' not in self._attributes and len(self._attributes):
             # if no default attribute definition were given
             # set the first attribute definition as the default attribute definition
+            firstkey = sorted(self._attributes.keys())[0]
             self._attributes['*'] = self._attributes[firstkey]
 
     def get_attribute(self, elementname):
