@@ -1006,12 +1006,12 @@ presentation_attributes = frozenset([ "alignment-baseline", "baseline-shift",
 
 elements = {
     'a': SVGElement('a',
-    attributes=frozenset(['xlink:title', 'xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'id', 'xlink:actuate', 'onload', 'style', 'xlink:show', 'target', 'onactivate', 'nmousedown', 'transform', 'class', 'xlink:role', 'requiredFeatures', 'xml:lang', 'onmousemove', 'xmlns:xlink', 'onclick', 'xlink:arcrole', 'onfocusin']),
+    attributes=frozenset(['xlink:title', 'xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'id', 'xlink:actuate', 'onload', 'style', 'xlink:show', 'target', 'onactivate', 'onmousedown', 'transform', 'class', 'xlink:role', 'requiredFeatures', 'xml:lang', 'onmousemove', 'xmlns:xlink', 'onclick', 'xlink:arcrole', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 
     'altGlyph': SVGElement('altGlyph',
-    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'id', 'onload', 'style', 'nmousedown', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'format', 'xlink:title', 'systemLanguage', 'onmouseover', 'dx', 'dy', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'glyphRef', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'rotate']),
+    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'id', 'onload', 'style', 'onmousedown', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'format', 'xlink:title', 'systemLanguage', 'onmouseover', 'dx', 'dy', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'glyphRef', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'rotate']),
     properties=presentation_attributes,
     children=empty_list),
 
@@ -1046,7 +1046,7 @@ elements = {
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'circle': SVGElement('circle',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'cy', 'cx', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'nmousedown', 'transform', 'class', 'requiredFeatures', 'r', 'onmousemove', 'onclick', 'xml:lang', 'onfocusin', 'systemLanguage']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'cy', 'cx', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'onmousedown', 'transform', 'class', 'requiredFeatures', 'r', 'onmousemove', 'onclick', 'xml:lang', 'onfocusin', 'systemLanguage']),
     properties=presentation_attributes,
     children=frozenset(['animateMotion', 'set', 'title', 'animateColor', 'animateTransform', 'animate', 'metadata', 'desc'])),
 
@@ -1066,7 +1066,7 @@ elements = {
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'defs': SVGElement('defs',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'class', 'onload', 'style', 'onactivate', 'nmousedown', 'transform', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'class', 'onload', 'style', 'onactivate', 'onmousedown', 'transform', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 
@@ -1076,7 +1076,7 @@ elements = {
     children=frozenset(['*'])),
 
     'ellipse': SVGElement('ellipse',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'ry', 'cy', 'cx', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'nmousedown', 'rx', 'transform', 'class', 'requiredFeatures', 'systemLanguage', 'onmousemove', 'onclick', 'xml:lang', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'ry', 'cy', 'cx', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'onmousedown', 'rx', 'transform', 'class', 'requiredFeatures', 'systemLanguage', 'onmousemove', 'onclick', 'xml:lang', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['animateMotion', 'set', 'title', 'animateColor', 'animateTransform', 'animate', 'desc', 'metadata'])),
 
@@ -1234,12 +1234,12 @@ elements = {
     children=frozenset(['font-face-format'])),
 
     'foreignObject': SVGElement('foreignObject',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'height', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'nmousedown', 'transform', 'class', 'width', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'y', 'x', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'height', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'onmousedown', 'transform', 'class', 'width', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'y', 'x', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['*'])),
 
     'g': SVGElement('g',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'class', 'onload', 'style', 'onactivate', 'nmousedown', 'transform', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'class', 'onload', 'style', 'onactivate', 'onmousedown', 'transform', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 
@@ -1259,12 +1259,12 @@ elements = {
     children=empty_list),
 
     'image': SVGElement('image',
-    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'height', 'id', 'onload', 'style', 'nmousedown', 'transform', 'width', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'preserveAspectRatio']),
+    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'height', 'id', 'onload', 'style', 'onmousedown', 'transform', 'width', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'preserveAspectRatio']),
     properties=presentation_attributes,
     children=frozenset(['animateMotion', 'set', 'title', 'animateColor', 'animateTransform', 'animate', 'desc', 'metadata'])),
 
     'line': SVGElement('line',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'x2', 'systemLanguage', 'onmouseover', 'y1', 'externalResourcesRequired', 'y2', 'id', 'onload', 'style', 'x1', 'onactivate', 'nmousedown', 'transform', 'class', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'x2', 'systemLanguage', 'onmouseover', 'y1', 'externalResourcesRequired', 'y2', 'id', 'onload', 'style', 'x1', 'onactivate', 'onmousedown', 'transform', 'class', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['animateMotion', 'set', 'title', 'animateColor', 'animateTransform', 'animate', 'desc', 'metadata'])),
 
@@ -1299,7 +1299,7 @@ elements = {
     children=frozenset(['desc', 'metadata', 'title'])),
 
     'path': SVGElement('path',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'pathLength', 'externalResourcesRequired', 'id', 'onload', 'style', 'd', 'onactivate', 'nmousedown', 'transform', 'class', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'pathLength', 'externalResourcesRequired', 'id', 'onload', 'style', 'd', 'onactivate', 'onmousedown', 'transform', 'class', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['animateMotion', 'set', 'title', 'animateColor', 'animateTransform', 'animate', 'desc', 'metadata'])),
 
@@ -1309,12 +1309,12 @@ elements = {
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 
     'polygon': SVGElement('polygon',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'nmousedown', 'transform', 'class', 'requiredFeatures', 'points', 'onmousemove', 'onclick', 'xml:lang', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'onmousedown', 'transform', 'class', 'requiredFeatures', 'points', 'onmousemove', 'onclick', 'xml:lang', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['animateMotion', 'set', 'title', 'animateColor', 'animateTransform', 'animate', 'desc', 'metadata'])),
 
     'polyline': SVGElement('polyline',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'nmousedown', 'transform', 'class', 'requiredFeatures', 'points', 'onmousemove', 'onclick', 'xml:lang', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'onactivate', 'onmousedown', 'transform', 'class', 'requiredFeatures', 'points', 'onmousemove', 'onclick', 'xml:lang', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['animateMotion', 'set', 'title', 'animateColor', 'animateTransform', 'animate', 'desc', 'metadata'])),
 
@@ -1324,7 +1324,7 @@ elements = {
     children=frozenset(['set', 'title', 'animate', 'animateTransform', 'stop', 'metadata', 'desc'])),
 
     'rect': SVGElement('rect',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'height', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'ry', 'onactivate', 'nmousedown', 'rx', 'transform', 'class', 'width', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'y', 'x', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'height', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'id', 'onload', 'style', 'ry', 'onactivate', 'onmousedown', 'rx', 'transform', 'class', 'width', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'y', 'x', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['animateMotion', 'set', 'title', 'animateColor', 'animateTransform', 'animate', 'metadata', 'desc'])),
 
@@ -1349,27 +1349,27 @@ elements = {
     children=frozenset(['*'])),
 
     'svg': SVGElement('svg',
-    attributes=frozenset(['requiredExtensions', 'onerror', 'onfocusout', 'xml:space', 'height', 'onscroll', 'baseProfile', 'contentStyleType', 'id', 'onabort', 'onload', 'style', 'nmousedown', 'onzoom', 'onresize', 'width', 'version', 'onmousemove', 'onmouseup', 'xmlns:xlink', 'xmlns:ev', 'onfocusin', 'xml:base', 'onclick', 'onmouseout', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'zoomAndPan', 'class', 'onunload', 'xmlns', 'onactivate', 'viewBox', 'requiredFeatures', 'xml:lang', 'y', 'x', 'preserveAspectRatio', 'contentScriptType']),
+    attributes=frozenset(['requiredExtensions', 'onerror', 'onfocusout', 'xml:space', 'height', 'onscroll', 'baseProfile', 'contentStyleType', 'id', 'onabort', 'onload', 'style', 'onmousedown', 'onzoom', 'onresize', 'width', 'version', 'onmousemove', 'onmouseup', 'xmlns:xlink', 'xmlns:ev', 'onfocusin', 'xml:base', 'onclick', 'onmouseout', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'zoomAndPan', 'class', 'onunload', 'xmlns', 'onactivate', 'viewBox', 'requiredFeatures', 'xml:lang', 'y', 'x', 'preserveAspectRatio', 'contentScriptType']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 
     'switch': SVGElement('switch',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'class', 'onload', 'style', 'onactivate', 'nmousedown', 'transform', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'systemLanguage', 'onmouseover', 'externalResourcesRequired', 'class', 'onload', 'style', 'onactivate', 'onmousedown', 'transform', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'line', 'use', 'animateColor', 'polyline', 'path', 'animate', 'ellipse', 'rect', 'desc', 'a', 'animateMotion', 'polygon', 'g', 'title', 'svg', 'switch', 'animateTransform', 'foreignObject', 'circle', 'metadata'])),
 
     'symbol': SVGElement('symbol',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'onfocusout', 'xml:space', 'onmouseover', 'id', 'externalResourcesRequired', 'viewBox', 'onload', 'style', 'onactivate', 'nmousedown', 'class', 'xml:lang', 'onmousemove', 'onclick', 'preserveAspectRatio', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'onfocusout', 'xml:space', 'onmouseover', 'id', 'externalResourcesRequired', 'viewBox', 'onload', 'style', 'onactivate', 'onmousedown', 'class', 'xml:lang', 'onmousemove', 'onclick', 'preserveAspectRatio', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['set', 'text', 'image', 'font-face', 'polyline', 'marker', 'animate', 'font', 'color-profile', 'ellipse', 'cursor', 'style', 'polygon', 'title', 'pattern', 'circle', 'radialGradient', 'metadata', 'defs', 'symbol', 'use', 'animateMotion', 'animateColor', 'path', 'line', 'rect', 'desc', 'a', 'g', 'svg', 'script', 'mask', 'altGlyphDef', 'filter', 'switch', 'animateTransform', 'linearGradient', 'clipPath', 'foreignObject', 'view'])),
 
     'text': SVGElement('text',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'class', 'systemLanguage', 'onmouseover', 'dx', 'dy', 'externalResourcesRequired', 'lengthAdjust', 'onload', 'style', 'rotate', 'onactivate', 'nmousedown', 'textLength', 'transform', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'y', 'x', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'class', 'systemLanguage', 'onmouseover', 'dx', 'dy', 'externalResourcesRequired', 'lengthAdjust', 'onload', 'style', 'rotate', 'onactivate', 'onmousedown', 'textLength', 'transform', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'y', 'x', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['a', 'animateMotion', 'set', 'title', 'textPath', 'tspan', 'animateColor', 'tref', 'animateTransform', 'altGlyph', 'animate', 'desc', 'metadata'])),
 
     'textPath': SVGElement('textPath',
-    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'startOffset', 'id', 'onload', 'style', 'nmousedown', 'lengthAdjust', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'spacing', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'textLength', 'method', 'xlink:role', 'requiredFeatures', 'xml:lang']),
+    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'startOffset', 'id', 'onload', 'style', 'onmousedown', 'lengthAdjust', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'spacing', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'textLength', 'method', 'xlink:role', 'requiredFeatures', 'xml:lang']),
     properties=presentation_attributes,
     children=frozenset(['a', 'set', 'title', 'tspan', 'animateColor', 'tref', 'altGlyph', 'animate', 'metadata', 'desc'])),
 
@@ -1379,17 +1379,17 @@ elements = {
     children=frozenset(['*'])),
 
     'tref': SVGElement('tref',
-    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'id', 'onload', 'style', 'nmousedown', 'lengthAdjust', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'systemLanguage', 'onmouseover', 'dx', 'dy', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'textLength', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'rotate']),
+    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'id', 'onload', 'style', 'onmousedown', 'lengthAdjust', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'systemLanguage', 'onmouseover', 'dx', 'dy', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'textLength', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x', 'rotate']),
     properties=presentation_attributes,
     children=frozenset(['set', 'title', 'animate', 'metadata', 'animateColor', 'desc'])),
 
     'tspan': SVGElement('tspan',
-    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'class', 'systemLanguage', 'onmouseover', 'dx', 'dy', 'externalResourcesRequired', 'lengthAdjust', 'onload', 'style', 'rotate', 'onactivate', 'nmousedown', 'textLength', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'y', 'x', 'onfocusin']),
+    attributes=frozenset(['xml:base', 'onmouseup', 'onmouseout', 'requiredExtensions', 'onfocusout', 'xml:space', 'class', 'systemLanguage', 'onmouseover', 'dx', 'dy', 'externalResourcesRequired', 'lengthAdjust', 'onload', 'style', 'rotate', 'onactivate', 'onmousedown', 'textLength', 'id', 'requiredFeatures', 'xml:lang', 'onmousemove', 'onclick', 'y', 'x', 'onfocusin']),
     properties=presentation_attributes,
     children=frozenset(['a', 'set', 'title', 'tspan', 'animateColor', 'tref', 'altGlyph', 'animate', 'metadata', 'desc'])),
 
     'use': SVGElement('use',
-    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'height', 'id', 'onload', 'style', 'nmousedown', 'transform', 'width', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x']),
+    attributes=frozenset(['requiredExtensions', 'onfocusout', 'xml:space', 'xlink:href', 'height', 'id', 'onload', 'style', 'onmousedown', 'transform', 'width', 'onmousemove', 'onclick', 'xlink:arcrole', 'onfocusin', 'xml:base', 'onmouseup', 'onmouseout', 'xlink:title', 'systemLanguage', 'onmouseover', 'xlink:type', 'externalResourcesRequired', 'class', 'xlink:actuate', 'xlink:show', 'onactivate', 'xlink:role', 'requiredFeatures', 'xml:lang', 'y', 'x']),
     properties=presentation_attributes,
     children=frozenset(['animateMotion', 'set', 'title', 'animateColor', 'animateTransform', 'animate', 'desc', 'metadata'])),
 
