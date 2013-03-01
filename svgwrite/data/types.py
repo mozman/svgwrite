@@ -15,10 +15,13 @@ class SVGAttribute(object):
 
     # 'elementname' is ignored, but necessary because of the signatures of
     # the SVGMultiAttribute class methods get_...()
+
     def get_anim(self, elementname='*'):
         return self._anim
+
     def get_types(self, elementname='*'):
         return self._types
+
     def get_const(self, elementname='*'):
         return self._const
 
