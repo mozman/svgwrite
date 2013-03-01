@@ -17,8 +17,8 @@ else:
 
 event_names = [
     "focusin", "focusout", "activate", "click", "mousedown", "mouseup", "mouseover",
-    "mousemove", "mouseout", "DOMSubtreeModified", "DOMNodeInserted", "DOMNoderemoved",
-    "DOMNodeRemovedFromDocument", "DOMNodeInsertedetoDocument", "DOMAttrModified",
+    "mousemove", "mouseout", "DOMSubtreeModified", "DOMNodeInserted", "DOMNodeRemoved",
+    "DOMNodeRemovedFromDocument", "DOMNodeInsertedtoDocument", "DOMAttrModified",
     "DOMCharacterDataModified", "SVGLoad", "SVGUnload", "SVGAbort", "SVGError",
     "SVGResize", "SVGScroll", "SVGZoom", "beginEvent", "endEvent", "repeatEvent",
     ]
@@ -131,7 +131,8 @@ def _build_animation_timing_parser():
     clock_val = _build_clock_val_parser()
     wallclock_value = _build_wall_clock_val_parser()
     event_ref = oneOf(event_names)
-    id_value = "#" + Word(alphanums + "-_")
+    # TODO: check id-value definition: is a leading '#' really valid
+    id_value = Optional("#") + Word(alphanums + "-_")
     opt_clock_val = Optional(sign + clock_val)
 
     wallclock_sync_value = Literal("wallclock(") + wallclock_value + ")"

@@ -22,6 +22,9 @@ class TestAnimationTimingParser(unittest.TestCase):
         self.assertTrue(AnimationTimingParser.is_valid("#0A1.end"))
 
     def test_event_value(self):
+        # Id-Value does not start with '#'
+        self.assertTrue(AnimationTimingParser.is_valid("shape.click+5min"))
+        # Id-Value starts with '#'
         self.assertTrue(AnimationTimingParser.is_valid("#001.click+5min"))
         self.assertTrue(AnimationTimingParser.is_valid("#001.mouseover-5min"))
         self.assertTrue(AnimationTimingParser.is_valid("mouseup-5min"))
