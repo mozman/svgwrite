@@ -6,7 +6,6 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: MIT License
 
-import sys
 import re
 
 from svgwrite.data import pattern
