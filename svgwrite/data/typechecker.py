@@ -11,7 +11,7 @@ import re
 
 from svgwrite.data import pattern
 from svgwrite.data.colors import colornames
-from svgwrite.data.svgparser import TransformListParser, PathDataParser, AnimationTimingParser
+from svgwrite.data.svgparser import is_valid_transferlist, is_valid_pathdata, is_valid_animation_timing
 from svgwrite.utils import is_string
 
 def iterflatlist(values):
@@ -36,7 +36,7 @@ NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
 
 class Full11TypeChecker(object):
     def get_version(self):
-        return ('1.1', 'full')
+        return '1.1', 'full'
 
     def is_angle(self, value):
         #angle ::= number (~"deg" | ~"grad" | ~"rad")?
@@ -257,13 +257,13 @@ class Full11TypeChecker(object):
 
     def is_transform_list(self, value):
         if is_string(value):
-            return TransformListParser.is_valid(value)
+            return is_valid_transferlist(value)
         else:
             return False
 
     def is_path_data(self, value):
         if is_string(value):
-            return PathDataParser.is_valid(value)
+            return is_valid_pathdata(value)
         else:
             return False
 
@@ -292,7 +292,7 @@ class Full11TypeChecker(object):
 
     def is_timing_value_list(self, value):
         if is_string(value):
-            return AnimationTimingParser.is_valid(value)
+            return is_valid_animation_timing(value)
         else:
             return False
 
@@ -313,7 +313,7 @@ FOCUS_CONST = frozenset(['nav-next', 'nav-prev', 'nav-up', 'nav-down', 'nav-left
 
 class Tiny12TypeChecker(Full11TypeChecker):
     def get_version(self):
-        return ('1.2', 'tiny')
+        return '1.2', 'tiny'
 
     def is_boolean(self, value):
         if isinstance(value, bool):
@@ -325,7 +325,7 @@ class Tiny12TypeChecker(Full11TypeChecker):
     def is_number(self, value):
         try:
             number = float(value)
-            if (-32767.9999 <= number <= 32767.9999):
+            if -32767.9999 <= number <= 32767.9999:
                 return True
             else:
                 return False

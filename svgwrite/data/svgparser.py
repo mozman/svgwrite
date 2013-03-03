@@ -7,6 +7,8 @@
 # License: MIT License
 # depends on: pyparsing.py by Paul T. McGuire - http://pyparsing.wikispaces.com/
 
+__all__ = ["is_valid_transferlist", "is_valid_pathdata", "is_valid_animation_timing"]
+
 import sys
 PYTHON3 = sys.version_info[0] > 2
 if PYTHON3:
@@ -14,6 +16,7 @@ if PYTHON3:
 else:
     from svgwrite.data.pyparsing_py2 import *
 
+from functools import partial
 
 event_names = [
     "focusin", "focusout", "activate", "click", "mousedown", "mouseup", "mouseover",
@@ -35,7 +38,14 @@ scientific_constant = Combine(fractional_constant + Optional(exponent)) \
 number = Combine(Optional(sign) + integer_constant) \
        ^ Combine(Optional(sign) + scientific_constant)
 
-def _build_transferlist_parser():
+def has_valid_syntax(term, parser):
+    try:
+        parser.parseString(term, parseAll=True)
+        return True
+    except ParseException:
+        return False
+
+def build_transferlist_parser():
     matrix = Literal("matrix") + '(' + number + (Suppress(comma) + number) * 5 + ')'
     translate = Literal("translate") + '(' + number + Optional(comma + number) + ')'
     scale = Literal("scale") + '(' + number + Optional(comma + number) + ')'
@@ -45,7 +55,9 @@ def _build_transferlist_parser():
     transform = matrix | translate | scale | rotate | skewX | skewY
     return transform + ZeroOrMore(comma + transform)
 
-def _build_pathdata_parser():
+is_valid_transferlist = partial(has_valid_syntax, parser=build_transferlist_parser())
+
+def build_pathdata_parser():
     coordinate = number
     coordinate_pair = coordinate + comma + coordinate
     nonnegative_number = integer_constant ^ scientific_constant
@@ -96,6 +108,8 @@ def _build_pathdata_parser():
     moveto_drawto_command_group = moveto + ZeroOrMore(drawto_commands)
     return moveto_drawto_command_group + ZeroOrMore(moveto_drawto_command_group)
 
+is_valid_pathdata = partial(has_valid_syntax, parser=build_pathdata_parser())
+
 def _build_clock_val_parser():
     digit2 = Word(nums, exact=2)
     timecount = integer_constant
@@ -124,10 +138,10 @@ def _build_wall_clock_val_parser():
     walltime = hhmmss + Optional(tzd)
     date = year + "-" + month + "-" + day
     datetime = date + "T" + walltime
-    return (datetime | walltime | date)
+    return datetime | walltime | date
 
 
-def _build_animation_timing_parser():
+def build_animation_timing_parser():
     clock_val = _build_clock_val_parser()
     wallclock_value = _build_wall_clock_val_parser()
     event_ref = oneOf(event_names)
@@ -145,24 +159,5 @@ def _build_animation_timing_parser():
                 | accesskey_value | wallclock_sync_value | Literal("indefinite")
     return begin_value + ZeroOrMore(semicolon + begin_value)
 
-class _AbstractParser(object):
-    @classmethod
-    def is_valid(cls, value):
-        try:
-            cls._parser.parseString(value, parseAll=True)
-            return True
-        except ParseException:
-            return False
+is_valid_animation_timing = partial(has_valid_syntax, parser=build_animation_timing_parser())
 
-    @classmethod
-    def parse(cls, value):
-        raise NotImplementedError('parsing not implemented')
-
-class TransformListParser(_AbstractParser):
-    _parser = _build_transferlist_parser()
-
-class PathDataParser(_AbstractParser):
-    _parser = _build_pathdata_parser()
-
-class AnimationTimingParser(_AbstractParser):
-    _parser = _build_animation_timing_parser()
