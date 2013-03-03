@@ -8,57 +8,57 @@
 
 import unittest
 
-from svgwrite.data.svgparser import AnimationTimingParser
+from svgwrite.data.svgparser import is_valid_animation_timing
 
 class TestAnimationTimingParser(unittest.TestCase):
     def test_offset_value(self):
-        self.assertTrue(AnimationTimingParser.is_valid("+5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("-5s"))
+        self.assertTrue(is_valid_animation_timing("+5min"))
+        self.assertTrue(is_valid_animation_timing("-5s"))
 
     def test_syncbase_value(self):
-        self.assertTrue(AnimationTimingParser.is_valid("#001.begin+5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("#001.end-5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("#0A1.begin"))
-        self.assertTrue(AnimationTimingParser.is_valid("#0A1.end"))
+        self.assertTrue(is_valid_animation_timing("#001.begin+5min"))
+        self.assertTrue(is_valid_animation_timing("#001.end-5min"))
+        self.assertTrue(is_valid_animation_timing("#0A1.begin"))
+        self.assertTrue(is_valid_animation_timing("#0A1.end"))
 
     def test_event_value(self):
         # Id-Value does not start with '#'
-        self.assertTrue(AnimationTimingParser.is_valid("shape.click+5min"))
+        self.assertTrue(is_valid_animation_timing("shape.click+5min"))
         # Id-Value starts with '#'
-        self.assertTrue(AnimationTimingParser.is_valid("#001.click+5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("#001.mouseover-5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("mouseup-5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("mousedown+5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("mouseout"))
-        self.assertTrue(AnimationTimingParser.is_valid("focusout"))
-        self.assertTrue(AnimationTimingParser.is_valid("focusin"))
+        self.assertTrue(is_valid_animation_timing("#001.click+5min"))
+        self.assertTrue(is_valid_animation_timing("#001.mouseover-5min"))
+        self.assertTrue(is_valid_animation_timing("mouseup-5min"))
+        self.assertTrue(is_valid_animation_timing("mousedown+5min"))
+        self.assertTrue(is_valid_animation_timing("mouseout"))
+        self.assertTrue(is_valid_animation_timing("focusout"))
+        self.assertTrue(is_valid_animation_timing("focusin"))
 
     def test_repeat_value(self):
-        self.assertTrue(AnimationTimingParser.is_valid("#001.repeat(1)+5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("repeat(1)-5min"))
+        self.assertTrue(is_valid_animation_timing("#001.repeat(1)+5min"))
+        self.assertTrue(is_valid_animation_timing("repeat(1)-5min"))
 
     def test_accessKey_value(self):
-        self.assertTrue(AnimationTimingParser.is_valid("accessKey(a)+5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("accessKey(Z)-5min"))
-        self.assertTrue(AnimationTimingParser.is_valid("accessKey(a)"))
-        self.assertTrue(AnimationTimingParser.is_valid("accessKey(Z)"))
+        self.assertTrue(is_valid_animation_timing("accessKey(a)+5min"))
+        self.assertTrue(is_valid_animation_timing("accessKey(Z)-5min"))
+        self.assertTrue(is_valid_animation_timing("accessKey(a)"))
+        self.assertTrue(is_valid_animation_timing("accessKey(Z)"))
 
     def test_wallclock(self):
-        self.assertTrue(AnimationTimingParser.is_valid("wallclock(1997-07-16T19:20:30.45+01:00)"))
-        self.assertTrue(AnimationTimingParser.is_valid("wallclock(1997-07-16T19:20:30+01:00)"))
-        self.assertTrue(AnimationTimingParser.is_valid("wallclock(1997-07-16T19:20:30)"))
-        self.assertTrue(AnimationTimingParser.is_valid("wallclock(1997-07-16T19:20)"))
+        self.assertTrue(is_valid_animation_timing("wallclock(1997-07-16T19:20:30.45+01:00)"))
+        self.assertTrue(is_valid_animation_timing("wallclock(1997-07-16T19:20:30+01:00)"))
+        self.assertTrue(is_valid_animation_timing("wallclock(1997-07-16T19:20:30)"))
+        self.assertTrue(is_valid_animation_timing("wallclock(1997-07-16T19:20)"))
 
     def test_invalid_value(self):
-        self.assertFalse(AnimationTimingParser.is_valid("xyz"))
-        self.assertFalse(AnimationTimingParser.is_valid("repeat(0"))
-        self.assertFalse(AnimationTimingParser.is_valid("repeat0)"))
-        self.assertFalse(AnimationTimingParser.is_valid("accessKeya)"))
-        self.assertFalse(AnimationTimingParser.is_valid("accessKey(Z"))
-        self.assertFalse(AnimationTimingParser.is_valid("001"))
-        self.assertFalse(AnimationTimingParser.is_valid("wallclock(1997-07-16T19:2)"))
-        self.assertFalse(AnimationTimingParser.is_valid("wallclock(1997-07-16T19:)"))
-        self.assertFalse(AnimationTimingParser.is_valid("wallclock(1997-07-16T19)"))
+        self.assertFalse(is_valid_animation_timing("xyz"))
+        self.assertFalse(is_valid_animation_timing("repeat(0"))
+        self.assertFalse(is_valid_animation_timing("repeat0)"))
+        self.assertFalse(is_valid_animation_timing("accessKeya)"))
+        self.assertFalse(is_valid_animation_timing("accessKey(Z"))
+        self.assertFalse(is_valid_animation_timing("001"))
+        self.assertFalse(is_valid_animation_timing("wallclock(1997-07-16T19:2)"))
+        self.assertFalse(is_valid_animation_timing("wallclock(1997-07-16T19:)"))
+        self.assertFalse(is_valid_animation_timing("wallclock(1997-07-16T19)"))
 
 if __name__=='__main__':
     unittest.main()
