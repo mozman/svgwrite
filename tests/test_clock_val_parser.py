@@ -16,11 +16,11 @@ if PYTHON3:
 else:
     import svgwrite.data.pyparsing_py2 as pp
 
-from svgwrite.data.svgparser import _build_clock_val_parser
-from svgwrite.data.svgparser import _build_wall_clock_val_parser
+from svgwrite.data.svgparser import build_clock_val_parser
+from svgwrite.data.svgparser import build_wall_clock_val_parser
 
 class TestClockValParser(unittest.TestCase):
-    clock_val_parser = _build_clock_val_parser()
+    clock_val_parser = build_clock_val_parser()
 
     def is_valid(self, value):
         try:
@@ -46,7 +46,7 @@ class TestClockValParser(unittest.TestCase):
         self.assertTrue(self.is_valid("12.467"))
 
 class TestWallClockValParser(unittest.TestCase):
-    wallclock_parser = _build_wall_clock_val_parser()
+    wallclock_parser = build_wall_clock_val_parser()
 
     def is_valid(self, value):
         try:

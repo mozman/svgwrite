@@ -110,7 +110,7 @@ def build_pathdata_parser():
 
 is_valid_pathdata = partial(has_valid_syntax, parser=build_pathdata_parser())
 
-def _build_clock_val_parser():
+def build_clock_val_parser():
     digit2 = Word(nums, exact=2)
     timecount = integer_constant
     fraction = integer_constant
@@ -123,7 +123,7 @@ def _build_clock_val_parser():
     full_clock_val = hours + ":" + minutes + ":" + seconds + Optional("." + fraction)
     return full_clock_val | partial_clock_val | timecount_val
 
-def _build_wall_clock_val_parser():
+def build_wall_clock_val_parser():
     # http://www.w3.org/TR/2005/REC-SMIL2-20050107/smil-timing.html#Timing-WallclockSyncValueSyntax
     digit2 = Word(nums, exact=2)
     fraction = integer_constant
@@ -142,10 +142,10 @@ def _build_wall_clock_val_parser():
 
 
 def build_animation_timing_parser():
-    clock_val = _build_clock_val_parser()
-    wallclock_value = _build_wall_clock_val_parser()
+    clock_val = build_clock_val_parser()
+    wallclock_value = build_wall_clock_val_parser()
     event_ref = oneOf(event_names)
-    # TODO: check id-value definition: is a leading '#' really valid
+    # TODO: check id-value definition: is a leading '#' really valid?
     id_value = Optional("#") + Word(alphanums + "-_")
     opt_clock_val = Optional(sign + clock_val)
 
@@ -160,4 +160,3 @@ def build_animation_timing_parser():
     return begin_value + ZeroOrMore(semicolon + begin_value)
 
 is_valid_animation_timing = partial(has_valid_syntax, parser=build_animation_timing_parser())
-
