@@ -1,2 +1,2 @@
 @echo off
-for %%e in (*.py) do python %%e
+for %%e in (*.py) do py %%e
