@@ -60,11 +60,14 @@ class TestBaseElement(unittest.TestCase):
         m['width'] = 999
         self.assertEqual(copy.tostring(), '<svg height="200" width="100"><svg height="200" width="100" /></svg>')
 
+
 class TestValueToString(unittest.TestCase):
     def test_full_profile(self):
         element = MockBase()
         self.assertEqual('test', element.value_to_string('test'))
+        #self.assertEqual('süß', element.value_to_string('süß'))
         self.assertEqual('10', element.value_to_string(10))
+
 
     def test_tiny_profile(self):
         element = MockBase()
@@ -80,5 +83,5 @@ class TestValueToString(unittest.TestCase):
         self.assertTrue(is_string(element.value_to_string('test')))
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.main()

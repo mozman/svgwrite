@@ -11,7 +11,7 @@ import re
 from svgwrite.data import pattern
 from svgwrite.data.colors import colornames
 from svgwrite.data.svgparser import is_valid_transferlist, is_valid_pathdata, is_valid_animation_timing
-from svgwrite.utils import is_string
+from svgwrite.utils import is_string, to_unicode
 
 def iterflatlist(values):
     """ Flatten nested *values*, returns an *iterator*. """

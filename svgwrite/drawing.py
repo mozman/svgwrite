@@ -29,6 +29,7 @@ import io
 from svgwrite.container import SVG, Defs
 from svgwrite.elementfactory import ElementFactory
 
+
 class Drawing(SVG, ElementFactory):
     """ This is the SVG drawing represented by the top level *svg* element.
 
@@ -53,7 +54,7 @@ class Drawing(SVG, ElementFactory):
         """
         super(Drawing, self).__init__(size=size, **extra)
         self.filename = filename
-        self._stylesheets = [] # list of stylesheets appended
+        self._stylesheets = []  # list of stylesheets appended
 
     def get_xml(self):
         """ Get the XML representation as `ElementTree` object.
@@ -62,7 +63,7 @@ class Drawing(SVG, ElementFactory):
 
         """
         profile = self.profile
-        version = self.get_version()
+        version = self.version
         self.attribs['xmlns'] = "http://www.w3.org/2000/svg"
         self.attribs['xmlns:xlink'] = "http://www.w3.org/1999/xlink"
         self.attribs['xmlns:ev'] = "http://www.w3.org/2001/xml-events"
@@ -98,7 +99,7 @@ class Drawing(SVG, ElementFactory):
         # http://tech.groups.yahoo.com/group/svg-developers/message/48562
         # write stylesheets
         stylesheet_template = '<?xml-stylesheet href="%s" type="text/css" ' \
-                     'title="%s" alternate="%s" media="%s"?>\n'
+            'title="%s" alternate="%s" media="%s"?>\n'
         # removed map(), does not work with Python 3
         for stylesheet in self._stylesheets:
             fileobj.write(stylesheet_template % stylesheet)

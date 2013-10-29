@@ -55,7 +55,8 @@ def build_transferlist_parser():
     transform = matrix | translate | scale | rotate | skewX | skewY
     return transform + ZeroOrMore(comma + transform)
 
-is_valid_transferlist = partial(has_valid_syntax, parser=build_transferlist_parser())
+transferlist_parser = build_transferlist_parser()
+is_valid_transferlist = partial(has_valid_syntax, parser=transferlist_parser)
 
 def build_pathdata_parser():
     coordinate = number
@@ -107,8 +108,8 @@ def build_pathdata_parser():
     drawto_commands = drawto_command + ZeroOrMore(drawto_command)
     moveto_drawto_command_group = moveto + ZeroOrMore(drawto_commands)
     return moveto_drawto_command_group + ZeroOrMore(moveto_drawto_command_group)
-
-is_valid_pathdata = partial(has_valid_syntax, parser=build_pathdata_parser())
+pathdata_parser = build_pathdata_parser()
+is_valid_pathdata = partial(has_valid_syntax, parser=pathdata_parser)
 
 def build_clock_val_parser():
     digit2 = Word(nums, exact=2)
@@ -159,4 +160,5 @@ def build_animation_timing_parser():
                 | accesskey_value | wallclock_sync_value | Literal("indefinite")
     return begin_value + ZeroOrMore(semicolon + begin_value)
 
-is_valid_animation_timing = partial(has_valid_syntax, parser=build_animation_timing_parser())
+animation_timing_parser = build_animation_timing_parser()
+is_valid_animation_timing = partial(has_valid_syntax, parser=animation_timing_parser)

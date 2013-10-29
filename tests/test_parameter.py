@@ -11,10 +11,11 @@ import unittest
 
 from svgwrite.params import Parameter
 
+
 class TestParameterClass(unittest.TestCase):
     def test_init(self):
         p = Parameter(debug=True, profile='TINY')
-        self.assertEqual(p.get_profile(), 'tiny')
+        self.assertEqual(p.profile, 'tiny')
         self.assertTrue(p.debug)
 
     def test_default_values(self):
@@ -23,5 +24,5 @@ class TestParameterClass(unittest.TestCase):
         self.assertTrue(p.debug)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.main()

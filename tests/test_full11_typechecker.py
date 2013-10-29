@@ -6,7 +6,6 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: MIT License
 
-import sys
 import unittest
 
 from svgwrite.data.typechecker import Full11TypeChecker
@@ -31,6 +30,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_anything(100.0))
         self.assertTrue(self.checker.is_anything((100.0, 11)))
         self.assertTrue(self.checker.is_anything(dict(a=100, b=200)))
+        self.assertTrue(self.checker.is_anything(u'äüß'.encode('utf-8')))
 
     def test_is_number(self):
         """ Integer and Float, also as String '100' or '3.1415'. """
@@ -41,6 +41,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_number('100000'))
         self.assertTrue(self.checker.is_number('-100000'))
         self.assertTrue(self.checker.is_number('3.141592'))
+
     def test_is_not_number(self):
         self.assertFalse(self.checker.is_number( (1,2) ))
         self.assertFalse(self.checker.is_number('manfred'))

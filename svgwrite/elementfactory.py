@@ -53,6 +53,7 @@ factoryelements = {
     'filter': filters.Filter,
 }
 
+
 class ElementBuilder(object):
     def __init__(self, cls, factory):
         self.cls = cls
@@ -63,6 +64,7 @@ class ElementBuilder(object):
         kwargs['factory'] = self.factory
         # create an object of type 'cls'
         return self.cls(*args, **kwargs)
+
 
 class ElementFactory(object):
     def __getattr__(self, name):
