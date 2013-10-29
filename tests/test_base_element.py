@@ -64,9 +64,9 @@ class TestBaseElement(unittest.TestCase):
 class TestValueToString(unittest.TestCase):
     def test_full_profile(self):
         element = MockBase()
-        self.assertEqual('test', element.value_to_string('test'))
-        #self.assertEqual('süß', element.value_to_string('süß'))
-        self.assertEqual('10', element.value_to_string(10))
+        self.assertEqual(u'test', element.value_to_string('test'))
+        self.assertEqual(u'süß', element.value_to_string('süß'))
+        self.assertEqual(u'10', element.value_to_string(10))
 
 
     def test_tiny_profile(self):

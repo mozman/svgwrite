@@ -2,6 +2,10 @@
 NEWS
 ====
 
+Version 1.1.3 - October 2013
+
+  * updated pyparsing for Python 3 to version 2.0.1 (prior version caused memory leaks)
+
 Version 1.1.2 - 08 January 2013
 
   * prevent setup.py from compiling all modules - error with 'pyparsing_py2.py' and Python3
