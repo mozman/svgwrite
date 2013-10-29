@@ -4,7 +4,7 @@
 # Purpose: package definition file
 # Created: 08.09.2010
 # License: MIT License
-# Copyright (C) 2010-2012  Manfred Moitzi
+# Copyright (C) 2010-2013  Manfred Moitzi
 
 """
 A Python library to create SVG drawings.
@@ -41,12 +41,12 @@ You can only create two types of SVG drawings:
 
 """
 
-version = (1, 1, 2)
+version = (1, 1, 3)
 VERSION = '%d.%d.%d' % version
 
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'mozman@gmx.at'
-CYEAR = '2012'
+CYEAR = '2013'
 
 from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb

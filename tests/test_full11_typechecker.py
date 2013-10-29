@@ -82,6 +82,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_integer(-100000))
         self.assertTrue(self.checker.is_integer('100000'))
         self.assertTrue(self.checker.is_integer('-100000'))
+
     def test_is_not_integer(self):
         self.assertFalse(self.checker.is_integer( (1,2) ))
         self.assertFalse(self.checker.is_integer('manfred'))
@@ -99,6 +100,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_percentage(' 100% '))
         self.assertTrue(self.checker.is_percentage(' 50.123% '))
         self.assertTrue(self.checker.is_percentage(' 1000% '))
+
     def test_is_not_percentage(self):
         self.assertFalse(self.checker.is_percentage('100px'))
         self.assertFalse(self.checker.is_percentage('100cm'))
@@ -116,6 +118,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_time(' 100ms'))
         self.assertTrue(self.checker.is_time(' 50.123s'))
         self.assertTrue(self.checker.is_time(' 1000ms'))
+
     def test_is_not_time(self):
         self.assertFalse(self.checker.is_time('100px'))
         self.assertFalse(self.checker.is_time('100cm'))

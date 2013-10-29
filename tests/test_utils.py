@@ -12,6 +12,8 @@ import unittest
 from svgwrite.utils import rgb, AutoID, get_unit
 from svgwrite.utils import strlist, rect_top_left_corner
 from svgwrite.utils import split_angle, split_coordinate
+from svgwrite.utils import to_unicode
+
 from svgwrite import cm
 
 class TestRgb(unittest.TestCase):
@@ -165,5 +167,19 @@ class TestUnit(unittest.TestCase):
     def test_call_cm(self):
         self.assertEqual('5cm,7cm', cm(5, 7))
 
-if __name__=='__main__':
+
+class TestToUnicode(unittest.TestCase):
+    def test_utf8_to_unicode(self):
+        self.assertEqual(u'süß', to_unicode('süß'))
+
+    def test_unicode_to_unicode(self):
+        self.assertEqual(u'süß', to_unicode(u'süß'))
+
+    def test_int_to_unicode(self):
+        self.assertEqual(u'10', to_unicode(10))
+
+    def test_float_to_unicode(self):
+        self.assertEqual(u'10.1', to_unicode(10.1))
+
+if __name__ == '__main__':
     unittest.main()
