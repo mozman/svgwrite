@@ -10,14 +10,25 @@ from svgwrite.data import full11
 from svgwrite.data import tiny12
 from svgwrite.data import pattern
 
+validator_cache = {}
+
+def cache_key(profile, debug):
+    return str(profile) + str(debug)
+
 def get_validator(profile, debug=True):
     """ Validator factory """
-    if profile == 'tiny':
-        return Tiny12Validator(debug)
-    elif profile in ('full', 'basic', 'none'):
-        return Full11Validator(debug)
-    else:
-        raise ValueError("Unsupported profile: '%s'"  % profile)
+    try:
+        return validator_cache[cache_key(profile, debug)]
+    except KeyError:
+        if profile == 'tiny':
+            validator = Tiny12Validator(debug)
+        elif profile in ('full', 'basic', 'none'):
+            validator = Full11Validator(debug)
+        else:
+            raise ValueError("Unsupported profile: '%s'" % profile)
+        validator_cache[cache_key(profile, debug)] = validator
+        return validator
+
 
 class Tiny12Validator(object):
     def __init__(self, debug=True):

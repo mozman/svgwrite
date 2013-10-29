@@ -51,6 +51,7 @@ CYEAR = '2012'
 from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb
 
+
 class Unit(object):
     """ Add units to values.
     """
@@ -59,7 +60,7 @@ class Unit(object):
 
         :param str unit: specify the unit string
         """
-        self._unit=unit
+        self._unit = unit
 
     def __rmul__(self, other):
         """ add unit-string to 'other'. (e.g. 5*cm => '5cm') """

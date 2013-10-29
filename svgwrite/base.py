@@ -16,6 +16,7 @@ import copy
 from svgwrite.params import Parameter
 from svgwrite.utils import AutoID, to_unicode, PYTHON3
 
+
 class BaseElement(object):
     """
     The **BaseElement** is the root for all SVG elements. The SVG attributes
@@ -57,12 +58,12 @@ class BaseElement(object):
         # override debug setting
         debug = extra.pop('debug', None)
         if debug is not None:
-            self._parameter.set_debug(debug)
+            self._parameter.debug = debug
 
         # override profile setting
         profile = extra.pop('profile', None)
         if profile is not None:
-            self._parameter.set_profile(profile)
+            self._parameter.profile = profile
 
         self.attribs = dict()
         self.update(extra)
@@ -91,19 +92,20 @@ class BaseElement(object):
             newobj['id'] = newobj.next_id()
         return newobj
 
-    def get_debug(self):
+    @property
+    def debug(self):
         return self._parameter.debug
-    debug = property(get_debug)
 
-    def get_profile(self):
+    @property
+    def profile(self):
         return self._parameter.profile
-    profile = property(get_profile)
 
-    def get_validator(self):
+    @property
+    def validator(self):
         return self._parameter.validator
-    validator = property(get_validator)
 
-    def get_version(self):
+    @property
+    def version(self):
         return self._parameter.get_version()
 
     def set_parameter(self, parameter):

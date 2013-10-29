@@ -8,6 +8,7 @@
 
 from svgwrite.validator2 import get_validator
 
+
 class Parameter(object):
     """
     .. attribute:: Parameter.debug
@@ -31,18 +32,19 @@ class Parameter(object):
 
     def __init__(self, debug=True, profile='full'):
         self._debug = debug
-        self.set_profile(profile)
+        self.profile = profile
 
     def _init_validator(self):
         self.validator = get_validator(self.profile,  self.debug)
 
-    def get_debug(self):
+    @property
+    def debug(self):
         return self._debug
 
-    def set_debug(self, debug):
+    @debug.setter
+    def debug(self, debug):
         self._debug = debug
         self._init_validator()
-    debug = property(get_debug, set_debug)
 
     def get_version(self):
         if self._profile == 'tiny':
@@ -50,10 +52,12 @@ class Parameter(object):
         else:
             return '1.1'
 
-    def get_profile(self):
+    @property
+    def profile(self):
         return self._profile
 
-    def set_profile(self, profile):
+    @profile.setter
+    def profile(self, profile):
         """
         :param string profile: name of the SVG profile, valid profiles are:
         ``'full|basic|tiny'``
@@ -65,4 +69,3 @@ class Parameter(object):
             self._init_validator()
         else:
             raise ValueError("'%s' is not a valid profile." % profile)
-    profile = property(get_profile, set_profile)

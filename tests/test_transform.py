@@ -116,5 +116,11 @@ class TestITransfer(unittest.TestCase):
         m.scale(2,2)
         self.assertEqual(m.tostring(), '<g transform="translate(10,20) scale(2,2)" />')
 
+    def test_delete_transformation(self):
+        m = Mock()
+        m.translate(10,20)
+        del m.attribs['transform']
+        self.assertEqual(m.tostring(), '<g />')
+
 if __name__=='__main__':
     unittest.main()

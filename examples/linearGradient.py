@@ -53,11 +53,11 @@ def linearGradient(name):
 
 
     # use gradient for filling the rect
-    dwg.add(dwg.rect((10,10), (50,50), fill=horizontal_gradient.get_paint_server()))
-    dwg.add(dwg.rect((70,10), (50,50), fill=vertical_gradient.get_paint_server()))
-    dwg.add(dwg.rect((130,10), (50,50), fill=diagonal_gradient.get_paint_server()))
+    dwg.add(dwg.rect((10,10), (50,50), fill=horizontal_gradient.get_paint_server(default='currentColor')))
+    dwg.add(dwg.rect((70,10), (50,50), fill=vertical_gradient.get_paint_server(default='currentColor')))
+    dwg.add(dwg.rect((130,10), (50,50), fill=diagonal_gradient.get_paint_server(default='currentColor')))
 
-    dwg.add(dwg.rect((10,70), (50,50), fill=tricolor_gradient.get_paint_server()))
+    dwg.add(dwg.rect((10,70), (50,50), fill=tricolor_gradient.get_paint_server(default='currentColor')))
 
     # rotate gradient about 90 degree
     # first copy gradient
@@ -67,12 +67,12 @@ def linearGradient(name):
     # add gradient to the defs section of the drawing
     dwg.defs.add(tricolor2_gradient)
     # use the gradient
-    dwg.add(dwg.rect((70,70), (50,50), fill=tricolor2_gradient.get_paint_server()))
+    dwg.add(dwg.rect((70,70), (50,50), fill=tricolor2_gradient.get_paint_server(default='currentColor')))
 
     updown = dwg.linearGradient()
     dwg.defs.add(updown)
     updown.add_colors(['red', 'white', 'red', 'white', 'red'], sweep=(.2, .8))
-    dwg.add(dwg.rect((130,70), (50,50), fill=updown.get_paint_server()))
+    dwg.add(dwg.rect((130,70), (50,50), fill=updown.get_paint_server(default='currentColor')))
 
     dwg.save()
 
