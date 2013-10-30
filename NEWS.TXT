@@ -5,6 +5,8 @@ NEWS
 Version 1.1.3 - October 2013
 
   * updated pyparsing for Python 3 to version 2.0.1 (prior version caused memory leaks)
+  * BUGFIX: utf8 to unicode encoding error for Python 2.7
+  * Tests for Python 3 require CPython3.3 or newer, using the 'u' prefix.
 
 Version 1.1.2 - 08 January 2013
 
