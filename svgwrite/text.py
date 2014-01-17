@@ -168,12 +168,12 @@ class TextArea(BaseElement, Transform, Presentation):
     elementname = 'textArea'
     def __init__(self, text=None, insert=None, size=None, **extra):
         super(TextArea, self).__init__(**extra)
-        if text:
+        if text is not None:
             self.write(text)
-        if insert:
+        if insert is not None:
             self['x'] = insert[0]
             self['y'] = insert[1]
-        if size:
+        if size is not None:
             self['width'] = size[0]
             self['height'] = size[1]
 
