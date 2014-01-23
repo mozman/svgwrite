@@ -41,7 +41,7 @@ You can only create two types of SVG drawings:
 
 """
 
-version = (1, 1, 3)
+version = (1, 1, 4)
 VERSION = '%d.%d.%d' % version
 
 AUTHOR_NAME = 'Manfred Moitzi'

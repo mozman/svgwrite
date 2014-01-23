@@ -16,6 +16,7 @@ from svgwrite.base import BaseElement
 from svgwrite.mixins import Presentation, Transform, XLink
 from svgwrite.utils import iterflatlist, strlist, is_string, to_unicode
 
+
 class TSpan(BaseElement, Presentation):
     """
     Within a **Text** element, text and font properties
@@ -27,7 +28,7 @@ class TSpan(BaseElement, Presentation):
     """
     elementname = 'tspan'
 
-    def __init__(self, text, insert=None, x=[], y=[], dx=[], dy=[], rotate=[],
+    def __init__(self, text, insert=None, x=None, y=None, dx=None, dy=None, rotate=None,
                  **extra):
         """
         :param string text: **tspan** content
@@ -45,24 +46,30 @@ class TSpan(BaseElement, Presentation):
         self.text = text
         if insert is not None:
             if is_string(insert):
-                raise TypeError("'insert' should be a <tuple> or a <list>  with" \
+                raise TypeError("'insert' should be a <tuple> or a <list>  with"
                                 " at least two elements.")
             if x or y:
-                raise ValueError("Use 'insert' and 'x' or 'y' parameter not" \
+                raise ValueError("Use 'insert' and 'x' or 'y' parameter not"
                                  " at the same time!")
             x = [insert[0]]
             y = [insert[1]]
 
-        if x: self['x'] = strlist(list(iterflatlist(x)), ' ')
-        if y: self['y'] = strlist(list(iterflatlist(y)), ' ')
-        if dx: self['dx'] = strlist(list(iterflatlist(dx)), ' ')
-        if dy: self['dy'] = strlist(list(iterflatlist(dy)), ' ')
-        if rotate: self['rotate'] = strlist(list(iterflatlist(rotate)), ' ')
+        if x is not None:
+            self['x'] = strlist(list(iterflatlist(x)), ' ')
+        if y is not None:
+            self['y'] = strlist(list(iterflatlist(y)), ' ')
+        if dx is not None:
+            self['dx'] = strlist(list(iterflatlist(dx)), ' ')
+        if dy is not None:
+            self['dy'] = strlist(list(iterflatlist(dy)), ' ')
+        if rotate is not None:
+            self['rotate'] = strlist(list(iterflatlist(rotate)), ' ')
 
     def get_xml(self):
         xml = super(TSpan, self).get_xml()
         xml.text = to_unicode(self.text)
         return xml
+
 
 class Text(TSpan, Transform):
     """
@@ -72,6 +79,7 @@ class Text(TSpan, Transform):
 
     """
     elementname = 'text'
+
 
 class TRef(BaseElement, XLink, Presentation):
     """
@@ -95,8 +103,9 @@ class TRef(BaseElement, XLink, Presentation):
         self.set_href(element)
 
     def get_xml(self):
-        self.update_id() # if href is an object - 'id' - attribute may be changed!
+        self.update_id()  # if href is an object - 'id' - attribute may be changed!
         return super(TRef, self).get_xml()
+
 
 class TextPath(BaseElement, XLink, Presentation):
     """
@@ -108,6 +117,7 @@ class TextPath(BaseElement, XLink, Presentation):
 
     """
     elementname = 'textPath'
+
     def __init__(self, path, text, startOffset=None, method='align', spacing='exact',
                  **extra):
         """
@@ -134,16 +144,22 @@ class TextPath(BaseElement, XLink, Presentation):
         xml.text = to_unicode(self.text)
         return xml
 
+
 class TBreak(BaseElement):
     elementname = 'tbreak'
+
     def __init__(self, **extra):
-        super (TBreak, self).__init__(**extra)
+        super(TBreak, self).__init__(**extra)
+
     def __getitem__(self, key):
         raise NotImplementedError("__getitem__() not supported by TBreak class.")
+
     def __setitem__(self, key, value):
         raise NotImplementedError("__setitem__() not supported by TBreak class.")
+
     def add(self, element):
         raise NotImplementedError("add() not supported by TBreak class.")
+
 
 class TextArea(BaseElement, Transform, Presentation):
     """
@@ -166,6 +182,7 @@ class TextArea(BaseElement, Transform, Presentation):
 
     """
     elementname = 'textArea'
+
     def __init__(self, text=None, insert=None, size=None, **extra):
         super(TextArea, self).__init__(**extra)
         if text is not None:
@@ -190,9 +207,9 @@ class TextArea(BaseElement, Transform, Presentation):
         if '\n' not in text:
             self.add(TSpan(text, **extra))
         else:
-            lines= text.split('\n')
+            lines = text.split('\n')
             for line in lines[:-1]:
-                if line: # no text between '\n'+
+                if line:  # no text between '\n'+
                     self.add(TSpan(line, **extra))
                 self.add(TBreak())
             # case "text\n" : last element is ''
