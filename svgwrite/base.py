@@ -85,10 +85,10 @@ class BaseElement(object):
             self.__setitem__(key, value)
 
     def copy(self):
-        newobj = copy.copy(self) # shallow copy of object
-        newobj.attribs = copy.copy(self.attribs) # shallow copy of attributes
-        newobj.elements = copy.copy(self.elements) # shallow copy of subelements
-        if 'id' in newobj.attribs: # create a new 'id'
+        newobj = copy.copy(self)  # shallow copy of object
+        newobj.attribs = copy.copy(self.attribs)  # shallow copy of attributes
+        newobj.elements = copy.copy(self.elements)  # shallow copy of subelements
+        if 'id' in newobj.attribs:  # create a new 'id'
             newobj['id'] = newobj.next_id()
         return newobj
 
@@ -197,7 +197,7 @@ class BaseElement(object):
             # filter 'None' values
             if value is not None:
                 value = self.value_to_string(value)
-                if value: # just add not empty attributes
+                if value:  # just add not empty attributes
                     xml.set(attribute, value)
 
         for element in self.elements:
@@ -241,8 +241,10 @@ class BaseElement(object):
                     return
             self.elements.insert(pos, metadata)
 
+
 class Title(object):
     elementname = 'title'
+
     def __init__(self, text):
         self.xml = etree.Element(self.elementname)
         self.xml.text = to_unicode(text)
@@ -250,11 +252,14 @@ class Title(object):
     def get_xml(self):
         return self.xml
 
+
 class Desc(Title):
     elementname = 'desc'
 
+
 class Metadata(Title):
     elementname = 'metadata'
+
     def __init__(self, xmldata):
         """
         :param xmldata: an xml.etree.ElementTree - Element() object.
