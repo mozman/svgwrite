@@ -157,7 +157,7 @@ class BaseElement(object):
 
         """
         # Attribute checking is only done by using the __setitem__() method or
-        # by self['attibute'] = value
+        # by self['attribute'] = value
         if self.debug:
             self.validator.check_svg_attribute_value(self.elementname, key, value)
         self.attribs[key] = value

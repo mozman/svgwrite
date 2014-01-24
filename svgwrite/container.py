@@ -29,6 +29,7 @@ from svgwrite.mixins import ViewBox, Transform, XLink
 from svgwrite.mixins import Presentation, Clipping
 from svgwrite.etree import CDATA
 
+
 class Group(BaseElement, Transform, Presentation):
     """ The **Group** (SVG **g**) element is a container element for grouping
     together related graphics elements.
@@ -45,12 +46,14 @@ class Group(BaseElement, Transform, Presentation):
     """
     elementname = 'g'
 
+
 class Defs(Group):
     """ The **defs** element is a container element for referenced elements. For
     understandability and accessibility reasons, it is recommended that, whenever
     possible, referenced elements be defined inside of a **defs**.
     """
-    elementname= 'defs'
+    elementname = 'defs'
+
 
 class Symbol(BaseElement, ViewBox, Presentation, Clipping):
     """ The **symbol** element is used to define graphical template objects which
@@ -62,6 +65,7 @@ class Symbol(BaseElement, ViewBox, Presentation, Clipping):
     # ITransform interface is not valid for Symbol -> do not inherit from Group
     elementname = 'symbol'
 
+
 class Marker(BaseElement, ViewBox, Presentation):
     """ The **marker** element defines the graphics that is to be used for
     drawing arrowheads or polymarkers on a given **path**, **line**, **polyline**
@@ -72,6 +76,7 @@ class Marker(BaseElement, ViewBox, Presentation):
 
     """
     elementname = 'marker'
+
     def __init__(self, insert=None, size=None, orient=None, **extra):
         """
         :param 2-tuple insert: reference point (**refX**, **refY**)
@@ -90,6 +95,7 @@ class Marker(BaseElement, ViewBox, Presentation):
             self['orient'] = orient
         if 'id' not in self.attribs: # an 'id' is necessary
             self['id'] = self.next_id()
+
 
 class SVG(Symbol):
     """ An SVG document fragment consists of any number of SVG elements contained
@@ -118,6 +124,7 @@ class SVG(Symbol):
 
         self.defs = Defs(factory=self) # defs container
         self.add(self.defs) # add defs as first element
+
 
 class Use(BaseElement, Transform, XLink, Presentation):
     """ The **use** element references another element and indicates that the graphical
@@ -150,6 +157,7 @@ class Use(BaseElement, Transform, XLink, Presentation):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
         return super(Use, self).get_xml()
 
+
 class Hyperlink(BaseElement, Transform, Presentation):
     """ The **a** element indicate links (also known as Hyperlinks or Web links).
 
@@ -167,6 +175,7 @@ class Hyperlink(BaseElement, Transform, Presentation):
 
     """
     elementname = 'a'
+
     def __init__(self, href, target='_blank', **extra):
         """
         :param string href: hyperlink to the target resource
@@ -189,8 +198,8 @@ class Script(BaseElement):
     mouseup elements to the markup.
 
     """
-
     elementname = 'script'
+
     def __init__(self, href=None, content="", **extra):
         """
         :param string href: hyperlink to the target resource or *None* if using *content*
@@ -216,6 +225,7 @@ class Script(BaseElement):
         """ Append content to the existing element-content. """
         self._content += content
 
+
 class Style(Script):
     """ The *style* element allows style sheets to be embedded directly within
     SVG content. SVG's *style* element has the same attributes as the
@@ -223,6 +233,7 @@ class Style(Script):
 
     """
     elementname = 'style'
+
     def __init__(self, content="", **extra):
         """
         :param string content: stylesheet content
