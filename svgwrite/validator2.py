@@ -12,8 +12,10 @@ from svgwrite.data import pattern
 
 validator_cache = {}
 
+
 def cache_key(profile, debug):
     return str(profile) + str(debug)
+
 
 def get_validator(profile, debug=True):
     """ Validator factory """
@@ -31,6 +33,8 @@ def get_validator(profile, debug=True):
 
 
 class Tiny12Validator(object):
+    profilename = "Tiny 1.2"
+
     def __init__(self, debug=True):
         self.debug = debug
         self.attributes = tiny12.attributes
@@ -83,6 +87,12 @@ class Tiny12Validator(object):
         if not self.is_valid_svg_attribute(elementname, attributename):
             raise ValueError("Invalid attribute '%s' for svg-element <%s>." % (attributename, elementname))
 
+    def _get_element(self, elementname):
+        try:
+            return self.elements[elementname]
+        except KeyError:
+            raise KeyError("<%s> is not valid for selected profile: '%s'." % (elementname, self.profilename))
+
     def check_svg_type(self, value, typename='string'):
         """
         Check if 'value' matches svg type 'typename'.
@@ -102,14 +112,14 @@ class Tiny12Validator(object):
         """ True if 'attributename' is a valid svg-attribute for svg-element
         'elementname'.
         """
-        element = self.elements[elementname]
+        element = self._get_element(elementname)
         return attributename in element.valid_attributes
 
     def is_valid_children(self, elementname, childrenname):
         """ True if svg-element 'childrenname' is a valid children of
         svg-element 'elementname'.
         """
-        element = self.elements[elementname]
+        element = self._get_element(elementname)
         return childrenname in element.valid_children
 
     def check_valid_children(self, elementname, childrenname):
@@ -146,7 +156,10 @@ class Tiny12Validator(object):
             raise ValueError("%s is not a valid number for: %s." % (value, version))
     get_length = get_coordinate
 
+
 class Full11Validator(Tiny12Validator):
+    profilename = "Full 1.1"
+
     def __init__(self, debug=True):
         self.debug = debug
         self.attributes = full11.attributes

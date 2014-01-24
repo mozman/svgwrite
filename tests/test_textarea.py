@@ -12,6 +12,7 @@ import unittest
 from svgwrite.text import TextArea
 from svgwrite.text import TBreak
 
+
 class TestTBreak(unittest.TestCase):
     def test_tostring(self):
         br = TBreak(profile='tiny')
@@ -23,9 +24,11 @@ class TestTBreak(unittest.TestCase):
         self.assertRaises(NotImplementedError, br.__getitem__, 'key')
         self.assertRaises(NotImplementedError, br.__setitem__, 'key', 'value')
 
+
 class TestTextAreaFullProfile(unittest.TestCase):
     def test_constructor(self):
-        self.assertRaises(KeyError, TextArea, (0,0))
+        self.assertRaises(KeyError, TextArea, (0, 0))
+
 
 class TestTextAreaTinyProfile(unittest.TestCase):
     def test_constructor(self):
@@ -49,16 +52,17 @@ class TestTextAreaTinyProfile(unittest.TestCase):
         self.assertEqual(textarea.tostring(), '<textArea><tspan>line1</tspan><tbreak /></textArea>')
 
         textarea = TextArea('line1\nline2', profile='tiny')
-        self.assertEqual(textarea.tostring(), '<textArea><tspan>line1</tspan><tbreak />' \
+        self.assertEqual(textarea.tostring(), '<textArea><tspan>line1</tspan><tbreak />'
                          '<tspan>line2</tspan></textArea>')
 
         textarea = TextArea('line1\nline2\n', profile='tiny')
-        self.assertEqual(textarea.tostring(), '<textArea><tspan>line1</tspan><tbreak />' \
+        self.assertEqual(textarea.tostring(), '<textArea><tspan>line1</tspan><tbreak />'
                          '<tspan>line2</tspan><tbreak /></textArea>')
 
         textarea = TextArea('line1\n \nline2\n', profile='tiny')
-        self.assertEqual(textarea.tostring(), '<textArea><tspan>line1</tspan><tbreak />' \
+        self.assertEqual(textarea.tostring(), '<textArea><tspan>line1</tspan><tbreak />'
                          '<tspan> </tspan><tbreak /><tspan>line2</tspan><tbreak /></textArea>')
+
     def test_line_increment(self):
         textarea = TextArea('line1\n', profile='tiny')
         textarea.line_increment('14')
@@ -69,17 +73,17 @@ class TestTextAreaTinyProfile(unittest.TestCase):
         self.assertEqual(textarea.tostring(), '<textArea><tbreak /><tspan>line1</tspan><tbreak /></textArea>')
 
         textarea = TextArea('\nline1\nline2', profile='tiny')
-        self.assertEqual(textarea.tostring(), '<textArea><tbreak /><tspan>line1</tspan><tbreak />' \
+        self.assertEqual(textarea.tostring(), '<textArea><tbreak /><tspan>line1</tspan><tbreak />'
                          '<tspan>line2</tspan></textArea>')
 
         textarea = TextArea('\nline1\nline2\n', profile='tiny')
-        self.assertEqual(textarea.tostring(), '<textArea><tbreak /><tspan>line1</tspan><tbreak />' \
+        self.assertEqual(textarea.tostring(), '<textArea><tbreak /><tspan>line1</tspan><tbreak />'
                          '<tspan>line2</tspan><tbreak /></textArea>')
 
         textarea = TextArea('\nline1\n\nline2\n', profile='tiny')
-        self.assertEqual(textarea.tostring(), '<textArea><tbreak /><tspan>line1</tspan><tbreak />' \
+        self.assertEqual(textarea.tostring(), '<textArea><tbreak /><tspan>line1</tspan><tbreak />'
                          '<tbreak /><tspan>line2</tspan><tbreak /></textArea>')
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.main()
