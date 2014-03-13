@@ -10,12 +10,8 @@
 __all__ = ["is_valid_transferlist", "is_valid_pathdata", "is_valid_animation_timing"]
 
 import sys
-PYTHON3 = sys.version_info[0] > 2
-if PYTHON3:
-    from svgwrite.data.pyparsing_py3 import *
-else:
-    from svgwrite.data.pyparsing_py2 import *
 
+from pyparsing import *
 from functools import partial
 
 event_names = [
