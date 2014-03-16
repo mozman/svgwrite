@@ -5,6 +5,7 @@ NEWS
 Version 1.1.4 - ...
 
   * simplified path parser
+  * pyparsing as external dependency (by jenselme)
 
 Version 1.1.3 - October 2013
 
