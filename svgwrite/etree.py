@@ -33,11 +33,11 @@ def CDATA(text):
 original_serialize_xml = etree._serialize_xml
 
 if PY3:
-    def _serialize_xml_with_CDATA_support(write, elem, qnames, namespaces):
+    def _serialize_xml_with_CDATA_support(write, elem, qnames, namespaces, **kwargs):
         if elem.tag == CDATA_TAG:
             write(CDATA_TPL % elem.text)
         else:
-            original_serialize_xml(write, elem, qnames, namespaces)
+            original_serialize_xml(write, elem, qnames, namespaces, **kwargs)
 else:
     def _serialize_xml_with_CDATA_support(write, elem, encoding, qnames, namespaces):
         if elem.tag == CDATA_TAG:
