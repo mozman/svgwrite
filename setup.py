@@ -10,7 +10,7 @@
 import os
 from setuptools import setup
 
-VERSION = '1.1.4'  # also update __init__.py
+VERSION = '1.1.5'  # also update __init__.py
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'mozman@gmx.at'
 
@@ -43,6 +43,7 @@ setup(name='svgwrite',
           "Programming Language :: Python :: 3",
           "Programming Language :: Python :: 3.2",
           "Programming Language :: Python :: 3.3",
+          "Programming Language :: Python :: 3.4",
           "Programming Language :: Python :: Implementation :: CPython",
           "Programming Language :: Python :: Implementation :: PyPy",
           "Intended Audience :: Developers",

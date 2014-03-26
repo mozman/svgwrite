@@ -68,7 +68,6 @@ class TestValueToString(unittest.TestCase):
         self.assertEqual(u'süß', element.value_to_string('süß'))
         self.assertEqual(u'10', element.value_to_string(10))
 
-
     def test_tiny_profile(self):
         element = MockBase()
         element.set_parameter(Parameter(True, 'tiny'))
