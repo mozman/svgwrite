@@ -27,8 +27,10 @@ class TestFilter(unittest.TestCase):
         f = filters.Filter(resolution="300 400", profile='full', debug=True)
         self.assertEqual(f.tostring(), '<filter filterRes="300 400" />')
 
+
 class MockFRI(filters._FilterRequireInput):
     elementname = 'feBlend'
+
 
 class TestFilterRequireInput(unittest.TestCase):
     def test_constructor(self):
@@ -91,6 +93,7 @@ class Test_feComponentTransfer(unittest.TestCase):
                          'intercept="0" offset="0" slope="1" '\
                          'tableValues="1,2" type="identity" />')
 
+
 class Test_feComposite(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
@@ -114,6 +117,7 @@ class Test_feComposite(unittest.TestCase):
         f = filters.Filter()
         pf = f.feComposite('input1', k1=1, k2=2, k3=3, k4=4)
         self.assertEqual(pf.tostring(), '<feComposite in="input1" k1="1" k2="2" k3="3" k4="4" />')
+
 
 class Test_feConvolveMatrix(unittest.TestCase):
     def test_constructor(self):
@@ -162,6 +166,7 @@ class Test_feConvolveMatrix(unittest.TestCase):
         self.assertEqual(f.feConvolveMatrix('input1', kernelUnitLength=2).tostring(),
                          '<feConvolveMatrix in="input1" kernelUnitLength="2" />')
 
+
 class Test_feDiffuseLighting(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
@@ -188,6 +193,7 @@ class Test_feDiffuseLighting(unittest.TestCase):
         self.assertEqual(f.feDiffuseLighting('input1', lighting_color='yellow').tostring(),
                          '<feDiffuseLighting in="input1" lighting-color="yellow" />')
 
+
 class Test_feDisplacementMap(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
@@ -204,29 +210,35 @@ class Test_feDisplacementMap(unittest.TestCase):
         self.assertEqual(f.feDisplacementMap('input1', xChannelSelector="R", yChannelSelector="G").tostring(),
                          '<feDisplacementMap in="input1" xChannelSelector="R" yChannelSelector="G" />')
 
+
 class Test_feFlood(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
         self.assertEqual(f.feFlood().tostring(),
                          '<feFlood />')
+
     def test_flood_color(self):
         f = filters.Filter()
         self.assertEqual(f.feFlood(flood_color="red").tostring(),
                          '<feFlood flood-color="red" />')
+
     def test_flood_opacity(self):
         f = filters.Filter()
         self.assertEqual(f.feFlood(flood_opacity=0.5).tostring(),
                          '<feFlood flood-opacity="0.5" />')
+
 
 class Test_feGaussianBlur(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
         self.assertEqual(f.feGaussianBlur("input1").tostring(),
                          '<feGaussianBlur in="input1" />')
+
     def test_stdDeviation(self):
         f = filters.Filter()
         self.assertEqual(f.feGaussianBlur("input1", stdDeviation="1 2").tostring(),
                          '<feGaussianBlur in="input1" stdDeviation="1 2" />')
+
 
 class Test_feImage(unittest.TestCase):
     def test_constructor(self):
@@ -234,34 +246,40 @@ class Test_feImage(unittest.TestCase):
         self.assertEqual(f.feImage("./image.png").tostring(),
                          '<feImage xlink:href="./image.png" />')
 
+
 class Test_feMerge(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
         self.assertEqual(f.feMerge(['Layer1', 'Layer2']).tostring(),
                          '<feMerge><feMergeNode in="Layer1" /><feMergeNode in="Layer2" /></feMerge>')
+
     def test_layers(self):
         f = filters.Filter()
         merge = f.feMerge(['Layer1', 'Layer2'])
-        merge.feMergeNode( ('Layer3', ) )
+        merge.feMergeNode(('Layer3', ))
         self.assertEqual(merge.tostring(),
-                         '<feMerge><feMergeNode in="Layer1" /><feMergeNode in="Layer2" />'\
+                         '<feMerge><feMergeNode in="Layer1" /><feMergeNode in="Layer2" />'
                          '<feMergeNode in="Layer3" /></feMerge>')
+
 
 class Test_feMorphology(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
         self.assertEqual(f.feMorphology("input1").tostring(),
                          '<feMorphology in="input1" />')
+
     def test_operator(self):
         f = filters.Filter()
         self.assertEqual(f.feMorphology("input1", operator="erode").tostring(),
                          '<feMorphology in="input1" operator="erode" />')
         self.assertEqual(f.feMorphology("input1", operator="dilate").tostring(),
                          '<feMorphology in="input1" operator="dilate" />')
+
     def test_radius(self):
         f = filters.Filter()
         self.assertEqual(f.feMorphology("input1", radius="1,2").tostring(),
                          '<feMorphology in="input1" radius="1,2" />')
+
 
 class Test_feOffset(unittest.TestCase):
     def test_constructor(self):
@@ -274,33 +292,40 @@ class Test_feOffset(unittest.TestCase):
         self.assertEqual(f.feOffset("input1", dx=10, dy=20).tostring(),
                          '<feOffset dx="10" dy="20" in="input1" />')
 
+
 class Test_feSpecularLighting(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
         self.assertEqual(f.feSpecularLighting("input1").tostring(),
                          '<feSpecularLighting in="input1" />')
+
     def test_surfaceScale(self):
         f = filters.Filter()
         self.assertEqual(f.feSpecularLighting("input1", surfaceScale=7).tostring(),
                          '<feSpecularLighting in="input1" surfaceScale="7" />')
+
     def test_specularExponent(self):
         f = filters.Filter()
         self.assertEqual(f.feSpecularLighting("input1", specularExponent=7).tostring(),
                          '<feSpecularLighting in="input1" specularExponent="7" />')
+
     def test_kernelUnitLength(self):
         f = filters.Filter()
         self.assertEqual(f.feSpecularLighting("input1", kernelUnitLength="1,2").tostring(),
                          '<feSpecularLighting in="input1" kernelUnitLength="1,2" />')
+
     def test_lighting_color(self):
         f = filters.Filter()
         self.assertEqual(f.feSpecularLighting('input1', lighting_color='yellow').tostring(),
                          '<feSpecularLighting in="input1" lighting-color="yellow" />')
+
 
 class Test_feTile(unittest.TestCase):
     def test_constructor(self):
         f = filters.Filter()
         self.assertEqual(f.feTile("input1").tostring(),
                          '<feTile in="input1" />')
+
 
 class Test_feTurbulence(unittest.TestCase):
     def test_constructor(self):
@@ -312,24 +337,29 @@ class Test_feTurbulence(unittest.TestCase):
         f = filters.Filter()
         self.assertEqual(f.feTurbulence(baseFrequency="1,2").tostring(),
                          '<feTurbulence baseFrequency="1,2" />')
+
     def test_numOctaves(self):
         f = filters.Filter()
         self.assertEqual(f.feTurbulence(numOctaves="1").tostring(),
                          '<feTurbulence numOctaves="1" />')
+
     def test_seed(self):
         f = filters.Filter()
         self.assertEqual(f.feTurbulence(seed="1").tostring(),
                          '<feTurbulence seed="1" />')
+
     def test_stitchTiles(self):
         f = filters.Filter()
         self.assertEqual(f.feTurbulence(stitchTiles="stitch").tostring(),
                          '<feTurbulence stitchTiles="stitch" />')
+
     def test_type(self):
         f = filters.Filter()
         self.assertEqual(f.feTurbulence(type_="fractalNoise").tostring(),
                          '<feTurbulence type="fractalNoise" />')
         self.assertEqual(f.feTurbulence(type_="turbulence").tostring(),
                          '<feTurbulence type="turbulence" />')
+
 
 class TestDistantLight(unittest.TestCase):
     def test_constructor(self):
@@ -339,10 +369,12 @@ class TestDistantLight(unittest.TestCase):
         self.assertEqual(ls.tostring(), '<feDistantLight />')
         self.assertEqual(fp.tostring(), '<feDiffuseLighting in="input1"><feDistantLight /></feDiffuseLighting>')
         self.assertEqual(f.tostring(), '<filter><feDiffuseLighting in="input1"><feDistantLight /></feDiffuseLighting></filter>')
+
     def test_all_parmeters(self):
         f = filters.Filter()
         ls = f.feDiffuseLighting('input1').feDistantLight(1, 2)
         self.assertEqual(ls.tostring(), '<feDistantLight azimuth="1" elevation="2" />')
+
 
 class TestPointLight(unittest.TestCase):
     def test_constructor(self):
@@ -352,10 +384,12 @@ class TestPointLight(unittest.TestCase):
         self.assertEqual(ls.tostring(), '<fePointLight />')
         self.assertEqual(fp.tostring(), '<feDiffuseLighting in="input1"><fePointLight /></feDiffuseLighting>')
         self.assertEqual(f.tostring(), '<filter><feDiffuseLighting in="input1"><fePointLight /></feDiffuseLighting></filter>')
+
     def test_all_parmeters(self):
         f = filters.Filter()
         ls = f.feDiffuseLighting('input1').fePointLight(source=(1,2,3))
         self.assertEqual(ls.tostring(), '<fePointLight x="1" y="2" z="3" />')
+
 
 class TestSpotLight(unittest.TestCase):
     def test_constructor(self):
@@ -365,15 +399,16 @@ class TestSpotLight(unittest.TestCase):
         self.assertEqual(ls.tostring(), '<feSpotLight />')
         self.assertEqual(fp.tostring(), '<feDiffuseLighting in="input1"><feSpotLight /></feDiffuseLighting>')
         self.assertEqual(f.tostring(), '<filter><feDiffuseLighting in="input1"><feSpotLight /></feDiffuseLighting></filter>')
+
     def test_all_parmeters(self):
         f = filters.Filter()
-        ls = f.feDiffuseLighting('input1').feSpotLight(source=(1,2,3), target=(4,5,6),
+        ls = f.feDiffuseLighting('input1').feSpotLight(source=(1, 2, 3), target=(4, 5, 6),
                                                        specularExponent=2,
                                                        limitingConeAngle=15)
-        self.assertEqual(ls.tostring(), '<feSpotLight limitingConeAngle="15" '\
-                         'pointsAtX="4" pointsAtY="5" pointsAtZ="6" '\
+        self.assertEqual(ls.tostring(), '<feSpotLight limitingConeAngle="15" '
+                         'pointsAtX="4" pointsAtY="5" pointsAtZ="6" '
                          'specularExponent="2" x="1" y="2" z="3" />')
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.main()

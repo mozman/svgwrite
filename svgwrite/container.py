@@ -93,7 +93,7 @@ class Marker(BaseElement, ViewBox, Presentation):
             self['markerHeight'] = size[1]
         if orient is not None:
             self['orient'] = orient
-        if 'id' not in self.attribs: # an 'id' is necessary
+        if 'id' not in self.attribs:  # an 'id' is necessary
             self['id'] = self.next_id()
 
 
@@ -154,7 +154,7 @@ class Use(BaseElement, Transform, XLink, Presentation):
             self['height'] = size[1]
 
     def get_xml(self):
-        self.update_id() # if href is an object - 'id' - attribute may be changed!
+        self.update_id()  # if href is an object - 'id' - attribute may be changed!
         return super(Use, self).get_xml()
 
 

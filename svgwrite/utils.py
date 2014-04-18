@@ -79,6 +79,7 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
     else:
         raise ValueError("Invalid mode '%s'" % mode)
 
+
 def iterflatlist(values):
     """
     Flatten nested *values*, returns an `iterator`.
@@ -90,6 +91,7 @@ def iterflatlist(values):
                 yield item
         else:
             yield element
+
 
 def strlist(values, seperator=","):
     """
@@ -104,6 +106,7 @@ def strlist(values, seperator=","):
     else:
         return seperator.join([str(value) for value in iterflatlist(values) if value is not None])
 
+
 def get_unit(coordinate):
     """
     Get the `unit` identifier of **coordinate**, if **coordinate** has a valid
@@ -117,6 +120,7 @@ def get_unit(coordinate):
         return result.group(3)
     else:
         raise ValueError("Invalid format: '%s'" % coordinate)
+
 
 def split_coordinate(coordinate):
     """
@@ -134,6 +138,7 @@ def split_coordinate(coordinate):
     else:
         raise ValueError("Invalid format: '%s'" % coordinate)
 
+
 def split_angle(angle):
     """
     Split angle into `<number>` and `<angle>` identifier.
@@ -150,6 +155,7 @@ def split_angle(angle):
         return (float(result.group(1)), result.group(3))
     else:
         raise ValueError("Invalid format: '%s'" % angle)
+
 
 def rect_top_left_corner(insert, size, pos='top-left'):
     """
@@ -200,6 +206,7 @@ def rect_top_left_corner(insert, size, pos='top-left'):
     if yunit:
         y = "%s%s" %(y, yunit)
     return (x, y)
+
 
 class AutoID(object):
     _nextid = 1
