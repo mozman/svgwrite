@@ -2,6 +2,10 @@
 NEWS
 ====
 
+Version 1.1.6 - 2014-05-30
+
+  * BUGFIX: sign for offset-value wasn't optional
+
 Version 1.1.5 - 2014-03-26
 
   * BUGFIX: xml serialization for CPython 3.4.0
