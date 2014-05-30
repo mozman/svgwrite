@@ -38,6 +38,12 @@ class TestSet(unittest.TestCase):
                         'end="indefinite" max="media" min="media" ' \
                         'repeatCount="indefinite" repeatDur="indefinite" restart="always" />')
 
+    def test_set_timing_1s(self):
+        s = Set(debug=True)
+        s.set_timing('1s')
+        result = s.tostring()
+        self.assertEqual(result, '<set begin="1s" />')
+
     def test_freeze(self):
         s = Set(debug=True)
         s.freeze()
@@ -67,7 +73,7 @@ class TestAnimate(unittest.TestCase):
         self.assertEqual(s.tostring(), '<animate values="1;2;3" />')
 
     def test_values_list(self):
-        s = Animate(values=[1,2,3], debug=True)
+        s = Animate(values=[1, 2, 3], debug=True)
         self.assertEqual(s.tostring(), '<animate values="1;2;3" />')
 
     def test_values_int(self):

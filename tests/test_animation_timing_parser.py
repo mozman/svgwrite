@@ -14,6 +14,8 @@ class TestAnimationTimingParser(unittest.TestCase):
     def test_offset_value(self):
         self.assertTrue(is_valid_animation_timing("+5min"))
         self.assertTrue(is_valid_animation_timing("-5s"))
+        self.assertTrue(is_valid_animation_timing("1s"))
+        self.assertTrue(is_valid_animation_timing("0.1s"))
 
     def test_syncbase_value(self):
         self.assertTrue(is_valid_animation_timing("#001.begin+5min"))
@@ -55,10 +57,10 @@ class TestAnimationTimingParser(unittest.TestCase):
         self.assertFalse(is_valid_animation_timing("repeat0)"))
         self.assertFalse(is_valid_animation_timing("accessKeya)"))
         self.assertFalse(is_valid_animation_timing("accessKey(Z"))
-        self.assertFalse(is_valid_animation_timing("001"))
+        self.assertFalse(is_valid_animation_timing("001sec"))
         self.assertFalse(is_valid_animation_timing("wallclock(1997-07-16T19:2)"))
         self.assertFalse(is_valid_animation_timing("wallclock(1997-07-16T19:)"))
         self.assertFalse(is_valid_animation_timing("wallclock(1997-07-16T19)"))
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.main()

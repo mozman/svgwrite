@@ -10,6 +10,7 @@ from svgwrite.base import BaseElement
 from svgwrite.mixins import XLink
 from svgwrite.utils import strlist, is_string
 
+
 class Set(BaseElement, XLink):
     """ The **set** element provides a simple means of just setting the value
     of an attribute for a specified duration. It supports all attribute types,
@@ -64,7 +65,7 @@ class Set(BaseElement, XLink):
         :ref:`repeatDur`.
         """
         if begin is not None:
-            self['begin']=begin
+            self['begin'] = begin
         if end is not None:
             self['end'] = end
         if dur is not None:

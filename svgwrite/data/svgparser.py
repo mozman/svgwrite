@@ -152,7 +152,7 @@ def build_animation_timing_parser():
     repeat_value = Optional(id_value + ".") + Literal("repeat(") + integer_constant + ")" + opt_clock_val
     event_value = Optional(id_value + ".") + event_ref + opt_clock_val
     syncbase_value = id_value + "." + oneOf("begin end") + opt_clock_val
-    offset_value = sign + clock_val
+    offset_value = Optional(sign) + clock_val
     begin_value = offset_value | syncbase_value | event_value | repeat_value \
                 | accesskey_value | wallclock_sync_value | Literal("indefinite")
     return begin_value + ZeroOrMore(semicolon + begin_value)
