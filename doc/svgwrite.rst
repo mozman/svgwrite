@@ -1,0 +1,4 @@
+svgwrite module
+===============
+
+.. automodule:: svgwrite

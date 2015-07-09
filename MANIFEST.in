@@ -1,0 +1,4 @@
+include NEWS.TXT README.TXT LICENSE.TXT
+include requirements.txt
+recursive-include examples *.py *.bat *.sh *.txt
+recursive-include tests *.py

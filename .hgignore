@@ -1,0 +1,15 @@
+syntax: glob
+build/*
+dist/*
+doc/_build/*
+makedata/.cache/*
+.tox/*
+.coverage
+*.err
+*.orig
+*.bak
+*.pyc
+*.*~
+*.wpr
+*.svg
+MANIFEST
