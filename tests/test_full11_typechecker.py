@@ -10,6 +10,7 @@ import unittest
 
 from svgwrite.data.typechecker import Full11TypeChecker
 
+
 class TestFull11TypeChecker(unittest.TestCase):
     def setUp(self):
         self.checker = Full11TypeChecker()
@@ -70,6 +71,7 @@ class TestFull11TypeChecker(unittest.TestCase):
                       ' 5%', 100, 3.1415, 700000, -500000, '100000',
                       '-4000000.45']:
             self.assertTrue(self.checker.is_length(value))
+
     def test_is_not_length(self):
         for value in [' 100xpx ', ' -100km ', ' 100mi ', (1, 1),
                       dict(a=1, b=2), [1, 2], ' mozman ']:
@@ -136,6 +138,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_angle(' 100rad'))
         self.assertTrue(self.checker.is_angle(' 50.123grad'))
         self.assertTrue(self.checker.is_angle(' 1000deg'))
+
     def test_is_not_angle(self):
         self.assertFalse(self.checker.is_angle('100px'))
         self.assertFalse(self.checker.is_angle('100cm'))
@@ -153,6 +156,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_frequency(' 100Hz'))
         self.assertTrue(self.checker.is_frequency(' 50.123kHz'))
         self.assertTrue(self.checker.is_frequency(' 1000Hz'))
+
     def test_is_not_frequency(self):
         self.assertFalse(self.checker.is_frequency('100px'))
         self.assertFalse(self.checker.is_frequency('100cm'))
@@ -163,6 +167,7 @@ class TestFull11TypeChecker(unittest.TestCase):
     def test_is_shape(self):
         self.assertTrue(self.checker.is_shape(' rect(1, 2, 3, 4)'))
         self.assertTrue(self.checker.is_shape(' rect(1cm, 2mm, -3px, 4%)'))
+
     def test_is_not_shape(self):
         self.assertFalse(self.checker.is_shape('rect(1, 2, 3)'))
         self.assertFalse(self.checker.is_shape('rect(1, 2, 3, 4, 5)'))
@@ -190,6 +195,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         # every none empty string is valid - no real url validation is done
         self.assertTrue(self.checker.is_IRI("http://localhost:8080?a=12"))
         self.assertTrue(self.checker.is_IRI("%&/(/&%$"))
+
     def test_is_not_IRI(self):
         self.assertFalse(self.checker.is_IRI(""))
         self.assertFalse(self.checker.is_IRI(1))
@@ -200,6 +206,7 @@ class TestFull11TypeChecker(unittest.TestCase):
     def test_is_FuncIRI(self):
         self.assertTrue(self.checker.is_FuncIRI("url(http://localhost:8080?a=12)"))
         self.assertTrue(self.checker.is_FuncIRI("url(ftp://something/234)"))
+
     def test_is_not_FuncIRI(self):
         self.assertFalse(self.checker.is_FuncIRI("url()"))
         self.assertFalse(self.checker.is_FuncIRI("url"))
@@ -213,6 +220,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_semicolon_list("1.;2.,3.;4.,5."))
         self.assertTrue(self.checker.is_semicolon_list("1"))
         self.assertTrue(self.checker.is_semicolon_list("1 2;3;4;5"))
+
     def test_is_not_semicolon_list(self):
         # only numbers!
         self.assertFalse(self.checker.is_semicolon_list("1 A;3 4;5,Z"))
@@ -223,6 +231,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_icccolor("icc-color(red mozman)"))
         self.assertTrue(self.checker.is_icccolor("icc-color(red,mozman)"))
         self.assertTrue(self.checker.is_icccolor("icc-color(red,mozman 123)"))
+
     def test_is_not_icc_color(self):
         self.assertFalse(self.checker.is_icccolor("icc-color()"))
         self.assertFalse(self.checker.is_icccolor("icc-color((a))"))
@@ -234,6 +243,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_color("#FFF"))
         self.assertTrue(self.checker.is_color("#aaaaaa"))
         self.assertTrue(self.checker.is_color("#aaa"))
+
     def test_is_not_hex_color(self):
         self.assertFalse(self.checker.is_color("#1"))
         self.assertFalse(self.checker.is_color("#22"))
@@ -263,17 +273,19 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_color("rgb( 0%, 0%, 0% )"))
         # this is not really valid
         self.assertTrue(self.checker.is_color("rgb( 255% , 255% , 255% )"))
+
     def test_is_not_rgb_percentage_color(self):
         self.assertFalse(self.checker.is_color("rgb()"))
         self.assertFalse(self.checker.is_color("rgb(1,2%,3%)"))
         self.assertFalse(self.checker.is_color("rgb(,2%,3%)"))
         self.assertFalse(self.checker.is_color("rgb(,,)"))
         self.assertFalse(self.checker.is_color("rgb(a%,b%,c%)"))
-        # no decimal points
-        self.assertFalse(self.checker.is_color("rgb(1.0%, 2.0%, 3.0%)"))
+        # decimals allowed
+        self.assertTrue(self.checker.is_color("rgb(1.0%, 2.0%, 3.0%)"))
 
     def test_is_color_name(self):
         self.assertTrue(self.checker.is_color("blue"))
+
     def test_is_not_color_name(self):
         self.assertFalse(self.checker.is_color("blau"))
 
@@ -294,6 +306,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_paint("rgb(10%,20%,30%)"))
         self.assertTrue(self.checker.is_paint("url(localhost)"))
         self.assertTrue(self.checker.is_paint("red"))
+
     def test_is_not_paint(self):
         self.assertFalse(self.checker.is_paint("(123)"))
         self.assertFalse(self.checker.is_paint("123"))
@@ -303,6 +316,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_XML_Name("Name:xml123"))
         self.assertTrue(self.checker.is_XML_Name("Name-xml123"))
         self.assertTrue(self.checker.is_XML_Name("Name.xml123"))
+
     def test_is_not_XML_name(self):
         self.assertFalse(self.checker.is_XML_Name("Name xml123"))
         self.assertFalse(self.checker.is_XML_Name("0Name:xml123"))

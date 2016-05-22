@@ -123,7 +123,7 @@ class SVG(Symbol):
             self['height'] = size[1]
 
         self.defs = Defs(factory=self) # defs container
-        self.add(self.defs) # add defs as first element
+        self.add(self.defs)  # add defs as first element
 
 
 class Use(BaseElement, Transform, XLink, Presentation):
