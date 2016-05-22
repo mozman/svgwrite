@@ -32,6 +32,7 @@ COLOR_RGB_INTEGER_PATTERN = re.compile(r"^rgb\( *\d+ *, *\d+ *, *\d+ *\)$")
 COLOR_RGB_PERCENTAGE_PATTERN = re.compile(r"^rgb\( *\d+(\.\d*)?% *, *\d+(\.\d*)?% *, *\d+(\.\d*)?% *\)$")
 NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
 
+
 class Full11TypeChecker(object):
     def get_version(self):
         return '1.1', 'full'
@@ -308,6 +309,7 @@ class Full11TypeChecker(object):
 FOCUS_CONST = frozenset(['nav-next', 'nav-prev', 'nav-up', 'nav-down', 'nav-left',
                          'nav-right', 'nav-up-left', 'nav-up-right', 'nav-down-left',
                          'nav-down-right'])
+
 
 class Tiny12TypeChecker(Full11TypeChecker):
     def get_version(self):

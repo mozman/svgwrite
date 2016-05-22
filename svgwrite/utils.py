@@ -63,7 +63,7 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
 
     """
     def percent(value):
-        value = int(value)
+        value = float(value)
         if value < 0:
             value = 0
         if value > 100:
@@ -74,7 +74,7 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
         return "rgb(%d,%d,%d)" % (int(r) & 255, int(g) & 255, int(b) & 255)
     elif mode == "%":
         # see http://www.w3.org/TR/SVG11/types.html#DataTypeColor
-        # percentage is an 'integer' value
+        # percentage is an 'number' value
         return "rgb(%d%%,%d%%,%d%%)" % (percent(r), percent(g), percent(b))
     else:
         raise ValueError("Invalid mode '%s'" % mode)
