@@ -20,7 +20,7 @@ def basic_shapes(name):
     dwg = svgwrite.Drawing(filename=name, debug=True)
     hlines = dwg.add(dwg.g(id='hlines', stroke='green'))
     for y in range(20):
-        hlines.add(dwg.line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm)))
+        hlines.add(dwg.line(start=(2*cm, (2+y)*cm), end=(18*cm, (2+y)*cm), style=""))
     vlines = dwg.add(dwg.g(id='vline', stroke='blue'))
     for x in range(17):
         vlines.add(dwg.line(start=((2+x)*cm, 2*cm), end=((2+x)*cm, 21*cm)))

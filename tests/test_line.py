@@ -28,5 +28,9 @@ class TestLine(unittest.TestCase):
         self.assertRaises(TypeError, Line, end=(None, None))
         self.assertRaises(TypeError, Line, start=(None, None))
 
+    def test_issue_01(self):
+        line = Line((0, 0), (10, 10), stroke='red', stroke_width='3', style="x:y")
+        self.assertEqual("x:y", line.attribs['style'])
+
 if __name__=='__main__':
     unittest.main()

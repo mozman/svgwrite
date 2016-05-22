@@ -29,9 +29,8 @@ FUNCIRI_PATTERN = re.compile(r"^url\((.*)\)$")
 ICCCOLOR_PATTERN = re.compile(r"^icc-color\((.*)\)$")
 COLOR_HEXDIGIT_PATTERN = re.compile(r"^#[a-fA-F0-9]{3}([a-fA-F0-9]{3})?$")
 COLOR_RGB_INTEGER_PATTERN = re.compile(r"^rgb\( *\d+ *, *\d+ *, *\d+ *\)$")
-COLOR_RGB_PERCENTAGE_PATTERN = re.compile(r"^rgb\( *\d+% *, *\d+% *, *\d+% *\)$")
+COLOR_RGB_PERCENTAGE_PATTERN = re.compile(r"^rgb\( *\d+(\.\d*)?% *, *\d+(\.\d*)?% *, *\d+(\.\d*)?% *\)$")
 NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
-
 
 class Full11TypeChecker(object):
     def get_version(self):
@@ -54,7 +53,7 @@ class Full11TypeChecker(object):
     def is_color(self, value):
         #color    ::= "#" hexdigit hexdigit hexdigit (hexdigit hexdigit hexdigit)?
         #             | "rgb(" wsp* integer comma integer comma integer wsp* ")"
-        #             | "rgb(" wsp* integer "%" comma integer "%" comma integer "%" wsp* ")"
+        #             | "rgb(" wsp* number "%" comma number "%" comma number "%" wsp* ")"
         #             | color-keyword
         #hexdigit ::= [0-9A-Fa-f]
         #comma    ::= wsp* "," wsp*
