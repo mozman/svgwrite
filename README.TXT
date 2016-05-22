@@ -15,7 +15,7 @@ svgwrite
    :alt: Python Versions
 
 .. image:: https://img.shields.io/pypi/wheel/svgwrite.svg
-   :target: https://pypi.python.org/pypi/ezdxf/
+   :target: https://pypi.python.org/pypi/svgwrite/
    :alt: Wheel Status
 
 .. image:: https://img.shields.io/pypi/status/svgwrite.svg
