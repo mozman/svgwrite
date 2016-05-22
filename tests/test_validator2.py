@@ -10,6 +10,7 @@ import unittest
 
 from svgwrite.validator2 import get_validator
 
+
 class TestGetCoordinate(unittest.TestCase):
     def test_invalid_profile(self):
         self.assertRaises(ValueError, get_validator, profile='invalid')
@@ -73,6 +74,15 @@ class TestGetCoordinate(unittest.TestCase):
         validator = get_validator('full', debug=True)
         self.assertRaises(ValueError, validator.check_valid_children, 'text', 'line')
 
+    def test_color(self):
+        validator = get_validator('full', debug=True)
+        self.assertTrue(validator.check_svg_type("red", 'color'))
+        self.assertTrue(validator.check_svg_type("#000000", 'color'))
+        self.assertTrue(validator.check_svg_type("rgb(10%, 20%, 30%)", 'color'))
+        self.assertTrue(validator.check_svg_type("rgb(10.1%, 20.2%, 30.3%)", 'color'))
+
+
+
 class TestCheckCoordinate(unittest.TestCase):
     def test_valid_units(self):
         validator = get_validator('tiny', debug=True)
@@ -107,6 +117,7 @@ class TestCheckCoordinate(unittest.TestCase):
         for value in (100000, '100000', -100000, '-100000'):
             validator.check_svg_type(value, 'coordinate')
 
+
 class TestCheckTiny(unittest.TestCase):
     def test_valid_tiny(self):
         validator = get_validator('tiny', debug=True)
@@ -117,6 +128,7 @@ class TestCheckTiny(unittest.TestCase):
         validator = get_validator('tiny', debug=True)
         for value in (100000, -100000., -32768, 32768):
             self.assertRaises(TypeError, validator.check_svg_type, value, 'number')
+
 
 class TestCheckAngle(unittest.TestCase):
     def test_valid_angle(self):
