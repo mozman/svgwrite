@@ -32,7 +32,7 @@ setup(name='svgwrite',
       packages=['svgwrite', 'svgwrite/data'],
       provides=['svgwrite'],
       install_requires=['pyparsing>=2.0.1'],
-      long_description=read('README.TXT') + read('NEWS.TXT'),
+      long_description=read('README.rst') + read('NEWS.rst'),
       platforms="OS Independent",
       license="MIT License",
       classifiers=[
