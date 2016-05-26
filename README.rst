@@ -3,7 +3,7 @@ svgwrite
 ========
 
 .. image:: https://readthedocs.org/projects/pip/badge/
-   :target: https://svgwrite.readthedocs.org
+   :target: https://svgwrite.readthedocs.io
    :alt: Read The Docs
 
 .. image:: https://img.shields.io/pypi/l/svgwrite.svg
