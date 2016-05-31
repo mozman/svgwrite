@@ -134,7 +134,7 @@ class TextPath(BaseElement, XLink, Presentation):
             self['method'] = method
         if spacing == 'auto':
             self['spacing'] = spacing
-        if startOffset:
+        if startOffset is not None:
             self['startOffset'] = startOffset
         self.set_href(path)
 

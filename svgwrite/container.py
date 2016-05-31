@@ -85,10 +85,10 @@ class Marker(BaseElement, ViewBox, Presentation):
         :param extra: additional SVG attributes as keyword-arguments
         """
         super(Marker, self).__init__(**extra)
-        if insert:
+        if insert is not None:
             self['refX'] = insert[0]
             self['refY'] = insert[1]
-        if size:
+        if size is not None:
             self['markerWidth'] = size[0]
             self['markerHeight'] = size[1]
         if orient is not None:
@@ -115,10 +115,10 @@ class SVG(Symbol):
         :param extra: additional SVG attributes as keyword-arguments
         """
         super(SVG, self).__init__(**extra)
-        if insert:
+        if insert is not None:
             self['x'] = insert[0]
             self['y'] = insert[1]
-        if size:
+        if size is not None:
             self['width'] = size[0]
             self['height'] = size[1]
 
@@ -146,10 +146,10 @@ class Use(BaseElement, Transform, XLink, Presentation):
         """
         super(Use, self).__init__(**extra)
         self.set_href(href)
-        if insert:
+        if insert is not None:
             self['x'] = insert[0]
             self['y'] = insert[1]
-        if size:
+        if size is not None:
             self['width'] = size[0]
             self['height'] = size[1]
 
@@ -211,7 +211,7 @@ class Script(BaseElement):
         """
         # removed type parameter, default is "application/ecmascript"
         super(Script, self).__init__(**extra)
-        if href:
+        if href is not None:
             self['xlink:href'] = href
         self._content = content
 

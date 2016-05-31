@@ -104,7 +104,7 @@ class Transform(object):
         :param number sy: scalar factor y-axis, no units allowed
 
         """
-        self._add_transformation("scale(%s)" % strlist( [sx, sy] ))
+        self._add_transformation("scale(%s)" % strlist([sx, sy]))
 
     def skewX(self, angle):
         """ Specifies a skew transformation along the x-axis.
@@ -128,6 +128,7 @@ class Transform(object):
     def _add_transformation(self, new_transform):
         old_transform = self.attribs.get(self.transformname, '')
         self[self.transformname] = ("%s %s" % (old_transform, new_transform)).strip()
+
 
 class XLink(object):
     """ XLink mixin """
@@ -164,6 +165,7 @@ class XLink(object):
             idstr = self.href.get_iri()
         self.attribs['xlink:href'] = idstr
 
+
 class Presentation(object):
     """
     Helper methods to set presentation attributes.
@@ -173,14 +175,14 @@ class Presentation(object):
         Set SVG Properties **fill**, **fill-rule** and **fill-opacity**.
 
         """
-        if color:
+        if color is not None:
             if is_string(color):
                 self['fill'] = color
             else:
                 self['fill'] = color.get_paint_server()
-        if rule:
+        if rule is not None:
             self['fill-rule'] = rule
-        if opacity:
+        if opacity is not None:
             self['fill-opacity'] = opacity
         return self
 
@@ -192,20 +194,20 @@ class Presentation(object):
 
         """
 
-        if color:
+        if color is not None:
             if is_string(color):
                 self['stroke'] = color
             else:
                 self['stroke'] = color.get_paint_server()
-        if width:
+        if width is not None:
             self['stroke-width'] = width
-        if opacity:
+        if opacity is not None:
             self['stroke-opacity'] = opacity
-        if linecap:
+        if linecap is not None:
             self['stroke-linecap'] = linecap
-        if linejoin:
+        if linejoin is not None:
             self['stroke-linejoin'] = linejoin
-        if miterlimit:
+        if miterlimit is not None:
             self['stroke-miterlimit'] = miterlimit
         return self
 
@@ -218,11 +220,12 @@ class Presentation(object):
         space separated <lengths> or <percentages>. (e.g. as <list> dasharray=[1, 0.5]
         or as <string> dasharray='1 0.5')
         """
-        if dasharray:
+        if dasharray is not None:
             self['stroke-dasharray'] = strlist(dasharray, ' ')
-        if offset:
+        if offset is not None:
             self['stroke-dashoffset'] = offset
         return self
+
 
 class MediaGroup(object):
     """
@@ -235,11 +238,12 @@ class MediaGroup(object):
         Set SVG Properties **viewport-fill** and **viewport-fill-opacity**.
 
         """
-        if color:
+        if color is not None:
             self['viewport-fill'] = color
-        if opacity:
+        if opacity is not None:
             self['viewport-fill-opacity'] = opacity
         return self
+
 
 class Markers(object):
     """
@@ -280,6 +284,7 @@ class Markers(object):
                 self['marker-end'] = get_funciri(markerend)
             except (TypeError, KeyError):
                 self['marker'] = get_funciri(markers)
+
 
 class Clipping(object):
     def clip_rect(self, top='auto', right='auto', bottom='auto', left='auto'):

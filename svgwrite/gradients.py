@@ -16,8 +16,10 @@ from svgwrite.base import BaseElement
 from svgwrite.mixins import Transform, XLink
 from svgwrite.utils import is_string
 
+
 class _GradientStop(BaseElement):
     elementname = 'stop'
+
     def __init__(self, offset=None, color=None, opacity=None, **extra):
         super(_GradientStop, self).__init__(**extra)
 
@@ -28,8 +30,10 @@ class _GradientStop(BaseElement):
         if opacity is not None:
             self['stop-opacity'] = opacity
 
+
 class _AbstractGradient(BaseElement, Transform, XLink):
     transformname = 'gradientTransform'
+
     def __init__(self, inherit=None, **extra):
         super(_AbstractGradient, self).__init__(**extra)
         if inherit is not None:
@@ -79,10 +83,12 @@ class _AbstractGradient(BaseElement, Transform, XLink):
             self.update_id()
         return super(_AbstractGradient, self).get_xml()
 
+
 class LinearGradient(_AbstractGradient):
     """ Linear gradients are defined by a SVG <linearGradient> element.
     """
     elementname = 'linearGradient'
+
     def __init__(self, start=None, end=None, inherit=None, **extra):
         """
         :param 2-tuple start: start point of the gradient (**x1**, **y1**)
@@ -98,10 +104,12 @@ class LinearGradient(_AbstractGradient):
             self['x2'] = end[0]
             self['y2'] = end[1]
 
+
 class RadialGradient(_AbstractGradient):
     """ Radial gradients are defined by a SVG <radialGradient> element.
     """
     elementname = 'radialGradient'
+
     def __init__(self, center=None, r=None, focal=None, inherit=None, **extra):
         """
         :param 2-tuple center: center point for the gradient (**cx**, **cy**)
