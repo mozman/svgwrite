@@ -9,6 +9,7 @@
 from svgwrite.base import BaseElement
 from svgwrite.mixins import Transform
 
+
 class ClipPath(BaseElement, Transform):
     """
     The clipping path restricts the region to which paint can be applied.
@@ -27,6 +28,7 @@ class ClipPath(BaseElement, Transform):
     """
     elementname = 'clipPath'
 
+
 class Mask(BaseElement):
     """
     In SVG, you can specify that any other graphics object or **g** element
@@ -37,6 +39,7 @@ class Mask(BaseElement):
     as a **g**.
     """
     elementname = 'mask'
+
     def __init__(self, start=None, size=None, **extra):
         super(Mask, self).__init__(**extra)
         if start is not None:

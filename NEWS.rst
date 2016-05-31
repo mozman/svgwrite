@@ -2,6 +2,10 @@
 NEWS
 ====
 
+Version 1.1.8 - 2016-05-31
+
+  * BUGFIX: None checks: 'if value:' -> 'if value is not None:'
+
 Version 1.1.7 - 2016-05-22
 
   * BUGFIX: color accepts percentage values as floats like "rgb(10.2%, 3.78%, 20%)"

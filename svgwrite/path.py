@@ -23,12 +23,14 @@ from svgwrite.utils import strlist
 from svgwrite.mixins import Presentation, Markers, Transform
 from svgwrite.utils import to_unicode
 
+
 class Path(BaseElement, Transform, Presentation, Markers):
     """ The <path> element represent the outline of a shape which can be filled,
     stroked, used as a clipping path, or any combination of the three.
 
     """
     elementname = 'path'
+
     def __init__(self, d=None, **extra):
         """
         :param `iterable` d: *coordinates*, *length* and *commands*
@@ -41,7 +43,6 @@ class Path(BaseElement, Transform, Presentation, Markers):
         self.push(d)
         if self.debug:
             self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
-
 
     def push(self, *elements):
         """ Push commands and coordinats onto the command stack.
@@ -70,7 +71,7 @@ class Path(BaseElement, Transform, Presentation, Markers):
         :param bool absolute: indicates that target *coordinates* are absolute else they are relative to the current point
 
         """
-        self.push({ True: 'A', False: 'a' }[absolute])
+        self.push({True: 'A', False: 'a'}[absolute])
         if isinstance(r, (float, int)):
             self.push(r, r)
         else:

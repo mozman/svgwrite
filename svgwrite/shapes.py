@@ -22,6 +22,7 @@
 from svgwrite.base import BaseElement
 from svgwrite.mixins import Presentation, Markers, Transform
 
+
 class Line(BaseElement, Transform, Presentation, Markers):
     """ The **line** element defines a line segment that starts at one point
     and ends at another.
@@ -42,6 +43,7 @@ class Line(BaseElement, Transform, Presentation, Markers):
         self['y1'] = y1
         self['x2'] = x2
         self['y2'] = y2
+
 
 class Rect(BaseElement, Transform, Presentation):
     """ The **rect** element defines a rectangle which is axis-aligned with the current
@@ -66,8 +68,11 @@ class Rect(BaseElement, Transform, Presentation):
         self['y'] = y
         self['width'] = width
         self['height'] = height
-        if rx: self['rx'] = rx
-        if ry: self['ry'] = ry
+        if rx is not None:
+            self['rx'] = rx
+        if ry is not None:
+            self['ry'] = ry
+
 
 class Circle(BaseElement, Transform, Presentation):
     """ The **circle** element defines a circle based on a center point and a radius.
@@ -86,6 +91,7 @@ class Circle(BaseElement, Transform, Presentation):
         self['cx'] = cx
         self['cy'] = cy
         self['r'] = r
+
 
 class Ellipse(BaseElement, Transform, Presentation):
     """ The **ellipse** element defines an ellipse which is axis-aligned with the
@@ -107,6 +113,7 @@ class Ellipse(BaseElement, Transform, Presentation):
         self['cy'] = cy
         self['rx'] = rx
         self['ry'] = ry
+
 
 class Polyline(BaseElement, Transform, Presentation, Markers):
     """ The **polyline** element defines a set of connected straight line
@@ -153,6 +160,7 @@ class Polyline(BaseElement, Transform, Presentation, Markers):
             point = "%s,%s" % (x, y)
             strings.append(point)
         return ' '.join(strings)
+
 
 class Polygon(Polyline):
     """ The **polygon** element defines a closed shape consisting of a set of
