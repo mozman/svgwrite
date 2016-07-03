@@ -1,3 +1,6 @@
+# Copyright (C) 2010, Manfred Moitzi
+# License: MIT License
+
 try:
     import svgwrite
 except ImportError:

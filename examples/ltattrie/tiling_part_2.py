@@ -1,5 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# Author:  L. Tattrie
+# Purpose: svgwrite examples
+# Created: 2012/5/31
+# Copyright (C) 2012, L. Tattrie
+# License: LGPL
+# Python version 2.7
 import sys
 import svgwrite
 
