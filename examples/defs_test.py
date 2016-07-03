@@ -1,3 +1,8 @@
+# Author:  mozman
+# Purpose: svg examples
+# Copyright (C) 2010, Manfred Moitzi
+# License: MIT License
+
 import svgwrite
 
 PROGNAME = 'defs_test'
