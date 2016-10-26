@@ -2,6 +2,10 @@
 NEWS
 ====
 
+Version 1.1.9 - 2016-10-26
+
+  * NEW: added solidColor paint server (only valid in the Tiny 1.2 profile)
+
 Version 1.1.8 - 2016-05-31
 
   * BUGFIX: None checks: 'if value:' -> 'if value is not None:'

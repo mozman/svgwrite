@@ -74,6 +74,7 @@ Paint Server
 
    classes/gradients
    classes/pattern
+   classes/solidcolor
 
 Masking
 -------
