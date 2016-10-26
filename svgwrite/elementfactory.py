@@ -16,6 +16,7 @@ from svgwrite import pattern
 from svgwrite import masking
 from svgwrite import animate
 from svgwrite import filters
+from svgwrite import solidcolor
 
 factoryelements = {
     'g': container.Group,
@@ -43,6 +44,7 @@ factoryelements = {
     'linearGradient': gradients.LinearGradient,
     'radialGradient': gradients.RadialGradient,
     'pattern': pattern.Pattern,
+    'solidColor': solidcolor.SolidColor,
     'clipPath': masking.ClipPath,
     'mask': masking.Mask,
     'animate': animate.Animate,
