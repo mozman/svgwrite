@@ -2,6 +2,8 @@
 NEWS
 ====
 
+Moved repository to GitHub.com: http://github.com/mozman/svgwrite.git
+
 Version 1.1.9 - 2016-10-26
 
   * NEW: added solidColor paint server (only valid in the Tiny 1.2 profile)
