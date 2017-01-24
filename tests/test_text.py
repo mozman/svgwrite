@@ -30,23 +30,23 @@ class TestTSpan(unittest.TestCase):
         self.assertEqual(txt.tostring(), '<tspan>testtext<tspan>subtext1</tspan><tspan>subtext2</tspan></tspan>')
 
     def test_x_values(self):
-        txt = TSpan('text', x=[1,2,3,4])
+        txt = TSpan('text', x=[1, 2, 3, 4])
         self.assertEqual(txt.tostring(), '<tspan x="1 2 3 4">text</tspan>')
 
     def test_y_values(self):
-        txt = TSpan('text', y=[1,2,3,4])
+        txt = TSpan('text', y=[1, 2, 3, 4])
         self.assertEqual(txt.tostring(), '<tspan y="1 2 3 4">text</tspan>')
 
     def test_dx_values(self):
-        txt = TSpan('text', dx=[1,2,3,4])
+        txt = TSpan('text', dx=[1, 2, 3, 4])
         self.assertEqual(txt.tostring(), '<tspan dx="1 2 3 4">text</tspan>')
 
     def test_dy_values(self):
-        txt = TSpan('text', dy=[1,2,3,4])
+        txt = TSpan('text', dy=[1, 2, 3, 4])
         self.assertEqual(txt.tostring(), '<tspan dy="1 2 3 4">text</tspan>')
 
     def test_rotate_values(self):
-        txt = TSpan('text', rotate=[1,2,3,4])
+        txt = TSpan('text', rotate=[1, 2, 3, 4])
         self.assertEqual(txt.tostring(), '<tspan rotate="1 2 3 4">text</tspan>')
 
     def test_subelement_tspan(self):
@@ -73,10 +73,12 @@ class TestTSpan(unittest.TestCase):
         self.assertRaises(ValueError, TSpan, "txt", insert=(1,1), x=[1])
         self.assertRaises(ValueError, TSpan, "txt", insert=(1,1), y=[1])
 
+
 class TestTRef(unittest.TestCase):
     def test_constructor(self):
         tref = TRef('#test')
         self.assertEqual(tref.tostring(), '<tref xlink:href="#test" />')
+
 
 class TestTextPath(unittest.TestCase):
     def test_constructor(self):
