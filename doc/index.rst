@@ -12,29 +12,25 @@ If you are looking for a SVG Documentation beyond the official W3C papers, go
 to O'Reilly commons: http://commons.oreilly.com/wiki/index.php/SVG_Essentials,
 or (german) http://www.selfsvg.info .
 
-Contents
---------
 
 .. toctree::
    :maxdepth: 1
+   :caption: Contents
 
    overview
    reference
 
-Modules
--------
-
 .. toctree::
    :maxdepth: 1
+   :caption: Modules
 
    svgwrite
    utils/utils
 
-Structural Objects
-------------------
 
 .. toctree::
    :maxdepth: 1
+   :caption: Structural Objects
 
    classes/base
    classes/drawing
@@ -48,55 +44,45 @@ Structural Objects
    classes/script
    classes/style
 
-Graphical Objects
------------------
-
 .. toctree::
    :maxdepth: 1
+   :caption: Graphical Objects
 
    classes/path
    classes/shapes
    classes/image
 
-Text Objects
-------------
 
 .. toctree::
    :maxdepth: 1
+   :caption: Text Objects
 
    classes/text
 
-Paint Server
-------------
 
 .. toctree::
    :maxdepth: 1
+   :caption: Paint server
 
    classes/gradients
    classes/pattern
    classes/solidcolor
 
-Masking
--------
-
 .. toctree::
    :maxdepth: 1
+   :caption: Masking
 
    classes/masking
 
-Animation
----------
-
 .. toctree::
    :maxdepth: 1
+   :caption: Animation
 
    classes/animate
 
-Filter Effects
---------------
-
 .. toctree::
    :maxdepth: 1
+   :caption: Filter Effects
 
    classes/filters
    classes/filter_primitive
@@ -118,11 +104,10 @@ Filter Effects
    classes/fe_turbulence
    classes/fe_lights
 
-Mixins
-------
 
 .. toctree::
    :maxdepth: 1
+   :caption: MixIns
 
    classes/mixins
 

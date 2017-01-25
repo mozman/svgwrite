@@ -46,7 +46,7 @@ VERSION = '%d.%d.%d' % version
 
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'mozman@gmx.at'
-CYEAR = '2014'
+CYEAR = '2014-2017'
 
 from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb
