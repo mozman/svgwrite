@@ -1,0 +1,7 @@
+build/*
+dist/*
+.idea/*
+.cache/*
+svgwrite.egg-info/*
+doc/_build/*
+issues/2017-01-28 nads_debugging

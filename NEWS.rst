@@ -2,6 +2,10 @@
 NEWS
 ====
 
+Version 1.1.10 - 2017...
+
+  * NEW: ...
+
 Moved repository to GitHub.com: http://github.com/mozman/svgwrite.git
 
 Version 1.1.9 - 2016-10-26
