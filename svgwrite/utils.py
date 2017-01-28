@@ -237,13 +237,13 @@ def pretty_xml(xml_string):
     :return: xml_string with linebreaks and indentation
 
     """
-    import xml.dom.minidom as md
+    import xml.dom.minidom as minidom
 
-    # check for empty string
-    if xml_string.strip() == "":
+    # check for empty string, len check avoids unnecessary string manipulation with large XML strings
+    if len(xml_string) < 20 and xml_string.strip() == "":
         return ""
 
-    xml_tree = md.parseString(xml_string)
+    xml_tree = minidom.parseString(xml_string)
     lines = xml_tree.toprettyxml(indent='  ').split('\n')
     # remove 1. line = xml declaration
     return '\n'.join(lines[1:])

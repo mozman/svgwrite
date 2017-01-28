@@ -2,7 +2,7 @@
 NEWS
 ====
 
-Version 1.1.10 - 2017...
+Version 1.1.10 - 2017-01-28
 
   * NEW: added `pretty` argument to `Drawing.write`, `Drawing.save` and `Drawing.saveas` to produce easy to read XML
     output, svgwrite reparses the output string with minidom, this reduces the performance because this process requires
