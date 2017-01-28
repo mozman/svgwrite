@@ -28,6 +28,7 @@ import io
 
 from svgwrite.container import SVG, Defs
 from svgwrite.elementfactory import ElementFactory
+from svgwrite.utils import pretty_xml
 
 
 class Drawing(SVG, ElementFactory):
@@ -81,12 +82,13 @@ class Drawing(SVG, ElementFactory):
         :param string media: ``'all | aureal | braille | embossed | handheld | print | projection | screen | tty | tv'``
 
         """
-        self._stylesheets.append( (href, title, alternate, media) )
+        self._stylesheets.append((href, title, alternate, media))
 
-    def write(self, fileobj):
+    def write(self, fileobj, pretty=False):
         """ Write XML string to **fileobj**.
 
         :param fileobj: a *file-like* object
+        :param pretty: True for easy readable output
 
         Python 3.x - set encoding at the open command::
 
@@ -103,18 +105,25 @@ class Drawing(SVG, ElementFactory):
         # removed map(), does not work with Python 3
         for stylesheet in self._stylesheets:
             fileobj.write(stylesheet_template % stylesheet)
-        fileobj.write(self.tostring())
 
-    def save(self):
+        xml_string = self.tostring()
+        if pretty:  # write easy readable XML file
+            xml_string = pretty_xml(xml_string)
+        fileobj.write(xml_string)
+
+    def save(self, pretty=False):
         """ Write the XML string to **filename**. """
         fileobj = io.open(self.filename, mode='w', encoding='utf-8')
-        self.write(fileobj)
+        self.write(fileobj, pretty=pretty)
         fileobj.close()
 
-    def saveas(self, filename):
+    def saveas(self, filename, pretty=False):
         """ Write the XML string to **filename**.
 
         :param string filename: filesystem filename valid for :func:`open`
+        :param pretty: True for easy readable output
         """
         self.filename = filename
-        self.save()
+        self.save(pretty=pretty)
+
+

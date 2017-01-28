@@ -21,6 +21,8 @@
 
 .. autofunction:: rect_top_left_corner
 
+.. autofunction:: pretty_xml
+
 """
 
 import sys
@@ -225,3 +227,23 @@ class AutoID(object):
         retval = "id%d" % cls._nextid
         cls._nextid += 1
         return retval
+
+
+def pretty_xml(xml_string):
+    """
+    Create human readable XML string.
+
+    :param xml_string: input xml string without line breaks and indentation
+    :return: xml_string with linebreaks and indentation
+
+    """
+    import xml.dom.minidom as md
+
+    # check for empty string
+    if xml_string.strip() == "":
+        return ""
+
+    xml_tree = md.parseString(xml_string)
+    lines = xml_tree.toprettyxml(indent='  ').split('\n')
+    # remove 1. line = xml declaration
+    return '\n'.join(lines[1:])

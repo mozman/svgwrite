@@ -4,7 +4,9 @@ NEWS
 
 Version 1.1.10 - 2017...
 
-  * NEW: ...
+  * NEW: added `pretty` argument to `Drawing.write`, `Drawing.save` and `Drawing.saveas` to produce easy to read XML
+    output, svgwrite reparses the output string with minidom, this reduces the performance because this process requires
+    memory and runtime, default value for `pretty` is False.
 
 Moved repository to GitHub.com: http://github.com/mozman/svgwrite.git
 
