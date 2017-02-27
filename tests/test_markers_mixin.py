@@ -11,8 +11,10 @@ import unittest
 from svgwrite.base import BaseElement
 from svgwrite.mixins import Markers
 
+
 class MarkerMock(BaseElement, Markers):
-    elementname = 'line' # has valid marker properties
+    elementname = 'line'  # has valid marker properties
+
 
 class TestMarkers(unittest.TestCase):
 
@@ -43,7 +45,7 @@ class TestMarkers(unittest.TestCase):
         self.assertEqual(e.tostring(), '<line marker-end="url(#mozman3)" '
                          'marker-mid="url(#mozman2)" marker-start="url(#mozman1)" />')
 
-    def test_partly_set_markers_obj(self):
+    def test_partly_set_markers(self):
         m = MarkerMock(id='mozman', debug=True, profile='full')
         e = MarkerMock(debug=True, profile='full')
         e.set_markers((None, m, None))
@@ -57,6 +59,13 @@ class TestMarkers(unittest.TestCase):
         e.set_markers((None, None, m))
         self.assertEqual(e.tostring(), '<line marker-end="url(#mozman)" />')
 
+        e = MarkerMock(debug=True, profile='full')
+        e.set_markers((None, m, m))
+        self.assertEqual(e.tostring(), '<line marker-end="url(#mozman)" marker-mid="url(#mozman)" />')
+
+        e = MarkerMock(debug=True, profile='full')
+        e.set_markers((False, False, m))
+        self.assertEqual(e.tostring(), '<line marker-end="url(#mozman)" />')
 
     def test_unpack_error(self):
         e = MarkerMock(debug=True, profile='full')

@@ -4,8 +4,8 @@ NEWS
 
 Version 1.1.11 - ...
 
-  * CHANGED: e.set_markers((sm, mm, em)), accepts None values to set markers individually, like just set end marker:
-    s.set_markers((None, None, em))
+  * CHANGED: e.set_markers((sm, mm, em)), accepts None/False values to set markers individually, like just set end
+    marker: s.set_markers((None, False, em))
 
 Version 1.1.10 - 2017-01-28
 
