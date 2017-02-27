@@ -45,7 +45,7 @@ class Path(BaseElement, Transform, Presentation, Markers):
             self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
 
     def push(self, *elements):
-        """ Push commands and coordinats onto the command stack.
+        """ Push commands and coordinates onto the command stack.
 
         :param `iterable` elements: *coordinates*, *length* and *commands*
 
