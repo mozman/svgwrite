@@ -24,7 +24,7 @@ class TestMarkers(unittest.TestCase):
     def test_with_three_strings(self):
         e = MarkerMock(debug=True, profile='full')
         e.set_markers(('#mozman1', '#mozman2', '#mozman3'))
-        self.assertEqual(e.tostring(), '<line marker-end="url(#mozman3)" ' \
+        self.assertEqual(e.tostring(), '<line marker-end="url(#mozman3)" '
                          'marker-mid="url(#mozman2)" marker-start="url(#mozman1)" />')
 
     def test_with_one_obj(self):
@@ -40,8 +40,23 @@ class TestMarkers(unittest.TestCase):
         e = MarkerMock(debug=True, profile='full')
 
         e.set_markers((m1, m2, m3))
-        self.assertEqual(e.tostring(), '<line marker-end="url(#mozman3)" ' \
+        self.assertEqual(e.tostring(), '<line marker-end="url(#mozman3)" '
                          'marker-mid="url(#mozman2)" marker-start="url(#mozman1)" />')
+
+    def test_partly_set_markers_obj(self):
+        m = MarkerMock(id='mozman', debug=True, profile='full')
+        e = MarkerMock(debug=True, profile='full')
+        e.set_markers((None, m, None))
+        self.assertEqual(e.tostring(), '<line marker-mid="url(#mozman)" />')
+
+        e = MarkerMock(debug=True, profile='full')
+        e.set_markers((m, None, None))
+        self.assertEqual(e.tostring(), '<line marker-start="url(#mozman)" />')
+
+        e = MarkerMock(debug=True, profile='full')
+        e.set_markers((None, None, m))
+        self.assertEqual(e.tostring(), '<line marker-end="url(#mozman)" />')
+
 
     def test_unpack_error(self):
         e = MarkerMock(debug=True, profile='full')

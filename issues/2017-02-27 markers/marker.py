@@ -40,6 +40,7 @@ def marker01(name):
     # marker-mixin does not work line.set_markers(('', '', arrow))
     # not useful here: line.set_markers(arrow) sets start and mid and end maker at once to the same maker
     # not useful here: line.set_markers(start_arrow, mid_maker, end_arrow) sets start and mid and end maker at once
+    # NEW in v1.1.11 line.set_markers((None, None, arrow)) works to just set the end marker
     dwg.add(line)
     dwg.save(pretty=True)
 

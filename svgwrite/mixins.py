@@ -278,10 +278,13 @@ class Markers(object):
             self['marker'] = get_funciri(markers)
         else:
             try:
-                markerstart, markermid, markerend = markers
-                self['marker-start'] = get_funciri(markerstart)
-                self['marker-mid'] = get_funciri(markermid)
-                self['marker-end'] = get_funciri(markerend)
+                start_marker, mid_marker, end_marker = markers
+                if start_marker:
+                    self['marker-start'] = get_funciri(start_marker)
+                if mid_marker:
+                    self['marker-mid'] = get_funciri(mid_marker)
+                if end_marker:
+                    self['marker-end'] = get_funciri(end_marker)
             except (TypeError, KeyError):
                 self['marker'] = get_funciri(markers)
 

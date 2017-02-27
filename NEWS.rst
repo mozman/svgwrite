@@ -2,6 +2,11 @@
 NEWS
 ====
 
+Version 1.1.11 - ...
+
+  * CHANGED: e.set_markers((sm, mm, em)), accepts None values to set markers individually, like just set end marker:
+    s.set_markers((None, None, em))
+
 Version 1.1.10 - 2017-01-28
 
   * NEW: added `pretty` argument to `Drawing.write`, `Drawing.save` and `Drawing.saveas` to produce easy to read XML
