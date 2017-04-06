@@ -29,6 +29,10 @@ example::
     # 'marker-end' or 'marker' if all markers are the same.
     line['marker'] = marker.get_funciri()
 
+    # NEW in v1.1.11
+    # set individually markers, to just set the end marker set other markers to None or False:
+    line.set_markers((None, False, marker))
+
 .. automethod:: svgwrite.container.Marker.__init__
 
 Parent Classes

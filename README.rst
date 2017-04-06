@@ -6,22 +6,6 @@ svgwrite
    :target: https://svgwrite.readthedocs.io
    :alt: Read The Docs
 
-.. image:: https://img.shields.io/pypi/l/svgwrite.svg
-   :target: https://pypi.python.org/pypi/svgwrite/
-   :alt: License
-
-.. image:: https://img.shields.io/pypi/pyversions/svgwrite.svg
-   :target: https://pypi.python.org/pypi/svgwrite/
-   :alt: Python Versions
-
-.. image:: https://img.shields.io/pypi/wheel/svgwrite.svg
-   :target: https://pypi.python.org/pypi/svgwrite/
-   :alt: Wheel Status
-
-.. image:: https://img.shields.io/pypi/status/svgwrite.svg
-   :target: https://pypi.python.org/pypi/svgwrite/
-   :alt: Status
-
 Abstract
 ========
 

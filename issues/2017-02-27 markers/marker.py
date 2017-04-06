@@ -20,6 +20,20 @@ def create_arrow_marker(dwg):
     return arrow
 
 
+def create_arrow_marker_sumner(dwg):
+    #   <defs>
+    #     <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+    #       <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+    #     </marker>
+    #   </defs>
+    # your drawing area is 20, 10, the tip of the arrow is at 20, 5 and the end of the arrow is at (3.128, 5)
+    # L x, y uses absolute coords, l dx, dy uses relative coords
+    arrow = dwg.marker(id='arrow', insert=(3.128, 5), size=(20, 10), orient='auto', markerUnits='strokeWidth')
+    arrow.add(dwg.path(d='M0,10 l3.128,-5 l-3.128,-5 l20,5 Z', fill='#f00'))
+    dwg.defs.add(arrow)
+    return arrow
+
+
 def marker01(name):
     # example http://vanseodesign.com/web-design/svg-markers/
     # <svg width="600px" height="100px">
@@ -33,7 +47,7 @@ def marker01(name):
     # </svg>
 
     dwg = svgwrite.Drawing(name, size=('600px', '100px'), profile='full', debug=True)
-    arrow = create_arrow_marker(dwg)
+    arrow = create_arrow_marker_sumner(dwg)
     # set marker attributes without marker-mixin works
     line = dwg.line(start=(50, 50), end=(250, 50), stroke='#000', stroke_width=5,
                     marker_end=arrow.get_funciri())
