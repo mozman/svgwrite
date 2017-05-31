@@ -271,7 +271,6 @@ class Full11TypeChecker(object):
         # Nmtoken
         return bool(NMTOKEN_PATTERN.match(str(value).strip()))
 
-
     def is_shape(self, value):
         #shape ::= (<top> <right> <bottom> <left>)
         # where <top>, <bottom> <right>, and <left> specify offsets from the
@@ -294,6 +293,12 @@ class Full11TypeChecker(object):
             return is_valid_animation_timing(value)
         else:
             return False
+
+    def is_list_of_text_decoration_style(self, value):
+        return self.is_list_of_T(value, t='text_decoration_style')
+
+    def is_text_decoration_style(self, value):
+        return value in ('overline', 'underline', 'line-through', 'blink')
 
     def get_func_by_name(self, funcname):
         return getattr(self,

@@ -81,6 +81,15 @@ class TestGetCoordinate(unittest.TestCase):
         self.assertTrue(validator.check_svg_type("rgb(10%, 20%, 30%)", 'color'))
         self.assertTrue(validator.check_svg_type("rgb(10.1%, 20.2%, 30.3%)", 'color'))
 
+    def test_text_decoration_styles(self):
+        validator = get_validator('full', debug=True)
+        self.assertTrue(validator.check_svg_type('overline', 'list-of-text-decoration-style'))
+        self.assertTrue(validator.check_svg_type('underline', 'list-of-text-decoration-style'))
+        self.assertTrue(validator.check_svg_type('line-through', 'list-of-text-decoration-style'))
+        self.assertTrue(validator.check_svg_type('blink', 'list-of-text-decoration-style'))
+        self.assertTrue(validator.check_svg_type('underline overline blink', 'list-of-text-decoration-style'))
+        with self.assertRaises(TypeError):
+            validator.check_svg_type('underline overline inherit', 'list-of-text-decoration-style')
 
 
 class TestCheckCoordinate(unittest.TestCase):

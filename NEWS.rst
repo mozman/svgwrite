@@ -2,10 +2,11 @@
 NEWS
 ====
 
-Version 1.1.11 - ...
+Version 1.1.11 - 2017-05-31
 
   * CHANGED: e.set_markers((sm, mm, em)), accepts None/False values to set markers individually, like just set end
     marker: s.set_markers((None, False, em))
+  * BUGFIX: text-decoration attribute accepts multiple values like 'underline overline'
 
 Version 1.1.10 - 2017-01-28
 

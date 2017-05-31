@@ -73,6 +73,25 @@ class TestTSpan(unittest.TestCase):
         self.assertRaises(ValueError, TSpan, "txt", insert=(1,1), x=[1])
         self.assertRaises(ValueError, TSpan, "txt", insert=(1,1), y=[1])
 
+    def test_text_decoration(self):
+        with self.assertRaises(TypeError):
+            TSpan('text', text_decoration='xxx')
+        self.assertTrue(TSpan('text', text_decoration='none'))
+        self.assertTrue(TSpan('text', text_decoration='inherit'))
+        self.assertTrue(TSpan('text', text_decoration='underline'))
+        self.assertTrue(TSpan('text', text_decoration='overline'))
+        self.assertTrue(TSpan('text', text_decoration='line-through'))
+        self.assertTrue(TSpan('text', text_decoration='blink'))
+
+        # multiple decoration are allowed
+        self.assertTrue(TSpan('text', text_decoration='underline blink overline'))
+
+        with self.assertRaises(TypeError):  # can not mix none with decoration styles
+            TSpan('text', text_decoration='none underline')
+
+        with self.assertRaises(TypeError):  # can not mix inherit with decoration styles
+            TSpan('text', text_decoration='inherit underline')
+
 
 class TestTRef(unittest.TestCase):
     def test_constructor(self):
