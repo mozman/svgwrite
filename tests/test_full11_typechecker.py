@@ -180,6 +180,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_number_optional_number(' 1.5  '))
         self.assertTrue(self.checker.is_number_optional_number( 1 ))
         self.assertTrue(self.checker.is_number_optional_number( [1, 2] ))
+
     def test_is_not_number_optional_number(self):
         self.assertFalse(self.checker.is_number_optional_number(' 1px, 2'))
         self.assertFalse(self.checker.is_number_optional_number(''))

@@ -10,6 +10,7 @@ import unittest
 
 from svgwrite.animate import Set, Animate, AnimateColor, AnimateMotion, AnimateTransform
 
+
 class TestSet(unittest.TestCase):
     def test_constructor(self):
         s = Set(debug=True)
@@ -80,11 +81,13 @@ class TestAnimate(unittest.TestCase):
         s = Animate(values=(3,), debug=True)
         self.assertEqual(s.tostring(), '<animate values="3" />')
 
+
 class TestAnimateColor(unittest.TestCase):
     def test_freeze(self):
         s = AnimateColor(debug=True)
         s.freeze()
         self.assertEqual(s.tostring(), '<animateColor fill="freeze" />')
+
 
 class TestAnimateMotion(unittest.TestCase):
     def test_freeze(self):
@@ -104,11 +107,13 @@ class TestAnimateMotion(unittest.TestCase):
                          'keyPoints="0" path="m 0 0" '\
                          'rotate="auto" />')
 
+
 class TestAnimateTransform(unittest.TestCase):
     def test_freeze(self):
         s = AnimateTransform('translate', debug=True)
         s.freeze()
         self.assertEqual(s.tostring(), '<animateTransform fill="freeze" type="translate" />')
+
 
 if __name__=='__main__':
     unittest.main()

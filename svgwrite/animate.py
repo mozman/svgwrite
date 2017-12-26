@@ -115,6 +115,7 @@ class AnimateMotion(Set):
         if rotate is not None:
             self['rotate'] = rotate
 
+
 class Animate(Set):
     """ The **animate** element allows scalar attributes and properties to be
     assigned different values over time .
@@ -158,11 +159,13 @@ class Animate(Set):
         if by is not None:
             self['by'] = by
 
+
 class AnimateColor(Animate):
     """ The **animateColor** element specifies a color transformation over
     time.
     """
     elementname = 'animateColor'
+
 
 class AnimateTransform(Animate):
     """ The **animateTransform** element animates a transformation attribute
