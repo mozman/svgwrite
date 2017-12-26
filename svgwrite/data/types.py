@@ -6,6 +6,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: MIT License
 
+
 class SVGAttribute(object):
     def __init__(self, name, anim, types, const):
         self.name = name
@@ -24,6 +25,7 @@ class SVGAttribute(object):
 
     def get_const(self, elementname='*'):
         return self._const
+
 
 class SVGMultiAttribute(object):
     # example: SVGMultiAttribute({'*':SVGAttribute(...), 'text tref':SVGAttribute(...)} )

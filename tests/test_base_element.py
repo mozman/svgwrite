@@ -13,9 +13,11 @@ from svgwrite.base import BaseElement
 from svgwrite.params import Parameter
 from svgwrite.utils import is_string
 
+
 class MockBase(BaseElement):
     elementname = 'svg' # necessary for validator
     _parameter = Parameter(True, 'full')
+
 
 class TestBaseElement(unittest.TestCase):
 

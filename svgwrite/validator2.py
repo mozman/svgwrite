@@ -104,6 +104,9 @@ class Tiny12Validator(object):
         else:
             raise TypeError("%s is not of type '%s'." % (value, typename))
 
+    def is_valid_svg_type(self, value, typename):
+        return self.typechecker.check(typename, value)
+
     def is_valid_elementname(self, elementname):
         """ True if 'elementname' is a valid svg-element name. """
         return elementname in self.elements

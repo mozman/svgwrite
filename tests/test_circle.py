@@ -11,6 +11,7 @@ import unittest
 
 from svgwrite.shapes import Circle
 
+
 class TestCircle(unittest.TestCase):
     def test_numbers(self):
         circle = Circle(center=(0,0), r=2)
@@ -25,6 +26,11 @@ class TestCircle(unittest.TestCase):
         self.assertRaises(TypeError, Circle, r=None)
         self.assertRaises(TypeError, Circle, center=None)
         self.assertRaises(TypeError, Circle, center=(None, None))
+
+    def test_add_classes(self):
+        circle = Circle(center=(0, 0), r=2, class_='class1 class2')
+        assert circle['class'] == 'class1 class2'
+
 
 if __name__=='__main__':
     unittest.main()

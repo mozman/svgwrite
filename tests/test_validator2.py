@@ -150,5 +150,12 @@ class TestCheckAngle(unittest.TestCase):
         for value in ('10cm', '-10px', '10in', '1gon', '3°'):
             self.assertRaises(TypeError, validator.check_svg_type, value, 'angle')
 
+
+class TestCheckTypes(unittest.TestCase):
+    def test_class_names(self):
+        validator = get_validator('Full', debug=True)
+        self.assertTrue(validator.is_valid_svg_type('class1 class2', 'list-of-name'))
+
+
 if __name__=='__main__':
     unittest.main()

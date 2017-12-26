@@ -28,8 +28,9 @@ def basic_shapes(name):
     shapes = dwg.add(dwg.g(id='shapes', fill='red'))
 
     # set presentation attributes at object creation as SVG-Attributes
-    shapes.add(dwg.circle(center=(15*cm, 8*cm), r='2.5cm', stroke='blue',
-                          stroke_width=3))
+    circle = dwg.circle(center=(15*cm, 8*cm), r='2.5cm', stroke='blue', stroke_width=3)
+    circle['class'] = 'class1 class2'
+    shapes.add(circle)
 
     # override the 'fill' attribute of the parent group 'shapes'
     shapes.add(dwg.rect(insert=(5*cm, 5*cm), size=(45*mm, 45*mm),
@@ -39,6 +40,7 @@ def basic_shapes(name):
     ellipse = shapes.add(dwg.ellipse(center=(10*cm, 15*cm), r=('5cm', '10mm')))
     ellipse.fill('green', opacity=0.5).stroke('black', width=5).dasharray([20, 20])
     dwg.save()
+
 
 if __name__ == '__main__':
     basic_shapes('basic_shapes.svg')

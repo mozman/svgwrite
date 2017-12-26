@@ -76,7 +76,7 @@ class Full11TypeChecker(object):
         return value.strip() in colornames
 
     def is_frequency(self, value):
-        #frequency ::= number (~"Hz" | ~"kHz")
+        # frequency ::= number (~"Hz" | ~"kHz")
         if self.is_number(value):
             return True
         elif is_string(value):
@@ -84,14 +84,14 @@ class Full11TypeChecker(object):
         return False
 
     def is_FuncIRI(self, value):
-        #FuncIRI ::= "url(" <IRI> ")"
+        # FuncIRI ::= "url(" <IRI> ")"
         res = FUNCIRI_PATTERN.match(str(value).strip())
         if res:
             return self.is_IRI(res.group(1))
         return False
 
     def is_icccolor(self, value):
-        #icccolor ::= "icc-color(" name (comma-wsp number)+ ")"
+        # icccolor ::= "icc-color(" name (comma-wsp number)+ ")"
         res = ICCCOLOR_PATTERN.match(str(value).strip())
         if res:
             return self.is_list_of_T(res.group(1), 'name')
@@ -117,7 +117,7 @@ class Full11TypeChecker(object):
             return False
 
     def is_length(self, value):
-        #length ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%")?
+        # length ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%")?
         if value is None:
             return False
         if isinstance(value, (int, float)):
@@ -174,7 +174,7 @@ class Full11TypeChecker(object):
         return self.is_list_of_T(value.replace(';', ' '), 'number')
 
     def is_name(self, value):
-        #name  ::= [^,()#x20#x9#xD#xA] /* any char except ",", "(", ")" or wsp */
+        # name  ::= [^,()#x20#x9#xD#xA] /* any char except ",", "(", ")" or wsp */
         chars = frozenset(str(value).strip())
         if not chars or INVALID_NAME_CHARS.intersection(chars):
             return False
@@ -272,7 +272,7 @@ class Full11TypeChecker(object):
         return bool(NMTOKEN_PATTERN.match(str(value).strip()))
 
     def is_shape(self, value):
-        #shape ::= (<top> <right> <bottom> <left>)
+        # shape ::= (<top> <right> <bottom> <left>)
         # where <top>, <bottom> <right>, and <left> specify offsets from the
         # respective sides of the box.
         # <top>, <right>, <bottom>, and <left> are <length> values
@@ -310,6 +310,7 @@ class Full11TypeChecker(object):
             t = typename[8:]
             return self.is_list_of_T(value, t)
         return self.get_func_by_name(typename)(value)
+
 
 FOCUS_CONST = frozenset(['nav-next', 'nav-prev', 'nav-up', 'nav-down', 'nav-left',
                          'nav-right', 'nav-up-left', 'nav-up-right', 'nav-down-left',
