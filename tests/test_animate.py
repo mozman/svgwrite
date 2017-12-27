@@ -81,6 +81,10 @@ class TestAnimate(unittest.TestCase):
         s = Animate(values=(3,), debug=True)
         self.assertEqual(s.tostring(), '<animate values="3" />')
 
+    def test_values_colors(self):
+        s = Animate(values='#000000;#0000ff;#00ff00;#ff0000', debug=True)
+        self.assertEqual(s.tostring(), '<animate values="#000000;#0000ff;#00ff00;#ff0000" />')
+
 
 class TestAnimateColor(unittest.TestCase):
     def test_freeze(self):

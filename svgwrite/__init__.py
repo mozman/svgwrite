@@ -41,7 +41,7 @@ You can only create two types of SVG drawings:
 
 """
 
-version = (1, 1, 11)  # also update setup.py
+version = (1, 1, 12)  # also update setup.py
 VERSION = '%d.%d.%d' % version
 
 AUTHOR_NAME = 'Manfred Moitzi'

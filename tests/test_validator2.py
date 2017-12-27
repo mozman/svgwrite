@@ -153,9 +153,9 @@ class TestCheckAngle(unittest.TestCase):
 
 class TestCheckTypes(unittest.TestCase):
     def test_class_names(self):
-        validator = get_validator('Full', debug=True)
+        validator = get_validator('full', debug=True)
         self.assertTrue(validator.is_valid_svg_type('class1 class2', 'list-of-name'))
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.main()

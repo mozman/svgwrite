@@ -2,6 +2,10 @@
 NEWS
 ====
 
+Version 1.1.12 - 2017-12-27
+
+  * BUGFIX: values attribute for element animate, accepts any semicolon separated values
+
 Version 1.1.11 - 2017-05-31
 
   * CHANGED: e.set_markers((sm, mm, em)), accepts None/False values to set markers individually, like just set end

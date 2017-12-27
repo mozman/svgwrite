@@ -216,15 +216,17 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertFalse(self.checker.is_FuncIRI("http://localhost:8080"))
 
     def test_is_semicolon_list(self):
+        # update 2017-12-27:
+        # semicolon-list is a list of (any) VALUES separated by semicolons
         self.assertTrue(self.checker.is_semicolon_list("1;2;3;4;5"))
         self.assertTrue(self.checker.is_semicolon_list("1;2,3;4,5"))
         self.assertTrue(self.checker.is_semicolon_list("1.;2.,3.;4.,5."))
         self.assertTrue(self.checker.is_semicolon_list("1"))
         self.assertTrue(self.checker.is_semicolon_list("1 2;3;4;5"))
+        self.assertTrue(self.checker.is_semicolon_list("1 A;3 4;5,Z"))
+        self.assertTrue(self.checker.is_semicolon_list("#000000;#0000ff;#00ff00;#ff0000"))
 
     def test_is_not_semicolon_list(self):
-        # only numbers!
-        self.assertFalse(self.checker.is_semicolon_list("1 A;3 4;5,Z"))
         self.assertFalse(self.checker.is_semicolon_list(""))
 
     def test_is_icc_color(self):

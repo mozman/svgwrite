@@ -171,7 +171,7 @@ class Full11TypeChecker(object):
         #               | value comma-wsp list-of-values
         #comma-wsp  ::= (wsp+ ";" wsp*) | ("," wsp*)
         #wsp        ::= (#x20 | #x9 | #xD | #xA)
-        return self.is_list_of_T(value.replace(';', ' '), 'number')
+        return self.is_list_of_T(value.replace(';', ' '), 'string')
 
     def is_name(self, value):
         # name  ::= [^,()#x20#x9#xD#xA] /* any char except ",", "(", ")" or wsp */
