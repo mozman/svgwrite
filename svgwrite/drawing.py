@@ -113,7 +113,10 @@ class Drawing(SVG, ElementFactory):
 
     def save(self, pretty=False):
         """ Write the XML string to **filename**. """
-        fileobj = io.open(self.filename, mode='w', encoding='utf-8')
+        if isinstance(self.filename, str):
+            fileobj = io.open(self.filename, mode='w', encoding='utf-8')
+        else:
+            fileobj = self.filename
         self.write(fileobj, pretty=pretty)
         fileobj.close()
 
