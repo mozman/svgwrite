@@ -12,7 +12,7 @@ from setuptools import setup
 
 VERSION = '1.1.12'  # also update __init__.py
 AUTHOR_NAME = 'Manfred Moitzi'
-AUTHOR_EMAIL = 'mozman@gmx.at'
+AUTHOR_EMAIL = 'me@mozman.at'
 
 
 def read(fname):
