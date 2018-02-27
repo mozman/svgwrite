@@ -102,11 +102,13 @@ class CachedResponse(StringIO.StringIO):
     def __init__(self, cacheLocation,url,setCacheHeader=True):
         self.cacheLocation = cacheLocation
         hash = hashlib.md5(url).hexdigest()
-        StringIO.StringIO.__init__(self, file(self.cacheLocation + "/" + hash+".body").read())
+        with open(self.cacheLocation + "/" + hash+".body") as in_file:
+            StringIO.StringIO.__init__(self, in_file.read())
         self.url     = url
         self.code    = 200
         self.msg     = "OK"
-        headerbuf = file(self.cacheLocation + "/" + hash+".headers").read()
+        with open(self.cacheLocation + "/" + hash+".headers") as in_file:
+            headerbuf = in_file.read()
         if setCacheHeader:
             headerbuf += "x-cache: %s/%s\r\n" % (self.cacheLocation,hash)
         self.headers = httplib.HTTPMessage(StringIO.StringIO(headerbuf))
