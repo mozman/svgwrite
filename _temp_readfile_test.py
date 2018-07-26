@@ -1,7 +1,7 @@
 import svgwrite
 
-dwg = svgwrite.Drawing ("file.svg")
+dwg = svgwrite.Drawing ("duplicated_file.svg")
 
-svgwrite.OpenSVGFile ("test_file.svg", dwg)
+svgwrite.OpenSVGFile ("input_file.svg", dwg)
 
 dwg.save ()
