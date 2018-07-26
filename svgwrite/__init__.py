@@ -50,6 +50,7 @@ CYEAR = '2014-2017'
 
 from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb
+from svgwrite.readfile import OpenSVGFile
 
 
 class Unit(object):
