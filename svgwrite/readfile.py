@@ -11,6 +11,10 @@ from .drawing import *
 from .validator2 import *
 
 def GetAttributeDictionary (node):
+    """
+    :param Node node: node whose attributes to get
+    :returns Dictionary: list of node's attributes as a dictionary
+    """
     attrs = node.attributes
     
     attributes = {}
@@ -45,8 +49,8 @@ def GetFirstChildNodeByLocalName (node, local_name):
     
     return None
 
-def GetDrawingFromString (string, dwg, overwrite_dwg_properties = True,
-                          parent = None, unpack_style = False):
+def GetDrawingFromString (string, dwg, overwrite_dwg_properties,
+                          parent, unpack_style):
     """
     :param string string: file string in xml
     :param Drawing dwg: drawing to add elements to
@@ -145,12 +149,13 @@ def GetDrawingFromString (string, dwg, overwrite_dwg_properties = True,
     for n in svg_node.childNodes:
         AddNodeFromXMLNode (n, parent)
 
-def OpenSVGFile (file_path, dwg, offset = (0, 0), parent = None):
+def OpenSVGFile (file_path, dwg, overwrite_svg_properties = True, parent = None,
+                 unpack_style = False):
     """
-    :param string file_path: file path to open
-    :param Drawing dwg: drawing to add elements to
-    :param 2-tuple offset: translation to be applied to all elements (dx, dy)
-    :param SVG parent: SVG element to add all elements to (if None, will default to the drawing)
-    
+    :param string string: file string in xml
+    :param svgwrite.Drawing dwg: drawing to add elements to
+    :param bool overwrite_svg_properties: if set to True, this will overwrite the drawing so that size, and viewbox are identical to that of the file
+    :param svgwrite.SVG parent: SVG element to add all elements to (if None, will default to the drawing)
+    :param bool unpack_style: if set to True, this will copy all attributes from "style" to their equivilent tags. !WARNING! Some data may be lost in this process 
     """
-    return GetDrawingFromString (open (file_path, "r").read (), dwg)
+    GetDrawingFromString (open (file_path, "r").read (), dwg, overwrite_svg_properties, parent, unpack_style)
