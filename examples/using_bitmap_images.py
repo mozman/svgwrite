@@ -1,6 +1,6 @@
 # example by https://github.com/stevenj to include bitmapgraphic by using the wand and base64 libraries
 # getting wand at: https://pypi.org/project/Wand/
-# requires and installation: http://docs.wand-py.org/en/0.4.4/#
+# requirements and installation: http://docs.wand-py.org/en/0.4.4/#
 # not tested by myself (mozman)
 
 import svgwrite
