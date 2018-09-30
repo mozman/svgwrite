@@ -4,7 +4,7 @@
 # Purpose: package definition file
 # Created: 08.09.2010
 # License: MIT License
-# Copyright (C) 2010-2014  Manfred Moitzi
+# Copyright (c) 2010-2018  Manfred Moitzi
 
 """
 A Python library to create SVG drawings.
@@ -12,7 +12,7 @@ A Python library to create SVG drawings.
 SVG is a language for describing two-dimensional graphics in XML. SVG allows
 for three types of graphic objects: vector graphic shapes (e.g., paths
 consisting of straight lines and curves), images and text. Graphical objects
-can be grouped, styled, transformed and composited into previously rendered
+can be grouped, styled, transformed and composed into previously rendered
 objects. The feature set includes nested transformations, clipping paths,
 alpha masks, filter effects and template objects.
 
@@ -45,8 +45,8 @@ version = (1, 1, 12)  # also update setup.py
 VERSION = '%d.%d.%d' % version
 
 AUTHOR_NAME = 'Manfred Moitzi'
-AUTHOR_EMAIL = 'mozman@gmx.at'
-CYEAR = '2014-2017'
+AUTHOR_EMAIL = 'me@mozman.at'
+CYEAR = '2014-2018'
 
 from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb

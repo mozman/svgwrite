@@ -104,6 +104,10 @@ class BaseElement(object):
     def validator(self):
         return self._parameter.validator
 
+    @validator.setter
+    def validator(self, value):
+        self._parameter.validator = value
+
     @property
     def version(self):
         return self._parameter.get_version()

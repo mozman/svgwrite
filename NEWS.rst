@@ -2,6 +2,10 @@
 NEWS
 ====
 
+Version 1.2.0 - dev
+
+  * NEW: Inkscape extension - support for Inkscape layers
+
 Version 1.1.12 - 2017-12-27
 
   * BUGFIX: values attribute for element animate, accepts any semicolon separated values
