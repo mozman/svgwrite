@@ -28,15 +28,14 @@ SVG Implementation Status
 
 * Webkit: http://webkit.org/projects/svg/status.xml
 
-Foreign Python modules
-======================
+Dependencies
+============
 
 pyparsing.py
 ------------
 
-Copyright (c) 2003-2010  Paul T. McGuire
-
-http://pyparsing.wikispaces.com/
+    - https://pypi.org/project/pyparsing/
+    - https://github.com/pyparsing/pyparsing/
 
 Using :mod:`pyparsing.py` for validation of the **transform** attribute and the
 **d** attribute of the <path> element.
