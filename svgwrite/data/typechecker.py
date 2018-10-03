@@ -192,7 +192,7 @@ class Full11TypeChecker(object):
         #number-optional-number ::= number
         #                           | number comma-wsp number
         if is_string(value):
-            values = re.split(' *,? *', value.strip())
+            values = re.split('[ ,]+', value.strip())
             if 0 < len(values) < 3: # 1 or 2 numbers
                 for v in values:
                     if not self.is_number(v):
