@@ -10,7 +10,7 @@
 import os
 from setuptools import setup
 
-VERSION = '1.1.12'  # also update __init__.py
+VERSION = '1.2.0'  # also update __init__.py
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'me@mozman.at'
 

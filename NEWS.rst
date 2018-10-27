@@ -2,7 +2,7 @@
 NEWS
 ====
 
-Version 1.2.0 - dev
+Version 1.2.0 - 2018-10-27
 
   * NEW: Inkscape extension - support for Inkscape layers
   * BUGFIX: compatibility with Python 3.7 by fixing re.split() usage
