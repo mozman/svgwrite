@@ -111,6 +111,12 @@ or (german) http://www.selfsvg.info .
 
    classes/mixins
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Extensions
+
+   extensions/inkscape
+
 Indices and tables
 ==================
 
