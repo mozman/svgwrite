@@ -4,13 +4,13 @@
 # Purpose: setup
 # Created: 08.09.2010
 # License: MIT License
-# Copyright (C) 2010-2012  Manfred Moitzi
+# Copyright (C) 2010-2018  Manfred Moitzi
 
 
 import os
 from setuptools import setup
 
-VERSION = '1.2.0'  # also update __init__.py
+VERSION = '1.2.1'  # also update __init__.py
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'me@mozman.at'
 
