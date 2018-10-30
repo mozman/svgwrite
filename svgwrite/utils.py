@@ -25,17 +25,15 @@
 
 """
 
-import sys
-PYTHON3 = sys.version_info[0] > 2
 from functools import partial
 
 # Python 3 adaption
-if PYTHON3:
-    to_unicode = str
-    basestring = str
-else:
+try:               # Python 2
     def to_unicode(value):
         return unicode(value, encoding='utf8') if isinstance(value, str) else unicode(value)
+except NameError:  # Python 3
+    to_unicode = str
+    basestring = str
 # Python 3 adaption
 
 
