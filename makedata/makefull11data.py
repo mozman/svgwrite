@@ -6,6 +6,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
+from __future__ import print_function
 import sys
 import urllib2
 import urlparse
@@ -136,7 +137,7 @@ def create_elements_data(attributes, children):
         except KeyError:
             possible_children = []
         element = SVGElement(name, attribute_names, possible_children)
-        print element
+        print(element)
         elements[name] = element
     return elements
 

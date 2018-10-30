@@ -6,6 +6,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: GPLv3
 
+from __future__ import print_function
 import sys
 
 from BeautifulSoup import BeautifulSoup
@@ -76,7 +77,7 @@ def create_property_data(soup):
         animateable = (td[1].attrs[0][1] == 'true')
         content = [t.strip() for t in td[3].getText().split('|')]
         prop = SVGProp(name, animateable, content)
-        print prop
+        print(prop)
         p[prop.name] = prop
     return p
 
@@ -90,7 +91,7 @@ def create_attribute_data(soup):
         animateable = (td[1].attrs[0][1] == 'true')
         content = [t.strip() for t in td[3].getText().split('|')]
         prop = SVGProp(name, animateable, content)
-        print prop
+        print(prop)
         p[prop.name] = prop
     return p
 
@@ -184,7 +185,7 @@ def create_elements_data(soup):
         else:
             possible_children = None
         element = SVGElement(name, attribute_names, property_names, possible_children)
-        print element
+        print(element)
         elements[element.name] = element
     return elements
 
