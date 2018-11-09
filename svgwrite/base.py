@@ -185,8 +185,10 @@ class BaseElement(object):
 
         """
         xml = self.get_xml()
+        # required for Python 2 support
         xml_utf8_str = etree.tostring(xml, encoding='utf-8')
         return xml_utf8_str.decode('utf-8')
+        # just Python 3: return etree.tostring(xml, encoding='unicode')
 
     def get_xml(self):
         """ Get the XML representation as `ElementTree` object.
