@@ -2,7 +2,7 @@
 NEWS
 ====
 
-Version 1.2.1 - dev
+Version 1.2.1 - 2018-11-16
 
   * BUGFIX: Python 2 pretty print encoding issue
 
