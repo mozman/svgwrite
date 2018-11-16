@@ -24,7 +24,7 @@
 .. autofunction:: pretty_xml
 
 """
-
+from __future__ import unicode_literals
 import sys
 PYTHON3 = sys.version_info[0] > 2
 from functools import partial
@@ -242,8 +242,10 @@ def pretty_xml(xml_string):
     # check for empty string, len check avoids unnecessary string manipulation with large XML strings
     if len(xml_string) < 20 and xml_string.strip() == "":
         return ""
-
-    xml_tree = minidom.parseString(xml_string)
+    if PYTHON3:
+        xml_tree = minidom.parseString(xml_string)
+    else:
+        xml_tree = minidom.parseString(xml_string.encode('utf-8'))
     lines = xml_tree.toprettyxml(indent='  ').split('\n')
     # remove 1. line = xml declaration
     return '\n'.join(lines[1:])

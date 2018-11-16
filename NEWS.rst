@@ -4,6 +4,8 @@ NEWS
 
 Version 1.2.1 - dev
 
+  * BUGFIX: Python 2 pretty print encoding issue
+
 Version 1.2.0 - 2018-10-27
 
   * NEW: Inkscape extension - support for Inkscape layers

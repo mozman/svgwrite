@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 #coding:utf-8
-# Author:  mozman <mozman@gmx.at>
+# Author:  mozman <me@mozman.at>
 # Purpose: test pretty_xml function
 # Created: 28.01.2017
 # Copyright (C) 2017, Manfred Moitzi
 # License: MIT License
-
+from __future__ import unicode_literals
 import unittest
 
-from svgwrite.utils import pretty_xml
+import svgwrite
+from svgwrite.utils import pretty_xml, PYTHON3
 
 
 class TestPrettyXML(unittest.TestCase):
@@ -21,6 +22,14 @@ class TestPrettyXML(unittest.TestCase):
     def test_empty_string(self):
         result = pretty_xml("")
         self.assertEqual("", result)
+
+    def test_unicode_compatibility(self):
+        if PYTHON3:
+            return
+        dwg = svgwrite.Drawing()
+        dwg.add(dwg.text("•••", insert=(0, 0)))
+        result = pretty_xml(dwg.tostring())
+        self.assertTrue(type(result) is unicode)
 
 
 if __name__ == '__main__':
