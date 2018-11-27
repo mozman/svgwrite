@@ -24,6 +24,10 @@ set/get SVG attributes::
 
 """
 
+import base64
+import os
+
+from svgwrite.utils import urlopen
 from svgwrite.base import BaseElement
 from svgwrite.mixins import ViewBox, Transform, XLink
 from svgwrite.mixins import Presentation, Clipping
@@ -97,8 +101,43 @@ class Marker(BaseElement, ViewBox, Presentation):
             self['id'] = self.next_id()
 
 
+FONT_MIMETYPES = {
+    'ttf': "application/x-font-ttf",
+    'otf': "application/x-font-opentype",
+    'woff': "application/font-woff",
+    'woff2': "application/font-woff2",
+    'eot': "application/vnd.ms-fontobject",
+    'sfnt': "application/font-sfnt",
+}
+
+FONT_TEMPLATE = """@font-face{{ 
+    font-family: "{name}"; 
+    src: url("{data}"); 
+}}
+"""
+
+
+def font_mimetype(name):
+    _, ext = os.path.splitext(name.lower())
+    return FONT_MIMETYPES[ext[1:]]
+
+
+def base64_data(data, mimetype):
+    data = base64.b64encode(data).decode()
+    return "data:{mimetype};charset=utf-8;base64,{data}".format(mimetype=mimetype, data=data)
+
+
+def find_first_url(text):
+    import re
+    result = re.findall(r"url\((.*?)\)", text)
+    if isinstance(result, list):
+        return result[0]
+    else:
+        return result
+
+
 class SVG(Symbol):
-    """ An SVG document fragment consists of any number of SVG elements contained
+    """ A SVG document fragment consists of any number of SVG elements contained
     within an **svg** element.
 
     An SVG document fragment can range from an empty fragment (i.e., no content
@@ -122,8 +161,34 @@ class SVG(Symbol):
             self['width'] = size[0]
             self['height'] = size[1]
 
-        self.defs = Defs(factory=self) # defs container
+        self.defs = Defs(factory=self)  # defs container
         self.add(self.defs)  # add defs as first element
+
+    def embed_stylesheet(self, content):
+        """ Add <style> tag to the defs section.
+
+        :param content: style sheet content as string
+        """
+        self.defs.add(Style(content))
+
+    def embed_font(self, name, filename):
+        """ Embed font as base64 encoded data from font file.
+
+        :param name: font name
+        :param filename: file name of local stored font
+        """
+        data = open(filename, 'rb').read()
+        self._embed_font_data(name, data, font_mimetype(filename))
+
+    def embed_google_web_font(self, name, uri):
+        font_info = urlopen(uri).read()
+        font_url = find_first_url(font_info.decode())
+        data = urlopen(font_url).read()
+        self._embed_font_data(name, data, font_mimetype(font_url))
+
+    def _embed_font_data(self, name, data, mimetype):
+        content = FONT_TEMPLATE.format(name=name, data=base64_data(data, mimetype))
+        self.embed_stylesheet(content)
 
 
 class Use(BaseElement, Transform, XLink, Presentation):

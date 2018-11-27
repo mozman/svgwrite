@@ -31,9 +31,11 @@ from functools import partial
 
 # Python 3 adaption
 if PYTHON3:
+    from urllib.request import urlopen
     to_unicode = str
     basestring = str
 else:
+    from urllib import urlopen
     def to_unicode(value):
         return unicode(value, encoding='utf8') if isinstance(value, str) else unicode(value)
 # Python 3 adaption

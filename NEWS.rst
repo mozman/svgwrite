@@ -2,7 +2,12 @@
 NEWS
 ====
 
-Version 1.2.2 - dev
+Version 1.3 - dev
+
+  * Dropping Python 2 support with v1.4 or higher
+  * NEW: easy stylesheet embedding: `Drawing.embed_stylesheet(content)`, see example using_fonts.py
+  * NEW: embedded local fonts: `Drawing.embed_font(fontname, filename)`, see example using_fonts.py
+  * NEW: embedded web fonts: `Drawing.embed_google_web_font(fontname, uri)`, see example using_fonts.py
 
 Version 1.2.1 - 2018-11-16
 
