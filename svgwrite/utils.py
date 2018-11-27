@@ -35,6 +35,8 @@ if PYTHON3:
     to_unicode = str
     basestring = str
 else:
+    import warnings
+    warnings.warn("Python 2 support will be dropped with version 1.4", DeprecationWarning)
     from urllib import urlopen
     def to_unicode(value):
         return unicode(value, encoding='utf8') if isinstance(value, str) else unicode(value)
