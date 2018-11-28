@@ -6,6 +6,9 @@ SVG
 .. seealso:: http://www.w3.org/TR/SVG11/struct.html#SVGElement
 
 .. automethod:: svgwrite.container.SVG.__init__
+.. automethod:: svgwrite.container.SVG.embed_stylesheet
+.. automethod:: svgwrite.container.SVG.embed_font
+.. automethod:: svgwrite.container.SVG.embed_google_web_font
 
 Attributes
 ----------
@@ -17,6 +20,7 @@ Attributes
    adding SVG elements to *defs*::
 
      svgobject.defs.add(element)
+
 
 Parent Classes
 --------------

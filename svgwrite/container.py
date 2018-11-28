@@ -24,10 +24,7 @@ set/get SVG attributes::
 
 """
 
-import base64
-import os
-
-from svgwrite.utils import urlopen
+from svgwrite.utils import urlopen, font_mimetype, base64_data, find_first_url
 from svgwrite.base import BaseElement
 from svgwrite.mixins import ViewBox, Transform, XLink
 from svgwrite.mixins import Presentation, Clipping
@@ -101,39 +98,11 @@ class Marker(BaseElement, ViewBox, Presentation):
             self['id'] = self.next_id()
 
 
-FONT_MIMETYPES = {
-    'ttf': "application/x-font-ttf",
-    'otf': "application/x-font-opentype",
-    'woff': "application/font-woff",
-    'woff2': "application/font-woff2",
-    'eot': "application/vnd.ms-fontobject",
-    'sfnt': "application/font-sfnt",
-}
-
 FONT_TEMPLATE = """@font-face{{ 
     font-family: "{name}"; 
     src: url("{data}"); 
 }}
 """
-
-
-def font_mimetype(name):
-    _, ext = os.path.splitext(name.lower())
-    return FONT_MIMETYPES[ext[1:]]
-
-
-def base64_data(data, mimetype):
-    data = base64.b64encode(data).decode()
-    return "data:{mimetype};charset=utf-8;base64,{data}".format(mimetype=mimetype, data=data)
-
-
-def find_first_url(text):
-    import re
-    result = re.findall(r"url\((.*?)\)", text)
-    if result:
-        return result[0]
-    else:
-        return None
 
 
 class SVG(Symbol):
@@ -168,7 +137,7 @@ class SVG(Symbol):
         """ Add <style> tag to the defs section.
 
         :param content: style sheet content as string
-        :return: Style() object
+        :return: :class:`~svgwrite.container.Style` object
         """
         return self.defs.add(Style(content))
 
@@ -182,7 +151,7 @@ class SVG(Symbol):
         self._embed_font_data(name, data, font_mimetype(filename))
 
     def embed_google_web_font(self, name, uri):
-        """ Embed font as base64 encoded data from google fonts.
+        """ Embed font as base64 encoded data acquired from google fonts.
 
         :param name: font name
         :param uri: google fonts request uri like 'http://fonts.googleapis.com/css?family=Indie+Flower'

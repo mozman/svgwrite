@@ -26,6 +26,9 @@
 """
 from __future__ import unicode_literals
 import sys
+import os
+import base64
+
 PYTHON3 = sys.version_info[0] > 2
 from functools import partial
 
@@ -253,3 +256,32 @@ def pretty_xml(xml_string):
     lines = xml_tree.toprettyxml(indent='  ').split('\n')
     # remove 1. line = xml declaration
     return '\n'.join(lines[1:])
+
+
+FONT_MIMETYPES = {
+    'ttf': "application/x-font-ttf",
+    'otf': "application/x-font-opentype",
+    'woff': "application/font-woff",
+    'woff2': "application/font-woff2",
+    'eot': "application/vnd.ms-fontobject",
+    'sfnt': "application/font-sfnt",
+}
+
+
+def font_mimetype(name):
+    _, ext = os.path.splitext(name.lower())
+    return FONT_MIMETYPES[ext[1:]]
+
+
+def base64_data(data, mimetype):
+    data = base64.b64encode(data).decode()
+    return "data:{mimetype};charset=utf-8;base64,{data}".format(mimetype=mimetype, data=data)
+
+
+def find_first_url(text):
+    import re
+    result = re.findall(r"url\((.*?)\)", text)
+    if result:
+        return result[0]
+    else:
+        return None
