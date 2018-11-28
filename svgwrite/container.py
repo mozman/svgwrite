@@ -130,10 +130,10 @@ def base64_data(data, mimetype):
 def find_first_url(text):
     import re
     result = re.findall(r"url\((.*?)\)", text)
-    if isinstance(result, list):
+    if result:
         return result[0]
     else:
-        return result
+        return None
 
 
 class SVG(Symbol):
@@ -168,8 +168,9 @@ class SVG(Symbol):
         """ Add <style> tag to the defs section.
 
         :param content: style sheet content as string
+        :return: Style() object
         """
-        self.defs.add(Style(content))
+        return self.defs.add(Style(content))
 
     def embed_font(self, name, filename):
         """ Embed font as base64 encoded data from font file.
@@ -181,10 +182,18 @@ class SVG(Symbol):
         self._embed_font_data(name, data, font_mimetype(filename))
 
     def embed_google_web_font(self, name, uri):
+        """ Embed font as base64 encoded data from google fonts.
+
+        :param name: font name
+        :param uri: google fonts request uri like 'http://fonts.googleapis.com/css?family=Indie+Flower'
+        """
         font_info = urlopen(uri).read()
         font_url = find_first_url(font_info.decode())
-        data = urlopen(font_url).read()
-        self._embed_font_data(name, data, font_mimetype(font_url))
+        if font_url is None:
+            raise ValueError("Got no font data from uri: '{}'".format(uri))
+        else:
+            data = urlopen(font_url).read()
+            self._embed_font_data(name, data, font_mimetype(font_url))
 
     def _embed_font_data(self, name, data, mimetype):
         content = FONT_TEMPLATE.format(name=name, data=base64_data(data, mimetype))
