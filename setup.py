@@ -5,12 +5,10 @@
 # Created: 08.09.2010
 # License: MIT License
 # Copyright (C) 2010-2018  Manfred Moitzi
-
-
 import os
 from setuptools import setup
 
-VERSION = '1.2.2'  # also update __init__.py
+VERSION = '1.3a1'  # also update __init__.py
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'me@mozman.at'
 
@@ -41,6 +39,7 @@ setup(name='svgwrite',
           "Operating System :: OS Independent",
           "Programming Language :: Python :: 2.7",
           "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
           "Programming Language :: Python :: 3.7",
           "Programming Language :: Python :: Implementation :: CPython",
