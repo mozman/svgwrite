@@ -8,9 +8,18 @@
 import os
 from setuptools import setup
 
-VERSION = '1.3a1'  # also update __init__.py
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'me@mozman.at'
+
+
+def get_version():
+    v = {}
+    # do not import ezdxf, because required packages may not installed yet
+    for line in open('./ezdxf/version.py').readlines():
+        if line.strip().startswith('__version__'):
+            exec(line, v)
+            return v['__version__']
+    raise IOError('__version__ string not found')
 
 
 def read(fname):
@@ -21,7 +30,7 @@ def read(fname):
 
 
 setup(name='svgwrite',
-      version=VERSION,
+      version=get_version(),
       description='A Python library to create SVG drawings.',
       author=AUTHOR_NAME,
       url='http://github.com/mozman/svgwrite.git',
