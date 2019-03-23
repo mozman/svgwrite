@@ -125,5 +125,13 @@ class Drawing(SVG, ElementFactory):
         """
         self.filename = filename
         self.save(pretty=pretty)
+    
+    def _repr_svg_(self):
+        """ Show SVG in IPython, Jupyter Notebook, and Jupyter Lab
+
+        :return: unicode XML string of this object and all its subelements
+
+        """
+        return self.tostring()
 
 

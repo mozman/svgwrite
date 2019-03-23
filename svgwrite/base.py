@@ -189,6 +189,14 @@ class BaseElement(object):
         xml_utf8_str = etree.tostring(xml, encoding='utf-8')
         return xml_utf8_str.decode('utf-8')
         # just Python 3: return etree.tostring(xml, encoding='unicode')
+    
+    def _repr_svg_(self):
+        """ Show SVG in IPython, Jupyter Notebook, and Jupyter Lab
+
+        :return: unicode XML string of this object and all its subelements
+
+        """
+        return self.tostring()
 
     def get_xml(self):
         """ Get the XML representation as `ElementTree` object.
