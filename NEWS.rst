@@ -6,9 +6,9 @@ Version 1.3a1 - dev
 -------------------
 
 * Dropping Python 2 support with v1.4 or higher
-* NEW: easy stylesheet embedding: `Drawing.embed_stylesheet(content)`, see example using_fonts.py
-* NEW: embedded local fonts: `Drawing.embed_font(fontname, filename)`, see example using_fonts.py
-* NEW: embedded web fonts: `Drawing.embed_google_web_font(fontname, uri)`, see example using_fonts.py
+* NEW: easy stylesheet embedding: `Drawing.embed_stylesheet(content)`, see example `using_fonts.py <https://github.com/mozman/svgwrite/blob/9d509fe1842e519b8d8475f83543a7589b7c1879/examples/using_fonts.py#L21>`_
+* NEW: embedded local fonts: `Drawing.embed_font(fontname, filename)`, see example `using_fonts.py <https://github.com/mozman/svgwrite/blob/9d509fe1842e519b8d8475f83543a7589b7c1879/examples/using_fonts.py#L39>`_
+* NEW: embedded web fonts: `Drawing.embed_google_web_font(fontname, uri)`, see example `using_fonts.py <https://github.com/mozman/svgwrite/blob/9d509fe1842e519b8d8475f83543a7589b7c1879/examples/using_fonts.py#L56>`_
 
 Version 1.2.1 - 2018-11-16
 --------------------------
