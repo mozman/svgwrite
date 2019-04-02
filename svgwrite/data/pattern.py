@@ -8,8 +8,8 @@
 
 import re
 
-#coordinate ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%")?
-coordinate = re.compile(r"(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(cm|em|ex|in|mm|pc|pt|px|%)?$")
+#coordinate ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%" | "vw" | "vh")?
+coordinate = re.compile(r"(^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)(cm|em|ex|in|mm|pc|pt|px|%|vw|vh)?$")
 
 #length ::= number ("em" | "ex" | "px" | "in" | "cm" | "mm" | "pt" | "pc" | "%")?
 length = coordinate

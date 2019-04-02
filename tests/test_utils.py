@@ -90,6 +90,8 @@ class TestRectTopLeftCorner(unittest.TestCase):
         self.assertRaises(ValueError, rect_top_left_corner, insert=(1, 1), size=(1, 1), pos='mitte-center')
 
 class TestSplitCoordinate(unittest.TestCase):
+    units = ("", "em", "ex", "px", "in", "cm", "mm", "pt", "pc", "%", "vw", "vh")
+
     def test_int_coordinates(self):
         res = split_coordinate(10)
         self.assertEqual(res, (10, None))
@@ -99,10 +101,10 @@ class TestSplitCoordinate(unittest.TestCase):
         self.assertEqual(res, (7.9, None))
 
     def test_valid_str_coordinates(self):
-        res = split_coordinate('10cm')
-        self.assertEqual(res, (10, 'cm'))
-        res = split_coordinate('10.7in')
-        self.assertEqual(res, (10.7, 'in'))
+        for unit in self.units:
+            for number in (10, 10.7):
+                res = split_coordinate(str(number) + unit)
+                self.assertEqual(res, (number, unit or None))
 
     def test_invalid_str_coordinates(self):
         self.assertRaises(ValueError, split_coordinate, '100km')
