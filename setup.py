@@ -15,7 +15,7 @@ AUTHOR_EMAIL = 'me@mozman.at'
 def get_version():
     v = {}
     # do not import ezdxf, because required packages may not installed yet
-    for line in open('./ezdxf/version.py').readlines():
+    for line in open('./svgwrite/version.py').readlines():
         if line.strip().startswith('__version__'):
             exec(line, v)
             return v['__version__']
