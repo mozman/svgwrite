@@ -9,12 +9,12 @@ from __future__ import unicode_literals
 import math
 
 import svgwrite
-from svgwrite.extensions.shapes import ngon, rotate, translate, scale
+from svgwrite.extensions.shapes import ngon, rotate, translate, scale, star
 
 
 def main(name):
     """
-    Some examples how to use the shpaes extension
+    Some examples how to use the shapes extension
     """
     dwg = svgwrite.Drawing(name + ".svg", (1000, 1000), debug=True)
     style = {"fill": "none", "stroke": "black", "stroke-width": "1"}
@@ -31,9 +31,11 @@ def main(name):
     # make sure first to scale it, then to translate it
     octagon_scaled = list(translate(scale(octagon, 10, 10), 500, 500))
     dwg.add(dwg.polygon(octagon_scaled, **style))
+
+    dwg.add(dwg.polygon(translate(star(5, 50, 20, rotation=-math.pi/2), 400, 100)))
     dwg.save(pretty=True)
 
 
 if __name__ == '__main__':
-    name = "ngon_example"
+    name = "shapes_example"
     main(name)

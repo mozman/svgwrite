@@ -17,6 +17,8 @@ def ngon(num_corners, edge_length=None, radius=None, rotation=0.):
         radius: circum radius
         rotation: rotation angle in radians
 
+    Returns: iterable of (x, y) tuples
+
     """
     if num_corners < 3:
         raise ValueError('Argument `num_corners` has to be greater than 2.')
@@ -33,6 +35,36 @@ def ngon(num_corners, edge_length=None, radius=None, rotation=0.):
     for _ in range(num_corners):
         yield (radius * math.cos(angle), radius * math.sin(angle))
         angle += delta
+
+
+def star(spikes, r1, r2, rotation=0.):
+    """
+    Create a star shape as iterable of (x, y) vertices.
+
+    Argument `spikes` defines the count of star spikes, `r1` defines the radius of the "outer" vertices and `r2`
+    defines the radius of the "inner" vertices, but this does not mean that `r1` has to greater than `r2`.
+
+    Args:
+        spikes: spike count
+        r1: radius 1
+        r2: radius 2
+        rotation: rotation angle in radians
+
+    Returns: iterable of (x, y) tuples
+
+    """
+    if spikes < 3:
+        raise ValueError('Argument `spikes` has to be greater than 2.')
+    if r1 <= 0.:
+        raise ValueError('Argument `r1` has to be greater than 0.')
+    if r2 <= 0.:
+        raise ValueError('Argument `r2` has to be greater than 0.')
+
+    corners1 = ngon(spikes, radius=r1, rotation=rotation)
+    corners2 = ngon(spikes, radius=r2, rotation=math.pi/spikes+rotation)
+    for s1, s2 in zip(corners1, corners2):
+        yield s1
+        yield s2
 
 
 def translate(vertices, delta_x, delta_y):
