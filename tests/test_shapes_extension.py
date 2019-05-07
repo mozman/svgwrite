@@ -1,45 +1,62 @@
-# Copyright (c) 2018 Manfred Moitzi
+# Copyright (c) 2019 Manfred Moitzi
 # Copyright (c) 2019 Christof Hanke
 # License: MIT License
-import pytest
+import math
 
-import svgwrite
-from svgwrite.extensions.shapes import *
+from svgwrite.extensions.shapes import ngon, translate, scale, rotate, centroid
+from svgwrite.utils import PYTHON3
 
-@pytest.fixture
-def dwg():
-    return svgwrite.Drawing('test-regular-polygon-extension.svg', profile='full', size=(640, 480))
+if PYTHON3:
+    def are_close_points(p1, p2, abs_tol=1e-9):
+        return math.isclose(p1[0], p2[0], abs_tol=abs_tol) and math.isclose(p1[1], p2[1], abs_tol=abs_tol)
+else:
+    def are_close_points(p1, p2):
+        def is_close(v1, v2, places=7):
+            return round(v1, places) == round(v2, places)
+        return is_close(p1[0], p2[0]) and is_close(p1[1], p2[1])
 
-@pytest.fixture
-def heptagon():
-    return  ngon(7, 10)
 
-def test_regular_polygon(dwg, heptagon):
-    # round the vertices so that the numbers don't get too ugly
-    rounded_heptagon = [(round(x, 5), round(y, 5)) for x,y in  heptagon]
-    assert(dwg.polygon(rounded_heptagon).tostring() == '<polygon points="5.0,-10.38261 11.2349,-2.56429 9.00969,7.18499 0.0,11.52382 -9.00969,7.18499 -11.2349,-2.56429 -5.0,-10.38261" />')
+def test_square_by_radius():
+    corners = list(ngon(4, radius=1))
+    assert len(corners) == 4
+    assert are_close_points(corners[0], (1, 0))
+    assert are_close_points(corners[1], (0, 1))
+    assert are_close_points(corners[2], (-1, 0))
+    assert are_close_points(corners[3], (0, -1))
 
-def test_rotate(dwg, heptagon):
-    heptagon = rotate(heptagon, math.pi)
-    # round the vertices so that the numbers don't get too ugly
-    rounded_heptagon = [(round(x, 5), round(y, 5)) for x,y in heptagon]
-    assert(dwg.polygon(rounded_heptagon).tostring() == '<polygon points="-5.0,10.38261 -11.2349,2.56429 -9.00969,-7.18499 -0.0,-11.52382 9.00969,-7.18499 11.2349,2.56429 5.0,10.38261" />')
 
-def test_scale(dwg, heptagon):
-    heptagon = scale(heptagon, 2, 2)
-    # round the vertices so that the numbers don't get too ugly
-    rounded_heptagon = [(round(x, 5), round(y, 5)) for x,y in heptagon]
-    assert(dwg.polygon(rounded_heptagon).tostring() == '<polygon points="10.0,-20.76521 22.4698,-5.12858 18.01938,14.36997 0.0,23.04765 -18.01938,14.36997 -22.4698,-5.12858 -10.0,-20.76521" />')
+def test_heptagon_by_edge_length():
+    corners = list(ngon(7, edge_length=10))
+    assert len(corners) == 7
+    assert are_close_points(corners[0], (11.523824354812433, 0.0))
+    assert are_close_points(corners[1], (7.184986963636852, 9.009688679024192))
+    assert are_close_points(corners[2], (-2.564292158181384, 11.234898018587335))
+    assert are_close_points(corners[3], (-10.382606982861683, 5.0))
+    assert are_close_points(corners[4], (-10.382606982861683, -5))
+    assert are_close_points(corners[5], (-2.564292158181387, -11.234898018587335))
+    assert are_close_points(corners[6], (7.18498696363685, -9.009688679024192))
 
-def test_translate(dwg, heptagon):
-    heptagon = translate(heptagon, 2, 2)
-    # round the vertices so that the numbers don't get too ugly
-    rounded_heptagon = [(round(x, 5), round(y, 5)) for x,y in heptagon]
-    assert(dwg.polygon(rounded_heptagon).tostring() == '<polygon points="7.0,-8.38261 13.2349,-0.56429 11.00969,9.18499 2.0,13.52382 -7.00969,9.18499 -9.2349,-0.56429 -3.0,-8.38261" />')
 
-def test_centroid(dwg, heptagon):
-    c_x, c_y = centroid(heptagon)
-    # round the vertices so that the numbers don't get too ugly
-    c_x = round(c_x, 5)
-    c_y = round(c_y, 5)
-    assert((c_x, c_y) == (0,0))
+def test_rotate():
+    points = [(1, 0), (0, 1)]
+    result = list(rotate(points, math.pi/2))
+    assert are_close_points(result[0], (0, 1))
+    assert are_close_points(result[1], (-1, 0))
+
+
+def test_scale():
+    points = [(1, 0), (0, 1)]
+    result = list(scale(points, 2, 3))
+    assert are_close_points(result[0], (2, 0))
+    assert are_close_points(result[1], (0, 3))
+
+
+def test_translate():
+    points = [(1, 0), (0, 1)]
+    result = list(translate(points, 2, 3))
+    assert are_close_points(result[0], (3, 3))
+    assert are_close_points(result[1], (2, 4))
+
+
+def test_centroid():
+    assert are_close_points(centroid(ngon(7, edge_length=10)), (0, 0))
