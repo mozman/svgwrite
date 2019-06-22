@@ -33,8 +33,8 @@ class TestLinearGradient(unittest.TestCase):
 
     def test_get_paint_server(self):
         lg = LinearGradient()
-        self.assertTrue(re.match("^url\(#id\d+\) none$", lg.get_paint_server()))
-        self.assertTrue(re.match("^url\(#id\d+\) red$", lg.get_paint_server(default='red')))
+        self.assertTrue(re.match(r"^url\(#id\d+\) none$", lg.get_paint_server()))
+        self.assertTrue(re.match(r"^url\(#id\d+\) red$", lg.get_paint_server(default='red')))
 
     def test_add_stop_color(self):
         lg = LinearGradient()
@@ -65,8 +65,8 @@ class TestRadialGradient(unittest.TestCase):
 
     def test_get_paint_server(self):
         rg = RadialGradient()
-        self.assertTrue(re.match("^url\(#id\d+\) none$", rg.get_paint_server()))
-        self.assertTrue(re.match("^url\(#id\d+\) red$", rg.get_paint_server(default='red')))
+        self.assertTrue(re.match(r"^url\(#id\d+\) none$", rg.get_paint_server()))
+        self.assertTrue(re.match(r"^url\(#id\d+\) red$", rg.get_paint_server(default='red')))
 
     def test_add_stop_color(self):
         rg = RadialGradient()

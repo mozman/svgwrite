@@ -26,7 +26,7 @@ class TestMarker(unittest.TestCase):
         marker = Marker(debug=True, profile='full')
         marker.add(Group())
         self.assertTrue(
-            re.match('^<marker id="id\d+"><g /></marker>$',
+            re.match(r'^<marker id="id\d+"><g /></marker>$',
                      marker.tostring()), "getting an autoid for class Marker failed.")
 
     def test_insert(self):

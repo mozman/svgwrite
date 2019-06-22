@@ -42,7 +42,7 @@ class TestIXLink(unittest.TestCase):
         g = Group()
         m = Mock()
         m.set_href(g)
-        self.assertTrue(re.match('^<use xlink:href="#id\d+" />$', m.tostring()))
+        self.assertTrue(re.match(r'^<use xlink:href="#id\d+" />$', m.tostring()))
 
     def test_set_xlink_show(self):
         m = Mock()
