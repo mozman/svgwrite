@@ -229,11 +229,12 @@ class AutoID(object):
         return retval
 
 
-def pretty_xml(xml_string):
+def pretty_xml(xml_string, indent=2):
     """
     Create human readable XML string.
 
     :param xml_string: input xml string without line breaks and indentation
+    :indent int: how much to indent, by default 2 spaces
     :return: xml_string with linebreaks and indentation
 
     """
@@ -246,6 +247,6 @@ def pretty_xml(xml_string):
         xml_tree = minidom.parseString(xml_string)
     else:
         xml_tree = minidom.parseString(xml_string.encode('utf-8'))
-    lines = xml_tree.toprettyxml(indent='  ').split('\n')
+    lines = xml_tree.toprettyxml(indent=' ' * indent).split('\n')
     # remove 1. line = xml declaration
     return '\n'.join(lines[1:])
