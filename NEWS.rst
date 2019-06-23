@@ -2,16 +2,16 @@
 NEWS
 ====
 
-Version 1.3b2 - dev
--------------------
+Version 1.3.0 - 2019-06-23
+--------------------------
 
-* Dropping Python 2 support with v1.4 or higher
+* Dropping Python 2 support with v1.4
 * NEW: easy stylesheet embedding: `Drawing.embed_stylesheet(content)`, see example `using_fonts.py <https://github.com/mozman/svgwrite/blob/9d509fe1842e519b8d8475f83543a7589b7c1879/examples/using_fonts.py#L21>`_
 * NEW: embedded local fonts: `Drawing.embed_font(fontname, filename)`, see example using_fonts.py
 * NEW: embedded web fonts: `Drawing.embed_google_web_font(fontname, uri)`, see example using_fonts.py
-* NEW: shapes extension by Christof Hanke (christof.hanke@induhviduals.de)
-* NEW: for write(), save() and saveas(), indentation for pretty print is configurable; Mitar <http://mitar.tnode.com/>
-* BUGFIX: converted regex strings in tests to raw strings; tirkarthi <http://tirkarthi.github.io/>
+* NEW: shapes extension by `Christof Hanke <https://www.induhviduals.de/>`_
+* NEW: for write(), save() and saveas(), indentation for pretty print is configurable by `Mitar <http://mitar.tnode.com/>`_
+* BUGFIX: converted regex strings in tests to raw strings by `tirkarthi <http://tirkarthi.github.io/>`_
 
 Version 1.2.1 - 2018-11-16
 --------------------------
