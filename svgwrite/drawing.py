@@ -84,11 +84,12 @@ class Drawing(SVG, ElementFactory):
         """
         self._stylesheets.append((href, title, alternate, media))
 
-    def write(self, fileobj, pretty=False):
+    def write(self, fileobj, pretty=False, indent=2):
         """ Write XML string to **fileobj**.
 
         :param fileobj: a *file-like* object
         :param pretty: True for easy readable output
+        :indent int: how much to indent if pretty is enabled, by default 2 spaces
 
         Python 3.x - set encoding at the open command::
 
@@ -108,23 +109,24 @@ class Drawing(SVG, ElementFactory):
 
         xml_string = self.tostring()
         if pretty:  # write easy readable XML file
-            xml_string = pretty_xml(xml_string)
+            xml_string = pretty_xml(xml_string, indent=indent)
         fileobj.write(xml_string)
 
-    def save(self, pretty=False):
+    def save(self, pretty=False, indent=2):
         """ Write the XML string to **filename**. """
         fileobj = io.open(self.filename, mode='w', encoding='utf-8')
-        self.write(fileobj, pretty=pretty)
+        self.write(fileobj, pretty=pretty, indent=indent)
         fileobj.close()
 
-    def saveas(self, filename, pretty=False):
+    def saveas(self, filename, pretty=False, indent=2):
         """ Write the XML string to **filename**.
 
         :param string filename: filesystem filename valid for :func:`open`
         :param pretty: True for easy readable output
+        :indent int: how much to indent if pretty is enabled, by default 2 spaces
         """
         self.filename = filename
-        self.save(pretty=pretty)
+        self.save(pretty=pretty, indent=indent)
     
     def _repr_svg_(self):
         """ Show SVG in IPython, Jupyter Notebook, and Jupyter Lab
