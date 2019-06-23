@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding:utf-8
+# coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: test marker element
 # Created: 24.10.2010
@@ -11,6 +11,7 @@ import unittest
 import re
 
 from svgwrite.container import Marker, Group
+
 
 class TestMarker(unittest.TestCase):
     def test_constructor(self):
@@ -26,7 +27,7 @@ class TestMarker(unittest.TestCase):
         marker = Marker(debug=True, profile='full')
         marker.add(Group())
         self.assertTrue(
-            re.match('^<marker id="id\d+"><g /></marker>$',
+            re.match(r'^<marker id="id\d+"><g /></marker>$',
                      marker.tostring()), "getting an autoid for class Marker failed.")
 
     def test_insert(self):
@@ -45,5 +46,6 @@ class TestMarker(unittest.TestCase):
         marker = Marker(id='test', orient=30, debug=True, profile='full')
         self.assertEqual(marker.tostring(), '<marker id="test" orient="30" />')
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     unittest.main()
