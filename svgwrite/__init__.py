@@ -47,7 +47,7 @@ __author__ = "mozman <me@mozman.at>"
 
 AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'me@mozman.at'
-CYEAR = '2014-2018'
+CYEAR = '2014-2019'
 
 
 from svgwrite.drawing import Drawing

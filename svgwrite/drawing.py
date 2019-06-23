@@ -113,17 +113,21 @@ class Drawing(SVG, ElementFactory):
         fileobj.write(xml_string)
 
     def save(self, pretty=False, indent=2):
-        """ Write the XML string to **filename**. """
+        """ Write the XML string to `self.filename`.
+
+        :param pretty: True for easy readable output
+        :param indent: how much to indent if pretty is enabled, by default 2 spaces
+        """
         fileobj = io.open(self.filename, mode='w', encoding='utf-8')
         self.write(fileobj, pretty=pretty, indent=indent)
         fileobj.close()
 
     def saveas(self, filename, pretty=False, indent=2):
-        """ Write the XML string to **filename**.
+        """ Write the XML string to `filename`.
 
         :param string filename: filesystem filename valid for :func:`open`
         :param pretty: True for easy readable output
-        :indent int: how much to indent if pretty is enabled, by default 2 spaces
+        :param indent: how much to indent if pretty is enabled, by default 2 spaces
         """
         self.filename = filename
         self.save(pretty=pretty, indent=indent)
