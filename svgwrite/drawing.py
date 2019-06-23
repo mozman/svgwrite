@@ -85,11 +85,11 @@ class Drawing(SVG, ElementFactory):
         self._stylesheets.append((href, title, alternate, media))
 
     def write(self, fileobj, pretty=False, indent=2):
-        """ Write XML string to **fileobj**.
+        """ Write XML string to `fileobj`.
 
-        :param fileobj: a *file-like* object
+        :param fileobj: a file-like object
         :param pretty: True for easy readable output
-        :indent int: how much to indent if pretty is enabled, by default 2 spaces
+        :param indent: how much to indent if pretty is enabled, by default 2 spaces
 
         Python 3.x - set encoding at the open command::
 

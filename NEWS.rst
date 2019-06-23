@@ -10,6 +10,8 @@ Version 1.3b2 - dev
 * NEW: embedded local fonts: `Drawing.embed_font(fontname, filename)`, see example using_fonts.py
 * NEW: embedded web fonts: `Drawing.embed_google_web_font(fontname, uri)`, see example using_fonts.py
 * NEW: shapes extension by Christof Hanke (christof.hanke@induhviduals.de)
+* NEW: for write(), save() and saveas(), indentation for pretty print is configurable; Mitar <http://mitar.tnode.com/>
+* BUGFIX: converted regex strings in tests to raw strings; tirkarthi <http://tirkarthi.github.io/>
 
 Version 1.2.1 - 2018-11-16
 --------------------------
