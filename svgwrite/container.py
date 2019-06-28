@@ -227,7 +227,8 @@ class Hyperlink(BaseElement, Transform, Presentation):
         """
         super(Hyperlink, self).__init__(**extra)
         self['xlink:href'] = href
-        self['target'] = target
+        if target is not None:
+            self['target'] = target
 
 
 class Script(BaseElement):
