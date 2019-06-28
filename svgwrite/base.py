@@ -207,7 +207,7 @@ class BaseElement(object):
         xml = etree.Element(self.elementname)
         if self.debug:
             self.validator.check_all_svg_attribute_values(self.elementname, self.attribs)
-        for attribute, value in self.attribs.items():
+        for attribute, value in sorted(self.attribs.items()):
             # filter 'None' values
             if value is not None:
                 value = self.value_to_string(value)
