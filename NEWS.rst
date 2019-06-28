@@ -2,10 +2,10 @@
 NEWS
 ====
 
-Version 1.3.1b0 - dev
----------------------
+Version 1.3.1 - 2019-06-28
+--------------------------
 
-* Dropping Python 2 support in v1.4
+* BUGFIX: changed license of module shapes.py to MIT license
 
 Version 1.3.0 - 2019-06-23
 --------------------------
