@@ -37,8 +37,6 @@ Documentation
 
 http://readthedocs.org/docs/svgwrite/
 
-send feedback to mozman@gmx.at
-
 svgwrite can be found on GitHub.com at:
 
 http://github.com/mozman/svgwrite.git
