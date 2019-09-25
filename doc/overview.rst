@@ -19,6 +19,7 @@ SVG Elements
 .. IMPORTANT::
 
    Use the **factory-methods** of the class **Drawing** to create new objects.
+   (This is necessary to support validation for different SVG versions.)
    All **factory-methods** have the original SVG Elementname (e.g. Drawing.a(...),
    Drawing.g(...), Drawing.symbol(...), Drawing.line(...))
 
