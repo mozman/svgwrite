@@ -1,15 +1,14 @@
 Overview
 ========
 
-As the name `svgwrite` implies, `svgwrite` creates new SVG drawings, it does not read existing drawings and also does
-not import existing drawings, but you can always include other SVG drawings by the <image> entity.
+As the name `svgwrite` implies, `svgwrite` creates new SVG drawings, it does not read/import existing drawings, but you can always include other SVG drawings by the `<image>` entity.
 
 `svgwrite` has a debugging feature, activated by :code:`svgwrite.Drawing(debug=True)`. This feature is meant to find
-SVG errors produced by your code while developing, this validation algorithm is not optimized and therefor very slow for
-big SVG files, that will not change in the future. And because it is slow DON'T use it in production code!
+SVG errors produced by your code while developing. This validation algorithm is not optimized and therefore very slow for
+big SVG files. That will not change in the future. And because it is slow DON'T use it in production code!
 
-If `svgwrite` without debugging is still to slow, you have to use the lxml package without `svgwrite` as wrapper, that
-is the ugly truth, `svgwrite` is just a wrapper around xml.etree.ElementTree. If you learn the ElementTree API and the
+If `svgwrite` without debugging is still too slow, you have to use the `lxml` package without `svgwrite` as wrapper. That
+is the ugly truth since `svgwrite` is just a wrapper around `xml.etree.ElementTree`. If you learn the ElementTree API and the
 SVG elements and attributes, you do not need `svgwrite`.
 
 
