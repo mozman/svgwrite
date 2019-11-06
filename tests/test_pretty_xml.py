@@ -16,7 +16,8 @@ class TestPrettyXML(unittest.TestCase):
     def test_pretty_print(self):
         result = pretty_xml(XML_UGLY).split('\n')
         expect = XML_PRETTY.split('\n')
-        for e, r in zip(expect, result):
+        # skip svg tag, order of attributes changes often by new Python releases
+        for e, r in zip(expect[1:], result[1:]):
             self.assertEqual(e, r)
 
     def test_empty_string(self):
