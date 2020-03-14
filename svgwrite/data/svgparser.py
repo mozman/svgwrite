@@ -10,6 +10,7 @@
 __all__ = ["is_valid_transferlist", "is_valid_pathdata", "is_valid_animation_timing"]
 
 import sys
+import re
 
 from pyparsing import *
 from functools import partial
@@ -56,56 +57,51 @@ def build_transferlist_parser():
 transferlist_parser = build_transferlist_parser()
 is_valid_transferlist = partial(has_valid_syntax, parser=transferlist_parser)
 
-
 def build_pathdata_parser():
-    coordinate = number
-    coordinate_pair = coordinate + comma + coordinate
-    nonnegative_number = integer_constant ^ scientific_constant
-    flag = oneOf('0 1')
-    comma_delimited_coordinates = coordinate + ZeroOrMore(comma + coordinate)
-    comma_delimited_coordinate_pairs = coordinate_pair + ZeroOrMore(comma + coordinate_pair)
+    c = "\s*[, ]\s*"
+    integer_constant = r"\d+"
+    nonnegative_number = r"(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?"
+    number = r"[+-]?" + nonnegative_number
+    flag = r"[01]"
+    comma_delimited_coordinates = fr"\s*{number}({c}{number})*\s*"
+    two_comma_delimited_numbers = fr"\s*{number}({c}{number}\s*)" "{1}"
+    four_comma_delimited_numbers = fr"\s*{number}\s*({c}{number}\s*)" "{3}"
+    six_comma_delimited_numbers = fr"\s*{number}\s*({c}{number}\s*)" "{5}"
+    comma_delimited_coordinate_pairs = fr"{two_comma_delimited_numbers}({c}{two_comma_delimited_numbers})*"
 
-    closepath = oneOf('Z z')
-    moveto = oneOf('M m') + comma_delimited_coordinate_pairs
-    lineto = oneOf('L l') + comma_delimited_coordinate_pairs
-    horizontal_lineto = oneOf('H h') + comma_delimited_coordinates
-    vertical_lineto = oneOf('V v') + comma_delimited_coordinates
+    moveto = fr"[mM]\s*{comma_delimited_coordinate_pairs}"
+    lineto = fr"[lL]\s*{comma_delimited_coordinate_pairs}"
+    horizontal_lineto = fr"[hH]\s*{comma_delimited_coordinates}"
+    vertical_lineto = fr"[vV]\s*{comma_delimited_coordinates}"
+    curveto = f"[cC]\s*({six_comma_delimited_numbers})({c}{six_comma_delimited_numbers})*"
+    smooth_curveto = fr"[sS]{four_comma_delimited_numbers}({c}{four_comma_delimited_numbers})*"
+    quadratic_bezier_curveto = fr"[qQ]{four_comma_delimited_numbers}({c}{four_comma_delimited_numbers})*"
+    smooth_quadratic_bezier_curveto = fr"[tT]\s*{comma_delimited_coordinate_pairs}"
 
-    curveto_argument_sequence = coordinate_pair + comma + coordinate_pair + comma + coordinate_pair
-    curveto = oneOf('C c') + curveto_argument_sequence + ZeroOrMore(comma + curveto_argument_sequence)
+    elliptical_arc_argument = f"{c}".join((
+        fr"{nonnegative_number}",
+        fr"{nonnegative_number}",
+        fr"{number}",
+        fr"{flag}",
+        fr"{flag}",
+        fr"{number}",
+        fr"{number}",))
+    elliptical_arc_argument = "\s*" + elliptical_arc_argument + "\s*"
+    print(elliptical_arc_argument)
+    elliptical_arc = fr"[aA]({elliptical_arc_argument})({c}{elliptical_arc_argument})*"
 
-    smooth_curveto_argument_sequence = coordinate_pair + comma + coordinate_pair
-    smooth_curveto = oneOf('S s') + smooth_curveto_argument_sequence \
-        + ZeroOrMore(comma + smooth_curveto_argument_sequence)
+    drawto_command = "|".join((f"(\s*{cmd}\s*)" for cmd in (
+        moveto, lineto, horizontal_lineto, vertical_lineto, "[zZ]",
+        curveto, smooth_curveto, quadratic_bezier_curveto,
+        smooth_quadratic_bezier_curveto, elliptical_arc)))
 
-    quadratic_bezier_curveto_argument_sequence = coordinate_pair + comma + coordinate_pair
-    quadratic_bezier_curveto = oneOf('Q q') + quadratic_bezier_curveto_argument_sequence \
-        + ZeroOrMore(comma + quadratic_bezier_curveto_argument_sequence)
+    pathre = f"^{moveto}({drawto_command})*$"
 
-    smooth_quadratic_bezier_curveto = oneOf('T t') + coordinate_pair \
-        + ZeroOrMore(comma + coordinate_pair)
-
-    elliptical_arc_argument = nonnegative_number + comma + nonnegative_number \
-        + comma + number + comma + flag + comma + flag + comma + coordinate_pair
-
-    elliptical_arc = oneOf('A a') + elliptical_arc_argument \
-        + ZeroOrMore(comma + elliptical_arc_argument)
-
-    drawto_command = closepath \
-        | lineto \
-        | horizontal_lineto \
-        | vertical_lineto \
-        | curveto \
-        | smooth_curveto \
-        | quadratic_bezier_curveto \
-        | smooth_quadratic_bezier_curveto \
-        | elliptical_arc
-
-    return OneOrMore(moveto + ZeroOrMore(drawto_command))
+    return re.compile(pathre)
 
 pathdata_parser = build_pathdata_parser()
-is_valid_pathdata = partial(has_valid_syntax, parser=pathdata_parser)
-
+def is_valid_pathdata(term):
+    return bool(pathdata_parser.match(term))
 
 def build_clock_val_parser():
     digit2 = Word(nums, exact=2)
