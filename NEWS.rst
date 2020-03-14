@@ -2,8 +2,11 @@
 NEWS
 ====
 
-Version 1.3.2 - dev
+Version 1.4a0 - dev
 -------------------
+
+* Requires Python 3.6
+* Optimized path parser by Florian Festi
 
 Version 1.3.1 - 2019-06-28
 --------------------------
