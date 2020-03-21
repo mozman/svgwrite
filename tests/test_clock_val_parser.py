@@ -6,22 +6,17 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: MIT License
 
-import sys
 import unittest
-import pyparsing as pp
 
-from svgwrite.data.svgparser import build_clock_val_parser
-from svgwrite.data.svgparser import build_wall_clock_val_parser
+from svgwrite.data.svgparser import is_valid, clock_val_re, wall_clock_val_re
+
+clock_val_parser = is_valid(clock_val_re())
+wallclock_parser = is_valid(wall_clock_val_re())
 
 class TestClockValParser(unittest.TestCase):
-    clock_val_parser = build_clock_val_parser()
 
     def is_valid(self, value):
-        try:
-            self.clock_val_parser.parseString(value, parseAll=True)
-            return True
-        except pp.ParseException:
-            return False
+        return clock_val_parser(value)
 
     def test_full_clock_values(self):
         self.assertTrue(self.is_valid("02:30:03"))
@@ -40,14 +35,9 @@ class TestClockValParser(unittest.TestCase):
         self.assertTrue(self.is_valid("12.467"))
 
 class TestWallClockValParser(unittest.TestCase):
-    wallclock_parser = build_wall_clock_val_parser()
 
     def is_valid(self, value):
-        try:
-            self.wallclock_parser.parseString(value, parseAll=True)
-            return True
-        except pp.ParseException:
-            return False
+        return wallclock_parser(value)
 
     def test_date_plus_hhmm(self):
         # Complete date plus hours and minutes:
