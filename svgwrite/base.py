@@ -3,7 +3,7 @@
 # Author:  mozman
 # Purpose: svg base element
 # Created: 08.09.2010
-# Copyright (C) 2010, Manfred Moitzi
+# Copyright (c) 2010-2020, Manfred Moitzi
 # License: MIT License
 """
 The **BaseElement** is the root for all SVG elements.
@@ -14,7 +14,7 @@ from svgwrite.etree import etree
 import copy
 
 from svgwrite.params import Parameter
-from svgwrite.utils import AutoID, to_unicode, PYTHON3
+from svgwrite.utils import AutoID
 
 
 class BaseElement(object):
@@ -229,7 +229,7 @@ class BaseElement(object):
                 self.validator.check_svg_type(value, 'number')
             if isinstance(value, float) and self.profile == 'tiny':
                 value = round(value, 4)
-        return to_unicode(value)
+        return str(value)
 
     def set_desc(self, title=None, desc=None):
         """ Insert a **title** and/or a **desc** element as first subelement.
@@ -261,7 +261,7 @@ class Title(object):
 
     def __init__(self, text):
         self.xml = etree.Element(self.elementname)
-        self.xml.text = to_unicode(text)
+        self.xml.text = str(text)
 
     def get_xml(self):
         return self.xml

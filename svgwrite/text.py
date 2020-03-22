@@ -14,7 +14,7 @@ character data inside the **text** element.
 
 from svgwrite.base import BaseElement
 from svgwrite.mixins import Presentation, Transform, XLink
-from svgwrite.utils import iterflatlist, strlist, is_string, to_unicode
+from svgwrite.utils import iterflatlist, strlist, is_string
 
 
 class TSpan(BaseElement, Presentation):
@@ -67,7 +67,7 @@ class TSpan(BaseElement, Presentation):
 
     def get_xml(self):
         xml = super(TSpan, self).get_xml()
-        xml.text = to_unicode(self.text)
+        xml.text = str(self.text)
         return xml
 
 
@@ -141,7 +141,7 @@ class TextPath(BaseElement, XLink, Presentation):
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
         xml = super(TextPath, self).get_xml()
-        xml.text = to_unicode(self.text)
+        xml.text = str(self.text)
         return xml
 
 

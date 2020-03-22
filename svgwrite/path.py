@@ -7,7 +7,6 @@
 from svgwrite.base import BaseElement
 from svgwrite.utils import strlist
 from svgwrite.mixins import Presentation, Markers, Transform
-from svgwrite.utils import to_unicode
 
 
 class Path(BaseElement, Transform, Presentation, Markers):
@@ -72,5 +71,5 @@ class Path(BaseElement, Transform, Presentation, Markers):
         :return: XML `ElementTree` of this object and all its subelements
 
         """
-        self.attribs['d'] = to_unicode(strlist(self.commands, ' '))
+        self.attribs['d'] = str(strlist(self.commands, ' '))
         return super(Path, self).get_xml()

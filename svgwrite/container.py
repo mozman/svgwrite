@@ -23,8 +23,8 @@ set/get SVG attributes::
     value = element['attribute']
 
 """
-
-from svgwrite.utils import urlopen, font_mimetype, base64_data, find_first_url
+from urllib.request import urlopen
+from svgwrite.utils import font_mimetype, base64_data, find_first_url
 from svgwrite.base import BaseElement
 from svgwrite.mixins import ViewBox, Transform, XLink
 from svgwrite.mixins import Presentation, Clipping

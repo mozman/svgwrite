@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding:utf-8
+# coding:utf-8
 # Author:  mozman
 # Purpose: svg util functions and classes
 # Created: 08.09.2010
@@ -24,32 +24,13 @@
 .. autofunction:: pretty_xml
 
 """
-from __future__ import unicode_literals
-import sys
 import os
 import base64
-
-PYTHON3 = sys.version_info[0] > 2
-from functools import partial
-
-# Python 3 adaption
-if PYTHON3:
-    from urllib.request import urlopen
-    to_unicode = str
-    basestring = str
-else:
-    import warnings
-    warnings.warn("Python 2 support will be dropped with version 1.4", DeprecationWarning)
-    from urllib import urlopen
-    def to_unicode(value):
-        return unicode(value, encoding='utf8') if isinstance(value, str) else unicode(value)
-# Python 3 adaption
+from svgwrite.data import pattern
 
 
 def is_string(value):
-    return isinstance(value, basestring)
-
-from svgwrite.data import pattern
+    return isinstance(value, str)
 
 
 def rgb(r=0, g=0, b=0, mode='RGB'):
@@ -71,6 +52,7 @@ def rgb(r=0, g=0, b=0, mode='RGB'):
     ========= =============================================================
 
     """
+
     def percent(value):
         value = float(value)
         if value < 0:
@@ -211,10 +193,10 @@ def rect_top_left_corner(insert, size, pos='top-left'):
         raise ValueError("Invalid vertical position: '%s'" % vert)
 
     if xunit:
-        x = "%s%s" %(x, xunit)
+        x = "%s%s" % (x, xunit)
     if yunit:
-        y = "%s%s" %(y, yunit)
-    return (x, y)
+        y = "%s%s" % (y, yunit)
+    return x, y
 
 
 class AutoID(object):
@@ -250,10 +232,7 @@ def pretty_xml(xml_string, indent=2):
     # check for empty string, len check avoids unnecessary string manipulation with large XML strings
     if len(xml_string) < 20 and xml_string.strip() == "":
         return ""
-    if PYTHON3:
-        xml_tree = minidom.parseString(xml_string)
-    else:
-        xml_tree = minidom.parseString(xml_string.encode('utf-8'))
+    xml_tree = minidom.parseString(xml_string)
     lines = xml_tree.toprettyxml(indent=' ' * indent).split('\n')
     # remove 1. line = xml declaration
     return '\n'.join(lines[1:])

@@ -6,11 +6,7 @@
 # Copyright (C) 2010, Manfred Moitzi
 # License: MIT License
 from __future__ import unicode_literals
-
-import sys
 import unittest
-
-from svgwrite.utils import PYTHON3, to_unicode
 from svgwrite.text import TSpan, TRef, TextPath
 
 
@@ -56,7 +52,7 @@ class TestTSpan(unittest.TestCase):
 
     def test_non_us_ascii_chars(self):
         txt = TSpan('öäü')
-        self.assertEqual(txt.tostring(), to_unicode('<tspan>öäü</tspan>'))
+        self.assertEqual(txt.tostring(), '<tspan>öäü</tspan>')
 
     def test_errors(self):
         # None for x, y, dx, dy, rotate is valid - willl be ignored

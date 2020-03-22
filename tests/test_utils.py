@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-#coding:utf-8
-# Author:  mozman --<mozman@gmx.at>
+# coding:utf-8
+# Author:  mozman <me@mozman.at>
 # Purpose: test utils module
 # Created: 10.09.2010
-# Copyright (C) 2010, Manfred Moitzi
+# Copyright (c) 2010-2020, Manfred Moitzi
 # License: MIT License
 
 import unittest
@@ -11,9 +11,8 @@ import unittest
 from svgwrite.utils import rgb, AutoID, get_unit
 from svgwrite.utils import strlist, rect_top_left_corner
 from svgwrite.utils import split_angle, split_coordinate
-from svgwrite.utils import to_unicode
-
 from svgwrite import cm
+
 
 class TestRgb(unittest.TestCase):
     def test_rgb_8bit(self):
@@ -32,62 +31,67 @@ class TestRgb(unittest.TestCase):
     def test_rgb_invalid_mode(self):
         self.assertRaises(ValueError, rgb, mode='$')
 
+
 class TestStrList(unittest.TestCase):
     def test_basic_types(self):
-        self.assertEqual(strlist([1,2,3]), "1,2,3" )
-        self.assertEqual(strlist([1,None,3]), "1,3")
-        self.assertEqual(strlist([1,2,None]), "1,2")
+        self.assertEqual(strlist([1, 2, 3]), "1,2,3")
+        self.assertEqual(strlist([1, None, 3]), "1,3")
+        self.assertEqual(strlist([1, 2, None]), "1,2")
 
     def test_seperator(self):
-        self.assertEqual(strlist([1,2,3], ' '), "1 2 3" )
-        self.assertEqual(strlist([1,None,3], ';'), "1;3")
-        self.assertEqual(strlist([1,2,None], ':'), "1:2")
+        self.assertEqual(strlist([1, 2, 3], ' '), "1 2 3")
+        self.assertEqual(strlist([1, None, 3], ';'), "1;3")
+        self.assertEqual(strlist([1, 2, None], ':'), "1:2")
 
     def test_list(self):
-        self.assertEqual(strlist( [(5, 'abc', None), (1, 2, None)] ), "5,abc,1,2")
-        self.assertEqual(strlist( [(1,None,3), 4]), "1,3,4")
+        self.assertEqual(strlist([(5, 'abc', None), (1, 2, None)]), "5,abc,1,2")
+        self.assertEqual(strlist([(1, None, 3), 4]), "1,3,4")
 
     def test_string(self):
-        self.assertEqual(strlist("5,abc,1,2") , "5,abc,1,2")
+        self.assertEqual(strlist("5,abc,1,2"), "5,abc,1,2")
+
 
 class TestRectTopLeftCorner(unittest.TestCase):
     def test_top_left(self):
-        res = rect_top_left_corner(insert=(10,10), size=(10,10))
-        self.assertEqual(res, (10,10))
+        res = rect_top_left_corner(insert=(10, 10), size=(10, 10))
+        self.assertEqual(res, (10, 10))
 
     def test_top_center(self):
-        res = rect_top_left_corner(insert=(10,10), size=(10,10), pos='top-center')
-        self.assertEqual(res, (5,10))
+        res = rect_top_left_corner(insert=(10, 10), size=(10, 10), pos='top-center')
+        self.assertEqual(res, (5, 10))
 
     def test_top_right(self):
-        res = rect_top_left_corner(insert=(10,10), size=(10,10), pos='top-right')
-        self.assertEqual(res, (0,10))
+        res = rect_top_left_corner(insert=(10, 10), size=(10, 10), pos='top-right')
+        self.assertEqual(res, (0, 10))
 
     def test_middle_center(self):
-        res = rect_top_left_corner(insert=(10,10), size=(10,10), pos='middle-center')
-        self.assertEqual(res, (5,5))
+        res = rect_top_left_corner(insert=(10, 10), size=(10, 10), pos='middle-center')
+        self.assertEqual(res, (5, 5))
 
     def test_bottom_center(self):
-        res = rect_top_left_corner(insert=(10,10), size=(10,10), pos='bottom-center')
-        self.assertEqual(res, (5,0))
+        res = rect_top_left_corner(insert=(10, 10), size=(10, 10), pos='bottom-center')
+        self.assertEqual(res, (5, 0))
 
     def test_valid_units(self):
-        res = rect_top_left_corner(insert=('10mm','10mm'), size=('10mm','10mm'), pos='middle-center')
+        res = rect_top_left_corner(insert=('10mm', '10mm'), size=('10mm', '10mm'), pos='middle-center')
         # numbers converted to floats
-        self.assertEqual(res, ('5.0mm','5.0mm'))
-        res = rect_top_left_corner(insert=('10in','10in'), size=('10in','10in'), pos='bottom-center')
-        self.assertEqual(res, ('5.0in','0.0in'))
+        self.assertEqual(res, ('5.0mm', '5.0mm'))
+        res = rect_top_left_corner(insert=('10in', '10in'), size=('10in', '10in'), pos='bottom-center')
+        self.assertEqual(res, ('5.0in', '0.0in'))
 
     def test_invalid_units(self):
         # insert and size has to have the same units
-        self.assertRaises(ValueError, rect_top_left_corner, insert=('10cm','10cm'), size=(10,10), pos='middle-center')
-        self.assertRaises(ValueError, rect_top_left_corner, insert=('10mm','10mm'), size=('10cm','10cm'), pos='middle-center')
-        self.assertRaises(ValueError, rect_top_left_corner, insert=('10mm','10mm'), size=('10mm','10cm'), pos='middle-center')
+        self.assertRaises(ValueError, rect_top_left_corner, insert=('10cm', '10cm'), size=(10, 10), pos='middle-center')
+        self.assertRaises(ValueError, rect_top_left_corner, insert=('10mm', '10mm'), size=('10cm', '10cm'),
+                          pos='middle-center')
+        self.assertRaises(ValueError, rect_top_left_corner, insert=('10mm', '10mm'), size=('10mm', '10cm'),
+                          pos='middle-center')
 
     def test_invalid_pos(self):
         # insert and size has to have the same units
         self.assertRaises(ValueError, rect_top_left_corner, insert=(1, 1), size=(1, 1), pos='middle-mitte')
         self.assertRaises(ValueError, rect_top_left_corner, insert=(1, 1), size=(1, 1), pos='mitte-center')
+
 
 class TestSplitCoordinate(unittest.TestCase):
     def test_int_coordinates(self):
@@ -109,6 +113,7 @@ class TestSplitCoordinate(unittest.TestCase):
         self.assertRaises(ValueError, split_coordinate, '100ccm')
         self.assertRaises(ValueError, split_coordinate, '10,0cm')
         self.assertRaises(ValueError, split_coordinate, '1.0.0cm')
+
 
 class TestSplitAngle(unittest.TestCase):
     def test_int_angle(self):
@@ -133,6 +138,7 @@ class TestSplitAngle(unittest.TestCase):
         self.assertRaises(ValueError, split_angle, '10,0deg')
         self.assertRaises(ValueError, split_angle, '1.0.0deg')
 
+
 class TestAutoID(unittest.TestCase):
     def test_next_id(self):
         getter = AutoID(1)
@@ -142,9 +148,10 @@ class TestAutoID(unittest.TestCase):
         self.assertEqual('id3', AutoID.next_id())
 
     def test_set_next_id(self):
-        #getter = AutoID()
+        # getter = AutoID()
         self.assertEqual('id7', AutoID.next_id(7))
         self.assertEqual('id8', AutoID.next_id())
+
 
 class TestGetUnit(unittest.TestCase):
     def test_number(self):
@@ -159,26 +166,14 @@ class TestGetUnit(unittest.TestCase):
     def test_invalid_units(self):
         self.assertRaises(ValueError, get_unit, '1m')
 
+
 class TestUnit(unittest.TestCase):
     def test_cm(self):
-        self.assertEqual('5cm', 5*cm)
+        self.assertEqual('5cm', 5 * cm)
 
     def test_call_cm(self):
         self.assertEqual('5cm,7cm', cm(5, 7))
 
-
-class TestToUnicode(unittest.TestCase):
-    def test_utf8_to_unicode(self):
-        self.assertEqual(u'süß', to_unicode('süß'))
-
-    def test_unicode_to_unicode(self):
-        self.assertEqual(u'süß', to_unicode(u'süß'))
-
-    def test_int_to_unicode(self):
-        self.assertEqual(u'10', to_unicode(10))
-
-    def test_float_to_unicode(self):
-        self.assertEqual(u'10.1', to_unicode(10.1))
 
 if __name__ == '__main__':
     unittest.main()

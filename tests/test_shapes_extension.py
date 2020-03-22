@@ -4,16 +4,10 @@
 import math
 
 from svgwrite.extensions.shapes import ngon, translate, scale, rotate, centroid
-from svgwrite.utils import PYTHON3
 
-if PYTHON3:
-    def are_close_points(p1, p2, abs_tol=1e-9):
-        return math.isclose(p1[0], p2[0], abs_tol=abs_tol) and math.isclose(p1[1], p2[1], abs_tol=abs_tol)
-else:
-    def are_close_points(p1, p2):
-        def is_close(v1, v2, places=7):
-            return round(v1, places) == round(v2, places)
-        return is_close(p1[0], p2[0]) and is_close(p1[1], p2[1])
+
+def are_close_points(p1, p2, abs_tol=1e-9):
+    return math.isclose(p1[0], p2[0], abs_tol=abs_tol) and math.isclose(p1[1], p2[1], abs_tol=abs_tol)
 
 
 def test_square_by_radius():
@@ -39,7 +33,7 @@ def test_heptagon_by_edge_length():
 
 def test_rotate():
     points = [(1, 0), (0, 1)]
-    result = list(rotate(points, math.pi/2))
+    result = list(rotate(points, math.pi / 2))
     assert are_close_points(result[0], (0, 1))
     assert are_close_points(result[1], (-1, 0))
 
