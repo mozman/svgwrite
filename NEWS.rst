@@ -2,11 +2,12 @@
 NEWS
 ====
 
-Version 1.4a0 - dev
+Version 1.4b0 - dev
 -------------------
 
 * Requires Python 3.6
-* Optimized path parser by Florian Festi
+* Optimized/faster svgparser module by Florian Festi
+* Removed batch files to run tests on Windows, use pytest or tox instead
 
 Version 1.3.1 - 2019-06-28
 --------------------------

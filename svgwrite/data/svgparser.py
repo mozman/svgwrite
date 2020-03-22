@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-#coding:utf-8
-# Author:  mozman --<mozman@gmx.at>
+# coding:utf-8
+# Authors:  mozman <me@mozman.at>, Florian Festi
 # Purpose: svgparser using re module
 # Created: 16.10.2010
-# Copyright (C) 2010, Manfred Moitzi
+# Copyright (c) 2010, Manfred Moitzi & 2020, Florian Festi
 # License: MIT License
 
 __all__ = ["is_valid_transferlist", "is_valid_pathdata", "is_valid_animation_timing"]
@@ -16,7 +16,7 @@ event_names = [
     "DOMNodeRemovedFromDocument", "DOMNodeInsertedtoDocument", "DOMAttrModified",
     "DOMCharacterDataModified", "SVGLoad", "SVGUnload", "SVGAbort", "SVGError",
     "SVGResize", "SVGScroll", "SVGZoom", "beginEvent", "endEvent", "repeatEvent",
-    ]
+]
 
 c = r"\s*[, ]\s*"
 integer_constant = r"\d+"
@@ -34,9 +34,12 @@ comma_delimited_coordinate_pairs = fr"{two_comma_delimited_numbers}({c}{two_comm
 
 def is_valid(regex):
     reg = re.compile(regex)
+
     def f(term):
         return bool(reg.fullmatch(term))
+
     return f
+
 
 def build_transferlist_parser():
     matrix = fr"matrix\s*\(\s*{six_comma_delimited_numbers}\s*\)"
@@ -50,7 +53,9 @@ def build_transferlist_parser():
         matrix, translate, scale, rotate, skewX, skewY)))
     return fr"({tl_re})({c}({tl_re}))*"
 
+
 is_valid_transferlist = is_valid(build_transferlist_parser())
+
 
 def build_pathdata_parser():
     moveto = fr"[mM]\s*{comma_delimited_coordinate_pairs}"
@@ -80,6 +85,7 @@ def build_pathdata_parser():
 
     return f"{moveto}({drawto_command})*"
 
+
 is_valid_pathdata = is_valid(build_pathdata_parser())
 
 digit2 = r"\d{2}"
@@ -88,10 +94,12 @@ seconds = fr"\d+(\.\d+)?"
 seconds2 = fr"{digit2}(\.\d+)?"
 metric = "(h|min|s|ms)"
 
+
 def clock_val_re():
     timecount_val = fr"{seconds}\s*({metric})?"
     clock_val = fr"{digit2}:({digit2}:)?{seconds2}"
     return fr"({timecount_val}|{clock_val})"
+
 
 def wall_clock_val_re():
     hhmmss = fr"{digit2}:{digit2}(:{seconds2})?"
@@ -100,8 +108,8 @@ def wall_clock_val_re():
     datetime = fr"{date}(T{walltime})?"
     return "(" + "|".join((walltime, datetime)) + ")"
 
-def build_animation_timing_parser():
 
+def build_animation_timing_parser():
     clock_val = clock_val_re()
     wallclock_val = wall_clock_val_re()
 
@@ -118,5 +126,6 @@ def build_animation_timing_parser():
         offset_value, syncbase_value, event_value, repeat_value,
         accesskey_value, wallclock_sync_value, "indefinite"))) + ")"
     return fr"{begin_value}({c}{begin_value})*"
+
 
 is_valid_animation_timing = is_valid(build_animation_timing_parser())
