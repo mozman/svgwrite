@@ -1,19 +1,14 @@
 #!/usr/bin/env python
 #coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
-# Purpose: svgparser using pyparser
+# Purpose: svgparser using re module
 # Created: 16.10.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: MIT License
-# depends on: pyparsing.py by Paul T. McGuire - http://pyparsing.wikispaces.com/
 
 __all__ = ["is_valid_transferlist", "is_valid_pathdata", "is_valid_animation_timing"]
 
-import sys
 import re
-
-from pyparsing import *
-from functools import partial
 
 event_names = [
     "focusin", "focusout", "activate", "click", "mousedown", "mouseup", "mouseover",
@@ -23,62 +18,51 @@ event_names = [
     "SVGResize", "SVGScroll", "SVGZoom", "beginEvent", "endEvent", "repeatEvent",
     ]
 
-sign = oneOf('+ -')
-comma = Literal(',') * (0, 1)  # zero or one ','
-semicolon = Literal(';') * (0, 1)  # zero or one ';'
-integer_constant = Word(nums)
-exponent = CaselessLiteral('E') + Optional(sign) + integer_constant
-fractional_constant = Combine(Optional(integer_constant) + '.' + integer_constant) \
-    ^ Combine(integer_constant + '.')
-scientific_constant = Combine(fractional_constant + Optional(exponent)) \
-    ^ Combine(integer_constant + exponent)
-number = Combine(Optional(sign) + integer_constant) \
-    ^ Combine(Optional(sign) + scientific_constant)
+c = r"\s*[, ]\s*"
+integer_constant = r"\d+"
+exponent = r"([eE][+-]?\d+)"
+nonnegative_number = fr"(\d+\.?\d*|\.\d+){exponent}?"
+number = r"[+-]?" + nonnegative_number
+flag = r"[01]"
 
-def has_valid_syntax(term, parser):
-    try:
-        parser.parseString(term, parseAll=True)
-        return True
-    except ParseException:
-        return False
+comma_delimited_coordinates = fr"\s*{number}({c}{number})*\s*"
+two_comma_delimited_numbers = fr"\s*{number}({c}{number}\s*)" "{1}"
+four_comma_delimited_numbers = fr"\s*{number}\s*({c}{number}\s*)" "{3}"
+six_comma_delimited_numbers = fr"\s*{number}\s*({c}{number}\s*)" "{5}"
+comma_delimited_coordinate_pairs = fr"{two_comma_delimited_numbers}({c}{two_comma_delimited_numbers})*"
 
+
+def is_valid(regex):
+    reg = re.compile(regex)
+    def f(term):
+        return bool(reg.fullmatch(term))
+    return f
 
 def build_transferlist_parser():
-    matrix = Literal("matrix") + '(' + number + (Suppress(comma) + number) * 5 + ')'
-    translate = Literal("translate") + '(' + number + Optional(comma + number) + ')'
-    scale = Literal("scale") + '(' + number + Optional(comma + number) + ')'
-    rotate = Literal("rotate") + '(' + number + Optional(comma + number + comma + number) + ')'
-    skewX = Literal("skewX") + '(' + number + ')'
-    skewY = Literal("skewY") + '(' + number + ')'
-    transform = matrix | translate | scale | rotate | skewX | skewY
-    return transform + ZeroOrMore(comma + transform)
+    matrix = fr"matrix\s*\(\s*{six_comma_delimited_numbers}\s*\)"
+    translate = fr"translate\s*\(\s*{number}({c}{number})?\s*\)"
+    scale = fr"scale\s*\(\s*{number}({c}{number})?\s*\)"
+    rotate = fr"rotate\s*\(\s*{number}({c}{number}{c}{number})?\s*\)"
+    skewX = fr"skewX\s*\(\s*{number}\s*\)"
+    skewY = fr"skewY\s*\(\s*{number}\s*\)"
 
+    tl_re = "|".join((fr"(\s*{cmd}\s*)" for cmd in (
+        matrix, translate, scale, rotate, skewX, skewY)))
+    return fr"({tl_re})({c}({tl_re}))*"
 
-transferlist_parser = build_transferlist_parser()
-is_valid_transferlist = partial(has_valid_syntax, parser=transferlist_parser)
+is_valid_transferlist = is_valid(build_transferlist_parser())
 
 def build_pathdata_parser():
-    c = "\s*[, ]\s*"
-    integer_constant = r"\d+"
-    nonnegative_number = r"(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?"
-    number = r"[+-]?" + nonnegative_number
-    flag = r"[01]"
-    comma_delimited_coordinates = fr"\s*{number}({c}{number})*\s*"
-    two_comma_delimited_numbers = fr"\s*{number}({c}{number}\s*)" "{1}"
-    four_comma_delimited_numbers = fr"\s*{number}\s*({c}{number}\s*)" "{3}"
-    six_comma_delimited_numbers = fr"\s*{number}\s*({c}{number}\s*)" "{5}"
-    comma_delimited_coordinate_pairs = fr"{two_comma_delimited_numbers}({c}{two_comma_delimited_numbers})*"
-
     moveto = fr"[mM]\s*{comma_delimited_coordinate_pairs}"
     lineto = fr"[lL]\s*{comma_delimited_coordinate_pairs}"
     horizontal_lineto = fr"[hH]\s*{comma_delimited_coordinates}"
     vertical_lineto = fr"[vV]\s*{comma_delimited_coordinates}"
-    curveto = f"[cC]\s*({six_comma_delimited_numbers})({c}{six_comma_delimited_numbers})*"
+    curveto = fr"[cC]\s*({six_comma_delimited_numbers})({c}{six_comma_delimited_numbers})*"
     smooth_curveto = fr"[sS]{four_comma_delimited_numbers}({c}{four_comma_delimited_numbers})*"
     quadratic_bezier_curveto = fr"[qQ]{four_comma_delimited_numbers}({c}{four_comma_delimited_numbers})*"
     smooth_quadratic_bezier_curveto = fr"[tT]\s*{comma_delimited_coordinate_pairs}"
 
-    elliptical_arc_argument = f"{c}".join((
+    elliptical_arc_argument = fr"{c}".join((
         fr"{nonnegative_number}",
         fr"{nonnegative_number}",
         fr"{number}",
@@ -86,72 +70,53 @@ def build_pathdata_parser():
         fr"{flag}",
         fr"{number}",
         fr"{number}",))
-    elliptical_arc_argument = "\s*" + elliptical_arc_argument + "\s*"
-    print(elliptical_arc_argument)
+    elliptical_arc_argument = r"\s*" + elliptical_arc_argument + r"\s*"
     elliptical_arc = fr"[aA]({elliptical_arc_argument})({c}{elliptical_arc_argument})*"
 
-    drawto_command = "|".join((f"(\s*{cmd}\s*)" for cmd in (
+    drawto_command = "|".join((fr"(\s*{cmd}\s*)" for cmd in (
         moveto, lineto, horizontal_lineto, vertical_lineto, "[zZ]",
         curveto, smooth_curveto, quadratic_bezier_curveto,
         smooth_quadratic_bezier_curveto, elliptical_arc)))
 
-    pathre = f"^{moveto}({drawto_command})*$"
+    return f"{moveto}({drawto_command})*"
 
-    return re.compile(pathre)
+is_valid_pathdata = is_valid(build_pathdata_parser())
 
-pathdata_parser = build_pathdata_parser()
-def is_valid_pathdata(term):
-    return bool(pathdata_parser.match(term))
+digit2 = r"\d{2}"
+digit4 = r"\d{4}"
+seconds = fr"\d+(\.\d+)?"
+seconds2 = fr"{digit2}(\.\d+)?"
+metric = "(h|min|s|ms)"
 
-def build_clock_val_parser():
-    digit2 = Word(nums, exact=2)
-    timecount = integer_constant
-    fraction = integer_constant
-    seconds = digit2
-    minutes = digit2
-    hours = integer_constant
-    metric = oneOf("h min s ms")
-    timecount_val = timecount + Optional("." + fraction) + Optional(metric)
-    partial_clock_val = minutes + ":" + seconds + Optional("." + fraction)
-    full_clock_val = hours + ":" + minutes + ":" + seconds + Optional("." + fraction)
-    return full_clock_val | partial_clock_val | timecount_val
+def clock_val_re():
+    timecount_val = fr"{seconds}\s*({metric})?"
+    clock_val = fr"{digit2}:({digit2}:)?{seconds2}"
+    return fr"({timecount_val}|{clock_val})"
 
-
-def build_wall_clock_val_parser():
-    # http://www.w3.org/TR/2005/REC-SMIL2-20050107/smil-timing.html#Timing-WallclockSyncValueSyntax
-    digit2 = Word(nums, exact=2)
-    fraction = integer_constant
-    seconds = digit2
-    minutes = digit2
-    hours24 = digit2
-    day = digit2
-    month = digit2
-    year = Word(nums, exact=4)
-    tzd = Literal("Z") | (sign + hours24 + ":" + minutes)
-    hhmmss = hours24 + ":" + minutes + Optional(":" + seconds + Optional("." + fraction))
-    walltime = hhmmss + Optional(tzd)
-    date = year + "-" + month + "-" + day
-    datetime = date + "T" + walltime
-    return datetime | walltime | date
-
+def wall_clock_val_re():
+    hhmmss = fr"{digit2}:{digit2}(:{seconds2})?"
+    walltime = fr"{hhmmss}(Z|[+-]?{digit2}:{digit2})?"
+    date = fr"{digit4}-{digit2}-{digit2}"
+    datetime = fr"{date}(T{walltime})?"
+    return "(" + "|".join((walltime, datetime)) + ")"
 
 def build_animation_timing_parser():
-    clock_val = build_clock_val_parser()
-    wallclock_value = build_wall_clock_val_parser()
-    event_ref = oneOf(event_names)
-    # TODO: check id-value definition: is a leading '#' really valid?
-    id_value = Optional("#") + Word(alphanums + "-_")
-    opt_clock_val = Optional(sign + clock_val)
 
-    wallclock_sync_value = Literal("wallclock(") + wallclock_value + ")"
-    accesskey_value = Literal("accessKey(") + Word(alphas, exact=1) + ")" + opt_clock_val
-    repeat_value = Optional(id_value + ".") + Literal("repeat(") + integer_constant + ")" + opt_clock_val
-    event_value = Optional(id_value + ".") + event_ref + opt_clock_val
-    syncbase_value = id_value + "." + oneOf("begin end") + opt_clock_val
-    offset_value = Optional(sign) + clock_val
-    begin_value = offset_value | syncbase_value | event_value | repeat_value \
-                | accesskey_value | wallclock_sync_value | Literal("indefinite")
-    return begin_value + ZeroOrMore(semicolon + begin_value)
+    clock_val = clock_val_re()
+    wallclock_val = wall_clock_val_re()
 
-animation_timing_parser = build_animation_timing_parser()
-is_valid_animation_timing = partial(has_valid_syntax, parser=animation_timing_parser)
+    event_ref = "(" + "|".join(event_names) + ")"
+    id_value = "#?[-_a-zA-Z0-9]+"
+
+    wallclock_sync_value = fr"wallclock\(\s*{wallclock_val}\s*\)"
+    accesskey_value = fr"accessKey\(\s*[a-zA-Z]\s*\)\s*([+-]?{clock_val})?"
+    repeat_value = fr"({id_value}\.)?repeat\s*\(\s*\d+\s*\)\s*([+-?]{clock_val})?"
+    event_value = fr"({id_value}\.)?{event_ref}([+-]?{clock_val})?"
+    offset_value = fr"[-+]?{clock_val}"
+    syncbase_value = fr"{id_value}\.(begin|end)({offset_value})?"
+    begin_value = "(" + "|".join((f"({reg})" for reg in (
+        offset_value, syncbase_value, event_value, repeat_value,
+        accesskey_value, wallclock_sync_value, "indefinite"))) + ")"
+    return fr"{begin_value}({c}{begin_value})*"
+
+is_valid_animation_timing = is_valid(build_animation_timing_parser())

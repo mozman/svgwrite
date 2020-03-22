@@ -27,15 +27,3 @@ SVG Implementation Status
   - SVG-DOM: http://www.opera.com/docs/specs/opera95/svg/dominterfaces.xml
 
 * Webkit: http://webkit.org/projects/svg/status.xml
-
-Dependencies
-============
-
-pyparsing.py
-------------
-
-    - https://pypi.org/project/pyparsing/
-    - https://github.com/pyparsing/pyparsing/
-
-Using :mod:`pyparsing.py` for validation of the **transform** attribute and the
-**d** attribute of the <path> element.
