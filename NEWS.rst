@@ -6,8 +6,9 @@ Version 1.4b0 - dev
 -------------------
 
 * Requires Python 3.6
-* Optimized/faster svgparser module by Florian Festi
-* Removed batch files to run tests on Windows, use pytest or tox instead
+* Removed Python2 support
+* Optimized/faster ``svgparser.py`` module by Florian Festi
+* Removed batch files to run tests on Windows, use ``pytest`` or ``tox`` instead
 
 Version 1.3.1 - 2019-06-28
 --------------------------
