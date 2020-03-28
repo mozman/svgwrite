@@ -2,8 +2,8 @@
 NEWS
 ====
 
-Version 1.4b0 - dev
--------------------
+Version 1.4 - 2020-03-28
+------------------------
 
 * Requires Python 3.6
 * Removed Python2 support
