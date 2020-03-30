@@ -5,7 +5,6 @@
 # Modified
 # Copyright (C) 2019, Christof Hanke
 # License: MIT License
-from __future__ import unicode_literals
 import math
 
 import svgwrite
@@ -24,7 +23,7 @@ def main(name):
     # translate it
     octagon_translated = list(translate(octagon, 100, 100))
     dwg.add(dwg.polygon(octagon_translated, **style))
-    # rotate it 
+    # rotate it
     octagon_rotated = list(rotate(translate(octagon_translated, 10, 10), math.pi / 8))
     dwg.add(dwg.polygon(octagon_rotated, **style))
     # scale it

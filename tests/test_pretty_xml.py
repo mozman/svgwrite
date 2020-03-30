@@ -5,7 +5,6 @@
 # Created: 28.01.2017
 # Copyright (C) 2017, Manfred Moitzi
 # License: MIT License
-from __future__ import unicode_literals
 import unittest
 
 import svgwrite

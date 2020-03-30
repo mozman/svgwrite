@@ -5,8 +5,6 @@
 # Created: 05.05.2017
 # Copyright (C) 2017, Manfred Moitzi
 # License: MIT License
-from __future__ import unicode_literals
-
 try:
     import svgwrite
 except ImportError:

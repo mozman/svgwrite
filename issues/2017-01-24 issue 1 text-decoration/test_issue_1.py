@@ -3,9 +3,6 @@
 # Author:  mozman <mozman@gmx.at>
 # Copyright (C) 2017, Manfred Moitzi
 # License: MIT License
-from __future__ import unicode_literals
-
-
 import unittest
 from svgwrite.text import Text
 

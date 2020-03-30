@@ -5,7 +5,6 @@
 # Created: 25.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: MIT License
-from __future__ import unicode_literals
 import unittest
 from svgwrite.text import TSpan, TRef, TextPath
 
