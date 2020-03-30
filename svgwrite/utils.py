@@ -199,7 +199,7 @@ def rect_top_left_corner(insert, size, pos='top-left'):
     return x, y
 
 
-class AutoID(object):
+class AutoID():
     _nextid = 1
 
     def __init__(self, value=None):

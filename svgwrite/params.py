@@ -9,7 +9,7 @@
 from svgwrite.validator2 import get_validator
 
 
-class Parameter(object):
+class Parameter():
     """
     .. attribute:: Parameter.debug
 

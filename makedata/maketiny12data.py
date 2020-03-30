@@ -26,7 +26,7 @@ from tiny12data import property_names, media_group_names
 
 """ % __file__
 
-class SVGProp(object):
+class SVGProp():
     def __init__(self, name, anim, props):
         self.name = name
         self.anim = anim
@@ -49,7 +49,7 @@ class SVGProp(object):
     def get_strings(self, props):
         return [ t[1:-1] for t in props if t.startswith("'") ]
 
-class SVGElement(object):
+class SVGElement():
     def __init__(self, name, attribute_names, property_names, possible_children):
         self.name = name
         self.attribute_names = attribute_names

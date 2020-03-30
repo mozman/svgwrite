@@ -62,7 +62,7 @@ from svgwrite.types import SVGAttribute
 
 """ % __file__
 
-class SVGElement(object):
+class SVGElement():
     def __init__(self, name, attribute_names, possible_children):
         self.name = name
         self.attribute_names = attribute_names
@@ -83,7 +83,7 @@ class SVGElement(object):
             self.possible_children)
 
 
-class SVGProp(object):
+class SVGProp():
     valid_types = frozenset(['<number>', '<coordinate>', '<length>', '<attributeName>',
                        '<percentage>', '<profile-name>', '<string>', '<value>',
                        '<begin-value-list>', '<shape>', '<uri>', '<color>',

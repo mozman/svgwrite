@@ -33,7 +33,7 @@ COLOR_RGB_PERCENTAGE_PATTERN = re.compile(r"^rgb\( *\d+(\.\d*)?% *, *\d+(\.\d*)?
 NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
 
 
-class Full11TypeChecker(object):
+class Full11TypeChecker():
     def get_version(self):
         return '1.1', 'full'
 

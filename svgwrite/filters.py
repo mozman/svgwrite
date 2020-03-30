@@ -213,7 +213,7 @@ filter_factory = {
 }
 
 
-class _FilterBuilder(object):
+class _FilterBuilder():
     def __init__(self, cls, parent):
         self.cls = cls # primitive filter class to build
         self.parent = parent # the parent Filter() object

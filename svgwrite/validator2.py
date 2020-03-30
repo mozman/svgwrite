@@ -32,7 +32,7 @@ def get_validator(profile, debug=True):
         return validator
 
 
-class Tiny12Validator(object):
+class Tiny12Validator():
     profilename = "Tiny 1.2"
 
     def __init__(self, debug=True):

@@ -21,7 +21,7 @@ def nfrange(fstart, fstop, n):
     return [ fstart + delta * i for i in range(n) ]
 
 def create_svg(name):
-    class bezier(object):
+    class bezier():
         def __init__(self, val_x, val_y):
             # The main point
             self.x = val_x

@@ -54,7 +54,7 @@ from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb
 
 
-class Unit(object):
+class Unit():
     """ Add units to values.
     """
     def __init__(self, unit='cm'):

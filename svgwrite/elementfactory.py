@@ -56,7 +56,7 @@ factoryelements = {
 }
 
 
-class ElementBuilder(object):
+class ElementBuilder():
     def __init__(self, cls, factory):
         self.cls = cls
         self.factory = factory
@@ -68,7 +68,7 @@ class ElementBuilder(object):
         return self.cls(*args, **kwargs)
 
 
-class ElementFactory(object):
+class ElementFactory():
     def __getattr__(self, name):
         if name in factoryelements:
             return ElementBuilder(factoryelements[name], self)
