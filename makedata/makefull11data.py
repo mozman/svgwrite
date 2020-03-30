@@ -136,7 +136,6 @@ def create_elements_data(attributes, children):
         except KeyError:
             possible_children = []
         element = SVGElement(name, attribute_names, possible_children)
-        print element
         elements[name] = element
     return elements
 
