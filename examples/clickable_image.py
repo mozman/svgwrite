@@ -18,7 +18,7 @@ def make_drawing(filename="clickable_image.svg"):
 
     clickable_image(dwg,
                     image_href="https://github.com/fluidicon.png",
-                    dest_href"https://github.com/mozman/svgwrite",
+                    dest_href="https://github.com/mozman/svgwrite",
                     insert=("25%", "25%"), size=("50%", "50%"))
 
     return dwg
