@@ -23,7 +23,6 @@ section by::
     drawing.defs.add(element)
 
 """
-from __future__ import unicode_literals
 import io
 
 from svgwrite.container import SVG, Defs
@@ -131,7 +130,7 @@ class Drawing(SVG, ElementFactory):
         """
         self.filename = filename
         self.save(pretty=pretty, indent=indent)
-    
+
     def _repr_svg_(self):
         """ Show SVG in IPython, Jupyter Notebook, and Jupyter Lab
 
@@ -139,5 +138,3 @@ class Drawing(SVG, ElementFactory):
 
         """
         return self.tostring()
-
-

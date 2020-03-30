@@ -5,8 +5,6 @@
 # Copyright (C) 2012, L. Tattrie
 # License: LGPL
 # Python version 2.7
-from __future__ import print_function
-
 import sys
 import os
 import colorsys
@@ -23,7 +21,7 @@ RGB_TXT = 'rgb.txt'
 #     text stroke, stroke colour
 #     text font names
 #     colour names, colour by rbg, colour by hex, colour by hsl.
-#     clipping and masking perhaps use http://www.w3.org/TR/SVG/masking.html example opacity01 
+#     clipping and masking perhaps use http://www.w3.org/TR/SVG/masking.html example opacity01
 #     multishapes with various opacities overlapping. ex rounded corner rectangles.
 #     Are clones an inkscape feature?
 #     View examples by following links at http://tavmjong.free.fr/INKSCAPE/
@@ -31,9 +29,9 @@ RGB_TXT = 'rgb.txt'
 #        It does this by looking at the current dir and listing *.svg  or example*.svg
 #     Drop shadow?
 #     Create sample programs which match the svg test in the www.? pages
-#     Complain / document that 
+#     Complain / document that
 #          sq_created.translate(x, (y+square_size))
-#          sq_created.scale(1, -1)   is not the same as 
+#          sq_created.scale(1, -1)   is not the same as
 #          sq_created.scale(1, -1)
 #          sq_created.translate(x, (y+square_size))
 #       www.? said that evaluation is done RIGHT to LEFT! But the program puts the most recent on
@@ -41,7 +39,7 @@ RGB_TXT = 'rgb.txt'
 #       should be changed and is likely that the author of svgwrite did not know of the Right to
 #       Left evaluation.  Needs example from www.?
 #     Note that sq_created.scale='(1, -1)' does not work and is incorrect but does not produce an
-#     error. The program ignores it and caused me a lot of debugging time. 
+#     error. The program ignores it and caused me a lot of debugging time.
 #
 # read the name and colour data provided by xkcd and change to svg diagram.
 # http://blog.xkcd.com/2010/05/03/color-survey-results/
@@ -50,7 +48,7 @@ RGB_TXT = 'rgb.txt'
 # max name length =26
 #
 # http://stackoverflow.com/questions/214359/converting-hex-to-rgb-and-vice-versa
-# A hex value is just RGB numbers represented in hexadecimal. So you just have to take each pair of hex digits 
+# A hex value is just RGB numbers represented in hexadecimal. So you just have to take each pair of hex digits
 # and convert them to decimal.  Example: #FF6400 = RGB(0xFF, 0x64, 0x00) = RGB(255, 100, 0)
 
 def hex_to_rgb(value):
@@ -87,7 +85,7 @@ def create_svg(name):
         colour_item = line.strip().split('\t')
         rgb = hex_to_rgb(colour_item[1])
         # hsl is also called hls
-        #hsl = 
+        #hsl =
         #h, l, s = colorsys.rgb_to_hls(r, g, b)
         # rgb values are integer but colorsys wants float(0..1) and returns float
         h, l, s = colorsys.rgb_to_hls(rgb[0]/255.0, rgb[1]/255.0, rgb[2]/255.0)
