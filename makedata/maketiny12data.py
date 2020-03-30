@@ -76,7 +76,6 @@ def create_property_data(soup):
         animateable = (td[1].attrs[0][1] == 'true')
         content = [t.strip() for t in td[3].getText().split('|')]
         prop = SVGProp(name, animateable, content)
-        print prop
         p[prop.name] = prop
     return p
 
@@ -90,7 +89,6 @@ def create_attribute_data(soup):
         animateable = (td[1].attrs[0][1] == 'true')
         content = [t.strip() for t in td[3].getText().split('|')]
         prop = SVGProp(name, animateable, content)
-        print prop
         p[prop.name] = prop
     return p
 
@@ -184,7 +182,6 @@ def create_elements_data(soup):
         else:
             possible_children = None
         element = SVGElement(name, attribute_names, property_names, possible_children)
-        print element
         elements[element.name] = element
     return elements
 
