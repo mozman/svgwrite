@@ -20,7 +20,7 @@ class Line(BaseElement, Transform, Presentation, Markers):
         """
         :param 2-tuple start: start point (**x1**, **y1**)
         :param 2-tuple end: end point (**x2**, **y2**)
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
 
         """
         super(Line, self).__init__(**extra)
@@ -45,7 +45,7 @@ class Rect(BaseElement, Transform, Presentation):
         :param 2-tuple size: (**width**, **height**)
         :param <length> rx: corner x-radius
         :param <length> ry: corner y-radius
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
 
         """
         super(Rect, self).__init__(**extra)
@@ -70,7 +70,7 @@ class Circle(BaseElement, Transform, Presentation):
         """
         :param 2-tuple center: circle center point (**cx**, **cy**)
         :param length r: circle-radius **r**
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
 
         """
         super(Circle, self).__init__(**extra)
@@ -90,7 +90,7 @@ class Ellipse(BaseElement, Transform, Presentation):
         """
         :param 2-tuple center: ellipse center point (**cx**, **cy**)
         :param 2-tuple r: ellipse radii (**rx**, **ry**)
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
 
         """
         super(Ellipse, self).__init__(**extra)
@@ -111,7 +111,7 @@ class Polyline(BaseElement, Transform, Presentation, Markers):
     def __init__(self, points=[], **extra):
         """
         :param `iterable` points: `iterable` of points (points are `2-tuples`)
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
 
         """
         super(Polyline, self).__init__(**extra)

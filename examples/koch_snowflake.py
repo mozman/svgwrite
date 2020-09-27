@@ -77,7 +77,7 @@ def koch_snowflake(name):
     # create a new <g /> element, we will insert the snowflake by the <use /> element
     # here we set stroke, fill and stroke-width for all subelements
     # attention: 'stroke-width' is not a valid Python identifier, so use 'stroke_witdth'
-    #   underlines '_' will be converted to dashes '-', this is true for all svg-keyword-attributs
+    #   underlines '_' will be converted to dashes '-', this is true for all svg-keyword-attributes
     # if no 'id' is given ( like dwg.g(id="sflake") ), an automatic generated 'id' will be generated
     snowflake = dwg.g(stroke="blue", fill="rgb(90%,90%,100%)", stroke_width=0.25)
 
