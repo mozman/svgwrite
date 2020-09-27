@@ -24,7 +24,7 @@ class Image(BaseElement, Transform, Clipping):
         :param 2-tuple insert: insert point (**x**, **y**)
         :param 2-tuple size: (**width**, **height**)
         :param dict attribs: additional SVG attributes
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
         """
         super(Image, self).__init__(**extra)
         self['xlink:href'] = href

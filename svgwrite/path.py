@@ -20,7 +20,7 @@ class Path(BaseElement, Transform, Presentation, Markers):
         """
         :param `iterable` d: *coordinates*, *length* and *commands*
         :param dict attribs: additional SVG attributes
-        :param extra: additional SVG attributs as keyword-arguments
+        :param extra: additional SVG attributes as keyword-arguments
 
         """
         super(Path, self).__init__(**extra)
