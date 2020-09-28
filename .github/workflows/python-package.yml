@@ -27,6 +27,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pytest
-    - name: Run Tox
+    - name: Run pytest
       run: |
-        run: pytest
+        pytest
