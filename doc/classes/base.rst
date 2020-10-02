@@ -21,6 +21,8 @@ Methods
 
 .. automethod:: svgwrite.base.BaseElement.add
 
+.. automethod:: svgwrite.base.BaseElement.add_to
+
 .. automethod:: svgwrite.base.BaseElement.tostring
 
 .. automethod:: svgwrite.base.BaseElement.get_xml

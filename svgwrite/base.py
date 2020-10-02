@@ -178,6 +178,16 @@ class BaseElement(object):
         self.elements.append(element)
         return element
 
+    def add_to(self, parent):
+        """ Add this SVG element to a parent element. Alternatively use the .add(element) method to add a child to this element.
+
+        :param parent: the parent SVG element to which this element will be appended
+        :returns: this element 
+
+        """
+        parent.add(self)
+        return self
+
     def tostring(self):
         """ Get the XML representation as unicode `string`.
 
