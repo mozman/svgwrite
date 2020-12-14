@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, pypy3]
+        python-version: [3.6, 3.7, 3.8, 3.9, pypy3]
 
     steps:
     - uses: actions/checkout@v2
@@ -25,7 +25,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        pip install tox
-    - name: Run tox
+        pip install pytest
+        pip install -e .
+    - name: Run pytest
       run: |
-        tox -e py  # Run tox using the version of Python in `PATH`
+        python -m pytest

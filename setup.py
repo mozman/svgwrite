@@ -1,10 +1,6 @@
-#!/usr/bin/env python
-#coding:utf-8
-# Author:  mozman
-# Purpose: setup
-# Created: 08.09.2010
+#!/usr/bin/env python3
 # License: MIT License
-# Copyright (C) 2010-2018  Manfred Moitzi
+# Copyright (C) 2010-2020  Manfred Moitzi
 import os
 from setuptools import setup
 
@@ -50,6 +46,7 @@ setup(name='svgwrite',
           "Programming Language :: Python :: 3.6",
           "Programming Language :: Python :: 3.7",
           "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
           "Programming Language :: Python :: Implementation :: CPython",
           "Programming Language :: Python :: Implementation :: PyPy",
           "Intended Audience :: Developers",
