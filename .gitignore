@@ -2,6 +2,7 @@ build/*
 dist/*
 .idea/*
 .cache/*
+.tox/*
 __pycache__
 svgwrite.egg-info/*
 doc/_build/*
