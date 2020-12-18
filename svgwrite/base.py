@@ -253,7 +253,10 @@ class BaseElement(object):
                 if pos == len(self.elements):
                     self.elements.append(metadata)
                     return
-            self.elements.insert(pos, metadata)
+            if self.elements[pos].elementname == 'metadata':
+                self.elements[pos].xml.append(xmldata)
+            else:
+                self.elements.insert(pos, metadata)
 
 
 class Title(object):
