@@ -137,11 +137,11 @@ SVG Attributes
 
   See `Filter effects region. <http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion>`_
 
-* **width** -- `<lenght>` -- **size** parameter
+* **width** -- `<length>` -- **size** parameter
 
   See `Filter effects region. <http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion>`_
 
-* **height** -- `<lenght>` -- **size** parameter
+* **height** -- `<length>` -- **size** parameter
 
   See `Filter effects region. <http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion>`_
 

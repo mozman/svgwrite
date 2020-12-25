@@ -78,9 +78,9 @@ SVG Attributes
   The y-axis coordinate of the side of the
   rectangle which has the smaller y-axis coordinate value
 
-* **width** -- `<lenght>` -- **size** parameter
+* **width** -- `<length>` -- **size** parameter
 
-* **height** -- `<lenght>` -- **size** parameter
+* **height** -- `<length>` -- **size** parameter
 
 * **rx** -- `<length>` -- **rx** parameter
 
