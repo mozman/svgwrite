@@ -127,7 +127,7 @@ class Transform(object):
 
     def _add_transformation(self, new_transform):
         old_transform = self.attribs.get(self.transformname, '')
-        self[self.transformname] = ("%s %s" % (old_transform, new_transform)).strip()
+        self[self.transformname] = ("%s %s" % (new_transform, old_transform)).strip()
 
 
 class XLink(object):
