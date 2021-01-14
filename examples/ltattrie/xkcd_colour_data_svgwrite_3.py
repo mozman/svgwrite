@@ -6,12 +6,12 @@
 # License: LGPL
 # Python version 2.7
 import sys
-import os
 import colorsys
 import svgwrite
+from pathlib import Path
 
 PROGNAME = sys.argv[0].rstrip('.py')
-RGB_TXT = 'rgb.txt'
+RGB_TXT = Path('rgb.txt')
 
 # To Do
 #   Automate the file name and title and axis swatch_y
@@ -62,7 +62,7 @@ def create_svg(name):
     swatch_w = 10 # swatch width
     swatch_h = 10 # swatch height
 
-    if not os.path.exists(RGB_TXT):
+    if not RGB_TXT.exists():
       print("Error.  The data file is not readable. File name is: %s" % RGB_TXT)
       sys.exit(1)
 
@@ -79,7 +79,7 @@ def create_svg(name):
     # You can also use other family names like "Times", "Baskerville", "Verdena", and "Symbol." I got those names from the CSS specification and some experimenting, but I'm looking for more.
     # 'font-weight' Value:  	normal | bold + others.
 
-    for line_count, line in enumerate(open(RGB_TXT)):
+    for line_count, line in enumerate(RGB_TXT.read_text().splitlines()):
         colour_item = line.split('\t')
         # strip the trailing newline \n char then split by the tab chars
         colour_item = line.strip().split('\t')

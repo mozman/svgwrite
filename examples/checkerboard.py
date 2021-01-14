@@ -7,12 +7,12 @@
 # License: MIT License
 
 import sys
-import os
+from pathlib import Path
 
 try:
     import svgwrite
 except ImportError:
-    sys.path.insert(0, os.path.abspath(os.path.split(os.path.abspath(__file__))[0]+'/..'))
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import svgwrite
 if svgwrite.version < (1,0,1):

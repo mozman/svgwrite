@@ -5,9 +5,9 @@
 # Created: 11.09.2010
 # Copyright (C) 2010, Manfred Moitzi
 # License: MIT License
-import os
 import unittest
 from io import StringIO
+from pathlib import Path
 
 from svgwrite.drawing import Drawing
 from svgwrite.container import Group
@@ -36,22 +36,22 @@ class TestDrawingFullProfile(unittest.TestCase):
                                  'xmlns:xlink="http://www.w3.org/1999/xlink"><defs /></svg>')
 
     def test_save(self):
-        fn = 'test_drawing.svg'
-        if os.path.exists(fn):
-            os.remove(fn)
+        fn = Path('test_drawing.svg')
+        if fn.exists():
+            fn.unlink()
         dwg = Drawing(fn)
         dwg.save()
-        self.assertTrue(os.path.exists(fn))
-        os.remove(fn)
+        self.assertTrue(fn.exists())
+        fn.unlink()
 
     def test_save_as(self):
-        fn = 'test_drawing.svg'
-        if os.path.exists(fn):
-            os.remove(fn)
+        fn = Path('test_drawing.svg')
+        if fn.exists():
+            fn.unlink()
         dwg = Drawing()
-        dwg.saveas(fn)
-        self.assertTrue(os.path.exists(fn))
-        os.remove(fn)
+        dwg.saveas(str(fn))
+        self.assertTrue(fn.exists())
+        fn.unlink()
 
     def test_non_us_ascii_chars(self):
         dwg = Drawing()

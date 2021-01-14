@@ -5,8 +5,9 @@ try:
     import svgwrite
 except ImportError:
     # if svgwrite is not 'installed' append parent dir of __file__ to sys.path
-    import sys, os
-    sys.path.insert(0, os.path.abspath(os.path.split(os.path.abspath(__file__))[0]+'/..'))
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import svgwrite
 dwg = svgwrite.Drawing("fePointLight.svg")
