@@ -65,7 +65,7 @@ def LSystem(name, formula=LevyCurve):
     numAngle = formula['numAngle']
     length = formula['length']
     fractal = _LSystem(formula)
-    na = 2.0 * math.pi / numAngle
+    na = 2 * math.pi / numAngle
     sn = []
     cs = []
     for i in range(numAngle):

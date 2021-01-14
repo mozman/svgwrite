@@ -23,14 +23,14 @@ def ngon(num_corners, edge_length=None, radius=None, rotation=0.):
     if num_corners < 3:
         raise ValueError('Argument `num_corners` has to be greater than 2.')
     if edge_length is not None:
-        radius = edge_length / 2. / math.sin(math.pi / num_corners)
+        radius = edge_length / 2 / math.sin(math.pi / num_corners)
     elif radius is not None:
         if radius <= 0.:
             raise ValueError('Argument `radius` has to be greater than 0.')
     else:
         raise ValueError('Argument `edge_length` or `radius` required.')
 
-    delta = 2. * math.pi / num_corners
+    delta = 2 * math.pi / num_corners
     angle = rotation
     for _ in range(num_corners):
         yield (radius * math.cos(angle), radius * math.sin(angle))
@@ -126,6 +126,4 @@ def centroid(vertices):
         c_x += x
         c_y += y
         k += 1
-    c_x = float(c_x / k)
-    c_y = float(c_y / k)
-    return c_x, c_y
+    return c_x / k, c_y / k

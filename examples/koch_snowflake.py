@@ -23,9 +23,9 @@ def koch_snowflake(name):
     # http://code.activestate.com/recipes/577156-koch-snowflake-and-sierpinski-triangle-combination/
 
     def tf (x0, y0, x1, y1, x2, y2):
-        a = math.sqrt((x1 - x0) ** 2 + (y1 - y0) ** 2)
-        b = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-        c = math.sqrt((x0 - x2) ** 2 + (y0 - y2) ** 2)
+        a = math.hypot(x1 - x0, y1 - y0)
+        b = math.hypot(x2 - x1, y2 - y1)
+        c = math.hypot(x0 - x2, y0 - y2)
 
         if (a < stop_val) or (b < stop_val) or (c < stop_val):
             return
@@ -45,7 +45,7 @@ def koch_snowflake(name):
         tf(x5, y5, x4, y4, x2, y2)
 
     def sf (ax, ay, bx, by):
-        f = math.sqrt((bx - ax) ** 2 + (by - ay) ** 2)
+        f = math.hypot(bx - ax, by - ay)
 
         if f < 1.:
             return

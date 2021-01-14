@@ -36,8 +36,8 @@ def create_svg(name):
     # The centre of the triangle is  sqrt(3)/6.0 * length of a side
 
     defs_g_trieq_size_x = square_size
-    defs_g_trieq_size_y = defs_g_trieq_size_x * sqrt3 / 2.0
-    defs_g_trieq_centre = sqrt3 / 6.0 * defs_g_trieq_size_x
+    defs_g_trieq_size_y = defs_g_trieq_size_x * sqrt3 / 2
+    defs_g_trieq_centre = sqrt3 / 6 * defs_g_trieq_size_x
 
     # width of equilateral triangle at the centre
 
@@ -46,10 +46,10 @@ def create_svg(name):
     # defs_g_trieq = dwg.defs.add(dwg.g(id='defs_g_trieq', clip_path='url(#cliptrieq)'))
 
     defs_g_trieq = dwg.defs.add(dwg.g(id='defs_g_trieq'))
-    defs_g_trieq.add(dwg.polygon([(0, -defs_g_trieq_size_y + defs_g_trieq_centre), (defs_g_trieq_size_x / 2.0, defs_g_trieq_centre),
-                     (-defs_g_trieq_size_x / 2.0, defs_g_trieq_centre)], stroke='none'))
-    defs_g_trieq.add(dwg.polygon([(-defs_g_trieq_size_x / 2.0, defs_g_trieq_centre), (-defs_g_trieq_centre_size_x / 2.0, 0),
-                     (defs_g_trieq_centre_size_x / 2.0, 0), (0, defs_g_trieq_centre)], stroke='none', fill='yellow'))
+    defs_g_trieq.add(dwg.polygon([(0, -defs_g_trieq_size_y + defs_g_trieq_centre), (defs_g_trieq_size_x / 2, defs_g_trieq_centre),
+                     (-defs_g_trieq_size_x / 2, defs_g_trieq_centre)], stroke='none'))
+    defs_g_trieq.add(dwg.polygon([(-defs_g_trieq_size_x / 2, defs_g_trieq_centre), (-defs_g_trieq_centre_size_x / 2, 0),
+                     (defs_g_trieq_centre_size_x / 2, 0), (0, defs_g_trieq_centre)], stroke='none', fill='yellow'))
 
     # Create mirror of the equilateral triangle.
 
@@ -62,8 +62,8 @@ def create_svg(name):
     defs_g_trieq_cc_size_x = 1.5 * defs_g_trieq_size_x
     defs_g_trieq_cc_size_y = defs_g_trieq_size_y
     defs_g_trieq_cc = dwg.defs.add(dwg.g(id='defs_g_trieq_cc'))
-    defs_g_trieq_cc.add(dwg.use(defs_g_trieq, insert=(-defs_g_trieq_size_x / 4.0, defs_g_trieq_size_y / 2.0 - defs_g_trieq_centre)))
-    defs_g_trieq_cc.add(dwg.use(defs_g_trieq_m, insert=(defs_g_trieq_size_x / 4.0, -(defs_g_trieq_size_y / 2.0 - defs_g_trieq_centre))))
+    defs_g_trieq_cc.add(dwg.use(defs_g_trieq, insert=(-defs_g_trieq_size_x / 4, defs_g_trieq_size_y / 2 - defs_g_trieq_centre)))
+    defs_g_trieq_cc.add(dwg.use(defs_g_trieq_m, insert=(defs_g_trieq_size_x / 4, -(defs_g_trieq_size_y / 2 - defs_g_trieq_centre))))
 
     # Create rotations of combined cell
 
@@ -79,9 +79,9 @@ def create_svg(name):
     defs_g_trieq_pattern_size_x = 2 * defs_g_trieq_size_x
     defs_g_trieq_pattern_size_y = 2 * defs_g_trieq_size_y
     defs_g_trieq_pattern = dwg.defs.add(dwg.g(id='defs_g_trieq_pattern'))
-    defs_g_trieq_pattern.add(dwg.use(defs_g_trieq_cc, insert=(-defs_g_trieq_size_x / 4.0, -defs_g_trieq_cc_size_y / 2.0)))
-    defs_g_trieq_pattern.add(dwg.use(defs_g_trieq_cc_120, insert=(defs_g_trieq_size_x / 2.0, 0)))
-    defs_g_trieq_pattern.add(dwg.use(defs_g_trieq_cc_m120, insert=(-defs_g_trieq_size_x / 4.0, defs_g_trieq_cc_size_y / 2.0)))
+    defs_g_trieq_pattern.add(dwg.use(defs_g_trieq_cc, insert=(-defs_g_trieq_size_x / 4, -defs_g_trieq_cc_size_y / 2)))
+    defs_g_trieq_pattern.add(dwg.use(defs_g_trieq_cc_120, insert=(defs_g_trieq_size_x / 2, 0)))
+    defs_g_trieq_pattern.add(dwg.use(defs_g_trieq_cc_m120, insert=(-defs_g_trieq_size_x / 4, defs_g_trieq_cc_size_y / 2)))
 
     # ####################
     # p31m - Three rotations and a mirror
@@ -99,7 +99,7 @@ def create_svg(name):
     # The centre of equilateral triangle is  sqrt(3)/6.0 * length of a side
 
     defs_g_kite_size_x = square_size
-    defs_g_kite_size_y = defs_g_kite_size_x * sqrt3 / 2.0 + defs_g_kite_size_x * sqrt3 / 6.0
+    defs_g_kite_size_y = defs_g_kite_size_x * sqrt3 / 2 + defs_g_kite_size_x * sqrt3 / 6
 
     # Having a clip path seems to increase the visibility of the lines between the tiles.
     # A clipping path may be necessary if the shapes go outside the triangle.
@@ -107,21 +107,21 @@ def create_svg(name):
 
     defs_g_kite = dwg.defs.add(dwg.g(id='defs_g_kite'))
     defs_g_kite.add(dwg.polygon([(0, 0), 
-        (defs_g_kite_size_x / 2.0, defs_g_kite_size_x / (sqrt3 * 2.0)), 
+        (defs_g_kite_size_x / 2, defs_g_kite_size_x / (sqrt3 * 2)),
         (0, defs_g_kite_size_y), 
-        (-defs_g_kite_size_x / 2.0, defs_g_kite_size_x / (sqrt3 * 2.0))], stroke='none'))
+        (-defs_g_kite_size_x / 2, defs_g_kite_size_x / (sqrt3 * 2))], stroke='none'))
     #defs_g_kite.add(dwg.polygon([(0, 0), 
     #    (defs_g_kite_size_x / 4.0, (defs_g_kite_size_y + defs_g_kite_size_x / (sqrt3 * 2.0)) / 2.0),
     #    (-defs_g_kite_size_x / 2.0, defs_g_kite_size_x / (sqrt3 * 2.0))], stroke='none', fill='yellow'))
     defs_g_kite.add(dwg.polygon([(0, 0), 
-        (defs_g_kite_size_x / 2.0, defs_g_kite_size_x / (sqrt3 * 2.0)),
-        (0, defs_g_kite_size_y / 12.0),
-        (-defs_g_kite_size_x / 2.0, defs_g_kite_size_x / (sqrt3 * 2.0))], stroke='none',
+        (defs_g_kite_size_x / 2, defs_g_kite_size_x / (sqrt3 * 2)),
+        (0, defs_g_kite_size_y / 12),
+        (-defs_g_kite_size_x / 2, defs_g_kite_size_x / (sqrt3 * 2))], stroke='none',
         fill='black'))
     defs_g_kite.add(dwg.polygon([(0, defs_g_kite_size_y), 
-        (defs_g_kite_size_x / 2.0, defs_g_kite_size_x / (sqrt3 * 2.0)),
-        (0, defs_g_kite_size_y * 8.0 / 12.0),
-        (-defs_g_kite_size_x / 2.0, defs_g_kite_size_x / (sqrt3 * 2.0))], stroke='none',
+        (defs_g_kite_size_x / 2, defs_g_kite_size_x / (sqrt3 * 2)),
+        (0, defs_g_kite_size_y * 8 / 12),
+        (-defs_g_kite_size_x / 2, defs_g_kite_size_x / (sqrt3 * 2))], stroke='none',
         fill='green'))
 
     # Create rotations of the kite.
@@ -154,8 +154,8 @@ def create_svg(name):
     defs_g_kite_pattern_size_x = 1.5 * defs_g_kite_cc_size_x
     defs_g_kite_pattern_size_y = defs_g_kite_cc_size_y
     defs_g_kite_pattern = dwg.defs.add(dwg.g(id='defs_g_kite_pattern'))
-    defs_g_kite_pattern.add(dwg.use(defs_g_kite_cc, insert=(-defs_g_kite_cc_size_x / 4.0, -sqrt3 / 12.0 * defs_g_kite_cc_size_x)))
-    defs_g_kite_pattern.add(dwg.use(defs_g_kite_mcc, insert=(defs_g_kite_cc_size_x / 4.0, sqrt3 / 12.0 * defs_g_kite_cc_size_x)))
+    defs_g_kite_pattern.add(dwg.use(defs_g_kite_cc, insert=(-defs_g_kite_cc_size_x / 4, -sqrt3 / 12 * defs_g_kite_cc_size_x)))
+    defs_g_kite_pattern.add(dwg.use(defs_g_kite_mcc, insert=(defs_g_kite_cc_size_x / 4, sqrt3 / 12 * defs_g_kite_cc_size_x)))
 
     # ####################
     # p6m - Kaleidoscope Either of the two long sides of the primary triangle is mirrored.  The
@@ -172,7 +172,7 @@ def create_svg(name):
     # # The centre of equilateral triangle is  sqrt(3) / 6.0 * length of a side
 
     defs_g_kale_tri_size_x = square_size
-    defs_g_kale_tri_size_y = defs_g_kale_tri_size_x * 4.0 / sqrt3
+    defs_g_kale_tri_size_y = defs_g_kale_tri_size_x * 4 / sqrt3
 
     # Having a clip path seems to increase the visibility of the lines between the tiles.
     # A clipping path may be necessary if the shapes go outside the triangle.
@@ -181,8 +181,8 @@ def create_svg(name):
     defs_g_kale_tri = dwg.defs.add(dwg.g(id='defs_g_kale_tri'))
     defs_g_kale_tri.add(dwg.polygon([(0, -defs_g_kale_tri_size_y), (0, 0), (-defs_g_kale_tri_size_x, defs_g_kale_tri_size_x / sqrt3
                         - defs_g_kale_tri_size_y)], stroke='none'))
-    defs_g_kale_tri.add(dwg.polygon([(-defs_g_kale_tri_size_x, defs_g_kale_tri_size_x / sqrt3 - defs_g_kale_tri_size_y), (0, 2.0
-                        * defs_g_kale_tri_size_x / sqrt3 - defs_g_kale_tri_size_y), (0, 3.0 * defs_g_kale_tri_size_x / sqrt3
+    defs_g_kale_tri.add(dwg.polygon([(-defs_g_kale_tri_size_x, defs_g_kale_tri_size_x / sqrt3 - defs_g_kale_tri_size_y), (0, 2
+                        * defs_g_kale_tri_size_x / sqrt3 - defs_g_kale_tri_size_y), (0, 3 * defs_g_kale_tri_size_x / sqrt3
                         - defs_g_kale_tri_size_y)], stroke='none', fill='yellow'))
 
     # Create mirror of the kale.
@@ -256,7 +256,7 @@ def create_svg(name):
     dwg.add(dwg.circle(center=(250 + defs_g_trieq_cc_size_x, y), r=3, stroke='none', fill='purple', opacity='0.5'))
     y += defs_g_trieq_pattern_size_y
     for i in range(8):
-        y += defs_g_trieq_pattern_size_y / 2.0
+        y += defs_g_trieq_pattern_size_y / 2
         for j in range(6):
             if i % 2:
                 x = 50 + j * 1.5 * defs_g_trieq_pattern_size_x
@@ -273,12 +273,12 @@ def create_svg(name):
     title2 = 'Kite rotated and mirrored, math name: p31m'
     dwg.add(dwg.text(title2, insert=(50, y), font_family='serif', font_size=font_size, fill='white'))
     y = y + font_size + defs_g_kite_size_y
-    cell_created = dwg.use(defs_g_kite, insert=(50 + defs_g_kite_size_x / 2.0, y), fill='navy')
+    cell_created = dwg.use(defs_g_kite, insert=(50 + defs_g_kite_size_x / 2, y), fill='navy')
     dwg.add(cell_created)
-    dwg.add(dwg.circle(center=(50 + defs_g_kite_size_x / 2.0, y), r=3, stroke='none', fill='purple', opacity='0.5'))
-    cc_created = dwg.use(defs_g_kite_cc, insert=(150 + defs_g_kite_size_x / 2.0, y), fill='navy')
+    dwg.add(dwg.circle(center=(50 + defs_g_kite_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
+    cc_created = dwg.use(defs_g_kite_cc, insert=(150 + defs_g_kite_size_x / 2, y), fill='navy')
     dwg.add(cc_created)
-    dwg.add(dwg.circle(center=(150 + defs_g_kite_size_x / 2.0, y), r=3, stroke='none', fill='purple', opacity='0.5'))
+    dwg.add(dwg.circle(center=(150 + defs_g_kite_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
     mcc_created = dwg.use(defs_g_kite_mcc, insert=(250 + defs_g_kite_cc_size_x / 2, y), fill='navy')
     dwg.add(mcc_created)
     dwg.add(dwg.circle(center=(250 + defs_g_kite_cc_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
@@ -308,13 +308,13 @@ def create_svg(name):
     cell_created = dwg.use(defs_g_kale_tri, insert=(50 + defs_g_kale_tri_size_x, y), fill='navy')
     dwg.add(cell_created)
     dwg.add(dwg.circle(center=(50 + defs_g_kale_tri_size_x, y), r=3, stroke='none', fill='purple', opacity='0.5'))
-    cc_created = dwg.use(defs_g_kale_cc, insert=(150 + defs_g_kale_cc_size_x / 2.0, y), fill='navy')
+    cc_created = dwg.use(defs_g_kale_cc, insert=(150 + defs_g_kale_cc_size_x / 2, y), fill='navy')
     dwg.add(cc_created)
-    dwg.add(dwg.circle(center=(150 + defs_g_kale_cc_size_x / 2.0, y), r=3, stroke='none', fill='purple', opacity='0.5'))
-    pattern_created = dwg.use(defs_g_kale_pattern, insert=(250 + defs_g_kale_pattern_size_x / 2.0, y), fill='navy')
+    dwg.add(dwg.circle(center=(150 + defs_g_kale_cc_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
+    pattern_created = dwg.use(defs_g_kale_pattern, insert=(250 + defs_g_kale_pattern_size_x / 2, y), fill='navy')
     dwg.add(pattern_created)
-    dwg.add(dwg.circle(center=(250 + defs_g_kale_pattern_size_x / 2.0, y), r=3, stroke='none', fill='purple', opacity='0.5'))
-    y += defs_g_kale_pattern_size_y / 2.0
+    dwg.add(dwg.circle(center=(250 + defs_g_kale_pattern_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
+    y += defs_g_kale_pattern_size_y / 2
     for i in range(4):
         y += defs_g_kale_pattern_size_y - defs_g_kale_pattern_size_x / (sqrt3 * 2)
         for j in range(6):

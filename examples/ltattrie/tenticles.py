@@ -27,9 +27,9 @@ def gen_colour(start_p, end_p, n_p):
     n = n_p
     # yielding a c_end separately gives the exact c_end thus not something that is 99.99% c_end which is slightly off colour.
     for i in range(n):
-        ccolour = (int(c_start[0] + (float(i) / float(n))*(c_end[0] - c_start[0])),
-                   int(c_start[1] + (float(i) / float(n))*(c_end[1] - c_start[1])),
-                   int(c_start[2] + (float(i) / float(n))*(c_end[2] - c_start[2])))
+        ccolour = (int(c_start[0] + (i / n) * (c_end[0] - c_start[0])),
+                   int(c_start[1] + (i / n) * (c_end[1] - c_start[1])),
+                   int(c_start[2] + (i / n) * (c_end[2] - c_start[2])))
         yield ccolour
     yield c_end
 
@@ -92,7 +92,7 @@ class tendrile:
     def angle_set(self, p_val):
         # limit the angle to range -2*math.pi to 2*math.pi  which is +- full circle.
         # Use math.fmod because % returns with the sign of the second number.
-        self.angle = math.fmod(p_val, (2 * math.pi))
+        self.angle = math.fmod(p_val, 2 * math.pi)
 
     def create(self):
         global file_log
@@ -140,7 +140,7 @@ class tendrile:
                     # The use of the original colour, usually darker green, to start the new tendrile gives a slight look
                     # of shadow on the the start of the new tendrile. It also gives a clear visual
                     # separation between the existing tendrile and the new tendrile.
-                    tend = tendrile(x_temp, y_temp, self.r, self.angle, (self.step * 1.2), (-1.0 * self.v),
+                    tend = tendrile(x_temp, y_temp, self.r, self.angle, (self.step * 1.2), (-1 * self.v),
                             self.curl, (self.n - i - 1), self.scolour, self.ecolour, False)
                     # create the tendrile as svg elements
                     tend.create()
@@ -187,7 +187,7 @@ class tendrile:
                     #self.angle += self.v
                     self.angle_set(self.angle + self.v)  # limit value of angle
                     #self.angle   = max(min(self.angle, angle_max), angle_min)  # limit value of angle
-            self.r = (1 - float(i) / self.n) * self.width  # radius size gradually decreases.
+            self.r = (1 - i / self.n) * self.width  # radius size gradually decreases.
             ##
             new_colour = next(self.lin_colour)
             stroke_colour = 'rgb(%s,%s,%s)' % new_colour
@@ -237,7 +237,7 @@ def create_svg(name):
     #num_arms = 9
     #step = 0.05
     #step = 0.02
-    step = 4.0 / n
+    step = 4 / n
     #curl = 1.0
     #c_width= d_width/12.0
     #c_width= d_width/50.0
@@ -283,7 +283,7 @@ def create_svg(name):
         # set start of arm x y
         x = d_height / 2
         y = d_width / 2
-        angle = random.uniform((-1.0 * math.pi), math.pi)  # random angle in radians. 2*pi radians = 360 degrees
+        angle = random.uniform(-math.pi, math.pi)  # random angle in radians. 2*pi radians = 360 degrees
         v = 0.0
         # variety to the size of the starting circle
         c_width = random.uniform((d_width * .015), (d_width * .025))
