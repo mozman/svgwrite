@@ -24,8 +24,8 @@
 .. autofunction:: pretty_xml
 
 """
-import os
 import base64
+from pathlib import Path
 from svgwrite.data import pattern
 
 
@@ -249,8 +249,7 @@ FONT_MIMETYPES = {
 
 
 def font_mimetype(name):
-    _, ext = os.path.splitext(name.lower())
-    return FONT_MIMETYPES[ext[1:]]
+    return FONT_MIMETYPES[Path(name.lower()).suffix[1:]]
 
 
 def base64_data(data, mimetype):
