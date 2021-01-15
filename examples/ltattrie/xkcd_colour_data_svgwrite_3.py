@@ -88,7 +88,7 @@ def create_svg(name):
         #hsl =
         #h, l, s = colorsys.rgb_to_hls(r, g, b)
         # rgb values are integer but colorsys wants float(0..1) and returns float
-        h, l, s = colorsys.rgb_to_hls(rgb[0]/255.0, rgb[1]/255.0, rgb[2]/255.0)
+        h, l, s = colorsys.rgb_to_hls(rgb[0] / 255, rgb[1] / 255, rgb[2] / 255)
         hsl = (h, s, l)
         swatch_x=int(h*1000)
         # hue by lightness

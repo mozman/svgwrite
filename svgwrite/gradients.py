@@ -69,10 +69,8 @@ class _AbstractGradient(BaseElement, Transform, XLink):
           'red': offset = 0.5
           'blue': offset = 1.0
         """
-        start = float(sweep[0])
-        end = float(sweep[1])
-        delta = (end-start) / float(len(colors) - 1)
-        offset = start
+        delta = (sweep[1] - sweep[0]) / (len(colors) - 1)
+        offset = sweep[0]
         for color in colors:
             self.add_stop_color(round(offset, 3), color, opacity)
             offset += delta

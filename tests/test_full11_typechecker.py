@@ -21,15 +21,15 @@ class TestFull11TypeChecker(unittest.TestCase):
     def test_is_anything(self):
         """ Everything is valid. """
         self.assertTrue(self.checker.is_anything('abcdef  :::\n \r \t all is valid äüß'))
-        self.assertTrue(self.checker.is_anything(100.0))
-        self.assertTrue(self.checker.is_anything((100.0, 11)))
+        self.assertTrue(self.checker.is_anything(100))
+        self.assertTrue(self.checker.is_anything((100, 11)))
         self.assertTrue(self.checker.is_anything(dict(a=100, b=200)))
 
     def test_is_string(self):
         """ Everything is valid. """
         self.assertTrue(self.checker.is_anything('abcdef  :::\n \r \t all is valid äüß'))
-        self.assertTrue(self.checker.is_anything(100.0))
-        self.assertTrue(self.checker.is_anything((100.0, 11)))
+        self.assertTrue(self.checker.is_anything(100))
+        self.assertTrue(self.checker.is_anything((100, 11)))
         self.assertTrue(self.checker.is_anything(dict(a=100, b=200)))
         self.assertTrue(self.checker.is_anything(u'äüß'.encode('utf-8')))
 

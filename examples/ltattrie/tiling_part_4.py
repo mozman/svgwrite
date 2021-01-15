@@ -45,16 +45,16 @@ def create_svg(name):
 
     defs_g_triright = dwg.defs.add(dwg.g(id='defs_g_triright', clip_path='url(#cliptriright)'))
     defs_g_triright.add(dwg.polygon([(0, 0), (triangle_size, 0), (triangle_size, triangle_size)], stroke='none'))
-    defs_g_triright.add(dwg.polygon([(3 * triangle_size / 4.0, 0), 
+    defs_g_triright.add(dwg.polygon([(3 * triangle_size / 4, 0),
         (triangle_size, 0), 
         (triangle_size, triangle_size)], stroke='none', fill='navy'))
-    defs_g_triright.add(dwg.circle(center=(triangle_size / 2.0, triangle_size / 2.0), r=5, stroke='blue', fill='green', stroke_width=1))
+    defs_g_triright.add(dwg.circle(center=(triangle_size / 2, triangle_size / 2), r=5, stroke='blue', fill='green', stroke_width=1))
 
     # define the mirror of  defs_g_triright
 
     defs_g_tr_m = dwg.defs.add(dwg.g(id='defs_g_tr_m'))
     defs_g_tr_m.add(dwg.use(defs_g_triright, insert=(0, 0)))
-    defs_g_tr_m.rotate(90, center=(triangle_size / 2.0, triangle_size / 2.0))
+    defs_g_tr_m.rotate(90, center=(triangle_size / 2, triangle_size / 2))
     defs_g_tr_m.translate(0, triangle_size)
     defs_g_tr_m.scale(1, -1)
 
@@ -103,7 +103,7 @@ def create_svg(name):
     # sin(30 degrees) is 1/2
 
     defs_g_rombus_size_x = square_size
-    defs_g_rombus_scale = defs_g_rombus_size_x / (sqrt3 * 2.0)
+    defs_g_rombus_scale = defs_g_rombus_size_x / (sqrt3 * 2)
     defs_g_rombus_size_y = 2 * defs_g_rombus_scale
 
     # Having a clip path seems to increase the visibility of the lines between the tiles.
@@ -111,17 +111,17 @@ def create_svg(name):
     # defs_g_rombus = dwg.defs.add(dwg.g(id='defs_g_rombus', clip_path='url(#cliprombus)'))
 
     defs_g_rombus = dwg.defs.add(dwg.g(id='defs_g_rombus'))
-    defs_g_rombus.add(dwg.polygon([(0, defs_g_rombus_size_y / 2.0), (defs_g_rombus_size_x / 2.0, 0), (0, -defs_g_rombus_size_y / 2),
-                      (-defs_g_rombus_size_x / 2.0, 0)], stroke='none'))
-    defs_g_rombus.add(dwg.polygon([(0, -defs_g_rombus_size_y / 2.0), (defs_g_rombus_size_x / 4.0, defs_g_rombus_size_y / 4.0), (0,
-                      defs_g_rombus_size_y / 2.0)], stroke='none', fill='darkolivegreen'))
+    defs_g_rombus.add(dwg.polygon([(0, defs_g_rombus_size_y / 2), (defs_g_rombus_size_x / 2, 0), (0, -defs_g_rombus_size_y / 2),
+                      (-defs_g_rombus_size_x / 2, 0)], stroke='none'))
+    defs_g_rombus.add(dwg.polygon([(0, -defs_g_rombus_size_y / 2), (defs_g_rombus_size_x / 4, defs_g_rombus_size_y / 4), (0,
+                      defs_g_rombus_size_y / 2)], stroke='none', fill='darkolivegreen'))
 
     #     (0, defs_g_rombus_size_y/2.0) ], stroke='none', fill='aqua'))
     #     (0, defs_g_rombus_size_y/2.0) ], stroke='none'))
     #     (defs_g_rombus_size_x/4.0, defs_g_rombus_size_y/4.0),
     #     (defs_g_rombus_size_x*invsqrt2_2/2.0, defs_g_rombus_size_y*invsqrt2_2/2.0),
 
-    defs_g_rombus.add(dwg.polygon([(0, -defs_g_rombus_size_y / 2.0), (-defs_g_rombus_size_x / 2.0, 0), (0, 0)], stroke='none', fill='palegreen'))
+    defs_g_rombus.add(dwg.polygon([(0, -defs_g_rombus_size_y / 2), (-defs_g_rombus_size_x / 2, 0), (0, 0)], stroke='none', fill='palegreen'))
 
     # Create rotations of the rombus.
 
@@ -135,11 +135,11 @@ def create_svg(name):
     # Create the pattern by using the cell and two rotated cells
 
     defs_g_rombus_pattern_size_x = defs_g_rombus_size_x
-    defs_g_rombus_pattern_size_y = 2.0 * defs_g_rombus_size_y
+    defs_g_rombus_pattern_size_y = 2 * defs_g_rombus_size_y
     defs_g_rombus_pattern = dwg.defs.add(dwg.g(id='defs_g_rombus_pattern'))
-    defs_g_rombus_pattern.add(dwg.use(defs_g_rombus, insert=(defs_g_rombus_size_x / 2.0, 3 * defs_g_rombus_size_y / 2.0)))
-    defs_g_rombus_pattern.add(dwg.use(defs_g_rombus_120, insert=(defs_g_rombus_size_x / 4.0, 3 * defs_g_rombus_size_y / 4.0)))
-    defs_g_rombus_pattern.add(dwg.use(defs_g_rombus_m120, insert=(.75 * defs_g_rombus_size_x, 3 * defs_g_rombus_size_y / 4.0)))
+    defs_g_rombus_pattern.add(dwg.use(defs_g_rombus, insert=(defs_g_rombus_size_x / 2, 3 * defs_g_rombus_size_y / 2)))
+    defs_g_rombus_pattern.add(dwg.use(defs_g_rombus_120, insert=(defs_g_rombus_size_x / 4, 3 * defs_g_rombus_size_y / 4)))
+    defs_g_rombus_pattern.add(dwg.use(defs_g_rombus_m120, insert=(.75 * defs_g_rombus_size_x, 3 * defs_g_rombus_size_y / 4)))
 
     # ####################
     # p6 - Equilateral triangle
@@ -148,8 +148,8 @@ def create_svg(name):
     # The centre of the triangle is  sqrt(3)/6.0 * length of a side
 
     defs_g_trieq_size_x = square_size
-    defs_g_trieq_size_y = defs_g_trieq_size_x * sqrt3 / 2.0
-    defs_g_trieq_centre = sqrt3 / 6.0 * defs_g_trieq_size_x
+    defs_g_trieq_size_y = defs_g_trieq_size_x * sqrt3 / 2
+    defs_g_trieq_centre = sqrt3 / 6 * defs_g_trieq_size_x
 
     # width of equilateral triangle at the centre
 
@@ -158,28 +158,28 @@ def create_svg(name):
     # defs_g_trieq = dwg.defs.add(dwg.g(id='defs_g_trieq', clip_path='url(#cliptrieq)'))
 
     defs_g_trieq = dwg.defs.add(dwg.g(id='defs_g_trieq'))
-    defs_g_trieq.add(dwg.polygon([(0, -defs_g_trieq_size_y + defs_g_trieq_centre), (defs_g_trieq_size_x / 2.0, defs_g_trieq_centre),
-                     (-defs_g_trieq_size_x / 2.0, defs_g_trieq_centre)], stroke='none'))
-    defs_g_trieq.add(dwg.polygon([(-defs_g_trieq_size_x / 2.0, defs_g_trieq_centre), (-defs_g_trieq_centre_size_x / 2.0, 0),
-                     (defs_g_trieq_centre_size_x / 2.0, 0), (0, defs_g_trieq_centre)], stroke='none', fill='yellow'))
+    defs_g_trieq.add(dwg.polygon([(0, -defs_g_trieq_size_y + defs_g_trieq_centre), (defs_g_trieq_size_x / 2, defs_g_trieq_centre),
+                     (-defs_g_trieq_size_x / 2, defs_g_trieq_centre)], stroke='none'))
+    defs_g_trieq.add(dwg.polygon([(-defs_g_trieq_size_x / 2, defs_g_trieq_centre), (-defs_g_trieq_centre_size_x / 2, 0),
+                     (defs_g_trieq_centre_size_x / 2, 0), (0, defs_g_trieq_centre)], stroke='none', fill='yellow'))
 
     # Create rotations of the equilateral triangle.
 
     defs_g_trieq_60 = dwg.defs.add(dwg.g(id='defs_g_trieq_60'))
     defs_g_trieq_60.add(dwg.use(defs_g_trieq, insert=(0, 0)))
-    defs_g_trieq_60.rotate(60, center=(defs_g_trieq_size_x / 2.0, defs_g_trieq_centre))
+    defs_g_trieq_60.rotate(60, center=(defs_g_trieq_size_x / 2, defs_g_trieq_centre))
     defs_g_trieq_120 = dwg.defs.add(dwg.g(id='defs_g_trieq_120'))
     defs_g_trieq_120.add(dwg.use(defs_g_trieq, insert=(0, 0)))
-    defs_g_trieq_120.rotate(120, center=(defs_g_trieq_size_x / 2.0, defs_g_trieq_centre))
+    defs_g_trieq_120.rotate(120, center=(defs_g_trieq_size_x / 2, defs_g_trieq_centre))
     defs_g_trieq_180 = dwg.defs.add(dwg.g(id='defs_g_trieq_180'))
     defs_g_trieq_180.add(dwg.use(defs_g_trieq, insert=(0, 0)))
-    defs_g_trieq_180.rotate(180, center=(defs_g_trieq_size_x / 2.0, defs_g_trieq_centre))
+    defs_g_trieq_180.rotate(180, center=(defs_g_trieq_size_x / 2, defs_g_trieq_centre))
     defs_g_trieq_m60 = dwg.defs.add(dwg.g(id='defs_g_trieq_m60'))
     defs_g_trieq_m60.add(dwg.use(defs_g_trieq, insert=(0, 0)))
-    defs_g_trieq_m60.rotate(-60, center=(defs_g_trieq_size_x / 2.0, defs_g_trieq_centre))
+    defs_g_trieq_m60.rotate(-60, center=(defs_g_trieq_size_x / 2, defs_g_trieq_centre))
     defs_g_trieq_m120 = dwg.defs.add(dwg.g(id='defs_g_trieq_m120'))
     defs_g_trieq_m120.add(dwg.use(defs_g_trieq, insert=(0, 0)))
-    defs_g_trieq_m120.rotate(-120, center=(defs_g_trieq_size_x / 2.0, defs_g_trieq_centre))
+    defs_g_trieq_m120.rotate(-120, center=(defs_g_trieq_size_x / 2, defs_g_trieq_centre))
 
     # Now use the cell and five rotated cells to create the pattern.
 
@@ -218,11 +218,11 @@ def create_svg(name):
     defs_g_trieq_pattern_v2_size_y = 2 * defs_g_trieq_size_y
     defs_g_trieq_pattern_v2 = dwg.defs.add(dwg.g(id='defs_g_trieq_pattern_v2'))
     defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq, insert=(0, defs_g_trieq_size_y - defs_g_trieq_centre)))
-    defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq_c60, insert=(-defs_g_trieq_size_x / 2.0, defs_g_trieq_centre)))
-    defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq_c120, insert=(-defs_g_trieq_size_x / 2.0, -defs_g_trieq_centre)))
+    defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq_c60, insert=(-defs_g_trieq_size_x / 2, defs_g_trieq_centre)))
+    defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq_c120, insert=(-defs_g_trieq_size_x / 2, -defs_g_trieq_centre)))
     defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq_c180, insert=(0, defs_g_trieq_centre - defs_g_trieq_size_y)))
-    defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq_cm60, insert=(defs_g_trieq_size_x / 2.0, defs_g_trieq_centre)))
-    defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq_cm120, insert=(defs_g_trieq_size_x / 2.0, -defs_g_trieq_centre)))
+    defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq_cm60, insert=(defs_g_trieq_size_x / 2, defs_g_trieq_centre)))
+    defs_g_trieq_pattern_v2.add(dwg.use(defs_g_trieq_cm120, insert=(defs_g_trieq_size_x / 2, -defs_g_trieq_centre)))
 
     # Now use the cell and five rotated cells to create the pattern variation 3.
     # Variation 3 is the equilateral triangle rotated around a the lower left corner.
@@ -230,12 +230,12 @@ def create_svg(name):
     defs_g_trieq_pattern_v3_size_x = 2 * defs_g_trieq_size_x
     defs_g_trieq_pattern_v3_size_y = 2 * defs_g_trieq_size_y
     defs_g_trieq_pattern_v3 = dwg.defs.add(dwg.g(id='defs_g_trieq_pattern_v3'))
-    defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq, insert=(defs_g_trieq_size_x / 2.0, -defs_g_trieq_centre)))
-    defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq_c60, insert=(defs_g_trieq_size_x / 2.0, defs_g_trieq_centre)))
+    defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq, insert=(defs_g_trieq_size_x / 2, -defs_g_trieq_centre)))
+    defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq_c60, insert=(defs_g_trieq_size_x / 2, defs_g_trieq_centre)))
     defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq_c120, insert=(0, defs_g_trieq_size_y - defs_g_trieq_centre)))
-    defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq_c180, insert=(-defs_g_trieq_size_x / 2.0, defs_g_trieq_centre)))
+    defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq_c180, insert=(-defs_g_trieq_size_x / 2, defs_g_trieq_centre)))
     defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq_cm60, insert=(0, defs_g_trieq_centre - defs_g_trieq_size_y)))
-    defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq_cm120, insert=(-defs_g_trieq_size_x / 2.0, -defs_g_trieq_centre)))
+    defs_g_trieq_pattern_v3.add(dwg.use(defs_g_trieq_cm120, insert=(-defs_g_trieq_size_x / 2, -defs_g_trieq_centre)))
 
     # ########################
     # Background will be dark but not black so the background does not overwhelm the colors.
@@ -292,12 +292,12 @@ def create_svg(name):
     dwg.add(pattern_created)
     y = y + defs_g_rombus_size_y
 
-    y_offset = defs_g_rombus_size_y / 2.0
+    y_offset = defs_g_rombus_size_y / 2
     for i in range(12):
         y += defs_g_rombus_pattern_size_y - y_offset
         for j in range(16):
             if i % 2:
-                x = 50 + defs_g_rombus_pattern_size_x / 2.0 + j * defs_g_rombus_pattern_size_x
+                x = 50 + defs_g_rombus_pattern_size_x / 2 + j * defs_g_rombus_pattern_size_x
             else:
                 x = 50 + j * defs_g_rombus_pattern_size_x
             pattern_created = dwg.use(defs_g_rombus_pattern, fill='black')
@@ -314,15 +314,15 @@ def create_svg(name):
     # Sample of tile.
 
     y = y + triangle_size
-    tri_created = dwg.use(defs_g_trieq, insert=(50 + defs_g_trieq_size_x / 2.0, y), fill='navy')
+    tri_created = dwg.use(defs_g_trieq, insert=(50 + defs_g_trieq_size_x / 2, y), fill='navy')
     dwg.add(tri_created)
-    dwg.add(dwg.circle(center=(50 + defs_g_trieq_size_x / 2.0, y), r=3, stroke='none', fill='purple', opacity='0.5'))
+    dwg.add(dwg.circle(center=(50 + defs_g_trieq_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
     tile_created = dwg.use(defs_g_trieq_pattern, insert=(150 + defs_g_trieq_pattern_size_x / 2, y), fill='navy')
     dwg.add(tile_created)
     dwg.add(dwg.circle(center=(150 + defs_g_trieq_pattern_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
     y += defs_g_trieq_pattern_size_y
     for i in range(9):
-        y += defs_g_trieq_pattern_size_y / 2.0
+        y += defs_g_trieq_pattern_size_y / 2
         for j in range(6):
             if i % 2:
                 x = 50 + j * 1.5 * defs_g_trieq_pattern_size_x
@@ -339,9 +339,9 @@ def create_svg(name):
 
     # sample centered rotated eqilateral triangle variation 2
 
-    tri_created = dwg.use(defs_g_trieq, insert=(50 + defs_g_trieq_size_x / 2.0, y), fill='navy')
+    tri_created = dwg.use(defs_g_trieq, insert=(50 + defs_g_trieq_size_x / 2, y), fill='navy')
     dwg.add(tri_created)
-    dwg.add(dwg.circle(center=(50 + defs_g_trieq_size_x / 2.0, y), r=3, stroke='none', fill='purple', opacity='0.5'))
+    dwg.add(dwg.circle(center=(50 + defs_g_trieq_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
     tile_created = dwg.use(defs_g_trieq_c60, insert=(150 + defs_g_trieq_size_x / 2, y), fill='navy')
     dwg.add(tile_created)
     dwg.add(dwg.circle(center=(150 + defs_g_trieq_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
@@ -350,7 +350,7 @@ def create_svg(name):
     dwg.add(dwg.circle(center=(250 + defs_g_trieq_pattern_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
     y += defs_g_trieq_pattern_size_y
     for i in range(9):
-        y += defs_g_trieq_pattern_v2_size_y / 2.0
+        y += defs_g_trieq_pattern_v2_size_y / 2
         for j in range(6):
             if i % 2:
                 x = 50 + j * 1.5 * defs_g_trieq_pattern_v2_size_x
@@ -367,9 +367,9 @@ def create_svg(name):
 
     # sample centered rotated eqilateral triangle variation 3
 
-    tri_created = dwg.use(defs_g_trieq, insert=(50 + defs_g_trieq_size_x / 2.0, y), fill='navy')
+    tri_created = dwg.use(defs_g_trieq, insert=(50 + defs_g_trieq_size_x / 2, y), fill='navy')
     dwg.add(tri_created)
-    dwg.add(dwg.circle(center=(50 + defs_g_trieq_size_x / 2.0, y), r=3, stroke='none', fill='purple', opacity='0.5'))
+    dwg.add(dwg.circle(center=(50 + defs_g_trieq_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
     tile_created = dwg.use(defs_g_trieq_c60, insert=(150 + defs_g_trieq_size_x / 2, y), fill='navy')
     dwg.add(tile_created)
     dwg.add(dwg.circle(center=(150 + defs_g_trieq_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
@@ -378,7 +378,7 @@ def create_svg(name):
     dwg.add(dwg.circle(center=(250 + defs_g_trieq_pattern_size_x / 2, y), r=3, stroke='none', fill='purple', opacity='0.5'))
     y += defs_g_trieq_pattern_size_y
     for i in range(9):
-        y += defs_g_trieq_pattern_v3_size_y / 2.0
+        y += defs_g_trieq_pattern_v3_size_y / 2
         for j in range(6):
             if i % 2:
                 x = 50 + j * 1.5 * defs_g_trieq_pattern_v3_size_x

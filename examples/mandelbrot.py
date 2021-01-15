@@ -51,7 +51,7 @@ def mandelbrot(name):
             z = zx + zy * 1j
             c = z
             for i in range(maxIt):
-                if abs(z) > 2.0: break
+                if abs(z) > 2: break
                 z = z * z + c
             putpixel((x, y), rgb(i % 4 * 64, i % 8 * 32, i % 16 * 16))
     dwg.save()

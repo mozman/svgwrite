@@ -22,7 +22,7 @@ def create_svg(name):
     FONT_SIZE = 20
     COMPLETE_SIZE = 800   # size of the whole set of triangles.
     TRIANGLES_PER_SIDE = 50     # How many triangles there will be per side. integer.
-    TRIHEIGHT = math.sqrt(3)/2.0
+    TRIHEIGHT = math.sqrt(3) / 2
 
     title1 = name + ': Example of creating your own colors.'
     start = ((WIDTH - COMPLETE_SIZE)/2, (HEIGHT - COMPLETE_SIZE)/2)  # center triangle
@@ -34,7 +34,7 @@ def create_svg(name):
 
     def draw_triangle(insert, size, fill, rotate=None):
         x, y = insert
-        points = [insert, (x + size, y), ((x + size / 2.0), (y + size * TRIHEIGHT))]
+        points = [insert, (x + size, y), ((x + size / 2), (y + size * TRIHEIGHT))]
         triangle = dwg.add(dwg.polygon(points, fill=fill, stroke='none'))
         if rotate:
             triangle.rotate(rotate, center=insert)
@@ -70,7 +70,7 @@ def create_svg(name):
         ratio_row = nfrange(0.0, 1.0, num_tri_in_row) if num_tri_in_row > 1 else [0.5]
 
         for j in range(i):
-            x = start[0] + (j + ((TRIANGLES_PER_SIDE - i) / 2.0)) * tri_size
+            x = start[0] + (j + ((TRIANGLES_PER_SIDE - i) / 2)) * tri_size
             y = start[1] + (TRIANGLES_PER_SIDE - i) * tri_height
             # Calculate color
             new_color = [int(start_color[k] * (1 - ratio_row[num_tri_drawn_in_row ]) +

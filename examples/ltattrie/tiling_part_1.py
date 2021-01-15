@@ -90,7 +90,7 @@ def create_svg(name):
             # rotate every second square
 
             if j % 2:
-                sq_created.rotate(180, center=(x + square_size / 2.0, y + square_size / 2.0))
+                sq_created.rotate(180, center=(x + square_size / 2, y + square_size / 2))
             dwg.add(sq_created)
     y += square_size
 
@@ -108,7 +108,7 @@ def create_svg(name):
             # rotate every second row
 
             if i % 2 == 1:
-                sq_created.rotate(180, center=(x + square_size / 2.0, y + square_size / 2.0))
+                sq_created.rotate(180, center=(x + square_size / 2, y + square_size / 2))
             dwg.add(sq_created)
     y += square_size
 
@@ -126,7 +126,7 @@ def create_svg(name):
             # rotate every second square
 
             if i % 2 != j % 2:
-                sq_created.rotate(180, center=(x + square_size / 2.0, y + square_size / 2.0))
+                sq_created.rotate(180, center=(x + square_size / 2, y + square_size / 2))
             dwg.add(sq_created)
     y += square_size
 
@@ -148,11 +148,11 @@ def create_svg(name):
                 # odd row
 
                 if j % 2:
-                    sq_created.rotate(-90, center=(x + square_size / 2.0, y + square_size / 2.0))
+                    sq_created.rotate(-90, center=(x + square_size / 2, y + square_size / 2))
                 else:
-                    sq_created.rotate(180, center=(x + square_size / 2.0, y + square_size / 2.0))
+                    sq_created.rotate(180, center=(x + square_size / 2, y + square_size / 2))
             elif j % 2:
-                sq_created.rotate(90, center=(x + square_size / 2.0, y + square_size / 2.0))
+                sq_created.rotate(90, center=(x + square_size / 2, y + square_size / 2))
             dwg.add(sq_created)
     y += square_size
 
@@ -174,11 +174,11 @@ def create_svg(name):
                 # even row
 
                 if j % 2:
-                    sq_created.rotate(180, center=(x + square_size / 2.0, y + square_size / 2.0))
+                    sq_created.rotate(180, center=(x + square_size / 2, y + square_size / 2))
                 else:
-                    sq_created.rotate(-90, center=(x + square_size / 2.0, y + square_size / 2.0))
+                    sq_created.rotate(-90, center=(x + square_size / 2, y + square_size / 2))
             elif j % 2:
-                sq_created.rotate(90, center=(x + square_size / 2.0, y + square_size / 2.0))
+                sq_created.rotate(90, center=(x + square_size / 2, y + square_size / 2))
             dwg.add(sq_created)
     y += square_size
 
