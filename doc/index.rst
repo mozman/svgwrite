@@ -8,6 +8,9 @@ svgwrite |version| documentation
 
 Welcome! This is the documentation for svgwrite |version|, last updated |today|.
 
+This package is in maintenance mode, no new features will be added, there will
+be no change of behavior, just bugfixes will be merged.
+
 If you are looking for a SVG Documentation beyond the official W3C papers, go
 to O'Reilly commons: http://commons.oreilly.com/wiki/index.php/SVG_Essentials,
 or (german) http://www.selfsvg.info .

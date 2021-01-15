@@ -1,6 +1,9 @@
 svgwrite
 ========
 
+This package is in maintenance mode, no new features will be added, there will
+be no change of behavior, just bugfixes will be merged.
+
 Abstract
 --------
 

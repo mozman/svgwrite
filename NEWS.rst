@@ -2,6 +2,11 @@
 NEWS
 ====
 
+Version 1.4.1 - 2021-01-15
+--------------------------
+
+* merged some contributions and bugfixes
+
 Version 1.4 - 2020-03-28
 ------------------------
 
