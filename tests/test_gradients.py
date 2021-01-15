@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: test gradients module
 # Created: 26.10.2010

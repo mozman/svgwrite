@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: colornames
 # Created: 06.10.2010

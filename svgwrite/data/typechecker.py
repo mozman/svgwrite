@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: typechecker
 # Created: 15.10.2010
@@ -17,8 +16,7 @@ def iterflatlist(values):
     """ Flatten nested *values*, returns an *iterator*. """
     for element in values:
         if hasattr(element, "__iter__") and not is_string(element):
-            for item in iterflatlist(element):
-                yield item
+            yield from iterflatlist(element)
         else:
             yield element
 
@@ -33,7 +31,7 @@ COLOR_RGB_PERCENTAGE_PATTERN = re.compile(r"^rgb\( *\d+(\.\d*)?% *, *\d+(\.\d*)?
 NMTOKEN_PATTERN = re.compile(r"^[a-zA-Z_:][\w\-\.:]*$")
 
 
-class Full11TypeChecker(object):
+class Full11TypeChecker:
     def get_version(self):
         return '1.1', 'full'
 
@@ -152,7 +150,7 @@ class Full11TypeChecker(object):
     def is_four_numbers(self, value):
         def split(value):
             if is_string(value):
-                values = iterflatlist( (v.strip().split(' ') for v in value.split(',')) )
+                values = iterflatlist( v.strip().split(' ') for v in value.split(',') )
                 return (v for v in values if v)
             else:
                 return iterflatlist(value)

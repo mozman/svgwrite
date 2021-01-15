@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding:utf-8
 # Author:  mozman <me@mozman.at>
 # Purpose: test utils module
 # Created: 10.09.2010

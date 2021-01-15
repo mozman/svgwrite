@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: masking module
 # Created: 30.10.2010
@@ -41,7 +40,7 @@ class Mask(BaseElement):
     elementname = 'mask'
 
     def __init__(self, start=None, size=None, **extra):
-        super(Mask, self).__init__(**extra)
+        super().__init__(**extra)
         if start is not None:
             self['x'] = start[0]
             self['y'] = start[1]

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman
 # Purpose: svg hyperlink examples
 # Created: 05.05.2017

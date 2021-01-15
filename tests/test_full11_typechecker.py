@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: test full11typechecker
 # Created: 04.10.2010
@@ -31,7 +30,7 @@ class TestFull11TypeChecker(unittest.TestCase):
         self.assertTrue(self.checker.is_anything(100))
         self.assertTrue(self.checker.is_anything((100, 11)))
         self.assertTrue(self.checker.is_anything(dict(a=100, b=200)))
-        self.assertTrue(self.checker.is_anything(u'äüß'.encode('utf-8')))
+        self.assertTrue(self.checker.is_anything('äüß'.encode()))
 
     def test_is_number(self):
         """ Integer and Float, also as String '100' or '3.1415'. """

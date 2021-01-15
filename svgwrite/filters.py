@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: filters module
 # Created: 03.11.2010
@@ -17,7 +16,7 @@ class _feDistantLight(BaseElement):
     elementname = 'feDistantLight'
 
     def __init__(self, azimuth=0, elevation=0, **extra):
-        super(_feDistantLight, self).__init__(**extra)
+        super().__init__(**extra)
         if azimuth != 0:
             self['azimuth'] = azimuth
         if elevation != 0:
@@ -28,7 +27,7 @@ class _fePointLight(BaseElement):
     elementname = 'fePointLight'
 
     def __init__(self, source=(0, 0, 0), **extra):
-        super(_fePointLight, self).__init__(**extra)
+        super().__init__(**extra)
         x, y, z = source
         if x != 0:
             self['x'] = x
@@ -42,7 +41,7 @@ class _feSpotLight(_fePointLight):
     elementname = 'feSpotLight'
 
     def __init__(self, source=(0, 0, 0), target=(0, 0, 0), **extra):
-        super(_feSpotLight, self).__init__(source, **extra)
+        super().__init__(source, **extra)
         x, y, z = target
         if x != 0:
             self['pointsAtX'] = x
@@ -58,7 +57,7 @@ class _FilterPrimitive(BaseElement, Presentation):
 
 class _FilterNoInput(_FilterPrimitive):
     def __init__(self, start=None, size=None, **extra):
-        super(_FilterNoInput, self).__init__(**extra)
+        super().__init__(**extra)
         if start is not None:
             self['x'] = start[0]
             self['y'] = start[1]
@@ -69,7 +68,7 @@ class _FilterNoInput(_FilterPrimitive):
 
 class _FilterRequireInput(_FilterNoInput):
     def __init__(self, in_='SourceGraphic', **extra):
-        super(_FilterRequireInput, self).__init__(**extra)
+        super().__init__(**extra)
         self['in'] = in_
 
 
@@ -101,7 +100,7 @@ class _feFuncR(_FilterPrimitive):
     elementname = 'feFuncR'
 
     def __init__(self, type_, **extra):
-        super(_feFuncR, self).__init__(**extra)
+        super().__init__(**extra)
         self['type'] = type_
 
 
@@ -154,7 +153,7 @@ class _feImage(_FilterNoInput, XLink):
     elementname = 'feImage'
 
     def __init__(self, href, start=None, size=None, **extra):
-        super(_feImage, self).__init__(start, size, **extra)
+        super().__init__(start, size, **extra)
         self.set_href(href)
 
 
@@ -165,7 +164,7 @@ class _feMergeNode(_FilterPrimitive):
 class _feMerge(_FilterNoInput):
     elementname = 'feMerge'
     def __init__(self, layernames, **extra):
-        super(_feMerge, self).__init__(**extra)
+        super().__init__(**extra)
         self.feMergeNode(layernames)
 
     def feMergeNode(self, layernames):
@@ -213,7 +212,7 @@ filter_factory = {
 }
 
 
-class _FilterBuilder(object):
+class _FilterBuilder:
     def __init__(self, cls, parent):
         self.cls = cls # primitive filter class to build
         self.parent = parent # the parent Filter() object
@@ -241,7 +240,7 @@ class Filter(BaseElement, XLink, Presentation):
         :param inherit: inherits properties from Filter `inherit` see: **xlink:href**
 
         """
-        super(Filter, self).__init__(**extra)
+        super().__init__(**extra)
         if start is not None:
             self['x'] = start[0]
             self['y'] = start[1]
@@ -262,7 +261,7 @@ class Filter(BaseElement, XLink, Presentation):
 
     def get_xml(self):
         self.update_id()
-        return super(Filter, self).get_xml()
+        return super().get_xml()
 
     def __getattr__(self, name):
         # create primitive filters by Filter.<filtername>(...)
@@ -270,4 +269,4 @@ class Filter(BaseElement, XLink, Presentation):
         if name in filter_factory:
             return _FilterBuilder(filter_factory[name], self)
         else:
-            raise AttributeError("'%s' has no attribute '%s'" % (self.__class__.__name__, name))
+            raise AttributeError(f"'{self.__class__.__name__}' has no attribute '{name}'")

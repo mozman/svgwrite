@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman
 # Purpose: svgwrite package parameter
 # Created: 10.09.2010
@@ -9,7 +8,7 @@
 from svgwrite.validator2 import get_validator
 
 
-class Parameter(object):
+class Parameter:
     """
     .. attribute:: Parameter.debug
 

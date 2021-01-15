@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: validator2 module - new validator module
 # Created: 01.10.2010
@@ -32,7 +31,7 @@ def get_validator(profile, debug=True):
         return validator
 
 
-class Tiny12Validator(object):
+class Tiny12Validator:
     profilename = "Tiny 1.2"
 
     def __init__(self, debug=True):
@@ -76,7 +75,7 @@ class Tiny12Validator(object):
         # check if 'value' is a valid constant
         valuestr = str(value)
         if not valuestr in attribute.get_const(elementname):
-            raise TypeError("'%s' is not a valid value for attribute '%s' at svg-element <%s>." % (value, attributename, elementname))
+            raise TypeError(f"'{value}' is not a valid value for attribute '{attributename}' at svg-element <{elementname}>.")
 
     def _check_valid_svg_attribute_name(self, elementname, attributename):
         """ Check if 'attributename' is a valid svg-attribute for svg-element
@@ -85,13 +84,13 @@ class Tiny12Validator(object):
         Raises ValueError.
         """
         if not self.is_valid_svg_attribute(elementname, attributename):
-            raise ValueError("Invalid attribute '%s' for svg-element <%s>." % (attributename, elementname))
+            raise ValueError(f"Invalid attribute '{attributename}' for svg-element <{elementname}>.")
 
     def _get_element(self, elementname):
         try:
             return self.elements[elementname]
         except KeyError:
-            raise KeyError("<%s> is not valid for selected profile: '%s'." % (elementname, self.profilename))
+            raise KeyError(f"<{elementname}> is not valid for selected profile: '{self.profilename}'.")
 
     def check_svg_type(self, value, typename='string'):
         """
@@ -102,7 +101,7 @@ class Tiny12Validator(object):
         if self.typechecker.check(typename, value):
             return value
         else:
-            raise TypeError("%s is not of type '%s'." % (value, typename))
+            raise TypeError(f"{value} is not of type '{typename}'.")
 
     def is_valid_svg_type(self, value, typename):
         return self.typechecker.check(typename, value)
@@ -132,7 +131,7 @@ class Tiny12Validator(object):
         Raises ValueError.
         """
         if not self.is_valid_children(elementname, childrenname):
-            raise ValueError("Invalid children '%s' for svg-element <%s>." % (childrenname, elementname))
+            raise ValueError(f"Invalid children '{childrenname}' for svg-element <{elementname}>.")
 
     def get_coordinate(self, value):
         """ Split value in (number, unit) if value has an unit or (number, None).
@@ -156,7 +155,7 @@ class Tiny12Validator(object):
             return result
         else:
             version = "SVG %s %s" % self.typechecker.get_version()
-            raise ValueError("%s is not a valid number for: %s." % (value, version))
+            raise ValueError(f"{value} is not a valid number for: {version}.")
     get_length = get_coordinate
 
 

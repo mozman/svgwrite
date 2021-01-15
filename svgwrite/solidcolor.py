@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: solidColor paint serve (Tiny 1.2 profile)
 # Created: 26.10.2016
@@ -26,7 +25,7 @@ class SolidColor(BaseElement, XLink):
         :param float opacity: opacity of the solid color in the range `0.0` (fully transparent) to `1.0` (fully opaque)
 
         """
-        super(SolidColor, self).__init__(**extra)
+        super().__init__(**extra)
         if self.profile != 'tiny':
             raise TypeError("Paint server 'solidColor' requires the Tiny SVG profile.")
         self['solid-color'] = color
@@ -38,4 +37,4 @@ class SolidColor(BaseElement, XLink):
 
     def get_paint_server(self, default='none'):
         """ Returns the <FuncIRI> of the gradient. """
-        return "%s %s" % (self.get_funciri(), default)
+        return f"{self.get_funciri()} {default}"

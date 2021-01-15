@@ -2,7 +2,7 @@ import svgwrite
 
 
 def write_html_loader(name, title):
-    open('{name}.html'.format(name=name), 'wt', encoding='utf-8').write("""<!DOCTYPE html>
+    open(f'{name}.html', 'wt', encoding='utf-8').write("""<!DOCTYPE html>
     <html>
     <head>
         <meta charset="UTF-8">

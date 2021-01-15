@@ -1,4 +1,3 @@
-#coding:utf-8
 # Author:  mozman
 # Purpose: svg container classes
 # Created: 15.09.2010
@@ -85,7 +84,7 @@ class Marker(BaseElement, ViewBox, Presentation):
         :param orient: ``'auto'`` | `angle`
         :param extra: additional SVG attributes as keyword-arguments
         """
-        super(Marker, self).__init__(**extra)
+        super().__init__(**extra)
         if insert is not None:
             self['refX'] = insert[0]
             self['refY'] = insert[1]
@@ -122,7 +121,7 @@ class SVG(Symbol):
         :param 2-tuple size: (**width**, **height**)
         :param extra: additional SVG attributes as keyword-arguments
         """
-        super(SVG, self).__init__(**extra)
+        super().__init__(**extra)
         if insert is not None:
             self['x'] = insert[0]
             self['y'] = insert[1]
@@ -159,7 +158,7 @@ class SVG(Symbol):
         font_info = urlopen(uri).read()
         font_url = find_first_url(font_info.decode())
         if font_url is None:
-            raise ValueError("Got no font data from uri: '{}'".format(uri))
+            raise ValueError(f"Got no font data from uri: '{uri}'")
         else:
             data = urlopen(font_url).read()
             self._embed_font_data(name, data, font_mimetype(font_url))
@@ -187,7 +186,7 @@ class Use(BaseElement, Transform, XLink, Presentation):
         :param 2-tuple size: (**width**, **height**)
         :param extra: additional SVG attributes as keyword-arguments
         """
-        super(Use, self).__init__(**extra)
+        super().__init__(**extra)
         self.set_href(href)
         if insert is not None:
             self['x'] = insert[0]
@@ -198,7 +197,7 @@ class Use(BaseElement, Transform, XLink, Presentation):
 
     def get_xml(self):
         self.update_id()  # if href is an object - 'id' - attribute may be changed!
-        return super(Use, self).get_xml()
+        return super().get_xml()
 
 
 class Hyperlink(BaseElement, Transform, Presentation):
@@ -225,7 +224,7 @@ class Hyperlink(BaseElement, Transform, Presentation):
         :param string target: ``'_blank|_replace|_self|_parent|_top|<XML-name>'``
         :param extra: additional SVG attributes as keyword-arguments
         """
-        super(Hyperlink, self).__init__(**extra)
+        super().__init__(**extra)
         self['xlink:href'] = href
         if target is not None:
             self['target'] = target
@@ -254,13 +253,13 @@ class Script(BaseElement):
 
         """
         # removed type parameter, default is "application/ecmascript"
-        super(Script, self).__init__(**extra)
+        super().__init__(**extra)
         if href is not None:
             self['xlink:href'] = href
         self._content = content
 
     def get_xml(self):
-        xml = super(Script, self).get_xml()
+        xml = super().get_xml()
         if self._content:
             xml.append(CDATA(self._content))
         return xml
@@ -282,6 +281,6 @@ class Style(Script):
         """
         :param string content: stylesheet content
         """
-        super(Style, self).__init__(content=content, **extra)
+        super().__init__(content=content, **extra)
         self['type'] = "text/css"
 

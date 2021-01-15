@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: text objects
 # Created: 20.09.2010
@@ -42,7 +41,7 @@ class TSpan(BaseElement, Presentation):
         :param list rotate: list of rotation-values for characters (in degrees)
 
         """
-        super(TSpan, self).__init__(**extra)
+        super().__init__(**extra)
         self.text = text
         if insert is not None:
             if is_string(insert):
@@ -66,7 +65,7 @@ class TSpan(BaseElement, Presentation):
             self['rotate'] = strlist(list(iterflatlist(rotate)), ' ')
 
     def get_xml(self):
-        xml = super(TSpan, self).get_xml()
+        xml = super().get_xml()
         xml.text = str(self.text)
         return xml
 
@@ -99,12 +98,12 @@ class TRef(BaseElement, XLink, Presentation):
                         the **id** SVG Attribute is used to create the reference.
 
         """
-        super(TRef, self).__init__(**extra)
+        super().__init__(**extra)
         self.set_href(element)
 
     def get_xml(self):
         self.update_id()  # if href is an object - 'id' - attribute may be changed!
-        return super(TRef, self).get_xml()
+        return super().get_xml()
 
 
 class TextPath(BaseElement, XLink, Presentation):
@@ -128,7 +127,7 @@ class TextPath(BaseElement, XLink, Presentation):
         :param string spacing: ``exact|auto``
 
         """
-        super(TextPath, self).__init__(**extra)
+        super().__init__(**extra)
         self.text = text
         if method == 'stretch':
             self['method'] = method
@@ -140,7 +139,7 @@ class TextPath(BaseElement, XLink, Presentation):
 
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
-        xml = super(TextPath, self).get_xml()
+        xml = super().get_xml()
         xml.text = str(self.text)
         return xml
 
@@ -149,7 +148,7 @@ class TBreak(BaseElement):
     elementname = 'tbreak'
 
     def __init__(self, **extra):
-        super(TBreak, self).__init__(**extra)
+        super().__init__(**extra)
 
     def __getitem__(self, key):
         raise NotImplementedError("__getitem__() not supported by TBreak class.")
@@ -184,7 +183,7 @@ class TextArea(BaseElement, Transform, Presentation):
     elementname = 'textArea'
 
     def __init__(self, text=None, insert=None, size=None, **extra):
-        super(TextArea, self).__init__(**extra)
+        super().__init__(**extra)
         if text is not None:
             self.write(text)
         if insert is not None:

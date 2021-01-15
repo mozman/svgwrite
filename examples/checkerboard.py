@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman
 # Purpose: svg example: inline stylesheets, css, viewbox, groups
 # Created: 09.06.2012

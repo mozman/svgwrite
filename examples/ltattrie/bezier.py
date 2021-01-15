@@ -21,7 +21,7 @@ def nfrange(fstart, fstop, n):
     return [ fstart + delta * i for i in range(n) ]
 
 def create_svg(name):
-    class bezier(object):
+    class bezier:
         def __init__(self, val_x, val_y):
             # The main point
             self.x = val_x
@@ -36,26 +36,26 @@ def create_svg(name):
         def displayf(self):
             # display formatted with brackets and commas
             if self.cbx:
-                self.s_cb = '({:f}, {:f})'.format(self.cbx, self.cby)
+                self.s_cb = f'({self.cbx:f}, {self.cby:f})'
             else:
                 self.s_cb = '(None, None)'
             if self.cax:
-                self.s_ca = '({:f}, {:f})'.format(self.cax, self.cay)
+                self.s_ca = f'({self.cax:f}, {self.cay:f})'
             else:
                 self.s_ca = ' (None, None)'
-            return '({:s}, ({:f}, {:f}), {:s})'.format(self.s_cb, self.x, self.y, self.s_ca)
+            return f'({self.s_cb:s}, ({self.x:f}, {self.y:f}), {self.s_ca:s})'
 
         def display(self):
             # display without formatted with brackets and commas
             if self.cbx:
-                self.s_cb = '{:f} {:f}'.format(self.cbx, self.cby)
+                self.s_cb = f'{self.cbx:f} {self.cby:f}'
             else:
                 self.s_cb = 'None None'
             if self.cax:
-                self.s_ca = '{:f} {:f}'.format(self.cax, self.cay)
+                self.s_ca = f'{self.cax:f} {self.cay:f}'
             else:
                 self.s_ca = ' None None'
-            return '{:s} {:f} {:f} {:s}'.format(self.s_cb, self.x, self.y, self.s_ca)
+            return f'{self.s_cb:s} {self.x:f} {self.y:f} {self.s_ca:s}'
 
     svg_size = 900
     font_size = 20

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding:utf-8
 # Author:  mozman
 # Purpose: svg util functions and classes
 # Created: 08.09.2010
@@ -78,8 +77,7 @@ def iterflatlist(values):
     """
     for element in values:
         if hasattr(element, "__iter__") and not is_string(element):
-            for item in iterflatlist(element):
-                yield item
+            yield from iterflatlist(element)
         else:
             yield element
 
@@ -193,13 +191,13 @@ def rect_top_left_corner(insert, size, pos='top-left'):
         raise ValueError("Invalid vertical position: '%s'" % vert)
 
     if xunit:
-        x = "%s%s" % (x, xunit)
+        x = f"{x}{xunit}"
     if yunit:
-        y = "%s%s" % (y, yunit)
+        y = f"{y}{yunit}"
     return x, y
 
 
-class AutoID(object):
+class AutoID:
     _nextid = 1
 
     def __init__(self, value=None):
@@ -254,7 +252,7 @@ def font_mimetype(name):
 
 def base64_data(data, mimetype):
     data = base64.b64encode(data).decode()
-    return "data:{mimetype};charset=utf-8;base64,{data}".format(mimetype=mimetype, data=data)
+    return f"data:{mimetype};charset=utf-8;base64,{data}"
 
 
 def find_first_url(text):

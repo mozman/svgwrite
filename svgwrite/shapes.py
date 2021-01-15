@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman <me@mozman.at>
 # Purpose: svg shapes
 # Created: 08.09.2010
@@ -23,7 +22,7 @@ class Line(BaseElement, Transform, Presentation, Markers):
         :param extra: additional SVG attributes as keyword-arguments
 
         """
-        super(Line, self).__init__(**extra)
+        super().__init__(**extra)
         x1, y1 = start
         x2, y2 = end
         self['x1'] = x1
@@ -48,7 +47,7 @@ class Rect(BaseElement, Transform, Presentation):
         :param extra: additional SVG attributes as keyword-arguments
 
         """
-        super(Rect, self).__init__(**extra)
+        super().__init__(**extra)
         x, y = insert
         width, height = size
         self['x'] = x
@@ -73,7 +72,7 @@ class Circle(BaseElement, Transform, Presentation):
         :param extra: additional SVG attributes as keyword-arguments
 
         """
-        super(Circle, self).__init__(**extra)
+        super().__init__(**extra)
         cx, cy = center
         self['cx'] = cx
         self['cy'] = cy
@@ -93,7 +92,7 @@ class Ellipse(BaseElement, Transform, Presentation):
         :param extra: additional SVG attributes as keyword-arguments
 
         """
-        super(Ellipse, self).__init__(**extra)
+        super().__init__(**extra)
         cx, cy = center
         rx, ry = r
         self['cx'] = cx
@@ -114,7 +113,7 @@ class Polyline(BaseElement, Transform, Presentation, Markers):
         :param extra: additional SVG attributes as keyword-arguments
 
         """
-        super(Polyline, self).__init__(**extra)
+        super().__init__(**extra)
         self.points = list(points)
         if self.debug:
             for point in self.points:
@@ -124,7 +123,7 @@ class Polyline(BaseElement, Transform, Presentation, Markers):
 
     def get_xml(self):
         self.attribs['points'] = self.points_to_string(self.points)
-        return super(Polyline, self).get_xml()
+        return super().get_xml()
 
     def points_to_string(self, points):
         """
@@ -144,7 +143,7 @@ class Polyline(BaseElement, Transform, Presentation, Markers):
                     x = round(x, 4)
                 if isinstance(y, float):
                     y = round(y, 4)
-            point = "%s,%s" % (x, y)
+            point = f"{x},{y}"
             strings.append(point)
         return ' '.join(strings)
 

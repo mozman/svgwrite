@@ -60,7 +60,7 @@ LABEL = 'inkscape:label'
 INSENSITIVE = 'sodipodi:insensitive'
 
 
-class Inkscape(object):
+class Inkscape:
     """
     Extension to support SOME Inkscape features.
 

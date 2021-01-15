@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman
 # Purpose: package definition file
 # Created: 08.09.2010
@@ -54,7 +53,7 @@ from svgwrite.drawing import Drawing
 from svgwrite.utils import rgb
 
 
-class Unit(object):
+class Unit:
     """ Add units to values.
     """
     def __init__(self, unit='cm'):
@@ -66,7 +65,7 @@ class Unit(object):
 
     def __rmul__(self, other):
         """ add unit-string to 'other'. (e.g. 5*cm => '5cm') """
-        return "%s%s" % (other, self._unit)
+        return f"{other}{self._unit}"
 
     def __call__(self, *args):
         """ Add unit-strings to all arguments.
@@ -74,7 +73,7 @@ class Unit(object):
         :param args: list of values
             e.g.: cm(1,2,3) => '1cm,2cm,3cm'
         """
-        return ','.join(["%s%s" % (arg, self._unit) for arg in args])
+        return ','.join([f"{arg}{self._unit}" for arg in args])
 
 
 cm = Unit('cm')

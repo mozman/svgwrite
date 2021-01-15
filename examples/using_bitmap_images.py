@@ -14,7 +14,7 @@ img = Image(filename="my.png")
 # Then get raw PNG data and encode DIRECTLY into the SVG file.
 image_data = img.make_blob(format='png')
 encoded = base64.b64encode(image_data).decode()
-pngdata = 'data:image/png;base64,{}'.format(encoded)
+pngdata = f'data:image/png;base64,{encoded}'
 
 image = dwg.add(dwg.image(href=(pngdata)))
 
@@ -28,6 +28,6 @@ img = Image(filename="my.svg")
 # Then get raw SVG data and encode DIRECTLY into the SVG file.
 image_data = img.make_blob()  # Don't change its format, just use it as an SVG
 encoded = base64.b64encode(image_data).decode()
-svgdata = 'data:image/svg+xml;base64,{}'.format(encoded)
+svgdata = f'data:image/svg+xml;base64,{encoded}'
 
 image = dwg.add(dwg.image(href=(svgdata)))

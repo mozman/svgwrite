@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: svg image element
 # Created: 09.10.2010
@@ -26,7 +25,7 @@ class Image(BaseElement, Transform, Clipping):
         :param dict attribs: additional SVG attributes
         :param extra: additional SVG attributes as keyword-arguments
         """
-        super(Image, self).__init__(**extra)
+        super().__init__(**extra)
         self['xlink:href'] = href
         if insert is not None:
             self['x'] = insert[0]
@@ -58,4 +57,4 @@ class Image(BaseElement, Transform, Clipping):
         """
         if self.debug and scale not in ('meet', 'slice'):
             raise ValueError("Invalid scale parameter '%s'" % scale)
-        self.attribs['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)
+        self.attribs['preserveAspectRatio'] = "{}{} {}".format(_horiz[horiz],_vert[vert], scale)

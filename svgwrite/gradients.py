@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: gradients module
 # Created: 26.10.2010
@@ -21,7 +20,7 @@ class _GradientStop(BaseElement):
     elementname = 'stop'
 
     def __init__(self, offset=None, color=None, opacity=None, **extra):
-        super(_GradientStop, self).__init__(**extra)
+        super().__init__(**extra)
 
         if offset is not None:
             self['offset'] = offset
@@ -35,7 +34,7 @@ class _AbstractGradient(BaseElement, Transform, XLink):
     transformname = 'gradientTransform'
 
     def __init__(self, inherit=None, **extra):
-        super(_AbstractGradient, self).__init__(**extra)
+        super().__init__(**extra)
         if inherit is not None:
             if is_string(inherit):
                 self.set_href(inherit)
@@ -44,7 +43,7 @@ class _AbstractGradient(BaseElement, Transform, XLink):
 
     def get_paint_server(self, default='none'):
         """ Returns the <FuncIRI> of the gradient. """
-        return "%s %s" % (self.get_funciri(), default)
+        return f"{self.get_funciri()} {default}"
 
     def add_stop_color(self, offset=None, color=None, opacity=None):
         """ Adds a stop-color to the gradient.
@@ -79,7 +78,7 @@ class _AbstractGradient(BaseElement, Transform, XLink):
     def get_xml(self):
         if hasattr(self, 'href'):
             self.update_id()
-        return super(_AbstractGradient, self).get_xml()
+        return super().get_xml()
 
 
 class LinearGradient(_AbstractGradient):
@@ -94,7 +93,7 @@ class LinearGradient(_AbstractGradient):
         :param inherit: gradient inherits properties from `inherit` see: **xlink:href**
 
         """
-        super(LinearGradient, self).__init__(inherit=inherit, **extra)
+        super().__init__(inherit=inherit, **extra)
         if start is not None:
             self['x1'] = start[0]
             self['y1'] = start[1]
@@ -117,7 +116,7 @@ class RadialGradient(_AbstractGradient):
 
         """
 
-        super(RadialGradient, self).__init__(inherit=inherit, **extra)
+        super().__init__(inherit=inherit, **extra)
         if center is not None:
             self['cx'] = center[0]
             self['cy'] = center[1]

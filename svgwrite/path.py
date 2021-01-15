@@ -1,4 +1,3 @@
-#coding:utf-8
 # Author:  mozman
 # Purpose: svg path element
 # Created: 08.09.2010
@@ -23,7 +22,7 @@ class Path(BaseElement, Transform, Presentation, Markers):
         :param extra: additional SVG attributes as keyword-arguments
 
         """
-        super(Path, self).__init__(**extra)
+        super().__init__(**extra)
         self.commands = []
         self.push(d)
         if self.debug:
@@ -72,4 +71,4 @@ class Path(BaseElement, Transform, Presentation, Markers):
 
         """
         self.attribs['d'] = str(strlist(self.commands, ' '))
-        return super(Path, self).get_xml()
+        return super().get_xml()

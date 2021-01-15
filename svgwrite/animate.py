@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: animate elements
 # Created: 31.10.2010
@@ -26,13 +25,13 @@ class Set(BaseElement, XLink):
         :param href: target svg element, if **href** is not `None`; else
             the target SVG Element is the parent SVG Element.
         """
-        super(Set, self).__init__(**extra)
+        super().__init__(**extra)
         if href is not None:
             self.set_href(href)
 
     def get_xml(self):
         self.update_id() # if href is an object - 'id' - attribute may be changed!
-        return super(Set, self).get_xml()
+        return super().get_xml()
 
     def set_target(self, attributeName, attributeType=None):
         """
@@ -98,7 +97,7 @@ class AnimateMotion(Set):
         :param href: target svg element, if **href** is not `None`; else
           the target SVG Element is the parent SVG Element.
         """
-        super(AnimateMotion, self).__init__(href=href, **extra)
+        super().__init__(href=href, **extra)
         if path is not None:
             self['path'] = path
 
@@ -129,7 +128,7 @@ class Animate(Set):
         :param href: target svg element, if **href** is not `None`; else
           the target SVG Element is the parent SVG Element.
         """
-        super(Animate, self).__init__(href=href, **extra)
+        super().__init__(href=href, **extra)
         if values is not None:
             self.set_value(values)
         if attributeName is not None:
@@ -179,5 +178,5 @@ class AnimateTransform(Animate):
           the target svg element is the parent svg element.
         :param string transform: ``'translate | scale | rotate | skewX | skewY'``
         """
-        super(AnimateTransform, self).__init__(element, **extra)
+        super().__init__(element, **extra)
         self['type'] = transform

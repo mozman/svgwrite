@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: mixins
 # Created: 19.10.2010
@@ -12,7 +11,7 @@ from svgwrite.utils import is_string
 _horiz = {'center': 'xMid', 'left': 'xMin', 'right': 'xMax'}
 _vert  = {'middle': 'YMid', 'top': 'YMin', 'bottom':'YMax'}
 
-class ViewBox(object):
+class ViewBox:
     """ The **ViewBox** mixin provides the ability to specify that a
     given set of graphics stretch to fit a particular container element.
 
@@ -61,9 +60,9 @@ class ViewBox(object):
         """
         if self.debug and scale not in ('meet', 'slice'):
             raise ValueError("Invalid scale parameter '%s'" % scale)
-        self['preserveAspectRatio'] = "%s%s %s" % (_horiz[horiz],_vert[vert], scale)
+        self['preserveAspectRatio'] = "{}{} {}".format(_horiz[horiz],_vert[vert], scale)
 
-class Transform(object):
+class Transform:
     """ The **Transform** mixin operates on the **transform** attribute.
     The value of the **transform** attribute is a `<transform-list>`, which
     is defined as a list of transform definitions, which are applied in the
@@ -127,10 +126,10 @@ class Transform(object):
 
     def _add_transformation(self, new_transform):
         old_transform = self.attribs.get(self.transformname, '')
-        self[self.transformname] = ("%s %s" % (old_transform, new_transform)).strip()
+        self[self.transformname] = (f"{old_transform} {new_transform}").strip()
 
 
-class XLink(object):
+class XLink:
     """ XLink mixin """
     def set_href(self, element):
         """
@@ -166,7 +165,7 @@ class XLink(object):
         self.attribs['xlink:href'] = idstr
 
 
-class Presentation(object):
+class Presentation:
     """
     Helper methods to set presentation attributes.
     """
@@ -227,7 +226,7 @@ class Presentation(object):
         return self
 
 
-class MediaGroup(object):
+class MediaGroup:
     """
     Helper methods to set media group attributes.
 
@@ -245,7 +244,7 @@ class MediaGroup(object):
         return self
 
 
-class Markers(object):
+class Markers:
     """
     Helper methods to set marker attributes.
 
@@ -289,10 +288,10 @@ class Markers(object):
                 self['marker'] = get_funciri(markers)
 
 
-class Clipping(object):
+class Clipping:
     def clip_rect(self, top='auto', right='auto', bottom='auto', left='auto'):
         """
         Set SVG Property **clip**.
 
         """
-        self['clip'] = "rect(%s,%s,%s,%s)" % (top, right, bottom, left)
+        self['clip'] = f"rect({top},{right},{bottom},{left})"

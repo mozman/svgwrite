@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding:utf-8
 # Author:  ya-induhvidual
 # Purpose: svg shapes-extension example
 # Modified

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman <me@mozman.at>
 # Purpose: test pretty_xml function
 # Created: 28.01.2017

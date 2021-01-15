@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: svg types
 # Created: 30.09.2010
@@ -7,7 +6,7 @@
 # License: MIT License
 
 
-class SVGAttribute(object):
+class SVGAttribute:
     def __init__(self, name, anim, types, const):
         self.name = name
         self._anim = anim
@@ -27,7 +26,7 @@ class SVGAttribute(object):
         return self._const
 
 
-class SVGMultiAttribute(object):
+class SVGMultiAttribute:
     # example: SVGMultiAttribute({'*':SVGAttribute(...), 'text tref':SVGAttribute(...)} )
     # parametr is a dict-like object
     # '*' is the default attribute definition
@@ -72,7 +71,7 @@ class SVGMultiAttribute(object):
         return attribute.get_const()
 
 
-class SVGElement(object):
+class SVGElement:
     def __init__(self, name, attributes, properties, children):
         self.name = name
         s = set(attributes)

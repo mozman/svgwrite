@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  ao2
 # Purpose: create Inkscape layers with svgwrite
 # Created: 26.01.2018
@@ -16,7 +15,7 @@ class InkscapeDrawing(svgwrite.Drawing):
     SODIPODI_NAMESPACE = 'http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd'
 
     def __init__(self, *args, **kwargs):
-        super(InkscapeDrawing, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         inkscape_attributes = {
             'xmlns:inkscape': SVGAttribute('xmlns:inkscape',

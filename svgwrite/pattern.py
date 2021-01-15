@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman --<mozman@gmx.at>
 # Purpose: pattern module
 # Created: 29.10.2010
@@ -29,7 +28,7 @@ class Pattern(BaseElement, XLink, ViewBox, Transform, Presentation):
         :param inherit: pattern inherits properties from `inherit` see: **xlink:href**
 
         """
-        super(Pattern, self).__init__(**extra)
+        super().__init__(**extra)
         if insert is not None:
             self['x'] = insert[0]
             self['y'] = insert[1]
@@ -47,4 +46,4 @@ class Pattern(BaseElement, XLink, ViewBox, Transform, Presentation):
 
     def get_paint_server(self, default='none'):
         """ Returns the <FuncIRI> of the gradient. """
-        return "%s %s" % (self.get_funciri(), default)
+        return f"{self.get_funciri()} {default}"

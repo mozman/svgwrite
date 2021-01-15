@@ -1,5 +1,4 @@
 ﻿#!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman
 # Purpose: a hack to generate XML containing CDATA by ElementTree
 # Created: 26.05.2012

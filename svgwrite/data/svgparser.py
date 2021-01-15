@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding:utf-8
 # Authors:  mozman <me@mozman.at>, Florian Festi
 # Purpose: svgparser using re module
 # Created: 16.10.2010
@@ -49,8 +48,8 @@ def build_transferlist_parser():
     skewX = fr"skewX\s*\(\s*{number}\s*\)"
     skewY = fr"skewY\s*\(\s*{number}\s*\)"
 
-    tl_re = "|".join((fr"(\s*{cmd}\s*)" for cmd in (
-        matrix, translate, scale, rotate, skewX, skewY)))
+    tl_re = "|".join(fr"(\s*{cmd}\s*)" for cmd in (
+        matrix, translate, scale, rotate, skewX, skewY))
     return fr"({tl_re})({c}({tl_re}))*"
 
 
@@ -78,10 +77,10 @@ def build_pathdata_parser():
     elliptical_arc_argument = r"\s*" + elliptical_arc_argument + r"\s*"
     elliptical_arc = fr"[aA]({elliptical_arc_argument})({c}{elliptical_arc_argument})*"
 
-    drawto_command = "|".join((fr"(\s*{cmd}\s*)" for cmd in (
+    drawto_command = "|".join(fr"(\s*{cmd}\s*)" for cmd in (
         moveto, lineto, horizontal_lineto, vertical_lineto, "[zZ]",
         curveto, smooth_curveto, quadratic_bezier_curveto,
-        smooth_quadratic_bezier_curveto, elliptical_arc)))
+        smooth_quadratic_bezier_curveto, elliptical_arc))
 
     return f"{moveto}({drawto_command})*"
 
@@ -122,9 +121,9 @@ def build_animation_timing_parser():
     event_value = fr"({id_value}\.)?{event_ref}([+-]?{clock_val})?"
     offset_value = fr"[-+]?{clock_val}"
     syncbase_value = fr"{id_value}\.(begin|end)({offset_value})?"
-    begin_value = "(" + "|".join((f"({reg})" for reg in (
+    begin_value = "(" + "|".join(f"({reg})" for reg in (
         offset_value, syncbase_value, event_value, repeat_value,
-        accesskey_value, wallclock_sync_value, "indefinite"))) + ")"
+        accesskey_value, wallclock_sync_value, "indefinite")) + ")"
     return fr"{begin_value}({c}{begin_value})*"
 
 

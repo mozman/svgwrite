@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman
 # Purpose: svg examples
 # Created: 08.09.2010

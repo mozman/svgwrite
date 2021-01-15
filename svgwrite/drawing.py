@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf-8
 # Author:  mozman
 # Purpose: drawing
 # Created: 10.09.2010
@@ -52,7 +51,7 @@ class Drawing(SVG, ElementFactory):
         :param bool debug: switch validation on/off
 
         """
-        super(Drawing, self).__init__(size=size, **extra)
+        super().__init__(size=size, **extra)
         self.filename = filename
         self._stylesheets = []  # list of stylesheets appended
 
@@ -70,7 +69,7 @@ class Drawing(SVG, ElementFactory):
 
         self.attribs['baseProfile'] = profile
         self.attribs['version'] = version
-        return super(Drawing, self).get_xml()
+        return super().get_xml()
 
     def add_stylesheet(self, href, title, alternate="no", media="screen"):
         """ Add a stylesheet reference.
@@ -117,7 +116,7 @@ class Drawing(SVG, ElementFactory):
         :param pretty: True for easy readable output
         :param indent: how much to indent if pretty is enabled, by default 2 spaces
         """
-        fileobj = io.open(self.filename, mode='w', encoding='utf-8')
+        fileobj = open(self.filename, mode='w', encoding='utf-8')
         self.write(fileobj, pretty=pretty, indent=indent)
         fileobj.close()
 
