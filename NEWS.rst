@@ -5,7 +5,9 @@ NEWS
 Version 1.4.1 - 2021-01-15
 --------------------------
 
-* merged some contributions and bugfixes
+* This package is in maintenance mode, no new features will be added, there will
+  be no change of behavior, just bugfixes will be merged.
+* Merged some contributions and bugfixes.
 
 Version 1.4 - 2020-03-28
 ------------------------
