@@ -51,6 +51,12 @@ class TestAnimationTimingParser(unittest.TestCase):
         self.assertTrue(is_valid_animation_timing("wallclock(1997-07-16T19:20:30)"))
         self.assertTrue(is_valid_animation_timing("wallclock(1997-07-16T19:20)"))
 
+    def test_list(self):
+        self.assertTrue(is_valid_animation_timing("0s;foo.end"))
+        self.assertTrue(is_valid_animation_timing("foo.end;0s"))
+        self.assertTrue(is_valid_animation_timing("0s;foo.end;bar.end"))
+        self.assertTrue(is_valid_animation_timing("foo.end;bar.end;0s"))
+
     def test_invalid_value(self):
         self.assertFalse(is_valid_animation_timing("xyz"))
         self.assertFalse(is_valid_animation_timing("repeat(0"))
@@ -61,6 +67,10 @@ class TestAnimationTimingParser(unittest.TestCase):
         self.assertFalse(is_valid_animation_timing("wallclock(1997-07-16T19:2)"))
         self.assertFalse(is_valid_animation_timing("wallclock(1997-07-16T19:)"))
         self.assertFalse(is_valid_animation_timing("wallclock(1997-07-16T19)"))
+        self.assertFalse(is_valid_animation_timing("0s,foo.end"))
+        self.assertFalse(is_valid_animation_timing("foo.end,0s"))
+        self.assertFalse(is_valid_animation_timing("0s,foo.end;bar.end"))
+        self.assertFalse(is_valid_animation_timing("foo.end,bar.end;0s"))
 
 if __name__ == '__main__':
     unittest.main()
