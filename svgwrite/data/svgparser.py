@@ -19,6 +19,7 @@ event_names = [
 ]
 
 c = r"\s*[, ]\s*"
+s = r"\s*[; ]\s*"
 integer_constant = r"\d+"
 exponent = r"([eE][+-]?\d+)"
 nonnegative_number = fr"(\d+\.?\d*|\.\d+){exponent}?"
@@ -125,7 +126,7 @@ def build_animation_timing_parser():
     begin_value = "(" + "|".join((f"({reg})" for reg in (
         offset_value, syncbase_value, event_value, repeat_value,
         accesskey_value, wallclock_sync_value, "indefinite"))) + ")"
-    return fr"{begin_value}({c}{begin_value})*"
+    return fr"{begin_value}({s}{begin_value})*"
 
 
 is_valid_animation_timing = is_valid(build_animation_timing_parser())
