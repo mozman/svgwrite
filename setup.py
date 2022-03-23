@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # License: MIT License
-# Copyright (C) 2010-2020  Manfred Moitzi
+# Copyright (C) 2010-2022  Manfred Moitzi
 from pathlib import Path
 from setuptools import setup
 
@@ -8,6 +8,7 @@ AUTHOR_NAME = 'Manfred Moitzi'
 AUTHOR_EMAIL = 'me@mozman.at'
 
 ROOT = Path(__file__).resolve().parent
+
 
 def get_version():
     v = {}
@@ -34,7 +35,7 @@ setup(name='svgwrite',
       platforms="OS Independent",
       license="MIT License",
       classifiers=[
-          "Development Status :: 5 - Production/Stable",
+          "Development Status :: 7 - Inactive",
           "License :: OSI Approved :: MIT License",
           "Operating System :: OS Independent",
           "Programming Language :: Python :: 3",
@@ -42,6 +43,7 @@ setup(name='svgwrite',
           "Programming Language :: Python :: 3.7",
           "Programming Language :: Python :: 3.8",
           "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
           "Programming Language :: Python :: Implementation :: CPython",
           "Programming Language :: Python :: Implementation :: PyPy",
           "Intended Audience :: Developers",
