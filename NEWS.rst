@@ -6,9 +6,11 @@ Version 1.4.2 - 2022-03-23
 --------------------------
 
 * This package is INACTIVE!
-  * no new features will be added
-  * there will be no change of behavior
-  * only bugfixes will be merged
+
+  * No new features will be added.
+  * There will be no change of behavior.
+  * Only bugfixes will be merged.
+
 * Merged some contributions and bugfixes.
 
 Version 1.4.1 - 2021-01-15
