@@ -137,8 +137,8 @@ class Polyline(BaseElement, Transform, Presentation, Markers):
                 raise TypeError('got %s values, but expected 2 values.' % len(point))
             x, y = point
             if self.debug:
-                self.validator.check_svg_type(x, 'coordinate')
-                self.validator.check_svg_type(y, 'coordinate')
+                self.validator.check_svg_type(x, 'number')
+                self.validator.check_svg_type(y, 'number')
             if self.profile == 'tiny':
                 if isinstance(x, float):
                     x = round(x, 4)
