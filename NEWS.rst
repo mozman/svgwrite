@@ -2,10 +2,10 @@
 NEWS
 ====
 
-Version 1.4.3b0 - dev
----------------------
+Version 1.4.3 - 2022-07-14
+--------------------------
 
-* BUGFIX: #114 Polyline validation by @normanrz
+* BUGFIX: `#114 <https://github.com/mozman/svgwrite/pull/114>`_ Polyline validation by @normanrz
 
 Version 1.4.2 - 2022-03-23
 --------------------------
