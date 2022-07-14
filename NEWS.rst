@@ -2,6 +2,11 @@
 NEWS
 ====
 
+Version 1.4.3b0 - dev
+---------------------
+
+* BUGFIX: #114 Polyline validation by @normanrz
+
 Version 1.4.2 - 2022-03-23
 --------------------------
 

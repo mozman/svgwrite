@@ -23,7 +23,7 @@ for more examples see: examples.py
 As the name `svgwrite` implies, `svgwrite` creates new SVG drawings, it does not read existing drawings and also does
 not import existing drawings, but you can always include other SVG drawings by the <image> entity.
 
-`svgwrite` is Pure python and has no external dependencies.
+`svgwrite` is a pure Python package and has no external dependencies.
 
 Installation
 ------------
