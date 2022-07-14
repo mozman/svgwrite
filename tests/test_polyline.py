@@ -17,8 +17,8 @@ class TestPolyline(unittest.TestCase):
         self.assertEqual(polyline.tostring(), '<polyline points="0,0 1,1" />')
 
     def test_coordinates(self):
-        # list of points is a list of numbers not coordinates -> no units allowed!!
-        self.assertRaises(TypeError, Polyline, [('1cm','1cm'), ('2mm', '1mm')])
+        polyline = Polyline(points=[('1cm','1cm'), ('2mm', '1mm')])
+        self.assertEqual(polyline.tostring(), '<polyline points="1cm,1cm 2mm,1mm" />')
 
     def test_errors(self):
         self.assertRaises(TypeError, Polyline, 0)

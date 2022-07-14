@@ -576,7 +576,7 @@ attributes = {
     const=frozenset(['all', 'visibleStroke', 'painted', 'none', 'visibleFill',
                      'visible', 'stroke', 'inherit', 'visiblePainted', 'fill'])),
 'points': SVGAttribute('points', anim=True,
-    types=frozenset(['list-of-number']),
+    types=frozenset(['list-of-points']),
     const=empty_list),
 'pointsAtX': SVGAttribute('pointsAtX', anim=True,
     types=frozenset(['number']),

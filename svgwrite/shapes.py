@@ -119,8 +119,8 @@ class Polyline(BaseElement, Transform, Presentation, Markers):
         if self.debug:
             for point in self.points:
                 x, y = point
-                self.validator.check_svg_type(x, 'number')
-                self.validator.check_svg_type(y, 'number')
+                self.validator.check_svg_type(x, 'coordinate')
+                self.validator.check_svg_type(y, 'coordinate')
 
     def get_xml(self):
         self.attribs['points'] = self.points_to_string(self.points)
